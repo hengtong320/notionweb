@@ -1,11 +1,12 @@
-name: Build Picture Drop H5 v3.1
+name: Build Picture Drop H5 v3.1.1
 
 on:
   push:
     paths:
       - 'picture-drop/tools/make_portrait_assets.py'
       - 'picture-drop/tools/patch_v31_physics.py'
-      - 'picture-drop/tools/verify_v31.js'
+      - 'picture-drop/tools/patch_v311_layout.py'
+      - 'picture-drop/tools/verify_v311.js'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
 
@@ -13,7 +14,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: picture-drop-build-v31
+  group: picture-drop-build-v311
   cancel-in-progress: true
 
 jobs:
@@ -39,17 +40,15 @@ jobs:
           python picture-drop/tools/make_portrait_assets.py
           test "$(find picture-drop/assets/pictures-portrait -maxdepth 1 -name '*.webp' | wc -l)" -ge 36
 
-      - name: Apply v3.1 portrait physics rules
+      - name: Apply portrait physics and responsive layout
         shell: bash
         run: |
           set -euo pipefail
           python picture-drop/tools/patch_v31_physics.py
-          if ! node --check picture-drop/game.js; then
-            nl -ba picture-drop/game.js | sed -n '560,920p'
-            exit 1
-          fi
-          node picture-drop/tools/verify_v31.js
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.1.0'
+          python picture-drop/tools/patch_v311_layout.py
+          node --check picture-drop/game.js
+          node picture-drop/tools/verify_v311.js
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.1.1'
 
       - name: Rebuild offline edition
         shell: bash
@@ -65,35 +64,34 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f picture-drop/Jigsaw-Drop-H5-v3.1.zip
+          rm -f picture-drop/Jigsaw-Drop-H5-v3.1.1.zip
           python - <<'PY'
           from pathlib import Path
           import json, datetime
           root=Path('picture-drop')
           payload={
-            'version':'3.1.0',
+            'version':'3.1.1',
             'builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'features':[
-              'portrait 0.69 tile and full-image aspect from reference video',
-              'height-driven mobile board layout',
+              'portrait 0.69 tile and full-image aspect measured from reference',
+              'responsive height-driven portrait board on phones',
               '4x4 level 14 and 5x5 level 15 progression',
-              'direct drag moves a joined source group',
-              'hold then drag tears out one joined quarter',
-              'invalid group placement can fall back to legal single-quarter tear',
-              'target joined groups remain splittable by overlap replacement',
-              'gravity resolves after every move even without a clear',
-              'rigid connected-group gravity waves',
-              'per-column deck refill',
-              '690x1000 portrait image asset set'
+              'direct drag moves joined source group',
+              'hold then drag tears out one quarter',
+              'target joined groups can be broken by replacement',
+              'gravity settles after every player move',
+              'rigid connected-group falling',
+              'per-column physical deck refill',
+              '36 portrait 690x1000 image assets'
             ]
           }
           (root/'release.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8')
           PY
           cd picture-drop
-          zip -qr /tmp/Jigsaw-Drop-H5-v3.1.zip . -x 'Jigsaw-Drop-H5-v3.1.zip'
-          mv /tmp/Jigsaw-Drop-H5-v3.1.zip .
+          zip -qr /tmp/Jigsaw-Drop-H5-v3.1.1.zip . -x 'Jigsaw-Drop-H5-v3.1.1.zip'
+          mv /tmp/Jigsaw-Drop-H5-v3.1.1.zip .
 
-      - name: Commit v3.1 game
+      - name: Commit v3.1.1 game
         shell: bash
         run: |
           set -euo pipefail
@@ -104,5 +102,5 @@ jobs:
             echo 'No generated changes to commit.'
             exit 0
           fi
-          git commit -s -m 'Release Jigsaw Drop H5 v3.1 portrait physics fidelity'
+          git commit -s -m 'Release Jigsaw Drop H5 v3.1.1 responsive portrait physics'
           git push origin HEAD:main
