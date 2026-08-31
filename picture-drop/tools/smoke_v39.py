@@ -16,7 +16,7 @@ try:
       const J=window.__JIGSAW__,g=J.game;
       return {
         mode:g.mode, selected:g.selectedImages.slice(), selectedCount:g.selectedImages.length,
-        blessingCount:J.blessingCount, standard:J.standardPictureCount, total:J.pictureCount,
+        blessingCount:J.blessingCount, standard:J.standardPictureCount, total:J.totalPictureCount,
         allBlessing:g.selectedImages.every(J.isBlessingIndex),
         workHidden:document.getElementById('workBadge').hidden,
         button:!!document.getElementById('blessingBtn'), modal:!!document.getElementById('blessingModal')
@@ -44,8 +44,6 @@ try:
     assert 'error' not in poster,poster
     assert poster['w']==1080 and poster['h']==1440 and poster['alpha']>0,poster
 
-    # Complete one blessing image through the real resolver. It must be persisted,
-    # appear in the work counter and open in the share modal.
     result=d.execute_async_script('''
       const done=arguments[0],J=window.__JIGSAW__,g=J.game,idx=g.selectedImages[0];
       const ids=Array(4).fill(null);for(const t of g.tiles.values())if(t.imageIndex===idx)ids[t.quadrant]=t.id;
