@@ -1,34 +1,39 @@
-name: Build Picture Drop H5 v3.5.1
+name: Build Picture Drop H5 v3.6
 on:
   push:
-    paths: ['picture-drop/tools/patch_v351_drag.py','picture-drop/tools/smoke_drag.py','.github/workflows/build-picture-drop.yml']
+    paths: ['picture-drop/tools/patch_v36_gravity_visual.py','picture-drop/tools/smoke_v36.py','.github/workflows/build-picture-drop.yml']
   workflow_dispatch:
 permissions: {contents: write}
-concurrency: {group: picture-drop-build-v351, cancel-in-progress: true}
+concurrency: {group: picture-drop-build-v36, cancel-in-progress: true}
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Apply drag hotfix and verify code
+      - name: Apply v3.6 and verify code invariants
         run: |
           set -euo pipefail
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.5.0'
-          python picture-drop/tools/patch_v351_drag.py
-          node --check picture-drop/game.js
-          grep -Fq '.cell-layer,.fx-layer{pointer-events:none!important}' picture-drop/style.css
-          grep -Fq '.tile{pointer-events:auto!important' picture-drop/style.css
-          grep -Fq "style.css?v=3.5.1" picture-drop/index.html
-          grep -Fq "game.js?v=3.5.1" picture-drop/index.html
-          grep -Fq "jigsaw-drop-h5-v3.5.1" picture-drop/sw.js
-          grep -Fq 'function ensureVisibleCompletionSet' picture-drop/game.js
-          grep -Fq 'requestAnimationFrame(flushDragFrame)' picture-drop/game.js
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.5.1'
-      - name: Real browser drag smoke test
+          python picture-drop/tools/patch_v36_gravity_visual.py
+          node --check picture-drop/game.js
+          grep -Fq 'function createJoinedSurface' picture-drop/game.js
+          grep -Fq 'function suspendJoinedSurface' picture-drop/game.js
+          grep -Fq 'const movable=new Set()' picture-drop/game.js
+          grep -Fq 'renderBoard({suppressJoinedSurfaces:true})' picture-drop/game.js
+          grep -Fq '.joined-surface{' picture-drop/style.css
+          grep -Fq '.tile.is-surface-member{background-image:none!important' picture-drop/style.css
+          grep -Fq "style.css?v=3.6.0" picture-drop/index.html
+          grep -Fq "game.js?v=3.6.0" picture-drop/index.html
+          grep -Fq "jigsaw-drop-h5-v3.6.0" picture-drop/sw.js
+          ! grep -Fq 'void dom.board.offsetWidth' picture-drop/game.js
+          grep -Fq 'requestAnimationFrame(flushDragFrame)' picture-drop/game.js
+          grep -Fq 'function ensureVisibleCompletionSet' picture-drop/game.js
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.6.0'
+      - name: Real browser drag, gravity and seam smoke tests
         run: |
           set -euo pipefail
           python -m pip install --quiet selenium
@@ -36,7 +41,19 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 1
-          python picture-drop/tools/smoke_drag.py
+          python picture-drop/tools/smoke_v36.py
+      - name: Stress soft-gravity no-gap invariant
+        run: |
+          node - <<'JS'
+          function step(board,g){const mov=new Set();let changed=true;while(changed){changed=false;for(let r=g-2;r>=0;r--)for(let c=0;c<g;c++){const i=r*g+c,id=board[i];if(!id||mov.has(id))continue;const below=board[i+g];if(!below||mov.has(below)){mov.add(id);changed=true;}}}if(!mov.size)return null;const n=board.slice(),es=[];for(let r=g-1;r>=0;r--)for(let c=0;c<g;c++){const i=r*g+c,id=board[i];if(id&&mov.has(id))es.push([i,id]);}es.forEach(([i])=>n[i]=null);es.forEach(([i,id])=>n[i+g]=id);return n}
+          for(let t=0;t<2000;t++){
+            const g=5,b=Array(25).fill(null),ids=[];for(let i=0;i<25;i++)if(Math.random()<.72){const id=`${t}-${i}`;b[i]=id;ids.push(id)}
+            let n=b,w=0;while(w++<30){const x=step(n,g);if(!x)break;n=x}
+            for(let c=0;c<g;c++){let empty=false;for(let r=g-1;r>=0;r--){if(!n[r*g+c])empty=true;else if(empty)throw new Error(`gap remained trial=${t} r=${r} c=${c}`)}}
+            if(n.filter(Boolean).sort().join('|')!==ids.sort().join('|'))throw new Error('tile integrity changed')
+          }
+          console.log('PASS soft gravity x2000 randomized boards')
+          JS
       - name: Rebuild release
         run: |
           set -euo pipefail
@@ -48,14 +65,14 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import json,datetime
-          r=Path('picture-drop');(r/'release.json').write_text(json.dumps({'version':'3.5.1','builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'features':['explicit tile-only pointer input layers','real Chromium drag regression test','v3.5 seamless joins','v3.5 anti-deadlock frontier','v3.5 smart hints','cache-busted service worker']},ensure_ascii=False,indent=2),encoding='utf-8')
+          r=Path('picture-drop');(r/'release.json').write_text(json.dumps({'version':'3.6.0','builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'features':['soft per-piece gravity that fractures blocked joins','no unsupported holes after settle','one-pass final-position gravity animation','single continuous raster surface for every joined group','no internal joined seam','forced-layout removal in FLIP','real browser drag/gravity/seam regression','v3.5 anti-deadlock and smart hints retained']},ensure_ascii=False,indent=2),encoding='utf-8')
           PY
-          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v3.5.1.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && mv /tmp/Jigsaw-Drop-H5-v3.5.1.zip .
-      - name: Commit v3.5.1
+          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v3.6.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.6.zip)" -lt 90000000 && mv /tmp/Jigsaw-Drop-H5-v3.6.zip .
+      - name: Commit v3.6
         run: |
           set -euo pipefail
           git config user.name 'hengtong320';git config user.email '564712388@qq.com'
           git add -A picture-drop
           if git diff --cached --quiet;then exit 0;fi
-          git commit -s -m 'Release Jigsaw Drop H5 v3.5.1 drag input hotfix'
+          git commit -s -m 'Release Jigsaw Drop H5 v3.6 soft gravity, seamless joins and faster falling'
           git push origin HEAD:main
