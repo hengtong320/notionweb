@@ -1,10 +1,10 @@
-name: Build Picture Drop H5 v3.1.1
+name: Build Picture Drop H5 v3.2
 
 on:
   push:
     paths:
-      - 'picture-drop/tools/patch_v311_layout.py'
-      - 'picture-drop/tools/verify_v311.js'
+      - 'picture-drop/tools/patch_v32_performance.py'
+      - 'picture-drop/tools/verify_v32.js'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
 
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: picture-drop-build-v311
+  group: picture-drop-build-v32
   cancel-in-progress: true
 
 jobs:
@@ -30,30 +30,24 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Verify v3.1 portrait base and apply responsive fix
+      - name: Apply v3.2 performance refactor
         shell: bash
         run: |
           set -euo pipefail
-          test "$(find picture-drop/assets/pictures-portrait -maxdepth 1 -name '*.webp' | wc -l)" -ge 36
-          grep -q "const TILE_ASPECT = 0.69" picture-drop/game.js
-          grep -q "drag.splitMode = true" picture-drop/game.js
-          grep -q "const moved=await applyGravity();" picture-drop/game.js
-          python picture-drop/tools/patch_v311_layout.py
-          node --check picture-drop/game.js
-          node picture-drop/tools/verify_v311.js
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.1.1'
+          python picture-drop/tools/patch_v32_performance.py
+          node --check picture-drop/game.js
+          node picture-drop/tools/verify_v32.js
 
       - name: Rebuild offline edition
         shell: bash
         run: |
           set -euo pipefail
-          if [ -f picture-drop/tools/build_standalone.py ]; then
-            python picture-drop/tools/build_standalone.py
-          fi
+          python picture-drop/tools/build_standalone.py
           test -s picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
 
-      - name: Build clean downloadable ZIP and release metadata
+      - name: Build clean ZIP
         shell: bash
         run: |
           set -euo pipefail
@@ -62,39 +56,21 @@ jobs:
           from pathlib import Path
           import json, datetime
           root=Path('picture-drop')
-          payload={
-            'version':'3.1.1',
-            'builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            'features':[
-              'portrait 0.69 tile/full-image aspect measured from reference',
-              'responsive height-driven portrait board',
-              '4x4 level 14 and 5x5 level 15 progression',
-              'direct drag moves joined source group',
-              'hold then drag tears out one quarter',
-              'target joined groups can be split by replacement',
-              'gravity settles after every player move',
-              'rigid connected-group falling',
-              'per-column physical deck refill',
-              '36 portrait 690x1000 image assets'
-            ]
-          }
+          payload={'version':'3.2.0','builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'features':['requestAnimationFrame drag rendering','removed forced synchronous reflow','double-RAF FLIP transitions','cached active tile/index lookups','GPU layer containment','lighter mobile drag effects','portrait physics and split/group rules preserved']}
           (root/'release.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8')
           PY
           cd picture-drop
-          zip -qr /tmp/Jigsaw-Drop-H5-v3.1.1.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*'
-          test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.1.1.zip)" -lt 90000000
-          mv /tmp/Jigsaw-Drop-H5-v3.1.1.zip .
+          zip -qr /tmp/Jigsaw-Drop-H5-v3.2.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*'
+          test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.2.zip)" -lt 90000000
+          mv /tmp/Jigsaw-Drop-H5-v3.2.zip .
 
-      - name: Commit v3.1.1 game
+      - name: Commit v3.2 game
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'hengtong320'
           git config user.email '564712388@qq.com'
           git add -A picture-drop
-          if git diff --cached --quiet; then
-            echo 'No generated changes to commit.'
-            exit 0
-          fi
-          git commit -s -m 'Release Jigsaw Drop H5 v3.1.1 responsive portrait physics'
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -s -m 'Release Jigsaw Drop H5 v3.2 performance refactor'
           git push origin HEAD:main
