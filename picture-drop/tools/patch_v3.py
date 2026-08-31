@@ -12,8 +12,9 @@ text = GAME.read_text(encoding='utf-8')
 
 
 def replace_function(src: str, name: str, replacement: str) -> str:
-    marker = f'  function {name}('
-    start = src.find(marker)
+    markers = [f'  function {name}(', f'  async function {name}(']
+    starts = [src.find(marker) for marker in markers]
+    start = min((value for value in starts if value >= 0), default=-1)
     if start < 0:
         raise RuntimeError(f'function not found: {name}')
     brace = src.find('{', start)

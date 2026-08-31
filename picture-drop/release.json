@@ -1,0 +1,12 @@
+{
+  "version": "2.1.0",
+  "builtAt": "2026-08-31T07:41:19.829367+00:00",
+  "features": [
+    "single-piece peel from joined groups",
+    "long-press whole-group dragging",
+    "reversible multi-cell region replacement",
+    "independent-column natural gravity",
+    "deeper level image counts",
+    "mobile sizing and cache refresh"
+  ]
+}

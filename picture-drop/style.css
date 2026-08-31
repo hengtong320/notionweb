@@ -225,3 +225,16 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 .hint-arrow{position:absolute;height:10px;z-index:68;transform-origin:left center;border-radius:8px;background:linear-gradient(90deg,#fff66c,#7cf5ff);box-shadow:0 0 5px #fff,0 0 15px rgba(112,243,255,.9);pointer-events:none;animation:arrowPulse .65s ease-in-out infinite alternate}
 .hint-arrow::after{content:"";position:absolute;right:-12px;top:-8px;border-left:18px solid #7cf5ff;border-top:13px solid transparent;border-bottom:13px solid transparent;filter:drop-shadow(0 0 4px #fff)}
 @keyframes arrowPulse{to{filter:brightness(1.25);transform:var(--arrow-transform) scaleX(1.05)}}
+
+
+/* v2.1 interaction polish */
+.tile.land-pop{animation:landPop .16s cubic-bezier(.2,.92,.28,1.28)}
+@keyframes landPop{0%{transform:translateY(-5px) scaleY(1.03)}55%{transform:translateY(2px) scaleX(1.025) scaleY(.965)}100%{transform:none}}
+@media (max-width:430px){
+  :root{--board-size:min(calc(100vw - 18px),calc(100dvh - 178px),404px)}
+  .game-area{justify-content:center}.deck-area{flex:0 0 58px}.status-row{flex:0 0 38px;margin-top:6px}
+}
+@media (max-height:720px){
+  :root{--board-size:min(calc(100vw - 22px),calc(100dvh - 166px),360px)}
+  .topbar{height:calc(56px + env(safe-area-inset-top))}.deck-area{height:48px}.status-row{height:34px;margin-top:4px}
+}

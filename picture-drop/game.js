@@ -242,8 +242,12 @@
   }
 
   function imageCountForLevel(level) {
-    const cycle = (level - 1) % 6;
-    return [5, 6, 6, 7, 7, 8][cycle];
+    if (level <= 2) return 5;
+    if (level <= 5) return 6;
+    if (level <= 10) return 7;
+    if (level <= 18) return 8;
+    // The board still shows only 16 pieces at once; extra images stay in the four feed columns.
+    return Math.min(12, 8 + Math.floor((level - 19) / 8));
   }
   function selectedImagesForLevel(level, count) {
     const start = ((level - 1) * 5) % PICTURE_PATHS.length;
@@ -469,28 +473,34 @@
     cellEls.forEach((cell) => cell.classList.remove('is-source','is-target','is-target-invalid'));
   }
 
-  function validateMove(sourceGroup, dr, dc, board = game.board, groups = game.groups) {
+  function validateMove(sourceGroup, dr, dc, board = game.board, groups = game.groups, options = {}) {
     if (!sourceGroup || (!dr && !dc)) return { valid:false, reason:'same' };
-    const sourceSet = new Set(sourceGroup.cells);
+    const cells = sourceGroup.cells.slice();
+    const sourceSet = new Set(cells);
     const targets = [];
-    for (const index of sourceGroup.cells) {
+    for (const index of cells) {
       const {r,c}=idxToRC(index), nr=r+dr, nc=c+dc;
       if (nr<0||nr>=GRID||nc<0||nc>=GRID) return {valid:false,reason:'bounds'};
       targets.push(rcToIdx(nr,nc));
     }
     const targetSet = new Set(targets);
-    for (const index of targets) if (sourceSet.has(index)) return {valid:false,reason:'overlap',targets};
-    for (const index of targets) {
-      if (!board[index]) continue;
-      const targetGroup = groupAtCell(index, groups);
-      if (targetGroup && targetGroup.cells.some((cell) => !targetSet.has(cell))) return {valid:false,reason:'split',targets};
-    }
+    if (targets.some((index)=>sourceSet.has(index))) return {valid:false,reason:'overlap',targets};
+
     const next = board.slice();
-    for (let i=0;i<sourceGroup.cells.length;i++) {
-      const s=sourceGroup.cells[i], t=targets[i];
-      next[s]=board[t]; next[t]=board[s];
-    }
-    return {valid:true,targets,board:next};
+    const sourceValues = cells.map((cell)=>board[cell]);
+    const displaced = targets.map((cell)=>board[cell]);
+
+    // Clear both regions first, then perform a position-preserving region swap.
+    cells.forEach((cell)=>{ next[cell]=null; });
+    targets.forEach((cell)=>{ next[cell]=null; });
+    targets.forEach((cell,i)=>{ next[cell]=sourceValues[i] || null; });
+    cells.forEach((cell,i)=>{ next[cell]=displaced[i] || null; });
+
+    // Sanity: never duplicate or lose pieces.
+    const beforeIds = board.filter(Boolean).slice().sort().join('|');
+    const afterIds = next.filter(Boolean).slice().sort().join('|');
+    if (beforeIds !== afterIds) return {valid:false,reason:'integrity',targets};
+    return {valid:true,targets,board:next,displaced};
   }
 
   function onTilePointerDown(event) {
@@ -498,17 +508,30 @@
     audio.ensure();
     const id = event.currentTarget.dataset.tileId;
     const index = game.board.indexOf(id); if (index < 0) return;
-    const sourceGroup = groupAtCell(index); if (!sourceGroup) return;
+    const joined = groupAtCell(index);
+    if (!joined) return;
     event.preventDefault();
     const rect = dom.board.getBoundingClientRect();
+    const single = { ids:[id], cells:[index], imageIndex:game.tiles.get(id)?.imageIndex, complete:false };
     const drag = {
       pointerId:event.pointerId, startX:event.clientX, startY:event.clientY, dx:0,dy:0,
-      sourceGroup, sourceIds:sourceGroup.ids.slice(), sourceCells:sourceGroup.cells.slice(),
-      boardRect:rect, cellSize:rect.width/GRID, lastDr:0,lastDc:0, validation:null
+      joinedGroup:joined, sourceGroup:single, sourceIds:[id], sourceCells:[index],
+      boardRect:rect, cellSize:rect.width/GRID, lastDr:0,lastDc:0, validation:null,
+      mode:'single', pressedAt:performance.now(), moved:false, holdTimer:0
     };
+    if (joined.ids.length > 1) {
+      drag.holdTimer = window.setTimeout(()=>{
+        if (!game.drag || game.drag !== drag || drag.moved) return;
+        drag.mode='group'; drag.sourceGroup=joined; drag.sourceIds=joined.ids.slice(); drag.sourceCells=joined.cells.slice();
+        clearCellHighlights();
+        drag.sourceCells.forEach((cell)=>cellEls[cell].classList.add('is-source'));
+        drag.sourceIds.forEach((tileId)=>tileEls.get(tileId)?.classList.add('is-dragging'));
+        showToast('整组移动',650); haptic(12); audio.merge();
+      },180);
+    }
     game.drag=drag; game.phase='dragging';
-    sourceGroup.cells.forEach((cell)=>cellEls[cell].classList.add('is-source'));
-    sourceGroup.ids.forEach((tileId)=>tileEls.get(tileId)?.classList.add('is-dragging'));
+    drag.sourceCells.forEach((cell)=>cellEls[cell].classList.add('is-source'));
+    drag.sourceIds.forEach((tileId)=>tileEls.get(tileId)?.classList.add('is-dragging'));
     window.addEventListener('pointermove', onDragMove, {passive:false});
     window.addEventListener('pointerup', onDragEnd, {passive:false,once:true});
     window.addEventListener('pointercancel', onDragEnd, {passive:false,once:true});
@@ -520,6 +543,10 @@
     const drag=game.drag; if(!drag||event.pointerId!==drag.pointerId)return;
     event.preventDefault();
     drag.dx=event.clientX-drag.startX; drag.dy=event.clientY-drag.startY;
+    if (Math.hypot(drag.dx,drag.dy) > Math.max(7,drag.cellSize*.08)) {
+      drag.moved=true;
+      if (drag.holdTimer) { clearTimeout(drag.holdTimer); drag.holdTimer=0; }
+    }
     drag.sourceIds.forEach((id)=>{
       const el=tileEls.get(id); if(el)el.style.transform=`translate3d(${drag.dx}px,${drag.dy}px,0) scale(1.035)`;
     });
@@ -532,10 +559,17 @@
 
   async function onDragEnd(event) {
     const drag=game.drag; if(!drag)return;
+    if (drag.holdTimer) clearTimeout(drag.holdTimer);
     window.removeEventListener('pointermove',onDragMove);
     window.removeEventListener('pointerup',onDragEnd);
     window.removeEventListener('pointercancel',onDragEnd);
     clearCellHighlights(); game.drag=null;
+
+    // A tap is not a move and should never break a joined image.
+    if (!drag.moved || (!drag.lastDr && !drag.lastDc)) {
+      drag.sourceIds.forEach((id)=>{const el=tileEls.get(id);if(el){el.style.transform='';el.classList.remove('is-dragging');}});
+      game.phase='idle'; return;
+    }
     const validation=drag.validation || validateMove(drag.sourceGroup,drag.lastDr,drag.lastDc);
     if(validation.valid) {
       await commitMove(drag.sourceGroup,drag.lastDr,drag.lastDc,validation.board,true);
@@ -543,9 +577,9 @@
       audio.invalid(); haptic([10,25,10]);
       drag.sourceIds.forEach((id)=>{
         const el=tileEls.get(id); if(!el)return;
-        el.style.transition='transform 220ms cubic-bezier(.22,.88,.28,1)'; el.style.transform='none';
+        el.style.transition='transform 180ms cubic-bezier(.2,.9,.25,1.18)'; el.style.transform='none';
       });
-      await delay(235);
+      await delay(195);
       drag.sourceIds.forEach((id)=>{const el=tileEls.get(id);if(el){el.style.transition='';el.style.transform='';el.classList.remove('is-dragging');}});
       game.phase='idle';
     }
@@ -636,8 +670,8 @@
     if(game.phase!=='idle')return;
     if(game.hintCount<=0){showToast('提示次数用完啦');audio.invalid();return;}
     const move=findHelpfulMove();
-    if(!move){showToast('现在已经很接近了，试试移动组合块');audio.invalid();return;}
-    game.hintCount--;updateHud();markHint(move);audio.merge();showToast('发光的碎片可以这样交换');
+    if(!move){showToast('试试直接拖一块拆开，或长按后整组移动');audio.invalid();return;}
+    game.hintCount--;updateHud();markHint(move);audio.merge();showToast('直接拖可拆单块；长按再拖可搬整组');
   }
   async function useAuto() {
     if(game.phase!=='idle')return;
@@ -704,26 +738,13 @@
   }
 
   function settleGroupsRigid(board) {
-    const next=board.slice();
-    let moved=true, safety=0;
-    while(moved && safety++<GRID*CELL_COUNT){
-      moved=false;
-      // Bottom-first, one row at a time. A connected horizontal/vertical/L group
-      // only falls when every occupied cell in that group can fall together.
-      const groups=computeGroups(next,game.tiles).sort((a,b)=>b.maxR-a.maxR || b.minR-a.minR);
-      for(const group of groups){
-        if(group.maxR>=GRID-1)continue;
-        const own=new Set(group.cells);
-        const canFall=group.cells.every((cell)=>{
-          const target=cell+GRID;
-          return target<CELL_COUNT && (!next[target] || own.has(target));
-        });
-        if(!canFall)continue;
-        const entries=group.cells.map((cell)=>[cell,next[cell]]);
-        entries.forEach(([cell])=>{next[cell]=null;});
-        entries.sort((a,b)=>b[0]-a[0]).forEach(([cell,id])=>{next[cell+GRID]=id;});
-        moved=true;
+    const next=Array(CELL_COUNT).fill(null);
+    for(let c=0;c<GRID;c++){
+      const ids=[];
+      for(let r=GRID-1;r>=0;r--){
+        const id=board[rcToIdx(r,c)]; if(id) ids.push(id);
       }
+      ids.forEach((id,k)=>{ next[rcToIdx(GRID-1-k,c)]=id; });
     }
     return next;
   }
@@ -731,8 +752,24 @@
   async function applyGravity() {
     const next=settleGroupsRigid(game.board);
     if(next.every((id,i)=>id===game.board[i]))return;
-    const first=captureTileRects();game.board=next;renderBoard();
-    await animateFlipFromRects(first,360);game.groups=computeGroups();game.connections=computeConnections();
+    const oldIndex=new Map(); game.board.forEach((id,i)=>{if(id)oldIndex.set(id,i);});
+    const first=captureTileRects(); game.board=next; renderBoard();
+    let maxRows=1;
+    next.forEach((id,i)=>{
+      if(!id)return; const from=oldIndex.get(id); if(from==null)return;
+      maxRows=Math.max(maxRows,Math.max(0,idxToRC(i).r-idxToRC(from).r));
+    });
+    const duration=Math.min(420,170+maxRows*62);
+    await animateFlipFromRects(first,duration);
+    const landed=[];
+    next.forEach((id,i)=>{
+      if(!id)return; const from=oldIndex.get(id); if(from!=null&&idxToRC(i).r>idxToRC(from).r)landed.push(id);
+    });
+    landed.forEach((id)=>tileEls.get(id)?.classList.add('land-pop'));
+    if(landed.length){ haptic(Math.min(24,7+maxRows*4)); audio.deal(); }
+    await delay(95);
+    landed.forEach((id)=>tileEls.get(id)?.classList.remove('land-pop'));
+    game.groups=computeGroups(); game.connections=computeConnections(); renderBoard();
   }
 
   async function dealIntoBoard() {
