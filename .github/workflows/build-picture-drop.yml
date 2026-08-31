@@ -4,6 +4,7 @@ on:
     paths:
       - 'picture-drop/tools/generate_blessing_cards.py'
       - 'picture-drop/tools/patch_v39_blessing.py'
+      - 'picture-drop/tools/patch_v39_compat.py'
       - 'picture-drop/tools/smoke_v39.py'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
@@ -25,10 +26,12 @@ jobs:
           python picture-drop/tools/generate_blessing_cards.py
           test "$(find picture-drop/assets/blessings -name '*.svg' | wc -l)" -eq 12
           python picture-drop/tools/patch_v39_blessing.py
+          python picture-drop/tools/patch_v39_compat.py
           node --check picture-drop/game.js
           grep -Fq 'const BLESSING_CARDS=' picture-drop/game.js
           grep -Fq 'async function renderBlessingPoster' picture-drop/game.js
           grep -Fq 'function openBlessingWorks' picture-drop/game.js
+          grep -Fq 'pictureCount:STANDARD_PICTURE_COUNT,totalPictureCount:PICTURE_PATHS.length' picture-drop/game.js
           grep -Fq 'id="blessingBtn"' picture-drop/index.html
           grep -Fq 'id="blessingModal"' picture-drop/index.html
           grep -Fq 'id="shareWorksBtn"' picture-drop/index.html
