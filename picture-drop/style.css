@@ -271,3 +271,15 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 .gallery-item{aspect-ratio:.69!important}
 .complete-overlay{background-size:cover}
 @media(max-height:720px){.deck-area{height:50px;flex-basis:50px}.status-row{height:34px}}
+
+
+/* v3.2-performance */
+.tile{will-change:transform;contain:layout paint style;backface-visibility:hidden;transform:translateZ(0)}
+.tile.is-dragging{filter:none;box-shadow:0 8px 12px rgba(0,30,78,.30),0 0 0 1.5px rgba(255,255,255,.72)}
+.cell{contain:layout paint style}
+.tile-layer,.cell-layer,.fx-layer{contain:layout paint style}
+.board{contain:layout paint style;transform:translateZ(0)}
+@media(max-width:540px){
+  .tile{box-shadow:0 0 0 1px rgba(22,42,69,.62),0 1px 2px rgba(0,29,78,.16)}
+  .tile.is-dragging{box-shadow:0 7px 10px rgba(0,30,78,.28),0 0 0 1.5px rgba(255,255,255,.7)}
+}

@@ -285,6 +285,18 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 .complete-overlay{background-size:cover}
 @media(max-height:720px){.deck-area{height:50px;flex-basis:50px}.status-row{height:34px}}
 
+
+/* v3.2-performance */
+.tile{will-change:transform;contain:layout paint style;backface-visibility:hidden;transform:translateZ(0)}
+.tile.is-dragging{filter:none;box-shadow:0 8px 12px rgba(0,30,78,.30),0 0 0 1.5px rgba(255,255,255,.72)}
+.cell{contain:layout paint style}
+.tile-layer,.cell-layer,.fx-layer{contain:layout paint style}
+.board{contain:layout paint style;transform:translateZ(0)}
+@media(max-width:540px){
+  .tile{box-shadow:0 0 0 1px rgba(22,42,69,.62),0 1px 2px rgba(0,29,78,.16)}
+  .tile.is-dragging{box-shadow:0 7px 10px rgba(0,30,78,.28),0 0 0 1.5px rgba(255,255,255,.7)}
+}
+
   </style>
 </head>
 <body>
@@ -790,6 +802,16 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
     return Math.min(15, 10 + Math.floor((level - 15) / 3));
   }
 
+  function warmLevelImages(indices) {
+    if (!indices || !indices.length) return;
+    indices.forEach((imageIndex)=>{
+      const img=new Image();
+      img.decoding='async';
+      img.src=PICTURE_PATHS[imageIndex];
+      if (img.decode) img.decode().catch(()=>{});
+    });
+  }
+
   function selectedImagesForLevel(level, count) {
     const start = ((level - 1) * 5) % PICTURE_PATHS.length;
     return Array.from({ length: count }, (_, i) => (start + i) % PICTURE_PATHS.length);
@@ -962,13 +984,15 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
       if (r<GRID-1 && game.board[i+GRID] && isCompatibleEdge(tile,game.tiles.get(game.board[i+GRID]),1,0)) joinMap.get(id).down=true;
     }
     const activeIds = new Set(game.board.filter(Boolean));
+    const indexById = new Map();
+    game.board.forEach((id,index)=>{ if(id) indexById.set(id,index); });
     for (const [id, el] of tileEls) {
       if (!activeIds.has(id)) el.style.display='none';
     }
     activeIds.forEach((id) => ensureTileElement(game.tiles.get(id)));
     for (const id of activeIds) {
       const el = tileEls.get(id);
-      const index=game.board.indexOf(id);
+      const index=indexById.get(id);
       const {r}=idxToRC(index);
       const join=joinMap.get(id);
       el.style.display='block';
@@ -1016,16 +1040,18 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 
   function captureTileRects() {
     const rects = new Map();
+    const active = new Set(game.board.filter(Boolean));
     for (const [id, el] of tileEls) {
-      if (el.style.display !== 'none' && game.board.includes(id)) rects.set(id, el.getBoundingClientRect());
+      if (el.style.display !== 'none' && active.has(id)) rects.set(id, el.getBoundingClientRect());
     }
     return rects;
   }
 
   async function animateFlipFromRects(firstRects, duration = 300) {
     const moving = [];
+    const active = new Set(game.board.filter(Boolean));
     for (const [id, el] of tileEls) {
-      if (!game.board.includes(id) || !firstRects.has(id)) continue;
+      if (!active.has(id) || !firstRects.has(id)) continue;
       el.style.transition = 'none'; el.style.transform = 'none';
       const last = el.getBoundingClientRect(), first = firstRects.get(id);
       const dx = first.left - last.left, dy = first.top - last.top;
@@ -1145,19 +1171,23 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 
 
 
-  function onDragMove(event) {
-    const drag=game.drag; if(!drag||event.pointerId!==drag.pointerId)return;
-    event.preventDefault();
-    drag.dx=event.clientX-drag.startX; drag.dy=event.clientY-drag.startY;
-    if (Math.hypot(drag.dx,drag.dy) > Math.max(6,Math.min(drag.stepX,drag.stepY)*.06)) {
+  function flushDragFrame() {
+    const drag=game.drag;
+    if(!drag){ return; }
+    drag.rafId=0;
+    const dx=drag.pendingDx ?? drag.dx ?? 0;
+    const dy=drag.pendingDy ?? drag.dy ?? 0;
+    drag.dx=dx; drag.dy=dy;
+    if (Math.hypot(dx,dy) > Math.max(6,Math.min(drag.stepX,drag.stepY)*.06)) {
       drag.moved=true;
       if (drag.holdTimer) { clearTimeout(drag.holdTimer); drag.holdTimer=0; }
     }
+    const transform=`translate3d(${dx}px,${dy}px,0) scale(1.018)`;
     drag.sourceIds.forEach((id)=>{
       const el=tileEls.get(id);
-      if(el) el.style.transform=`translate3d(${drag.dx}px,${drag.dy}px,0) scale(1.025)`;
+      if(el && el.style.transform!==transform) el.style.transform=transform;
     });
-    const dc=Math.round(drag.dx/drag.stepX), dr=Math.round(drag.dy/drag.stepY);
+    const dc=Math.round(dx/drag.stepX), dr=Math.round(dy/drag.stepY);
     if(dc===drag.lastDc&&dr===drag.lastDr)return;
     drag.lastDc=dc; drag.lastDr=dr;
     clearCellHighlights();
@@ -1166,12 +1196,19 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
     if(result.targets) result.targets.forEach((cell)=>cellEls[cell]?.classList.add(result.valid?'is-target':'is-target-invalid'));
   }
 
-
+  function onDragMove(event) {
+    const drag=game.drag; if(!drag||event.pointerId!==drag.pointerId)return;
+    event.preventDefault();
+    drag.pendingDx=event.clientX-drag.startX;
+    drag.pendingDy=event.clientY-drag.startY;
+    if(!drag.rafId) drag.rafId=requestAnimationFrame(flushDragFrame);
+  }
 
 
   async function onDragEnd(event) {
     const drag=game.drag; if(!drag)return;
     if (drag.holdTimer) clearTimeout(drag.holdTimer);
+    if (drag.rafId) { cancelAnimationFrame(drag.rafId); drag.rafId=0; flushDragFrame(); }
     window.removeEventListener('pointermove',onDragMove);
     window.removeEventListener('pointerup',onDragEnd);
     window.removeEventListener('pointercancel',onDragEnd);

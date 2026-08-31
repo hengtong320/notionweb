@@ -366,6 +366,16 @@
     return Math.min(15, 10 + Math.floor((level - 15) / 3));
   }
 
+  function warmLevelImages(indices) {
+    if (!indices || !indices.length) return;
+    indices.forEach((imageIndex)=>{
+      const img=new Image();
+      img.decoding='async';
+      img.src=PICTURE_PATHS[imageIndex];
+      if (img.decode) img.decode().catch(()=>{});
+    });
+  }
+
   function selectedImagesForLevel(level, count) {
     const start = ((level - 1) * 5) % PICTURE_PATHS.length;
     return Array.from({ length: count }, (_, i) => (start + i) % PICTURE_PATHS.length);
@@ -538,13 +548,15 @@
       if (r<GRID-1 && game.board[i+GRID] && isCompatibleEdge(tile,game.tiles.get(game.board[i+GRID]),1,0)) joinMap.get(id).down=true;
     }
     const activeIds = new Set(game.board.filter(Boolean));
+    const indexById = new Map();
+    game.board.forEach((id,index)=>{ if(id) indexById.set(id,index); });
     for (const [id, el] of tileEls) {
       if (!activeIds.has(id)) el.style.display='none';
     }
     activeIds.forEach((id) => ensureTileElement(game.tiles.get(id)));
     for (const id of activeIds) {
       const el = tileEls.get(id);
-      const index=game.board.indexOf(id);
+      const index=indexById.get(id);
       const {r}=idxToRC(index);
       const join=joinMap.get(id);
       el.style.display='block';
@@ -592,16 +604,18 @@
 
   function captureTileRects() {
     const rects = new Map();
+    const active = new Set(game.board.filter(Boolean));
     for (const [id, el] of tileEls) {
-      if (el.style.display !== 'none' && game.board.includes(id)) rects.set(id, el.getBoundingClientRect());
+      if (el.style.display !== 'none' && active.has(id)) rects.set(id, el.getBoundingClientRect());
     }
     return rects;
   }
 
   async function animateFlipFromRects(firstRects, duration = 300) {
     const moving = [];
+    const active = new Set(game.board.filter(Boolean));
     for (const [id, el] of tileEls) {
-      if (!game.board.includes(id) || !firstRects.has(id)) continue;
+      if (!active.has(id) || !firstRects.has(id)) continue;
       el.style.transition = 'none'; el.style.transform = 'none';
       const last = el.getBoundingClientRect(), first = firstRects.get(id);
       const dx = first.left - last.left, dy = first.top - last.top;
@@ -721,19 +735,23 @@
 
 
 
-  function onDragMove(event) {
-    const drag=game.drag; if(!drag||event.pointerId!==drag.pointerId)return;
-    event.preventDefault();
-    drag.dx=event.clientX-drag.startX; drag.dy=event.clientY-drag.startY;
-    if (Math.hypot(drag.dx,drag.dy) > Math.max(6,Math.min(drag.stepX,drag.stepY)*.06)) {
+  function flushDragFrame() {
+    const drag=game.drag;
+    if(!drag){ return; }
+    drag.rafId=0;
+    const dx=drag.pendingDx ?? drag.dx ?? 0;
+    const dy=drag.pendingDy ?? drag.dy ?? 0;
+    drag.dx=dx; drag.dy=dy;
+    if (Math.hypot(dx,dy) > Math.max(6,Math.min(drag.stepX,drag.stepY)*.06)) {
       drag.moved=true;
       if (drag.holdTimer) { clearTimeout(drag.holdTimer); drag.holdTimer=0; }
     }
+    const transform=`translate3d(${dx}px,${dy}px,0) scale(1.018)`;
     drag.sourceIds.forEach((id)=>{
       const el=tileEls.get(id);
-      if(el) el.style.transform=`translate3d(${drag.dx}px,${drag.dy}px,0) scale(1.025)`;
+      if(el && el.style.transform!==transform) el.style.transform=transform;
     });
-    const dc=Math.round(drag.dx/drag.stepX), dr=Math.round(drag.dy/drag.stepY);
+    const dc=Math.round(dx/drag.stepX), dr=Math.round(dy/drag.stepY);
     if(dc===drag.lastDc&&dr===drag.lastDr)return;
     drag.lastDc=dc; drag.lastDr=dr;
     clearCellHighlights();
@@ -742,12 +760,19 @@
     if(result.targets) result.targets.forEach((cell)=>cellEls[cell]?.classList.add(result.valid?'is-target':'is-target-invalid'));
   }
 
-
+  function onDragMove(event) {
+    const drag=game.drag; if(!drag||event.pointerId!==drag.pointerId)return;
+    event.preventDefault();
+    drag.pendingDx=event.clientX-drag.startX;
+    drag.pendingDy=event.clientY-drag.startY;
+    if(!drag.rafId) drag.rafId=requestAnimationFrame(flushDragFrame);
+  }
 
 
   async function onDragEnd(event) {
     const drag=game.drag; if(!drag)return;
     if (drag.holdTimer) clearTimeout(drag.holdTimer);
+    if (drag.rafId) { cancelAnimationFrame(drag.rafId); drag.rafId=0; flushDragFrame(); }
     window.removeEventListener('pointermove',onDragMove);
     window.removeEventListener('pointerup',onDragEnd);
     window.removeEventListener('pointercancel',onDragEnd);
