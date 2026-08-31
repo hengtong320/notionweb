@@ -112,7 +112,6 @@ text = replace_function(text, 'findHelpfulMove', r'''  function findHelpfulMove(
         const score=boardScore(result.board);
         const beforeGroup=groupAtCell(group.cells[0],computeGroups(game.board,game.tiles));
         const afterGroups=computeGroups(result.board,game.tiles);
-        const movedId=group.ids[0];
         const movedCell=result.targets[0];
         const afterGroup=afterGroups.find(g=>g.cells.includes(movedCell));
         const growth=(afterGroup?.ids.length||1)-(beforeGroup?.ids.length||1);
@@ -125,18 +124,18 @@ text = replace_function(text, 'findHelpfulMove', r'''  function findHelpfulMove(
     return best;
   }''')
 
-# Remove the obsolete long-press cleanup line from onDragEnd if present.
 text = text.replace("    if (drag.holdTimer) clearTimeout(drag.holdTimer);\n", "")
-
-# Make guidance consistent with the single-cell swap rule.
 text = text.replace("试试直接拖一块拆开，或长按后整组移动", "任意拼好的组合都能直接拆开交换")
 text = text.replace("直接拖可拆单块；长按再拖可搬整组", "发光碎片可直接和目标格交换")
 text = text.replace("拖动碎片交换位置，正确的边会自动吸附", "拖动任意碎片交换位置，拼好的组合也可以拆开")
-
 GAME.write_text(text, encoding='utf-8')
 
 index = INDEX.read_text(encoding='utf-8')
-index = index.replace('拖动已经拼好的碎片时，它们会作为一个整体移动', '任何碎片都能单独交换，拼好的组合也可以再次拆开')
+for old in [
+    '拖动已经拼好的碎片时，它们会作为一个整体移动',
+    '直接拖动可拆出单块 · 长按再拖可整体搬移'
+]:
+    index = index.replace(old, '任何碎片都能单独交换，拼好的组合也可以再次拆开')
 INDEX.write_text(index, encoding='utf-8')
 
 sw = SW.read_text(encoding='utf-8')
