@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'picture-drop/tools/patch_v38_juice.py'
+      - 'picture-drop/tools/patch_v38_chain3_fix.py'
       - 'picture-drop/tools/smoke_v38.py'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
@@ -22,11 +23,13 @@ jobs:
           set -euo pipefail
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.7.0'
           python picture-drop/tools/patch_v38_juice.py
+          python picture-drop/tools/patch_v38_chain3_fix.py
           node --check picture-drop/game.js
           grep -Fq 'class JuiceDirector' picture-drop/game.js
           grep -Fq 'function predictCascade' picture-drop/game.js
           grep -Fq 'function registerClear' picture-drop/game.js
           grep -Fq 'chainSeed={depth' picture-drop/game.js
+          grep -Fq 'feederCell=rcToIdx(0,anchor[1]+1)' picture-drop/game.js
           grep -Fq 'next-card' picture-drop/game.js
           grep -Fq 'juiceCanvas' picture-drop/index.html
           grep -Fq 'flowMeter' picture-drop/index.html
