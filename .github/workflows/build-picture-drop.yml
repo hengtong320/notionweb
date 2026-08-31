@@ -18,9 +18,21 @@ jobs:
         run: |
           set -euo pipefail
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.4.0'
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('picture-drop/tools/patch_v35_playability.py')
+          s=p.read_text(encoding='utf-8')
+          old="ua_end=s.index('  async function resolveBoard',ua_start)"
+          new="ua_end=s.index('  function imageIdsByQuadrant',ua_start)"
+          if old in s:
+              s=s.replace(old,new,1)
+              p.write_text(s,encoding='utf-8')
+          elif new not in s:
+              raise SystemExit('unexpected v3.5 patch boundary')
+          PY
           python picture-drop/tools/patch_v35_playability.py
           echo '[check] JS syntax'
-          if ! node --check picture-drop/game.js; then nl -ba picture-drop/game.js | sed -n '720,1080p'; exit 1; fi
+          if ! node --check picture-drop/game.js; then nl -ba picture-drop/game.js | sed -n '720,1220p'; exit 1; fi
           check(){ echo "[check] $1"; grep -Fq "$2" "$3" || { echo "MISSING: $2 in $3"; exit 1; }; }
           check seamless 'background-origin:border-box' picture-drop/style.css
           check frontier 'function ensureVisibleCompletionSet' picture-drop/game.js
