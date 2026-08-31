@@ -35,7 +35,10 @@ jobs:
         run: |
           set -euo pipefail
           python picture-drop/tools/patch_v30_reference.py
-          node --check picture-drop/game.js
+          if ! node --check picture-drop/game.js; then
+            nl -ba picture-drop/game.js | sed -n '500,560p'
+            exit 1
+          fi
           node picture-drop/tools/verify_v30.js
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.0.0'
 
