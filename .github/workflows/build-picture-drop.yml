@@ -1,10 +1,10 @@
-name: Build Picture Drop H5 v2.2
+name: Build Picture Drop H5 v3.0
 
 on:
   push:
     paths:
-      - 'picture-drop/tools/patch_v22.py'
-      - 'picture-drop/tools/verify_v22.js'
+      - 'picture-drop/tools/patch_v30_reference.py'
+      - 'picture-drop/tools/verify_v30.js'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
 
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: picture-drop-build-v22
+  group: picture-drop-build-v30
   cancel-in-progress: true
 
 jobs:
@@ -30,14 +30,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Apply v2.2 universal single-cell swap patch
+      - name: Apply v3 reference-fidelity rules
         shell: bash
         run: |
           set -euo pipefail
-          python picture-drop/tools/patch_v22.py
+          python picture-drop/tools/patch_v30_reference.py
           node --check picture-drop/game.js
-          node picture-drop/tools/verify_v22.js
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '2.2.0'
+          node picture-drop/tools/verify_v30.js
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.0.0'
 
       - name: Rebuild offline edition
         shell: bash
@@ -49,16 +49,36 @@ jobs:
           test -s picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
 
-      - name: Build downloadable ZIP
+      - name: Build downloadable ZIP and release metadata
         shell: bash
         run: |
           set -euo pipefail
-          rm -f picture-drop/Jigsaw-Drop-H5-v2.2.zip
+          rm -f picture-drop/Jigsaw-Drop-H5-v3.0.zip
+          python - <<'PY'
+          from pathlib import Path
+          import json, datetime
+          root=Path('picture-drop')
+          payload={
+            'version':'3.0.0',
+            'builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            'features':[
+              'reference 4x4 to 5x5 level progression',
+              'rigid source-group drag with splittable target region',
+              'translated region swap including overlapping motion',
+              'rigid connected-group gravity waves',
+              'per-column physical deck refill',
+              'connected-cell gutter bridging',
+              'persistent combo streak',
+              'hard-level red deck presentation'
+            ]
+          }
+          (root/'release.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
           cd picture-drop
-          zip -qr /tmp/Jigsaw-Drop-H5-v2.2.zip . -x 'Jigsaw-Drop-H5-v2.2.zip'
-          mv /tmp/Jigsaw-Drop-H5-v2.2.zip .
+          zip -qr /tmp/Jigsaw-Drop-H5-v3.0.zip . -x 'Jigsaw-Drop-H5-v3.0.zip'
+          mv /tmp/Jigsaw-Drop-H5-v3.0.zip .
 
-      - name: Commit v2.2 game
+      - name: Commit v3 game
         shell: bash
         run: |
           set -euo pipefail
@@ -69,5 +89,5 @@ jobs:
             echo 'No generated changes to commit.'
             exit 0
           fi
-          git commit -s -m 'Release Jigsaw Drop H5 v2.2 universal single-cell swap'
+          git commit -s -m 'Release Jigsaw Drop H5 v3.0 reference-fidelity rules'
           git push origin HEAD:main
