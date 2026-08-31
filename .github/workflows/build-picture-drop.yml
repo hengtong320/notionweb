@@ -1,8 +1,10 @@
-name: Build Picture Drop H5 v2
+name: Build Picture Drop H5 v2.1
 
 on:
   push:
     paths:
+      - 'picture-drop/tools/patch_v3.py'
+      - 'picture-drop/tools/verify_v21.js'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
 
@@ -10,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: picture-drop-build
+  group: picture-drop-build-v21
   cancel-in-progress: true
 
 jobs:
@@ -28,22 +30,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Download verified v2 source archive
+      - name: Apply v2.1 interaction and gravity patch
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf picture-drop /tmp/picture-drop-v2.tar.gz
-          curl --fail --location --retry 8 --retry-delay 3 \
-            'https://jigsaw-drop-game.netlify.app/Jigsaw-Drop-H5-v2.0-source.tar.gz?v=2.0.0' \
-            --output /tmp/picture-drop-v2.tar.gz
-          gzip -t /tmp/picture-drop-v2.tar.gz
-          mkdir -p picture-drop
-          tar -xzf /tmp/picture-drop-v2.tar.gz -C picture-drop
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '2.0.0'
-          test -s picture-drop/index.html
-          test -s picture-drop/style.css
-          test -s picture-drop/game.js
+          python picture-drop/tools/patch_v3.py
           node --check picture-drop/game.js
+          node picture-drop/tools/verify_v21.js
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '2.1.0'
 
       - name: Rebuild offline edition
         shell: bash
@@ -55,33 +49,16 @@ jobs:
           test -s picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
 
-      - name: Build downloadable ZIP and release metadata
+      - name: Build downloadable ZIP
         shell: bash
         run: |
           set -euo pipefail
-          rm -f picture-drop/Jigsaw-Drop-H5-v1.0.zip picture-drop/Jigsaw-Drop-H5-v2.0.zip
-          python - <<'PY'
-          from pathlib import Path
-          import json, datetime
-          root = Path('picture-drop')
-          payload = {
-              'version': '2.0.0',
-              'builtAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
-              'features': [
-                  'splittable joined pieces',
-                  'stepwise accelerated gravity',
-                  'landing squash and rebound',
-                  'mobile viewport and safe-area refinement',
-                  'on-demand picture caching'
-              ]
-          }
-          (root / 'release.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
-          PY
+          rm -f picture-drop/Jigsaw-Drop-H5-v2.1.zip
           cd picture-drop
-          zip -qr /tmp/Jigsaw-Drop-H5-v2.0.zip . -x 'Jigsaw-Drop-H5-v2.0.zip'
-          mv /tmp/Jigsaw-Drop-H5-v2.0.zip .
+          zip -qr /tmp/Jigsaw-Drop-H5-v2.1.zip . -x 'Jigsaw-Drop-H5-v2.1.zip'
+          mv /tmp/Jigsaw-Drop-H5-v2.1.zip .
 
-      - name: Commit v2 game
+      - name: Commit v2.1 game
         shell: bash
         run: |
           set -euo pipefail
@@ -92,5 +69,5 @@ jobs:
             echo 'No generated changes to commit.'
             exit 0
           fi
-          git commit -s -m 'Release Jigsaw Drop H5 v2.0 physics and touch upgrade'
+          git commit -s -m 'Release Jigsaw Drop H5 v2.1 interaction overhaul'
           git push origin HEAD:main
