@@ -1,16 +1,15 @@
 {
-  "version": "3.8.0",
-  "builtAt": "2026-08-31T17:11:56.971030+00:00",
+  "version": "3.9.0",
+  "builtAt": "2026-08-31T18:00:20.129847+00:00",
   "features": [
-    "next-card preview on every deck column",
-    "seeded discoverable two-chain and three-chain setups",
-    "drag-time cascade prediction badge",
-    "three-layer merge/turn-chain/cross-move streak system",
-    "five-tier escalating visual/audio/haptic feedback",
-    "FLOW meter and three-turn FEVER acceleration",
-    "pooled Canvas particles, rings and chain beams",
-    "chain-dependent faster gravity and dealing",
-    "level 3 two-chain and level 5 three-chain tutorials",
-    "v3.7 progression, v3.6 gravity/seams and v3.5 anti-deadlock retained"
+    "separate blessing puzzle mode without changing the classic core",
+    "12 original morning and festival blessing backgrounds",
+    "six-card blessing rounds with real deck/refill/chain play",
+    "completed blessing cards unlock immediately and persist locally",
+    "full-resolution 1080x1440 poster rendering with dynamic greeting typography",
+    "system image sharing, PNG download and greeting-text copy",
+    "in-game work counter, collection browser and completion share CTA",
+    "classic 60-picture progression remains isolated from blessing assets",
+    "v3.8 chain/juice, v3.7 progression, v3.6 gravity/seams and anti-deadlock retained"
   ]
 }

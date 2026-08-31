@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1000" viewBox="0 0 750 1000">
+
+<defs>
+  <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="18"/></filter>
+  <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#243449" flood-opacity=".28"/></filter>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity=".04"/></linearGradient>
+</defs>
+
+
+<defs><radialGradient id="bg13"><stop stop-color="#ffba58"/><stop offset=".55" stop-color="#e83c32"/><stop offset="1" stop-color="#8f101f"/></radialGradient></defs><rect width="750" height="1000" fill="url(#bg13)"/>
+<g fill="#ffd36a" opacity=".26"><circle cx="0" cy="60" r="5"/><circle cx="91" cy="177" r="6"/><circle cx="182" cy="294" r="7"/><circle cx="273" cy="411" r="8"/><circle cx="364" cy="528" r="9"/><circle cx="455" cy="645" r="10"/><circle cx="546" cy="762" r="11"/><circle cx="637" cy="879" r="12"/><circle cx="728" cy="116" r="13"/><circle cx="69" cy="233" r="14"/><circle cx="160" cy="350" r="5"/><circle cx="251" cy="467" r="6"/><circle cx="342" cy="584" r="7"/><circle cx="433" cy="701" r="8"/><circle cx="524" cy="818" r="9"/><circle cx="615" cy="935" r="10"/><circle cx="706" cy="172" r="11"/><circle cx="47" cy="289" r="12"/><circle cx="138" cy="406" r="13"/><circle cx="229" cy="523" r="14"/><circle cx="320" cy="640" r="5"/><circle cx="411" cy="757" r="6"/><circle cx="502" cy="874" r="7"/><circle cx="593" cy="111" r="8"/><circle cx="684" cy="228" r="9"/><circle cx="25" cy="345" r="10"/></g>
+<g transform="translate(375 530)" filter="url(#shadow)"><path d="M-165 -220 Q0 -290 165 -220 L125 230 Q0 300 -125 230Z" fill="#e94031" stroke="#ffd36a" stroke-width="12"/><circle r="110" fill="#b71927" stroke="#ffd36a" stroke-width="12"/><text y="42" text-anchor="middle" font-size="125" font-weight="900" fill="#ffd36a" font-family="serif">福</text></g>
+<g fill="#ffd36a"><circle cx="110" cy="180" r="55"/><circle cx="640" cy="160" r="42"/></g>
+<path d="M0 900 Q170 790 360 880 T750 830 V1000 H0Z" fill="#7c101e" opacity=".75"/>
+
+</svg>

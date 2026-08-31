@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1000" viewBox="0 0 750 1000">
+
+<defs>
+  <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="18"/></filter>
+  <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#243449" flood-opacity=".28"/></filter>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity=".04"/></linearGradient>
+</defs>
+
+
+<defs><linearGradient id="bg9" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#5e1025"/><stop offset=".5" stop-color="#b51e35"/><stop offset="1" stop-color="#ef7445"/></linearGradient></defs><rect width="750" height="1000" fill="url(#bg9)"/>
+<g stroke="#ffd66c" fill="none" opacity=".7"><path d="M90 100 l40 -70 M90 100 l-45 -20 M90 100 l20 45" stroke-width="5"/><path d="M225 180 l40 -70 M225 180 l-45 -20 M225 180 l20 45" stroke-width="5"/><path d="M360 100 l40 -70 M360 100 l-45 -20 M360 100 l20 45" stroke-width="5"/><path d="M495 180 l40 -70 M495 180 l-45 -20 M495 180 l20 45" stroke-width="5"/><path d="M630 100 l40 -70 M630 100 l-45 -20 M630 100 l20 45" stroke-width="5"/></g>
+<g transform="translate(180 260) scale(1)" filter="url(#shadow)"><rect x="-18" y="-92" width="36" height="28" rx="8" fill="#ffd06a"/><ellipse cy="0" rx="92" ry="112" fill="#e93631"/><path d="M-70 -55 H70 M-82 0 H82 M-70 55 H70" stroke="#ffcc62" stroke-width="9" opacity=".72"/><rect x="-16" y="105" width="32" height="45" fill="#ffd06a"/><path d="M0 150 v72" stroke="#ffd06a" stroke-width="10"/></g><g transform="translate(560 220) scale(0.82)" filter="url(#shadow)"><rect x="-18" y="-92" width="36" height="28" rx="8" fill="#ffd06a"/><ellipse cy="0" rx="92" ry="112" fill="#e93631"/><path d="M-70 -55 H70 M-82 0 H82 M-70 55 H70" stroke="#ffcc62" stroke-width="9" opacity=".72"/><rect x="-16" y="105" width="32" height="45" fill="#ffd06a"/><path d="M0 150 v72" stroke="#ffd06a" stroke-width="10"/></g><g transform="translate(380 510) scale(0.68)" filter="url(#shadow)"><rect x="-18" y="-92" width="36" height="28" rx="8" fill="#ffd06a"/><ellipse cy="0" rx="92" ry="112" fill="#e93631"/><path d="M-70 -55 H70 M-82 0 H82 M-70 55 H70" stroke="#ffcc62" stroke-width="9" opacity=".72"/><rect x="-16" y="105" width="32" height="45" fill="#ffd06a"/><path d="M0 150 v72" stroke="#ffd06a" stroke-width="10"/></g><path d="M0 860 Q160 780 330 850 T750 820 V1000 H0Z" fill="#8c1730" opacity=".8"/>
+
+</svg>

@@ -3,7 +3,7 @@ from pathlib import Path
 import base64,re
 ROOT=Path(__file__).resolve().parents[1]
 html=(ROOT/'index.html').read_text('utf-8');css=(ROOT/'style.css').read_text('utf-8');js=(ROOT/'game.js').read_text('utf-8')
-assets=[*((ROOT/'assets'/'pictures-portrait').glob('*.webp')),*((ROOT/'assets'/'pictures-extra').glob('*.svg'))]
+assets=[*((ROOT/'assets'/'pictures-portrait').glob('*.webp')),*((ROOT/'assets'/'pictures-extra').glob('*.svg')),*((ROOT/'assets'/'blessings').glob('*.svg'))]
 for image_path in sorted(assets):
     relative=image_path.relative_to(ROOT).as_posix()
     mime='image/svg+xml' if image_path.suffix.lower()=='.svg' else 'image/webp'
