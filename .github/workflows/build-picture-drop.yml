@@ -1,75 +1,42 @@
-name: Build Picture Drop H5 v3.5
+name: Build Picture Drop H5 v3.5.1
 on:
   push:
-    paths: ['picture-drop/tools/patch_v35_playability.py','.github/workflows/build-picture-drop.yml']
+    paths: ['picture-drop/tools/patch_v351_drag.py','picture-drop/tools/smoke_drag.py','.github/workflows/build-picture-drop.yml']
   workflow_dispatch:
 permissions: {contents: write}
-concurrency: {group: picture-drop-build-v35, cancel-in-progress: true}
+concurrency: {group: picture-drop-build-v351, cancel-in-progress: true}
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Apply v3.5 and verify core invariants
+      - name: Apply drag hotfix and verify code
         run: |
           set -euo pipefail
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.4.0'
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('picture-drop/tools/patch_v35_playability.py')
-          s=p.read_text(encoding='utf-8')
-          old="ua_end=s.index('  async function resolveBoard',ua_start)"
-          new="ua_end=s.index('  function imageIdsByQuadrant',ua_start)"
-          if old in s:
-              s=s.replace(old,new,1)
-              p.write_text(s,encoding='utf-8')
-          elif new not in s:
-              raise SystemExit('unexpected v3.5 patch boundary')
-          PY
-          python picture-drop/tools/patch_v35_playability.py
-          echo '[check] JS syntax'
-          if ! node --check picture-drop/game.js; then nl -ba picture-drop/game.js | sed -n '720,1220p'; exit 1; fi
-          check(){ echo "[check] $1"; grep -Fq "$2" "$3" || { echo "MISSING: $2 in $3"; exit 1; }; }
-          check seamless 'background-origin:border-box' picture-drop/style.css
-          check frontier 'function ensureVisibleCompletionSet' picture-drop/game.js
-          check deck-prime 'function primeDecksForPlayableFrontier' picture-drop/game.js
-          check visible-set 'function visibleCompletionImage' picture-drop/game.js
-          check smart-hint 'function findHelpfulMove' picture-drop/game.js
-          check hint-frame 'hint-target-frame' picture-drop/style.css
-          check css-bust 'style.css?v=3.5.0' picture-drop/index.html
-          check sw-cache 'jigsaw-drop-h5-v3.5.0' picture-drop/sw.js
-          check raf 'requestAnimationFrame(flushDragFrame)' picture-drop/game.js
-          check gravity 'const moved=await applyGravity();' picture-drop/game.js
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.5.0'
-      - name: Verify anti-deadlock model
+          python picture-drop/tools/patch_v351_drag.py
+          node --check picture-drop/game.js
+          grep -Fq '.cell-layer,.fx-layer{pointer-events:none!important}' picture-drop/style.css
+          grep -Fq '.tile{pointer-events:auto!important' picture-drop/style.css
+          grep -Fq "style.css?v=3.5.1" picture-drop/index.html
+          grep -Fq "game.js?v=3.5.1" picture-drop/index.html
+          grep -Fq "jigsaw-drop-h5-v3.5.1" picture-drop/sw.js
+          grep -Fq 'function ensureVisibleCompletionSet' picture-drop/game.js
+          grep -Fq 'requestAnimationFrame(flushDragFrame)' picture-drop/game.js
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.5.1'
+      - name: Real browser drag smoke test
         run: |
-          node - <<'JS'
-          function ensure(board,decks,tiles){
-            const state=new Map();board.forEach(id=>{if(!id)return;const t=tiles[id];const s=state.get(t.img)||new Set();s.add(t.q);state.set(t.img,s)});
-            if([...state.values()].some(s=>s.size===4))return true;
-            const imgs=[...new Set(Object.values(tiles).map(t=>t.img))];
-            const locate=id=>{for(let c=0;c<decks.length;c++){const p=decks[c].indexOf(id);if(p>=0)return[c,p]}return null};
-            for(const img of imgs){
-              const ids=[0,1,2,3].map(q=>Object.keys(tiles).find(id=>tiles[id].img===img&&tiles[id].q===q));
-              const missing=ids.filter(id=>!board.includes(id));if(!missing.length||missing.some(id=>!locate(id)))continue;
-              const protectedSet=new Set(ids.filter(id=>board.includes(id)));
-              const cells=board.map((id,i)=>[id,i]).filter(([id])=>id&&!protectedSet.has(id)).map(x=>x[1]);if(cells.length<missing.length)continue;
-              for(const id of missing){const [c,p]=locate(id),cell=cells.shift(),old=board[cell];board[cell]=id;decks[c][p]=old}
-              return [0,1,2,3].every(q=>board.some(id=>id&&tiles[id].img===img&&tiles[id].q===q));
-            }return false;
-          }
-          for(let trial=0;trial<500;trial++){
-            const tiles={},ids=[];for(let img=0;img<12;img++)for(let q=0;q<4;q++){const id=`${img}-${q}`;tiles[id]={img,q};ids.push(id)}
-            const original=ids.slice().sort().join('|');ids.sort(()=>Math.random()-.5);const board=ids.slice(0,25),rest=ids.slice(25),decks=[[],[],[],[],[]];rest.forEach((id,i)=>decks[i%5].push(id));
-            if(!ensure(board,decks,tiles))throw new Error('frontier invariant failed');
-            const all=[...board,...decks.flat()].sort().join('|');if(all!==original)throw new Error('tile integrity changed');
-          }
-          console.log('anti-deadlock frontier model passed x500');
-          JS
+          set -euo pipefail
+          python -m pip install --quiet selenium
+          python -m http.server 8765 --directory picture-drop >/tmp/picture-drop-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 1
+          python picture-drop/tools/smoke_drag.py
       - name: Rebuild release
         run: |
           set -euo pipefail
@@ -81,14 +48,14 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import json,datetime
-          r=Path('picture-drop');(r/'release.json').write_text(json.dumps({'version':'3.5.0','builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'features':['cache-busted fresh JS/CSS and network-first service worker','border-box image sampling for truly seamless joins','no underlying cell borders at joined seams','guaranteed visible completion frontier','smart hidden-deck priming after every clear','target-oriented hint with final 2x2 frame','free rescue never consumes hint charge','v3.2 RAF performance retained']},ensure_ascii=False,indent=2),encoding='utf-8')
+          r=Path('picture-drop');(r/'release.json').write_text(json.dumps({'version':'3.5.1','builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'features':['explicit tile-only pointer input layers','real Chromium drag regression test','v3.5 seamless joins','v3.5 anti-deadlock frontier','v3.5 smart hints','cache-busted service worker']},ensure_ascii=False,indent=2),encoding='utf-8')
           PY
-          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v3.5.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.5.zip)" -lt 90000000 && mv /tmp/Jigsaw-Drop-H5-v3.5.zip .
-      - name: Commit v3.5
+          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v3.5.1.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && mv /tmp/Jigsaw-Drop-H5-v3.5.1.zip .
+      - name: Commit v3.5.1
         run: |
           set -euo pipefail
           git config user.name 'hengtong320';git config user.email '564712388@qq.com'
           git add -A picture-drop
           if git diff --cached --quiet;then exit 0;fi
-          git commit -s -m 'Release Jigsaw Drop H5 v3.5 seamless joins, strong hints and guaranteed playability'
+          git commit -s -m 'Release Jigsaw Drop H5 v3.5.1 drag input hotfix'
           git push origin HEAD:main
