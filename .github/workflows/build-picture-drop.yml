@@ -25,9 +25,19 @@ jobs:
           python picture-drop/tools/generate_extra_pictures.py
           test "$(find picture-drop/assets/pictures-extra -name '*.svg' | wc -l)" -eq 24
           python picture-drop/tools/patch_v37_progression.py
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('picture-drop/game.js');s=p.read_text(encoding='utf-8')
+          old='primeDecksForPlayableFrontier};'
+          new='primeDecksForPlayableFrontier,resolveBoard,renderBoard,imageCountForLevel,selectedImagesForLevel,levelIntroCopy,pictureCount:PICTURE_PATHS.length};'
+          if old in s:s=s.replace(old,new,1)
+          elif 'pictureCount:PICTURE_PATHS.length' not in s:raise SystemExit('debug export marker missing')
+          p.write_text(s,encoding='utf-8')
+          PY
           node --check picture-drop/game.js
           grep -Fq 'assets/pictures-extra/37-jellyfish.svg' picture-drop/game.js
           grep -Fq 'function levelIntroCopy' picture-drop/game.js
+          grep -Fq 'pictureCount:PICTURE_PATHS.length' picture-drop/game.js
           grep -Fq 'game.lastResolveTrace.push('\''gravity'\'')' picture-drop/game.js
           grep -Fq 'game.lastResolveTrace.push('\''clear'\'')' picture-drop/game.js
           grep -Fq 'const waveCap=game.level<=2?1:2' picture-drop/game.js
