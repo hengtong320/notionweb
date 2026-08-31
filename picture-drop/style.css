@@ -309,3 +309,21 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 .tile.join-down{border-bottom:0!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important}
 /* Neighboring unjoined borders overlap visually instead of creating a physical blue gutter. */
 .cell{background:rgba(20,102,190,.34);border-color:rgba(65,150,224,.24)}
+
+
+/* v3.5-true-seamless */
+/* Background sampling must use the immutable border box. Otherwise removing an
+   internal border changes the padding-box size and shifts the 200% image crop. */
+.cell{border:0!important;background:transparent!important;box-shadow:none!important}
+.tile{background-origin:border-box!important;background-clip:border-box!important;background-size:200% 200%!important;background-repeat:no-repeat!important}
+.tile.is-joined{box-shadow:none!important;outline:0!important}
+.tile.join-left{border-left-width:0!important;border-top-left-radius:0!important;border-bottom-left-radius:0!important}
+.tile.join-right{border-right-width:0!important;border-top-right-radius:0!important;border-bottom-right-radius:0!important}
+.tile.join-up{border-top-width:0!important;border-top-left-radius:0!important;border-top-right-radius:0!important}
+.tile.join-down{border-bottom-width:0!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important}
+.frontier-in{animation:frontierIn .26s cubic-bezier(.2,.9,.25,1.2)}
+@keyframes frontierIn{0%{opacity:.35;transform:scale(.92)}100%{opacity:1;transform:none}}
+.is-hint-family{filter:brightness(1.08)!important}
+.hint-target-frame{position:absolute;z-index:67;pointer-events:none;border:3px solid rgba(255,246,83,.96);border-radius:12px;box-shadow:0 0 0 2px rgba(255,255,255,.72),0 0 18px rgba(255,239,73,.82),inset 0 0 18px rgba(255,238,63,.12);animation:hintFramePulse .65s ease-in-out infinite alternate}
+.hint-target-frame::after{content:'拼到这里';position:absolute;left:50%;top:-25px;transform:translateX(-50%);white-space:nowrap;padding:3px 9px;border-radius:10px;background:rgba(5,87,172,.9);font-size:10px;font-weight:900;color:#fff;box-shadow:0 2px 8px rgba(0,42,100,.25)}
+@keyframes hintFramePulse{to{box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 25px rgba(255,239,73,.95),inset 0 0 24px rgba(255,238,63,.16)}}

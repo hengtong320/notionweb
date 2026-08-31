@@ -1,12 +1,14 @@
 {
-  "version": "3.4.0",
-  "builtAt": "2026-08-31T13:13:32.890300+00:00",
+  "version": "3.5.0",
+  "builtAt": "2026-08-31T14:08:50.825191+00:00",
   "features": [
-    "zero physical gutter for pixel-perfect quadrant alignment",
-    "joined internal borders and radii removed",
-    "v3.2 RAF performance retained",
-    "stall watchdog",
-    "deterministic board-only rescue preserving all tiles",
-    "difficulty retained without permanent dead states"
+    "cache-busted fresh JS/CSS and network-first service worker",
+    "border-box image sampling for truly seamless joins",
+    "no underlying cell borders at joined seams",
+    "guaranteed visible completion frontier",
+    "smart hidden-deck priming after every clear",
+    "target-oriented hint with final 2x2 frame",
+    "free rescue never consumes hint charge",
+    "v3.2 RAF performance retained"
   ]
 }

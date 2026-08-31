@@ -268,7 +268,7 @@ use_hint=r'''  async function useHint() {
 s=s[:uh_start]+use_hint+s[uh_end:]
 
 ua_start=s.index('  async function useAuto() {')
-ua_end=s.index('  async function resolveBoard',ua_start)
+ua_end=s.index('  function imageIdsByQuadrant',ua_start)
 use_auto=r'''  async function useAuto() {
     if(game.phase!=='idle')return;
     if(game.autoCount<=0){showToast('自动整理次数用完啦');audio.invalid();return;}

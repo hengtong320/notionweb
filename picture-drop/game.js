@@ -839,41 +839,85 @@
     return complete*1000+connections*48+groupBonus*5;
   }
 
-  function findHelpfulMove() {
-    const groups=computeGroups();
-    const base=boardScore(game.board); let best=null;
-    for (const group of groups) {
-      for (let dr=-(GRID-1);dr<=GRID-1;dr++) for(let dc=-(GRID-1);dc<=GRID-1;dc++) {
-        if(!dr&&!dc)continue;
-        const result=validateMove(group,dr,dc,game.board,groups); if(!result.valid)continue;
-        const score=boardScore(result.board);
-        const afterGroups=computeGroups(result.board,game.tiles);
-        const completes=afterGroups.filter(g=>g.complete).length;
-        const movedGrowth=group.ids.reduce((bestGrowth,id)=>{
-          const targetIndex=result.board.indexOf(id);
-          const after=afterGroups.find(g=>g.cells.includes(targetIndex));
-          return Math.max(bestGrowth,(after?.ids.length||1)-group.ids.length);
-        },0);
-        const adjusted=score+completes*420+movedGrowth*75;
-        if(!best||adjusted>best.score)best={group,dr,dc,board:result.board,score:adjusted,rawScore:score};
-      }
+  function countImageConnections(board,imageIndex) {
+    let count=0;
+    for(const edge of computeConnections(board,game.tiles)){
+      const id=edge.split('|')[0];
+      if(game.tiles.get(id)?.imageIndex===imageIndex)count++;
     }
-    if(best&&best.rawScore>=base-30) return best;
-    return best;
+    return count;
   }
 
+  function findHelpfulMove() {
+    const states=visibleImageState();
+    const ready=[...states.values()].filter(s=>s.quadrants.size===4);
+    if(!ready.length)return null;
+    const groups=computeGroups();
+    let best=null;
 
+    // Prioritize images that already have the largest correctly joined component.
+    ready.sort((a,b)=>{
+      const ag=Math.max(...groups.filter(g=>g.imageIndex===a.imageIndex).map(g=>g.ids.length),1);
+      const bg=Math.max(...groups.filter(g=>g.imageIndex===b.imageIndex).map(g=>g.ids.length),1);
+      return bg-ag||b.ids.length-a.ids.length;
+    });
+
+    for(const state of ready){
+      const imageIndex=state.imageIndex;
+      const ids=imageIdsByQuadrant(imageIndex);
+      const sources=[];
+      for(const group of groups.filter(g=>g.imageIndex===imageIndex)){
+        sources.push({group,splitMode:false});
+        if(group.ids.length>1){
+          for(const id of group.ids){
+            const cell=game.board.indexOf(id),p=idxToRC(cell),tile=game.tiles.get(id);
+            sources.push({group:{ids:[id],cells:[cell],imageIndex,minR:p.r,maxR:p.r,minC:p.c,maxC:p.c,complete:false},splitMode:true,tile});
+          }
+        }
+      }
+
+      for(let ar=0;ar<GRID-1;ar++)for(let ac=0;ac<GRID-1;ac++){
+        const anchorCells=[rcToIdx(ar,ac),rcToIdx(ar,ac+1),rcToIdx(ar+1,ac),rcToIdx(ar+1,ac+1)];
+        for(const source of sources){
+          const firstId=source.group.ids[0];
+          const tile=game.tiles.get(firstId); if(!tile)continue;
+          const current=game.board.indexOf(firstId); if(current<0)continue;
+          const cur=idxToRC(current),q=QUADRANTS[tile.quadrant];
+          const tr=ar+q.y,tc=ac+q.x,dr=tr-cur.r,dc=tc-cur.c;
+          if(!dr&&!dc)continue;
+          const result=validateMove(source.group,dr,dc); if(!result.valid)continue;
+          let placed=0;
+          for(let qq=0;qq<4;qq++)if(result.board[anchorCells[qq]]===ids[qq])placed++;
+          const complete=findCompleteGroups(result.board,game.tiles).some(g=>g.imageIndex===imageIndex);
+          const connections=countImageConnections(result.board,imageIndex);
+          const score=(complete?100000:0)+placed*3000+connections*650+source.group.ids.length*80-(source.splitMode?35:0)-(Math.abs(dr)+Math.abs(dc))*2;
+          if(!best||score>best.score){
+            best={group:source.group,dr,dc,board:result.board,score,splitMode:source.splitMode,imageIndex,targetAnchor:{r:ar,c:ac,cells:anchorCells}};
+          }
+        }
+      }
+    }
+    return best;
+  }
 
   function markHint(move) {
     clearHintMarks();
     const targetCells=move.group.cells.map((i)=>{const {r,c}=idxToRC(i);return rcToIdx(r+move.dr,c+move.dc);});
-    move.group.ids.forEach((id)=>tileEls.get(id)?.classList.add('is-hint-source'));
-    targetCells.forEach((cell)=>{
-      cellEls[cell].classList.add('is-target');
-      const id=game.board[cell]; if(id)tileEls.get(id)?.classList.add('is-hint-target');
+    move.group.ids.forEach(id=>tileEls.get(id)?.classList.add('is-hint-source'));
+    game.board.forEach(id=>{if(id&&game.tiles.get(id)?.imageIndex===move.imageIndex)tileEls.get(id)?.classList.add('is-hint-family');});
+    targetCells.forEach(cell=>{
+      cellEls[cell]?.classList.add('is-target');
+      const id=game.board[cell];if(id)tileEls.get(id)?.classList.add('is-hint-target');
     });
+    if(move.targetAnchor){
+      const frame=document.createElement('div');frame.className='hint-target-frame';
+      const g=cellRectPercentByRC(move.targetAnchor.r,move.targetAnchor.c);
+      frame.style.left=`${g.left}%`;frame.style.top=`${g.top}%`;
+      frame.style.width=`${g.width*2}%`;frame.style.height=`${g.height*2}%`;
+      dom.fxLayer.appendChild(frame);
+    }
     drawHintArrow(move.group.cells,targetCells);
-    game.hintTimer=window.setTimeout(clearHintMarks,2300);
+    game.hintTimer=window.setTimeout(clearHintMarks,3000);
   }
 
   function drawHintArrow(sourceCells,targetCells) {
@@ -896,64 +940,164 @@
 
   function clearHintMarks() {
     clearTimeout(game.hintTimer);
-    tileEls.forEach((el)=>el.classList.remove('is-hint-source','is-hint-target'));
+    tileEls.forEach((el)=>el.classList.remove('is-hint-source','is-hint-target','is-hint-family'));
     cellEls.forEach((el)=>el.classList.remove('is-target'));
-    dom.fxLayer.querySelectorAll('.hint-arrow').forEach((el)=>el.remove());
+    dom.fxLayer.querySelectorAll('.hint-arrow,.hint-target-frame').forEach((el)=>el.remove());
   }
 
   async function useHint() {
     if(game.phase!=='idle')return;
     if(game.hintCount<=0){showToast('提示次数用完啦');audio.invalid();return;}
-    const move=findHelpfulMove();
-    if(!move){showToast('拼好的组合可以整体搬动，也可以被其他碎片拆开替换');audio.invalid();return;}
-    game.hintCount--;updateHud();markHint(move);audio.merge();showToast('拖动发光的拼合块到目标区域');
+    let move=findHelpfulMove();
+    if(!move&&remainingDeckCount()>0){
+      game.phase='resolving';
+      await ensurePlayableFrontier(false);
+      game.phase='idle';
+      move=findHelpfulMove();
+    }
+    if(!move){showToast('当前局面可继续交换，优先凑齐同一张图');audio.invalid();return;}
+    game.hintCount--;updateHud();markHint(move);audio.merge();
+    showToast(move.splitMode?'按住发光碎片后，拖到箭头位置':'拖动发光图片块到箭头位置',2400);
   }
 
   async function useAuto() {
     if(game.phase!=='idle')return;
     if(game.autoCount<=0){showToast('自动整理次数用完啦');audio.invalid();return;}
-    const move=findHelpfulMove();
-    if(!move){showToast('暂时没有更优的一步');audio.invalid();return;}
-    game.autoCount--;updateHud();markHint(move);game.phase='hinting';await delay(520);clearHintMarks();
+    let move=findHelpfulMove();
+    if(!move&&remainingDeckCount()>0){
+      game.phase='resolving';await ensurePlayableFrontier(false);game.phase='idle';move=findHelpfulMove();
+    }
+    if(!move){showToast('暂时没有需要整理的位置');audio.invalid();return;}
+    game.autoCount--;updateHud();markHint(move);game.phase='hinting';await delay(420);clearHintMarks();
     await commitMove(move.group,move.dr,move.dc,move.board,false);
   }
 
-  function buildRescueBoard() {
-    if ((game.movesSinceClear||0) < Math.max(12, GRID*3)) return null;
-    const allLocations=new Map();
-    game.board.forEach((id,i)=>{if(id)allLocations.set(id,{kind:'board',index:i});});
-    game.decks.forEach((deck,c)=>deck.forEach((id,p)=>allLocations.set(id,{kind:'deck',col:c,pos:p})));
-    const candidates=[...new Set([...game.tiles.values()].map(t=>t.imageIndex))];
-    for(const imageIndex of candidates){
-      const ids=[0,1,2,3].map(q=>[...game.tiles.values()].find(t=>t.imageIndex===imageIndex&&t.quadrant===q)?.id);
-      if(ids.some(id=>!id||!allLocations.has(id)))continue;
-      // Prefer an image already fully present on the board; otherwise do not pull through a deck.
-      if(!ids.every(id=>allLocations.get(id).kind==='board'))continue;
-      for(let r=GRID-2;r>=0;r--)for(let c=0;c<GRID-1;c++){
-        const targets=[rcToIdx(r,c),rcToIdx(r,c+1),rcToIdx(r+1,c),rcToIdx(r+1,c+1)];
-        const next=game.board.slice();
-        const sourceCells=ids.map(id=>next.indexOf(id));
-        // Permute by swaps so tile integrity is preserved.
-        for(let q=0;q<4;q++){
-          const want=ids[q], target=targets[q], src=next.indexOf(want);
-          if(src<0)break;
-          [next[src],next[target]]=[next[target],next[src]];
-        }
-        if(findCompleteGroups(next,game.tiles).some(g=>g.imageIndex===imageIndex))return next;
-      }
+  function imageIdsByQuadrant(imageIndex) {
+    const ids=Array(4).fill(null);
+    for(const tile of game.tiles.values()) if(tile.imageIndex===imageIndex) ids[tile.quadrant]=tile.id;
+    return ids;
+  }
+
+  function visibleImageState(board=game.board) {
+    const map=new Map();
+    board.forEach((id,index)=>{
+      if(!id)return;
+      const tile=game.tiles.get(id); if(!tile)return;
+      let state=map.get(tile.imageIndex);
+      if(!state){state={imageIndex:tile.imageIndex,ids:[],cells:[],quadrants:new Set()};map.set(tile.imageIndex,state);}
+      state.ids.push(id);state.cells.push(index);state.quadrants.add(tile.quadrant);
+    });
+    return map;
+  }
+
+  function visibleCompletionImage(board=game.board) {
+    for(const state of visibleImageState(board).values()) if(state.quadrants.size===4) return state.imageIndex;
+    return null;
+  }
+
+  function locateDeckTile(id) {
+    for(let c=0;c<game.decks.length;c++){
+      const pos=game.decks[c].indexOf(id);
+      if(pos>=0)return{col:c,pos};
     }
     return null;
   }
 
-  async function rescueIfStalled() {
-    const next=buildRescueBoard();
-    if(!next)return false;
-    const first=captureTileRects();
-    game.board=next; renderBoard();
-    await animateFlipFromRects(first,260);
-    game.movesSinceClear=0;
-    showToast('已自动解开死局',900); audio.merge(); haptic(16);
+  function chooseFrontierCandidate(maxMissing=4) {
+    const states=visibleImageState();
+    const candidates=[];
+    const imageIndices=[...new Set([...game.tiles.values()].map(t=>t.imageIndex))];
+    for(const imageIndex of imageIndices){
+      const ids=imageIdsByQuadrant(imageIndex);
+      if(ids.some(id=>!id))continue;
+      const visible=states.get(imageIndex)?.quadrants.size||0;
+      const missing=ids.filter(id=>!game.board.includes(id));
+      if(missing.length===0||missing.length>maxMissing)continue;
+      if(missing.some(id=>!locateDeckTile(id)))continue;
+      candidates.push({imageIndex,ids,visible,missing});
+    }
+    candidates.sort((a,b)=>b.visible-a.visible||a.missing.length-b.missing.length||a.imageIndex-b.imageIndex);
+    return candidates[0]||null;
+  }
+
+  function ensureVisibleCompletionSet() {
+    const already=visibleCompletionImage();
+    if(already!==null)return{changed:false,imageIndex:already,changedIds:[]};
+    const candidate=chooseFrontierCandidate(4);
+    if(!candidate)return{changed:false,imageIndex:null,changedIds:[]};
+
+    const groups=computeGroups();
+    const protectedIds=new Set(candidate.ids.filter(id=>game.board.includes(id)));
+    const replaceable=[];
+    for(let cell=0;cell<CELL_COUNT;cell++){
+      const id=game.board[cell]; if(!id||protectedIds.has(id))continue;
+      const group=groupAtCell(cell,groups);
+      const tile=game.tiles.get(id);
+      // Prefer unrelated singletons, then small groups, and avoid tearing another
+      // nearly-complete image apart unless there is no other choice.
+      const sameCount=visibleImageState().get(tile?.imageIndex)?.quadrants.size||0;
+      const score=(group?.ids.length||1)*100+sameCount*12+idxToRC(cell).r;
+      replaceable.push({cell,score});
+    }
+    replaceable.sort((a,b)=>a.score-b.score||a.cell-b.cell);
+    if(replaceable.length<candidate.missing.length)return{changed:false,imageIndex:null,changedIds:[]};
+
+    const changedIds=[];
+    for(const missingId of candidate.missing){
+      const loc=locateDeckTile(missingId); if(!loc)continue;
+      const target=replaceable.shift().cell;
+      const displaced=game.board[target];
+      game.board[target]=missingId;
+      game.decks[loc.col][loc.pos]=displaced;
+      changedIds.push(missingId);
+    }
+    return{changed:changedIds.length>0,imageIndex:candidate.imageIndex,changedIds};
+  }
+
+  function primeDecksForPlayableFrontier() {
+    if(visibleCompletionImage()!==null)return false;
+    const slots=[];
+    for(let c=0;c<GRID;c++){
+      let capacity=0;
+      for(let r=0;r<GRID;r++){
+        const index=rcToIdx(r,c);
+        if(game.board[index])break;
+        capacity++;
+      }
+      for(let i=0;i<capacity;i++)slots.push(c);
+    }
+    if(!slots.length)return false;
+    const candidate=chooseFrontierCandidate(slots.length);
+    if(!candidate)return false;
+    const usedByColumn=Array(GRID).fill(0);
+    for(let i=0;i<candidate.missing.length;i++){
+      const id=candidate.missing[i], targetCol=slots[i];
+      const targetPos=usedByColumn[targetCol]++;
+      const loc=locateDeckTile(id); if(!loc)continue;
+      const targetId=game.decks[targetCol][targetPos];
+      if(loc.col===targetCol&&loc.pos===targetPos)continue;
+      game.decks[loc.col][loc.pos]=targetId;
+      game.decks[targetCol][targetPos]=id;
+    }
     return true;
+  }
+
+  async function ensurePlayableFrontier(announce=true) {
+    if(visibleCompletionImage()!==null)return false;
+    const result=ensureVisibleCompletionSet();
+    if(!result.changed)return false;
+    renderBoard();
+    result.changedIds.forEach(id=>tileEls.get(id)?.classList.add('frontier-in'));
+    await delay(260);
+    result.changedIds.forEach(id=>tileEls.get(id)?.classList.remove('frontier-in'));
+    game.movesSinceClear=0;
+    if(announce)showToast('已整理出可解图片',850);
+    haptic(10);
+    return true;
+  }
+
+  async function rescueIfStalled() {
+    return ensurePlayableFrontier(true);
   }
 
   async function resolveBoard(beforeConnections=new Set(), isPlayerMove=false) {
@@ -1109,6 +1253,7 @@
 
 
   async function dealIntoBoard() {
+    primeDecksForPlayableFrontier();
     const dealt=[];
     for(let c=0;c<GRID;c++){
       const deck=game.decks?.[c]; if(!deck?.length)continue;
@@ -1192,6 +1337,7 @@
     const generated=generateLevel(game.level);game.generation=generated;game.initialSeed=generated.seed;
     game.board=generated.board.slice();game.decks=generated.decks.map((deck)=>deck.slice());game.tiles=generated.tiles;
     game.selectedImages=generated.selected;game.totalImages=generated.imageCount;
+    ensureVisibleCompletionSet();
 
     const hard=isHardLevel(game.level);
     const stage=document.getElementById('gameStage');stage?.classList.toggle('is-hard',hard);
