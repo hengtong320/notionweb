@@ -1,45 +1,45 @@
-name: Build Picture Drop H5 v3.8
+name: Build Picture Drop H5 v3.9
 on:
   push:
     paths:
-      - 'picture-drop/tools/patch_v38_juice.py'
-      - 'picture-drop/tools/patch_v38_chain3_fix.py'
-      - 'picture-drop/tools/smoke_v38.py'
+      - 'picture-drop/tools/generate_blessing_cards.py'
+      - 'picture-drop/tools/patch_v39_blessing.py'
+      - 'picture-drop/tools/smoke_v39.py'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
 permissions: {contents: write}
-concurrency: {group: picture-drop-build-v38, cancel-in-progress: true}
+concurrency: {group: picture-drop-build-v39, cancel-in-progress: true}
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Apply v3.8 chain and juice refactor
+      - name: Generate blessing art and apply v3.9
         run: |
           set -euo pipefail
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.7.0'
-          python picture-drop/tools/patch_v38_juice.py
-          python picture-drop/tools/patch_v38_chain3_fix.py
-          node --check picture-drop/game.js
-          grep -Fq 'class JuiceDirector' picture-drop/game.js
-          grep -Fq 'function predictCascade' picture-drop/game.js
-          grep -Fq 'function registerClear' picture-drop/game.js
-          grep -Fq 'chainSeed={depth' picture-drop/game.js
-          grep -Fq 'feederCell=rcToIdx(0,anchor[1]+1)' picture-drop/game.js
-          grep -Fq 'next-card' picture-drop/game.js
-          grep -Fq 'juiceCanvas' picture-drop/index.html
-          grep -Fq 'flowMeter' picture-drop/index.html
-          grep -Fq '.juice-canvas{' picture-drop/style.css
-          grep -Fq '.chain-predict-badge' picture-drop/style.css
-          grep -Fq 'style.css?v=3.8.0' picture-drop/index.html
-          grep -Fq 'game.js?v=3.8.0' picture-drop/index.html
-          grep -Fq 'jigsaw-drop-h5-v3.8.0' picture-drop/sw.js
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.8.0'
-      - name: Real browser v3.8 planning, chain and juice tests
+          python picture-drop/tools/generate_blessing_cards.py
+          test "$(find picture-drop/assets/blessings -name '*.svg' | wc -l)" -eq 12
+          python picture-drop/tools/patch_v39_blessing.py
+          node --check picture-drop/game.js
+          grep -Fq 'const BLESSING_CARDS=' picture-drop/game.js
+          grep -Fq 'async function renderBlessingPoster' picture-drop/game.js
+          grep -Fq 'function openBlessingWorks' picture-drop/game.js
+          grep -Fq 'id="blessingBtn"' picture-drop/index.html
+          grep -Fq 'id="blessingModal"' picture-drop/index.html
+          grep -Fq 'id="shareWorksBtn"' picture-drop/index.html
+          grep -Fq '.blessing-entry{' picture-drop/style.css
+          grep -Fq '.blessing-preview-shell{' picture-drop/style.css
+          grep -Fq 'style.css?v=3.9.0' picture-drop/index.html
+          grep -Fq 'game.js?v=3.9.0' picture-drop/index.html
+          grep -Fq 'jigsaw-drop-h5-v3.9.0' picture-drop/sw.js
+          grep -Fq "assets'/'blessings" picture-drop/tools/build_standalone.py
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.9.0'
+      - name: Real browser blessing puzzle and sharing tests
         run: |
           set -euo pipefail
           python -m pip install --quiet selenium
@@ -47,8 +47,8 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 1
-          python picture-drop/tools/smoke_v38.py
-      - name: Preserve v3.7 progression and settle-first regressions
+          python picture-drop/tools/smoke_v39.py
+      - name: Preserve v3.8 planning, chain and juice regressions
         run: |
           set -euo pipefail
           python -m http.server 8766 --directory picture-drop >/tmp/picture-drop-http2.log 2>&1 &
@@ -56,12 +56,12 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           python - <<'PY'
           from pathlib import Path
-          s=Path('picture-drop/tools/smoke_v37.py').read_text(encoding='utf-8').replace('8765','8766').replace('v=3.7.0','v=3.8.0')
-          Path('/tmp/smoke_v37_as_v38.py').write_text(s,encoding='utf-8')
+          s=Path('picture-drop/tools/smoke_v38.py').read_text(encoding='utf-8').replace('8765','8766').replace('v=3.8.0','v=3.9.0')
+          Path('/tmp/smoke_v38_as_v39.py').write_text(s,encoding='utf-8')
           PY
           sleep 1
-          python /tmp/smoke_v37_as_v38.py
-      - name: Preserve v3.6 drag, gravity and seamless-surface regressions
+          python /tmp/smoke_v38_as_v39.py
+      - name: Preserve v3.7 progression and settle-first regressions
         run: |
           set -euo pipefail
           python -m http.server 8767 --directory picture-drop >/tmp/picture-drop-http3.log 2>&1 &
@@ -69,11 +69,24 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           python - <<'PY'
           from pathlib import Path
-          s=Path('picture-drop/tools/smoke_v36.py').read_text(encoding='utf-8').replace('8765','8767').replace('v=3.6.0','v=3.8.0')
-          Path('/tmp/smoke_v36_as_v38.py').write_text(s,encoding='utf-8')
+          s=Path('picture-drop/tools/smoke_v37.py').read_text(encoding='utf-8').replace('8765','8767').replace('v=3.7.0','v=3.9.0')
+          Path('/tmp/smoke_v37_as_v39.py').write_text(s,encoding='utf-8')
           PY
           sleep 1
-          python /tmp/smoke_v36_as_v38.py
+          python /tmp/smoke_v37_as_v39.py
+      - name: Preserve v3.6 drag, gravity and seamless-surface regressions
+        run: |
+          set -euo pipefail
+          python -m http.server 8768 --directory picture-drop >/tmp/picture-drop-http4.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('picture-drop/tools/smoke_v36.py').read_text(encoding='utf-8').replace('8765','8768').replace('v=3.6.0','v=3.9.0')
+          Path('/tmp/smoke_v36_as_v39.py').write_text(s,encoding='utf-8')
+          PY
+          sleep 1
+          python /tmp/smoke_v36_as_v39.py
       - name: Rebuild release
         run: |
           set -euo pipefail
@@ -81,7 +94,7 @@ jobs:
           test -s picture-drop/Jigsaw-Drop-offline.html
           grep -Fq 'data:image/webp;base64' picture-drop/Jigsaw-Drop-offline.html
           grep -Fq 'data:image/svg+xml;base64' picture-drop/Jigsaw-Drop-offline.html
-          grep -Fq 'class JuiceDirector' picture-drop/Jigsaw-Drop-offline.html
+          grep -Fq 'const BLESSING_CARDS=' picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
           rm -f picture-drop/Jigsaw-Drop-H5-*.zip
           python - <<'PY'
@@ -89,28 +102,27 @@ jobs:
           import json,datetime
           r=Path('picture-drop')
           (r/'release.json').write_text(json.dumps({
-            'version':'3.8.0',
+            'version':'3.9.0',
             'builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'features':[
-              'next-card preview on every deck column',
-              'seeded discoverable two-chain and three-chain setups',
-              'drag-time cascade prediction badge',
-              'three-layer merge/turn-chain/cross-move streak system',
-              'five-tier escalating visual/audio/haptic feedback',
-              'FLOW meter and three-turn FEVER acceleration',
-              'pooled Canvas particles, rings and chain beams',
-              'chain-dependent faster gravity and dealing',
-              'level 3 two-chain and level 5 three-chain tutorials',
-              'v3.7 progression, v3.6 gravity/seams and v3.5 anti-deadlock retained'
+              'separate blessing puzzle mode without changing the classic core',
+              '12 original morning and festival blessing backgrounds',
+              'six-card blessing rounds with real deck/refill/chain play',
+              'completed blessing cards unlock immediately and persist locally',
+              'full-resolution 1080x1440 poster rendering with dynamic greeting typography',
+              'system image sharing, PNG download and greeting-text copy',
+              'in-game work counter, collection browser and completion share CTA',
+              'classic 60-picture progression remains isolated from blessing assets',
+              'v3.8 chain/juice, v3.7 progression, v3.6 gravity/seams and anti-deadlock retained'
             ]
           },ensure_ascii=False,indent=2),encoding='utf-8')
           PY
-          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v3.8.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.8.zip)" -lt 90000000 && mv /tmp/Jigsaw-Drop-H5-v3.8.zip .
-      - name: Commit v3.8
+          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v3.9.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.9.zip)" -lt 90000000 && mv /tmp/Jigsaw-Drop-H5-v3.9.zip .
+      - name: Commit v3.9
         run: |
           set -euo pipefail
           git config user.name 'hengtong320';git config user.email '564712388@qq.com'
           git add -A picture-drop
           if git diff --cached --quiet;then exit 0;fi
-          git commit -s -m 'Release Jigsaw Drop H5 v3.8 chain planning and juice system'
+          git commit -s -m 'Release Jigsaw Drop H5 v3.9 blessing puzzle and shareable posters'
           git push origin HEAD:main
