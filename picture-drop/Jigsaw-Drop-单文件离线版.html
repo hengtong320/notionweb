@@ -650,11 +650,15 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
     const boardW = Math.max(238, Math.min(maxW, maxH * TILE_ASPECT));
     const boardH = boardW / TILE_ASPECT;
 
-    wrap.style.width = `${boardW}px`;
-    wrap.style.height = `${boardH}px`;
-    dom.deckArea.style.width = `${boardW}px`;
+    // CSS uses !important on the wrapper, so update the custom properties
+    // that those rules consume instead of relying only on inline width/height.
+    document.documentElement.style.setProperty('--board-w', `${boardW}px`);
+    document.documentElement.style.setProperty('--board-h', `${boardH}px`);
+    wrap.style.setProperty('width', `${boardW}px`, 'important');
+    wrap.style.setProperty('height', `${boardH}px`, 'important');
+    dom.deckArea.style.setProperty('width', `${boardW}px`, 'important');
     const status = dom.board.closest('.game-area')?.querySelector('.status-row');
-    if (status) status.style.width = `${boardW}px`;
+    if (status) status.style.setProperty('width', `${boardW}px`, 'important');
     dom.board.style.setProperty('--live-board-w', `${boardW}px`);
     dom.board.style.setProperty('--live-board-h', `${boardH}px`);
   }
