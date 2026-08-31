@@ -255,3 +255,19 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 .game-stage.is-hard .deck-stack,.game-stage.is-hard .deck-stack::before,.game-stage.is-hard .deck-stack::after{background:linear-gradient(180deg,#f34f62,#c92343);border-color:#ffd7d7;box-shadow:inset 0 0 0 2px #941b35,0 2px 0 #86172f}
 .game-stage.is-hard .deal-card .back{background:linear-gradient(145deg,#f34f62,#c92343);border-color:#ffd7d7;box-shadow:inset 0 0 0 3px #941b35,0 6px 10px rgba(0,42,103,.35)}
 @media(max-height:700px){:root{--board-size:min(84vw,365px)}}
+
+
+/* v3.1-portrait-physics */
+:root{--tile-aspect:.69;--board-w:360px;--board-h:522px}
+.game-area{justify-content:flex-start}
+.board-wrap{width:var(--board-w)!important;height:var(--board-h)!important;flex:0 0 auto}
+.deck-area,.status-row{width:var(--board-w)!important}
+.board{border:0;background:transparent;box-shadow:none;border-radius:8px}
+.cell{border-radius:7px}
+.tile{background-size:200% 200%;border-radius:8px}
+#gameStage[data-grid="5"] .tile{border-width:1.6px}
+#gameStage[data-grid="5"] .cell{border-radius:6px}
+.home-preview{aspect-ratio:.69!important;width:min(64vw,300px)!important}
+.gallery-item{aspect-ratio:.69!important}
+.complete-overlay{background-size:cover}
+@media(max-height:720px){.deck-area{height:50px;flex-basis:50px}.status-row{height:34px}}

@@ -1,14 +1,17 @@
 {
-  "version": "3.0.0",
-  "builtAt": "2026-08-31T10:30:26.311499+00:00",
+  "version": "3.1.0",
+  "builtAt": "2026-08-31T11:19:09.020335+00:00",
   "features": [
-    "reference 4x4 to 5x5 level progression",
-    "rigid source-group drag with splittable target region",
-    "translated region swap including overlapping motion",
+    "portrait 0.69 tile and full-image aspect from reference video",
+    "height-driven mobile board layout",
+    "4x4 level 14 and 5x5 level 15 progression",
+    "direct drag moves a joined source group",
+    "hold then drag tears out one joined quarter",
+    "invalid group placement can fall back to legal single-quarter tear",
+    "target joined groups remain splittable by overlap replacement",
+    "gravity resolves after every move even without a clear",
     "rigid connected-group gravity waves",
-    "per-column physical deck refill",
-    "connected-cell gutter bridging",
-    "persistent combo streak",
-    "hard-level red deck presentation"
+    "per-column deck refill",
+    "690x1000 portrait image asset set"
   ]
 }
