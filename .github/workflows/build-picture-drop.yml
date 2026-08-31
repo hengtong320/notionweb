@@ -1,0 +1,81 @@
+name: Build Picture Drop H5
+
+on:
+  push:
+    paths:
+      - '.picture-drop-build/**'
+      - '.github/workflows/build-picture-drop.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: picture-drop-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install image build dependencies
+        run: |
+          python -m pip install --disable-pip-version-check Pillow numpy
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-core
+
+      - name: Reconstruct game source
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf picture-drop
+          cat .picture-drop-build/payload-*.txt > /tmp/picture-drop-source.b64
+          test "$(wc -c < /tmp/picture-drop-source.b64)" -eq 49952
+          echo '7a40b82dc7fec8208263915125632303be6ec492e57b7da7cf328fdf87dcf99c  /tmp/picture-drop-source.b64' | sha256sum -c -
+          base64 --decode /tmp/picture-drop-source.b64 > /tmp/picture-drop-source.tar.gz
+          gzip -t /tmp/picture-drop-source.tar.gz
+          mkdir -p picture-drop
+          tar -xzf /tmp/picture-drop-source.tar.gz -C picture-drop
+
+      - name: Generate original picture library and offline edition
+        shell: bash
+        run: |
+          set -euo pipefail
+          python picture-drop/tools/generate_pictures.py
+          python picture-drop/tools/generate_icons.py
+          python picture-drop/tools/build_standalone.py
+          cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
+
+      - name: Build downloadable ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f picture-drop/Jigsaw-Drop-H5-v1.0.zip
+          cd picture-drop
+          zip -qr /tmp/Jigsaw-Drop-H5-v1.0.zip . -x 'Jigsaw-Drop-H5-v1.0.zip'
+          mv /tmp/Jigsaw-Drop-H5-v1.0.zip .
+
+      - name: Commit generated game
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'hengtong320'
+          git config user.email '564712388@qq.com'
+          git add picture-drop
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+            exit 0
+          fi
+          git commit -s -m 'Add Jigsaw Drop H5 game'
+          git push origin HEAD:main
