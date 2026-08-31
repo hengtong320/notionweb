@@ -297,6 +297,20 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
   .tile.is-dragging{box-shadow:0 7px 10px rgba(0,30,78,.28),0 0 0 1.5px rgba(255,255,255,.7)}
 }
 
+
+/* v3.3-joined-visual-polish */
+.tile.is-joined{box-shadow:none}
+.tile.join-left{border-left-width:0;border-top-left-radius:0;border-bottom-left-radius:0}
+.tile.join-right{border-right-width:0;border-top-right-radius:0;border-bottom-right-radius:0}
+.tile.join-up{border-top-width:0;border-top-left-radius:0;border-top-right-radius:0}
+.tile.join-down{border-bottom-width:0;border-bottom-left-radius:0;border-bottom-right-radius:0}
+.tile.is-joined:not(.is-dragging){outline:0}
+.tile.join-left.join-right{border-left-width:0;border-right-width:0}
+.tile.join-up.join-down{border-top-width:0;border-bottom-width:0}
+/* Keep the outside silhouette subtle; internal seams should disappear completely. */
+.tile.is-joined{background-clip:border-box}
+#gameStage[data-grid="5"] .tile.is-joined{border-width:1.35px}
+
   </style>
 </head>
 <body>
@@ -713,12 +727,14 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 
   function applyTileGeometry(el, index, join) {
     const g = cellRectPercent(index);
-    const bridge = g.gap / 2;
+    // A correct join must visually cover the entire gutter, not only half of it.
+    // Add a tiny seam overlap to avoid sub-pixel blue hairlines on DPR 2/3 screens.
+    const seam = 0.08;
     let left = g.left, top = g.top, width = g.width, height = g.height;
-    if (join?.left) { left -= bridge; width += bridge; }
-    if (join?.right) width += bridge;
-    if (join?.up) { top -= bridge; height += bridge; }
-    if (join?.down) height += bridge;
+    if (join?.left) { left -= g.gap + seam; width += g.gap + seam; }
+    if (join?.right) width += g.gap + seam;
+    if (join?.up) { top -= g.gap + seam; height += g.gap + seam; }
+    if (join?.down) height += g.gap + seam;
     el.style.left = `${left}%`;
     el.style.top = `${top}%`;
     el.style.width = `${width}%`;
@@ -1005,6 +1021,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
       if(join.right)el.classList.add('join-right');
       if(join.up)el.classList.add('join-up');
       if(join.down)el.classList.add('join-down');
+      el.classList.toggle('is-joined', join.left||join.right||join.up||join.down);
     }
     updateDeckVisuals(); updateHud();
   }

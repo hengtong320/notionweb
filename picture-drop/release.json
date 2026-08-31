@@ -1,13 +1,12 @@
 {
-  "version": "3.2.0",
-  "builtAt": "2026-08-31T12:32:07.924050+00:00",
+  "version": "3.3.0",
+  "builtAt": "2026-08-31T13:08:06.923211+00:00",
   "features": [
-    "requestAnimationFrame drag rendering",
-    "removed forced synchronous reflow",
-    "double-RAF FLIP transitions",
-    "cached active tile/index lookups",
-    "GPU layer containment",
-    "lighter mobile drag effects",
-    "portrait physics and split/group rules preserved"
+    "full-gutter joined-piece overlap",
+    "subpixel seam guard",
+    "internal borders removed",
+    "joined interior corners squared",
+    "joined shadows removed",
+    "v3.2 RAF performance retained"
   ]
 }

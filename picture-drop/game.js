@@ -277,12 +277,14 @@
 
   function applyTileGeometry(el, index, join) {
     const g = cellRectPercent(index);
-    const bridge = g.gap / 2;
+    // A correct join must visually cover the entire gutter, not only half of it.
+    // Add a tiny seam overlap to avoid sub-pixel blue hairlines on DPR 2/3 screens.
+    const seam = 0.08;
     let left = g.left, top = g.top, width = g.width, height = g.height;
-    if (join?.left) { left -= bridge; width += bridge; }
-    if (join?.right) width += bridge;
-    if (join?.up) { top -= bridge; height += bridge; }
-    if (join?.down) height += bridge;
+    if (join?.left) { left -= g.gap + seam; width += g.gap + seam; }
+    if (join?.right) width += g.gap + seam;
+    if (join?.up) { top -= g.gap + seam; height += g.gap + seam; }
+    if (join?.down) height += g.gap + seam;
     el.style.left = `${left}%`;
     el.style.top = `${top}%`;
     el.style.width = `${width}%`;
@@ -569,6 +571,7 @@
       if(join.right)el.classList.add('join-right');
       if(join.up)el.classList.add('join-up');
       if(join.down)el.classList.add('join-down');
+      el.classList.toggle('is-joined', join.left||join.right||join.up||join.down);
     }
     updateDeckVisuals(); updateHud();
   }
