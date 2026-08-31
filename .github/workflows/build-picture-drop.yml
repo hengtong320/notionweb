@@ -34,6 +34,25 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('picture-drop/tools/patch_v3.py')
+          s=p.read_text(encoding='utf-8')
+          old="""    marker = f'  function {name}('
+              start = src.find(marker)
+              if start < 0:
+                  raise RuntimeError(f'function not found: {name}')
+          """
+          new="""    markers = [f'  function {name}(', f'  async function {name}(']
+              starts = [src.find(marker) for marker in markers]
+              start = min((value for value in starts if value >= 0), default=-1)
+              if start < 0:
+                  raise RuntimeError(f'function not found: {name}')
+          """
+          if old not in s:
+              raise SystemExit('replace_function helper signature changed unexpectedly')
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          PY
           python picture-drop/tools/patch_v3.py
           node --check picture-drop/game.js
           node picture-drop/tools/verify_v21.js
