@@ -350,6 +350,17 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 /* Keep tile hit targets above all transparent board layers while dragging. */
 .tile.is-dragging{z-index:80!important}
 
+
+/* v3.6-single-surface-joins */
+.joined-surface{position:absolute;pointer-events:none;background-size:100% 100%;background-position:center;background-repeat:no-repeat;transform:translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.joined-surface.is-suspended{opacity:0}
+.tile.is-surface-member{background-image:none!important;box-shadow:none!important}
+.tile.is-surface-member::after{display:none!important}
+.tile.is-surface-member.surface-drag-raw{background-image:var(--piece-image)!important}
+.tile.is-surface-member.surface-drag-raw::after{display:block!important}
+/* Explicit input contract stays intact. */
+.cell-layer,.fx-layer{pointer-events:none!important}.tile-layer{pointer-events:none!important}.tile{pointer-events:auto!important;touch-action:none!important}
+
   </style>
 </head>
 <body>
@@ -699,6 +710,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 
   const tileEls = new Map();
   const cellEls = [];
+  const joinedSurfaceEls = new Map();
 
   function updateBoardLayout() {
     const stage = document.getElementById('gameStage');
@@ -1012,7 +1024,9 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
       el.style.pointerEvents = 'auto';
       el.setAttribute('role', 'button');
       el.setAttribute('aria-label', `${PICTURE_NAMES[tile.imageIndex]}的第${tile.quadrant + 1}块碎片`);
-      el.style.backgroundImage = `url("${PICTURE_PATHS[tile.imageIndex]}")`;
+      const pieceImage=`url("${PICTURE_PATHS[tile.imageIndex]}")`;
+      el.style.backgroundImage = pieceImage;
+      el.style.setProperty('--piece-image',pieceImage);
       el.style.backgroundPosition = QUADRANTS[tile.quadrant].bg;
       el.addEventListener('pointerdown', onTilePointerDown);
       tileEls.set(tile.id, el); dom.tileLayer.appendChild(el);
@@ -1020,8 +1034,58 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
     return el;
   }
 
+  function clearJoinedSurfaces() {
+    joinedSurfaceEls.forEach(el=>el.remove());
+    joinedSurfaceEls.clear();
+  }
+
+  function quadrantClipPath(quadrants) {
+    const key=[...quadrants].sort((a,b)=>a-b).join('');
+    const paths={
+      '01':'polygon(0 0,100% 0,100% 50%,0 50%)',
+      '23':'polygon(0 50%,100% 50%,100% 100%,0 100%)',
+      '02':'polygon(0 0,50% 0,50% 100%,0 100%)',
+      '13':'polygon(50% 0,100% 0,100% 100%,50% 100%)',
+      '012':'polygon(0 0,100% 0,100% 50%,50% 50%,50% 100%,0 100%)',
+      '013':'polygon(0 0,100% 0,100% 100%,50% 100%,50% 50%,0 50%)',
+      '023':'polygon(0 0,50% 0,50% 50%,100% 50%,100% 100%,0 100%)',
+      '123':'polygon(50% 0,100% 0,100% 100%,0 100%,0 50%,50% 50%)',
+      '0123':'inset(0)'
+    };
+    return paths[key]||'inset(0)';
+  }
+
+  function createJoinedSurface(group, hiddenIds=new Set()) {
+    if(group.ids.length<2||group.ids.some(id=>hiddenIds.has(id)))return null;
+    const firstId=group.ids[0], firstCell=game.board.indexOf(firstId);
+    if(firstCell<0)return null;
+    const tile=game.tiles.get(firstId), p=idxToRC(firstCell), q=QUADRANTS[tile.quadrant];
+    const originR=p.r-q.y, originC=p.c-q.x, m=gridMetrics();
+    const quadrants=new Set(group.ids.map(id=>game.tiles.get(id).quadrant));
+    const el=document.createElement('div');
+    el.className='joined-surface';el.dataset.groupKey=group.key;
+    el.style.left=`${originC*m.step}%`;el.style.top=`${originR*m.step}%`;
+    el.style.width=`${m.cell*2}%`;el.style.height=`${m.cell*2}%`;
+    el.style.backgroundImage=`url(\"${PICTURE_PATHS[group.imageIndex]}\")`;
+    el.style.clipPath=quadrantClipPath(quadrants);
+    el.style.webkitClipPath=quadrantClipPath(quadrants);
+    el.style.zIndex=String(5+Math.max(0,group.minR));
+    dom.tileLayer.appendChild(el);joinedSurfaceEls.set(group.key,el);
+    group.ids.forEach(id=>tileEls.get(id)?.classList.add('is-surface-member'));
+    return el;
+  }
+
+  function suspendJoinedSurface(group,active) {
+    if(!group)return;
+    group.ids.forEach(id=>tileEls.get(id)?.classList.toggle('surface-drag-raw',active));
+    const surface=joinedSurfaceEls.get(group.key);
+    if(surface)surface.classList.toggle('is-suspended',active);
+  }
+
   function renderBoard(options = {}) {
     const hiddenIds = options.hiddenIds || new Set();
+    const suppressJoinedSurfaces=!!options.suppressJoinedSurfaces;
+    clearJoinedSurfaces();
     game.groups = computeGroups();
     game.connections = computeConnections();
     const joinMap = new Map();
@@ -1038,6 +1102,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
     const indexById = new Map();
     game.board.forEach((id,index)=>{ if(id) indexById.set(id,index); });
     for (const [id, el] of tileEls) {
+      el.classList.remove('is-surface-member','surface-drag-raw');
       if (!activeIds.has(id)) el.style.display='none';
     }
     activeIds.forEach((id) => ensureTileElement(game.tiles.get(id)));
@@ -1058,9 +1123,9 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
       if(join.down)el.classList.add('join-down');
       el.classList.toggle('is-joined', join.left||join.right||join.up||join.down);
     }
+    if(!suppressJoinedSurfaces) game.groups.filter(g=>g.ids.length>1).forEach(g=>createJoinedSurface(g,hiddenIds));
     updateDeckVisuals(); updateHud();
   }
-
 
   function updateHud() {
     dom.levelNumber.textContent = String(game.level);
@@ -1112,12 +1177,11 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
       }
     }
     if (!moving.length) return;
-    // Force style flush.
-    void dom.board.offsetWidth;
-    requestAnimationFrame(() => moving.forEach((el) => {
+    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+    moving.forEach((el) => {
       el.style.transition = `transform ${duration}ms cubic-bezier(.22,.88,.28,1)`;
       el.style.transform = 'none';
-    }));
+    });
     await delay(duration + 35);
     moving.forEach((el) => { el.style.transition=''; el.style.transform=''; });
   }
@@ -1211,6 +1275,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
       }, 320);
     }
 
+    suspendJoinedSurface(joined,true);
     game.drag=drag; game.phase='dragging';
     joined.cells.forEach((cell)=>cellEls[cell]?.classList.add('is-source'));
     joined.ids.forEach((tileId)=>tileEls.get(tileId)?.classList.add('is-dragging'));
@@ -1269,6 +1334,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 
     if (!drag.moved || (!drag.lastDr && !drag.lastDc)) {
       drag.wholeGroup.ids.forEach((id)=>{const el=tileEls.get(id);if(el){el.style.transform='';el.classList.remove('is-dragging');}});
+      suspendJoinedSurface(drag.wholeGroup,false);
       game.phase='idle'; return;
     }
 
@@ -1297,6 +1363,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
       });
       await delay(195);
       drag.wholeGroup.ids.forEach((id)=>{const el=tileEls.get(id);if(el){el.style.transition='';el.style.transform='';}});
+      suspendJoinedSurface(drag.wholeGroup,false);
       game.phase='idle';
     }
   }
@@ -1312,8 +1379,9 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
     sourceGroup.ids.forEach((id)=>{
       const el=tileEls.get(id); if(el){ el.classList.remove('is-dragging'); el.style.transition='none'; }
     });
-    game.board=validation.board; game.moves++; game.movesSinceClear=(game.movesSinceClear||0)+1; renderBoard(); updateHud();
-    await animateFlipFromRects(firstRects,235);
+    game.board=validation.board; game.moves++; game.movesSinceClear=(game.movesSinceClear||0)+1; renderBoard({suppressJoinedSurfaces:true}); updateHud();
+    await animateFlipFromRects(firstRects,215);
+    renderBoard();
     audio.swap(); haptic(10);
     if (!save.tutorialSeen && game.level===1) {
       save.tutorialSeen=true; persist(); dom.tutorialHand.classList.remove('is-visible');
@@ -1677,33 +1745,26 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
   }
 
   function gravityStep(board) {
-    const groups=computeGroups(board,game.tiles).sort((a,b)=>b.maxR-a.maxR||b.minR-a.minR);
-    const owner=new Map();
-    groups.forEach((group)=>group.cells.forEach((cell)=>owner.set(cell,group)));
     const movable=new Set();
     let changed=true;
-    while(changed) {
+    while(changed){
       changed=false;
-      for(const group of groups) {
-        if(movable.has(group.key)||group.maxR>=GRID-1)continue;
-        const own=new Set(group.cells);
-        const can=group.cells.every((cell)=>{
-          const target=cell+GRID;
-          if(target>=CELL_COUNT)return false;
-          if(own.has(target)||!board[target])return true;
-          const blocker=owner.get(target);
-          return blocker ? movable.has(blocker.key) : false;
-        });
-        if(can){movable.add(group.key);changed=true;}
+      for(let r=GRID-2;r>=0;r--){
+        for(let c=0;c<GRID;c++){
+          const cell=rcToIdx(r,c), id=board[cell];
+          if(!id||movable.has(id))continue;
+          const below=board[cell+GRID];
+          if(!below||movable.has(below)){movable.add(id);changed=true;}
+        }
       }
     }
-    const movingGroups=groups.filter((group)=>movable.has(group.key));
-    if(!movingGroups.length)return{moved:false,board:board.slice(),ids:[]};
-    const next=board.slice();
-    const entries=[];
-    movingGroups.forEach((group)=>group.cells.forEach((cell)=>entries.push([cell,board[cell]])));
+    if(!movable.size)return{moved:false,board:board.slice(),ids:[]};
+    const next=board.slice(), entries=[];
+    for(let r=GRID-1;r>=0;r--)for(let c=0;c<GRID;c++){
+      const cell=rcToIdx(r,c),id=board[cell];if(id&&movable.has(id))entries.push([cell,id]);
+    }
     entries.forEach(([cell])=>{next[cell]=null;});
-    entries.sort((a,b)=>b[0]-a[0]).forEach(([cell,id])=>{next[cell+GRID]=id;});
+    entries.forEach(([cell,id])=>{next[cell+GRID]=id;});
     return{moved:true,board:next,ids:entries.map(([,id])=>id)};
   }
 
@@ -1720,28 +1781,28 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 
 
   async function applyGravity() {
-    let wave=0, moved=false;
-    const movedIds=new Set();
-    while(wave<GRID*GRID*2) {
-      const step=gravityStep(game.board);
-      if(!step.moved)break;
-      moved=true; step.ids.forEach((id)=>movedIds.add(id));
-      const first=captureTileRects();
-      game.board=step.board; renderBoard();
-      const duration=Math.max(72,128-wave*12);
-      await animateFlipFromRects(first,duration);
-      wave++;
+    let next=game.board.slice(),waves=0;
+    const dropCount=new Map();
+    while(waves<GRID*GRID*2){
+      const step=gravityStep(next);if(!step.moved)break;
+      step.ids.forEach(id=>dropCount.set(id,(dropCount.get(id)||0)+1));
+      next=step.board;waves++;
     }
-    if(moved) {
-      movedIds.forEach((id)=>tileEls.get(id)?.classList.add('land-pop'));
-      audio.deal(); haptic(Math.min(28,8+wave*4));
-      await delay(95);
-      movedIds.forEach((id)=>tileEls.get(id)?.classList.remove('land-pop'));
-    }
-    game.groups=computeGroups();game.connections=computeConnections();renderBoard();
-    return moved;
+    if(!waves)return false;
+    const first=captureTileRects();
+    game.board=next;
+    renderBoard({suppressJoinedSurfaces:true});
+    const maxDrop=Math.max(...dropCount.values(),1);
+    const duration=Math.min(430,Math.max(170,145+maxDrop*62));
+    await animateFlipFromRects(first,duration);
+    renderBoard();
+    dropCount.forEach((_,id)=>tileEls.get(id)?.classList.add('land-pop'));
+    audio.deal();haptic(Math.min(30,8+maxDrop*4));
+    await delay(82);
+    dropCount.forEach((_,id)=>tileEls.get(id)?.classList.remove('land-pop'));
+    game.groups=computeGroups();game.connections=computeConnections();
+    return true;
   }
-
 
   async function dealIntoBoard() {
     primeDecksForPlayableFrontier();

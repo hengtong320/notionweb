@@ -336,3 +336,14 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 .tile{pointer-events:auto!important;-webkit-user-drag:none!important;user-select:none!important;-webkit-user-select:none!important;touch-action:none!important}
 /* Keep tile hit targets above all transparent board layers while dragging. */
 .tile.is-dragging{z-index:80!important}
+
+
+/* v3.6-single-surface-joins */
+.joined-surface{position:absolute;pointer-events:none;background-size:100% 100%;background-position:center;background-repeat:no-repeat;transform:translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.joined-surface.is-suspended{opacity:0}
+.tile.is-surface-member{background-image:none!important;box-shadow:none!important}
+.tile.is-surface-member::after{display:none!important}
+.tile.is-surface-member.surface-drag-raw{background-image:var(--piece-image)!important}
+.tile.is-surface-member.surface-drag-raw::after{display:block!important}
+/* Explicit input contract stays intact. */
+.cell-layer,.fx-layer{pointer-events:none!important}.tile-layer{pointer-events:none!important}.tile{pointer-events:auto!important;touch-action:none!important}

@@ -1,12 +1,14 @@
 {
-  "version": "3.5.1",
-  "builtAt": "2026-08-31T14:22:33.881003+00:00",
+  "version": "3.6.0",
+  "builtAt": "2026-08-31T14:45:04.530177+00:00",
   "features": [
-    "explicit tile-only pointer input layers",
-    "real Chromium drag regression test",
-    "v3.5 seamless joins",
-    "v3.5 anti-deadlock frontier",
-    "v3.5 smart hints",
-    "cache-busted service worker"
+    "soft per-piece gravity that fractures blocked joins",
+    "no unsupported holes after settle",
+    "one-pass final-position gravity animation",
+    "single continuous raster surface for every joined group",
+    "no internal joined seam",
+    "forced-layout removal in FLIP",
+    "real browser drag/gravity/seam regression",
+    "v3.5 anti-deadlock and smart hints retained"
   ]
 }
