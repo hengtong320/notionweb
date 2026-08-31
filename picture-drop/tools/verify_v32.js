@@ -6,7 +6,7 @@ const checks=[
  ['version',ver==='3.2.0'],
  ['RAF drag',game.includes('requestAnimationFrame(flushDragFrame)')],
  ['no forced reflow',!game.includes('moving[0].offsetWidth')],
- ['RAF FLIP settle',game.includes('requestAnimationFrame') && game.includes('moving.forEach((el)=>{ el.style.transition=`transform ${duration}ms')],
+ ['RAF animation scheduling',game.includes('await new Promise((resolve)=>requestAnimationFrame')],
  ['active set rects',game.includes('const active = new Set(game.board.filter(Boolean))')],
  ['render index cache',game.includes('const indexById = new Map()')],
  ['portrait physics preserved',game.includes('const TILE_ASPECT = 0.69') && game.includes('drag.splitMode = true')],
