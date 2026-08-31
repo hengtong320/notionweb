@@ -1,10 +1,11 @@
-name: Build Picture Drop H5 v3.0
+name: Build Picture Drop H5 v3.1
 
 on:
   push:
     paths:
-      - 'picture-drop/tools/patch_v30_reference.py'
-      - 'picture-drop/tools/verify_v30.js'
+      - 'picture-drop/tools/make_portrait_assets.py'
+      - 'picture-drop/tools/patch_v31_physics.py'
+      - 'picture-drop/tools/verify_v31.js'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
 
@@ -12,13 +13,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: picture-drop-build-v30
+  group: picture-drop-build-v31
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,66 +31,25 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Apply v3 reference-fidelity rules
+      - name: Build portrait image set
         shell: bash
         run: |
           set -euo pipefail
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('picture-drop/tools/patch_v30_reference.py')
-          s=p.read_text(encoding='utf-8')
-          old="""    brace = src.find('{', start)
-              if brace < 0:
-                  raise RuntimeError(f'opening brace not found: {name}')
-          """
-          new="""    paren = src.find('(', start)
-              if paren < 0:
-                  raise RuntimeError(f'opening paren not found: {name}')
-              pdepth = 0
-              close_paren = -1
-              j = paren
-              ps = pd = pt = False
-              pesc = False
-              while j < len(src):
-                  ch = src[j]
-                  if pesc:
-                      pesc = False
-                  elif ch == '\\\\':
-                      pesc = True
-                  elif ps:
-                      if ch == \"'\": ps = False
-                  elif pd:
-                      if ch == '\"': pd = False
-                  elif pt:
-                      if ch == '`': pt = False
-                  else:
-                      if ch == \"'\": ps = True
-                      elif ch == '\"': pd = True
-                      elif ch == '`': pt = True
-                      elif ch == '(': pdepth += 1
-                      elif ch == ')':
-                          pdepth -= 1
-                          if pdepth == 0:
-                              close_paren = j
-                              break
-                  j += 1
-              if close_paren < 0:
-                  raise RuntimeError(f'closing paren not found: {name}')
-              brace = src.find('{', close_paren + 1)
-              if brace < 0:
-                  raise RuntimeError(f'opening brace not found: {name}')
-          """
-          if old not in s:
-              raise SystemExit('v3 replace_function helper changed unexpectedly')
-          p.write_text(s.replace(old,new,1),encoding='utf-8')
-          PY
-          python picture-drop/tools/patch_v30_reference.py
+          python -m pip install --quiet pillow
+          python picture-drop/tools/make_portrait_assets.py
+          test "$(find picture-drop/assets/pictures-portrait -maxdepth 1 -name '*.webp' | wc -l)" -ge 36
+
+      - name: Apply v3.1 portrait physics rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          python picture-drop/tools/patch_v31_physics.py
           if ! node --check picture-drop/game.js; then
-            nl -ba picture-drop/game.js | sed -n '480,580p'
+            nl -ba picture-drop/game.js | sed -n '560,920p'
             exit 1
           fi
-          node picture-drop/tools/verify_v30.js
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.0.0'
+          node picture-drop/tools/verify_v31.js
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.1.0'
 
       - name: Rebuild offline edition
         shell: bash
@@ -105,32 +65,35 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f picture-drop/Jigsaw-Drop-H5-v3.0.zip
+          rm -f picture-drop/Jigsaw-Drop-H5-v3.1.zip
           python - <<'PY'
           from pathlib import Path
           import json, datetime
           root=Path('picture-drop')
           payload={
-            'version':'3.0.0',
+            'version':'3.1.0',
             'builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'features':[
-              'reference 4x4 to 5x5 level progression',
-              'rigid source-group drag with splittable target region',
-              'translated region swap including overlapping motion',
+              'portrait 0.69 tile and full-image aspect from reference video',
+              'height-driven mobile board layout',
+              '4x4 level 14 and 5x5 level 15 progression',
+              'direct drag moves a joined source group',
+              'hold then drag tears out one joined quarter',
+              'invalid group placement can fall back to legal single-quarter tear',
+              'target joined groups remain splittable by overlap replacement',
+              'gravity resolves after every move even without a clear',
               'rigid connected-group gravity waves',
-              'per-column physical deck refill',
-              'connected-cell gutter bridging',
-              'persistent combo streak',
-              'hard-level red deck presentation'
+              'per-column deck refill',
+              '690x1000 portrait image asset set'
             ]
           }
           (root/'release.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8')
           PY
           cd picture-drop
-          zip -qr /tmp/Jigsaw-Drop-H5-v3.0.zip . -x 'Jigsaw-Drop-H5-v3.0.zip'
-          mv /tmp/Jigsaw-Drop-H5-v3.0.zip .
+          zip -qr /tmp/Jigsaw-Drop-H5-v3.1.zip . -x 'Jigsaw-Drop-H5-v3.1.zip'
+          mv /tmp/Jigsaw-Drop-H5-v3.1.zip .
 
-      - name: Commit v3 game
+      - name: Commit v3.1 game
         shell: bash
         run: |
           set -euo pipefail
@@ -141,5 +104,5 @@ jobs:
             echo 'No generated changes to commit.'
             exit 0
           fi
-          git commit -s -m 'Release Jigsaw Drop H5 v3.0 reference-fidelity rules'
+          git commit -s -m 'Release Jigsaw Drop H5 v3.1 portrait physics fidelity'
           git push origin HEAD:main
