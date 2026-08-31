@@ -1,52 +1,42 @@
-name: Build Picture Drop H5 v3.7
+name: Build Picture Drop H5 v3.8
 on:
   push:
     paths:
-      - 'picture-drop/tools/generate_extra_pictures.py'
-      - 'picture-drop/tools/patch_v37_progression.py'
-      - 'picture-drop/tools/smoke_v37.py'
+      - 'picture-drop/tools/patch_v38_juice.py'
+      - 'picture-drop/tools/smoke_v38.py'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
 permissions: {contents: write}
-concurrency: {group: picture-drop-build-v37, cancel-in-progress: true}
+concurrency: {group: picture-drop-build-v38, cancel-in-progress: true}
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Generate content pack and apply v3.7
+      - name: Apply v3.8 chain and juice refactor
         run: |
           set -euo pipefail
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.6.0'
-          python picture-drop/tools/generate_extra_pictures.py
-          test "$(find picture-drop/assets/pictures-extra -name '*.svg' | wc -l)" -eq 24
-          python picture-drop/tools/patch_v37_progression.py
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('picture-drop/game.js');s=p.read_text(encoding='utf-8')
-          old='primeDecksForPlayableFrontier};'
-          new='primeDecksForPlayableFrontier,resolveBoard,renderBoard,imageCountForLevel,selectedImagesForLevel,levelIntroCopy,pictureCount:PICTURE_PATHS.length};'
-          if old in s:s=s.replace(old,new,1)
-          elif 'pictureCount:PICTURE_PATHS.length' not in s:raise SystemExit('debug export marker missing')
-          p.write_text(s,encoding='utf-8')
-          PY
-          node --check picture-drop/game.js
-          grep -Fq 'assets/pictures-extra/37-jellyfish.svg' picture-drop/game.js
-          grep -Fq 'function levelIntroCopy' picture-drop/game.js
-          grep -Fq 'pictureCount:PICTURE_PATHS.length' picture-drop/game.js
-          grep -Fq 'game.lastResolveTrace.push('\''gravity'\'')' picture-drop/game.js
-          grep -Fq 'game.lastResolveTrace.push('\''clear'\'')' picture-drop/game.js
-          grep -Fq 'const waveCap=game.level<=2?1:2' picture-drop/game.js
-          grep -Fq 'style.css?v=3.7.0' picture-drop/index.html
-          grep -Fq 'game.js?v=3.7.0' picture-drop/index.html
-          grep -Fq 'jigsaw-drop-h5-v3.7.0' picture-drop/sw.js
-          grep -Fq "pictures-extra').glob('*.svg')" picture-drop/tools/build_standalone.py
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.7.0'
-      - name: Real browser progression and settle-order tests
+          python picture-drop/tools/patch_v38_juice.py
+          node --check picture-drop/game.js
+          grep -Fq 'class JuiceDirector' picture-drop/game.js
+          grep -Fq 'function predictCascade' picture-drop/game.js
+          grep -Fq 'function registerClear' picture-drop/game.js
+          grep -Fq 'chainSeed={depth' picture-drop/game.js
+          grep -Fq 'next-card' picture-drop/game.js
+          grep -Fq 'juiceCanvas' picture-drop/index.html
+          grep -Fq 'flowMeter' picture-drop/index.html
+          grep -Fq '.juice-canvas{' picture-drop/style.css
+          grep -Fq '.chain-predict-badge' picture-drop/style.css
+          grep -Fq 'style.css?v=3.8.0' picture-drop/index.html
+          grep -Fq 'game.js?v=3.8.0' picture-drop/index.html
+          grep -Fq 'jigsaw-drop-h5-v3.8.0' picture-drop/sw.js
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.8.0'
+      - name: Real browser v3.8 planning, chain and juice tests
         run: |
           set -euo pipefail
           python -m pip install --quiet selenium
@@ -54,8 +44,8 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 1
-          python picture-drop/tools/smoke_v37.py
-      - name: Preserve v3.6 interaction, gravity and seam regressions
+          python picture-drop/tools/smoke_v38.py
+      - name: Preserve v3.7 progression and settle-first regressions
         run: |
           set -euo pipefail
           python -m http.server 8766 --directory picture-drop >/tmp/picture-drop-http2.log 2>&1 &
@@ -63,12 +53,24 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           python - <<'PY'
           from pathlib import Path
-          p=Path('picture-drop/tools/smoke_v36.py')
-          s=p.read_text(encoding='utf-8').replace('8765','8766').replace('v=3.6.0','v=3.7.0')
-          Path('/tmp/smoke_v36_as_v37.py').write_text(s,encoding='utf-8')
+          s=Path('picture-drop/tools/smoke_v37.py').read_text(encoding='utf-8').replace('8765','8766').replace('v=3.7.0','v=3.8.0')
+          Path('/tmp/smoke_v37_as_v38.py').write_text(s,encoding='utf-8')
           PY
           sleep 1
-          python /tmp/smoke_v36_as_v37.py
+          python /tmp/smoke_v37_as_v38.py
+      - name: Preserve v3.6 drag, gravity and seamless-surface regressions
+        run: |
+          set -euo pipefail
+          python -m http.server 8767 --directory picture-drop >/tmp/picture-drop-http3.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('picture-drop/tools/smoke_v36.py').read_text(encoding='utf-8').replace('8765','8767').replace('v=3.6.0','v=3.8.0')
+          Path('/tmp/smoke_v36_as_v38.py').write_text(s,encoding='utf-8')
+          PY
+          sleep 1
+          python /tmp/smoke_v36_as_v38.py
       - name: Rebuild release
         run: |
           set -euo pipefail
@@ -76,6 +78,7 @@ jobs:
           test -s picture-drop/Jigsaw-Drop-offline.html
           grep -Fq 'data:image/webp;base64' picture-drop/Jigsaw-Drop-offline.html
           grep -Fq 'data:image/svg+xml;base64' picture-drop/Jigsaw-Drop-offline.html
+          grep -Fq 'class JuiceDirector' picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
           rm -f picture-drop/Jigsaw-Drop-H5-*.zip
           python - <<'PY'
@@ -83,27 +86,28 @@ jobs:
           import json,datetime
           r=Path('picture-drop')
           (r/'release.json').write_text(json.dumps({
-            'version':'3.7.0',
+            'version':'3.8.0',
             'builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'features':[
-              'gravity settles before any merge or clear',
-              'transient mid-air complete images cannot clear',
-              '60-picture content pool',
-              'zero adjacent-level image overlap',
-              '5-to-20 image saw-tooth difficulty curve',
-              'deeper decks and repeated two-card-per-column deal waves',
-              'staged beginner tutorial copy',
-              'v3.6 soft gravity/seam/performance retained',
-              'v3.5 anti-deadlock and smart hints retained'
+              'next-card preview on every deck column',
+              'seeded discoverable two-chain and three-chain setups',
+              'drag-time cascade prediction badge',
+              'three-layer merge/turn-chain/cross-move streak system',
+              'five-tier escalating visual/audio/haptic feedback',
+              'FLOW meter and three-turn FEVER acceleration',
+              'pooled Canvas particles, rings and chain beams',
+              'chain-dependent faster gravity and dealing',
+              'level 3 two-chain and level 5 three-chain tutorials',
+              'v3.7 progression, v3.6 gravity/seams and v3.5 anti-deadlock retained'
             ]
           },ensure_ascii=False,indent=2),encoding='utf-8')
           PY
-          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v3.7.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.7.zip)" -lt 90000000 && mv /tmp/Jigsaw-Drop-H5-v3.7.zip .
-      - name: Commit v3.7
+          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v3.8.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.8.zip)" -lt 90000000 && mv /tmp/Jigsaw-Drop-H5-v3.8.zip .
+      - name: Commit v3.8
         run: |
           set -euo pipefail
           git config user.name 'hengtong320';git config user.email '564712388@qq.com'
           git add -A picture-drop
           if git diff --cached --quiet;then exit 0;fi
-          git commit -s -m 'Release Jigsaw Drop H5 v3.7 settle-first progression and 60-picture pool'
+          git commit -s -m 'Release Jigsaw Drop H5 v3.8 chain planning and juice system'
           git push origin HEAD:main
