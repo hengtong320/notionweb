@@ -53,11 +53,11 @@ jobs:
           test -s picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
 
-      - name: Build downloadable ZIP and release metadata
+      - name: Build clean downloadable ZIP and release metadata
         shell: bash
         run: |
           set -euo pipefail
-          rm -f picture-drop/Jigsaw-Drop-H5-v3.1.1.zip
+          rm -f picture-drop/Jigsaw-Drop-H5-*.zip
           python - <<'PY'
           from pathlib import Path
           import json, datetime
@@ -81,7 +81,8 @@ jobs:
           (root/'release.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8')
           PY
           cd picture-drop
-          zip -qr /tmp/Jigsaw-Drop-H5-v3.1.1.zip . -x 'Jigsaw-Drop-H5-v3.1.1.zip'
+          zip -qr /tmp/Jigsaw-Drop-H5-v3.1.1.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*'
+          test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.1.1.zip)" -lt 90000000
           mv /tmp/Jigsaw-Drop-H5-v3.1.1.zip .
 
       - name: Commit v3.1.1 game
