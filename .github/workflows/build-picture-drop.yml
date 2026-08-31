@@ -3,8 +3,6 @@ name: Build Picture Drop H5 v3.1.1
 on:
   push:
     paths:
-      - 'picture-drop/tools/make_portrait_assets.py'
-      - 'picture-drop/tools/patch_v31_physics.py'
       - 'picture-drop/tools/patch_v311_layout.py'
       - 'picture-drop/tools/verify_v311.js'
       - '.github/workflows/build-picture-drop.yml'
@@ -20,7 +18,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,19 +30,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Build portrait image set
+      - name: Verify v3.1 portrait base and apply responsive fix
         shell: bash
         run: |
           set -euo pipefail
-          python -m pip install --quiet pillow
-          python picture-drop/tools/make_portrait_assets.py
           test "$(find picture-drop/assets/pictures-portrait -maxdepth 1 -name '*.webp' | wc -l)" -ge 36
-
-      - name: Apply portrait physics and responsive layout
-        shell: bash
-        run: |
-          set -euo pipefail
-          python picture-drop/tools/patch_v31_physics.py
+          grep -q "const TILE_ASPECT = 0.69" picture-drop/game.js
+          grep -q "drag.splitMode = true" picture-drop/game.js
+          grep -q "const moved=await applyGravity();" picture-drop/game.js
           python picture-drop/tools/patch_v311_layout.py
           node --check picture-drop/game.js
           node picture-drop/tools/verify_v311.js
@@ -73,12 +66,12 @@ jobs:
             'version':'3.1.1',
             'builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'features':[
-              'portrait 0.69 tile and full-image aspect measured from reference',
-              'responsive height-driven portrait board on phones',
+              'portrait 0.69 tile/full-image aspect measured from reference',
+              'responsive height-driven portrait board',
               '4x4 level 14 and 5x5 level 15 progression',
               'direct drag moves joined source group',
               'hold then drag tears out one quarter',
-              'target joined groups can be broken by replacement',
+              'target joined groups can be split by replacement',
               'gravity settles after every player move',
               'rigid connected-group falling',
               'per-column physical deck refill',
