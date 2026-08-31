@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#13c8ed" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Jigsaw Drop · H5</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app" class="app-shell" aria-label="Jigsaw Drop H5 游戏">
+    <section id="gameStage" class="game-stage">
+      <div class="ambient ambient-a"></div>
+      <div class="ambient ambient-b"></div>
+      <div class="ambient ambient-c"></div>
+      <div id="bgPattern" class="bg-pattern" aria-hidden="true"></div>
+
+      <section id="splash" class="screen splash-screen is-visible" aria-label="启动画面">
+        <div class="logo-wrap">
+          <div class="logo-shadow">JIGSAW<br><span>DROP</span></div>
+          <div class="logo-main">JIGSAW<br><span>DROP</span></div>
+          <div class="logo-card" aria-hidden="true"><i></i></div>
+          <div class="logo-sub">H5 EDITION</div>
+        </div>
+        <div class="loading-line"><i></i></div>
+      </section>
+
+      <section id="homeScreen" class="screen home-screen" aria-label="首页">
+        <div class="home-top">
+          <button class="round-btn glass-btn" id="homeSettingsBtn" aria-label="设置">
+            <span class="icon icon-gear"></span>
+          </button>
+          <div class="home-chip"><span class="tiny-star">★</span><strong id="homeStars">0</strong></div>
+        </div>
+        <div class="home-logo logo-wrap small">
+          <div class="logo-shadow">JIGSAW<br><span>DROP</span></div>
+          <div class="logo-main">JIGSAW<br><span>DROP</span></div>
+          <div class="logo-card" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="home-preview" id="homePreview" aria-hidden="true"></div>
+        <div class="home-actions">
+          <div class="level-pill">关卡 <strong id="homeLevel">1</strong></div>
+          <button id="playBtn" class="primary-btn play-btn"><span class="play-triangle"></span>开始游戏</button>
+          <button id="galleryBtn" class="secondary-btn">图片图鉴 <span id="galleryCount">0 / 36</span></button>
+        </div>
+        <p class="home-tip">拖动已经拼好的碎片时，它们会作为一个整体移动</p>
+      </section>
+
+      <section id="playScreen" class="screen play-screen" aria-label="游戏界面">
+        <header class="topbar">
+          <button class="round-btn topbar-btn" id="settingsBtn" aria-label="设置"><span class="icon icon-gear"></span></button>
+          <div class="level-title"><span>关卡</span><strong id="levelNumber">1</strong></div>
+          <div class="tools">
+            <button id="autoBtn" class="tool-btn" aria-label="自动整理">
+              <span class="tool-icon magic-icon"><i></i></span>
+              <b id="autoCount">3</b>
+            </button>
+            <button id="hintBtn" class="tool-btn" aria-label="提示">
+              <span class="tool-icon hint-icon"><i></i></span>
+              <b id="hintCount">3</b>
+            </button>
+          </div>
+        </header>
+
+        <section class="game-area">
+          <div id="deckArea" class="deck-area" aria-label="待发牌堆">
+            <div class="deck-column" data-col="0"><div class="deck-stack"></div><span class="deck-count"></span></div>
+            <div class="deck-column" data-col="1"><div class="deck-stack"></div><span class="deck-count"></span></div>
+            <div class="deck-column" data-col="2"><div class="deck-stack"></div><span class="deck-count"></span></div>
+            <div class="deck-column" data-col="3"><div class="deck-stack"></div><span class="deck-count"></span></div>
+          </div>
+
+          <div class="board-wrap">
+            <div id="board" class="board" role="application" aria-label="4乘4拼图棋盘">
+              <div id="cellLayer" class="cell-layer" aria-hidden="true"></div>
+              <div id="tileLayer" class="tile-layer"></div>
+              <div id="fxLayer" class="fx-layer" aria-hidden="true"></div>
+              <div id="tutorialHand" class="tutorial-hand" aria-hidden="true"><span></span></div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-item"><span class="status-icon clock-icon"></span><strong id="timeText">00:00</strong></div>
+            <div class="progress-track"><i id="progressBar"></i></div>
+            <div class="status-item"><span class="status-icon move-icon"></span><strong id="moveText">0</strong></div>
+          </div>
+        </section>
+
+        <div id="comboToast" class="combo-toast" aria-live="polite"><span>Combo</span><strong>× 2</strong></div>
+        <div id="messageToast" class="message-toast" aria-live="polite"></div>
+      </section>
+
+      <section id="winScreen" class="overlay-screen win-screen" aria-label="通关">
+        <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+        <div class="win-card">
+          <div class="card-fan" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="ribbon"><span>恭喜</span></div>
+          <h2>关卡完成</h2>
+          <div class="win-stats">
+            <div><span class="win-icon clock-icon"></span><small>用时</small><strong id="winTime">00:00</strong></div>
+            <div><span class="win-icon move-icon"></span><small>步数</small><strong id="winMoves">0</strong></div>
+            <div><span class="win-icon combo-mini">×</span><small>最高连击</small><strong id="winCombo">1</strong></div>
+          </div>
+          <div class="star-row" id="starRow"><span>★</span><span>★</span><span>★</span></div>
+          <button id="nextBtn" class="primary-btn next-btn">下一关</button>
+          <button id="replayBtn" class="text-btn">再玩一次</button>
+        </div>
+        <div id="unlockedStrip" class="unlocked-strip"></div>
+      </section>
+
+      <section id="settingsModal" class="modal-layer" aria-label="设置">
+        <div class="modal-card settings-card">
+          <button class="modal-close" data-close-modal aria-label="关闭">×</button>
+          <h2>设置</h2>
+          <div class="setting-row"><span><b class="mini-speaker"></b>音效</span><button id="soundToggle" class="switch is-on" aria-label="音效开关"><i></i></button></div>
+          <div class="setting-row"><span><b class="mini-vibrate"></b>震动</span><button id="vibrationToggle" class="switch is-on" aria-label="震动开关"><i></i></button></div>
+          <div class="setting-actions">
+            <button id="resumeBtn" class="primary-btn">继续游戏</button>
+            <button id="restartBtn" class="secondary-btn">重新开始本关</button>
+            <button id="homeBtn" class="secondary-btn">返回首页</button>
+          </div>
+          <p>进度会自动保存在当前设备。</p>
+        </div>
+      </section>
+
+      <section id="galleryModal" class="modal-layer" aria-label="图片图鉴">
+        <div class="modal-card gallery-card">
+          <button class="modal-close" data-close-modal aria-label="关闭">×</button>
+          <h2>图片图鉴</h2>
+          <p class="gallery-sub">完成关卡，收集更多完整图片</p>
+          <div id="galleryGrid" class="gallery-grid"></div>
+        </div>
+      </section>
+
+      <section id="levelIntro" class="overlay-screen level-intro" aria-live="polite">
+        <div class="intro-badge"><span>关卡</span><strong id="introLevel">1</strong></div>
+        <p id="introText">把四块碎片拼成一张完整图片</p>
+      </section>
+
+      <div id="rotateNotice" class="rotate-notice">请竖屏体验</div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>

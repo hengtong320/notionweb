@@ -1,0 +1,14 @@
+{
+  "name": "Jigsaw Drop H5",
+  "short_name": "Jigsaw Drop",
+  "description": "拖动、拼接、消除的轻量拼图游戏",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0872e8",
+  "theme_color": "#22cfe9",
+  "icons": [
+    {"src":"assets/icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"assets/icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}
