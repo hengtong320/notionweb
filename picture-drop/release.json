@@ -1,12 +1,14 @@
 {
-  "version": "2.1.0",
-  "builtAt": "2026-08-31T07:41:19.829367+00:00",
+  "version": "3.0.0",
+  "builtAt": "2026-08-31T10:30:26.311499+00:00",
   "features": [
-    "single-piece peel from joined groups",
-    "long-press whole-group dragging",
-    "reversible multi-cell region replacement",
-    "independent-column natural gravity",
-    "deeper level image counts",
-    "mobile sizing and cache refresh"
+    "reference 4x4 to 5x5 level progression",
+    "rigid source-group drag with splittable target region",
+    "translated region swap including overlapping motion",
+    "rigid connected-group gravity waves",
+    "per-column physical deck refill",
+    "connected-cell gutter bridging",
+    "persistent combo streak",
+    "hard-level red deck presentation"
   ]
 }

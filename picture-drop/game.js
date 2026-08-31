@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  const GRID = 4;
-  const CELL_COUNT = GRID * GRID;
+  let GRID = 4;
+  let CELL_COUNT = GRID * GRID;
   const STORAGE_KEY = 'jigsaw-drop-h5-v2';
   const PICTURE_PATHS = [
     'assets/pictures/01-alpine-lake.webp',
@@ -181,13 +181,14 @@
     phase: 'boot',
     board: Array(CELL_COUNT).fill(null),
     tiles: new Map(),
-    deck: [],
+    decks: [],
     selectedImages: [],
     totalImages: 0,
     clearedImages: [],
     clearedCount: 0,
     moves: 0,
     comboMax: 1,
+    comboStreak: 0,
     hintCount: 3,
     autoCount: 3,
     groups: [],
@@ -207,14 +208,88 @@
 
   const tileEls = new Map();
   const cellEls = [];
-  for (let i = 0; i < CELL_COUNT; i++) {
-    const cell = document.createElement('div');
-    const { r, c } = idxToRC(i);
-    cell.className = 'cell';
-    cell.dataset.index = String(i);
-    cell.style.left = `${c * 25}%`; cell.style.top = `${r * 25}%`;
-    dom.cellLayer.appendChild(cell); cellEls.push(cell);
+
+  function gridMetrics() {
+    // The original keeps a narrow blue gutter between unrelated cells.
+    // Connected pieces bridge that gutter, so a joined image reads as one shape.
+    const gap = GRID >= 5 ? 0.56 : 0.52;
+    const cell = (100 - gap * (GRID - 1)) / GRID;
+    return { gap, cell, step: cell + gap };
   }
+
+  function cellRectPercentByRC(r, c) {
+    const m = gridMetrics();
+    return { left: c * m.step, top: r * m.step, width: m.cell, height: m.cell, gap: m.gap, step: m.step };
+  }
+
+  function cellRectPercent(index) {
+    const { r, c } = idxToRC(index);
+    return cellRectPercentByRC(r, c);
+  }
+
+  function groupRectPercent(group) {
+    const m = gridMetrics();
+    return {
+      left: group.minC * m.step,
+      top: group.minR * m.step,
+      width: (group.maxC - group.minC + 1) * m.cell + (group.maxC - group.minC) * m.gap,
+      height: (group.maxR - group.minR + 1) * m.cell + (group.maxR - group.minR) * m.gap
+    };
+  }
+
+  function applyBaseGeometry(el, index) {
+    const g = cellRectPercent(index);
+    el.style.left = `${g.left}%`;
+    el.style.top = `${g.top}%`;
+    el.style.width = `${g.width}%`;
+    el.style.height = `${g.height}%`;
+  }
+
+  function applyTileGeometry(el, index, join) {
+    const g = cellRectPercent(index);
+    const bridge = g.gap / 2;
+    let left = g.left, top = g.top, width = g.width, height = g.height;
+    if (join?.left) { left -= bridge; width += bridge; }
+    if (join?.right) width += bridge;
+    if (join?.up) { top -= bridge; height += bridge; }
+    if (join?.down) height += bridge;
+    el.style.left = `${left}%`;
+    el.style.top = `${top}%`;
+    el.style.width = `${width}%`;
+    el.style.height = `${height}%`;
+  }
+
+  function configureGrid(size) {
+    GRID = Math.max(4, Math.min(5, Number(size) || 4));
+    CELL_COUNT = GRID * GRID;
+    game.board = Array(CELL_COUNT).fill(null);
+    game.decks = Array.from({ length: GRID }, () => []);
+    dom.board.dataset.grid = String(GRID);
+    document.getElementById('gameStage')?.setAttribute('data-grid', String(GRID));
+
+    dom.cellLayer.innerHTML = '';
+    cellEls.length = 0;
+    for (let i = 0; i < CELL_COUNT; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.dataset.index = String(i);
+      applyBaseGeometry(cell, i);
+      dom.cellLayer.appendChild(cell);
+      cellEls.push(cell);
+    }
+
+    dom.deckArea.innerHTML = '';
+    dom.deckArea.style.gridTemplateColumns = `repeat(${GRID}, 1fr)`;
+    for (let c = 0; c < GRID; c++) {
+      const col = document.createElement('div');
+      col.className = 'deck-column';
+      col.dataset.col = String(c);
+      col.innerHTML = '<div class="deck-stack"></div><span class="deck-count"></span>';
+      dom.deckArea.appendChild(col);
+    }
+  }
+
+  configureGrid(4);
 
   function showOnly(screen) {
     [dom.splash, dom.homeScreen, dom.playScreen].forEach((el) => el.classList.toggle('is-visible', el === screen));
@@ -241,14 +316,24 @@
     renderGallery();
   }
 
+  function isHardLevel(level) {
+    return level >= 15 && level % 5 === 0;
+  }
+
+  function gridForLevel(level) {
+    // Video evidence: L14 is 4x4 / four piles; L15 expands to 5x5 / five piles.
+    return level >= 15 ? 5 : 4;
+  }
+
   function imageCountForLevel(level) {
     if (level <= 2) return 5;
     if (level <= 5) return 6;
     if (level <= 10) return 7;
-    if (level <= 18) return 8;
-    // The board still shows only 16 pieces at once; extra images stay in the four feed columns.
-    return Math.min(12, 8 + Math.floor((level - 19) / 8));
+    if (level <= 14) return 8;
+    if (isHardLevel(level)) return Math.min(18, 15 + Math.floor((level - 15) / 10));
+    return Math.min(15, 10 + Math.floor((level - 15) / 3));
   }
+
   function selectedImagesForLevel(level, count) {
     const start = ((level - 1) * 5) % PICTURE_PATHS.length;
     return Array.from({ length: count }, (_, i) => (start + i) % PICTURE_PATHS.length);
@@ -271,42 +356,70 @@
       byImage.set(imageIndex, arr);
     });
 
-    // Start from four solved 2x2 blocks, then apply deterministic swaps.
-    const board = Array(CELL_COUNT).fill(null);
-    const solvedAnchors = [[0,0],[0,2],[2,0],[2,2]];
-    selected.slice(0,4).forEach((imageIndex, imageOrder) => {
-      const [ar, ac] = solvedAnchors[imageOrder];
-      byImage.get(imageIndex).forEach((id, q) => {
-        const qp = QUADRANTS[q]; board[rcToIdx(ar + qp.y, ac + qp.x)] = id;
+    const allIds = [...tiles.keys()];
+    shuffle(allIds, rnd);
+    const board = allIds.splice(0, CELL_COUNT);
+    const decks = Array.from({ length: GRID }, () => []);
+    allIds.forEach((id, i) => decks[i % GRID].push(id));
+    decks.forEach((deck) => shuffle(deck, rnd));
+
+    const locateAndSwapIntoCell = (id, targetCell) => {
+      const existing = board[targetCell];
+      const boardPos = board.indexOf(id);
+      if (boardPos >= 0) {
+        [board[boardPos], board[targetCell]] = [board[targetCell], board[boardPos]];
+        return;
+      }
+      for (let c = 0; c < decks.length; c++) {
+        const p = decks[c].indexOf(id);
+        if (p >= 0) {
+          decks[c][p] = existing;
+          board[targetCell] = id;
+          return;
+        }
+      }
+      throw new Error(`tile location missing: ${id}`);
+    };
+
+    // The reference starts with several already-joined 2/3-piece shapes.
+    const patterns = GRID === 5
+      ? [[0,1],[0,2],[2,3],[1,3],[0,1,2],[0,2,3]]
+      : [[0,1],[0,2],[2,3],[0,1,2]];
+    const anchors = [];
+    for (let r = 0; r < GRID - 1; r++) for (let c = 0; c < GRID - 1; c++) anchors.push([r,c]);
+    shuffle(anchors, rnd);
+    const used = new Set();
+    for (let k = 0; k < Math.min(patterns.length, selected.length, anchors.length); k++) {
+      const imageIndex = selected[k];
+      const pattern = patterns[k % patterns.length];
+      let chosen = null;
+      for (const anchor of anchors) {
+        const cells = pattern.map((q) => rcToIdx(anchor[0] + QUADRANTS[q].y, anchor[1] + QUADRANTS[q].x));
+        if (cells.every((cell) => !used.has(cell))) { chosen = { anchor, cells }; break; }
+      }
+      if (!chosen) continue;
+      pattern.forEach((q, i) => {
+        locateAndSwapIntoCell(byImage.get(imageIndex)[q], chosen.cells[i]);
+        used.add(chosen.cells[i]);
       });
-    });
-    const swaps = Math.min(30, 7 + Math.floor((level - 1) * 1.8));
-    for (let n = 0; n < swaps; n++) {
-      let a = Math.floor(rnd() * CELL_COUNT), b = Math.floor(rnd() * CELL_COUNT);
-      if (a === b) b = (b + 5) % CELL_COUNT;
-      [board[a], board[b]] = [board[b], board[a]];
-    }
-    // Ensure no picture begins fully completed and at least one partial pair remains for an inviting first move.
-    let guard = 0;
-    while (findCompleteGroups(board, tiles).length && guard++ < 100) {
-      const a = Math.floor(rnd() * CELL_COUNT), b = (a + 5 + Math.floor(rnd() * 7)) % CELL_COUNT;
-      [board[a], board[b]] = [board[b], board[a]];
-    }
-    if (computeConnections(board, tiles).size === 0) {
-      // Put two compatible pieces together, while keeping the board unsolved.
-      const imageIndex = selected[0]; const ids = byImage.get(imageIndex);
-      const positions = ids.map((id) => board.indexOf(id));
-      const targetA = rcToIdx(0, 0), targetB = rcToIdx(0, 1);
-      const swapInto = (from, to) => { const p = board.indexOf(from); [board[p], board[to]] = [board[to], board[p]]; };
-      swapInto(ids[0], targetA); swapInto(ids[1], targetB);
-      if (findCompleteGroups(board, tiles).length) [board[positions[2]], board[(positions[2] + 3) % CELL_COUNT]] = [board[(positions[2] + 3) % CELL_COUNT], board[positions[2]]];
     }
 
-    const deck = [];
-    selected.slice(4).forEach((imageIndex) => deck.push(...byImage.get(imageIndex)));
-    shuffle(deck, rnd);
-    return { seed, board, deck, tiles, selected, imageCount };
+    // Never begin with an immediately complete 2x2 image.
+    let guard = 0;
+    while (findCompleteGroups(board, tiles).length && guard++ < 80) {
+      const group = findCompleteGroups(board, tiles)[0];
+      const cell = group.cells[group.cells.length - 1];
+      let other = Math.floor(rnd() * CELL_COUNT);
+      let tries = 0;
+      while ((group.cells.includes(other) || tiles.get(board[other])?.imageIndex === group.imageIndex) && tries++ < 40) {
+        other = Math.floor(rnd() * CELL_COUNT);
+      }
+      [board[cell], board[other]] = [board[other], board[cell]];
+    }
+
+    return { seed, board, decks, tiles, selected, imageCount, grid: GRID };
   }
+
 
   function isCompatibleEdge(tileA, tileB, dr, dc) {
     if (!tileA || !tileB || tileA.imageIndex !== tileB.imageIndex) return false;
@@ -388,34 +501,34 @@
       const id = game.board[i]; if (!id) continue;
       const tile = game.tiles.get(id); const {r,c}=idxToRC(i);
       if (c>0 && game.board[i-1] && isCompatibleEdge(game.tiles.get(game.board[i-1]),tile,0,1)) joinMap.get(id).left=true;
-      if (c<3 && game.board[i+1] && isCompatibleEdge(tile,game.tiles.get(game.board[i+1]),0,1)) joinMap.get(id).right=true;
-      if (r>0 && game.board[i-4] && isCompatibleEdge(game.tiles.get(game.board[i-4]),tile,1,0)) joinMap.get(id).up=true;
-      if (r<3 && game.board[i+4] && isCompatibleEdge(tile,game.tiles.get(game.board[i+4]),1,0)) joinMap.get(id).down=true;
+      if (c<GRID-1 && game.board[i+1] && isCompatibleEdge(tile,game.tiles.get(game.board[i+1]),0,1)) joinMap.get(id).right=true;
+      if (r>0 && game.board[i-GRID] && isCompatibleEdge(game.tiles.get(game.board[i-GRID]),tile,1,0)) joinMap.get(id).up=true;
+      if (r<GRID-1 && game.board[i+GRID] && isCompatibleEdge(tile,game.tiles.get(game.board[i+GRID]),1,0)) joinMap.get(id).down=true;
     }
     const activeIds = new Set(game.board.filter(Boolean));
     for (const [id, el] of tileEls) {
-      if (!activeIds.has(id)) { el.style.display='none'; continue; }
-      el.style.display='block';
-      const index = game.board.indexOf(id); const {r,c}=idxToRC(index);
-      el.dataset.cellIndex = String(index);
-      el.style.left = `${c*25}%`; el.style.top = `${r*25}%`;
-      el.style.opacity = hiddenIds.has(id) ? '0' : '1';
-      el.style.zIndex = String(10 + r);
-      el.classList.remove('join-left','join-right','join-up','join-down');
-      const join = joinMap.get(id);
-      if (join.left) el.classList.add('join-left'); if (join.right) el.classList.add('join-right');
-      if (join.up) el.classList.add('join-up'); if (join.down) el.classList.add('join-down');
+      if (!activeIds.has(id)) el.style.display='none';
     }
     activeIds.forEach((id) => ensureTileElement(game.tiles.get(id)));
-    // A second pass is needed for newly-created elements.
     for (const id of activeIds) {
-      const el = tileEls.get(id); const index=game.board.indexOf(id); const {r,c}=idxToRC(index); const join=joinMap.get(id);
-      el.style.display='block'; el.dataset.cellIndex=String(index); el.style.left=`${c*25}%`; el.style.top=`${r*25}%`; el.style.opacity=hiddenIds.has(id)?'0':'1'; el.style.zIndex=String(10+r);
+      const el = tileEls.get(id);
+      const index=game.board.indexOf(id);
+      const {r}=idxToRC(index);
+      const join=joinMap.get(id);
+      el.style.display='block';
+      el.dataset.cellIndex=String(index);
+      applyTileGeometry(el, index, join);
+      el.style.opacity=hiddenIds.has(id)?'0':'1';
+      el.style.zIndex=String(10+r);
       el.classList.remove('join-left','join-right','join-up','join-down');
-      if(join.left)el.classList.add('join-left'); if(join.right)el.classList.add('join-right'); if(join.up)el.classList.add('join-up'); if(join.down)el.classList.add('join-down');
+      if(join.left)el.classList.add('join-left');
+      if(join.right)el.classList.add('join-right');
+      if(join.up)el.classList.add('join-up');
+      if(join.down)el.classList.add('join-down');
     }
     updateDeckVisuals(); updateHud();
   }
+
 
   function updateHud() {
     dom.levelNumber.textContent = String(game.level);
@@ -428,16 +541,22 @@
     dom.progressBar.style.width = `${clamp(progress*100,0,100)}%`;
   }
 
+  function remainingDeckCount() {
+    return (game.decks || []).reduce((sum, deck) => sum + deck.length, 0);
+  }
+
   function updateDeckVisuals() {
-    const remaining = game.deck.length;
     const columns = [...dom.deckArea.querySelectorAll('.deck-column')];
     columns.forEach((col, i) => {
-      const visualCount = Math.max(0, Math.ceil((remaining - i) / 4));
-      col.classList.toggle('is-empty', visualCount <= 0);
-      col.dataset.showCount = visualCount > 3 ? 'true' : 'false';
-      const countEl = col.querySelector('.deck-count'); countEl.textContent = visualCount > 0 ? String(visualCount) : '';
+      const count = game.decks?.[i]?.length || 0;
+      col.classList.toggle('is-empty', count <= 0);
+      col.dataset.depth = String(Math.min(3, count));
+      col.dataset.showCount = 'false';
+      const countEl = col.querySelector('.deck-count');
+      if (countEl) countEl.textContent = '';
     });
   }
+
 
   function captureTileRects() {
     const rects = new Map();
@@ -478,54 +597,63 @@
     const cells = sourceGroup.cells.slice();
     const sourceSet = new Set(cells);
     const targets = [];
+    const edges = new Map();
     for (const index of cells) {
       const {r,c}=idxToRC(index), nr=r+dr, nc=c+dc;
       if (nr<0||nr>=GRID||nc<0||nc>=GRID) return {valid:false,reason:'bounds'};
-      targets.push(rcToIdx(nr,nc));
+      const target = rcToIdx(nr,nc);
+      targets.push(target);
+      edges.set(index, target);
     }
     const targetSet = new Set(targets);
-    if (targets.some((index)=>sourceSet.has(index))) return {valid:false,reason:'overlap',targets};
-
     const next = board.slice();
-    const sourceValues = cells.map((cell)=>board[cell]);
-    const displaced = targets.map((cell)=>board[cell]);
 
-    // Clear both regions first, then perform a position-preserving region swap.
-    cells.forEach((cell)=>{ next[cell]=null; });
-    targets.forEach((cell)=>{ next[cell]=null; });
-    targets.forEach((cell,i)=>{ next[cell]=sourceValues[i] || null; });
-    cells.forEach((cell,i)=>{ next[cell]=displaced[i] || null; });
+    // Reference rule: the dragged joined shape remains rigid, but the target region
+    // may cut through any other joined shape. Target cells are displaced back into
+    // the source footprint. Overlapping translations are handled as path rotations.
+    const starts = cells.filter((cell) => !targetSet.has(cell));
+    const touched = new Set();
+    for (const start of starts) {
+      const path = [start];
+      let cur = start;
+      while (edges.has(cur)) {
+        cur = edges.get(cur);
+        path.push(cur);
+      }
+      const values = path.map((cell) => board[cell]);
+      next[path[0]] = values[values.length - 1] || null;
+      for (let i = 0; i < path.length - 1; i++) next[path[i+1]] = values[i] || null;
+      path.forEach((cell)=>touched.add(cell));
+    }
+    // Disjoint source/target shapes are fully covered by the paths above. This is
+    // an integrity fallback for any exotic translated shape.
+    for (const s of cells) if (!touched.has(s) && !targetSet.has(s)) next[s] = null;
 
-    // Sanity: never duplicate or lose pieces.
     const beforeIds = board.filter(Boolean).slice().sort().join('|');
     const afterIds = next.filter(Boolean).slice().sort().join('|');
     if (beforeIds !== afterIds) return {valid:false,reason:'integrity',targets};
-    return {valid:true,targets,board:next,displaced};
+    return {valid:true,targets,board:next};
   }
+
 
   function onTilePointerDown(event) {
     if (game.phase !== 'idle') return;
     audio.ensure();
     const id = event.currentTarget.dataset.tileId;
     const index = game.board.indexOf(id); if (index < 0) return;
+    const sourceGroup = groupAtCell(index);
+    if (!sourceGroup) return;
     event.preventDefault();
-
-    // v2.2 core rule: every drag always moves exactly ONE cell.
-    // Joining is visual/semantic feedback only; it never locks a piece.
-    // Therefore a source piece and a target piece may each belong to a
-    // 2/3-piece joined image and the two cells can still swap directly.
-    const tile = game.tiles.get(id);
-    const single = { ids:[id], cells:[index], imageIndex:tile?.imageIndex, complete:false };
     const rect = dom.board.getBoundingClientRect();
+    const stepPx = rect.width * gridMetrics().step / 100;
     const drag = {
       pointerId:event.pointerId, startX:event.clientX, startY:event.clientY, dx:0,dy:0,
-      sourceGroup:single, sourceIds:[id], sourceCells:[index],
-      boardRect:rect, cellSize:rect.width/GRID, lastDr:0,lastDc:0, validation:null,
-      moved:false
+      sourceGroup, sourceIds:sourceGroup.ids.slice(), sourceCells:sourceGroup.cells.slice(),
+      boardRect:rect, cellSize:stepPx, lastDr:0,lastDc:0, validation:null, moved:false
     };
     game.drag=drag; game.phase='dragging';
-    cellEls[index].classList.add('is-source');
-    tileEls.get(id)?.classList.add('is-dragging');
+    sourceGroup.cells.forEach((cell)=>cellEls[cell]?.classList.add('is-source'));
+    sourceGroup.ids.forEach((tileId)=>tileEls.get(tileId)?.classList.add('is-dragging'));
     window.addEventListener('pointermove', onDragMove, {passive:false});
     window.addEventListener('pointerup', onDragEnd, {passive:false,once:true});
     window.addEventListener('pointercancel', onDragEnd, {passive:false,once:true});
@@ -534,23 +662,25 @@
   }
 
 
+
   function onDragMove(event) {
     const drag=game.drag; if(!drag||event.pointerId!==drag.pointerId)return;
     event.preventDefault();
     drag.dx=event.clientX-drag.startX; drag.dy=event.clientY-drag.startY;
-    if (Math.hypot(drag.dx,drag.dy) > Math.max(6,drag.cellSize*.065)) drag.moved=true;
-
-    const id=drag.sourceIds[0];
-    const el=tileEls.get(id);
-    if(el) el.style.transform=`translate3d(${drag.dx}px,${drag.dy}px,0) scale(1.045)`;
-
+    if (Math.hypot(drag.dx,drag.dy) > Math.max(6,drag.cellSize*.06)) drag.moved=true;
+    drag.sourceIds.forEach((id)=>{
+      const el=tileEls.get(id);
+      if(el) el.style.transform=`translate3d(${drag.dx}px,${drag.dy}px,0) scale(1.025)`;
+    });
     const dc=Math.round(drag.dx/drag.cellSize), dr=Math.round(drag.dy/drag.cellSize);
     if(dc===drag.lastDc&&dr===drag.lastDr)return;
     drag.lastDc=dc; drag.lastDr=dr;
-    clearCellHighlights(); drag.sourceCells.forEach((cell)=>cellEls[cell].classList.add('is-source'));
+    clearCellHighlights();
+    drag.sourceCells.forEach((cell)=>cellEls[cell]?.classList.add('is-source'));
     const result=validateMove(drag.sourceGroup,dr,dc); drag.validation=result;
-    if(result.targets) result.targets.forEach((cell)=>cellEls[cell].classList.add(result.valid?'is-target':'is-target-invalid'));
+    if(result.targets) result.targets.forEach((cell)=>cellEls[cell]?.classList.add(result.valid?'is-target':'is-target-invalid'));
   }
+
 
 
   async function onDragEnd(event) {
@@ -591,12 +721,12 @@
       const el=tileEls.get(id); if(el){ el.classList.remove('is-dragging'); el.style.transition='none'; }
     });
     game.board=validation.board; game.moves++; renderBoard(); updateHud();
-    await animateFlipFromRects(firstRects,285);
+    await animateFlipFromRects(firstRects,235);
     audio.swap(); haptic(10);
     if (!save.tutorialSeen && game.level===1) {
       save.tutorialSeen=true; persist(); dom.tutorialHand.classList.remove('is-visible');
     }
-    await resolveBoard(0,beforeConnections);
+    await resolveBoard(beforeConnections,true,false);
     return true;
   }
 
@@ -609,32 +739,28 @@
   }
 
   function findHelpfulMove() {
-    // Hints follow the same rule as the player: one-cell swaps only.
+    const groups=computeGroups();
     const base=boardScore(game.board); let best=null;
-    const singles=[];
-    game.board.forEach((id,index)=>{
-      if(!id)return;
-      const tile=game.tiles.get(id);
-      singles.push({ids:[id],cells:[index],imageIndex:tile?.imageIndex,complete:false});
-    });
-    for (const group of singles) {
+    for (const group of groups) {
       for (let dr=-(GRID-1);dr<=GRID-1;dr++) for(let dc=-(GRID-1);dc<=GRID-1;dc++) {
         if(!dr&&!dc)continue;
-        const result=validateMove(group,dr,dc,game.board,game.groups); if(!result.valid)continue;
+        const result=validateMove(group,dr,dc,game.board,groups); if(!result.valid)continue;
         const score=boardScore(result.board);
-        const beforeGroup=groupAtCell(group.cells[0],computeGroups(game.board,game.tiles));
         const afterGroups=computeGroups(result.board,game.tiles);
-        const movedCell=result.targets[0];
-        const afterGroup=afterGroups.find(g=>g.cells.includes(movedCell));
-        const growth=(afterGroup?.ids.length||1)-(beforeGroup?.ids.length||1);
         const completes=afterGroups.filter(g=>g.complete).length;
-        const adjusted=score+growth*90+completes*300;
+        const movedGrowth=group.ids.reduce((bestGrowth,id)=>{
+          const targetIndex=result.board.indexOf(id);
+          const after=afterGroups.find(g=>g.cells.includes(targetIndex));
+          return Math.max(bestGrowth,(after?.ids.length||1)-group.ids.length);
+        },0);
+        const adjusted=score+completes*420+movedGrowth*75;
         if(!best||adjusted>best.score)best={group,dr,dc,board:result.board,score:adjusted,rawScore:score};
       }
     }
-    if(best&&best.rawScore>=base-25) return best;
+    if(best&&best.rawScore>=base-30) return best;
     return best;
   }
+
 
 
   function markHint(move) {
@@ -660,9 +786,13 @@
     dom.fxLayer.appendChild(arrow); setTimeout(()=>arrow.remove(),2300);
   }
   function averageCellCenter(cells) {
-    const points=cells.map((i)=>{const {r,c}=idxToRC(i);return{x:(c+.5)*25,y:(r+.5)*25};});
+    const points=cells.map((i)=>{
+      const g=cellRectPercent(i);
+      return{x:g.left+g.width/2,y:g.top+g.height/2};
+    });
     return {x:points.reduce((s,p)=>s+p.x,0)/points.length,y:points.reduce((s,p)=>s+p.y,0)/points.length};
   }
+
   function clearHintMarks() {
     clearTimeout(game.hintTimer);
     tileEls.forEach((el)=>el.classList.remove('is-hint-source','is-hint-target'));
@@ -674,9 +804,10 @@
     if(game.phase!=='idle')return;
     if(game.hintCount<=0){showToast('提示次数用完啦');audio.invalid();return;}
     const move=findHelpfulMove();
-    if(!move){showToast('任意拼好的组合都能直接拆开交换');audio.invalid();return;}
-    game.hintCount--;updateHud();markHint(move);audio.merge();showToast('发光碎片可直接和目标格交换');
+    if(!move){showToast('拼好的组合可以整体搬动，也可以被其他碎片拆开替换');audio.invalid();return;}
+    game.hintCount--;updateHud();markHint(move);audio.merge();showToast('拖动发光的拼合块到目标区域');
   }
+
   async function useAuto() {
     if(game.phase!=='idle')return;
     if(game.autoCount<=0){showToast('自动整理次数用完啦');audio.invalid();return;}
@@ -686,7 +817,7 @@
     await commitMove(move.group,move.dr,move.dc,move.board,false);
   }
 
-  async function resolveBoard(chain=0,beforeConnections=new Set()) {
+  async function resolveBoard(beforeConnections=new Set(), isPlayerMove=false, refill=false) {
     game.phase='resolving';
     game.groups=computeGroups(); game.connections=computeConnections();
     const newIds=new Set();
@@ -694,44 +825,61 @@
     if(newIds.size) {
       newIds.forEach((id)=>tileEls.get(id)?.classList.add('merge-pop'));
       audio.merge(); haptic(14);
-      await delay(360);
+      await delay(260);
       newIds.forEach((id)=>tileEls.get(id)?.classList.remove('merge-pop'));
     }
+
     const complete=game.groups.filter(g=>g.complete);
     if(complete.length) {
-      const nextChain=chain+complete.length; game.comboMax=Math.max(game.comboMax,nextChain);
-      if(nextChain>=2)showCombo(nextChain); else showToast(['拼好了！','漂亮！','完美拼接！'][game.clearedCount%3]);
+      game.comboStreak += complete.length;
+      game.comboMax=Math.max(game.comboMax,game.comboStreak);
+      showCombo(game.comboStreak);
       await animateAndClear(complete);
+      const beforeGravity=new Set(game.connections);
       await applyGravity();
-      await dealIntoBoard();
-      const postDealConnections=new Set(game.connections);
-      await resolveBoard(nextChain,postDealConnections);
+      await resolveBoard(beforeGravity,false,true);
       return;
     }
-    if(game.deck.length===0 && game.board.every(v=>!v)) { await finishLevel(); return; }
+
+    if(isPlayerMove) game.comboStreak=0;
+
+    if(refill) {
+      const beforeDeal=new Set(game.connections);
+      const dealt=await dealIntoBoard();
+      if(dealt) {
+        await resolveBoard(beforeDeal,false,true);
+        return;
+      }
+    }
+
+    if(remainingDeckCount()===0 && game.board.every(v=>!v)) { await finishLevel(); return; }
     game.phase='idle';
   }
+
 
   async function animateAndClear(groups) {
     const clearIds=[]; const overlays=[];
     for(const group of groups) {
       clearIds.push(...group.ids);
       const overlay=document.createElement('div');overlay.className='complete-overlay';
-      overlay.style.left=`${group.minC*25}%`;overlay.style.top=`${group.minR*25}%`;
-      overlay.style.width=`${(group.maxC-group.minC+1)*25}%`;overlay.style.height=`${(group.maxR-group.minR+1)*25}%`;
+      const rect=groupRectPercent(group);
+      overlay.style.left=`${rect.left}%`;overlay.style.top=`${rect.top}%`;
+      overlay.style.width=`${rect.width}%`;overlay.style.height=`${rect.height}%`;
       overlay.style.backgroundImage=`url("${PICTURE_PATHS[group.imageIndex]}")`;dom.fxLayer.appendChild(overlay);overlays.push(overlay);
-      createSparks((group.minC+1)*25,(group.minR+1)*25,18);
+      createSparks(rect.left+rect.width/2,rect.top+rect.height/2,20);
       if(!game.clearedImages.includes(group.imageIndex)) game.clearedImages.push(group.imageIndex);
       if(!save.unlocked.includes(group.imageIndex)&&!game.unlockedThisLevel.includes(group.imageIndex))game.unlockedThisLevel.push(group.imageIndex);
     }
     clearIds.forEach((id)=>tileEls.get(id)?.classList.add('clear-out'));
     audio.clear();haptic([25,25,35]);
-    await delay(560);
+    // The reference holds the completed 2x2 image on screen long enough to read it.
+    await delay(720);
     game.board=game.board.map((id)=>clearIds.includes(id)?null:id);
     clearIds.forEach((id)=>{const el=tileEls.get(id);if(el){el.remove();tileEls.delete(id);}});
     overlays.forEach((el)=>el.remove());
     game.clearedCount+=groups.length;renderBoard();
   }
+
 
   function createSparks(xPercent,yPercent,count=14) {
     for(let i=0;i<count;i++){
@@ -741,57 +889,111 @@
     }
   }
 
-  function settleGroupsRigid(board) {
-    const next=Array(CELL_COUNT).fill(null);
-    for(let c=0;c<GRID;c++){
-      const ids=[];
-      for(let r=GRID-1;r>=0;r--){
-        const id=board[rcToIdx(r,c)]; if(id) ids.push(id);
+  function gravityStep(board) {
+    const groups=computeGroups(board,game.tiles).sort((a,b)=>b.maxR-a.maxR||b.minR-a.minR);
+    const owner=new Map();
+    groups.forEach((group)=>group.cells.forEach((cell)=>owner.set(cell,group)));
+    const movable=new Set();
+    let changed=true;
+    while(changed) {
+      changed=false;
+      for(const group of groups) {
+        if(movable.has(group.key)||group.maxR>=GRID-1)continue;
+        const own=new Set(group.cells);
+        const can=group.cells.every((cell)=>{
+          const target=cell+GRID;
+          if(target>=CELL_COUNT)return false;
+          if(own.has(target)||!board[target])return true;
+          const blocker=owner.get(target);
+          return blocker ? movable.has(blocker.key) : false;
+        });
+        if(can){movable.add(group.key);changed=true;}
       }
-      ids.forEach((id,k)=>{ next[rcToIdx(GRID-1-k,c)]=id; });
+    }
+    const movingGroups=groups.filter((group)=>movable.has(group.key));
+    if(!movingGroups.length)return{moved:false,board:board.slice(),ids:[]};
+    const next=board.slice();
+    const entries=[];
+    movingGroups.forEach((group)=>group.cells.forEach((cell)=>entries.push([cell,board[cell]])));
+    entries.forEach(([cell])=>{next[cell]=null;});
+    entries.sort((a,b)=>b[0]-a[0]).forEach(([cell,id])=>{next[cell+GRID]=id;});
+    return{moved:true,board:next,ids:entries.map(([,id])=>id)};
+  }
+
+  function settleGroupsRigid(board) {
+    let next=board.slice();
+    let safety=0;
+    while(safety++<GRID*GRID*2){
+      const step=gravityStep(next);
+      if(!step.moved)break;
+      next=step.board;
     }
     return next;
   }
 
+
   async function applyGravity() {
-    const next=settleGroupsRigid(game.board);
-    if(next.every((id,i)=>id===game.board[i]))return;
-    const oldIndex=new Map(); game.board.forEach((id,i)=>{if(id)oldIndex.set(id,i);});
-    const first=captureTileRects(); game.board=next; renderBoard();
-    let maxRows=1;
-    next.forEach((id,i)=>{
-      if(!id)return; const from=oldIndex.get(id); if(from==null)return;
-      maxRows=Math.max(maxRows,Math.max(0,idxToRC(i).r-idxToRC(from).r));
-    });
-    const duration=Math.min(420,170+maxRows*62);
-    await animateFlipFromRects(first,duration);
-    const landed=[];
-    next.forEach((id,i)=>{
-      if(!id)return; const from=oldIndex.get(id); if(from!=null&&idxToRC(i).r>idxToRC(from).r)landed.push(id);
-    });
-    landed.forEach((id)=>tileEls.get(id)?.classList.add('land-pop'));
-    if(landed.length){ haptic(Math.min(24,7+maxRows*4)); audio.deal(); }
-    await delay(95);
-    landed.forEach((id)=>tileEls.get(id)?.classList.remove('land-pop'));
-    game.groups=computeGroups(); game.connections=computeConnections(); renderBoard();
+    let wave=0, moved=false;
+    const movedIds=new Set();
+    while(wave<GRID*GRID*2) {
+      const step=gravityStep(game.board);
+      if(!step.moved)break;
+      moved=true; step.ids.forEach((id)=>movedIds.add(id));
+      const first=captureTileRects();
+      game.board=step.board; renderBoard();
+      const duration=Math.max(72,128-wave*12);
+      await animateFlipFromRects(first,duration);
+      wave++;
+    }
+    if(moved) {
+      movedIds.forEach((id)=>tileEls.get(id)?.classList.add('land-pop'));
+      audio.deal(); haptic(Math.min(28,8+wave*4));
+      await delay(95);
+      movedIds.forEach((id)=>tileEls.get(id)?.classList.remove('land-pop'));
+    }
+    game.groups=computeGroups();game.connections=computeConnections();renderBoard();
+    return moved;
   }
 
+
   async function dealIntoBoard() {
-    const empty=[];
-    for(let r=0;r<GRID;r++)for(let c=0;c<GRID;c++){const i=rcToIdx(r,c);if(!game.board[i]&&game.deck.length)empty.push(i);}
-    if(!empty.length)return;
     const dealt=[];
-    for(const index of empty){if(!game.deck.length)break;const id=game.deck.shift();game.board[index]=id;dealt.push({index,id});}
+    for(let c=0;c<GRID;c++){
+      const deck=game.decks?.[c]; if(!deck?.length)continue;
+      const emptyTop=[];
+      for(let r=0;r<GRID;r++){
+        const index=rcToIdx(r,c);
+        if(game.board[index])break;
+        emptyTop.push(index);
+      }
+      // Cards fall from the column pile to the deepest accessible top vacancy first.
+      for(let k=emptyTop.length-1;k>=0&&deck.length;k--){
+        const index=emptyTop[k], id=deck.shift();
+        game.board[index]=id; dealt.push({index,id,col:c,order:dealt.length});
+      }
+    }
+    if(!dealt.length){updateDeckVisuals();return false;}
+
     const hidden=new Set(dealt.map(d=>d.id));renderBoard({hiddenIds:hidden});updateDeckVisuals();
-    const boardRect=dom.board.getBoundingClientRect();const deckRect=dom.deckArea.getBoundingClientRect();const dropY=Math.max(130,boardRect.top-deckRect.top+40);
+    const boardRect=dom.board.getBoundingClientRect();const deckRect=dom.deckArea.getBoundingClientRect();
+    const dropBase=Math.max(105,boardRect.top-deckRect.top+34);
     dealt.forEach((item,n)=>{
-      const {r,c}=idxToRC(item.index);const card=document.createElement('div');card.className='deal-card';card.style.left=`${c*25}%`;card.style.top=`${r*25}%`;card.style.setProperty('--drop-y',`${dropY+r*24}px`);card.style.animationDelay=`${n*38}ms`;
-      card.innerHTML='<div class="face back"></div>';dom.fxLayer.appendChild(card);
-      setTimeout(()=>{audio.deal();const tile=tileEls.get(item.id);if(tile){tile.style.opacity='1';tile.classList.add('flip-in');setTimeout(()=>tile.classList.remove('flip-in'),520);}card.remove();},290+n*38);
+      const geom=cellRectPercent(item.index); const {r}=idxToRC(item.index);
+      const card=document.createElement('div');card.className='deal-card';
+      card.style.left=`${geom.left}%`;card.style.top=`${geom.top}%`;card.style.width=`${geom.width}%`;card.style.height=`${geom.height}%`;
+      card.style.setProperty('--drop-y',`${dropBase+r*(boardRect.width*gridMetrics().step/100)}px`);
+      card.style.animationDelay=`${n*42}ms`;card.innerHTML='<div class="face back"></div>';dom.fxLayer.appendChild(card);
+      setTimeout(()=>{
+        audio.deal();const tile=tileEls.get(item.id);
+        if(tile){tile.style.opacity='1';tile.classList.add('flip-in');setTimeout(()=>tile.classList.remove('flip-in'),500);}
+        card.remove();
+      },285+n*42);
     });
-    await delay(360+dealt.length*38+450);
+    await delay(340+dealt.length*42+430);
     game.groups=computeGroups();game.connections=computeConnections();renderBoard();
+    return true;
   }
+
 
   function showCombo(value) {
     dom.comboToast.querySelector('strong').textContent=`× ${value}`;
@@ -828,26 +1030,47 @@
 
   async function startLevel(level) {
     hideModals();dom.winScreen.classList.remove('is-visible');showOnly(dom.playScreen);clearHintMarks();
-    game.level=Math.max(1,level);game.phase='loading';game.moves=0;game.clearedCount=0;game.clearedImages=[];game.unlockedThisLevel=[];game.comboMax=1;game.hintCount=3;game.autoCount=3;game.timerBase=0;game.timerRunning=false;
+    game.level=Math.max(1,level);
+    configureGrid(gridForLevel(game.level));
+    game.phase='loading';game.moves=0;game.clearedCount=0;game.clearedImages=[];game.unlockedThisLevel=[];
+    game.comboMax=1;game.comboStreak=0;game.hintCount=3;game.autoCount=3;game.timerBase=0;game.timerRunning=false;
     tileEls.forEach((el)=>el.remove());tileEls.clear();dom.fxLayer.innerHTML='';clearCellHighlights();
-    const generated=generateLevel(game.level);game.generation=generated;game.initialSeed=generated.seed;game.board=generated.board.slice();game.deck=generated.deck.slice();game.tiles=generated.tiles;game.selectedImages=generated.selected;game.totalImages=generated.imageCount;
-    dom.introLevel.textContent=String(game.level);dom.introText.textContent=game.level===1?'把四块碎片拼成一张完整图片':'新的图片正在落下';
+    const generated=generateLevel(game.level);game.generation=generated;game.initialSeed=generated.seed;
+    game.board=generated.board.slice();game.decks=generated.decks.map((deck)=>deck.slice());game.tiles=generated.tiles;
+    game.selectedImages=generated.selected;game.totalImages=generated.imageCount;
+
+    const hard=isHardLevel(game.level);
+    const stage=document.getElementById('gameStage');stage?.classList.toggle('is-hard',hard);
+    const title=dom.levelNumber.parentElement;title?.classList.toggle('is-hard',hard);
+    const titleLabel=title?.querySelector('span');if(titleLabel)titleLabel.textContent=hard?'困难':'关卡';
+    dom.introLevel.textContent=String(game.level);dom.introText.textContent=GRID===5?'困难关卡 · 五列拼图':'把四块碎片拼成一张完整图片';
     dom.levelIntro.classList.add('is-visible');updateHud();updateDeckVisuals();
-    await preloadImages(game.selectedImages);renderBoard({hiddenIds:new Set(game.board.filter(Boolean))});
-    await delay(300);await initialDealAnimation();
-    await delay(120);dom.levelIntro.classList.remove('is-visible');startTimer();game.phase='idle';
-    if(game.level===1&&!save.tutorialSeen){dom.tutorialHand.classList.add('is-visible');showToast('拖动任意碎片交换位置，拼好的组合也可以拆开',2800);}else dom.tutorialHand.classList.remove('is-visible');
+
+    const preloadSet=new Set();
+    game.board.filter(Boolean).forEach((id)=>preloadSet.add(game.tiles.get(id).imageIndex));
+    game.decks.forEach((deck)=>deck.slice(0,2).forEach((id)=>preloadSet.add(game.tiles.get(id).imageIndex)));
+    await preloadImages([...preloadSet]);
+    renderBoard({hiddenIds:new Set(game.board.filter(Boolean))});
+    await delay(260);await initialDealAnimation();
+    await delay(100);dom.levelIntro.classList.remove('is-visible');startTimer();game.phase='idle';
+    if(game.level===1&&!save.tutorialSeen){dom.tutorialHand.classList.add('is-visible');showToast('拼好的碎片会整体移动；目标拼合块可以被拆开替换',3000);}else dom.tutorialHand.classList.remove('is-visible');
   }
+
 
   async function initialDealAnimation() {
     const items=game.board.map((id,index)=>({id,index})).filter(x=>x.id);
-    const boardRect=dom.board.getBoundingClientRect();const deckRect=dom.deckArea.getBoundingClientRect();const dropY=Math.max(170,boardRect.top-deckRect.top+60);
-    items.forEach(({id,index},n)=>{
-      const {r,c}=idxToRC(index);const card=document.createElement('div');card.className='deal-card';card.style.left=`${c*25}%`;card.style.top=`${r*25}%`;card.style.setProperty('--drop-y',`${dropY+r*26}px`);const stagger=r*85+c*28;card.style.animationDelay=`${stagger}ms`;card.innerHTML='<div class="face back"></div>';dom.fxLayer.appendChild(card);
-      setTimeout(()=>{audio.deal();const tile=tileEls.get(id);if(tile){tile.style.opacity='1';tile.classList.add('flip-in');setTimeout(()=>tile.classList.remove('flip-in'),520);}card.remove();},330+stagger);
+    const boardRect=dom.board.getBoundingClientRect();const deckRect=dom.deckArea.getBoundingClientRect();const dropY=Math.max(150,boardRect.top-deckRect.top+52);
+    items.forEach(({id,index})=>{
+      const {r,c}=idxToRC(index);const geom=cellRectPercent(index);
+      const card=document.createElement('div');card.className='deal-card';
+      card.style.left=`${geom.left}%`;card.style.top=`${geom.top}%`;card.style.width=`${geom.width}%`;card.style.height=`${geom.height}%`;
+      card.style.setProperty('--drop-y',`${dropY+r*(boardRect.width*gridMetrics().step/100)}px`);
+      const stagger=r*62+c*20;card.style.animationDelay=`${stagger}ms`;card.innerHTML='<div class="face back"></div>';dom.fxLayer.appendChild(card);
+      setTimeout(()=>{audio.deal();const tile=tileEls.get(id);if(tile){tile.style.opacity='1';tile.classList.add('flip-in');setTimeout(()=>tile.classList.remove('flip-in'),500);}card.remove();},300+stagger);
     });
-    await delay(330+3*85+3*28+560);renderBoard();
+    await delay(300+(GRID-1)*62+(GRID-1)*20+520);renderBoard();
   }
+
 
   function calculateStars() {
     const target=game.totalImages*3+3;
@@ -919,7 +1142,7 @@
     document.querySelectorAll('[data-close-modal]').forEach((btn)=>btn.addEventListener('click',()=>{audio.tap();if(dom.settingsModal.classList.contains('is-visible'))closeSettings();else hideModals();}));
     [dom.settingsModal,dom.galleryModal].forEach((layer)=>layer.addEventListener('pointerdown',(event)=>{if(event.target===layer){if(layer===dom.settingsModal)closeSettings();else hideModals();}}));
     document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseTimer();else if(dom.playScreen.classList.contains('is-visible')&&!dom.settingsModal.classList.contains('is-visible')&&game.phase==='idle')resumeTimer();});
-    window.addEventListener('resize',()=>{if(game.phase==='dragging'&&game.drag){game.drag.boardRect=dom.board.getBoundingClientRect();game.drag.cellSize=game.drag.boardRect.width/GRID;}});
+    window.addEventListener('resize',()=>{if(game.phase==='dragging'&&game.drag){game.drag.boardRect=dom.board.getBoundingClientRect();game.drag.cellSize=game.drag.boardRect.width*gridMetrics().step/100;}});
     window.addEventListener('contextmenu',(event)=>event.preventDefault());
   }
 
@@ -930,6 +1153,6 @@
     await delay(1350);dom.splash.classList.remove('is-visible');showOnly(dom.homeScreen);game.phase='home';
   }
 
-  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,finishLevel,goHome};
+  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,finishLevel,goHome};
   boot();
 })();

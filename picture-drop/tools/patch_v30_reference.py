@@ -15,7 +15,40 @@ def replace_function(src: str, name: str, replacement: str) -> str:
     start = min((v for v in starts if v >= 0), default=-1)
     if start < 0:
         raise RuntimeError(f'function not found: {name}')
-    brace = src.find('{', start)
+    paren = src.find('(', start)
+    if paren < 0:
+        raise RuntimeError(f'opening paren not found: {name}')
+    pdepth = 0
+    close_paren = -1
+    j = paren
+    ps = pd = pt = False
+    pesc = False
+    while j < len(src):
+        ch = src[j]
+        if pesc:
+            pesc = False
+        elif ch == '\\':
+            pesc = True
+        elif ps:
+            if ch == "'": ps = False
+        elif pd:
+            if ch == '"': pd = False
+        elif pt:
+            if ch == '`': pt = False
+        else:
+            if ch == "'": ps = True
+            elif ch == '"': pd = True
+            elif ch == '`': pt = True
+            elif ch == '(': pdepth += 1
+            elif ch == ')':
+                pdepth -= 1
+                if pdepth == 0:
+                    close_paren = j
+                    break
+        j += 1
+    if close_paren < 0:
+        raise RuntimeError(f'closing paren not found: {name}')
+    brace = src.find('{', close_paren + 1)
     if brace < 0:
         raise RuntimeError(f'opening brace not found: {name}')
     depth = 0
