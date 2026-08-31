@@ -1,0 +1,23 @@
+'use strict';
+const fs=require('fs');
+const path=require('path');
+const root=path.resolve(__dirname,'..');
+const game=fs.readFileSync(path.join(root,'game.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'style.css'),'utf8');
+const version=fs.readFileSync(path.join(root,'VERSION'),'utf8').trim();
+function assert(v,m){if(!v)throw new Error(m)}
+assert(version==='3.1.1',`bad version ${version}`);
+assert(game.includes('const TILE_ASPECT = 0.69;'),'portrait aspect missing');
+assert(game.includes("document.documentElement.style.setProperty('--board-w'"),'dynamic board width CSS variable not updated');
+assert(game.includes("document.documentElement.style.setProperty('--board-h'"),'dynamic board height CSS variable not updated');
+assert(game.includes("wrap.style.setProperty('height', `${boardH}px`, 'important')"),'important wrapper height not updated');
+assert(game.includes('stepX:rect.width*m.step/100'),'stepX missing');
+assert(game.includes('stepY:rect.height*m.step/100'),'stepY missing');
+assert(game.includes('drag.splitMode = true;'),'source split gesture missing');
+assert(game.includes('const moved=await applyGravity();'),'gravity after ordinary moves missing');
+assert(game.includes("'assets/pictures-portrait/"),'portrait assets not in use');
+assert(game.includes('return level >= 15 ? 5 : 4;'),'5x5 progression missing');
+assert(css.includes('--tile-aspect:.69'),'portrait CSS missing');
+const dir=path.join(root,'assets','pictures-portrait');
+assert(fs.readdirSync(dir).filter(x=>x.endsWith('.webp')).length>=36,'portrait asset set incomplete');
+console.log('v3.1.1 dynamic portrait layout verification passed');
