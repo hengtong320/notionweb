@@ -327,3 +327,12 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 .hint-target-frame{position:absolute;z-index:67;pointer-events:none;border:3px solid rgba(255,246,83,.96);border-radius:12px;box-shadow:0 0 0 2px rgba(255,255,255,.72),0 0 18px rgba(255,239,73,.82),inset 0 0 18px rgba(255,238,63,.12);animation:hintFramePulse .65s ease-in-out infinite alternate}
 .hint-target-frame::after{content:'拼到这里';position:absolute;left:50%;top:-25px;transform:translateX(-50%);white-space:nowrap;padding:3px 9px;border-radius:10px;background:rgba(5,87,172,.9);font-size:10px;font-weight:900;color:#fff;box-shadow:0 2px 8px rgba(0,42,100,.25)}
 @keyframes hintFramePulse{to{box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 25px rgba(255,239,73,.95),inset 0 0 24px rgba(255,238,63,.16)}}
+
+
+/* v3.5.1-input-hotfix */
+/* Decorative/full-board layers must never steal touch/pointer input. */
+.cell-layer,.fx-layer{pointer-events:none!important}
+.tile-layer{pointer-events:none!important;z-index:20}
+.tile{pointer-events:auto!important;-webkit-user-drag:none!important;user-select:none!important;-webkit-user-select:none!important;touch-action:none!important}
+/* Keep tile hit targets above all transparent board layers while dragging. */
+.tile.is-dragging{z-index:80!important}

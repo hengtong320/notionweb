@@ -520,6 +520,7 @@
     if (!el) {
       el = document.createElement('div');
       el.className = 'tile'; el.dataset.tileId = tile.id;
+      el.style.pointerEvents = 'auto';
       el.setAttribute('role', 'button');
       el.setAttribute('aria-label', `${PICTURE_NAMES[tile.imageIndex]}的第${tile.quadrant + 1}块碎片`);
       el.style.backgroundImage = `url("${PICTURE_PATHS[tile.imageIndex]}")`;
@@ -681,6 +682,7 @@
 
 
   function onTilePointerDown(event) {
+    if (game.phase === 'dragging' && !game.drag) game.phase = 'idle';
     if (game.phase !== 'idle') return;
     audio.ensure();
     const id = event.currentTarget.dataset.tileId;
@@ -1472,6 +1474,6 @@
   }
 
 
-  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,updateBoardLayout,TILE_ASPECT,finishLevel,goHome};
+  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,updateBoardLayout,TILE_ASPECT,finishLevel,goHome,visibleCompletionImage,ensureVisibleCompletionSet,primeDecksForPlayableFrontier};
   boot();
 })();

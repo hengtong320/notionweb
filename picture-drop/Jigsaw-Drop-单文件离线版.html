@@ -341,6 +341,15 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 .hint-target-frame::after{content:'拼到这里';position:absolute;left:50%;top:-25px;transform:translateX(-50%);white-space:nowrap;padding:3px 9px;border-radius:10px;background:rgba(5,87,172,.9);font-size:10px;font-weight:900;color:#fff;box-shadow:0 2px 8px rgba(0,42,100,.25)}
 @keyframes hintFramePulse{to{box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 25px rgba(255,239,73,.95),inset 0 0 24px rgba(255,238,63,.16)}}
 
+
+/* v3.5.1-input-hotfix */
+/* Decorative/full-board layers must never steal touch/pointer input. */
+.cell-layer,.fx-layer{pointer-events:none!important}
+.tile-layer{pointer-events:none!important;z-index:20}
+.tile{pointer-events:auto!important;-webkit-user-drag:none!important;user-select:none!important;-webkit-user-select:none!important;touch-action:none!important}
+/* Keep tile hit targets above all transparent board layers while dragging. */
+.tile.is-dragging{z-index:80!important}
+
   </style>
 </head>
 <body>
@@ -1000,6 +1009,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
     if (!el) {
       el = document.createElement('div');
       el.className = 'tile'; el.dataset.tileId = tile.id;
+      el.style.pointerEvents = 'auto';
       el.setAttribute('role', 'button');
       el.setAttribute('aria-label', `${PICTURE_NAMES[tile.imageIndex]}的第${tile.quadrant + 1}块碎片`);
       el.style.backgroundImage = `url("${PICTURE_PATHS[tile.imageIndex]}")`;
@@ -1161,6 +1171,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 
 
   function onTilePointerDown(event) {
+    if (game.phase === 'dragging' && !game.drag) game.phase = 'idle';
     if (game.phase !== 'idle') return;
     audio.ensure();
     const id = event.currentTarget.dataset.tileId;
@@ -1952,7 +1963,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
   }
 
 
-  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,updateBoardLayout,TILE_ASPECT,finishLevel,goHome};
+  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,updateBoardLayout,TILE_ASPECT,finishLevel,goHome,visibleCompletionImage,ensureVisibleCompletionSet,primeDecksForPlayableFrontier};
   boot();
 })();
 
