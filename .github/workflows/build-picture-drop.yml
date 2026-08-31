@@ -1,10 +1,10 @@
-name: Build Picture Drop H5 v2.1
+name: Build Picture Drop H5 v2.2
 
 on:
   push:
     paths:
-      - 'picture-drop/tools/patch_v3.py'
-      - 'picture-drop/tools/verify_v21.js'
+      - 'picture-drop/tools/patch_v22.py'
+      - 'picture-drop/tools/verify_v22.js'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
 
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: picture-drop-build-v21
+  group: picture-drop-build-v22
   cancel-in-progress: true
 
 jobs:
@@ -30,33 +30,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Apply v2.1 interaction and gravity patch
+      - name: Apply v2.2 universal single-cell swap patch
         shell: bash
         run: |
           set -euo pipefail
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('picture-drop/tools/patch_v3.py')
-          s=p.read_text(encoding='utf-8')
-          old="""    marker = f'  function {name}('
-              start = src.find(marker)
-              if start < 0:
-                  raise RuntimeError(f'function not found: {name}')
-          """
-          new="""    markers = [f'  function {name}(', f'  async function {name}(']
-              starts = [src.find(marker) for marker in markers]
-              start = min((value for value in starts if value >= 0), default=-1)
-              if start < 0:
-                  raise RuntimeError(f'function not found: {name}')
-          """
-          if old not in s:
-              raise SystemExit('replace_function helper signature changed unexpectedly')
-          p.write_text(s.replace(old,new,1),encoding='utf-8')
-          PY
-          python picture-drop/tools/patch_v3.py
+          python picture-drop/tools/patch_v22.py
           node --check picture-drop/game.js
-          node picture-drop/tools/verify_v21.js
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '2.1.0'
+          node picture-drop/tools/verify_v22.js
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '2.2.0'
 
       - name: Rebuild offline edition
         shell: bash
@@ -72,12 +53,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f picture-drop/Jigsaw-Drop-H5-v2.1.zip
+          rm -f picture-drop/Jigsaw-Drop-H5-v2.2.zip
           cd picture-drop
-          zip -qr /tmp/Jigsaw-Drop-H5-v2.1.zip . -x 'Jigsaw-Drop-H5-v2.1.zip'
-          mv /tmp/Jigsaw-Drop-H5-v2.1.zip .
+          zip -qr /tmp/Jigsaw-Drop-H5-v2.2.zip . -x 'Jigsaw-Drop-H5-v2.2.zip'
+          mv /tmp/Jigsaw-Drop-H5-v2.2.zip .
 
-      - name: Commit v2.1 game
+      - name: Commit v2.2 game
         shell: bash
         run: |
           set -euo pipefail
@@ -88,5 +69,5 @@ jobs:
             echo 'No generated changes to commit.'
             exit 0
           fi
-          git commit -s -m 'Release Jigsaw Drop H5 v2.1 interaction overhaul'
+          git commit -s -m 'Release Jigsaw Drop H5 v2.2 universal single-cell swap'
           git push origin HEAD:main
