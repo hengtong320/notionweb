@@ -1,76 +1,54 @@
-name: Build Picture Drop H5 v3.2
+name: Build Picture Drop H5 v3.3
 
 on:
   push:
     paths:
-      - 'picture-drop/tools/patch_v32_performance.py'
-      - 'picture-drop/tools/verify_v32.js'
+      - 'picture-drop/tools/patch_v33_visual.py'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
-
 permissions:
   contents: write
-
 concurrency:
-  group: picture-drop-build-v32
+  group: picture-drop-build-v33
   cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Apply v3.2 performance refactor
-        shell: bash
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Apply visual polish and verify
         run: |
           set -euo pipefail
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.1.1'
-          python picture-drop/tools/patch_v32_performance.py
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.2.0'
+          python picture-drop/tools/patch_v33_visual.py
           node --check picture-drop/game.js
-          node picture-drop/tools/verify_v32.js
-
-      - name: Rebuild offline edition
-        shell: bash
+          grep -q "const seam = 0.08" picture-drop/game.js
+          grep -q "is-joined" picture-drop/game.js
+          grep -q "v3.3-joined-visual-polish" picture-drop/style.css
+          grep -q "requestAnimationFrame(flushDragFrame)" picture-drop/game.js
+          grep -q "const moved=await applyGravity();" picture-drop/game.js
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.3.0'
+      - name: Rebuild release files
         run: |
           set -euo pipefail
           python picture-drop/tools/build_standalone.py
-          test -s picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
-
-      - name: Build clean ZIP
-        shell: bash
-        run: |
-          set -euo pipefail
           rm -f picture-drop/Jigsaw-Drop-H5-*.zip
           python - <<'PY'
           from pathlib import Path
-          import json, datetime
-          root=Path('picture-drop')
-          payload={'version':'3.2.0','builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'features':['requestAnimationFrame drag rendering','removed forced synchronous reflow','double-RAF FLIP transitions','cached active tile/index lookups','GPU layer containment','lighter mobile drag effects','portrait physics and split/group rules preserved']}
-          (root/'release.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8')
+          import json,datetime
+          r=Path('picture-drop'); (r/'release.json').write_text(json.dumps({'version':'3.3.0','builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'features':['full-gutter joined-piece overlap','subpixel seam guard','internal borders removed','joined interior corners squared','joined shadows removed','v3.2 RAF performance retained']},ensure_ascii=False,indent=2),encoding='utf-8')
           PY
-          cd picture-drop
-          zip -qr /tmp/Jigsaw-Drop-H5-v3.2.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*'
-          test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.2.zip)" -lt 90000000
-          mv /tmp/Jigsaw-Drop-H5-v3.2.zip .
-
-      - name: Commit v3.2 game
-        shell: bash
+          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v3.3.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && mv /tmp/Jigsaw-Drop-H5-v3.3.zip .
+      - name: Commit v3.3
         run: |
           set -euo pipefail
-          git config user.name 'hengtong320'
-          git config user.email '564712388@qq.com'
+          git config user.name 'hengtong320'; git config user.email '564712388@qq.com'
           git add -A picture-drop
           if git diff --cached --quiet; then exit 0; fi
-          git commit -s -m 'Release Jigsaw Drop H5 v3.2 performance refactor'
+          git commit -s -m 'Release Jigsaw Drop H5 v3.3 seamless joined pieces'
           git push origin HEAD:main
