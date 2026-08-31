@@ -1,15 +1,16 @@
 {
-  "version": "3.7.0",
-  "builtAt": "2026-08-31T16:04:17.398620+00:00",
+  "version": "3.8.0",
+  "builtAt": "2026-08-31T17:11:56.971030+00:00",
   "features": [
-    "gravity settles before any merge or clear",
-    "transient mid-air complete images cannot clear",
-    "60-picture content pool",
-    "zero adjacent-level image overlap",
-    "5-to-20 image saw-tooth difficulty curve",
-    "deeper decks and repeated two-card-per-column deal waves",
-    "staged beginner tutorial copy",
-    "v3.6 soft gravity/seam/performance retained",
-    "v3.5 anti-deadlock and smart hints retained"
+    "next-card preview on every deck column",
+    "seeded discoverable two-chain and three-chain setups",
+    "drag-time cascade prediction badge",
+    "three-layer merge/turn-chain/cross-move streak system",
+    "five-tier escalating visual/audio/haptic feedback",
+    "FLOW meter and three-turn FEVER acceleration",
+    "pooled Canvas particles, rings and chain beams",
+    "chain-dependent faster gravity and dealing",
+    "level 3 two-chain and level 5 three-chain tutorials",
+    "v3.7 progression, v3.6 gravity/seams and v3.5 anti-deadlock retained"
   ]
 }

@@ -8,10 +8,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="format-detection" content="telephone=no" />
   <title>Jigsaw Drop · H5</title>
-  <link rel="manifest" href="manifest.webmanifest?v=3.7.0" />
+  <link rel="manifest" href="manifest.webmanifest?v=3.8.0" />
   <link rel="icon" href="assets/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
-  <link rel="stylesheet" href="style.css?v=3.7.0" />
+  <link rel="stylesheet" href="style.css?v=3.8.0" />
 </head>
 <body>
   <main id="app" class="app-shell" aria-label="Jigsaw Drop H5 游戏">
@@ -47,7 +47,7 @@
         <div class="home-actions">
           <div class="level-pill">关卡 <strong id="homeLevel">1</strong></div>
           <button id="playBtn" class="primary-btn play-btn"><span class="play-triangle"></span>开始游戏</button>
-          <button id="galleryBtn" class="secondary-btn">图片图鉴 <span id="galleryCount">0 / 36</span></button>
+          <button id="galleryBtn" class="secondary-btn">图片图鉴 <span id="galleryCount">0 / 60</span></button>
         </div>
         <p class="home-tip">竖幅拼图：直接拖整组 · 按住后拖可拆单块 · 悬空自动下落</p>
       </section>
@@ -81,10 +81,13 @@
               <div id="cellLayer" class="cell-layer" aria-hidden="true"></div>
               <div id="tileLayer" class="tile-layer"></div>
               <div id="fxLayer" class="fx-layer" aria-hidden="true"></div>
+              <canvas id="juiceCanvas" class="juice-canvas" aria-hidden="true"></canvas>
+              <div id="chainStatus" class="chain-status" aria-live="polite"><span>连击</span><strong>×1</strong><small>可续2步</small></div>
               <div id="tutorialHand" class="tutorial-hand" aria-hidden="true"><span></span></div>
             </div>
           </div>
 
+          <div id="flowMeter" class="flow-meter" aria-label="连锁能量"><span>FLOW</span><i><b id="flowFill"></b></i><em id="flowText">0%</em></div>
           <div class="status-row">
             <div class="status-item"><span class="status-icon clock-icon"></span><strong id="timeText">00:00</strong></div>
             <div class="progress-track"><i id="progressBar"></i></div>
@@ -147,6 +150,6 @@
     </section>
   </main>
 
-  <script src="game.js?v=3.7.0"></script>
+  <script src="game.js?v=3.8.0"></script>
 </body>
 </html>
