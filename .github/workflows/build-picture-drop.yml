@@ -19,43 +19,51 @@ jobs:
           set -euo pipefail
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.4.0'
           python picture-drop/tools/patch_v35_playability.py
-          node --check picture-drop/game.js
-          grep -q "background-origin:border-box" picture-drop/style.css
-          grep -q "function ensureVisibleCompletionSet" picture-drop/game.js
-          grep -q "function primeDecksForPlayableFrontier" picture-drop/game.js
-          grep -q "function visibleCompletionImage" picture-drop/game.js
-          grep -q "function findHelpfulMove" picture-drop/game.js
-          grep -q "hint-target-frame" picture-drop/style.css
-          grep -q "style.css?v=3.5.0" picture-drop/index.html
-          grep -q "jigsaw-drop-h5-v3.5.0" picture-drop/sw.js
-          grep -q "requestAnimationFrame(flushDragFrame)" picture-drop/game.js
-          grep -q "const moved=await applyGravity();" picture-drop/game.js
+          echo '[check] JS syntax'
+          if ! node --check picture-drop/game.js; then nl -ba picture-drop/game.js | sed -n '720,1080p'; exit 1; fi
+          check(){ echo "[check] $1"; grep -Fq "$2" "$3" || { echo "MISSING: $2 in $3"; exit 1; }; }
+          check seamless 'background-origin:border-box' picture-drop/style.css
+          check frontier 'function ensureVisibleCompletionSet' picture-drop/game.js
+          check deck-prime 'function primeDecksForPlayableFrontier' picture-drop/game.js
+          check visible-set 'function visibleCompletionImage' picture-drop/game.js
+          check smart-hint 'function findHelpfulMove' picture-drop/game.js
+          check hint-frame 'hint-target-frame' picture-drop/style.css
+          check css-bust 'style.css?v=3.5.0' picture-drop/index.html
+          check sw-cache 'jigsaw-drop-h5-v3.5.0' picture-drop/sw.js
+          check raf 'requestAnimationFrame(flushDragFrame)' picture-drop/game.js
+          check gravity 'const moved=await applyGravity();' picture-drop/game.js
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.5.0'
       - name: Verify anti-deadlock model
         run: |
           node - <<'JS'
-          // Model the invariant v3.5 enforces: every full play frontier must expose
-          // all four quarters of at least one uncleared image; hidden quarters may
-          // be swapped with board tiles while preserving total piece identity.
           function ensure(board,decks,tiles){
             const state=new Map();board.forEach(id=>{if(!id)return;const t=tiles[id];const s=state.get(t.img)||new Set();s.add(t.q);state.set(t.img,s)});
             if([...state.values()].some(s=>s.size===4))return true;
             const imgs=[...new Set(Object.values(tiles).map(t=>t.img))];
             const locate=id=>{for(let c=0;c<decks.length;c++){const p=decks[c].indexOf(id);if(p>=0)return[c,p]}return null};
-            for(const img of imgs){const ids=[0,1,2,3].map(q=>Object.keys(tiles).find(id=>tiles[id].img===img&&tiles[id].q===q));const missing=ids.filter(id=>!board.includes(id));if(!missing.length||missing.some(id=>!locate(id)))continue;const protectedSet=new Set(ids.filter(id=>board.includes(id)));const cells=board.map((id,i)=>[id,i]).filter(([id])=>id&&!protectedSet.has(id)).map(x=>x[1]);if(cells.length<missing.length)continue;for(const id of missing){const [c,p]=locate(id),cell=cells.shift(),old=board[cell];board[cell]=id;decks[c][p]=old}return [0,1,2,3].every(q=>board.some(id=>id&&tiles[id].img===img&&tiles[id].q===q));}return false}
-          for(let trial=0;trial<200;trial++){
-            const tiles={},ids=[];for(let img=0;img<12;img++)for(let q=0;q<4;q++){const id=`${img}-${q}`;tiles[id]={img,q};ids.push(id)}
-            ids.sort(()=>Math.random()-.5);const board=ids.slice(0,25),rest=ids.slice(25),decks=[[],[],[],[],[]];rest.forEach((id,i)=>decks[i%5].push(id));
-            if(!ensure(board,decks,tiles))throw new Error('frontier invariant failed');
-            const all=[...board,...decks.flat()].sort();if(all.join('|')!==ids.slice().sort().join('|'))throw new Error('tile integrity changed');
+            for(const img of imgs){
+              const ids=[0,1,2,3].map(q=>Object.keys(tiles).find(id=>tiles[id].img===img&&tiles[id].q===q));
+              const missing=ids.filter(id=>!board.includes(id));if(!missing.length||missing.some(id=>!locate(id)))continue;
+              const protectedSet=new Set(ids.filter(id=>board.includes(id)));
+              const cells=board.map((id,i)=>[id,i]).filter(([id])=>id&&!protectedSet.has(id)).map(x=>x[1]);if(cells.length<missing.length)continue;
+              for(const id of missing){const [c,p]=locate(id),cell=cells.shift(),old=board[cell];board[cell]=id;decks[c][p]=old}
+              return [0,1,2,3].every(q=>board.some(id=>id&&tiles[id].img===img&&tiles[id].q===q));
+            }return false;
           }
-          console.log('anti-deadlock frontier model passed x200');
+          for(let trial=0;trial<500;trial++){
+            const tiles={},ids=[];for(let img=0;img<12;img++)for(let q=0;q<4;q++){const id=`${img}-${q}`;tiles[id]={img,q};ids.push(id)}
+            const original=ids.slice().sort().join('|');ids.sort(()=>Math.random()-.5);const board=ids.slice(0,25),rest=ids.slice(25),decks=[[],[],[],[],[]];rest.forEach((id,i)=>decks[i%5].push(id));
+            if(!ensure(board,decks,tiles))throw new Error('frontier invariant failed');
+            const all=[...board,...decks.flat()].sort().join('|');if(all!==original)throw new Error('tile integrity changed');
+          }
+          console.log('anti-deadlock frontier model passed x500');
           JS
       - name: Rebuild release
         run: |
           set -euo pipefail
           python picture-drop/tools/build_standalone.py
           test -s picture-drop/Jigsaw-Drop-offline.html
+          grep -Fq 'data:image/webp;base64' picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
           rm -f picture-drop/Jigsaw-Drop-H5-*.zip
           python - <<'PY'
