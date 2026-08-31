@@ -48,6 +48,59 @@
     '太空漫游','月夜城堡','林间瀑布','薰衣草田','向日葵','雪中小镇','海边灯塔','红色跑车','彩色鹦鹉',
     '森林狐狸','锦鲤池','老图书馆','古老教堂','沙漠旅人','白帆船','樱花桥','热带鱼','山间火车'
   ];
+  PICTURE_PATHS.push(...[
+    'assets/pictures-extra/37-jellyfish.svg',
+    'assets/pictures-extra/38-ramen.svg',
+    'assets/pictures-extra/39-skateboard.svg',
+    'assets/pictures-extra/40-rain-window.svg',
+    'assets/pictures-extra/41-arcade.svg',
+    'assets/pictures-extra/42-vinyl.svg',
+    'assets/pictures-extra/43-sakura.svg',
+    'assets/pictures-extra/44-hot-spring.svg',
+    'assets/pictures-extra/45-panda.svg',
+    'assets/pictures-extra/46-penguin.svg',
+    'assets/pictures-extra/47-robot.svg',
+    'assets/pictures-extra/48-submarine.svg',
+    'assets/pictures-extra/49-whale.svg',
+    'assets/pictures-extra/50-dinosaur.svg',
+    'assets/pictures-extra/51-bakery.svg',
+    'assets/pictures-extra/52-pottery.svg',
+    'assets/pictures-extra/53-ferris-wheel.svg',
+    'assets/pictures-extra/54-telescope.svg',
+    'assets/pictures-extra/55-camper.svg',
+    'assets/pictures-extra/56-basketball.svg',
+    'assets/pictures-extra/57-tea-house.svg',
+    'assets/pictures-extra/58-lantern-alley.svg',
+    'assets/pictures-extra/59-aurora-tent.svg',
+    'assets/pictures-extra/60-windmill.svg'
+  ]);
+  PICTURE_NAMES.push(...[
+    '水母夜游',
+    '拉面小馆',
+    '滑板公园',
+    '雨夜窗景',
+    '街机房',
+    '黑胶唱片',
+    '樱花坡道',
+    '山间温泉',
+    '竹林熊猫',
+    '冰原企鹅',
+    '机器人工作间',
+    '深海潜艇',
+    '蓝鲸跃海',
+    '恐龙谷',
+    '清晨面包店',
+    '陶艺工坊',
+    '夜色摩天轮',
+    '星空望远镜',
+    '露营房车',
+    '夕阳球场',
+    '茶屋庭院',
+    '灯笼小巷',
+    '极光帐篷',
+    '风车麦田'
+  ]);
+
   const QUADRANTS = [
     { x: 0, y: 0, bg: '0% 0%' },
     { x: 1, y: 0, bg: '100% 0%' },
@@ -356,12 +409,26 @@
   }
 
   function imageCountForLevel(level) {
-    if (level <= 2) return 5;
-    if (level <= 5) return 6;
-    if (level <= 10) return 7;
-    if (level <= 14) return 8;
-    if (isHardLevel(level)) return Math.min(18, 15 + Math.floor((level - 15) / 10));
-    return Math.min(15, 10 + Math.floor((level - 15) / 3));
+    // A saw-tooth difficulty curve: milestone levels grow, the level immediately
+    // after a hard milestone breathes a little, and late-game rounds carry deep decks.
+    if (level <= 1) return 5;   // tutorial still shows one real refill wave
+    if (level === 2) return 6;
+    if (level === 3) return 7;
+    if (level === 4) return 8;
+    if (level === 5) return 9;
+    if (level <= 7) return 9;
+    if (level <= 9) return 10;
+    if (level === 10) return 12;
+    if (level === 11) return 11;
+    if (level === 12) return 12;
+    if (level === 13) return 12;
+    if (level === 14) return 13;
+    if (level === 15) return 14;
+    const band=Math.floor((level-16)/5);
+    let count=Math.min(18,14+band);
+    if (isHardLevel(level)) count=Math.min(20,count+2);
+    else if ((level-16)%5===0) count=Math.max(14,count-1); // relief after a boss level
+    return count;
   }
 
   function warmLevelImages(indices) {
@@ -375,8 +442,23 @@
   }
 
   function selectedImagesForLevel(level, count) {
-    const start = ((level - 1) * 5) % PICTURE_PATHS.length;
-    return Array.from({ length: count }, (_, i) => (start + i) % PICTURE_PATHS.length);
+    const n=PICTURE_PATHS.length;
+    // Stable permutation mixes categories; 23-position chapter stride guarantees
+    // adjacent levels are disjoint while count <= 20 in the 60-image pool.
+    const order=Array.from({length:n},(_,i)=>(11+i*37)%n);
+    const start=((level-1)*23)%n;
+    return Array.from({length:Math.min(count,n)},(_,i)=>order[(start+i)%n]);
+  }
+
+  function levelIntroCopy(level) {
+    if(level===1)return '拖动碎片，把同一张图的四块拼完整';
+    if(level===2)return '消除后，上方牌堆会继续发牌';
+    if(level===3)return '拼好的组合可整体拖；按住后拖可拆单块';
+    if(level===5)return '连续完成图片，会触发更强的 Combo 反馈';
+    if(level===10)return '开始利用拆分与重力，给后续碎片腾位置';
+    if(level===15)return '5×5 困难模式 · 观察牌堆、落点与组合';
+    if(isHardLevel(level))return '困难关卡 · 更深牌堆与更多图片';
+    return GRID===5?'5×5 · 多轮发牌':'4×4 · 多轮发牌';
   }
 
   function generateLevel(level) {
@@ -1162,54 +1244,62 @@
   async function resolveBoard(beforeConnections=new Set(), isPlayerMove=false) {
     game.phase='resolving';
     if (isPlayerMove) game.comboStreak=0;
+    game.lastResolveTrace=[];
     let baseline=new Set(beforeConnections);
     let safety=0;
 
-    while (safety++ < 96) {
+    while (safety++ < 128) {
+      // Physics always wins over matching. A transient mid-air 2x2 is not allowed
+      // to merge/clear before it reaches a stable resting position.
+      game.groups=computeGroups(); game.connections=computeConnections();
+      const beforeGravity=new Set(game.connections);
+      const moved=await applyGravity();
+      if(moved) {
+        game.lastResolveTrace.push('gravity');
+        baseline=beforeGravity;
+        continue;
+      }
+
+      // Only a stable board is allowed to create merge feedback or clear pictures.
       game.groups=computeGroups(); game.connections=computeConnections();
       const newIds=new Set();
       for(const edge of game.connections) if(!baseline.has(edge)) edge.split('|').forEach(id=>newIds.add(id));
       if(newIds.size) {
+        game.lastResolveTrace.push('merge');
         newIds.forEach((id)=>tileEls.get(id)?.classList.add('merge-pop'));
         audio.merge(); haptic(14);
-        await delay(220);
+        await delay(150);
         newIds.forEach((id)=>tileEls.get(id)?.classList.remove('merge-pop'));
       }
 
       const complete=game.groups.filter(g=>g.complete);
       if(complete.length) {
+        game.lastResolveTrace.push('clear');
         game.comboStreak += complete.length;
         game.comboMax=Math.max(game.comboMax,game.comboStreak);
         if(game.comboStreak>=2) showCombo(game.comboStreak);
-        else showToast('拼好了！',650);
+        else showToast('拼好了！',600);
         await animateAndClear(complete);
-        baseline=new Set(computeConnections());
+        baseline=new Set();
         continue;
       }
 
-      // Reference behavior: unsupported pieces/groups always fall after a move.
-      const beforeGravity=new Set(game.connections);
-      const moved=await applyGravity();
-      if(moved) {
-        baseline=beforeGravity;
-        continue;
-      }
-
-      // Once stable, each column independently feeds its accessible top vacancies.
+      // With no stable completion, deal another small wave. The next loop falls
+      // those cards first, giving the level repeated deck beats instead of one dump.
       const beforeDeal=new Set(game.connections);
       const dealt=await dealIntoBoard();
       if(dealt) {
+        game.lastResolveTrace.push('deal');
         baseline=beforeDeal;
         continue;
       }
-      if (await rescueIfStalled()) { baseline=new Set(); continue; }
+      if (await rescueIfStalled()) { game.lastResolveTrace.push('rescue'); baseline=new Set(); continue; }
       break;
     }
 
     if(remainingDeckCount()===0 && game.board.every(v=>!v)) { await finishLevel(); return; }
     game.phase='idle';
   }
-
 
 
   async function animateAndClear(groups) {
@@ -1233,6 +1323,7 @@
     clearIds.forEach((id)=>{const el=tileEls.get(id);if(el){el.remove();tileEls.delete(id);}});
     overlays.forEach((el)=>el.remove());
     game.clearedCount+=groups.length;game.movesSinceClear=0;renderBoard();
+    if(game.level===1&&game.clearedCount===groups.length&&!save.tutorialSeen)showToast('完成！空位会先下落，顶部牌堆再继续补牌',3000);
   }
 
 
@@ -1315,7 +1406,9 @@
         if(game.board[index])break;
         emptyTop.push(index);
       }
-      for(let k=emptyTop.length-1;k>=0&&deck.length;k--){
+      const waveCap=game.level<=2?1:2;
+      const minK=Math.max(0,emptyTop.length-waveCap);
+      for(let k=emptyTop.length-1;k>=minK&&deck.length;k--){
         const index=emptyTop[k], id=deck.shift();
         game.board[index]=id; dealt.push({index,id,col:c,order:dealt.length});
       }
@@ -1331,14 +1424,14 @@
       const card=document.createElement('div');card.className='deal-card';
       card.style.left=`${geom.left}%`;card.style.top=`${geom.top}%`;card.style.width=`${geom.width}%`;card.style.height=`${geom.height}%`;
       card.style.setProperty('--drop-y',`${dropBase+r*rowStepPx}px`);
-      card.style.animationDelay=`${n*38}ms`;card.innerHTML='<div class="face back"></div>';dom.fxLayer.appendChild(card);
+      card.style.animationDelay=`${n*24}ms`;card.innerHTML='<div class="face back"></div>';dom.fxLayer.appendChild(card);
       setTimeout(()=>{
         audio.deal();const tile=tileEls.get(item.id);
         if(tile){tile.style.opacity='1';tile.classList.add('flip-in');setTimeout(()=>tile.classList.remove('flip-in'),500);}
         card.remove();
-      },270+n*38);
+      },220+n*24);
     });
-    await delay(325+dealt.length*38+390);
+    await delay(250+dealt.length*24+235);
     game.groups=computeGroups();game.connections=computeConnections();renderBoard();
     return true;
   }
@@ -1395,7 +1488,7 @@
     const stage=document.getElementById('gameStage');stage?.classList.toggle('is-hard',hard);
     const title=dom.levelNumber.parentElement;title?.classList.toggle('is-hard',hard);
     const titleLabel=title?.querySelector('span');if(titleLabel)titleLabel.textContent=hard?'困难':'关卡';
-    dom.introLevel.textContent=String(game.level);dom.introText.textContent=GRID===5?'困难关卡 · 5×5 竖幅拼图':'4×4 竖幅拼图';
+    dom.introLevel.textContent=String(game.level);dom.introText.textContent=levelIntroCopy(game.level);
     dom.levelIntro.classList.add('is-visible');updateHud();updateDeckVisuals();
 
     const preloadSet=new Set();
@@ -1410,7 +1503,7 @@
     game.phase='resolving';
     await resolveBoard(initialConnections,false);
     if(game.phase!=='won')game.phase='idle';
-    if(game.level===1&&!save.tutorialSeen){dom.tutorialHand.classList.add('is-visible');showToast('直接拖＝整组；按住后拖＝拆单块；所有悬空块都会下落',3300);}else dom.tutorialHand.classList.remove('is-visible');
+    if(game.level===1&&!save.tutorialSeen){dom.tutorialHand.classList.add('is-visible');showToast('先拖动一块碎片，和同一张图拼起来',3000);}else dom.tutorialHand.classList.remove('is-visible');
   }
 
 
@@ -1524,6 +1617,6 @@
   }
 
 
-  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,updateBoardLayout,TILE_ASPECT,finishLevel,goHome,visibleCompletionImage,ensureVisibleCompletionSet,primeDecksForPlayableFrontier};
+  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,updateBoardLayout,TILE_ASPECT,finishLevel,goHome,visibleCompletionImage,ensureVisibleCompletionSet,primeDecksForPlayableFrontier,resolveBoard,renderBoard,imageCountForLevel,selectedImagesForLevel,levelIntroCopy,pictureCount:PICTURE_PATHS.length};
   boot();
 })();

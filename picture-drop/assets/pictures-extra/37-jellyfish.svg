@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="690" height="1000" viewBox="0 0 690 1000">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#102a56"/><stop offset="1" stop-color="#7356d8"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#62e9ff" stop-opacity=".5"/><stop offset="1" stop-color="#62e9ff" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
+</defs>
+<rect width="690" height="1000" fill="url(#bg)"/>
+<circle cx="545" cy="155" r="180" fill="url(#glow)"/>
+<g opacity=".16" fill="#fff"><circle cx="84" cy="110" r="6"/><circle cx="145" cy="70" r="3"/><circle cx="605" cy="260" r="5"/><circle cx="72" cy="420" r="4"/><circle cx="620" cy="520" r="3"/></g>
+<g transform="translate(110 210)"><path d="M235 40c110 0 190 82 190 190H45C45 122 125 40 235 40Z" fill="#62e9ff" opacity=".9"/><ellipse cx="175" cy="185" rx="13" ry="18" fill="#17304f"/><ellipse cx="294" cy="185" rx="13" ry="18" fill="#17304f"/><path d="M80 230c10 110-20 180 20 300M160 230c-8 140 30 210-10 340M245 230c22 150-30 240 20 360M330 230c-20 120 25 210-10 325M405 230c10 120-25 170 10 285" fill="none" stroke="#d8fbff" stroke-width="18" stroke-linecap="round" opacity=".78"/></g>
+</svg>
