@@ -297,3 +297,15 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 /* Keep the outside silhouette subtle; internal seams should disappear completely. */
 .tile.is-joined{background-clip:border-box}
 #gameStage[data-grid="5"] .tile.is-joined{border-width:1.35px}
+
+
+/* v3.4-pixel-perfect-joins */
+/* Cells now touch geometrically; borders alone describe unjoined pieces. */
+.tile{background-size:200% 200%;background-repeat:no-repeat}
+.tile.is-joined{box-shadow:none}
+.tile.join-left{border-left:0!important;border-top-left-radius:0!important;border-bottom-left-radius:0!important}
+.tile.join-right{border-right:0!important;border-top-right-radius:0!important;border-bottom-right-radius:0!important}
+.tile.join-up{border-top:0!important;border-top-left-radius:0!important;border-top-right-radius:0!important}
+.tile.join-down{border-bottom:0!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important}
+/* Neighboring unjoined borders overlap visually instead of creating a physical blue gutter. */
+.cell{background:rgba(20,102,190,.34);border-color:rgba(65,150,224,.24)}

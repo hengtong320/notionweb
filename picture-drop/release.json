@@ -1,12 +1,12 @@
 {
-  "version": "3.3.0",
-  "builtAt": "2026-08-31T13:08:06.923211+00:00",
+  "version": "3.4.0",
+  "builtAt": "2026-08-31T13:13:32.890300+00:00",
   "features": [
-    "full-gutter joined-piece overlap",
-    "subpixel seam guard",
-    "internal borders removed",
-    "joined interior corners squared",
-    "joined shadows removed",
-    "v3.2 RAF performance retained"
+    "zero physical gutter for pixel-perfect quadrant alignment",
+    "joined internal borders and radii removed",
+    "v3.2 RAF performance retained",
+    "stall watchdog",
+    "deterministic board-only rescue preserving all tiles",
+    "difficulty retained without permanent dead states"
   ]
 }

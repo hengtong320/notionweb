@@ -204,7 +204,8 @@
     hintTimer: 0,
     initialSeed: 0,
     generation: null,
-    unlockedThisLevel: []
+    unlockedThisLevel: [],
+    movesSinceClear: 0
   };
 
   const tileEls = new Map();
@@ -242,8 +243,8 @@
   function gridMetrics() {
     // The original keeps a narrow blue gutter between unrelated cells.
     // Connected pieces bridge that gutter, so a joined image reads as one shape.
-    const gap = GRID >= 5 ? 0.56 : 0.52;
-    const cell = (100 - gap * (GRID - 1)) / GRID;
+    const gap = 0;
+    const cell = 100 / GRID;
     return { gap, cell, step: cell + gap };
   }
 
@@ -277,18 +278,12 @@
 
   function applyTileGeometry(el, index, join) {
     const g = cellRectPercent(index);
-    // A correct join must visually cover the entire gutter, not only half of it.
-    // Add a tiny seam overlap to avoid sub-pixel blue hairlines on DPR 2/3 screens.
-    const seam = 0.08;
-    let left = g.left, top = g.top, width = g.width, height = g.height;
-    if (join?.left) { left -= g.gap + seam; width += g.gap + seam; }
-    if (join?.right) width += g.gap + seam;
-    if (join?.up) { top -= g.gap + seam; height += g.gap + seam; }
-    if (join?.down) height += g.gap + seam;
-    el.style.left = `${left}%`;
-    el.style.top = `${top}%`;
-    el.style.width = `${width}%`;
-    el.style.height = `${height}%`;
+    // Tiles always keep the exact cell rectangle. Joined seams are removed only by
+    // borders/radii, so all four 200% background quadrants line up pixel-perfectly.
+    el.style.left = `${g.left}%`;
+    el.style.top = `${g.top}%`;
+    el.style.width = `${g.width}%`;
+    el.style.height = `${g.height}%`;
   }
 
   function configureGrid(size) {
@@ -826,7 +821,7 @@
     sourceGroup.ids.forEach((id)=>{
       const el=tileEls.get(id); if(el){ el.classList.remove('is-dragging'); el.style.transition='none'; }
     });
-    game.board=validation.board; game.moves++; renderBoard(); updateHud();
+    game.board=validation.board; game.moves++; game.movesSinceClear=(game.movesSinceClear||0)+1; renderBoard(); updateHud();
     await animateFlipFromRects(firstRects,235);
     audio.swap(); haptic(10);
     if (!save.tutorialSeen && game.level===1) {
@@ -923,6 +918,44 @@
     await commitMove(move.group,move.dr,move.dc,move.board,false);
   }
 
+  function buildRescueBoard() {
+    if ((game.movesSinceClear||0) < Math.max(12, GRID*3)) return null;
+    const allLocations=new Map();
+    game.board.forEach((id,i)=>{if(id)allLocations.set(id,{kind:'board',index:i});});
+    game.decks.forEach((deck,c)=>deck.forEach((id,p)=>allLocations.set(id,{kind:'deck',col:c,pos:p})));
+    const candidates=[...new Set([...game.tiles.values()].map(t=>t.imageIndex))];
+    for(const imageIndex of candidates){
+      const ids=[0,1,2,3].map(q=>[...game.tiles.values()].find(t=>t.imageIndex===imageIndex&&t.quadrant===q)?.id);
+      if(ids.some(id=>!id||!allLocations.has(id)))continue;
+      // Prefer an image already fully present on the board; otherwise do not pull through a deck.
+      if(!ids.every(id=>allLocations.get(id).kind==='board'))continue;
+      for(let r=GRID-2;r>=0;r--)for(let c=0;c<GRID-1;c++){
+        const targets=[rcToIdx(r,c),rcToIdx(r,c+1),rcToIdx(r+1,c),rcToIdx(r+1,c+1)];
+        const next=game.board.slice();
+        const sourceCells=ids.map(id=>next.indexOf(id));
+        // Permute by swaps so tile integrity is preserved.
+        for(let q=0;q<4;q++){
+          const want=ids[q], target=targets[q], src=next.indexOf(want);
+          if(src<0)break;
+          [next[src],next[target]]=[next[target],next[src]];
+        }
+        if(findCompleteGroups(next,game.tiles).some(g=>g.imageIndex===imageIndex))return next;
+      }
+    }
+    return null;
+  }
+
+  async function rescueIfStalled() {
+    const next=buildRescueBoard();
+    if(!next)return false;
+    const first=captureTileRects();
+    game.board=next; renderBoard();
+    await animateFlipFromRects(first,260);
+    game.movesSinceClear=0;
+    showToast('已自动解开死局',900); audio.merge(); haptic(16);
+    return true;
+  }
+
   async function resolveBoard(beforeConnections=new Set(), isPlayerMove=false) {
     game.phase='resolving';
     if (isPlayerMove) game.comboStreak=0;
@@ -966,6 +999,7 @@
         baseline=beforeDeal;
         continue;
       }
+      if (await rescueIfStalled()) { baseline=new Set(); continue; }
       break;
     }
 
@@ -995,7 +1029,7 @@
     game.board=game.board.map((id)=>clearIds.includes(id)?null:id);
     clearIds.forEach((id)=>{const el=tileEls.get(id);if(el){el.remove();tileEls.delete(id);}});
     overlays.forEach((el)=>el.remove());
-    game.clearedCount+=groups.length;renderBoard();
+    game.clearedCount+=groups.length;game.movesSinceClear=0;renderBoard();
   }
 
 
@@ -1153,7 +1187,7 @@
     configureGrid(gridForLevel(game.level));
     updateBoardLayout();
     game.phase='loading';game.moves=0;game.clearedCount=0;game.clearedImages=[];game.unlockedThisLevel=[];
-    game.comboMax=1;game.comboStreak=0;game.hintCount=3;game.autoCount=3;game.timerBase=0;game.timerRunning=false;
+    game.comboMax=1;game.comboStreak=0;game.hintCount=3;game.autoCount=3;game.movesSinceClear=0;game.timerBase=0;game.timerRunning=false;
     tileEls.forEach((el)=>el.remove());tileEls.clear();dom.fxLayer.innerHTML='';clearCellHighlights();
     const generated=generateLevel(game.level);game.generation=generated;game.initialSeed=generated.seed;
     game.board=generated.board.slice();game.decks=generated.decks.map((deck)=>deck.slice());game.tiles=generated.tiles;
