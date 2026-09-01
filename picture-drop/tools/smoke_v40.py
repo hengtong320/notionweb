@@ -47,16 +47,26 @@ try:
       const done=arguments[0],J=window.__JIGSAW__,idx=J.game.selectedImages[0],src=J.blessingMeta(idx).path;
       const im=new Image();im.onload=async()=>{
         try{
-          const source=document.createElement('canvas');source.width=1080;source.height=1440;source.getContext('2d').drawImage(im,0,0,1080,1440);
-          const c=await J.renderBlessingPoster(idx);
-          const a=source.getContext('2d').getImageData(540,170,1,1).data,b=c.getContext('2d').getImageData(540,170,1,1).data;
-          const diff=Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1])+Math.abs(a[2]-b[2]);
-          done({w:c.width,h:c.height,diff,data:c.toDataURL('image/jpeg',.88).slice(0,24)});
+          const source=document.createElement('canvas');source.width=1080;source.height=1440;
+          const sourceCtx=source.getContext('2d');sourceCtx.drawImage(im,0,0,1080,1440);
+          const c=await J.renderBlessingPoster(idx),posterCtx=c.getContext('2d');
+          let diff=0,changed=0,samples=0;
+          // Scheme B deliberately places title and blessing copy differently per card.
+          // Scan broad title and copy zones rather than assuming one fixed text pixel.
+          for(const [y0,y1] of [[55,360],[850,1360]]){
+            for(let y=y0;y<=y1;y+=22)for(let x=35;x<=1045;x+=22){
+              const a=sourceCtx.getImageData(x,y,1,1).data,b=posterCtx.getImageData(x,y,1,1).data;
+              const delta=Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1])+Math.abs(a[2]-b[2]);
+              diff+=delta;samples++;if(delta>24)changed++;
+            }
+          }
+          done({w:c.width,h:c.height,diff,changed,samples,data:c.toDataURL('image/jpeg',.88).slice(0,24)});
         }catch(e){done({error:String(e)});}
       };im.onerror=()=>done({error:'source image failed'});im.src=src;
     ''')
     assert 'error' not in poster,poster
-    assert poster['w']==1080 and poster['h']==1440 and poster['diff']>10,poster
+    assert poster['w']==1080 and poster['h']==1440,poster
+    assert poster['changed']>=20 and poster['diff']>=1500,poster
     assert poster['data'].startswith('data:image/jpeg;base64,'),poster
 
     result=d.execute_async_script('''
