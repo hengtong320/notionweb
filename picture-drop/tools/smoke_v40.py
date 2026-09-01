@@ -55,17 +55,20 @@ try:
       [9,10,13,14].forEach((cell,q)=>g.board[cell]=ids[q]);g.totalImages=1;g.clearedCount=0;g.clearedImages=[];g.phase='idle';
       J.renderBoard();J.resolveBoard(new Set(),false).then(()=>{
         J.openBlessingWorks(idx);
-        setTimeout(()=>done({
-          won:g.phase==='won',modal:document.getElementById('blessingModal').classList.contains('is-visible'),
-          preview:document.getElementById('blessingPreview').src.startsWith('data:image/png'),
-          count:Number(document.getElementById('workBadgeCount').textContent||0),
-          message:document.getElementById('blessingMessage').textContent,
-          stored:Object.values(localStorage).some(v=>{try{return JSON.parse(v).blessings?.includes(idx)}catch(e){return false}})
-        }),900);
+        setTimeout(()=>{
+          const preview=document.getElementById('blessingPreview'),src=preview.currentSrc||preview.src||'';
+          done({
+            won:g.phase==='won',modal:document.getElementById('blessingModal').classList.contains('is-visible'),
+            preview:src.startsWith('data:image/')||src.startsWith('blob:'),previewWidth:preview.naturalWidth,
+            count:Number(document.getElementById('workBadgeCount').textContent||0),
+            message:document.getElementById('blessingMessage').textContent,
+            stored:Object.values(localStorage).some(v=>{try{return JSON.parse(v).blessings?.includes(idx)}catch(e){return false}})
+          });
+        },1200);
       }).catch(e=>done({error:String(e)}));
     ''')
     assert 'error' not in result,result
-    assert result['won'] and result['modal'] and result['preview'] and result['count']>=1 and result['stored'],result
+    assert result['won'] and result['modal'] and result['preview'] and result['previewWidth']>0 and result['count']>=1 and result['stored'],result
     assert '早安' in result['message'] or '晨安' in result['message'],result
 
     classic=d.execute_script('''
