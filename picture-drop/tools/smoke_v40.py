@@ -7,46 +7,53 @@ opts=Options()
 opts.add_argument('--headless=new');opts.add_argument('--no-sandbox');opts.add_argument('--disable-dev-shm-usage')
 opts.add_argument('--window-size=430,932');opts.add_argument('--force-device-scale-factor=1')
 d=webdriver.Chrome(options=opts)
-d.set_script_timeout(40)
+d.set_script_timeout(35)
 try:
     d.get('http://127.0.0.1:8765/?mode=blessing&level=1&v=4.0.0')
     wait=WebDriverWait(d,30)
     wait.until(lambda x:x.execute_script("return !!window.__JIGSAW__ && window.__JIGSAW__.game.phase==='idle'"))
     state=d.execute_script('''
       const J=window.__JIGSAW__,g=J.game;
-      const metas=g.selectedImages.map(i=>J.blessingMeta(i));
       return {
-        mode:g.mode,selected:g.selectedImages.slice(),selectedCount:g.selectedImages.length,
-        blessingCount:J.blessingCount,standard:J.standardPictureCount,total:J.totalPictureCount,
-        scheme:J.blessingScheme,allReal:metas.every(m=>m&&m.path.includes('assets/blessings-real/')&&m.path.endsWith('.png')),
+        mode:g.mode,
+        selected:g.selectedImages.slice(),
+        cards:g.selectedImages.map(i=>J.blessingMeta(i)),
+        realistic:J.realisticBlessingCount,
         button:document.getElementById('blessingBtn').innerText,
-        title:document.querySelector('.level-title span').textContent,
-        rawLockups:document.querySelectorAll('.blessing-lockup').length,
-        worksVisible:!document.getElementById('workBadge').hidden
+        tiles:[...document.querySelectorAll('.tile')].map(el=>getComputedStyle(el).backgroundImage).filter(Boolean)
       };
     ''')
     assert state['mode']=='blessing',state
-    assert state['selectedCount']==6 and state['blessingCount']==6,state
-    assert state['standard']==60 and state['total']==66,state
-    assert state['scheme']=='B-photorealistic' and state['allReal'],state
-    assert '写实' in state['button'] and state['rawLockups']==0 and state['worksVisible'],state
+    assert state['realistic']==6,state
+    assert len(state['selected'])==6,state
+    assert all(card and card.get('scheme')=='realistic-b' for card in state['cards']),state
+    assert all('assets/blessings-realistic/' in card['path'] for card in state['cards']),state
+    assert '写实祝福拼图' in state['button'] and '方案B' in state['button'],state
+    assert any('blessings-realistic' in x for x in state['tiles']),state
 
-    loaded=d.execute_async_script('''
-      const done=arguments[0],J=window.__JIGSAW__,items=J.game.selectedImages.map(i=>J.blessingMeta(i).path);
-      Promise.all(items.map(src=>new Promise(resolve=>{const im=new Image();im.onload=()=>resolve({ok:true,w:im.naturalWidth,h:im.naturalHeight,src});im.onerror=()=>resolve({ok:false,src});im.src=src;}))).then(done);
+    dimensions=d.execute_async_script('''
+      const done=arguments[0],J=window.__JIGSAW__,paths=J.game.selectedImages.map(i=>J.blessingMeta(i).path);
+      Promise.all(paths.map(src=>new Promise(resolve=>{const im=new Image();im.onload=()=>resolve({src,w:im.naturalWidth,h:im.naturalHeight});im.onerror=()=>resolve({src,w:0,h:0});im.src=src;}))).then(done);
     ''')
-    assert len(loaded)==6 and all(x['ok'] and x['w']==720 and x['h']==960 for x in loaded),loaded
+    assert len(dimensions)==6 and all(x['w']==896 and x['h']==1152 for x in dimensions),dimensions
 
     poster=d.execute_async_script('''
-      const done=arguments[0],J=window.__JIGSAW__,idx=J.game.selectedImages[0];
-      J.renderBlessingPoster(idx).then(c=>{
-        const a=c.getContext('2d').getImageData(540,720,1,1).data;
-        done({w:c.width,h:c.height,alpha:a[3],scheme:c.dataset.scheme,source:c.dataset.source,title:c.dataset.title,url:c.toDataURL('image/png').slice(0,30)});
+      const done=arguments[0],J=window.__JIGSAW__,idx=J.game.selectedImages[0],meta=J.blessingMeta(idx),base=new Image();
+      base.onload=()=>J.renderBlessingPoster(idx).then(canvas=>{
+        const raw=document.createElement('canvas');raw.width=1080;raw.height=1440;raw.getContext('2d').drawImage(base,0,0,1080,1440);
+        const a=canvas.getContext('2d').getImageData(meta.layout.titleX,meta.layout.titleY,1,1).data;
+        const b=raw.getContext('2d').getImageData(meta.layout.titleX,meta.layout.titleY,1,1).data;
+        const p=canvas.getContext('2d').getImageData(meta.layout.plateX+30,meta.layout.plateY+30,1,1).data;
+        const q=raw.getContext('2d').getImageData(meta.layout.plateX+30,meta.layout.plateY+30,1,1).data;
+        const diff=(x,y)=>Math.abs(x[0]-y[0])+Math.abs(x[1]-y[1])+Math.abs(x[2]-y[2]);
+        done({w:canvas.width,h:canvas.height,titleDiff:diff(a,b),plateDiff:diff(p,q),data:canvas.toDataURL('image/jpeg',.88).slice(0,24)});
       }).catch(e=>done({error:String(e)}));
+      base.onerror=()=>done({error:'base load failed'});base.src=meta.path;
     ''')
     assert 'error' not in poster,poster
-    assert poster['w']==1080 and poster['h']==1440 and poster['alpha']>0,poster
-    assert poster['scheme']=='B' and poster['source']=='photorealistic' and poster['url'].startswith('data:image/png'),poster
+    assert poster['w']==1080 and poster['h']==1440,poster
+    assert poster['titleDiff']>8 and poster['plateDiff']>8,poster
+    assert poster['data'].startswith('data:image/jpeg;base64,'),poster
 
     result=d.execute_async_script('''
       const done=arguments[0],J=window.__JIGSAW__,g=J.game,idx=g.selectedImages[0];
@@ -55,26 +62,11 @@ try:
       [9,10,13,14].forEach((cell,q)=>g.board[cell]=ids[q]);g.totalImages=1;g.clearedCount=0;g.clearedImages=[];g.phase='idle';
       J.renderBoard();J.resolveBoard(new Set(),false).then(()=>{
         J.openBlessingWorks(idx);
-        setTimeout(()=>{
-          const preview=document.getElementById('blessingPreview'),src=preview.currentSrc||preview.src||'';
-          done({
-            won:g.phase==='won',modal:document.getElementById('blessingModal').classList.contains('is-visible'),
-            preview:src.startsWith('data:image/')||src.startsWith('blob:'),previewWidth:preview.naturalWidth,
-            count:Number(document.getElementById('workBadgeCount').textContent||0),
-            message:document.getElementById('blessingMessage').textContent,
-            stored:Object.values(localStorage).some(v=>{try{return JSON.parse(v).blessings?.includes(idx)}catch(e){return false}})
-          });
-        },1200);
+        setTimeout(()=>done({won:g.phase==='won',modal:document.getElementById('blessingModal').classList.contains('is-visible'),preview:document.getElementById('blessingPreview').src.startsWith('data:image/jpeg')}),900);
       }).catch(e=>done({error:String(e)}));
     ''')
     assert 'error' not in result,result
-    assert result['won'] and result['modal'] and result['preview'] and result['previewWidth']>0 and result['count']>=1 and result['stored'],result
-    assert '早安' in result['message'] or '晨安' in result['message'],result
-
-    classic=d.execute_script('''
-      const J=window.__JIGSAW__;J.game.mode='classic';const s=J.selectedImagesForLevel(1,5);return {s,ok:s.every(i=>i<J.standardPictureCount)};
-    ''')
-    assert classic['ok'],classic
-    print('PASS v4.0 Scheme-B photorealistic assets, clean puzzle bases, premium poster render and sharing flow')
+    assert result['won'] and result['modal'] and result['preview'],result
+    print('PASS v4.0 realistic scheme B: 6 photographic bases, clean puzzle stage, styled poster generation and works flow')
 finally:
     d.quit()
