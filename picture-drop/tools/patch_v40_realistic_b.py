@@ -4,80 +4,100 @@ import re
 
 ROOT=Path(__file__).resolve().parents[1]
 GAME=ROOT/'game.js'; INDEX=ROOT/'index.html'; CSS=ROOT/'style.css'; SW=ROOT/'sw.js'; VERSION=ROOT/'VERSION'; STANDALONE=ROOT/'tools'/'build_standalone.py'
+
 s=GAME.read_text(encoding='utf-8')
 
-start=s.index('  const BLESSING_CARDS=[')
-end=s.index('\n  ];',start)+5
 cards=r'''  const BLESSING_CARDS=[
-    {path:'assets/blessings-real/01-lotus-sunrise.webp',name:'荷塘晨曦',title:'早安',english:'GOOD MORNING',lines:['岁岁安康','日日舒心顺遂'],accent:'#ff8eb4',titleColor:'#fffaf6',layout:'right'},
-    {path:'assets/blessings-real/02-trumpet-bloom.webp',name:'凌霄花开',title:'晨安',english:'A BEAUTIFUL DAY',lines:['日子舒心少烦忧','阖家喜乐福常留'],accent:'#ffd275',titleColor:'#fff8df',layout:'left'},
-    {path:'assets/blessings-real/03-elegant-morning.webp',name:'温柔问候',title:'早安',english:'WARM WISHES',lines:['清晨的问候是祝福','愿每天快乐幸福'],accent:'#f5b2d4',titleColor:'#fff',layout:'left'},
-    {path:'assets/blessings-real/04-jujube-harvest.webp',name:'枣园丰收',title:'早上好',english:'GOOD MORNING',lines:['喜乐相伴','轻松惬意'],accent:'#ffd968',titleColor:'#fffef4',layout:'center'},
-    {path:'assets/blessings-real/05-fortune-vase.webp',name:'福气花瓶',title:'早上好',english:'BLESSINGS FOR YOU',lines:['开心快乐','幸福安康'],accent:'#ffc66b',titleColor:'#fff9e9',layout:'center'},
-    {path:'assets/blessings-real/06-pine-crane.webp',name:'松鹤延年',title:'晨安',english:'PEACE & HEALTH',lines:['福寿绵长','平安喜乐'],accent:'#efd596',titleColor:'#fffdf4',layout:'left'}
+    {path:'assets/blessings-realistic/01-lotus-sunrise.png',name:'晨曦荷香',title:'早安',english:'Good Morning',lines:['岁岁安康','日日舒心顺遂'],accent:'#ffd46f',titleColor:'#fffdf7',layout:{titleX:760,titleY:155,englishY:255,linesX:710,linesY:1115,align:'center'}},
+    {path:'assets/blessings-realistic/02-trumpet-flower.png',name:'凌霄晨光',title:'早安',english:'Good Morning',lines:['心情明朗','好事常来'],accent:'#ffc16d',titleColor:'#fffaf0',layout:{titleX:245,titleY:165,englishY:265,linesX:540,linesY:1100,align:'center'}},
+    {path:'assets/blessings-realistic/03-jujube-orchard.png',name:'晨光枣园',title:'早上好',english:'Have a Lovely Day',lines:['喜乐相伴','轻松惬意'],accent:'#ffe079',titleColor:'#fffef5',layout:{titleX:540,titleY:165,englishY:265,linesX:540,linesY:1105,align:'center'}},
+    {path:'assets/blessings-realistic/04-elegant-woman.png',name:'花间雅韵',title:'晨安',english:'Morning Blessings',lines:['愿你常怀欢喜','岁月温柔相伴'],accent:'#ffd8e5',titleColor:'#fffafc',layout:{titleX:225,titleY:170,englishY:270,linesX:250,linesY:650,align:'center',lineSize:51}},
+    {path:'assets/blessings-realistic/05-blessing-vase.png',name:'福气花瓶',title:'早安',english:'Good Morning',lines:['开心快乐','幸福安康'],accent:'#ffd477',titleColor:'#fffaf0',layout:{titleX:540,titleY:165,englishY:265,linesX:540,linesY:1090,align:'center'}},
+    {path:'assets/blessings-realistic/06-forest-waterfall.png',name:'清泉晨光',title:'健康平安',english:'Peace & Health',lines:['清心自在','顺遂常伴'],accent:'#aee8d3',titleColor:'#f7fff9',layout:{titleX:540,titleY:165,englishY:260,linesX:540,linesY:1105,align:'center',titleSize:112}},
+    {path:'assets/blessings/07-moon-osmanthus.svg',name:'月圆桂香',title:'中秋安康',lines:['花好月圆','阖家团圆'],accent:'#ffd86b',titleColor:'#fff8d9'},
+    {path:'assets/blessings/08-lantern-festival.svg',name:'灯火佳节',title:'佳节快乐',lines:['家和万事兴','福气常相伴'],accent:'#ffd56a',titleColor:'#fff4db'},
+    {path:'assets/blessings/09-chrysanthemum-mountain.svg',name:'菊香重阳',title:'重阳安康',lines:['登高望远','福寿康宁'],accent:'#ffe079',titleColor:'#fff9df'},
+    {path:'assets/blessings/10-plum-snow.svg',name:'踏雪寻梅',title:'冬日安好',lines:['岁月静好','温暖常在'],accent:'#ffd4e2',titleColor:'#fff'},
+    {path:'assets/blessings/11-fireworks-city.svg',name:'烟火新岁',title:'新年快乐',lines:['万事顺遂','心想事成'],accent:'#ffe36b',titleColor:'#fff'},
+    {path:'assets/blessings/12-spring-fortune.svg',name:'新春纳福',title:'新春大吉',lines:['福气满满','阖家安康'],accent:'#ffd36a',titleColor:'#fff8df'}
   ];'''
-s=s[:start]+cards+s[end:]
+pat=re.compile(r"  const BLESSING_CARDS=\[.*?\n  \];",re.S)
+if not pat.search(s): raise SystemExit('BLESSING_CARDS block not found')
+s=pat.sub(cards,s,count=1)
 
-rs=s.index('  async function renderBlessingPoster(')
-for marker in ('\n\n  function openBlessingWorks','\n\n  async function openBlessingWorks','\n\n  function updateBlessingWorks'):
-    try:
-        re_=s.index(marker,rs);break
-    except ValueError: pass
-else: raise SystemExit('renderBlessingPoster end marker not found')
-renderer=r'''  async function renderBlessingPoster(index) {
-    const card=blessingMeta(index);if(!card)throw new Error('blessing metadata missing');
-    const image=await new Promise((resolve,reject)=>{
-      const img=new Image();img.decoding='async';img.onload=()=>resolve(img);img.onerror=()=>reject(new Error(`image load failed: ${card.path}`));img.src=card.path;
-    });
-    const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1440;
-    const ctx=canvas.getContext('2d');
-    const scale=Math.max(canvas.width/image.naturalWidth,canvas.height/image.naturalHeight);
-    const dw=image.naturalWidth*scale,dh=image.naturalHeight*scale;
-    ctx.drawImage(image,(canvas.width-dw)/2,(canvas.height-dh)/2,dw,dh);
+s=s.replace("if(game.mode==='blessing')return '拼出完整祝福图，完成后可保存或分享给亲友';",
+            "if(game.mode==='blessing')return '先拼纯净写实美图，完成后自动生成带祝福语的高清作品';",1)
+s=s.replace("if(game.mode==='blessing'){dom.tutorialHand.classList.remove('is-visible');showToast('拼完整后会生成一张可保存、可分享的祝福作品',3300);}",
+            "if(game.mode==='blessing'){dom.tutorialHand.classList.remove('is-visible');showToast('游戏中专注拼美图，拼完整后再生成可保存分享的祝福作品',3600);}",1)
 
-    const vignette=ctx.createRadialGradient(540,610,240,540,720,910);
-    vignette.addColorStop(0,'rgba(0,0,0,0)');vignette.addColorStop(.72,'rgba(0,0,0,.04)');vignette.addColorStop(1,'rgba(0,0,0,.28)');
-    ctx.fillStyle=vignette;ctx.fillRect(0,0,1080,1440);
-    const top=ctx.createLinearGradient(0,0,0,430);top.addColorStop(0,'rgba(5,23,26,.32)');top.addColorStop(.65,'rgba(5,23,26,.06)');top.addColorStop(1,'rgba(5,23,26,0)');ctx.fillStyle=top;ctx.fillRect(0,0,1080,460);
-    const bottom=ctx.createLinearGradient(0,850,0,1440);bottom.addColorStop(0,'rgba(4,23,28,0)');bottom.addColorStop(.5,'rgba(4,23,28,.12)');bottom.addColorStop(1,'rgba(4,23,28,.62)');ctx.fillStyle=bottom;ctx.fillRect(0,820,1080,620);
+start=s.index('  async function renderBlessingPoster(index){')
+end=s.index('\n\n  async function posterBlob',start)
+poster=r'''  async function renderBlessingPoster(index){
+    const meta=blessingMeta(index);if(!meta)throw new Error('not a blessing card');
+    const img=await loadPosterImage(PICTURE_PATHS[index]);
+    const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1440;const ctx=canvas.getContext('2d');
+    ctx.drawImage(img,0,0,1080,1440);
+    const layout=meta.layout||{},align=layout.align||'center';
+    const titleX=layout.titleX??540,titleY=layout.titleY??195,englishY=layout.englishY??305;
+    const linesX=layout.linesX??540,linesY=layout.linesY??1125;
 
-    ctx.save();ctx.strokeStyle='rgba(255,248,220,.72)';ctx.lineWidth=3;ctx.shadowColor='rgba(0,0,0,.28)';ctx.shadowBlur=10;ctx.strokeRect(22,22,1036,1396);ctx.restore();
-    const sparkles=[[90,96,8],[982,172,6],[918,1070,7],[126,1190,5],[965,1280,4]];
-    ctx.save();ctx.fillStyle='rgba(255,250,210,.92)';for(const [x,y,r] of sparkles){ctx.beginPath();ctx.moveTo(x,y-r*2);ctx.lineTo(x+r*.55,y-r*.55);ctx.lineTo(x+r*2,y);ctx.lineTo(x+r*.55,y+r*.55);ctx.lineTo(x,y+r*2);ctx.lineTo(x-r*.55,y+r*.55);ctx.lineTo(x-r*2,y);ctx.lineTo(x-r*.55,y-r*.55);ctx.closePath();ctx.fill();}ctx.restore();
+    const top=ctx.createLinearGradient(0,0,0,430);top.addColorStop(0,'rgba(12,18,32,.48)');top.addColorStop(.58,'rgba(12,18,32,.10)');top.addColorStop(1,'rgba(12,18,32,0)');ctx.fillStyle=top;ctx.fillRect(0,0,1080,470);
+    const bottom=ctx.createLinearGradient(0,760,0,1440);bottom.addColorStop(0,'rgba(10,15,25,0)');bottom.addColorStop(.48,'rgba(10,15,25,.24)');bottom.addColorStop(1,'rgba(10,15,25,.72)');ctx.fillStyle=bottom;ctx.fillRect(0,720,1080,720);
 
-    const layout=card.layout||'center';const tx=layout==='right'?900:layout==='left'?110:540;const align=layout==='right'?'right':layout==='left'?'left':'center';
     ctx.textAlign=align;ctx.textBaseline='middle';ctx.lineJoin='round';
-    ctx.save();ctx.font='900 150px "STKaiti","KaiTi","Songti SC",serif';ctx.lineWidth=13;ctx.strokeStyle='rgba(20,34,32,.72)';ctx.shadowColor='rgba(0,0,0,.38)';ctx.shadowBlur=18;ctx.shadowOffsetY=8;ctx.strokeText(card.title,tx,165);ctx.fillStyle=card.titleColor||'#fff';ctx.fillText(card.title,tx,165);ctx.restore();
-    ctx.save();ctx.font='italic 600 42px Georgia,"Times New Roman",serif';ctx.fillStyle='rgba(255,255,255,.92)';ctx.shadowColor='rgba(0,0,0,.55)';ctx.shadowBlur=8;ctx.fillText(card.english||'GOOD MORNING',tx,270);ctx.restore();
+    const titleSize=layout.titleSize??(meta.title.length>=4?118:154);
+    ctx.save();ctx.shadowColor='rgba(0,0,0,.42)';ctx.shadowBlur=24;ctx.shadowOffsetY=8;
+    ctx.font=`900 ${titleSize}px "Songti SC","STSong","PingFang SC","Microsoft YaHei",serif`;
+    ctx.strokeStyle='rgba(40,28,35,.72)';ctx.lineWidth=Math.max(14,titleSize*.12);ctx.strokeText(meta.title,titleX,titleY);
+    ctx.fillStyle=meta.titleColor||'#fff';ctx.fillText(meta.title,titleX,titleY);ctx.restore();
 
-    const maxLen=Math.max(...card.lines.map(v=>v.length));const fontSize=maxLen>=10?58:maxLen>=7?66:76;
-    ctx.textAlign='center';ctx.save();ctx.font=`900 ${fontSize}px "PingFang SC","Microsoft YaHei",sans-serif`;ctx.lineWidth=11;ctx.strokeStyle='rgba(83,30,18,.82)';ctx.shadowColor='rgba(0,0,0,.45)';ctx.shadowBlur=14;ctx.shadowOffsetY=6;
-    card.lines.forEach((line,i)=>{const y=1160+i*105;ctx.strokeText(line,540,y);ctx.fillStyle=i===0?'#fff8e8':(card.accent||'#ffd17a');ctx.fillText(line,540,y);});ctx.restore();
-    ctx.save();ctx.textAlign='center';ctx.font='500 27px "PingFang SC","Microsoft YaHei",sans-serif';ctx.fillStyle='rgba(255,255,255,.74)';ctx.fillText('一份亲手拼出的问候 · 愿美好常伴',540,1375);ctx.restore();
+    if(meta.english){
+      ctx.save();ctx.textAlign=align;ctx.font='italic 54px Georgia,"Times New Roman",serif';ctx.shadowColor='rgba(0,0,0,.50)';ctx.shadowBlur=13;ctx.shadowOffsetY=5;
+      ctx.strokeStyle='rgba(30,25,35,.62)';ctx.lineWidth=8;ctx.strokeText(meta.english,titleX,englishY);ctx.fillStyle='#fffdf5';ctx.fillText(meta.english,titleX,englishY);ctx.restore();
+    }
+
+    const lineSize=layout.lineSize??66;
+    ctx.save();ctx.textAlign=align;ctx.font=`900 ${lineSize}px "PingFang SC","Microsoft YaHei",sans-serif`;ctx.shadowColor='rgba(0,0,0,.46)';ctx.shadowBlur=18;ctx.shadowOffsetY=7;
+    ctx.lineWidth=13;ctx.strokeStyle='rgba(46,24,28,.80)';ctx.fillStyle='#fffaf0';
+    let y=linesY;for(const line of meta.lines){ctx.strokeText(line,linesX,y);ctx.fillText(line,linesX,y);y+=lineSize+34;}ctx.restore();
+
+    ctx.fillStyle=meta.accent;ctx.fillRect(390,1308,300,5);
+    const sparkle=(x,y,r)=>{ctx.save();ctx.translate(x,y);ctx.strokeStyle='rgba(255,248,205,.95)';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(-r,0);ctx.lineTo(r,0);ctx.moveTo(0,-r);ctx.lineTo(0,r);ctx.stroke();ctx.restore();};
+    sparkle(352,1310,12);sparkle(728,1310,9);
+    ctx.textAlign='center';ctx.font='500 29px "PingFang SC","Microsoft YaHei",sans-serif';ctx.fillStyle='rgba(255,255,255,.90)';ctx.fillText('这份美好由我亲手拼成，送给重要的人',540,1364);
     return canvas;
   }'''
-s=s[:rs]+renderer+s[re_:]
-s=s.replace("showToast('祝福作品已收藏',", "showToast('写实祝福作品已收藏',")
-s=s.replace("game.mode==='blessing'?'祝福拼图'", "game.mode==='blessing'?'写实祝福拼图'")
+s=s[:start]+poster+s[end:]
 GAME.write_text(s,encoding='utf-8')
 
 idx=INDEX.read_text(encoding='utf-8')
-idx=idx.replace('早安祝福拼图','写实祝福拼图').replace('拼完生成作品 · 可保存分享','拼写实美图 · 完成生成祝福作品')
+idx=idx.replace('<span>早安祝福拼图</span><small>拼完生成作品 · 可保存分享</small>',
+                '<span>写实祝福拼图 <b class="real-badge">方案B</b></span><small>拼纯净美图 · 完成后生成祝福作品</small>',1)
+idx=idx.replace('<button id="workBadge" class="work-badge" hidden>祝福作品 <b id="workBadgeCount">0</b>/6</button>',
+                '<button id="workBadge" class="work-badge" hidden>写实作品 <b id="workBadgeCount">0</b>/6</button>',1)
+idx=idx.replace('<div class="blessing-modal-head"><div><small>拼图生成作品</small><h2>我的祝福卡</h2></div>',
+                '<div class="blessing-modal-head"><div><small>纯净拼图 · 智能排版</small><h2>我的写实祝福卡</h2></div>',1)
+idx=re.sub(r'manifest\.webmanifest\?v=[0-9.]+','manifest.webmanifest?v=4.0.0',idx)
 idx=re.sub(r'style\.css\?v=[0-9.]+','style.css?v=4.0.0',idx)
 idx=re.sub(r'game\.js\?v=[0-9.]+','game.js?v=4.0.0',idx)
-idx=re.sub(r'manifest\.webmanifest\?v=[0-9.]+','manifest.webmanifest?v=4.0.0',idx)
 INDEX.write_text(idx,encoding='utf-8')
 
 css=CSS.read_text(encoding='utf-8')
 css += r'''
 
-/* v4.0 photorealistic scheme-B blessing mode */
-.blessing-entry{background:linear-gradient(145deg,rgba(255,250,235,.98),rgba(255,221,170,.96));border-color:rgba(255,207,104,.88);box-shadow:0 10px 24px rgba(73,32,8,.16),inset 0 1px rgba(255,255,255,.9)}
-.blessing-entry::before{content:'写实';position:absolute;right:12px;top:9px;padding:3px 8px;border-radius:999px;background:linear-gradient(135deg,#ff8c54,#e84a36);color:#fff;font-size:9px;font-weight:900;letter-spacing:1px;box-shadow:0 3px 8px rgba(116,32,11,.24)}
-.blessing-preview-shell{background:linear-gradient(160deg,#183c36,#071f25);box-shadow:0 18px 45px rgba(0,25,31,.34)}
-.blessing-preview-shell img{image-rendering:auto;filter:saturate(1.02) contrast(1.01)}
-.game-stage.is-blessing .topbar{background:linear-gradient(180deg,rgba(11,73,68,.98),rgba(5,48,53,.97))}
-.game-stage.is-blessing .deck-stack{filter:saturate(.9) sepia(.12)}
+/* v4.0 photorealistic blessing scheme B */
+.blessing-entry{position:relative;isolation:isolate;overflow:hidden;min-height:78px;background-image:linear-gradient(90deg,rgba(7,44,54,.88),rgba(10,63,65,.55)),url("assets/blessings-realistic/01-lotus-sunrise.png")!important;background-size:cover!important;background-position:center 56%!important;border:1px solid rgba(255,227,151,.72)!important;box-shadow:0 12px 25px rgba(0,39,48,.26),inset 0 0 0 1px rgba(255,255,255,.18)!important}
+.blessing-entry::before{content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 84% 15%,rgba(255,236,156,.42),transparent 34%)}
+.blessing-entry span,.blessing-entry small{position:relative;text-shadow:0 2px 7px rgba(0,0,0,.72)}
+.real-badge{display:inline-block;margin-left:5px;padding:2px 6px;border-radius:999px;background:linear-gradient(135deg,#ffe795,#efad42);color:#52320c;font-size:9px;vertical-align:3px;text-shadow:none;box-shadow:0 2px 7px rgba(0,0,0,.22)}
+.game-stage.is-blessing{background:radial-gradient(circle at 50% -8%,rgba(255,222,151,.25),transparent 34%),linear-gradient(180deg,#0e5959 0%,#073f4b 46%,#063342 100%)}
+.game-stage.is-blessing .topbar{background:linear-gradient(180deg,rgba(5,49,54,.96),rgba(5,61,68,.90));border-bottom-color:rgba(255,218,132,.42)}
+.game-stage.is-blessing .board-wrap{box-shadow:0 18px 34px rgba(0,20,28,.42),0 0 0 1px rgba(255,222,151,.22)}
+.game-stage.is-blessing .work-badge{background:linear-gradient(135deg,rgba(255,231,157,.96),rgba(238,171,71,.96));color:#57320b;box-shadow:0 7px 18px rgba(0,20,24,.30)}
+.blessing-lockup{background:linear-gradient(180deg,transparent,rgba(10,14,24,.68));padding:22% 7% 8%!important;text-shadow:0 3px 10px rgba(0,0,0,.78)}
+.blessing-lockup strong{font-family:"Songti SC","STSong","PingFang SC",serif!important;letter-spacing:.08em}
+.blessing-preview-shell{background:linear-gradient(145deg,#fff8e6,#d6aa55)!important;padding:5px!important;box-shadow:0 16px 36px rgba(24,14,5,.28)}
+.blessing-preview-shell img{border-radius:13px;display:block}
 '''
 CSS.write_text(css,encoding='utf-8')
 
@@ -89,9 +109,13 @@ sw=re.sub(r'manifest\.webmanifest\?v=[0-9.]+','manifest.webmanifest?v=4.0.0',sw)
 SW.write_text(sw,encoding='utf-8')
 
 b=STANDALONE.read_text(encoding='utf-8')
-if "blessings-real" not in b:
-    b=b.replace("*((ROOT/'assets'/'blessings').glob('*.svg'))]","*((ROOT/'assets'/'blessings').glob('*.svg')),*((ROOT/'assets'/'blessings-real').glob('*.webp'))]")
-    if "blessings-real" not in b:b=b.replace("assets=[", "assets=[*((ROOT/'assets'/'blessings-real').glob('*.webp')),")
+old="assets=[*((ROOT/'assets'/'pictures-portrait').glob('*.webp')),*((ROOT/'assets'/'pictures-extra').glob('*.svg')),*((ROOT/'assets'/'blessings').glob('*.svg'))]"
+new="assets=[*((ROOT/'assets'/'pictures-portrait').glob('*.webp')),*((ROOT/'assets'/'pictures-extra').glob('*.svg')),*((ROOT/'assets'/'blessings').glob('*.svg')),*((ROOT/'assets'/'blessings-realistic').glob('*.png'))]"
+if old not in b: raise SystemExit('standalone assets marker missing')
+b=b.replace(old,new,1)
+b=b.replace("mime='image/svg+xml' if image_path.suffix.lower()=='.svg' else 'image/webp'",
+            "mime={'svg':'image/svg+xml','png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','webp':'image/webp'}.get(image_path.suffix.lower().lstrip('.'),'application/octet-stream')",1)
 STANDALONE.write_text(b,encoding='utf-8')
+
 VERSION.write_text('4.0.0\n',encoding='utf-8')
-print('patched v4.0 photorealistic scheme B')
+print('patched v4.0 photorealistic blessing scheme B')
