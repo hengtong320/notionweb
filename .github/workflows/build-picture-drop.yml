@@ -1,103 +1,97 @@
-name: Build Picture Drop H5 v3.9
+name: Build Picture Drop H5 v4.0
 on:
   push:
     paths:
-      - 'picture-drop/tools/generate_blessing_cards.py'
-      - 'picture-drop/tools/patch_v39_blessing.py'
-      - 'picture-drop/tools/patch_v39_compat.py'
-      - 'picture-drop/tools/smoke_v39.py'
+      - 'picture-drop/tools/fetch_real_blessing_v40.sh'
+      - 'picture-drop/tools/patch_v40_real_blessing.py'
+      - 'picture-drop/tools/smoke_v40.py'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
 permissions: {contents: write}
-concurrency: {group: picture-drop-build-v39, cancel-in-progress: true}
+concurrency: {group: picture-drop-build-v40, cancel-in-progress: true}
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Generate blessing art and apply v3.9
+      - name: Fetch photographic bases and apply Scheme B
         run: |
           set -euo pipefail
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.8.0'
-          python picture-drop/tools/generate_blessing_cards.py
-          test "$(find picture-drop/assets/blessings -name '*.svg' | wc -l)" -eq 12
-          python picture-drop/tools/patch_v39_blessing.py
-          python picture-drop/tools/patch_v39_compat.py
-          node --check picture-drop/game.js
-          grep -Fq 'const BLESSING_CARDS=' picture-drop/game.js
-          grep -Fq 'async function renderBlessingPoster' picture-drop/game.js
-          grep -Fq 'function openBlessingWorks' picture-drop/game.js
-          grep -Fq 'pictureCount:STANDARD_PICTURE_COUNT,totalPictureCount:PICTURE_PATHS.length' picture-drop/game.js
-          grep -Fq 'id="blessingBtn"' picture-drop/index.html
-          grep -Fq 'id="blessingModal"' picture-drop/index.html
-          grep -Fq 'id="shareWorksBtn"' picture-drop/index.html
-          grep -Fq '.blessing-entry{' picture-drop/style.css
-          grep -Fq '.blessing-preview-shell{' picture-drop/style.css
-          grep -Fq 'style.css?v=3.9.0' picture-drop/index.html
-          grep -Fq 'game.js?v=3.9.0' picture-drop/index.html
-          grep -Fq 'jigsaw-drop-h5-v3.9.0' picture-drop/sw.js
-          grep -Fq "assets'/'blessings" picture-drop/tools/build_standalone.py
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.9.0'
-      - name: Real browser blessing puzzle and sharing tests
+          chmod +x picture-drop/tools/fetch_real_blessing_v40.sh
+          picture-drop/tools/fetch_real_blessing_v40.sh
+          test "$(find picture-drop/assets/blessings-real -name '*.png' | wc -l)" -eq 6
+          python picture-drop/tools/patch_v40_real_blessing.py
+          node --check picture-drop/game.js
+          grep -Fq "assets/blessings-real/01-lotus-sunrise.png" picture-drop/game.js
+          grep -Fq "blessingScheme:'B-photorealistic'" picture-drop/game.js
+          grep -Fq "canvas.dataset.source='photorealistic'" picture-drop/game.js
+          grep -Fq '方案B · 写实' picture-drop/index.html
+          grep -Fq '.v4.0-photorealistic-blessing-scheme-b' picture-drop/style.css || grep -Fq 'v4.0-photorealistic-blessing-scheme-b' picture-drop/style.css
+          grep -Fq 'style.css?v=4.0.0' picture-drop/index.html
+          grep -Fq 'game.js?v=4.0.0' picture-drop/index.html
+          grep -Fq 'jigsaw-drop-h5-v4.0.0' picture-drop/sw.js
+          grep -Fq "blessings-real').glob('*.png')" picture-drop/tools/build_standalone.py
+          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '4.0.0'
+      - name: Real browser photographic puzzle and poster tests
         run: |
           set -euo pipefail
           python -m pip install --quiet selenium
-          python -m http.server 8765 --directory picture-drop >/tmp/picture-drop-http.log 2>&1 &
+          python -m http.server 8765 --directory picture-drop >/tmp/picture-drop-v40-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 1
-          python picture-drop/tools/smoke_v39.py
+          python picture-drop/tools/smoke_v40.py
       - name: Preserve v3.8 planning, chain and juice regressions
         run: |
           set -euo pipefail
-          python -m http.server 8766 --directory picture-drop >/tmp/picture-drop-http2.log 2>&1 &
+          python -m http.server 8766 --directory picture-drop >/tmp/picture-drop-v38-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           python - <<'PY'
           from pathlib import Path
-          s=Path('picture-drop/tools/smoke_v38.py').read_text(encoding='utf-8').replace('8765','8766').replace('v=3.8.0','v=3.9.0')
-          Path('/tmp/smoke_v38_as_v39.py').write_text(s,encoding='utf-8')
+          s=Path('picture-drop/tools/smoke_v38.py').read_text(encoding='utf-8').replace('8765','8766').replace('v=3.8.0','v=4.0.0')
+          Path('/tmp/smoke_v38_as_v40.py').write_text(s,encoding='utf-8')
           PY
           sleep 1
-          python /tmp/smoke_v38_as_v39.py
+          python /tmp/smoke_v38_as_v40.py
       - name: Preserve v3.7 progression and settle-first regressions
         run: |
           set -euo pipefail
-          python -m http.server 8767 --directory picture-drop >/tmp/picture-drop-http3.log 2>&1 &
+          python -m http.server 8767 --directory picture-drop >/tmp/picture-drop-v37-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           python - <<'PY'
           from pathlib import Path
-          s=Path('picture-drop/tools/smoke_v37.py').read_text(encoding='utf-8').replace('8765','8767').replace('v=3.7.0','v=3.9.0')
-          Path('/tmp/smoke_v37_as_v39.py').write_text(s,encoding='utf-8')
+          s=Path('picture-drop/tools/smoke_v37.py').read_text(encoding='utf-8').replace('8765','8767').replace('v=3.7.0','v=4.0.0')
+          Path('/tmp/smoke_v37_as_v40.py').write_text(s,encoding='utf-8')
           PY
           sleep 1
-          python /tmp/smoke_v37_as_v39.py
+          python /tmp/smoke_v37_as_v40.py
       - name: Preserve v3.6 drag, gravity and seamless-surface regressions
         run: |
           set -euo pipefail
-          python -m http.server 8768 --directory picture-drop >/tmp/picture-drop-http4.log 2>&1 &
+          python -m http.server 8768 --directory picture-drop >/tmp/picture-drop-v36-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           python - <<'PY'
           from pathlib import Path
-          s=Path('picture-drop/tools/smoke_v36.py').read_text(encoding='utf-8').replace('8765','8768').replace('v=3.6.0','v=3.9.0')
-          Path('/tmp/smoke_v36_as_v39.py').write_text(s,encoding='utf-8')
+          s=Path('picture-drop/tools/smoke_v36.py').read_text(encoding='utf-8').replace('8765','8768').replace('v=3.6.0','v=4.0.0')
+          Path('/tmp/smoke_v36_as_v40.py').write_text(s,encoding='utf-8')
           PY
           sleep 1
-          python /tmp/smoke_v36_as_v39.py
+          python /tmp/smoke_v36_as_v40.py
       - name: Rebuild release
         run: |
           set -euo pipefail
           python picture-drop/tools/build_standalone.py
           test -s picture-drop/Jigsaw-Drop-offline.html
-          grep -Fq 'data:image/webp;base64' picture-drop/Jigsaw-Drop-offline.html
-          grep -Fq 'data:image/svg+xml;base64' picture-drop/Jigsaw-Drop-offline.html
-          grep -Fq 'const BLESSING_CARDS=' picture-drop/Jigsaw-Drop-offline.html
+          grep -Fq 'data:image/png;base64' picture-drop/Jigsaw-Drop-offline.html
+          grep -Fq "blessingScheme:'B-photorealistic'" picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
           rm -f picture-drop/Jigsaw-Drop-H5-*.zip
           python - <<'PY'
@@ -105,27 +99,26 @@ jobs:
           import json,datetime
           r=Path('picture-drop')
           (r/'release.json').write_text(json.dumps({
-            'version':'3.9.0',
+            'version':'4.0.0',
             'builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'features':[
-              'separate blessing puzzle mode without changing the classic core',
-              '12 original morning and festival blessing backgrounds',
-              'six-card blessing rounds with real deck/refill/chain play',
-              'completed blessing cards unlock immediately and persist locally',
-              'full-resolution 1080x1440 poster rendering with dynamic greeting typography',
-              'system image sharing, PNG download and greeting-text copy',
-              'in-game work counter, collection browser and completion share CTA',
-              'classic 60-picture progression remains isolated from blessing assets',
+              'Scheme B: six text-free photorealistic blessing puzzle bases generated and curated for 3:4 mobile play',
+              'photographic lotus sunrise, trumpet flowers, jujube orchard, elegant fictional woman, flower vase and pine-crane scenes',
+              'puzzle stage shows clean artwork without baked-in greeting text',
+              'completion compositor generates premium 1080x1440 greeting posters with dynamic date, title, wishes, seal and restrained glints',
+              'photo-led home entry and refined blessing collection preview',
+              'system sharing, PNG saving and blessing-copy flow retained',
+              'six-image blessing round isolated from the classic 60-image pool',
               'v3.8 chain/juice, v3.7 progression, v3.6 gravity/seams and anti-deadlock retained'
             ]
           },ensure_ascii=False,indent=2),encoding='utf-8')
           PY
-          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v3.9.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v3.9.zip)" -lt 90000000 && mv /tmp/Jigsaw-Drop-H5-v3.9.zip .
-      - name: Commit v3.9
+          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v4.0.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v4.0.zip)" -lt 90000000 && mv /tmp/Jigsaw-Drop-H5-v4.0.zip .
+      - name: Commit v4.0
         run: |
           set -euo pipefail
           git config user.name 'hengtong320';git config user.email '564712388@qq.com'
           git add -A picture-drop
           if git diff --cached --quiet;then exit 0;fi
-          git commit -s -m 'Release Jigsaw Drop H5 v3.9 blessing puzzle and shareable posters'
+          git commit -s -m 'Release Jigsaw Drop H5 v4.0 photorealistic blessing Scheme B'
           git push origin HEAD:main
