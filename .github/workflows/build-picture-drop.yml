@@ -31,7 +31,7 @@ jobs:
           grep -Fq "blessingScheme:'B-photorealistic'" picture-drop/game.js
           grep -Fq "canvas.dataset.source='photorealistic'" picture-drop/game.js
           grep -Fq '方案B · 写实' picture-drop/index.html
-          grep -Fq '.v4.0-photorealistic-blessing-scheme-b' picture-drop/style.css || grep -Fq 'v4.0-photorealistic-blessing-scheme-b' picture-drop/style.css
+          grep -Fq 'v4.0-photorealistic-blessing-scheme-b' picture-drop/style.css
           grep -Fq 'style.css?v=4.0.0' picture-drop/index.html
           grep -Fq 'game.js?v=4.0.0' picture-drop/index.html
           grep -Fq 'jigsaw-drop-h5-v4.0.0' picture-drop/sw.js
@@ -121,4 +121,5 @@ jobs:
           git add -A picture-drop
           if git diff --cached --quiet;then exit 0;fi
           git commit -s -m 'Release Jigsaw Drop H5 v4.0 photorealistic blessing Scheme B'
+          git pull --rebase origin main
           git push origin HEAD:main
