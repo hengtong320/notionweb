@@ -5,6 +5,7 @@ on:
     paths:
       - 'picture-drop/tools/download_v40_realistic_blessings.sh'
       - 'picture-drop/tools/patch_v40_scheme_b.py'
+      - 'picture-drop/tools/patch_v40_idempotent_hotfix.py'
       - 'picture-drop/tools/smoke_v40.py'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
@@ -42,6 +43,7 @@ jobs:
             echo "Unexpected Picture Drop version: $CURRENT" >&2
             exit 1
           fi
+          python picture-drop/tools/patch_v40_idempotent_hotfix.py
 
           test "$(find picture-drop/assets/blessings-realistic -name '*.png' | wc -l)" -eq 6
           node --check picture-drop/game.js
@@ -52,8 +54,7 @@ jobs:
           grep -Fq 'function roundedRectPath' picture-drop/game.js
           grep -Fq 'function drawPosterSpark' picture-drop/game.js
           grep -Fq 'realisticBlessingCount:REALISTIC_BLESSING_COUNT' picture-drop/game.js
-          grep -Fq '写实祝福拼图' picture-drop/index.html
-          grep -Fq '方案B' picture-drop/index.html
+          grep -Fq '写实祝福拼图 <b>方案B</b>' picture-drop/index.html
           grep -Fq 'v4.0-realistic-blessing-scheme-b' picture-drop/style.css
           grep -Fq 'style.css?v=4.0.0' picture-drop/index.html
           grep -Fq 'game.js?v=4.0.0' picture-drop/index.html
