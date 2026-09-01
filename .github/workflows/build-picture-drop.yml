@@ -1,4 +1,5 @@
 name: Build Picture Drop H5 v4.0
+
 on:
   push:
     paths:
@@ -7,24 +8,42 @@ on:
       - 'picture-drop/tools/smoke_v40.py'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
-permissions: {contents: write}
-concurrency: {group: picture-drop-build-v40-scheme-b, cancel-in-progress: true}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: picture-drop-build-v40-scheme-b
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-        with: {fetch-depth: 0}
+        with:
+          fetch-depth: 0
+
       - uses: actions/setup-python@v5
-        with: {python-version: '3.12'}
-      - name: Download six generated photorealistic bases and apply Scheme B
+        with:
+          python-version: '3.12'
+
+      - name: Apply or verify photorealistic Scheme B
         run: |
           set -euo pipefail
-          test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.9.0'
-          bash picture-drop/tools/download_v40_realistic_blessings.sh
+          CURRENT="$(tr -d '\r\n ' < picture-drop/VERSION)"
+          if [ "$CURRENT" = '3.9.0' ]; then
+            bash picture-drop/tools/download_v40_realistic_blessings.sh
+            python picture-drop/tools/patch_v40_scheme_b.py
+          elif [ "$CURRENT" = '4.0.0' ]; then
+            echo 'v4.0 already applied; verifying committed production assets.'
+          else
+            echo "Unexpected Picture Drop version: $CURRENT" >&2
+            exit 1
+          fi
+
           test "$(find picture-drop/assets/blessings-realistic -name '*.png' | wc -l)" -eq 6
-          python picture-drop/tools/patch_v40_scheme_b.py
           node --check picture-drop/game.js
           grep -Fq "assets/blessings-realistic/01-lotus-sunrise.png" picture-drop/game.js
           grep -Fq "assets/blessings-realistic/04-elegant-woman.png" picture-drop/game.js
@@ -40,6 +59,7 @@ jobs:
           grep -Fq 'jigsaw-drop-h5-v4.0.0' picture-drop/sw.js
           grep -Fq "blessings-realistic').glob('*.png')" picture-drop/tools/build_standalone.py
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '4.0.0'
+
       - name: Real browser photorealistic puzzle and poster tests
         run: |
           set -euo pipefail
@@ -49,6 +69,7 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           sleep 1
           python picture-drop/tools/smoke_v40.py
+
       - name: Preserve v3.9 blessing sharing regression
         run: |
           set -euo pipefail
@@ -62,6 +83,7 @@ jobs:
           PY
           sleep 1
           python /tmp/smoke_v39_as_v40.py
+
       - name: Preserve v3.8 planning, chain and juice regressions
         run: |
           set -euo pipefail
@@ -76,6 +98,7 @@ jobs:
           PY
           sleep 1
           python /tmp/smoke_v38_as_v40.py
+
       - name: Preserve v3.7 progression and settle-first regressions
         run: |
           set -euo pipefail
@@ -89,6 +112,7 @@ jobs:
           PY
           sleep 1
           python /tmp/smoke_v37_as_v40.py
+
       - name: Preserve v3.6 drag, gravity and seamless-surface regressions
         run: |
           set -euo pipefail
@@ -102,6 +126,7 @@ jobs:
           PY
           sleep 1
           python /tmp/smoke_v36_as_v40.py
+
       - name: Rebuild release
         run: |
           set -euo pipefail
@@ -130,13 +155,18 @@ jobs:
             ]
           },ensure_ascii=False,indent=2),encoding='utf-8')
           PY
-          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v4.0.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v4.0.zip)" -lt 120000000 && mv /tmp/Jigsaw-Drop-H5-v4.0.zip .
-      - name: Commit v4.0
+          cd picture-drop
+          zip -qr /tmp/Jigsaw-Drop-H5-v4.0.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*'
+          test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v4.0.zip)" -lt 120000000
+          mv /tmp/Jigsaw-Drop-H5-v4.0.zip .
+
+      - name: Commit refreshed v4.0 release files
         run: |
           set -euo pipefail
-          git config user.name 'hengtong320';git config user.email '564712388@qq.com'
+          git config user.name 'hengtong320'
+          git config user.email '564712388@qq.com'
           git add -A picture-drop
-          if git diff --cached --quiet;then exit 0;fi
-          git commit -s -m 'Release Jigsaw Drop H5 v4.0 photorealistic blessing Scheme B'
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -s -m 'Refresh Jigsaw Drop H5 v4.0 Scheme B release files'
           git pull --rebase origin main
           git push origin HEAD:main
