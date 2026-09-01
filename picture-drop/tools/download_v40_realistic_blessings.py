@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import struct
-import urllib.request
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'assets' / 'blessings-realistic'
@@ -33,25 +33,30 @@ def is_valid(path: Path) -> bool:
         return False
 
 
-headers = {
-    'User-Agent': 'Mozilla/5.0 JigsawDropBuild/4.0',
-    'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-}
-
 for name, url in ASSETS.items():
     path = OUT / name
     if is_valid(path):
         print(f'SKIP valid {name} ({path.stat().st_size:,} bytes)')
         continue
-    request = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(request, timeout=90) as response:
-        data = response.read()
+
+    tmp = path.with_suffix('.download')
+    tmp.unlink(missing_ok=True)
+    command = [
+        'curl', '-L', '--fail', '--silent', '--show-error',
+        '--retry', '3', '--retry-delay', '2', '--connect-timeout', '20',
+        '--max-time', '180',
+        '-A', 'Mozilla/5.0 JigsawDropBuild/4.0',
+        '-H', 'Accept: image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+        '-o', str(tmp), url,
+    ]
+    subprocess.run(command, check=True)
+    data = tmp.read_bytes()
     size = png_size(data)
     if size != (896, 1152):
         raise RuntimeError(f'{name}: expected 896x1152, got {size}')
     if len(data) <= 100_000:
         raise RuntimeError(f'{name}: unexpectedly small ({len(data)} bytes)')
-    path.write_bytes(data)
+    tmp.replace(path)
     print(f'DOWNLOADED {name}: {size[0]}x{size[1]}, {len(data):,} bytes')
 
 print('v4.0 realistic blessing image pack ready')
