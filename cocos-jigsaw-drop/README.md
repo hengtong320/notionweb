@@ -1,10 +1,10 @@
-# Jigsaw Drop — Cocos Creator 3.8.6 原生渲染样板
+# Jigsaw Drop — Cocos Creator 3.8.8 原生渲染样板
 
-这是把现有 H5 拼图游戏迁移到 **Cocos Creator 3.8.6 + TypeScript** 的第一版可运行工程。
+这是把现有 H5 拼图游戏迁移到 **Cocos Creator 3.8.8 + TypeScript** 的第一版可运行工程。
 
 ## 直接打开
 
-1. 安装 Cocos Creator **3.8.6**。
+1. 安装 Cocos Creator **3.8.8**。
 2. 解压本项目。
 3. 在 Cocos Dashboard 里选择“打开项目”，选择本文件夹根目录。
 4. 等待第一次资源导入完成；编辑器会自动定位 `assets/scenes/Main.scene`。

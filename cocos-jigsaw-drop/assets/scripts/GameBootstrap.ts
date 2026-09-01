@@ -150,7 +150,7 @@ export class GameBootstrap extends Component {
 
         this.titleLabel = this.addLabel(topPanel, "JIGSAW DROP · COCOS", 36, new Color(255, 255, 255, 255), 0, 34, 650, 54);
         this.titleLabel.isBold = true;
-        this.subtitleLabel = this.addLabel(topPanel, "Cocos Creator 3.8.6 原生2D渲染样板", 20, new Color(153, 229, 255, 255), 0, -18, 650, 36);
+        this.subtitleLabel = this.addLabel(topPanel, "Cocos Creator 3.8.8 原生2D渲染样板", 20, new Color(153, 229, 255, 255), 0, -18, 650, 36);
 
         const buttonRow = this.createNode("PackButtons", this.runtimeRoot, 690, 70, 0, 468);
         this.packButtons = this.packs.map((pack, index) => {

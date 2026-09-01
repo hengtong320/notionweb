@@ -1,9 +1,9 @@
 {
-  "version": "0.1.0",
-  "creator": "3.8.6",
-  "builtAt": "2026-09-01T19:38:39.865008+00:00",
+  "version": "0.1.1",
+  "creator": "3.8.8",
+  "builtAt": "2026-09-01T19:42:06.423337+00:00",
   "features": [
-    "openable Cocos Creator 3.8.6 TypeScript project",
+    "openable Cocos Creator 3.8.8 TypeScript project",
     "native Cocos 2D Sprite, Graphics, Label, touch and tween rendering",
     "pure TypeScript JigsawCore separated from presentation",
     "4x4 photorealistic blessing sample and 5x5 six-helicopter challenge",
@@ -11,6 +11,6 @@
     "single/group dragging, long-press split, region swap and gravity settlement",
     "complete-image clear loop, deck dealing, hints and result collage",
     "Web, WeChat wx and Douyin tt platform bridge skeletons",
-    "18 optimized 900x1200 photorealistic WebP assets"
+    "18 optimized 900x1200 desktop-safe JPG assets"
   ]
 }

@@ -502,7 +502,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "bootstrap15b9f4a607684c"
+    "_id": "bootstrap2460e3cae27c4a"
   },
   {
     "__type__": "54d8ahqchdBm7RV08C23Y8J",
@@ -514,6 +514,6 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_id": "component16986a4f8ccd4b"
+    "_id": "component6cd59f3d34164b"
   }
 ]
