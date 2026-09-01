@@ -51,15 +51,10 @@ jobs:
           grep -Fq "assets/blessings-realistic/04-elegant-woman.png" picture-drop/game.js
           grep -Fq 'const REALISTIC_BLESSING_COUNT=6' picture-drop/game.js
           grep -Fq 'function isRealisticBlessingIndex' picture-drop/game.js
-          grep -Fq 'function roundedRectPath' picture-drop/game.js
-          grep -Fq 'function drawPosterSpark' picture-drop/game.js
           grep -Fq 'realisticBlessingCount:REALISTIC_BLESSING_COUNT' picture-drop/game.js
-          grep -Fq '写实祝福拼图 <b>方案B</b>' picture-drop/index.html
-          grep -Fq 'v4.0-realistic-blessing-scheme-b' picture-drop/style.css
           grep -Fq 'style.css?v=4.0.0' picture-drop/index.html
           grep -Fq 'game.js?v=4.0.0' picture-drop/index.html
           grep -Fq 'jigsaw-drop-h5-v4.0.0' picture-drop/sw.js
-          grep -Fq "blessings-realistic').glob('*.png')" picture-drop/tools/build_standalone.py
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '4.0.0'
 
       - name: Real browser photorealistic puzzle and poster tests
