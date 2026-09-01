@@ -2,13 +2,13 @@ name: Build Picture Drop H5 v4.0
 on:
   push:
     paths:
-      - 'picture-drop/tools/download_v40_realistic_blessings.py'
-      - 'picture-drop/tools/patch_v40_realistic_scheme_b.py'
+      - 'picture-drop/tools/download_v40_realistic_blessings.sh'
+      - 'picture-drop/tools/patch_v40_scheme_b.py'
       - 'picture-drop/tools/smoke_v40.py'
       - '.github/workflows/build-picture-drop.yml'
   workflow_dispatch:
 permissions: {contents: write}
-concurrency: {group: picture-drop-build-v40-realistic-b, cancel-in-progress: true}
+concurrency: {group: picture-drop-build-v40-scheme-b, cancel-in-progress: true}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,28 +18,29 @@ jobs:
         with: {fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Download six photographic bases and apply Scheme B
+      - name: Download six generated photorealistic bases and apply Scheme B
         run: |
           set -euo pipefail
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '3.9.0'
-          python picture-drop/tools/download_v40_realistic_blessings.py
+          bash picture-drop/tools/download_v40_realistic_blessings.sh
           test "$(find picture-drop/assets/blessings-realistic -name '*.png' | wc -l)" -eq 6
-          python picture-drop/tools/patch_v40_realistic_scheme_b.py
+          python picture-drop/tools/patch_v40_scheme_b.py
           node --check picture-drop/game.js
           grep -Fq "assets/blessings-realistic/01-lotus-sunrise.png" picture-drop/game.js
-          grep -Fq "scheme:'realistic-b'" picture-drop/game.js
+          grep -Fq "assets/blessings-realistic/04-elegant-woman.png" picture-drop/game.js
           grep -Fq 'const REALISTIC_BLESSING_COUNT=6' picture-drop/game.js
-          grep -Fq 'function posterRoundRect' picture-drop/game.js
-          grep -Fq 'function posterSparkle' picture-drop/game.js
+          grep -Fq 'function isRealisticBlessingIndex' picture-drop/game.js
+          grep -Fq 'function roundedRectPath' picture-drop/game.js
+          grep -Fq 'function drawPosterSpark' picture-drop/game.js
           grep -Fq 'realisticBlessingCount:REALISTIC_BLESSING_COUNT' picture-drop/game.js
-          grep -Fq '方案B · 写实' picture-drop/index.html
-          grep -Fq 'v4.0 realistic blessing scheme B' picture-drop/style.css
+          grep -Fq '写实祝福拼图 <b>方案B</b>' picture-drop/index.html
+          grep -Fq 'v4.0-realistic-blessing-scheme-b' picture-drop/style.css
           grep -Fq 'style.css?v=4.0.0' picture-drop/index.html
           grep -Fq 'game.js?v=4.0.0' picture-drop/index.html
           grep -Fq 'jigsaw-drop-h5-v4.0.0' picture-drop/sw.js
           grep -Fq "blessings-realistic').glob('*.png')" picture-drop/tools/build_standalone.py
           test "$(tr -d '\r\n ' < picture-drop/VERSION)" = '4.0.0'
-      - name: Real browser realistic puzzle and poster tests
+      - name: Real browser photorealistic puzzle and poster tests
         run: |
           set -euo pipefail
           python -m pip install --quiet selenium
@@ -70,6 +71,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           s=Path('picture-drop/tools/smoke_v38.py').read_text(encoding='utf-8').replace('8765','8767').replace('v=3.8.0','v=4.0.0')
+          s=s.replace("assert stats['pictures']==60,stats","assert stats['pictures']>=72,stats")
           Path('/tmp/smoke_v38_as_v40.py').write_text(s,encoding='utf-8')
           PY
           sleep 1
@@ -106,7 +108,7 @@ jobs:
           python picture-drop/tools/build_standalone.py
           test -s picture-drop/Jigsaw-Drop-offline.html
           grep -Fq 'data:image/png;base64' picture-drop/Jigsaw-Drop-offline.html
-          grep -Fq 'function posterRoundRect' picture-drop/Jigsaw-Drop-offline.html
+          grep -Fq 'function roundedRectPath' picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
           rm -f picture-drop/Jigsaw-Drop-H5-*.zip
           python - <<'PY'
@@ -118,23 +120,23 @@ jobs:
             'builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'features':[
               'Scheme B: six clean text-free photorealistic blessing puzzle bases',
-              'lotus sunrise, trumpet flowers, jujube orchard, elegant fictional woman, blessing vase and pine-crane scenes',
-              '896x1152 photographic game assets with 1080x1440 share-poster output',
-              'per-image typography layouts that avoid faces and visual focal points',
-              'premium title strokes, translucent message plates, highlights and restrained sparkles',
+              'sunrise lotus lake, trumpet flowers, jujube orchard, elegant fictional woman, flower vase and pine-crane scenes',
+              '1080x1440 generated photographic assets and 1080x1440 share posters',
+              'gameplay uses clean photos while completion adds premium blessing typography',
+              'per-card title placement, warm gradients, framed composition and restrained sparkles',
               'photo-led blessing entry and refined completed-image lockup',
               'system sharing, PNG saving and blessing-copy flow retained',
               'v3.8 chain/juice, v3.7 progression, v3.6 gravity/seams and anti-deadlock retained'
             ]
           },ensure_ascii=False,indent=2),encoding='utf-8')
           PY
-          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v4.0.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v4.0.zip)" -lt 90000000 && mv /tmp/Jigsaw-Drop-H5-v4.0.zip .
+          cd picture-drop && zip -qr /tmp/Jigsaw-Drop-H5-v4.0.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*' && test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v4.0.zip)" -lt 120000000 && mv /tmp/Jigsaw-Drop-H5-v4.0.zip .
       - name: Commit v4.0
         run: |
           set -euo pipefail
           git config user.name 'hengtong320';git config user.email '564712388@qq.com'
           git add -A picture-drop
           if git diff --cached --quiet;then exit 0;fi
-          git commit -s -m 'Release Jigsaw Drop H5 v4.0 realistic blessing Scheme B'
+          git commit -s -m 'Release Jigsaw Drop H5 v4.0 photorealistic blessing Scheme B'
           git pull --rebase origin main
           git push origin HEAD:main
