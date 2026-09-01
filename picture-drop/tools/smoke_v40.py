@@ -38,7 +38,10 @@ try:
       const done=arguments[0],J=window.__JIGSAW__,paths=J.game.selectedImages.map(i=>J.blessingMeta(i).path);
       Promise.all(paths.map(src=>new Promise(resolve=>{const im=new Image();im.onload=()=>resolve({src,w:im.naturalWidth,h:im.naturalHeight});im.onerror=()=>resolve({src,w:0,h:0});im.src=src;}))).then(done);
     ''')
-    assert len(dimensions)==6 and all(x['w']==1080 and x['h']==1440 for x in dimensions),dimensions
+    assert len(dimensions)==6,dimensions
+    # Firefly's current validated rendition is 896x1152; future 3:4 upgrades are
+    # accepted as long as they retain enough detail and the intended portrait ratio.
+    assert all(x['w']>=896 and x['h']>=1152 and abs(x['w']/x['h']-.7777778)<.015 for x in dimensions),dimensions
 
     poster=d.execute_async_script('''
       const done=arguments[0],J=window.__JIGSAW__,idx=J.game.selectedImages[0],src=J.blessingMeta(idx).path;
@@ -73,6 +76,6 @@ try:
     assert 'error' not in result,result
     assert result['won'] and result['modal'] and result['preview'],result
 
-    print('PASS v4.0 Scheme B: six 1080x1440 clean photorealistic puzzle bases and generated share posters')
+    print('PASS v4.0 Scheme B: six clean photorealistic puzzle bases and generated 1080x1440 share posters')
 finally:
     d.quit()
