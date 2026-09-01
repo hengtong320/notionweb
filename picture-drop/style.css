@@ -390,3 +390,15 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
 .blessing-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.blessing-actions .text-btn{grid-column:1/-1;color:#8f5160}.blessing-actions button{min-height:42px}.blessing-note{font-size:10px!important;color:#a07b81!important;margin:7px 0 0!important}
 .unlocked-strip img{cursor:pointer}
 @media(max-height:720px){.blessing-modal-card{padding-top:14px}.blessing-preview-shell{width:min(58vw,240px)}.blessing-thumbs{padding-top:8px}}
+
+
+/* v4.0 realistic blessing scheme B */
+.blessing-entry{position:relative;overflow:hidden;background-image:linear-gradient(90deg,rgba(5,76,72,.88),rgba(14,108,94,.72)),url('assets/blessings-realistic/01-lotus-sunrise.png');background-size:cover;background-position:center 62%;border:1px solid rgba(255,231,158,.78);box-shadow:0 8px 24px rgba(0,35,50,.23),inset 0 1px rgba(255,255,255,.24)}
+.blessing-entry::before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.18),transparent 35%,transparent 68%,rgba(255,224,151,.16));pointer-events:none}
+.blessing-entry>span,.blessing-entry>small,.blessing-entry>.realistic-badge{position:relative;z-index:1}
+.realistic-badge{position:absolute!important;right:10px;top:8px;padding:3px 7px;border-radius:999px;background:linear-gradient(135deg,#ffe7a5,#e9aa42);color:#563308;font-size:9px;line-height:1;font-weight:900;box-shadow:0 2px 8px rgba(62,34,0,.26)}
+.is-blessing .blessing-lockup{left:6%;right:6%;bottom:6%;padding:8px 10px;border-radius:12px;background:linear-gradient(180deg,rgba(10,18,27,.04),rgba(10,18,27,.62));text-shadow:0 2px 6px rgba(0,0,0,.78);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.is-blessing .blessing-lockup strong{font-family:"STKaiti","KaiTi","PingFang SC",sans-serif;font-size:clamp(19px,5.6vw,31px);letter-spacing:.06em;color:#fffdf7;-webkit-text-stroke:.5px rgba(132,55,36,.85)}
+.is-blessing .blessing-lockup span{font-weight:800;color:#ffeab0;font-size:clamp(9px,2.5vw,14px)}
+.blessing-preview-shell{background:radial-gradient(circle at 50% 15%,rgba(255,230,171,.19),transparent 35%),linear-gradient(180deg,#183f3b,#082b2e)}
+.blessing-preview-shell img{box-shadow:0 18px 42px rgba(0,0,0,.38),0 0 0 1px rgba(255,235,187,.5)}

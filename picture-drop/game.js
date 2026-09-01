@@ -103,12 +103,12 @@
 
   const STANDARD_PICTURE_COUNT=PICTURE_PATHS.length;
   const BLESSING_CARDS=[
-    {path:'assets/blessings/01-lotus-sunrise.svg',name:'荷花晨曦',title:'早安',lines:['岁岁安康','日日舒心顺遂'],accent:'#ff7da8',titleColor:'#fff8f4'},
-    {path:'assets/blessings/02-trumpet-flower.svg',name:'凌霄花开',title:'早安',lines:['日子舒心少烦忧','阖家喜乐福常留'],accent:'#ffcc72',titleColor:'#fff7df'},
-    {path:'assets/blessings/03-jujube-orchard.svg',name:'枣园丰收',title:'早上好',lines:['喜乐相伴','轻松惬意'],accent:'#f5dd62',titleColor:'#fffef2'},
-    {path:'assets/blessings/04-blessing-vase.svg',name:'福气花瓶',title:'早上好',lines:['开心快乐','幸福安康'],accent:'#ffcc72',titleColor:'#fff8ec'},
-    {path:'assets/blessings/05-pine-crane.svg',name:'松鹤延年',title:'晨安',lines:['福寿绵长','平安喜乐'],accent:'#f2dc9a',titleColor:'#fffdf4'},
-    {path:'assets/blessings/06-peony-gold.svg',name:'花开富贵',title:'吉祥如意',lines:['花开富贵','好运常在'],accent:'#ffd06b',titleColor:'#fff8e7'},
+    {path:'assets/blessings-realistic/01-lotus-sunrise.png',name:'荷香晨曦',title:'早安',english:'GOOD MORNING',lines:['岁岁安康','日日舒心顺遂'],accent:'#ff9ab9',titleColor:'#fffaf5',scheme:'realistic-b',layout:{titleX:938,titleY:154,titleAlign:'right',titleSize:150,lineX:925,lineY:1085,lineAlign:'right',lineSize:65,plateX:430,plateY:965,plateW:590,plateH:285}},
+    {path:'assets/blessings-realistic/02-trumpet-flower.png',name:'凌霄花开',title:'早安',english:'GOOD MORNING',lines:['日子舒心少烦忧','阖家喜乐福常留'],accent:'#ffd58b',titleColor:'#fff8e8',scheme:'realistic-b',layout:{titleX:90,titleY:170,titleAlign:'left',titleSize:160,lineX:86,lineY:1040,lineAlign:'left',lineSize:61,plateX:42,plateY:925,plateW:760,plateH:305}},
+    {path:'assets/blessings-realistic/03-jujube-orchard.png',name:'枣园丰收',title:'早上好',english:'A BEAUTIFUL DAY',lines:['喜乐相伴','轻松惬意'],accent:'#ffe16f',titleColor:'#fffdf3',scheme:'realistic-b',layout:{titleX:84,titleY:170,titleAlign:'left',titleSize:142,lineX:86,lineY:1025,lineAlign:'left',lineSize:67,plateX:42,plateY:905,plateW:665,plateH:310}},
+    {path:'assets/blessings-realistic/04-elegant-woman.png',name:'花间晨安',title:'晨安',english:'MORNING BLESSINGS',lines:['清晨有光，岁月有暖','愿我们都快乐幸福'],accent:'#ffd3e2',titleColor:'#fffdf8',scheme:'realistic-b',layout:{titleX:74,titleY:150,titleAlign:'left',titleSize:148,lineX:76,lineY:930,lineAlign:'left',lineSize:56,plateX:36,plateY:810,plateW:700,plateH:330}},
+    {path:'assets/blessings-realistic/05-blessing-vase.png',name:'福气花瓶',title:'幸福安康',english:'BEST WISHES',lines:['开心快乐','福气常伴'],accent:'#ffd489',titleColor:'#fffdf7',scheme:'realistic-b',layout:{titleX:540,titleY:148,titleAlign:'center',titleSize:130,lineX:540,lineY:1080,lineAlign:'center',lineSize:68,plateX:145,plateY:955,plateW:790,plateH:300}},
+    {path:'assets/blessings-realistic/06-pine-crane.png',name:'松鹤延年',title:'福寿安康',english:'PEACE & LONGEVITY',lines:['福寿绵长','平安喜乐'],accent:'#f8df9b',titleColor:'#fffdf4',scheme:'realistic-b',layout:{titleX:925,titleY:150,titleAlign:'right',titleSize:130,lineX:900,lineY:1080,lineAlign:'right',lineSize:67,plateX:400,plateY:955,plateW:620,plateH:300}},
     {path:'assets/blessings/07-moon-osmanthus.svg',name:'月圆桂香',title:'中秋安康',lines:['花好月圆','阖家团圆'],accent:'#ffd86b',titleColor:'#fff8d9'},
     {path:'assets/blessings/08-lantern-festival.svg',name:'灯火佳节',title:'佳节快乐',lines:['家和万事兴','福气常相伴'],accent:'#ffd56a',titleColor:'#fff4db'},
     {path:'assets/blessings/09-chrysanthemum-mountain.svg',name:'菊香重阳',title:'重阳安康',lines:['登高望远','福寿康宁'],accent:'#ffe079',titleColor:'#fff9df'},
@@ -119,7 +119,9 @@
   const BLESSING_START=PICTURE_PATHS.length;
   PICTURE_PATHS.push(...BLESSING_CARDS.map(card=>card.path));
   PICTURE_NAMES.push(...BLESSING_CARDS.map(card=>card.name));
-  const BLESSING_INDICES=BLESSING_CARDS.map((_,i)=>BLESSING_START+i);
+  const REALISTIC_BLESSING_COUNT=6;
+  const BLESSING_INDICES=BLESSING_CARDS.slice(0,REALISTIC_BLESSING_COUNT).map((_,i)=>BLESSING_START+i);
+  const ALL_BLESSING_INDICES=BLESSING_CARDS.map((_,i)=>BLESSING_START+i);
   function isBlessingIndex(index){return Number.isInteger(index)&&index>=BLESSING_START&&index<BLESSING_START+BLESSING_CARDS.length;}
   function blessingMeta(index){return isBlessingIndex(index)?BLESSING_CARDS[index-BLESSING_START]:null;}
 
@@ -613,7 +615,7 @@
   }
 
   function levelIntroCopy(level) {
-    if(game.mode==='blessing')return '拼出完整祝福图，完成后可保存或分享给亲友';
+    if(game.mode==='blessing')return '先拼一张干净写实美图，完成后自动生成祝福作品';
     if(level===1)return '拖动碎片，把同一张图的四块拼完整';
     if(level===2)return '消除后，上方牌堆会继续发牌';
     if(level===3)return '拼好的组合可整体拖；按住后拖可拆单块';
@@ -1797,7 +1799,7 @@
     game.phase='resolving';
     await resolveBoard(initialConnections,false);
     if(game.phase!=='won')game.phase='idle';
-    if(game.mode==='blessing'){dom.tutorialHand.classList.remove('is-visible');showToast('拼完整后会生成一张可保存、可分享的祝福作品',3300);}
+    if(game.mode==='blessing'){dom.tutorialHand.classList.remove('is-visible');showToast('方案B：拼图里不带文字，完成后才生成精美祝福作品',3600);}
     else if(game.level===1&&!save.tutorialSeen){dom.tutorialHand.classList.add('is-visible');showToast('先拖动一块碎片，和同一张图拼起来',3000);}
     else{dom.tutorialHand.classList.remove('is-visible');if(game.level===3)showToast('看牌堆下一张：先完成上层图片，试着触发二连锁',3300);else if(game.level===5)showToast('三连锁教学：提前留好落点，连得越多反馈越强',3400);}
   }
@@ -1894,19 +1896,52 @@
     if(line)lines.push(line);lines.forEach((value,i)=>ctx.fillText(value,x,y+i*lineHeight));return lines.length;
   }
 
+  function posterRoundRect(ctx,x,y,w,h,r){
+    const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();
+  }
+
+  function posterSparkle(ctx,x,y,size,color='#fff7ce'){
+    ctx.save();ctx.translate(x,y);ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=size*.75;ctx.beginPath();
+    ctx.moveTo(0,-size);ctx.quadraticCurveTo(size*.16,-size*.16,size,0);ctx.quadraticCurveTo(size*.16,size*.16,0,size);ctx.quadraticCurveTo(-size*.16,size*.16,-size,0);ctx.quadraticCurveTo(-size*.16,-size*.16,0,-size);ctx.fill();ctx.restore();
+  }
+
+  function drawPosterStrokeText(ctx,text,x,y,size,align,fill,accent,maxWidth=920){
+    ctx.save();ctx.textAlign=align;ctx.textBaseline='middle';ctx.lineJoin='round';ctx.font=`900 ${size}px "STKaiti","KaiTi","PingFang SC","Microsoft YaHei",sans-serif`;
+    let actual=size;while(actual>34&&ctx.measureText(text).width>maxWidth){actual-=3;ctx.font=`900 ${actual}px "STKaiti","KaiTi","PingFang SC","Microsoft YaHei",sans-serif`;}
+    ctx.shadowColor='rgba(0,0,0,.34)';ctx.shadowBlur=20;ctx.shadowOffsetY=8;ctx.strokeStyle='rgba(28,25,30,.76)';ctx.lineWidth=Math.max(12,actual*.13);ctx.strokeText(text,x,y);
+    ctx.shadowBlur=0;ctx.shadowOffsetY=0;ctx.strokeStyle=accent;ctx.lineWidth=Math.max(4,actual*.035);ctx.strokeText(text,x,y);ctx.fillStyle=fill;ctx.fillText(text,x,y);ctx.restore();
+  }
+
   async function renderBlessingPoster(index){
     const meta=blessingMeta(index);if(!meta)throw new Error('not a blessing card');
     const img=await loadPosterImage(PICTURE_PATHS[index]);
     const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1440;const ctx=canvas.getContext('2d');
     ctx.drawImage(img,0,0,1080,1440);
-    const top=ctx.createLinearGradient(0,0,0,430);top.addColorStop(0,'rgba(13,20,42,.40)');top.addColorStop(1,'rgba(13,20,42,0)');ctx.fillStyle=top;ctx.fillRect(0,0,1080,470);
-    const bottom=ctx.createLinearGradient(0,880,0,1440);bottom.addColorStop(0,'rgba(16,18,32,0)');bottom.addColorStop(.38,'rgba(16,18,32,.34)');bottom.addColorStop(1,'rgba(16,18,32,.68)');ctx.fillStyle=bottom;ctx.fillRect(0,820,1080,620);
-    ctx.textAlign='center';ctx.textBaseline='middle';ctx.lineJoin='round';
-    ctx.font='900 150px "PingFang SC","Microsoft YaHei",sans-serif';ctx.strokeStyle='rgba(32,30,45,.70)';ctx.lineWidth=20;ctx.strokeText(meta.title,540,205);ctx.fillStyle=meta.titleColor;ctx.fillText(meta.title,540,205);
-    ctx.font='800 65px "PingFang SC","Microsoft YaHei",sans-serif';ctx.lineWidth=12;ctx.strokeStyle='rgba(28,24,38,.72)';ctx.fillStyle='#fffdf5';
-    let y=1130;for(const line of meta.lines){ctx.strokeText(line,540,y);ctx.fillText(line,540,y);y+=92;}
-    ctx.fillStyle=meta.accent;ctx.fillRect(390,1300,300,5);
-    ctx.font='500 30px "PingFang SC","Microsoft YaHei",sans-serif';ctx.fillStyle='rgba(255,255,255,.88)';ctx.fillText('拼图完成 · 把这份祝福送给重要的人',540,1360);
+
+    const layout=meta.layout||{};
+    const titleX=layout.titleX??540,titleY=layout.titleY??180,titleAlign=layout.titleAlign||'center',titleSize=layout.titleSize||148;
+    const lineX=layout.lineX??540,lineY=layout.lineY??1080,lineAlign=layout.lineAlign||'center',lineSize=layout.lineSize||64;
+    const plateX=layout.plateX??105,plateY=layout.plateY??945,plateW=layout.plateW??870,plateH=layout.plateH??310;
+
+    const warm=ctx.createLinearGradient(0,0,1080,1440);warm.addColorStop(0,'rgba(255,244,225,.08)');warm.addColorStop(.52,'rgba(255,255,255,0)');warm.addColorStop(1,'rgba(25,18,23,.16)');ctx.fillStyle=warm;ctx.fillRect(0,0,1080,1440);
+    const vignette=ctx.createRadialGradient(540,650,180,540,650,920);vignette.addColorStop(.55,'rgba(0,0,0,0)');vignette.addColorStop(1,'rgba(8,10,16,.28)');ctx.fillStyle=vignette;ctx.fillRect(0,0,1080,1440);
+
+    const titleGlow=ctx.createRadialGradient(titleX,titleY,10,titleX,titleY,360);titleGlow.addColorStop(0,'rgba(12,18,28,.33)');titleGlow.addColorStop(1,'rgba(12,18,28,0)');ctx.fillStyle=titleGlow;ctx.fillRect(0,0,1080,520);
+    drawPosterStrokeText(ctx,meta.title,titleX,titleY,titleSize,titleAlign,meta.titleColor||'#fff',meta.accent||'#ffd77f',titleAlign==='center'?900:760);
+    if(meta.english){
+      ctx.save();ctx.textAlign=titleAlign;ctx.textBaseline='middle';ctx.font='600 33px Georgia,"Times New Roman",serif';ctx.letterSpacing='5px';ctx.fillStyle='rgba(255,255,255,.92)';ctx.shadowColor='rgba(0,0,0,.52)';ctx.shadowBlur=10;ctx.fillText(meta.english,titleX,titleY+titleSize*.66);ctx.restore();
+    }
+
+    ctx.save();ctx.shadowColor='rgba(0,0,0,.28)';ctx.shadowBlur=30;posterRoundRect(ctx,plateX,plateY,plateW,plateH,34);
+    const plate=ctx.createLinearGradient(plateX,plateY,plateX,plateY+plateH);plate.addColorStop(0,'rgba(18,21,31,.08)');plate.addColorStop(.28,'rgba(18,21,31,.36)');plate.addColorStop(1,'rgba(12,14,24,.64)');ctx.fillStyle=plate;ctx.fill();ctx.restore();
+    ctx.save();posterRoundRect(ctx,plateX+2,plateY+2,plateW-4,plateH-4,32);ctx.strokeStyle='rgba(255,255,255,.18)';ctx.lineWidth=2;ctx.stroke();ctx.restore();
+
+    meta.lines.forEach((line,i)=>{
+      const y=lineY+i*(lineSize+34);drawPosterStrokeText(ctx,line,lineX,y,lineSize,lineAlign,i===0?(meta.accent||'#ffe294'):'#fffdf5','#b73e34',lineAlign==='center'?850:760);
+    });
+    const dividerY=plateY+plateH-58;ctx.save();ctx.globalAlpha=.86;const divider=ctx.createLinearGradient(plateX+80,0,plateX+plateW-80,0);divider.addColorStop(0,'rgba(255,255,255,0)');divider.addColorStop(.5,meta.accent||'#ffe294');divider.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=divider;ctx.fillRect(plateX+70,dividerY,plateW-140,3);ctx.restore();
+    ctx.save();ctx.textAlign='center';ctx.font='500 28px "PingFang SC","Microsoft YaHei",sans-serif';ctx.fillStyle='rgba(255,255,255,.9)';ctx.shadowColor='rgba(0,0,0,.45)';ctx.shadowBlur=8;ctx.fillText(`愿美好如约而至 · ${meta.name}`,540,plateY+plateH-23);ctx.restore();
+    posterSparkle(ctx,Math.min(1015,plateX+plateW-56),plateY+45,18,meta.accent||'#fff2b6');posterSparkle(ctx,Math.max(65,plateX+54),plateY+82,10,'#fff');
     return canvas;
   }
 
@@ -1992,6 +2027,6 @@
   }
 
 
-  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,updateBoardLayout,TILE_ASPECT,finishLevel,goHome,visibleCompletionImage,ensureVisibleCompletionSet,primeDecksForPlayableFrontier,resolveBoard,renderBoard,imageCountForLevel,selectedImagesForLevel,levelIntroCopy,pictureCount:STANDARD_PICTURE_COUNT,totalPictureCount:PICTURE_PATHS.length,predictCascade,simulateDealWave,chainSpeedFactor,juice,registerClear,startFever,endFever,renderBlessingPoster,openBlessingWorks,blessingMeta,isBlessingIndex,blessingCount:BLESSING_CARDS.length,standardPictureCount:STANDARD_PICTURE_COUNT};
+  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,updateBoardLayout,TILE_ASPECT,finishLevel,goHome,visibleCompletionImage,ensureVisibleCompletionSet,primeDecksForPlayableFrontier,resolveBoard,renderBoard,imageCountForLevel,selectedImagesForLevel,levelIntroCopy,pictureCount:STANDARD_PICTURE_COUNT,totalPictureCount:PICTURE_PATHS.length,predictCascade,simulateDealWave,chainSpeedFactor,juice,registerClear,startFever,endFever,renderBlessingPoster,openBlessingWorks,blessingMeta,isBlessingIndex,blessingCount:BLESSING_CARDS.length,realisticBlessingCount:REALISTIC_BLESSING_COUNT,standardPictureCount:STANDARD_PICTURE_COUNT};
   boot();
 })();

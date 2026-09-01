@@ -1,15 +1,14 @@
 {
-  "version": "3.9.0",
-  "builtAt": "2026-08-31T18:00:20.129847+00:00",
+  "version": "4.0.0",
+  "builtAt": "2026-09-01T05:10:33.450630+00:00",
   "features": [
-    "separate blessing puzzle mode without changing the classic core",
-    "12 original morning and festival blessing backgrounds",
-    "six-card blessing rounds with real deck/refill/chain play",
-    "completed blessing cards unlock immediately and persist locally",
-    "full-resolution 1080x1440 poster rendering with dynamic greeting typography",
-    "system image sharing, PNG download and greeting-text copy",
-    "in-game work counter, collection browser and completion share CTA",
-    "classic 60-picture progression remains isolated from blessing assets",
+    "Scheme B: six clean text-free photorealistic blessing puzzle bases",
+    "lotus sunrise, trumpet flowers, jujube orchard, elegant fictional woman, blessing vase and pine-crane scenes",
+    "896x1152 photographic game assets with 1080x1440 share-poster output",
+    "per-image typography layouts that avoid faces and visual focal points",
+    "premium title strokes, translucent message plates, highlights and restrained sparkles",
+    "photo-led blessing entry and refined completed-image lockup",
+    "system sharing, PNG saving and blessing-copy flow retained",
     "v3.8 chain/juice, v3.7 progression, v3.6 gravity/seams and anti-deadlock retained"
   ]
 }
