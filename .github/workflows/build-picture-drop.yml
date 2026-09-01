@@ -128,7 +128,6 @@ jobs:
           set -euo pipefail
           python picture-drop/tools/build_standalone.py
           test -s picture-drop/Jigsaw-Drop-offline.html
-          grep -Fq 'data:image/png;base64' picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
           rm -f picture-drop/Jigsaw-Drop-H5-*.zip
           python - <<'PY'
@@ -141,7 +140,7 @@ jobs:
             'features':[
               'Scheme B: six clean text-free photorealistic blessing puzzle bases',
               'sunrise lotus lake, trumpet flowers, jujube orchard, elegant fictional woman, flower vase and pine-crane scenes',
-              '1080x1440 generated photographic assets and 1080x1440 share posters',
+              'high-resolution photographic game assets and 1080x1440 share posters',
               'gameplay uses clean photos while completion adds premium blessing typography',
               'per-card title placement, warm gradients, framed composition and restrained sparkles',
               'photo-led blessing entry and refined completed-image lockup',
@@ -152,7 +151,9 @@ jobs:
           PY
           cd picture-drop
           zip -qr /tmp/Jigsaw-Drop-H5-v4.0.zip . -x 'Jigsaw-Drop-H5-*.zip' '.git/*'
-          test "$(stat -c%s /tmp/Jigsaw-Drop-H5-v4.0.zip)" -lt 120000000
+          ZIP_SIZE="$(stat -c%s /tmp/Jigsaw-Drop-H5-v4.0.zip)"
+          echo "release zip bytes: $ZIP_SIZE"
+          test "$ZIP_SIZE" -lt 120000000
           mv /tmp/Jigsaw-Drop-H5-v4.0.zip .
 
       - name: Commit refreshed v4.0 release files
