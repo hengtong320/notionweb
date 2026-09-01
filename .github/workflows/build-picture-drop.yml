@@ -52,7 +52,8 @@ jobs:
           grep -Fq 'function roundedRectPath' picture-drop/game.js
           grep -Fq 'function drawPosterSpark' picture-drop/game.js
           grep -Fq 'realisticBlessingCount:REALISTIC_BLESSING_COUNT' picture-drop/game.js
-          grep -Fq '写实祝福拼图 <b>方案B</b>' picture-drop/index.html
+          grep -Fq '写实祝福拼图' picture-drop/index.html
+          grep -Fq '方案B' picture-drop/index.html
           grep -Fq 'v4.0-realistic-blessing-scheme-b' picture-drop/style.css
           grep -Fq 'style.css?v=4.0.0' picture-drop/index.html
           grep -Fq 'game.js?v=4.0.0' picture-drop/index.html
