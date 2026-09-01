@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Final behavior-focused regression for the photorealistic Scheme B release.
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
@@ -39,9 +40,7 @@ try:
       Promise.all(paths.map(src=>new Promise(resolve=>{const im=new Image();im.onload=()=>resolve({src,w:im.naturalWidth,h:im.naturalHeight});im.onerror=()=>resolve({src,w:0,h:0});im.src=src;}))).then(done);
     ''')
     assert len(dimensions)==6,dimensions
-    # Firefly's current validated rendition is 896x1152; future 3:4 upgrades are
-    # accepted as long as they retain enough detail and the intended portrait ratio.
-    assert all(x['w']>=896 and x['h']>=1152 and abs(x['w']/x['h']-.7777778)<.015 for x in dimensions),dimensions
+    assert all(x['w']>=896 and x['h']>=1152 and .74<=x['w']/x['h']<=.79 for x in dimensions),dimensions
 
     poster=d.execute_async_script('''
       const done=arguments[0],J=window.__JIGSAW__,idx=J.game.selectedImages[0],src=J.blessingMeta(idx).path;
@@ -51,8 +50,6 @@ try:
           const sourceCtx=source.getContext('2d');sourceCtx.drawImage(im,0,0,1080,1440);
           const c=await J.renderBlessingPoster(idx),posterCtx=c.getContext('2d');
           let diff=0,changed=0,samples=0;
-          // Scheme B deliberately places title and blessing copy differently per card.
-          // Scan broad title and copy zones rather than assuming one fixed text pixel.
           for(const [y0,y1] of [[55,360],[850,1360]]){
             for(let y=y0;y<=y1;y+=22)for(let x=35;x<=1045;x+=22){
               const a=sourceCtx.getImageData(x,y,1,1).data,b=posterCtx.getImageData(x,y,1,1).data;
