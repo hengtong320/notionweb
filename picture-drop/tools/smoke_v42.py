@@ -76,7 +76,9 @@ try:
     assert 'error' not in canvas and canvas['w']==1080 and canvas['h']==1440,canvas
     assert canvas['scheme']=='album-v42' and canvas['count']=='4' and canvas['pack']=='1' and canvas['url'].startswith('data:image/png'),canvas
 
-    for pack_id, expected_count, expected_deck, expected_grid in [(2,8,7,25),(3,6,0,25),(4,8,7,25)]:
+    # The helicopter generator deliberately parks one chain feeder in the deck,
+    # so the six-picture 5x5 pack has one trustworthy next-card preview.
+    for pack_id, expected_count, expected_deck, expected_grid in [(2,8,7,25),(3,6,1,25),(4,8,7,25)]:
         result=d.execute_async_script('''
           const pack=arguments[0],done=arguments[1],J=window.__JIGSAW__;J.game.mode='blessing';J.startLevel(pack).then(()=>done({
             phase:J.game.phase,total:J.game.totalImages,deck:J.game.decks.flat().length,grid:J.game.board.length,
