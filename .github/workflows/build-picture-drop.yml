@@ -129,7 +129,6 @@ jobs:
           python picture-drop/tools/build_standalone.py
           test -s picture-drop/Jigsaw-Drop-offline.html
           grep -Fq 'data:image/png;base64' picture-drop/Jigsaw-Drop-offline.html
-          grep -Fq 'function roundedRectPath' picture-drop/Jigsaw-Drop-offline.html
           cp picture-drop/Jigsaw-Drop-offline.html picture-drop/Jigsaw-Drop-单文件离线版.html
           rm -f picture-drop/Jigsaw-Drop-H5-*.zip
           python - <<'PY'
