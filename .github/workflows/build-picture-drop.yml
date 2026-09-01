@@ -154,7 +154,6 @@ jobs:
           set -euo pipefail
           git config user.name 'hengtong320'
           git config user.email '564712388@qq.com'
-          git pull --rebase origin main
           git add -A picture-drop
           if git diff --cached --quiet; then exit 0; fi
           git commit -s -m 'Release Jigsaw Drop H5 v4.1 core experience refactor'
