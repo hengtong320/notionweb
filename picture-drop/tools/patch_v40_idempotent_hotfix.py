@@ -12,6 +12,13 @@ if 'function isRealisticBlessingIndex' not in s:
         raise SystemExit('isBlessingIndex marker missing')
     s = s.replace(function_marker, function_code, 1)
 
+stage_old = "stage?.classList.toggle('is-hard',hard);stage?.classList.toggle('is-blessing',game.mode==='blessing');"
+stage_new = stage_old + "stage?.classList.toggle('is-realistic-blessing',game.mode==='blessing');"
+if "stage?.classList.toggle('is-realistic-blessing'" not in s:
+    if stage_old not in s:
+        raise SystemExit('stage class marker missing')
+    s = s.replace(stage_old, stage_new, 1)
+
 export_old = 'renderBlessingPoster,openBlessingWorks,blessingMeta,isBlessingIndex,blessingCount:'
 export_new = 'renderBlessingPoster,openBlessingWorks,blessingMeta,isBlessingIndex,isRealisticBlessingIndex,blessingCount:'
 if export_new not in s:
