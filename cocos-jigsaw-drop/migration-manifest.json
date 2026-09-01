@@ -1,0 +1,27 @@
+{
+  "project": "Jigsaw Drop Cocos Prototype",
+  "creator": "3.8.6",
+  "version": "0.1.0",
+  "images": [
+    "01-lotus-sunrise",
+    "02-trumpet-flower",
+    "03-jujube-orchard",
+    "04-elegant-woman",
+    "05-blessing-vase",
+    "06-pine-crane",
+    "07-peony-courtyard",
+    "08-tea-terraces",
+    "09-wheat-windmill",
+    "10-ocean-sailboat",
+    "11-sunflower-lane",
+    "12-ginkgo-temple",
+    "13-heli-red-mountain",
+    "14-heli-white-coast",
+    "15-heli-yellow-alpine",
+    "16-heli-blue-city",
+    "17-heli-black-desert",
+    "18-heli-silver-snow"
+  ],
+  "scene": "assets/scenes/Main.scene",
+  "entryComponent": "assets/scripts/GameBootstrap.ts"
+}
