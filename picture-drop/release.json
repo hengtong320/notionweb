@@ -1,14 +1,17 @@
 {
-  "version": "4.0.0",
-  "builtAt": "2026-09-01T05:37:33.420148+00:00",
+  "version": "4.1.0",
+  "builtAt": "2026-09-01T17:49:04.905474+00:00",
   "features": [
-    "Scheme B: six clean text-free photorealistic blessing puzzle bases",
-    "sunrise lotus lake, trumpet flowers, jujube orchard, elegant fictional woman, flower vase and pine-crane scenes",
-    "high-resolution photographic game assets and 1080x1440 share posters",
-    "gameplay uses clean photos while completion adds premium blessing typography",
-    "per-card title placement, warm gradients, framed composition and restrained sparkles",
-    "photo-led blessing entry and refined completed-image lockup",
-    "system sharing, PNG saving and blessing-copy flow retained",
-    "v3.8 chain/juice, v3.7 progression, v3.6 gravity/seams and anti-deadlock retained"
+    "Blessing mode split into three real two-image packs with no repeated fake next group",
+    "first blessing work can be completed in one move and immediately opens the generated poster",
+    "support-aware group gravity: rigid fall first, controlled fracture only when asymmetrically pinned",
+    "runtime deck preview is trustworthy; silent deck-front reordering removed",
+    "deadlocks are surfaced and repaired only by an explicit free magic-wand rescue",
+    "one-step undo restores board, decks, counters and collected blessing state",
+    "stronger hints include complete-image preview, dimmed unrelated pieces, ghost target and action label",
+    "level 15 rebalanced from 14 to 9 images while retaining the 5x5 planning board",
+    "blessing mode hides competitive clutter and uses a dedicated work-first completion flow",
+    "local action telemetry and JSON export added for playtest diagnosis",
+    "v4.0 photorealistic Scheme B, poster sharing, chain, FLOW, seamless surfaces and performance work retained"
   ]
 }

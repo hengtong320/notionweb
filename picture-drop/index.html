@@ -8,10 +8,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="format-detection" content="telephone=no" />
   <title>Jigsaw Drop · H5</title>
-  <link rel="manifest" href="manifest.webmanifest?v=4.0.0" />
+  <link rel="manifest" href="manifest.webmanifest?v=4.1.0" />
   <link rel="icon" href="assets/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
-  <link rel="stylesheet" href="style.css?v=4.0.0" />
+  <link rel="stylesheet" href="style.css?v=4.1.0" />
 </head>
 <body>
   <main id="app" class="app-shell" aria-label="Jigsaw Drop H5 游戏">
@@ -48,7 +48,7 @@
           <div class="level-pill">关卡 <strong id="homeLevel">1</strong></div>
           <button id="playBtn" class="primary-btn play-btn"><span class="play-triangle"></span>开始游戏</button>
           <button id="galleryBtn" class="secondary-btn">图片图鉴 <span id="galleryCount">0 / 60</span></button>
-          <button id="blessingBtn" class="blessing-entry"><b class="realistic-badge">方案B · 写实</b><span>写实祝福拼图</span><small>先拼干净美图 · 完成后生成分享作品</small></button>
+          <button id="blessingBtn" class="blessing-entry"><span>今日祝福</span><small>拼一张写实美图 · 完成即生成作品</small></button>
           <button id="homeWorksBtn" class="text-btn blessing-works-link" hidden>我的祝福作品</button>
         </div>
         <p class="home-tip">竖幅拼图：直接拖整组 · 按住后拖可拆单块 · 悬空自动下落</p>
@@ -66,6 +66,9 @@
             <button id="hintBtn" class="tool-btn" aria-label="提示">
               <span class="tool-icon hint-icon"><i></i></span>
               <b id="hintCount">3</b>
+            </button>
+            <button id="undoBtn" class="tool-btn undo-btn is-empty" aria-label="撤销上一步" disabled>
+              <span class="tool-icon undo-icon">↶</span>
             </button>
           </div>
         </header>
@@ -95,7 +98,7 @@
             <div class="progress-track"><i id="progressBar"></i></div>
             <div class="status-item"><span class="status-icon move-icon"></span><strong id="moveText">0</strong></div>
           </div>
-          <button id="workBadge" class="work-badge" hidden>祝福作品 <b id="workBadgeCount">0</b>/6</button>
+          <button id="workBadge" class="work-badge" hidden>本组作品 <b id="workBadgeCount">0</b>/<b id="workBadgeTotal">2</b></button>
         </section>
 
         <div id="comboToast" class="combo-toast" aria-live="polite"><span>Combo</span><strong>× 2</strong></div>
@@ -108,6 +111,7 @@
           <div class="card-fan" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
           <div class="ribbon"><span>恭喜</span></div>
           <h2>关卡完成</h2>
+          <p id="blessingWinText" class="blessing-win-text" hidden></p>
           <div class="win-stats">
             <div><span class="win-icon clock-icon"></span><small>用时</small><strong id="winTime">00:00</strong></div>
             <div><span class="win-icon move-icon"></span><small>步数</small><strong id="winMoves">0</strong></div>
@@ -131,6 +135,7 @@
             <button id="resumeBtn" class="primary-btn">继续游戏</button>
             <button id="restartBtn" class="secondary-btn">重新开始本关</button>
             <button id="homeBtn" class="secondary-btn">返回首页</button>
+            <button id="exportDataBtn" class="text-btn export-data-btn">导出测试数据</button>
           </div>
           <p>进度会自动保存在当前设备。</p>
         </div>
@@ -154,6 +159,7 @@
           <div class="blessing-preview-shell"><img id="blessingPreview" alt="祝福作品预览" /></div>
           <div id="blessingThumbs" class="blessing-thumbs"></div>
           <div class="blessing-actions"><button id="shareBlessingBtn" class="primary-btn">分享图片</button><button id="downloadBlessingBtn" class="secondary-btn">保存图片</button><button id="copyBlessingBtn" class="text-btn">复制祝福语</button></div>
+          <button id="blessingContinueBtn" class="primary-btn blessing-continue-btn" hidden>继续拼下一张</button>
           <p class="blessing-note">浏览器支持时会直接调起系统分享；否则自动生成图片供保存。</p>
         </div>
       </section>
@@ -167,6 +173,6 @@
     </section>
   </main>
 
-  <script src="game.js?v=4.0.0"></script>
+  <script src="game.js?v=4.1.0"></script>
 </body>
 </html>
