@@ -8,10 +8,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="format-detection" content="telephone=no" />
   <title>Jigsaw Drop · H5</title>
-  <link rel="manifest" href="manifest.webmanifest?v=4.1.0" />
+  <link rel="manifest" href="manifest.webmanifest?v=4.2.0" />
   <link rel="icon" href="assets/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
-  <link rel="stylesheet" href="style.css?v=4.1.0" />
+  <link rel="stylesheet" href="style.css?v=4.2.0" />
 </head>
 <body>
   <main id="app" class="app-shell" aria-label="Jigsaw Drop H5 游戏">
@@ -48,7 +48,7 @@
           <div class="level-pill">关卡 <strong id="homeLevel">1</strong></div>
           <button id="playBtn" class="primary-btn play-btn"><span class="play-triangle"></span>开始游戏</button>
           <button id="galleryBtn" class="secondary-btn">图片图鉴 <span id="galleryCount">0 / 60</span></button>
-          <button id="blessingBtn" class="blessing-entry"><span>今日祝福</span><small>拼一张写实美图 · 完成即生成作品</small></button>
+          <button id="blessingBtn" class="blessing-entry"><span>写实祝福合辑</span><small>一局拼多张 · 最后合成一份可分享作品</small></button>
           <button id="homeWorksBtn" class="text-btn blessing-works-link" hidden>我的祝福作品</button>
         </div>
         <p class="home-tip">竖幅拼图：直接拖整组 · 按住后拖可拆单块 · 悬空自动下落</p>
@@ -151,16 +151,24 @@
       </section>
 
 
+      <section id="blessingPackModal" class="modal-layer" aria-label="选择祝福挑战">
+        <div class="modal-card blessing-pack-card">
+          <button id="blessingPackClose" class="modal-close" aria-label="关闭">×</button>
+          <div class="pack-menu-head"><small>写实祝福合辑</small><h2>选择本局主题</h2><p>从轻松识别，到同题材直升机困难关，再到深牌堆心流挑战。</p></div>
+          <div id="blessingPackGrid" class="blessing-pack-grid"></div>
+        </div>
+      </section>
+
       <section id="blessingModal" class="modal-layer" aria-label="祝福作品">
         <div class="modal-card blessing-modal-card">
           <button class="modal-close" data-close-modal aria-label="关闭">×</button>
-          <div class="blessing-modal-head"><div><small>拼图生成作品</small><h2>我的祝福卡</h2></div><div class="blessing-nav"><button id="blessingPrevBtn" aria-label="上一张">‹</button><button id="blessingNextBtn" aria-label="下一张">›</button></div></div>
+          <div class="blessing-modal-head"><div><small>多张美图合成一份作品</small><h2>本局祝福合辑</h2></div><div class="blessing-nav"><button id="blessingPrevBtn" aria-label="上一张">‹</button><button id="blessingNextBtn" aria-label="下一张">›</button></div></div>
           <p id="blessingMessage" class="blessing-message"></p>
           <div class="blessing-preview-shell"><img id="blessingPreview" alt="祝福作品预览" /></div>
           <div id="blessingThumbs" class="blessing-thumbs"></div>
           <div class="blessing-actions"><button id="shareBlessingBtn" class="primary-btn">分享图片</button><button id="downloadBlessingBtn" class="secondary-btn">保存图片</button><button id="copyBlessingBtn" class="text-btn">复制祝福语</button></div>
           <button id="blessingContinueBtn" class="primary-btn blessing-continue-btn" hidden>继续拼下一张</button>
-          <p class="blessing-note">浏览器支持时会直接调起系统分享；否则自动生成图片供保存。</p>
+          <p class="blessing-note">本局完成的多张写实图片会排成一张高清合辑；浏览器不支持直接分享时可先保存图片。</p>
         </div>
       </section>
 
@@ -173,6 +181,6 @@
     </section>
   </main>
 
-  <script src="game.js?v=4.1.0"></script>
+  <script src="game.js?v=4.2.0"></script>
 </body>
 </html>

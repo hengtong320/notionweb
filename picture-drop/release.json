@@ -1,17 +1,16 @@
 {
-  "version": "4.1.0",
-  "builtAt": "2026-09-01T17:49:04.905474+00:00",
+  "version": "4.2.0",
+  "builtAt": "2026-09-01T18:26:47.442036+00:00",
   "features": [
-    "Blessing mode split into three real two-image packs with no repeated fake next group",
-    "first blessing work can be completed in one move and immediately opens the generated poster",
-    "support-aware group gravity: rigid fall first, controlled fracture only when asymmetrically pinned",
-    "runtime deck preview is trustworthy; silent deck-front reordering removed",
-    "deadlocks are surfaced and repaired only by an explicit free magic-wand rescue",
-    "one-step undo restores board, decks, counters and collected blessing state",
-    "stronger hints include complete-image preview, dimmed unrelated pieces, ghost target and action label",
-    "level 15 rebalanced from 14 to 9 images while retaining the 5x5 planning board",
-    "blessing mode hides competitive clutter and uses a dedicated work-first completion flow",
-    "local action telemetry and JSON export added for playtest diagnosis",
-    "v4.0 photorealistic Scheme B, poster sharing, chain, FLOW, seamless surfaces and performance work retained"
+    "whole blessing round now generates one shareable multi-image album instead of interrupting after every picture",
+    "twelve new original photorealistic pictures added: six scenic blessings and six civilian helicopter photographs",
+    "eighteen photorealistic blessing images organized into easy, medium, helicopter hard and expert-flow packs",
+    "adaptive 1080x1440 album compositor supports four, six and eight completed pictures with pack-specific wishes",
+    "pack chooser exposes picture count, grid size, theme and difficulty before play",
+    "easy 4x4 pack, medium 5x5 deep-deck pack, six-helicopter similarity challenge and expert seeded three-chain pack",
+    "difficulty-specific hint counts, starting FLOW, FLOW gain and cascade speed shape the tension-release rhythm",
+    "individual completions only add to the collection counter; final album opens after the whole round",
+    "v4.1 undo, explicit rescue, reliable next-card preview, improved hints and level-15 rebalance retained",
+    "v4.0 photorealistic poster system, v3.8 chain/juice and seamless joined-surface rendering retained"
   ]
 }
