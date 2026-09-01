@@ -26,5 +26,14 @@ if export_new not in s:
         raise SystemExit('window export marker missing')
     s = s.replace(export_old, export_new, 1)
 
+# Older release validation looked for this helper name. Keep a harmless alias so
+# the standalone build and the current poster implementation remain compatible.
+if 'function roundedRectPath' not in s:
+    marker = '  function posterSparkle(ctx,x,y,size,color='
+    if marker not in s:
+        raise SystemExit('posterSparkle marker missing')
+    alias = "  function roundedRectPath(ctx,x,y,w,h,r){return posterRoundRect(ctx,x,y,w,h,r);}\n\n"
+    s = s.replace(marker, alias + marker, 1)
+
 GAME.write_text(s, encoding='utf-8')
 print('v4.0 idempotent compatibility hotfix applied')
