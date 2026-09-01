@@ -90,7 +90,6 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           s=Path('picture-drop/tools/smoke_v38.py').read_text(encoding='utf-8').replace('8765','8767').replace('v=3.8.0','v=4.0.0')
-          s=s.replace("assert stats['pictures']==60,stats","assert stats['pictures']>=72,stats")
           Path('/tmp/smoke_v38_as_v40.py').write_text(s,encoding='utf-8')
           PY
           sleep 1
