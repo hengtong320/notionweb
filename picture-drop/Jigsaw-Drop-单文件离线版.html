@@ -698,6 +698,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
   const BLESSING_INDICES=BLESSING_CARDS.slice(0,REALISTIC_BLESSING_COUNT).map((_,i)=>BLESSING_START+i);
   const ALL_BLESSING_INDICES=BLESSING_CARDS.map((_,i)=>BLESSING_START+i);
   function isBlessingIndex(index){return Number.isInteger(index)&&index>=BLESSING_START&&index<BLESSING_START+BLESSING_CARDS.length;}
+  function isRealisticBlessingIndex(index){return Number.isInteger(index)&&index>=BLESSING_START&&index<BLESSING_START+REALISTIC_BLESSING_COUNT;}
   function blessingMeta(index){return isBlessingIndex(index)?BLESSING_CARDS[index-BLESSING_START]:null;}
 
   const QUADRANTS = [
@@ -2356,7 +2357,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
     ensureVisibleCompletionSet();
 
     const hard=isHardLevel(game.level);
-    const stage=document.getElementById('gameStage');stage?.classList.toggle('is-hard',hard);stage?.classList.toggle('is-blessing',game.mode==='blessing');
+    const stage=document.getElementById('gameStage');stage?.classList.toggle('is-hard',hard);stage?.classList.toggle('is-blessing',game.mode==='blessing');stage?.classList.toggle('is-realistic-blessing',game.mode==='blessing');
     const title=dom.levelNumber.parentElement;title?.classList.toggle('is-hard',hard);
     const titleLabel=title?.querySelector('span');if(titleLabel)titleLabel.textContent=game.mode==='blessing'?'祝福':(hard?'困难':'关卡');
     dom.introLevel.textContent=String(game.level);dom.introText.textContent=levelIntroCopy(game.level);
@@ -2474,6 +2475,8 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
   function posterRoundRect(ctx,x,y,w,h,r){
     const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();
   }
+
+  function roundedRectPath(ctx,x,y,w,h,r){return posterRoundRect(ctx,x,y,w,h,r);}
 
   function posterSparkle(ctx,x,y,size,color='#fff7ce'){
     ctx.save();ctx.translate(x,y);ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=size*.75;ctx.beginPath();
@@ -2602,7 +2605,7 @@ button:focus-visible{outline:3px solid rgba(255,255,255,.85);outline-offset:3px}
   }
 
 
-  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,updateBoardLayout,TILE_ASPECT,finishLevel,goHome,visibleCompletionImage,ensureVisibleCompletionSet,primeDecksForPlayableFrontier,resolveBoard,renderBoard,imageCountForLevel,selectedImagesForLevel,levelIntroCopy,pictureCount:STANDARD_PICTURE_COUNT,totalPictureCount:PICTURE_PATHS.length,predictCascade,simulateDealWave,chainSpeedFactor,juice,registerClear,startFever,endFever,renderBlessingPoster,openBlessingWorks,blessingMeta,isBlessingIndex,blessingCount:BLESSING_CARDS.length,realisticBlessingCount:REALISTIC_BLESSING_COUNT,standardPictureCount:STANDARD_PICTURE_COUNT};
+  window.__JIGSAW__={game,startLevel,findHelpfulMove,commitMove,computeGroups,computeConnections,boardScore,generateLevel,settleGroupsRigid,gravityStep,validateMove,gridForLevel,isHardLevel,remainingDeckCount,updateBoardLayout,TILE_ASPECT,finishLevel,goHome,visibleCompletionImage,ensureVisibleCompletionSet,primeDecksForPlayableFrontier,resolveBoard,renderBoard,imageCountForLevel,selectedImagesForLevel,levelIntroCopy,pictureCount:STANDARD_PICTURE_COUNT,totalPictureCount:PICTURE_PATHS.length,predictCascade,simulateDealWave,chainSpeedFactor,juice,registerClear,startFever,endFever,renderBlessingPoster,openBlessingWorks,blessingMeta,isBlessingIndex,isRealisticBlessingIndex,blessingCount:BLESSING_CARDS.length,realisticBlessingCount:REALISTIC_BLESSING_COUNT,standardPictureCount:STANDARD_PICTURE_COUNT};
   boot();
 })();
 
