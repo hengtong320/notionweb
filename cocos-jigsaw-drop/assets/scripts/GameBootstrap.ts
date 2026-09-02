@@ -744,7 +744,7 @@ export class GameBootstrap extends Component {
             const surface = this.createNode(`Joined-${group.imageKey}-${group.cells.join("-")}`, this.joinedLayer, this.boardWidth, this.boardHeight, 0, 0);
             const mask = surface.addComponent(Mask);
             mask.type = Mask.Type.GRAPHICS_STENCIL;
-            const stencil = mask.graphics;
+            const stencil = surface.getComponent(Graphics) ?? surface.addComponent(Graphics);
             stencil.clear();
             stencil.fillColor = Color.WHITE;
             for (const cell of group.cells) {

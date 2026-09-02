@@ -36,7 +36,7 @@
             "_value": false
           },
           "rich-text": {
-            "_value": true
+            "_value": false
           },
           "mask": {
             "_value": true
@@ -104,7 +104,7 @@
             "_value": false
           },
           "profiler": {
-            "_value": true
+            "_value": false
           },
           "occlusion-query": {
             "_value": false
@@ -116,7 +116,7 @@
             "_value": false
           },
           "particle-2d": {
-            "_value": true
+            "_value": false
           },
           "audio": {
             "_value": true
@@ -149,11 +149,11 @@
             "_value": false
           },
           "spine": {
-            "_value": true,
+            "_value": false,
             "_option": "spine-3.8"
           },
           "spine-3.8": {
-            "_value": true,
+            "_value": false,
             "_flags": {
               "LOAD_SPINE_MANUALLY": false
             }
@@ -168,10 +168,10 @@
             "_value": false
           },
           "marionette": {
-            "_value": true
+            "_value": false
           },
           "procedural-animation": {
-            "_value": true
+            "_value": false
           },
           "custom-pipeline-post-process": {
             "_value": false
@@ -201,13 +201,8 @@
           "gfx-webgl2",
           "graphics",
           "intersection-2d",
-          "marionette",
           "mask",
-          "particle-2d",
-          "procedural-animation",
-          "profiler",
-          "rich-text",
-          "spine-3.8",
+          "render-pipeline",
           "tween",
           "ui"
         ],

@@ -1,0 +1,23 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "c20d16e5-608b-51a8-bf76-6b6507ad9d5c",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "bundleName": "classic-a",
+    "isBundle": true,
+    "bundleConfigID": "auto_c5c93a38e5075a73ab9276",
+    "compressionType": {
+      "wechatgame": "subpackage",
+      "bytedance-mini-game": "subpackage",
+      "web-mobile": "merge_dep"
+    },
+    "isRemoteBundle": {
+      "wechatgame": false,
+      "bytedance-mini-game": false,
+      "web-mobile": false
+    }
+  }
+}

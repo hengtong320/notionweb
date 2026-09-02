@@ -1,0 +1,40 @@
+{
+  "__version__": "1.0.4",
+  "builder": {
+    "common": {
+      "buildPath": "project://build",
+      "mainBundleCompressionType": "subpackage",
+      "mainBundleIsRemote": false,
+      "buildStageGroup": {
+        "build": [
+          "run"
+        ]
+      },
+      "wasmCompressionMode": "",
+      "startSceneAssetBundle": false,
+      "debug": false,
+      "useBuiltinServer": false,
+      "bundleConfigs": [],
+      "scenes": [
+        {
+          "url": "db://assets/scenes/Main.scene",
+          "uuid": "5a58b215-6ea5-4f9b-89a1-cd7d503e28ca"
+        }
+      ],
+      "startScene": "5a58b215-6ea5-4f9b-89a1-cd7d503e28ca",
+      "outputName": "bytedance-mini-game",
+      "platform": "bytedance-mini-game"
+    },
+    "__version__": "1.3.9",
+    "options": {
+      "bytedance-mini-game": {
+        "orientation": "portrait",
+        "appid": "",
+        "separateEngine": false,
+        "highPerformanceMode": true,
+        "remoteServerAddress": "",
+        "__version__": "1.0.4"
+      }
+    }
+  }
+}

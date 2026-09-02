@@ -1,0 +1,23 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "85af5660-16ba-5e67-a436-af3c0b422c5b",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "bundleName": "blessing",
+    "isBundle": true,
+    "bundleConfigID": "auto_c2eb3b5114215b73b729c3",
+    "compressionType": {
+      "wechatgame": "subpackage",
+      "bytedance-mini-game": "subpackage",
+      "web-mobile": "merge_dep"
+    },
+    "isRemoteBundle": {
+      "wechatgame": false,
+      "bytedance-mini-game": false,
+      "web-mobile": false
+    }
+  }
+}
