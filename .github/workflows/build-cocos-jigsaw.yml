@@ -8,6 +8,7 @@ on:
       - 'cocos-jigsaw-drop/docs/**'
       - 'cocos-jigsaw-drop/README.md'
       - 'picture-drop/tools/prepare_cocos_full_project.py'
+      - 'picture-drop/tools/patch_cocos_full_source.py'
       - '.github/workflows/build-cocos-jigsaw.yml'
   workflow_dispatch:
 
@@ -45,6 +46,7 @@ jobs:
         run: |
           set -euo pipefail
           python picture-drop/tools/prepare_cocos_full_project.py
+          python picture-drop/tools/patch_cocos_full_source.py
           test "$(find cocos-jigsaw-drop/assets/bundles/blessing/pictures -maxdepth 1 -name '*.jpg' | wc -l | tr -d ' ')" = '18'
           test "$(find cocos-jigsaw-drop/assets/bundles/classic-a/pictures -maxdepth 1 -name '*.jpg' | wc -l | tr -d ' ')" = '20'
           test "$(find cocos-jigsaw-drop/assets/bundles/classic-b/pictures -maxdepth 1 -name '*.jpg' | wc -l | tr -d ' ')" = '20'
@@ -137,7 +139,7 @@ jobs:
               'single/group drag, long-press split, region swap, gravity-first settlement, clear and per-column dealing',
               'seamless joined surfaces rendered from one full texture through Graphics stencil masks',
               'next-card preview, useful image/target hint, one-step undo and explicit non-silent deadlock rescue',
-              'Combo, cross-turn streak, FLOW, three-turn FEVER, layered audio, haptics and pooled lightweight effects',
+              'Combo, cross-turn streak, FLOW, three-turn FEVER, layered audio, haptics and lightweight effects',
               'full home, pack chooser, settings, game and multi-image result/share flows',
               'Web, WeChat wx and Douyin tt lifecycle, storage, safe-area, share, canvas capture and album-save bridge',
               'four Cocos Asset Bundles configured as WeChat and ByteDance subpackages',
