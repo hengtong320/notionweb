@@ -1,10 +1,13 @@
-name: Build Jigsaw Drop Cocos Creator Project
+name: Build Complete Jigsaw Drop Cocos Project
 
 on:
   push:
     paths:
-      - 'picture-drop/tools/generate_cocos_project.py'
-      - 'picture-drop/tools/patch_cocos_project.py'
+      - 'cocos-jigsaw-drop/assets/scripts/**'
+      - 'cocos-jigsaw-drop/tests/**'
+      - 'cocos-jigsaw-drop/docs/**'
+      - 'cocos-jigsaw-drop/README.md'
+      - 'picture-drop/tools/prepare_cocos_full_project.py'
       - '.github/workflows/build-cocos-jigsaw.yml'
   workflow_dispatch:
 
@@ -12,13 +15,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: cocos-jigsaw-drop-build
+  group: cocos-jigsaw-drop-full-build
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -35,31 +38,21 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install generator dependency
-        run: python -m pip install --quiet pillow
+      - name: Install asset preparation dependencies
+        run: python -m pip install --quiet pillow cairosvg
 
-      - name: Fetch a clean Cocos Creator 3.8 scene template
+      - name: Prepare complete Cocos Asset Bundles audio and build profiles
         run: |
           set -euo pipefail
-          git clone --depth 1 --branch master https://github.com/Atmosaero/Match3-Sample-CocosCreator.git /tmp/cocos-template
-          test "$(node -p "require('/tmp/cocos-template/package.json').creator.version")" = '3.8.6'
+          python picture-drop/tools/prepare_cocos_full_project.py
+          test "$(find cocos-jigsaw-drop/assets/bundles/blessing/pictures -maxdepth 1 -name '*.jpg' | wc -l | tr -d ' ')" = '18'
+          test "$(find cocos-jigsaw-drop/assets/bundles/classic-a/pictures -maxdepth 1 -name '*.jpg' | wc -l | tr -d ' ')" = '20'
+          test "$(find cocos-jigsaw-drop/assets/bundles/classic-b/pictures -maxdepth 1 -name '*.jpg' | wc -l | tr -d ' ')" = '20'
+          test "$(find cocos-jigsaw-drop/assets/bundles/classic-c/pictures -maxdepth 1 -name '*.jpg' | wc -l | tr -d ' ')" = '20'
+          test "$(find cocos-jigsaw-drop/assets/resources/audio -maxdepth 1 -name '*.wav' | wc -l | tr -d ' ')" = '9'
+          test ! -d cocos-jigsaw-drop/assets/resources/pictures
 
-      - name: Generate Jigsaw Drop Cocos project
-        run: |
-          set -euo pipefail
-          python picture-drop/tools/generate_cocos_project.py \
-            --template /tmp/cocos-template \
-            --source picture-drop \
-            --out cocos-jigsaw-drop
-          python picture-drop/tools/patch_cocos_project.py
-          test -f cocos-jigsaw-drop/assets/scenes/Main.scene
-          test -f cocos-jigsaw-drop/assets/scripts/GameBootstrap.ts
-          test -f cocos-jigsaw-drop/assets/scripts/core/JigsawCore.ts
-          test -f cocos-jigsaw-drop/assets/scripts/platform/PlatformBridge.ts
-          test "$(find cocos-jigsaw-drop/assets/resources/pictures -maxdepth 1 -name '*.jpg' | wc -l | tr -d ' ')" = '18'
-          test "$(find cocos-jigsaw-drop/assets/resources/pictures -maxdepth 1 -name '*.webp' | wc -l | tr -d ' ')" = '0'
-
-      - name: Validate scene references and project manifest
+      - name: Validate scene project profiles and bundle metadata
         run: |
           set -euo pipefail
           python - <<'PY'
@@ -69,24 +62,36 @@ jobs:
           scene=json.loads((root/'assets/scenes/Main.scene').read_text(encoding='utf-8'))
           assert scene and scene[0]['__type__']=='cc.SceneAsset'
           refs=[]
-          def walk(v):
-              if isinstance(v,dict):
-                  if set(v)=={'__id__'} and isinstance(v['__id__'],int): refs.append(v['__id__'])
+          def walk(value):
+              if isinstance(value,dict):
+                  if set(value)=={'__id__'} and isinstance(value['__id__'],int): refs.append(value['__id__'])
                   else:
-                      for x in v.values(): walk(x)
-              elif isinstance(v,list):
-                  for x in v: walk(x)
+                      for child in value.values(): walk(child)
+              elif isinstance(value,list):
+                  for child in value: walk(child)
           walk(scene)
-          assert all(0 <= i < len(scene) for i in refs), (len(scene), max(refs, default=-1))
-          assert any(x.get('__type__')=='54d8ahqchdBm7RV08C23Y8J' for x in scene)
+          assert all(0 <= value < len(scene) for value in refs)
+          assert any(obj.get('__type__')=='54d8ahqchdBm7RV08C23Y8J' for obj in scene)
           pkg=json.loads((root/'package.json').read_text(encoding='utf-8'))
           assert pkg['creator']['version']=='3.8.8'
+          assert pkg['version']=='1.0.0-beta.1'
           manifest=json.loads((root/'migration-manifest.json').read_text(encoding='utf-8'))
-          assert len(manifest['images'])==18 and manifest['textureFormat']=='jpg'
-          print('PASS Cocos scene references and project manifest')
+          assert sum(len(items) for items in manifest['assetBundles'].values())==78
+          assert len(manifest['audio'])==9
+          for name,expected in {'blessing':18,'classic-a':20,'classic-b':20,'classic-c':20}.items():
+              meta=json.loads((root/'assets/bundles'/f'{name}.meta').read_text(encoding='utf-8'))
+              assert meta['userData']['isBundle'] is True
+              assert meta['userData']['compressionType']['wechatgame']=='subpackage'
+              assert meta['userData']['compressionType']['bytedance-mini-game']=='subpackage'
+              assert len(manifest['assetBundles'][name])==expected
+          wx=json.loads((root/'profiles/v2/packages/wechatgame.json').read_text(encoding='utf-8'))
+          tt=json.loads((root/'profiles/v2/packages/bytedance-mini-game.json').read_text(encoding='utf-8'))
+          assert wx['builder']['options']['wechatgame']['orientation']=='portrait'
+          assert tt['builder']['options']['bytedance-mini-game']['orientation']=='portrait'
+          print('PASS scene references, 78 assets, four subpackages, portrait build profiles and manifest')
           PY
 
-      - name: Type-check Cocos scripts and run pure core tests
+      - name: Type-check all Cocos scripts and run pure core tests
         working-directory: cocos-jigsaw-drop
         run: |
           set -euo pipefail
@@ -96,50 +101,70 @@ jobs:
             @cocos/creator-types@3.8.8
           npx tsc -p tsconfig.ci.json --noEmit
           npx tsx tests/core.test.ts
+          npx tsx tests/core-full.test.ts
           rm -rf node_modules package-lock.json
 
-      - name: Build downloadable project archive
+      - name: Verify complete client feature markers
         run: |
           set -euo pipefail
-          rm -f cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.6.zip cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.8.zip
+          grep -Fq 'Mask.Type.GRAPHICS_STENCIL' cocos-jigsaw-drop/assets/scripts/GameBootstrap.ts
+          grep -Fq 'FLOW FEVER' cocos-jigsaw-drop/assets/scripts/GameBootstrap.ts
+          grep -Fq 'saveCurrentCanvas' cocos-jigsaw-drop/assets/scripts/platform/PlatformBridge.ts
+          grep -Fq 'isDeadlocked' cocos-jigsaw-drop/assets/scripts/core/JigsawCore.ts
+          grep -Fq 'restoreSnapshot' cocos-jigsaw-drop/assets/scripts/core/JigsawCore.ts
+          grep -Fq 'BLESSING_PACKS' cocos-jigsaw-drop/assets/scripts/config/GameConfig.ts
+          grep -Fq 'classicImageCount' cocos-jigsaw-drop/assets/scripts/config/GameConfig.ts
+          grep -Fq 'docs/WECHAT.md' cocos-jigsaw-drop/README.md
+          grep -Fq 'docs/DOUYIN.md' cocos-jigsaw-drop/README.md
+
+      - name: Build complete downloadable project archive
+        run: |
+          set -euo pipefail
+          rm -f cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.6.zip \
+                cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.8.zip \
+                cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.8-Full.zip
           python - <<'PY'
           from pathlib import Path
           import json,datetime
           root=Path('cocos-jigsaw-drop')
           (root/'release.json').write_text(json.dumps({
-            'version':'0.1.1',
+            'version':'1.0.0-beta.1',
             'creator':'3.8.8',
             'builtAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'features':[
-              'openable Cocos Creator 3.8.8 TypeScript project',
-              'native Cocos 2D Sprite, Graphics, Label, touch and tween rendering',
-              'pure TypeScript JigsawCore separated from presentation',
-              '4x4 photorealistic blessing sample and 5x5 six-helicopter challenge',
-              'single texture per complete picture with quadrant SpriteFrame cropping',
-              'single/group dragging, long-press split, region swap and gravity settlement',
-              'complete-image clear loop, deck dealing, hints and result collage',
-              'Web, WeChat wx and Douyin tt platform bridge skeletons',
-              '18 optimized 900x1200 desktop-safe JPG assets'
+              'complete mobile-first Cocos Creator client with responsive safe-area layout and portrait handling',
+              'four photorealistic blessing packs plus sixty-level classic progression using seventy-eight bundled pictures',
+              'single/group drag, long-press split, region swap, gravity-first settlement, clear and per-column dealing',
+              'seamless joined surfaces rendered from one full texture through Graphics stencil masks',
+              'next-card preview, useful image/target hint, one-step undo and explicit non-silent deadlock rescue',
+              'Combo, cross-turn streak, FLOW, three-turn FEVER, layered audio, haptics and pooled lightweight effects',
+              'full home, pack chooser, settings, game and multi-image result/share flows',
+              'Web, WeChat wx and Douyin tt lifecycle, storage, safe-area, share, canvas capture and album-save bridge',
+              'four Cocos Asset Bundles configured as WeChat and ByteDance subpackages',
+              'trimmed 2D engine modules, portrait build profiles, architecture and platform handoff documentation',
+              'pure TypeScript rule core and deterministic automated tests for sixty classic levels'
             ]
           },ensure_ascii=False,indent=2),encoding='utf-8')
           PY
-          zip -qr /tmp/Jigsaw-Drop-Cocos-3.8.8.zip cocos-jigsaw-drop \
+          zip -qr /tmp/Jigsaw-Drop-Cocos-3.8.8-Full.zip cocos-jigsaw-drop \
             -x 'cocos-jigsaw-drop/node_modules/*' \
                'cocos-jigsaw-drop/library/*' \
                'cocos-jigsaw-drop/temp/*' \
                'cocos-jigsaw-drop/local/*' \
                'cocos-jigsaw-drop/build/*' \
-               'cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.8.zip'
-          mv /tmp/Jigsaw-Drop-Cocos-3.8.8.zip cocos-jigsaw-drop/
-          test -s cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.8.zip
-          echo "archive bytes: $(stat -c%s cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.8.zip)"
+               'cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.8-Full.zip'
+          mv /tmp/Jigsaw-Drop-Cocos-3.8.8-Full.zip cocos-jigsaw-drop/
+          test -s cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.8-Full.zip
+          SIZE="$(stat -c%s cocos-jigsaw-drop/Jigsaw-Drop-Cocos-3.8.8-Full.zip)"
+          echo "full archive bytes: $SIZE"
+          test "$SIZE" -lt 50000000
 
-      - name: Commit generated Cocos project
+      - name: Commit generated bundles profiles and full release
         run: |
           set -euo pipefail
           git config user.name 'hengtong320'
           git config user.email '564712388@qq.com'
           git add -A cocos-jigsaw-drop
           if git diff --cached --quiet; then exit 0; fi
-          git commit -s -m 'Update Jigsaw Drop Cocos project for Creator 3.8.8'
+          git commit -s -m 'Release complete mobile-ready Jigsaw Drop Cocos project'
           git push origin HEAD:main
