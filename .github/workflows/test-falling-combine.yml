@@ -7,6 +7,7 @@ on:
       - 'picture-drop/falling-combine.css'
       - 'picture-drop/falling-combine.js'
       - 'picture-drop/tools/smoke_falling_combine.py'
+      - 'picture-drop/tools/patch_home_falling_combine.py'
       - '.github/workflows/test-falling-combine.yml'
   workflow_dispatch:
 
@@ -30,6 +31,8 @@ jobs:
           python-version: '3.12'
       - name: Install browser dependency
         run: python -m pip install --quiet selenium
+      - name: Apply homepage entry
+        run: python picture-drop/tools/patch_home_falling_combine.py
       - name: Validate JavaScript syntax
         run: node --check picture-drop/falling-combine.js
       - name: Run real-browser regression
@@ -50,12 +53,12 @@ jobs:
             assets/pictures-portrait/30-library.webp
           mv /tmp/Jigsaw-Falling-Hierarchical-Combine-v3.zip .
           test -s Jigsaw-Falling-Hierarchical-Combine-v3.zip
-      - name: Commit generated package
+      - name: Commit homepage and generated package
         run: |
           set -euo pipefail
           git config user.name 'hengtong320'
           git config user.email '564712388@qq.com'
-          git add picture-drop/Jigsaw-Falling-Hierarchical-Combine-v3.zip
+          git add picture-drop/index.html picture-drop/Jigsaw-Falling-Hierarchical-Combine-v3.zip
           if git diff --cached --quiet; then exit 0; fi
-          git commit -s -m 'Package falling hierarchical combine H5 v3'
+          git commit -s -m 'Release falling hierarchical combine H5 v3'
           git push origin HEAD:main
