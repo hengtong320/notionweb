@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>终极合成 · Jigsaw Drop</title>
-  <link rel="stylesheet" href="boss.css?v=1.0.0" />
+  <link rel="stylesheet" href="boss.css?v=1.1.0" />
 </head>
 <body>
   <main id="bossApp" class="boss-app">
@@ -15,8 +15,8 @@
     <header class="boss-top">
       <a href="./?v=4.2.0" class="back-btn" aria-label="返回">‹</a>
       <div class="title-box">
-        <span id="stageKicker">阶段 1 · 小图消除</span>
-        <strong id="stageTitle">先完成16张小图</strong>
+        <span id="stageKicker">阶段 1 · 掉落消除</span>
+        <strong id="stageTitle">先合成16张小图</strong>
       </div>
       <button id="hintBtn" class="round-action">提示</button>
     </header>
@@ -32,12 +32,13 @@
 
     <section id="microStage" class="play-stage is-visible">
       <div class="stage-note">
-        <b>先消除</b>
-        <span>每张小图由4块组成，拼成正确2×2后会消失并收入上方。</span>
+        <b>吸附合成</b>
+        <span>每张图由4块组成；正确边会自动吸住，完成后整图飞入上方，剩余碎片自然下落。</span>
       </div>
-      <div id="microBoard" class="micro-board" aria-label="小图消除棋盘"></div>
+      <div id="wavePreview" class="wave-preview" aria-label="本波四张小图"></div>
+      <div id="microBoard" class="micro-board" aria-label="小图掉落消除棋盘"></div>
       <div class="micro-footer">
-        <span id="microMessage">拖动任意碎片，与目标位置交换</span>
+        <span id="microMessage">拖动碎片交换位置；正确拼边会吸附</span>
         <span id="microMoves">0步</span>
       </div>
     </section>
@@ -45,15 +46,34 @@
     <section id="bossStage" class="play-stage boss-stage">
       <div class="boss-intro-row">
         <div>
-          <b>BOSS 合成</b>
-          <span>刚才完成的16张小图，现在变成16块“大碎片”。</span>
+          <b>BOSS 下落合成</b>
+          <span>16张已完成小图会逐张发出。把当前卡片拖到正确列，它会自然落下并与邻图吸附。</span>
         </div>
-        <div class="master-mini" aria-label="目标大图"></div>
+        <div id="bossTargetPreview" class="boss-target-preview" aria-label="目标合辑预览"></div>
       </div>
-      <div id="bossBoard" class="boss-board" aria-label="终极大图拼合棋盘"></div>
+
+      <div class="boss-queue-panel">
+        <div class="current-card-box">
+          <small>当前小图</small>
+          <div id="bossCurrentCard" class="boss-current-card" role="button" aria-label="当前待放小图"></div>
+          <b id="bossCurrentName"></b>
+        </div>
+        <div class="next-card-box">
+          <small>接下来</small>
+          <div id="bossNextCards" class="boss-next-cards"></div>
+        </div>
+      </div>
+
+      <div id="bossColumns" class="boss-columns" aria-label="选择下落列">
+        <button data-column="0">第1列</button>
+        <button data-column="1">第2列</button>
+        <button data-column="2">第3列</button>
+        <button data-column="3">第4列</button>
+      </div>
+      <div id="bossBoard" class="boss-board" aria-label="终极大图下落合成棋盘"></div>
       <div class="boss-meter"><span>大图复原度</span><b id="bossAccuracy">0%</b></div>
       <div class="micro-footer">
-        <span id="bossMessage">拖动小图卡片交换位置，正确位置会锁定</span>
+        <span id="bossMessage">拖动当前小图到目标列，或直接点击列按钮</span>
         <span id="bossMoves">0步</span>
       </div>
     </section>
@@ -67,7 +87,7 @@
       <div class="transition-card">
         <small>16张小图全部完成</small>
         <h2>BOSS 合成开启</h2>
-        <p>刚才消失的小图全部回来，组成一张超大完整作品。</p>
+        <p>刚才吸附完成的小图全部回来，逐张下落，最终组成一幅“美好生活16景”。</p>
         <div class="transition-grid" id="transitionGrid"></div>
       </div>
     </section>
@@ -76,8 +96,8 @@
       <div class="finish-card">
         <small>ULTIMATE COMBINE</small>
         <h2>终极合成完成</h2>
-        <div class="finish-master"></div>
-        <p>16张小图 → 1张完整大图</p>
+        <div id="finishCollage" class="finish-collage"></div>
+        <p>16张小图 → 1幅完整祝福画卷</p>
         <div class="finish-stats">
           <span>小图阶段 <b id="finishMicroMoves">0</b> 步</span>
           <span>BOSS阶段 <b id="finishBossMoves">0</b> 步</span>
@@ -86,6 +106,6 @@
       </div>
     </section>
   </main>
-  <script src="boss.js?v=1.0.0"></script>
+  <script src="boss.js?v=1.1.0"></script>
 </body>
 </html>
