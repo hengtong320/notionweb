@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#071a35" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>下落式层级合成 · Jigsaw Drop</title>
+  <link rel="stylesheet" href="falling-combine.css?v=3.0.0" />
+</head>
+<body>
+  <main class="app" id="app">
+    <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+    <header class="topbar">
+      <a class="back" href="./?v=4.2.0" aria-label="返回">‹</a>
+      <div class="stage-title">
+        <small id="stageKicker">阶段一 · 小图消除</small>
+        <strong id="stageTitle">4块拼成1张小图</strong>
+      </div>
+      <button id="hintBtn" class="hint-btn">提示</button>
+    </header>
+
+    <section class="goal-panel">
+      <div class="goal-copy">
+        <span id="goalLabel">先拼出16张局部小图</span>
+        <b id="goalValue">0 / 16</b>
+      </div>
+      <div class="progress"><i id="progressFill"></i></div>
+      <canvas id="masterMap" aria-label="完整大图进度"></canvas>
+    </section>
+
+    <section class="game-panel">
+      <div class="deck-head">
+        <div><b id="deckTitle">待发碎片</b><span id="deckCount">48</span></div>
+        <div id="deckPreview" class="deck-preview" aria-label="下一批碎片"></div>
+      </div>
+      <canvas id="gameCanvas" aria-label="下落式拼图棋盘"></canvas>
+      <div class="status-row">
+        <span id="message">碎片会像发牌一样下落；拖动交换，正确相邻会自动吸附。</span>
+        <b id="moveCount">0步</b>
+      </div>
+    </section>
+
+    <section class="actions">
+      <button id="restartBtn">重新开始</button>
+      <button id="quickBtn" class="primary">直接看最终大图</button>
+    </section>
+
+    <section id="transition" class="overlay" aria-live="polite">
+      <div class="transition-card">
+        <small id="transitionKicker">16张小图已完成</small>
+        <h2 id="transitionTitle">它们将再次出现</h2>
+        <p id="transitionText">刚才被消除的小图，现在成为大图的16块“超级碎片”。</p>
+        <canvas id="transitionCanvas"></canvas>
+      </div>
+    </section>
+
+    <section id="finish" class="overlay finish-overlay">
+      <div class="finish-card">
+        <small>ULTIMATE COMBINE</small>
+        <h2>完整大图合成完成</h2>
+        <div class="final-image"></div>
+        <p>64个细碎片 → 16张局部小图 → 1张完整大图</p>
+        <div class="stats"><span>小图阶段 <b id="microMoves">0</b> 步</span><span>大图阶段 <b id="bossMoves">0</b> 步</span></div>
+        <button id="againBtn">再体验一次</button>
+      </div>
+    </section>
+
+    <div id="toast" class="toast"></div>
+    <div id="loading" class="loading"><i></i><span>正在准备层级拼图…</span></div>
+  </main>
+  <script src="falling-combine.js?v=3.0.0"></script>
+</body>
+</html>
