@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#0a1531" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>终极合成 · Jigsaw Drop</title>
+  <link rel="stylesheet" href="boss.css?v=1.0.0" />
+</head>
+<body>
+  <main id="bossApp" class="boss-app">
+    <div class="ambient a"></div><div class="ambient b"></div>
+    <header class="boss-top">
+      <a href="./?v=4.2.0" class="back-btn" aria-label="返回">‹</a>
+      <div class="title-box">
+        <span id="stageKicker">阶段 1 · 小图消除</span>
+        <strong id="stageTitle">先完成16张小图</strong>
+      </div>
+      <button id="hintBtn" class="round-action">提示</button>
+    </header>
+
+    <section class="progress-panel">
+      <div class="progress-copy">
+        <span id="phaseText">第 1/4 波</span>
+        <b id="progressText">已完成 0 / 16</b>
+      </div>
+      <div class="progress-track"><i id="progressFill"></i></div>
+      <div id="collector" class="collector" aria-label="已收集小图"></div>
+    </section>
+
+    <section id="microStage" class="play-stage is-visible">
+      <div class="stage-note">
+        <b>先消除</b>
+        <span>每张小图由4块组成，拼成正确2×2后会消失并收入上方。</span>
+      </div>
+      <div id="microBoard" class="micro-board" aria-label="小图消除棋盘"></div>
+      <div class="micro-footer">
+        <span id="microMessage">拖动任意碎片，与目标位置交换</span>
+        <span id="microMoves">0步</span>
+      </div>
+    </section>
+
+    <section id="bossStage" class="play-stage boss-stage">
+      <div class="boss-intro-row">
+        <div>
+          <b>BOSS 合成</b>
+          <span>刚才完成的16张小图，现在变成16块“大碎片”。</span>
+        </div>
+        <div class="master-mini" aria-label="目标大图"></div>
+      </div>
+      <div id="bossBoard" class="boss-board" aria-label="终极大图拼合棋盘"></div>
+      <div class="boss-meter"><span>大图复原度</span><b id="bossAccuracy">0%</b></div>
+      <div class="micro-footer">
+        <span id="bossMessage">拖动小图卡片交换位置，正确位置会锁定</span>
+        <span id="bossMoves">0步</span>
+      </div>
+    </section>
+
+    <div class="bottom-actions">
+      <button id="restartBtn">重新开始</button>
+      <button id="skipBossBtn" class="accent">直接看 BOSS</button>
+    </div>
+
+    <section id="transitionOverlay" class="transition-overlay" aria-live="polite">
+      <div class="transition-card">
+        <small>16张小图全部完成</small>
+        <h2>BOSS 合成开启</h2>
+        <p>刚才消失的小图全部回来，组成一张超大完整作品。</p>
+        <div class="transition-grid" id="transitionGrid"></div>
+      </div>
+    </section>
+
+    <section id="finishOverlay" class="finish-overlay">
+      <div class="finish-card">
+        <small>ULTIMATE COMBINE</small>
+        <h2>终极合成完成</h2>
+        <div class="finish-master"></div>
+        <p>16张小图 → 1张完整大图</p>
+        <div class="finish-stats">
+          <span>小图阶段 <b id="finishMicroMoves">0</b> 步</span>
+          <span>BOSS阶段 <b id="finishBossMoves">0</b> 步</span>
+        </div>
+        <button id="againBtn">再体验一次</button>
+      </div>
+    </section>
+  </main>
+  <script src="boss.js?v=1.0.0"></script>
+</body>
+</html>
