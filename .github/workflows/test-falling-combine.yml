@@ -1,0 +1,61 @@
+name: Test falling hierarchical combine H5
+
+on:
+  push:
+    paths:
+      - 'picture-drop/falling-combine.html'
+      - 'picture-drop/falling-combine.css'
+      - 'picture-drop/falling-combine.js'
+      - 'picture-drop/tools/smoke_falling_combine.py'
+      - '.github/workflows/test-falling-combine.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: falling-hierarchical-combine
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser dependency
+        run: python -m pip install --quiet selenium
+      - name: Validate JavaScript syntax
+        run: node --check picture-drop/falling-combine.js
+      - name: Run real-browser regression
+        run: |
+          set -euo pipefail
+          python -m http.server 8765 --directory picture-drop >/tmp/falling-combine-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 1
+          python picture-drop/tools/smoke_falling_combine.py
+      - name: Package standalone source
+        run: |
+          set -euo pipefail
+          rm -f picture-drop/Jigsaw-Falling-Hierarchical-Combine-v3.zip
+          cd picture-drop
+          zip -qr /tmp/Jigsaw-Falling-Hierarchical-Combine-v3.zip \
+            falling-combine.html falling-combine.css falling-combine.js \
+            assets/pictures-portrait/30-library.webp
+          mv /tmp/Jigsaw-Falling-Hierarchical-Combine-v3.zip .
+          test -s Jigsaw-Falling-Hierarchical-Combine-v3.zip
+      - name: Commit generated package
+        run: |
+          set -euo pipefail
+          git config user.name 'hengtong320'
+          git config user.email '564712388@qq.com'
+          git add picture-drop/Jigsaw-Falling-Hierarchical-Combine-v3.zip
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -s -m 'Package falling hierarchical combine H5 v3'
+          git push origin HEAD:main
