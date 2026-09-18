@@ -1,0 +1,104 @@
+name: Publish smooth realistic combine H5 v5
+
+on:
+  push:
+    paths:
+      - '.github/workflows/import-real-combine-v5.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-real-combine-v5
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Download verified v5 source package
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 4 --retry-all-errors \
+            'https://at.adobe.com/xKkKicSHpgH3THks' \
+            -o /tmp/real-combine-v5.zip
+          rm -rf /tmp/real-combine-v5
+          mkdir -p /tmp/real-combine-v5
+          unzip -q /tmp/real-combine-v5.zip -d /tmp/real-combine-v5
+          SOURCE="$(find /tmp/real-combine-v5 -name index.html -type f | head -1)"
+          test -n "$SOURCE"
+          grep -Fq "const VERSION='5.0.0'" "$SOURCE"
+          grep -Fq 'window.__REAL_COMBINE__' "$SOURCE"
+          cp "$SOURCE" picture-drop/real-combine-v5.html
+          cp "$SOURCE" picture-drop/falling-combine.html
+          cp /tmp/real-combine-v5.zip picture-drop/Jigsaw-Realistic-Hierarchical-Combine-v5.zip
+          rm -f picture-drop/real-combine-v5.css
+          rm -rf picture-drop/assets/synthesis-real-v5
+
+      - name: Point the H5 homepage to v5
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('picture-drop/index.html')
+          s=p.read_text(encoding='utf-8')
+          old='<a href="falling-combine.html?v=3.0.0" class="secondary-btn" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;background:linear-gradient(135deg,#234f82,#7145aa);border-color:rgba(255,232,115,.55);color:#fff;box-shadow:0 8px 20px rgba(38,24,96,.28)"><span style="font-weight:900">下落式层级合成 · v3</span><small style="font-size:10px;opacity:.9">发牌下落 → 4块成小图 → 16图成大图</small></a>'
+          new='<a href="real-combine-v5.html?v=5.0.0" class="secondary-btn" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;background:linear-gradient(135deg,#235b82,#a05b35);border-color:rgba(255,232,115,.65);color:#fff;box-shadow:0 8px 20px rgba(38,24,96,.28)"><span style="font-weight:900">实景下落层级合成 · v5</span><small style="font-size:10px;opacity:.9">顺滑拖拽 · 组合可移动 · 16局部成完整实景</small></a>'
+          if old not in s:
+              raise SystemExit('homepage v3 entry not found')
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          PY
+
+      - name: Run JavaScript and real-browser regression
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet selenium
+          python -m http.server 8765 --directory picture-drop >/tmp/real-v5-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 1
+          python - <<'PY'
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.support.ui import WebDriverWait
+          o=Options()
+          o.add_argument('--headless=new')
+          o.add_argument('--no-sandbox')
+          o.add_argument('--disable-dev-shm-usage')
+          o.add_argument('--window-size=430,932')
+          d=webdriver.Chrome(options=o)
+          try:
+              d.get('http://127.0.0.1:8765/real-combine-v5.html?v=5.0.0&autotest=1')
+              w=WebDriverWait(d,45)
+              w.until(lambda x:x.execute_script("return !!window.__REAL_COMBINE__ && window.__REAL_COMBINE__.version==='5.0.0'"))
+              first=d.execute_script("return window.__REAL_COMBINE__.state()")
+              assert first['stage'] in (1,2), first
+              assert first['board'], first
+              w.until(lambda x:x.execute_script("return document.body.dataset.autotest==='complete'"))
+              final=d.execute_script("return {state:window.__REAL_COMBINE__.state(), finish:document.getElementById('finish').classList.contains('is-visible')}")
+              assert final['state']['stage']==2, final
+              assert final['state']['largest']==16, final
+              assert final['finish'], final
+              print('PASS realistic combine v5 load, staged board and final 16/16 solve')
+          finally:
+              d.quit()
+          PY
+
+      - name: Commit v5 release
+        run: |
+          set -euo pipefail
+          git config user.name 'hengtong320'
+          git config user.email '564712388@qq.com'
+          git add -A picture-drop
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -s -m 'Release smooth photorealistic hierarchical combine H5 v5'
+          git push origin HEAD:main
