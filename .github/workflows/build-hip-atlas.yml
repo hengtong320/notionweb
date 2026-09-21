@@ -36,6 +36,7 @@ jobs:
       - name: Build matching self-contained HTML
         run: |
           python hip-atlas-tools/extend.py
+          python hip-atlas-tools/refine.py
           cp hip-atlas-tools/README.md hip-atlas/README.md
       - name: Verify real mouse interactions for old and new bones offline
         run: node hip-atlas-tools/verify.cjs
