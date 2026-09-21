@@ -35,10 +35,10 @@ jobs:
       - name: Apply additive viewer changes and create the offline HTML
         run: |
           python ankle-atlas-tools/extend.py
-          if [ -f ankle-atlas-tools/refine.py ]; then python ankle-atlas-tools/refine.py; fi
+          python ankle-atlas-tools/refine.py
           rm -f ankle-atlas/qa.cjs ankle-atlas/decode_draco.cjs
       - name: Verify actual mouse interactions and original foot regression
-        run: node ankle-atlas-tools/verify.cjs
+        run: node ankle-atlas/verify.cjs
       - name: Save offline verification evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -76,8 +76,8 @@ jobs:
           PY
       - name: Test the actual public page
         env:
-          ATLAS_LIVE_URL: https://hengtong320.github.io/notionweb/ankle-atlas/?v=20260921
-        run: node ankle-atlas-tools/verify.cjs
+          ATLAS_LIVE_URL: https://hengtong320.github.io/notionweb/ankle-atlas/?build=${{ github.run_id }}
+        run: node ankle-atlas/verify.cjs
       - name: Verify WebKit can load all meshes offline
         run: |
           node - <<'JS'
