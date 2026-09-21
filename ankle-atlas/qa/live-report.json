@@ -1,0 +1,372 @@
+{
+  "success": true,
+  "checkedAt": "2026-09-21T16:42:03.346Z",
+  "checks": [
+    {
+      "name": "Public page HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "Public page exactly matches verified artifact",
+      "pass": true
+    },
+    {
+      "name": "All 30 independent bones loaded",
+      "pass": true
+    },
+    {
+      "name": "19,520 source triangles preserved",
+      "pass": true
+    },
+    {
+      "name": "Initial view shows complete lower leg and foot",
+      "pass": true
+    },
+    {
+      "name": "No secondary downloads for anatomy or engine",
+      "pass": true,
+      "detail": [
+        "https://hengtong320.github.io/notionweb/ankle-atlas/?release=35626090668"
+      ]
+    },
+    {
+      "name": "All 28 approved foot mesh positions exactly preserved",
+      "pass": true
+    },
+    {
+      "name": "Original foot page not modified",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: talus",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: calcaneus",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: navicular",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: cuboid",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: cuneiform-intermediate",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: cuneiform-lateral",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: cuneiform-medial",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: metatarsal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: metatarsal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: metatarsal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: metatarsal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: metatarsal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: distal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: distal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: distal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: distal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: distal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: middle-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: middle-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: middle-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: middle-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: proximal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: proximal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: proximal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: proximal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: proximal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: sesamoid-lateral",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: sesamoid-medial",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: fibula",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: tibia",
+      "pass": true
+    },
+    {
+      "name": "Tibia name and pronunciation",
+      "pass": true
+    },
+    {
+      "name": "Fibula name and pronunciation",
+      "pass": true
+    },
+    {
+      "name": "Chinese search finds only tibia",
+      "pass": true
+    },
+    {
+      "name": "Pinyin search finds only fibula",
+      "pass": true
+    },
+    {
+      "name": "Foot scope retains 28 original visible meshes",
+      "pass": true
+    },
+    {
+      "name": "Original foot remains raycast-pickable",
+      "pass": true
+    },
+    {
+      "name": "Actual foot click identifies talus",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: talus/move",
+      "pass": true
+    },
+    {
+      "name": "Original foot drag moves exactly one bone",
+      "pass": true
+    },
+    {
+      "name": "Dragging a bone does not orbit camera",
+      "pass": true
+    },
+    {
+      "name": "Original-position reference works",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: talus/rotate",
+      "pass": true
+    },
+    {
+      "name": "Original foot individual rotation works",
+      "pass": true
+    },
+    {
+      "name": "Reset preserves exact original coordinates",
+      "pass": true
+    },
+    {
+      "name": "Reset restores individual orientations",
+      "pass": true
+    },
+    {
+      "name": "Original foot single-bone study",
+      "pass": true
+    },
+    {
+      "name": "Escape returns to same foot scope",
+      "pass": true
+    },
+    {
+      "name": "Neighbor emphasis works",
+      "pass": true
+    },
+    {
+      "name": "Hide selected bone works",
+      "pass": true
+    },
+    {
+      "name": "Show all respects foot scope",
+      "pass": true
+    },
+    {
+      "name": "Original full-foot expansion works",
+      "pass": true
+    },
+    {
+      "name": "Foot labels show original 28 structures",
+      "pass": true
+    },
+    {
+      "name": "Correct standard view: plantar",
+      "pass": true
+    },
+    {
+      "name": "Correct standard view: medial",
+      "pass": true
+    },
+    {
+      "name": "Correct standard view: lateral",
+      "pass": true
+    },
+    {
+      "name": "New bone visible and pickable: tibia",
+      "pass": true
+    },
+    {
+      "name": "Mouse click identifies tibia",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: tibia/move",
+      "pass": true
+    },
+    {
+      "name": "Only tibia is displaced",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: tibia/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent long-bone rotation: tibia",
+      "pass": true
+    },
+    {
+      "name": "Single long-bone inspection: tibia",
+      "pass": true
+    },
+    {
+      "name": "Per-bone reset: tibia",
+      "pass": true
+    },
+    {
+      "name": "New bone visible and pickable: fibula",
+      "pass": true
+    },
+    {
+      "name": "Mouse click identifies fibula",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: fibula/move",
+      "pass": true
+    },
+    {
+      "name": "Only fibula is displaced",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: fibula/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent long-bone rotation: fibula",
+      "pass": true
+    },
+    {
+      "name": "Single long-bone inspection: fibula",
+      "pass": true
+    },
+    {
+      "name": "Per-bone reset: fibula",
+      "pass": true
+    },
+    {
+      "name": "Ankle focus retains complete bones without shortening",
+      "pass": true
+    },
+    {
+      "name": "Talus neighbor list includes tibia and fibula",
+      "pass": true
+    },
+    {
+      "name": "Expansion separates all 30 structures",
+      "pass": true
+    },
+    {
+      "name": "All 30 individual labels created",
+      "pass": true
+    },
+    {
+      "name": "Selecting new bone from foot view reveals it",
+      "pass": true
+    },
+    {
+      "name": "No laptop horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Existing help still opens",
+      "pass": true
+    },
+    {
+      "name": "Source and limits dialog opens",
+      "pass": true
+    },
+    {
+      "name": "View capture works",
+      "pass": true
+    },
+    {
+      "name": "No browser or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "https://hengtong320.github.io/notionweb/ankle-atlas/?release=35626090668"
+  ],
+  "browser": "chromium",
+  "url": "https://hengtong320.github.io/notionweb/ankle-atlas/?release=35626090668"
+}
