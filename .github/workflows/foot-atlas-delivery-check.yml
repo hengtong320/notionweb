@@ -1,0 +1,51 @@
+name: Verify foot atlas delivery
+on:
+  push:
+    paths:
+      - '.github/workflows/foot-atlas-delivery-check.yml'
+      - 'foot-atlas/delivery-check.cjs'
+      - 'foot-atlas/README.md'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: foot-atlas-delivery-check
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      NODE_PATH: /tmp/atlas-browser/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test tools
+        run: |
+          npm install --prefix /tmp/atlas-browser playwright@1.56.1
+          /tmp/atlas-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Run complete offline interaction regression
+        run: node foot-atlas/qa.cjs
+      - name: Verify the published URL, offline reopening and browser compatibility
+        run: node foot-atlas/delivery-check.cjs
+      - name: Save test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: foot-atlas-delivery-verification
+          path: foot-atlas/qa/
+          retention-days: 14
+      - name: Publish verification report without touching other projects
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add foot-atlas/qa/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record full foot atlas delivery verification'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
