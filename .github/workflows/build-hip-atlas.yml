@@ -1,0 +1,103 @@
+name: Build and verify hip atlas
+on:
+  push:
+    paths:
+      - 'hip-atlas-tools/**'
+      - '.github/workflows/build-hip-atlas.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: hip-atlas-build
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/hip-toolchain/node_modules
+      THREE_PACKAGE: /tmp/hip-toolchain/node_modules/three
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned anatomy and browser tools
+        run: |
+          npm install --prefix /tmp/hip-toolchain three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          python -m pip install numpy==2.3.5 trimesh==4.11.1 scipy==1.17.0
+          /tmp/hip-toolchain/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Add pelvis to the fixed approved source, preserving all previous meshes
+        run: python hip-atlas-tools/prepare.py
+      - name: Build matching self-contained HTML
+        run: |
+          python hip-atlas-tools/extend.py
+          cp hip-atlas-tools/README.md hip-atlas/README.md
+      - name: Verify real mouse interactions for old and new bones offline
+        run: node hip-atlas-tools/verify.cjs
+      - name: Verify all scopes and new bone inspection in WebKit offline
+        run: BROWSER=webkit node hip-atlas-tools/verify.cjs
+      - name: Export testable candidate and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hip-atlas-candidate
+          path: |
+            hip-atlas/
+            hip-atlas-tools/
+          retention-days: 14
+      - name: Publish only the new atlas through a fresh worktree
+        run: |
+          test -z "$(git diff 085381cbf6ee7cb014a01caa06913cb5ada8a934 -- foot-atlas/ ankle-atlas/ knee-atlas/)"
+          git fetch origin main
+          git worktree add /tmp/hip-publish origin/main
+          cp -a hip-atlas /tmp/hip-publish/
+          cd /tmp/hip-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add hip-atlas/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish browser-verified hip and pelvis atlas; keep three prior versions unchanged'
+            git push origin HEAD:main
+          fi
+      - name: Verify GitHub Pages serves exactly the tested file
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import urllib.request,hashlib,time
+          target=hashlib.sha256(Path('hip-atlas/index.html').read_bytes()).hexdigest()
+          for attempt in range(60):
+              try:
+                  url='https://hengtong320.github.io/notionweb/hip-atlas/?build='+target[:16]+'&check='+str(attempt)
+                  with urllib.request.urlopen(url,timeout=20) as r:data=r.read()
+                  if hashlib.sha256(data).hexdigest()==target:print('MATCHING_PUBLIC_HTML',target);break
+              except Exception as e:print(str(e),flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Published HTML does not match the verified candidate')
+          PY
+      - name: Verify actual live website mouse interactions
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/hip-atlas/?release=${{ github.run_id }}
+        run: node hip-atlas-tools/verify.cjs
+      - name: Publish live verification evidence
+        run: |
+          cp -a hip-atlas/qa/. /tmp/hip-publish/hip-atlas/qa/
+          cd /tmp/hip-publish
+          git add hip-atlas/qa/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record hip atlas live-URL mouse and rendering verification'
+            git push origin HEAD:main
+          fi
+      - name: Export complete verified release
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hip-atlas-release
+          path: |
+            hip-atlas/
+            hip-atlas-tools/
+          retention-days: 14
