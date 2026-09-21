@@ -1,0 +1,20 @@
+{
+  "version": "knee-v1",
+  "baseRef": "3cd7d2bfb5cb9013cdf5f4b45ebd8c0933fd31f6",
+  "bones": 32,
+  "standardLimbBones": 30,
+  "additionalHalluxSesamoids": 2,
+  "addedBones": [
+    "femur",
+    "patella"
+  ],
+  "totalTriangles": 23590,
+  "modelBytes": 651452,
+  "approvedAnklePreserved": true,
+  "maxPriorCoordinateErrorMillimeters": 0.0,
+  "noRuntimeNetwork": true,
+  "threeVersion": "0.180.0",
+  "htmlBytes": 1583543,
+  "htmlSHA256": "6badc59205bbd9c31ce9f594cbbfa16d909a49a4f486183e184fb77dffafd22a",
+  "upperRegionHorizonRemoved": true
+}

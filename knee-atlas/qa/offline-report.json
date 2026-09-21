@@ -1,0 +1,513 @@
+{
+  "startedAt": "2026-09-21T17:07:06.515Z",
+  "browser": "chromium",
+  "url": "file: embedded HTML",
+  "htmlSHA256": "6badc59205bbd9c31ce9f594cbbfa16d909a49a4f486183e184fb77dffafd22a",
+  "success": true,
+  "checks": [
+    {
+      "name": "All 32 anatomical meshes loaded",
+      "pass": true
+    },
+    {
+      "name": "Initial region is full right lower limb",
+      "pass": true
+    },
+    {
+      "name": "Source triangle count matches verified mesh manifest",
+      "pass": true
+    },
+    {
+      "name": "No network dependencies after HTML",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "All 30 prior meshes retain their coordinates",
+      "pass": true
+    },
+    {
+      "name": "Approved foot and ankle directories unchanged",
+      "pass": true
+    },
+    {
+      "name": "Loading overlay dismisses",
+      "pass": true
+    },
+    {
+      "name": "New count is visible in sidebar",
+      "pass": true
+    },
+    {
+      "name": "Region foot contains correct independent bones",
+      "pass": true,
+      "detail": {
+        "visible": 28
+      }
+    },
+    {
+      "name": "Region foot creates finite camera coordinates",
+      "pass": true
+    },
+    {
+      "name": "Region ankle contains correct independent bones",
+      "pass": true,
+      "detail": {
+        "visible": 30
+      }
+    },
+    {
+      "name": "Region ankle creates finite camera coordinates",
+      "pass": true
+    },
+    {
+      "name": "Region leg contains correct independent bones",
+      "pass": true,
+      "detail": {
+        "visible": 30
+      }
+    },
+    {
+      "name": "Region leg creates finite camera coordinates",
+      "pass": true
+    },
+    {
+      "name": "Region knee contains correct independent bones",
+      "pass": true,
+      "detail": {
+        "visible": 4
+      }
+    },
+    {
+      "name": "Region knee creates finite camera coordinates",
+      "pass": true
+    },
+    {
+      "name": "Region whole contains correct independent bones",
+      "pass": true,
+      "detail": {
+        "visible": 32
+      }
+    },
+    {
+      "name": "Region whole creates finite camera coordinates",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: tibia",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: fibula",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: sesamoid-medial",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: sesamoid-lateral",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: proximal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: proximal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: proximal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: proximal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: proximal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: middle-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: middle-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: middle-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: middle-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: distal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: distal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: distal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: distal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: distal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: metatarsal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: metatarsal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: metatarsal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: metatarsal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: metatarsal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: cuneiform-medial",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: cuneiform-lateral",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: cuneiform-intermediate",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: cuboid",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: navicular",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: calcaneus",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: talus",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: femur",
+      "pass": true
+    },
+    {
+      "name": "Chinese name and description: patella",
+      "pass": true
+    },
+    {
+      "name": "Patella pronunciation",
+      "pass": true
+    },
+    {
+      "name": "Patella articulation is with femur only",
+      "pass": true
+    },
+    {
+      "name": "Femur has tibia and patella as articulating neighbors",
+      "pass": true
+    },
+    {
+      "name": "Search 髌 resolves patella",
+      "pass": true
+    },
+    {
+      "name": "Search bin resolves patella",
+      "pass": true
+    },
+    {
+      "name": "Search Femur resolves femur",
+      "pass": true
+    },
+    {
+      "name": "Search 胫 resolves tibia",
+      "pass": true
+    },
+    {
+      "name": "Search fei resolves fibula",
+      "pass": true
+    },
+    {
+      "name": "Original talus can be picked",
+      "pass": true
+    },
+    {
+      "name": "Actual foot click still selects talus",
+      "pass": true
+    },
+    {
+      "name": "Visible mouse target talus/move",
+      "pass": true
+    },
+    {
+      "name": "Foot drag moves just one mesh",
+      "pass": true
+    },
+    {
+      "name": "Dragging does not rotate the scene",
+      "pass": true
+    },
+    {
+      "name": "Original-position reference works",
+      "pass": true
+    },
+    {
+      "name": "Visible mouse target talus/rotate",
+      "pass": true
+    },
+    {
+      "name": "Original foot bone rotates independently",
+      "pass": true
+    },
+    {
+      "name": "Every mesh returns to original position and rotation",
+      "pass": true
+    },
+    {
+      "name": "Single foot-bone viewing retained",
+      "pass": true
+    },
+    {
+      "name": "Escape returns to foot-only scope",
+      "pass": true
+    },
+    {
+      "name": "Hide bone retained",
+      "pass": true
+    },
+    {
+      "name": "Show all respects foot scope",
+      "pass": true
+    },
+    {
+      "name": "Foot expansion retained",
+      "pass": true
+    },
+    {
+      "name": "Foot creates 28 labels",
+      "pass": true
+    },
+    {
+      "name": "Original standard view plantar",
+      "pass": true
+    },
+    {
+      "name": "Original standard view medial",
+      "pass": true
+    },
+    {
+      "name": "Original standard view lateral",
+      "pass": true
+    },
+    {
+      "name": "Whole anatomical bone is mouse-pickable: tibia",
+      "pass": true
+    },
+    {
+      "name": "Mouse selects tibia",
+      "pass": true
+    },
+    {
+      "name": "Visible mouse target tibia/move",
+      "pass": true
+    },
+    {
+      "name": "Move only tibia",
+      "pass": true
+    },
+    {
+      "name": "Visible mouse target tibia/rotate",
+      "pass": true
+    },
+    {
+      "name": "Rotate tibia",
+      "pass": true
+    },
+    {
+      "name": "Isolate tibia",
+      "pass": true
+    },
+    {
+      "name": "Accurate individual reset tibia",
+      "pass": true
+    },
+    {
+      "name": "Whole anatomical bone is mouse-pickable: fibula",
+      "pass": true
+    },
+    {
+      "name": "Mouse selects fibula",
+      "pass": true
+    },
+    {
+      "name": "Visible mouse target fibula/move",
+      "pass": true
+    },
+    {
+      "name": "Move only fibula",
+      "pass": true
+    },
+    {
+      "name": "Visible mouse target fibula/rotate",
+      "pass": true
+    },
+    {
+      "name": "Rotate fibula",
+      "pass": true
+    },
+    {
+      "name": "Isolate fibula",
+      "pass": true
+    },
+    {
+      "name": "Accurate individual reset fibula",
+      "pass": true
+    },
+    {
+      "name": "Whole anatomical bone is mouse-pickable: femur",
+      "pass": true
+    },
+    {
+      "name": "Mouse selects femur",
+      "pass": true
+    },
+    {
+      "name": "Visible mouse target femur/move",
+      "pass": true
+    },
+    {
+      "name": "Move only femur",
+      "pass": true
+    },
+    {
+      "name": "Visible mouse target femur/rotate",
+      "pass": true
+    },
+    {
+      "name": "Rotate femur",
+      "pass": true
+    },
+    {
+      "name": "Isolate femur",
+      "pass": true
+    },
+    {
+      "name": "Accurate individual reset femur",
+      "pass": true
+    },
+    {
+      "name": "Whole anatomical bone is mouse-pickable: patella",
+      "pass": true
+    },
+    {
+      "name": "Mouse selects patella",
+      "pass": true
+    },
+    {
+      "name": "Visible mouse target patella/move",
+      "pass": true
+    },
+    {
+      "name": "Move only patella",
+      "pass": true
+    },
+    {
+      "name": "Visible mouse target patella/rotate",
+      "pass": true
+    },
+    {
+      "name": "Rotate patella",
+      "pass": true
+    },
+    {
+      "name": "Isolate patella",
+      "pass": true
+    },
+    {
+      "name": "Accurate individual reset patella",
+      "pass": true
+    },
+    {
+      "name": "Knee scope contains femur patella tibia fibula only",
+      "pass": true
+    },
+    {
+      "name": "Front knee camera is anterior to target",
+      "pass": true
+    },
+    {
+      "name": "Posterior knee view works",
+      "pass": true
+    },
+    {
+      "name": "Neighbor emphasis retained",
+      "pass": true
+    },
+    {
+      "name": "All 32 meshes can be separated",
+      "pass": true
+    },
+    {
+      "name": "32 independent Chinese labels created",
+      "pass": true
+    },
+    {
+      "name": "Selecting femur from foot scope reveals knee region",
+      "pass": true
+    },
+    {
+      "name": "Selecting foot bone from knee scope returns to foot",
+      "pass": true
+    },
+    {
+      "name": "Laptop layout has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Help opens",
+      "pass": true
+    },
+    {
+      "name": "Source dialog includes knee limitations",
+      "pass": true
+    },
+    {
+      "name": "Screenshot download retained",
+      "pass": true
+    },
+    {
+      "name": "No browser or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "finishedAt": "2026-09-21T17:13:21.830Z"
+}

@@ -1,0 +1,121 @@
+{
+  "startedAt": "2026-09-21T17:13:23.102Z",
+  "browser": "webkit",
+  "url": "file: embedded HTML",
+  "htmlSHA256": "6badc59205bbd9c31ce9f594cbbfa16d909a49a4f486183e184fb77dffafd22a",
+  "success": true,
+  "checks": [
+    {
+      "name": "All 32 anatomical meshes loaded",
+      "pass": true
+    },
+    {
+      "name": "Initial region is full right lower limb",
+      "pass": true
+    },
+    {
+      "name": "Source triangle count matches verified mesh manifest",
+      "pass": true
+    },
+    {
+      "name": "No network dependencies after HTML",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "All 30 prior meshes retain their coordinates",
+      "pass": true
+    },
+    {
+      "name": "Approved foot and ankle directories unchanged",
+      "pass": true
+    },
+    {
+      "name": "Loading overlay dismisses",
+      "pass": true
+    },
+    {
+      "name": "New count is visible in sidebar",
+      "pass": true
+    },
+    {
+      "name": "Region foot contains correct independent bones",
+      "pass": true,
+      "detail": {
+        "visible": 28
+      }
+    },
+    {
+      "name": "Region foot creates finite camera coordinates",
+      "pass": true
+    },
+    {
+      "name": "Region ankle contains correct independent bones",
+      "pass": true,
+      "detail": {
+        "visible": 30
+      }
+    },
+    {
+      "name": "Region ankle creates finite camera coordinates",
+      "pass": true
+    },
+    {
+      "name": "Region leg contains correct independent bones",
+      "pass": true,
+      "detail": {
+        "visible": 30
+      }
+    },
+    {
+      "name": "Region leg creates finite camera coordinates",
+      "pass": true
+    },
+    {
+      "name": "Region knee contains correct independent bones",
+      "pass": true,
+      "detail": {
+        "visible": 4
+      }
+    },
+    {
+      "name": "Region knee creates finite camera coordinates",
+      "pass": true
+    },
+    {
+      "name": "Region whole contains correct independent bones",
+      "pass": true,
+      "detail": {
+        "visible": 32
+      }
+    },
+    {
+      "name": "Region whole creates finite camera coordinates",
+      "pass": true
+    },
+    {
+      "name": "WebKit identifies femur",
+      "pass": true
+    },
+    {
+      "name": "WebKit isolates femur",
+      "pass": true
+    },
+    {
+      "name": "WebKit identifies patella",
+      "pass": true
+    },
+    {
+      "name": "WebKit isolates patella",
+      "pass": true
+    },
+    {
+      "name": "WebKit no rendering errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "finishedAt": "2026-09-21T17:13:42.603Z"
+}
