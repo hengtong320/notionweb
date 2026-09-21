@@ -1,0 +1,242 @@
+{
+  "success": false,
+  "checks": [
+    {
+      "name": "All 30 independent bones loaded",
+      "pass": true
+    },
+    {
+      "name": "19,520 source triangles preserved",
+      "pass": true
+    },
+    {
+      "name": "Initial view shows complete lower leg and foot",
+      "pass": true
+    },
+    {
+      "name": "No secondary downloads for anatomy or engine",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "All 28 approved foot mesh positions exactly preserved",
+      "pass": true
+    },
+    {
+      "name": "Original foot page not modified",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: talus",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: calcaneus",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: navicular",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: cuboid",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: cuneiform-intermediate",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: cuneiform-lateral",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: cuneiform-medial",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: metatarsal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: metatarsal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: metatarsal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: metatarsal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: metatarsal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: distal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: distal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: distal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: distal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: distal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: middle-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: middle-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: middle-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: middle-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: proximal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: proximal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: proximal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: proximal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: proximal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: sesamoid-lateral",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: sesamoid-medial",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: fibula",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification: tibia",
+      "pass": true
+    },
+    {
+      "name": "Tibia name and pronunciation",
+      "pass": true
+    },
+    {
+      "name": "Fibula name and pronunciation",
+      "pass": true
+    },
+    {
+      "name": "Chinese search finds only tibia",
+      "pass": true
+    },
+    {
+      "name": "Pinyin search finds only fibula",
+      "pass": true
+    },
+    {
+      "name": "Foot scope retains 28 original visible meshes",
+      "pass": true
+    },
+    {
+      "name": "Original foot remains raycast-pickable",
+      "pass": true
+    },
+    {
+      "name": "Actual foot click identifies talus",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: talus/move",
+      "pass": true
+    },
+    {
+      "name": "Original foot drag moves exactly one bone",
+      "pass": true
+    },
+    {
+      "name": "Dragging a bone does not orbit camera",
+      "pass": true
+    },
+    {
+      "name": "Original-position reference works",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: talus/rotate",
+      "pass": true
+    },
+    {
+      "name": "Original foot individual rotation works",
+      "pass": true
+    },
+    {
+      "name": "Reset preserves exact original coordinates",
+      "pass": true
+    },
+    {
+      "name": "Reset restores individual orientations",
+      "pass": true
+    },
+    {
+      "name": "Original foot single-bone study",
+      "pass": true
+    },
+    {
+      "name": "Escape returns to same foot scope",
+      "pass": true
+    },
+    {
+      "name": "Neighbor emphasis works",
+      "pass": true
+    },
+    {
+      "name": "Hide selected bone works",
+      "pass": true
+    },
+    {
+      "name": "Show all respects foot scope",
+      "pass": true
+    },
+    {
+      "name": "Original full-foot expansion works",
+      "pass": true
+    },
+    {
+      "name": "Foot labels show original 28 structures",
+      "pass": false
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Foot labels show original 28 structures"
+  ],
+  "requests": []
+}
