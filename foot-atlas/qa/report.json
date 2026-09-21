@@ -1,5 +1,5 @@
 {
-  "success": false,
+  "success": true,
   "checks": [
     {
       "name": "Loaded 28 independent anatomical bones",
@@ -91,11 +91,38 @@
     },
     {
       "name": "Plantar camera below foot",
-      "pass": false
+      "pass": true
+    },
+    {
+      "name": "Medial view on hallux side",
+      "pass": true
+    },
+    {
+      "name": "Lateral view on fifth-toe side",
+      "pass": true
+    },
+    {
+      "name": "Help dialog opens",
+      "pass": true
+    },
+    {
+      "name": "Provenance dialog opens",
+      "pass": true
+    },
+    {
+      "name": "No horizontal desktop overflow",
+      "pass": true
+    },
+    {
+      "name": "Capture creates a downloadable PNG",
+      "pass": true
+    },
+    {
+      "name": "No browser or shader errors",
+      "pass": true
     }
   ],
-  "errors": [
-    "AssertionError [ERR_ASSERTION]: Plantar camera below foot"
-  ],
-  "warnings": []
+  "errors": [],
+  "warnings": [],
+  "externalRequests": []
 }

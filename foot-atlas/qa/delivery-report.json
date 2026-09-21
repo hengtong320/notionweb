@@ -1,0 +1,589 @@
+{
+  "startedAt": "2026-09-21T13:28:37.771Z",
+  "publicURL": "https://hengtong320.github.io/notionweb/foot-atlas/",
+  "cases": [
+    {
+      "name": "chromium-live",
+      "url": "https://hengtong320.github.io/notionweb/foot-atlas/?delivery=20260921",
+      "optional": false,
+      "checks": [
+        {
+          "name": "Published page returns HTTP 200",
+          "pass": true,
+          "detail": 200
+        },
+        {
+          "name": "Live page exactly matches the complete repository build",
+          "pass": true,
+          "detail": {
+            "expected": "47d3044cfeb419510c6c32bfbd6f9640ee8bca9e946d2c66254d196ddef96b16",
+            "actual": "47d3044cfeb419510c6c32bfbd6f9640ee8bca9e946d2c66254d196ddef96b16"
+          }
+        },
+        {
+          "name": "HTML contains embedded model and renderer",
+          "pass": true,
+          "detail": 1319104
+        },
+        {
+          "name": "All 28 separate bones actually instantiated",
+          "pass": true,
+          "detail": {
+            "count": 28,
+            "visible": 28
+          }
+        },
+        {
+          "name": "All source triangles present",
+          "pass": true
+        },
+        {
+          "name": "No secondary network fetches for engine or anatomy",
+          "pass": true,
+          "detail": [
+            "https://hengtong320.github.io/notionweb/foot-atlas/?delivery=20260921"
+          ]
+        },
+        {
+          "name": "Loading mask closes",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: sesamoid-medial",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: sesamoid-lateral",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-1",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-1",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-1",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuneiform-medial",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuneiform-lateral",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuneiform-intermediate",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuboid",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: navicular",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: calcaneus",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: talus",
+          "pass": true
+        },
+        {
+          "name": "Real mesh raycast has a visible pickable surface",
+          "pass": true
+        },
+        {
+          "name": "Mouse click identifies talus",
+          "pass": true
+        },
+        {
+          "name": "Dragging separates exactly one bone",
+          "pass": true
+        },
+        {
+          "name": "Reset restores all original coordinates",
+          "pass": true
+        },
+        {
+          "name": "Single-bone study shows one bone",
+          "pass": true
+        },
+        {
+          "name": "Whole-foot separation slider works",
+          "pass": true
+        },
+        {
+          "name": "Plantar view points from below",
+          "pass": true
+        },
+        {
+          "name": "1366px laptop viewport has no horizontal overflow",
+          "pass": true
+        },
+        {
+          "name": "No uncaught script errors",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": [],
+      "requests": [
+        "https://hengtong320.github.io/notionweb/foot-atlas/?delivery=20260921"
+      ],
+      "htmlBytes": 1319104,
+      "sha256": "47d3044cfeb419510c6c32bfbd6f9640ee8bca9e946d2c66254d196ddef96b16",
+      "readyMilliseconds": 3707,
+      "success": true
+    },
+    {
+      "name": "chromium-offline",
+      "url": "file:///home/runner/work/notionweb/notionweb/foot-atlas/index.html",
+      "optional": false,
+      "checks": [
+        {
+          "name": "All 28 separate bones actually instantiated",
+          "pass": true,
+          "detail": {
+            "count": 28,
+            "visible": 28
+          }
+        },
+        {
+          "name": "All source triangles present",
+          "pass": true
+        },
+        {
+          "name": "No secondary network fetches for engine or anatomy",
+          "pass": true,
+          "detail": []
+        },
+        {
+          "name": "Loading mask closes",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: sesamoid-medial",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: sesamoid-lateral",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-1",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-1",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-1",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuneiform-medial",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuneiform-lateral",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuneiform-intermediate",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuboid",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: navicular",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: calcaneus",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: talus",
+          "pass": true
+        },
+        {
+          "name": "Real mesh raycast has a visible pickable surface",
+          "pass": true
+        },
+        {
+          "name": "Mouse click identifies talus",
+          "pass": true
+        },
+        {
+          "name": "Dragging separates exactly one bone",
+          "pass": true
+        },
+        {
+          "name": "Reset restores all original coordinates",
+          "pass": true
+        },
+        {
+          "name": "Single-bone study shows one bone",
+          "pass": true
+        },
+        {
+          "name": "Whole-foot separation slider works",
+          "pass": true
+        },
+        {
+          "name": "Plantar view points from below",
+          "pass": true
+        },
+        {
+          "name": "1366px laptop viewport has no horizontal overflow",
+          "pass": true
+        },
+        {
+          "name": "No uncaught script errors",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": [],
+      "requests": [],
+      "readyMilliseconds": 3451,
+      "success": true
+    },
+    {
+      "name": "webkit-offline",
+      "url": "file:///home/runner/work/notionweb/notionweb/foot-atlas/index.html",
+      "optional": true,
+      "checks": [
+        {
+          "name": "All 28 separate bones actually instantiated",
+          "pass": true,
+          "detail": {
+            "count": 28,
+            "visible": 28
+          }
+        },
+        {
+          "name": "All source triangles present",
+          "pass": true
+        },
+        {
+          "name": "No secondary network fetches for engine or anatomy",
+          "pass": true,
+          "detail": []
+        },
+        {
+          "name": "Loading mask closes",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: sesamoid-medial",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: sesamoid-lateral",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: proximal-1",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: middle-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-1",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: distal-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-4",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-3",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-2",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-5",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: metatarsal-1",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuneiform-medial",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuneiform-lateral",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuneiform-intermediate",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: cuboid",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: navicular",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: calcaneus",
+          "pass": true
+        },
+        {
+          "name": "Chinese identification: talus",
+          "pass": true
+        },
+        {
+          "name": "Real mesh raycast has a visible pickable surface",
+          "pass": true
+        },
+        {
+          "name": "Mouse click identifies talus",
+          "pass": true
+        },
+        {
+          "name": "Dragging separates exactly one bone",
+          "pass": true
+        },
+        {
+          "name": "Reset restores all original coordinates",
+          "pass": true
+        },
+        {
+          "name": "Single-bone study shows one bone",
+          "pass": true
+        },
+        {
+          "name": "Whole-foot separation slider works",
+          "pass": true
+        },
+        {
+          "name": "Plantar view points from below",
+          "pass": true
+        },
+        {
+          "name": "1366px laptop viewport has no horizontal overflow",
+          "pass": true
+        },
+        {
+          "name": "No uncaught script errors",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": [],
+      "requests": [],
+      "readyMilliseconds": 4907,
+      "success": true
+    },
+    {
+      "name": "webgl-disabled-diagnostic",
+      "checks": [
+        {
+          "name": "Unsupported WebGL displays a visible explanation rather than empty bones",
+          "pass": true,
+          "detail": {
+            "title": "三维模型未能打开",
+            "detail": "请使用较新的 Chrome、Edge 或 Safari，并启用硬件加速。若资源未加载完整，请刷新重试。"
+          }
+        }
+      ],
+      "success": true
+    }
+  ],
+  "success": true,
+  "finishedAt": "2026-09-21T13:32:51.501Z"
+}
