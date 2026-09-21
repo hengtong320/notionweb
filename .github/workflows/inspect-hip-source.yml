@@ -1,0 +1,44 @@
+name: Inspect pelvic anatomy source
+on:
+  push:
+    paths:
+      - '.github/workflows/inspect-hip-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download pinned source and portable build tools
+        run: |
+          npm install --prefix /tmp/hip-tools three@0.180.0 esbuild@0.25.10
+          mkdir -p hip-source-preview
+          cp /tmp/hip-tools/node_modules/three/examples/jsm/libs/draco/gltf/draco_decoder.js hip-source-preview/draco_decoder.cjs
+          cp /tmp/hip-tools/node_modules/@esbuild/linux-x64/bin/esbuild hip-source-preview/esbuild
+          cp /tmp/hip-tools/node_modules/esbuild/LICENSE.md hip-source-preview/esbuild-LICENSE.md
+          cp /tmp/hip-tools/node_modules/three/LICENSE hip-source-preview/THREE-LICENSE.txt
+          cp foot-atlas/decode_draco.cjs hip-source-preview/decode-original.cjs
+          python - <<'PY'
+          from pathlib import Path
+          import urllib.request,struct,json,hashlib
+          url='https://raw.githubusercontent.com/Liyucheng1997/242_lab-human-anatomy/main/public/models/skeleton.glb'
+          with urllib.request.urlopen(url,timeout=90) as r:data=r.read()
+          sha=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+          assert sha=='5e15f7ea303c554f6c25a417f7f184696234b436',sha
+          root=Path('hip-source-preview');(root/'source.glb').write_bytes(data)
+          doc=json.loads(data[20:20+struct.unpack_from('<I',data,12)[0]])
+          nodes=[{'index':i,**n} for i,n in enumerate(doc['nodes']) if any(k in n.get('name','').lower() for k in ['cox','hip','pelv','sacr','coccy','ilium','ischium','pubis'])]
+          (root/'pelvic-nodes.json').write_text(json.dumps(nodes,indent=2))
+          print('PELVIC_NODES',json.dumps(nodes))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hip-source-and-build-tools
+          path: hip-source-preview/
+          retention-days: 14
