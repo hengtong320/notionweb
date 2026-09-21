@@ -1,0 +1,85 @@
+name: Build and verify foot atlas
+on:
+  push:
+    paths:
+      - 'foot-atlas/app.js'
+      - 'foot-atlas/bones-data.js'
+      - 'foot-atlas/styles.css'
+      - 'foot-atlas/index.template.html'
+      - 'foot-atlas/build.py'
+      - 'foot-atlas/prepare_model.py'
+      - 'foot-atlas/decode_draco.cjs'
+      - 'foot-atlas/qa.cjs'
+      - 'foot-atlas/patches.py'
+      - '.github/workflows/foot-atlas-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: foot-atlas-build
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NODE_PATH: /tmp/foot-toolchain/node_modules
+      THREE_PACKAGE: /tmp/foot-toolchain/node_modules/three
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned build and browser dependencies
+        run: |
+          npm install --prefix /tmp/foot-toolchain three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          python -m pip install numpy==2.3.5 trimesh==4.11.1 scipy==1.17.0
+          /tmp/foot-toolchain/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Build verified anatomical assets and offline HTML
+        run: |
+          if [ -f foot-atlas/patches.py ]; then python foot-atlas/patches.py; fi
+          node --check foot-atlas/app.js
+          python foot-atlas/build.py
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('foot-atlas')
+          (p/'MODEL-LICENSES.txt').write_text('''ANATOMICAL MODEL ATTRIBUTION
+          Z-Anatomy, Gauthier Kervyn and contributors; derived right-foot meshes licensed CC BY-SA 4.0.
+          https://github.com/Z-Anatomy/Models-of-human-anatomy
+          https://creativecommons.org/licenses/by-sa/4.0/
+          Upstream: BodyParts3D, (c) The Database Center for Life Science licensed under CC Attribution-Share Alike 2.1 Japan.
+          https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/README_e.html
+          https://creativecommons.org/licenses/by-sa/2.1/jp/
+          GLB export: https://github.com/Liyucheng1997/242_lab-human-anatomy/blob/main/public/models/skeleton.glb
+          Verified source Git blob: 5e15f7ea303c554f6c25a417f7f184696234b436
+          Changes: right-foot extraction, separation of the two connected sesamoid components, coordinate centering/unit conversion, visualization materials. Original relative bone positions and surface geometry preserved. See assets/provenance.json.
+          No claim of clinical accuracy. No patient CT, soft tissues, internal bone structure, or joint-motion simulation.
+          Three.js: MIT; see vendor/THREE-LICENSE.txt.
+          ''')
+          (p/'LICENSE').write_text('''MIT License - application code and original study notes only; anatomical models retain their separate license.
+          Copyright (c) 2026 Foot Atlas contributors
+          Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+          The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+          ''')
+          PY
+      - name: Check actual WebGL mouse interactions and capture screenshots
+        run: node foot-atlas/qa.cjs
+      - name: Upload self-contained atlas, source and verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: foot-atlas-tested-build
+          path: foot-atlas/
+          retention-days: 14
+      - name: Commit only the new atlas directory
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add foot-atlas/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish browser-verified self-contained foot anatomy atlas'
+            git push
+          fi
