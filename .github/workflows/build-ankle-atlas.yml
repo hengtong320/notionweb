@@ -1,0 +1,39 @@
+name: Build and verify ankle atlas
+on:
+  push:
+    paths:
+      - 'ankle-atlas-tools/**'
+      - '.github/workflows/build-ankle-atlas.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ankle-atlas-build
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NODE_PATH: /tmp/ankle-toolchain/node_modules
+      THREE_PACKAGE: /tmp/ankle-toolchain/node_modules/three
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned toolchain
+        run: |
+          npm install --prefix /tmp/ankle-toolchain three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          python -m pip install numpy==2.3.5 trimesh==4.11.1 scipy==1.17.0
+      - name: Prepare and verify additive anatomy
+        run: python ankle-atlas-tools/prepare.py
+      - name: Export preview source without changing the live foot page
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ankle-atlas-source-preview
+          path: ankle-atlas/
+          retention-days: 14
