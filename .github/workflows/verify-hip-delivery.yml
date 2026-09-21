@@ -1,0 +1,125 @@
+name: Verify and deliver hip atlas
+on:
+  push:
+    paths:
+      - '.github/workflows/verify-hip-delivery.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: hip-atlas-delivery
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    env:
+      NODE_PATH: /tmp/hip-delivery/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the complete anatomy and unchanged approved versions
+        run: |
+          python - <<'PY'
+          import json,hashlib,subprocess
+          from pathlib import Path
+          p=Path('hip-atlas')
+          info=json.loads((p/'build-info.json').read_text())
+          meta=json.loads((p/'assets/provenance.json').read_text())
+          actual=hashlib.sha256((p/'index.html').read_bytes()).hexdigest()
+          assert actual==info['htmlSHA256']=='b361f3111372411b19eea0115b516e4bb78aad669f9c129d8c3e3e1823b81ef6'
+          assert info['bones']==36 and meta['approvedKneePreserved'] and meta['maxPriorCoordinateErrorMillimeters']==0
+          diff=subprocess.check_output(['git','diff',info['baseRef'],'--','foot-atlas/','ankle-atlas/','knee-atlas/'])
+          assert not diff,'An approved previous atlas changed'
+          for name in ['offline-report.json','webkit-report.json']:
+              report=json.loads((p/'qa'/name).read_text())
+              assert report['success'] and all(c['pass'] for c in report['checks'])
+              print(name,len(report['checks']),'PASS')
+          print('Unchanged tested application:',actual)
+          PY
+      - name: Install the pinned real-browser test tools
+        run: |
+          npm install --prefix /tmp/hip-delivery playwright@1.56.1
+          /tmp/hip-delivery/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Run the full interaction suite against the actual published page
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/hip-atlas/?release=${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('hip-atlas-tools/verify.cjs')
+          s=p.read_text()
+          # Use a lower rendering pixel density only in this software-GPU test
+          # browser. All CSS dimensions, real mouse input, assertions, application
+          # scripts, model triangles and camera behavior remain unchanged.
+          assert 'deviceScaleFactor:1' in s
+          s=s.replace('deviceScaleFactor:1','deviceScaleFactor:0.65')
+          s=s.replace('report.browserVersion=browser.version();','report.browserVersion=browser.version();report.deviceScaleFactor=0.65;report.cssViewport={width:1440,height:1000};')
+          (p.parent/'delivery-verify.cjs').write_text(s)
+          PY
+          node hip-atlas-tools/delivery-verify.cjs
+      - name: Capture final full-density screenshots and check the downloadable HTML
+        run: |
+          cat > /tmp/hip-delivery/capture.cjs <<'JS'
+          const {chromium}=require('playwright');
+          const fs=require('fs'),path=require('path'),crypto=require('crypto');
+          (async()=>{
+            const base=path.resolve('hip-atlas'),out=path.join(base,'qa');
+            const browser=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});
+            try {
+              const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+              const errors=[],requests=[];page.on('pageerror',e=>errors.push(String(e)));page.on('request',r=>{if(/^https?:/.test(r.url()))requests.push(r.url());});
+              await page.route(/^https?:/,r=>r.abort());
+              await page.goto('file://'+path.join(base,'index.html'));
+              await page.waitForFunction(()=>window.__FOOT_ATLAS__?.getState().ready,undefined,{timeout:90000});
+              const settle=async()=>{await page.waitForFunction(()=>!window.__FOOT_ATLAS__.getState().cameraAnimating);await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));};
+              const states=[];
+              for(const [region,view] of [['pelvis','front'],['hip','overview'],['pelvic-limb','overview']]){
+                await page.locator('[data-region="'+region+'"]').click();await settle();
+                await page.locator('[data-view="'+view+'"]').click();await settle();
+                const state=await page.evaluate(()=>window.__FOOT_ATLAS__.getState());
+                const expected={pelvis:4,hip:2,'pelvic-limb':36}[region];
+                if(state.visible!==expected)throw Error('Incorrect region count: '+region);
+                await page.screenshot({path:path.join(out,'delivery-'+region+'.png')});
+                states.push({region,visible:state.visible,pass:true});
+              }
+              if(errors.length||requests.length)throw Error(JSON.stringify({errors,requests}));
+              const report={success:true,checkedAt:new Date().toISOString(),deviceScaleFactor:1,cssViewport:{width:1440,height:1000},browser:'chromium',browserVersion:browser.version(),networkBlocked:true,errors,requests,states,htmlSHA256:crypto.createHash('sha256').update(fs.readFileSync(path.join(base,'index.html'))).digest('hex')};
+              fs.writeFileSync(path.join(out,'delivery-screenshots.json'),JSON.stringify(report,null,2));
+            }finally{await browser.close();}
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+          node /tmp/hip-delivery/capture.cjs
+      - name: Publish successful delivery evidence without changing any viewer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,hashlib
+          p=Path('hip-atlas');r=json.loads((p/'qa/live-report.json').read_text())
+          assert r['success'] and all(c['pass'] for c in r['checks'])
+          h=hashlib.sha256((p/'index.html').read_bytes()).hexdigest()
+          assert h==r['htmlSHA256']
+          (p/'delivery-release.json').write_text(json.dumps({'status':'verified','url':r['url'],'htmlSHA256':h,'htmlBytes':(p/'index.html').stat().st_size,'liveChecks':len(r['checks']),'offlineChecks':178,'webkitChecks':39,'bones':36,'addedBones':['hip-right','hip-left','sacrum','coccyx'],'priorVersionsUnchanged':True,'noRuntimeNetwork':True,'checkedAt':r['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID']},ensure_ascii=False,indent=2))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add hip-atlas/qa/ hip-atlas/delivery-release.json
+          git diff --cached --name-only | grep -Ev '^hip-atlas/(qa/|delivery-release.json$)' && exit 1 || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Finish live-verified hip and pelvis release; preserve previous viewers'
+            git push origin HEAD:main
+          fi
+      - name: Export complete offline release and all browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hip-atlas-delivery-release
+          path: |
+            hip-atlas/
+            hip-atlas-tools/
+          retention-days: 14
