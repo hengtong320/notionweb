@@ -1,0 +1,14 @@
+ANATOMICAL MODEL ATTRIBUTION
+Z-Anatomy, Gauthier Kervyn and contributors; derived right-foot meshes licensed CC BY-SA 4.0.
+https://github.com/Z-Anatomy/Models-of-human-anatomy
+https://creativecommons.org/licenses/by-sa/4.0/
+Upstream: BodyParts3D, (c) The Database Center for Life Science licensed under CC Attribution-Share Alike 2.1 Japan.
+https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/README_e.html
+https://creativecommons.org/licenses/by-sa/2.1/jp/
+GLB export: https://github.com/Liyucheng1997/242_lab-human-anatomy/blob/main/public/models/skeleton.glb
+Verified source Git blob: 5e15f7ea303c554f6c25a417f7f184696234b436
+Changes: right-foot extraction, separation of the two connected sesamoid components, coordinate centering/unit conversion, visualization materials. Original relative bone positions and surface geometry preserved. See assets/provenance.json.
+No claim of clinical accuracy. No patient CT, soft tissues, internal bone structure, or joint-motion simulation.
+Three.js: MIT; see vendor/THREE-LICENSE.txt.
+
+2026-09-21 extension: added right Tibia and Fibula source meshes; retained approved foot geometry. No clinical or joint-motion claim.

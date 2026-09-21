@@ -1,0 +1,364 @@
+{
+  "side": "right",
+  "basicBones": 28,
+  "sesamoids": 2,
+  "source": "Z-Anatomy / BodyParts3D",
+  "license": "CC BY-SA 4.0",
+  "sourceURL": "https://github.com/Liyucheng1997/242_lab-human-anatomy/blob/main/public/models/skeleton.glb",
+  "sourceBlobSHA": "5e15f7ea303c554f6c25a417f7f184696234b436",
+  "sourceSHA256": "9fa642cc4ba501c0512cf8a2ab074b0c6a03fdd5dad7ab28a0c139e70e10ae82",
+  "modifications": "Retained all 28 approved foot meshes and their original transforms; added the source right tibia and fibula in the same anatomical coordinate system. No artificial bone geometry, subdivision, stretching or independent scaling. Visualization only; no joint kinematics.",
+  "bounds": [
+    [
+      -46.86325485818088,
+      -38.135861163027585,
+      -114.43210020661354
+    ],
+    [
+      46.86325485818088,
+      38.135861163027585,
+      114.43210020661354
+    ]
+  ],
+  "bones": [
+    {
+      "id": "sesamoid-medial",
+      "sourceNode": "Sesamoid bones of foot.r.001",
+      "center": [
+        32.762458780780435,
+        -31.984031898900867,
+        48.57745300978422
+      ],
+      "vertices": 42,
+      "triangles": 80
+    },
+    {
+      "id": "sesamoid-lateral",
+      "sourceNode": "Sesamoid bones of foot.r.001",
+      "center": [
+        23.403579602018,
+        -32.744119758717716,
+        47.57636180147529
+      ],
+      "vertices": 107,
+      "triangles": 210
+    },
+    {
+      "id": "proximal-5",
+      "sourceNode": "Proximal phalanx of fifth finger of foot.r.001",
+      "center": [
+        -35.91434401459992,
+        -32.41598361637443,
+        45.53194064646959
+      ],
+      "vertices": 260,
+      "triangles": 516
+    },
+    {
+      "id": "proximal-4",
+      "sourceNode": "Proximal phalanx of fourth finger of foot.r.001",
+      "center": [
+        -23.60487007535994,
+        -30.494308448396623,
+        58.58186259865761
+      ],
+      "vertices": 232,
+      "triangles": 460
+    },
+    {
+      "id": "proximal-3",
+      "sourceNode": "Proximal phalanx of third finger of foot.r.001",
+      "center": [
+        -11.053749592974782,
+        -29.193867812864482,
+        68.31372855231166
+      ],
+      "vertices": 232,
+      "triangles": 460
+    },
+    {
+      "id": "proximal-2",
+      "sourceNode": "Proximal phalanx of second finger of foot.r.001",
+      "center": [
+        4.017528844997287,
+        -27.831879328005016,
+        74.26055520772934
+      ],
+      "vertices": 215,
+      "triangles": 426
+    },
+    {
+      "id": "proximal-1",
+      "sourceNode": "Proximal phalanx of first finger of foot.r.001",
+      "center": [
+        25.588598800823092,
+        -27.146970038302243,
+        74.30506497621536
+      ],
+      "vertices": 268,
+      "triangles": 532
+    },
+    {
+      "id": "middle-5",
+      "sourceNode": "Middle phalanx of fifth finger of foot.r.001",
+      "center": [
+        -41.57268605194986,
+        -34.462037845514715,
+        60.7936343876645
+      ],
+      "vertices": 110,
+      "triangles": 216
+    },
+    {
+      "id": "middle-4",
+      "sourceNode": "Middle phalanx of fourth finger of foot.r.001",
+      "center": [
+        -30.33740888349712,
+        -33.35170482750982,
+        76.43432496115565
+      ],
+      "vertices": 226,
+      "triangles": 448
+    },
+    {
+      "id": "middle-3",
+      "sourceNode": "Middle phalanx of third finger of foot.r.001",
+      "center": [
+        -16.54806430451572,
+        -32.22408564761281,
+        89.24191817641258
+      ],
+      "vertices": 202,
+      "triangles": 400
+    },
+    {
+      "id": "middle-2",
+      "sourceNode": "Middle phalanx of second finger of foot.r.001",
+      "center": [
+        -1.4444913249462843,
+        -30.95462592318654,
+        94.8803722858429
+      ],
+      "vertices": 193,
+      "triangles": 382
+    },
+    {
+      "id": "distal-3",
+      "sourceNode": "Distal phalanx of third finger of foot.r.001",
+      "center": [
+        -19.245512085035443,
+        -34.77975947316736,
+        101.40135232359171
+      ],
+      "vertices": 161,
+      "triangles": 318
+    },
+    {
+      "id": "distal-2",
+      "sourceNode": "Distal phalanx of second finger of foot.r.001",
+      "center": [
+        -4.248613258823752,
+        -34.08427501562983,
+        107.59880789555609
+      ],
+      "vertices": 120,
+      "triangles": 236
+    },
+    {
+      "id": "distal-4",
+      "sourceNode": "Distal phalanx of fourth finger of foot.r.001",
+      "center": [
+        -32.62434923090041,
+        -34.43339967634529,
+        86.68937487527728
+      ],
+      "vertices": 141,
+      "triangles": 278
+    },
+    {
+      "id": "distal-1",
+      "sourceNode": "Distal phalanx of first finger of foot.r.001",
+      "center": [
+        19.46098986081779,
+        -31.656535691581666,
+        98.29087276011705
+      ],
+      "vertices": 235,
+      "triangles": 466
+    },
+    {
+      "id": "distal-5",
+      "sourceNode": "Distal phalanx of fifth finger of foot.r.001",
+      "center": [
+        -42.919047409668565,
+        -35.318617592565715,
+        68.17324925214052
+      ],
+      "vertices": 120,
+      "triangles": 236
+    },
+    {
+      "id": "metatarsal-4",
+      "sourceNode": "Fourth metatarsal bone.r.001",
+      "center": [
+        -9.732893900945783,
+        -16.44214882981032,
+        15.049354173243046
+      ],
+      "vertices": 419,
+      "triangles": 834
+    },
+    {
+      "id": "metatarsal-3",
+      "sourceNode": "Third metatarsal bone.r.001",
+      "center": [
+        -1.1306109372526407,
+        -11.69923401903361,
+        24.55439418554306
+      ],
+      "vertices": 409,
+      "triangles": 814
+    },
+    {
+      "id": "metatarsal-2",
+      "sourceNode": "Second metatarsal bone.r.001",
+      "center": [
+        10.109493276104331,
+        -8.853846113197505,
+        27.04973891377449
+      ],
+      "vertices": 347,
+      "triangles": 690
+    },
+    {
+      "id": "metatarsal-5",
+      "sourceNode": "Fifth metatarsal bone.r.001",
+      "center": [
+        -19.895031349733472,
+        -21.866268361918628,
+        -0.047769397497177124
+      ],
+      "vertices": 449,
+      "triangles": 894
+    },
+    {
+      "id": "metatarsal-1",
+      "sourceNode": "First metatarsal bone.r.001",
+      "center": [
+        28.31380325369537,
+        -10.252269799821079,
+        29.746104031801224
+      ],
+      "vertices": 546,
+      "triangles": 1088
+    },
+    {
+      "id": "cuneiform-medial",
+      "sourceNode": "Medial cuneiform bone.r.001",
+      "center": [
+        28.941318159922957,
+        4.246908356435597,
+        -7.393166422843933
+      ],
+      "vertices": 498,
+      "triangles": 992
+    },
+    {
+      "id": "cuneiform-lateral",
+      "sourceNode": "Lateral cuneiform bone.r.001",
+      "center": [
+        6.124531617388129,
+        6.315518287010491,
+        -15.841824002563953
+      ],
+      "vertices": 321,
+      "triangles": 638
+    },
+    {
+      "id": "cuneiform-intermediate",
+      "sourceNode": "Intermediate cuneiform bone.r.001",
+      "center": [
+        15.94034000299871,
+        11.349086766131222,
+        -11.614085175096989
+      ],
+      "vertices": 224,
+      "triangles": 444
+    },
+    {
+      "id": "cuboid",
+      "sourceNode": "Cuboid bone.r.001",
+      "center": [
+        3.9158917497843504,
+        -3.0064008897170424,
+        -29.252429027110338
+      ],
+      "vertices": 501,
+      "triangles": 998
+    },
+    {
+      "id": "navicular",
+      "sourceNode": "Navicular bone.r.001",
+      "center": [
+        26.520521147176623,
+        14.878145535476506,
+        -25.965787703171372
+      ],
+      "vertices": 368,
+      "triangles": 732
+    },
+    {
+      "id": "calcaneus",
+      "sourceNode": "Calcaneus.r.001",
+      "center": [
+        21.096614519725048,
+        -10.33523962939513,
+        -76.588224619627
+      ],
+      "vertices": 726,
+      "triangles": 1448
+    },
+    {
+      "id": "talus",
+      "sourceNode": "Talus.r.001",
+      "center": [
+        24.85223743133247,
+        20.329698105342686,
+        -59.44874696433544
+      ],
+      "vertices": 677,
+      "triangles": 1350
+    },
+    {
+      "id": "fibula",
+      "sourceNode": "Fibula.r.001",
+      "center": [
+        -7.183716865256429,
+        189.1180529491976,
+        -66.1005973815918
+      ],
+      "vertices": 634,
+      "triangles": 1264
+    },
+    {
+      "id": "tibia",
+      "sourceNode": "Tibia.r.001",
+      "center": [
+        22.984276292845607,
+        206.86067186761647,
+        -51.82655528187752
+      ],
+      "vertices": 837,
+      "triangles": 1670
+    }
+  ],
+  "totalTriangles": 19520,
+  "baseRef": "31d013bc909f0846beaa384cad647f12db8f7aa6",
+  "newBones": [
+    "tibia",
+    "fibula"
+  ],
+  "approvedFootPreserved": true,
+  "maxFootCoordinateErrorMillimeters": 0,
+  "extension": "Right ankle and lower leg; no femur or patella yet."
+}

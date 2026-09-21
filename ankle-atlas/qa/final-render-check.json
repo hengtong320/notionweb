@@ -1,0 +1,61 @@
+{
+  "success": true,
+  "checkedAt": "2026-09-21T16:32:57.297Z",
+  "htmlSHA256": "d94ffb235cb36a7b4c8619a9a221cb8f70dedbed1c50c93399df576405be4e81",
+  "results": [
+    {
+      "browser": "chromium",
+      "region": "leg",
+      "count": 30,
+      "visible": 30,
+      "pass": true
+    },
+    {
+      "browser": "chromium",
+      "region": "ankle",
+      "count": 30,
+      "visible": 30,
+      "pass": true
+    },
+    {
+      "browser": "chromium",
+      "region": "foot",
+      "count": 30,
+      "visible": 28,
+      "pass": true
+    },
+    {
+      "browser": "chromium",
+      "check": "Select tibia from foot scope reveals complete lower leg",
+      "pass": true
+    },
+    {
+      "browser": "webkit",
+      "region": "leg",
+      "count": 30,
+      "visible": 30,
+      "pass": true
+    },
+    {
+      "browser": "webkit",
+      "region": "ankle",
+      "count": 30,
+      "visible": 30,
+      "pass": true
+    },
+    {
+      "browser": "webkit",
+      "region": "foot",
+      "count": 30,
+      "visible": 28,
+      "pass": true
+    },
+    {
+      "browser": "webkit",
+      "check": "Select tibia from foot scope reveals complete lower leg",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "externalNetworkBlocked": true
+}

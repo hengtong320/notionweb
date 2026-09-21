@@ -1,5 +1,6 @@
 {
-  "success": false,
+  "success": true,
+  "checkedAt": "2026-09-21T16:28:19.860Z",
   "checks": [
     {
       "name": "All 30 independent bones loaded",
@@ -232,11 +233,128 @@
     },
     {
       "name": "Foot labels show original 28 structures",
-      "pass": false
+      "pass": true
+    },
+    {
+      "name": "Correct standard view: plantar",
+      "pass": true
+    },
+    {
+      "name": "Correct standard view: medial",
+      "pass": true
+    },
+    {
+      "name": "Correct standard view: lateral",
+      "pass": true
+    },
+    {
+      "name": "New bone visible and pickable: tibia",
+      "pass": true
+    },
+    {
+      "name": "Mouse click identifies tibia",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: tibia/move",
+      "pass": true
+    },
+    {
+      "name": "Only tibia is displaced",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: tibia/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent long-bone rotation: tibia",
+      "pass": true
+    },
+    {
+      "name": "Single long-bone inspection: tibia",
+      "pass": true
+    },
+    {
+      "name": "Per-bone reset: tibia",
+      "pass": true
+    },
+    {
+      "name": "New bone visible and pickable: fibula",
+      "pass": true
+    },
+    {
+      "name": "Mouse click identifies fibula",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: fibula/move",
+      "pass": true
+    },
+    {
+      "name": "Only fibula is displaced",
+      "pass": true
+    },
+    {
+      "name": "Visible drag surface: fibula/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent long-bone rotation: fibula",
+      "pass": true
+    },
+    {
+      "name": "Single long-bone inspection: fibula",
+      "pass": true
+    },
+    {
+      "name": "Per-bone reset: fibula",
+      "pass": true
+    },
+    {
+      "name": "Ankle focus retains complete bones without shortening",
+      "pass": true
+    },
+    {
+      "name": "Talus neighbor list includes tibia and fibula",
+      "pass": true
+    },
+    {
+      "name": "Expansion separates all 30 structures",
+      "pass": true
+    },
+    {
+      "name": "All 30 individual labels created",
+      "pass": true
+    },
+    {
+      "name": "Selecting new bone from foot view reveals it",
+      "pass": true
+    },
+    {
+      "name": "No laptop horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Existing help still opens",
+      "pass": true
+    },
+    {
+      "name": "Source and limits dialog opens",
+      "pass": true
+    },
+    {
+      "name": "View capture works",
+      "pass": true
+    },
+    {
+      "name": "No browser or shader errors",
+      "pass": true,
+      "detail": []
     }
   ],
-  "errors": [
-    "AssertionError [ERR_ASSERTION]: Foot labels show original 28 structures"
-  ],
-  "requests": []
+  "errors": [],
+  "requests": [],
+  "browser": "chromium",
+  "url": "offline embedded HTML"
 }
