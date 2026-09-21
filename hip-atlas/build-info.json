@@ -1,0 +1,23 @@
+{
+  "version": "hip-v1",
+  "baseRef": "085381cbf6ee7cb014a01caa06913cb5ada8a934",
+  "bones": 36,
+  "pelvicBones": 4,
+  "standardRightLimbBones": 30,
+  "additionalHalluxSesamoids": 2,
+  "addedBones": [
+    "hip-right",
+    "hip-left",
+    "sacrum",
+    "coccyx"
+  ],
+  "totalTriangles": 44008,
+  "modelBytes": 1226700,
+  "approvedKneePreserved": true,
+  "maxPriorCoordinateErrorMillimeters": 0.0,
+  "noRuntimeNetwork": true,
+  "threeVersion": "0.180.0",
+  "htmlBytes": 2360483,
+  "htmlSHA256": "b361f3111372411b19eea0115b516e4bb78aad669f9c129d8c3e3e1823b81ef6",
+  "revision": "hip-v1-pelvic-labels"
+}

@@ -1,0 +1,195 @@
+{
+  "startedAt": "2026-09-21T17:55:50.407Z",
+  "browser": "webkit",
+  "url": "file:///home/runner/work/notionweb/notionweb/hip-atlas/index.html",
+  "htmlSHA256": "b361f3111372411b19eea0115b516e4bb78aad669f9c129d8c3e3e1823b81ef6",
+  "success": true,
+  "checks": [
+    {
+      "name": "All 36 separate bones loaded",
+      "pass": true
+    },
+    {
+      "name": "Source triangles preserved",
+      "pass": true
+    },
+    {
+      "name": "Original 32 mesh coordinates and face indices preserved",
+      "pass": true
+    },
+    {
+      "name": "Initial scope includes whole pelvis and right leg",
+      "pass": true
+    },
+    {
+      "name": "No external anatomy or renderer downloads",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "All three approved atlas directories unchanged",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope foot",
+      "pass": true,
+      "detail": {
+        "visible": 28
+      }
+    },
+    {
+      "name": "Finite camera and target in foot",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope ankle",
+      "pass": true,
+      "detail": {
+        "visible": 30
+      }
+    },
+    {
+      "name": "Finite camera and target in ankle",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope leg",
+      "pass": true,
+      "detail": {
+        "visible": 30
+      }
+    },
+    {
+      "name": "Finite camera and target in leg",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope knee",
+      "pass": true,
+      "detail": {
+        "visible": 4
+      }
+    },
+    {
+      "name": "Finite camera and target in knee",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope whole",
+      "pass": true,
+      "detail": {
+        "visible": 32
+      }
+    },
+    {
+      "name": "Finite camera and target in whole",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope hip",
+      "pass": true,
+      "detail": {
+        "visible": 2
+      }
+    },
+    {
+      "name": "Finite camera and target in hip",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope pelvis",
+      "pass": true,
+      "detail": {
+        "visible": 4
+      }
+    },
+    {
+      "name": "Finite camera and target in pelvis",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope pelvic-limb",
+      "pass": true,
+      "detail": {
+        "visible": 36
+      }
+    },
+    {
+      "name": "Finite camera and target in pelvic-limb",
+      "pass": true
+    },
+    {
+      "name": "Pelvic scope contains four adult bones only",
+      "pass": true
+    },
+    {
+      "name": "No false separate adult ilium pubis ischium entries",
+      "pass": true
+    },
+    {
+      "name": "Left limb not yet added is explained",
+      "pass": true
+    },
+    {
+      "name": "Sacrum name has correct pronunciation",
+      "pass": true
+    },
+    {
+      "name": "Hip right lists femur and pelvic neighbors",
+      "pass": true
+    },
+    {
+      "name": "Anterior pelvic view is from front",
+      "pass": true
+    },
+    {
+      "name": "Posterior pelvic view is from back",
+      "pass": true
+    },
+    {
+      "name": "Bilateral scope uses patient left/right rather than foot labels",
+      "pass": true
+    },
+    {
+      "name": "WebKit identifies hip-right",
+      "pass": true
+    },
+    {
+      "name": "WebKit isolates hip-right",
+      "pass": true
+    },
+    {
+      "name": "WebKit identifies hip-left",
+      "pass": true
+    },
+    {
+      "name": "WebKit isolates hip-left",
+      "pass": true
+    },
+    {
+      "name": "WebKit identifies sacrum",
+      "pass": true
+    },
+    {
+      "name": "WebKit isolates sacrum",
+      "pass": true
+    },
+    {
+      "name": "WebKit identifies coccyx",
+      "pass": true
+    },
+    {
+      "name": "WebKit isolates coccyx",
+      "pass": true
+    },
+    {
+      "name": "No WebKit rendering or script errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "browserVersion": "26.0",
+  "finishedAt": "2026-09-21T17:56:33.385Z"
+}
