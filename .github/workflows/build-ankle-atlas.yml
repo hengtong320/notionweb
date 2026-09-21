@@ -13,7 +13,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       NODE_PATH: /tmp/ankle-toolchain/node_modules
       THREE_PACKAGE: /tmp/ankle-toolchain/node_modules/three
@@ -24,16 +24,84 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install pinned toolchain
+      - name: Install pinned toolchain and browsers
         run: |
           npm install --prefix /tmp/ankle-toolchain three@0.180.0 esbuild@0.25.10 playwright@1.56.1
           python -m pip install numpy==2.3.5 trimesh==4.11.1 scipy==1.17.0
+          /tmp/ankle-toolchain/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
       - name: Prepare and verify additive anatomy
         run: python ankle-atlas-tools/prepare.py
-      - name: Export preview source without changing the live foot page
+      - name: Apply additive viewer changes and create the offline HTML
+        run: |
+          python ankle-atlas-tools/extend.py
+          if [ -f ankle-atlas-tools/refine.py ]; then python ankle-atlas-tools/refine.py; fi
+          rm -f ankle-atlas/qa.cjs ankle-atlas/decode_draco.cjs
+      - name: Verify actual mouse interactions and original foot regression
+        run: node ankle-atlas-tools/verify.cjs
+      - name: Save offline verification evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ankle-atlas-source-preview
+          name: ankle-atlas-offline-verification
           path: ankle-atlas/
           retention-days: 14
+      - name: Publish only the new atlas directory
+        run: |
+          test -z "$(git diff 31d013bc909f0846beaa384cad647f12db8f7aa6 -- foot-atlas/)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ankle-atlas/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish verified ankle and lower-leg atlas; preserve approved foot atlas'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Verify published HTML checksum
+        run: |
+          python - <<'PY'
+          import hashlib,time,urllib.request
+          from pathlib import Path
+          target=hashlib.sha256(Path('ankle-atlas/index.html').read_bytes()).hexdigest()
+          for attempt in range(48):
+              try:
+                  url='https://hengtong320.github.io/notionweb/ankle-atlas/?build='+target[:16]+'&attempt='+str(attempt)
+                  with urllib.request.urlopen(url,timeout=20) as response:data=response.read()
+                  actual=hashlib.sha256(data).hexdigest()
+                  print('PAGES',attempt,len(data),actual,flush=True)
+                  if actual==target:break
+              except Exception as error:print(str(error),flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Pages does not serve the tested build')
+          PY
+      - name: Test the actual public page
+        env:
+          ATLAS_LIVE_URL: https://hengtong320.github.io/notionweb/ankle-atlas/?v=20260921
+        run: node ankle-atlas-tools/verify.cjs
+      - name: Verify WebKit can load all meshes offline
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),path=require('path'),{webkit}=require('playwright');
+          (async()=>{const b=await webkit.launch({headless:true});const c=await b.newContext({viewport:{width:1440,height:960}});await c.route('**/*',r=>/^https?:/.test(r.request().url())?r.abort():r.continue());const p=await c.newPage();const errors=[];p.on('pageerror',e=>errors.push(String(e)));await p.goto('file://'+path.resolve('ankle-atlas/index.html'));await p.waitForFunction(()=>window.__FOOT_ATLAS__?.getState().ready,undefined,{timeout:45000});await p.waitForTimeout(1000);const s=await p.evaluate(()=>window.__FOOT_ATLAS__.getState());if(s.count!==30||s.visible!==30||errors.length)throw Error(JSON.stringify({s,errors}));await p.screenshot({path:'ankle-atlas/qa/webkit-full-leg.png'});fs.writeFileSync('ankle-atlas/qa/webkit-smoke.json',JSON.stringify({success:true,browser:'webkit',count:s.count,visible:s.visible,errors,checkedAt:new Date().toISOString()},null,2));await b.close();})().catch(e=>{console.error(e);process.exit(1);});
+          JS
+      - name: Save complete deliverable and test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ankle-atlas-tested-release
+          path: |
+            ankle-atlas/
+            ankle-atlas-tools/
+          retention-days: 14
+      - name: Publish test results only
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ankle-atlas/qa/ || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record ankle atlas browser test evidence'
+            git stash push --include-untracked -- ankle-atlas/ ankle-atlas-source/ || true
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
