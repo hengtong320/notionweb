@@ -1,0 +1,768 @@
+{
+  "startedAt": "2026-09-21T18:29:45.921Z",
+  "browser": "chromium",
+  "url": "https://hengtong320.github.io/notionweb/hip-atlas/?release=35638600661",
+  "htmlSHA256": "b361f3111372411b19eea0115b516e4bb78aad669f9c129d8c3e3e1823b81ef6",
+  "success": true,
+  "checks": [
+    {
+      "name": "Published URL returns HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "Published HTML equals tested artifact",
+      "pass": true
+    },
+    {
+      "name": "All 36 separate bones loaded",
+      "pass": true
+    },
+    {
+      "name": "Source triangles preserved",
+      "pass": true
+    },
+    {
+      "name": "Original 32 mesh coordinates and face indices preserved",
+      "pass": true
+    },
+    {
+      "name": "Initial scope includes whole pelvis and right leg",
+      "pass": true
+    },
+    {
+      "name": "No external anatomy or renderer downloads",
+      "pass": true,
+      "detail": [
+        "https://hengtong320.github.io/notionweb/hip-atlas/?release=35638600661"
+      ]
+    },
+    {
+      "name": "All three approved atlas directories unchanged",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope foot",
+      "pass": true,
+      "detail": {
+        "visible": 28
+      }
+    },
+    {
+      "name": "Finite camera and target in foot",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope ankle",
+      "pass": true,
+      "detail": {
+        "visible": 30
+      }
+    },
+    {
+      "name": "Finite camera and target in ankle",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope leg",
+      "pass": true,
+      "detail": {
+        "visible": 30
+      }
+    },
+    {
+      "name": "Finite camera and target in leg",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope knee",
+      "pass": true,
+      "detail": {
+        "visible": 4
+      }
+    },
+    {
+      "name": "Finite camera and target in knee",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope whole",
+      "pass": true,
+      "detail": {
+        "visible": 32
+      }
+    },
+    {
+      "name": "Finite camera and target in whole",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope hip",
+      "pass": true,
+      "detail": {
+        "visible": 2
+      }
+    },
+    {
+      "name": "Finite camera and target in hip",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope pelvis",
+      "pass": true,
+      "detail": {
+        "visible": 4
+      }
+    },
+    {
+      "name": "Finite camera and target in pelvis",
+      "pass": true
+    },
+    {
+      "name": "Correct visible bones in scope pelvic-limb",
+      "pass": true,
+      "detail": {
+        "visible": 36
+      }
+    },
+    {
+      "name": "Finite camera and target in pelvic-limb",
+      "pass": true
+    },
+    {
+      "name": "Pelvic scope contains four adult bones only",
+      "pass": true
+    },
+    {
+      "name": "No false separate adult ilium pubis ischium entries",
+      "pass": true
+    },
+    {
+      "name": "Left limb not yet added is explained",
+      "pass": true
+    },
+    {
+      "name": "Sacrum name has correct pronunciation",
+      "pass": true
+    },
+    {
+      "name": "Hip right lists femur and pelvic neighbors",
+      "pass": true
+    },
+    {
+      "name": "Anterior pelvic view is from front",
+      "pass": true
+    },
+    {
+      "name": "Posterior pelvic view is from back",
+      "pass": true
+    },
+    {
+      "name": "Bilateral scope uses patient left/right rather than foot labels",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification patella",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification femur",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification talus",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification calcaneus",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification navicular",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification cuboid",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification cuneiform-intermediate",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification cuneiform-lateral",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification cuneiform-medial",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification metatarsal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification metatarsal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification metatarsal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification metatarsal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification metatarsal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification distal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification distal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification distal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification distal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification distal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification middle-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification middle-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification middle-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification middle-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification proximal-1",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification proximal-2",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification proximal-3",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification proximal-4",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification proximal-5",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification sesamoid-lateral",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification sesamoid-medial",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification fibula",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification tibia",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification hip-right",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification hip-left",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification sacrum",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification coccyx",
+      "pass": true
+    },
+    {
+      "name": "Search 髋",
+      "pass": true
+    },
+    {
+      "name": "Search di gu",
+      "pass": true
+    },
+    {
+      "name": "Search weigu",
+      "pass": true
+    },
+    {
+      "name": "Search 髌",
+      "pass": true
+    },
+    {
+      "name": "Search fei",
+      "pass": true
+    },
+    {
+      "name": "Bone is pickable in assembled scope talus",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identifies talus",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target talus/move",
+      "pass": true
+    },
+    {
+      "name": "Dragging moves only talus",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit talus",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target talus/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent bone rotation talus",
+      "pass": true
+    },
+    {
+      "name": "Individual exact reset talus",
+      "pass": true
+    },
+    {
+      "name": "Single bone inspection talus",
+      "pass": true
+    },
+    {
+      "name": "Escape restores scope talus",
+      "pass": true
+    },
+    {
+      "name": "Bone is pickable in assembled scope tibia",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identifies tibia",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target tibia/move",
+      "pass": true
+    },
+    {
+      "name": "Dragging moves only tibia",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit tibia",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target tibia/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent bone rotation tibia",
+      "pass": true
+    },
+    {
+      "name": "Individual exact reset tibia",
+      "pass": true
+    },
+    {
+      "name": "Single bone inspection tibia",
+      "pass": true
+    },
+    {
+      "name": "Escape restores scope tibia",
+      "pass": true
+    },
+    {
+      "name": "Bone is pickable in assembled scope patella",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identifies patella",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target patella/move",
+      "pass": true
+    },
+    {
+      "name": "Dragging moves only patella",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit patella",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target patella/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent bone rotation patella",
+      "pass": true
+    },
+    {
+      "name": "Individual exact reset patella",
+      "pass": true
+    },
+    {
+      "name": "Single bone inspection patella",
+      "pass": true
+    },
+    {
+      "name": "Escape restores scope patella",
+      "pass": true
+    },
+    {
+      "name": "Bone is pickable in assembled scope femur",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identifies femur",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target femur/move",
+      "pass": true
+    },
+    {
+      "name": "Dragging moves only femur",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit femur",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target femur/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent bone rotation femur",
+      "pass": true
+    },
+    {
+      "name": "Individual exact reset femur",
+      "pass": true
+    },
+    {
+      "name": "Single bone inspection femur",
+      "pass": true
+    },
+    {
+      "name": "Escape restores scope femur",
+      "pass": true
+    },
+    {
+      "name": "Bone is pickable in assembled scope hip-right",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identifies hip-right",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target hip-right/move",
+      "pass": true
+    },
+    {
+      "name": "Dragging moves only hip-right",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit hip-right",
+      "pass": true
+    },
+    {
+      "name": "Original reference enabled hip-right",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target hip-right/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent bone rotation hip-right",
+      "pass": true
+    },
+    {
+      "name": "Individual exact reset hip-right",
+      "pass": true
+    },
+    {
+      "name": "Single bone inspection hip-right",
+      "pass": true
+    },
+    {
+      "name": "Escape restores scope hip-right",
+      "pass": true
+    },
+    {
+      "name": "Bone is pickable in assembled scope hip-left",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identifies hip-left",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target hip-left/move",
+      "pass": true
+    },
+    {
+      "name": "Dragging moves only hip-left",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit hip-left",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target hip-left/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent bone rotation hip-left",
+      "pass": true
+    },
+    {
+      "name": "Individual exact reset hip-left",
+      "pass": true
+    },
+    {
+      "name": "Single bone inspection hip-left",
+      "pass": true
+    },
+    {
+      "name": "Escape restores scope hip-left",
+      "pass": true
+    },
+    {
+      "name": "Bone is pickable in assembled scope sacrum",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identifies sacrum",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target sacrum/move",
+      "pass": true
+    },
+    {
+      "name": "Dragging moves only sacrum",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit sacrum",
+      "pass": true
+    },
+    {
+      "name": "Original reference enabled sacrum",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target sacrum/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent bone rotation sacrum",
+      "pass": true
+    },
+    {
+      "name": "Individual exact reset sacrum",
+      "pass": true
+    },
+    {
+      "name": "Single bone inspection sacrum",
+      "pass": true
+    },
+    {
+      "name": "Escape restores scope sacrum",
+      "pass": true
+    },
+    {
+      "name": "Bone is pickable in assembled scope coccyx",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identifies coccyx",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target coccyx/move",
+      "pass": true
+    },
+    {
+      "name": "Dragging moves only coccyx",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit coccyx",
+      "pass": true
+    },
+    {
+      "name": "Visible actual mouse target coccyx/rotate",
+      "pass": true
+    },
+    {
+      "name": "Independent bone rotation coccyx",
+      "pass": true
+    },
+    {
+      "name": "Individual exact reset coccyx",
+      "pass": true
+    },
+    {
+      "name": "Single bone inspection coccyx",
+      "pass": true
+    },
+    {
+      "name": "Escape restores scope coccyx",
+      "pass": true
+    },
+    {
+      "name": "Hip joint scope includes original complete femur and right hip",
+      "pass": true
+    },
+    {
+      "name": "Femur links to the new right hip",
+      "pass": true
+    },
+    {
+      "name": "Neighbor emphasis kept",
+      "pass": true
+    },
+    {
+      "name": "Hide selected bone works",
+      "pass": true
+    },
+    {
+      "name": "Show all respects hip scope",
+      "pass": true
+    },
+    {
+      "name": "All visible bones separate in foot",
+      "pass": true
+    },
+    {
+      "name": "Correct label count foot",
+      "pass": true
+    },
+    {
+      "name": "All visible bones separate in knee",
+      "pass": true
+    },
+    {
+      "name": "Correct label count knee",
+      "pass": true
+    },
+    {
+      "name": "All visible bones separate in pelvis",
+      "pass": true
+    },
+    {
+      "name": "Correct label count pelvis",
+      "pass": true
+    },
+    {
+      "name": "All visible bones separate in pelvic-limb",
+      "pass": true
+    },
+    {
+      "name": "Correct label count pelvic-limb",
+      "pass": true
+    },
+    {
+      "name": "Group colors enabled",
+      "pass": true
+    },
+    {
+      "name": "Pelvic bone selection switches to pelvis",
+      "pass": true
+    },
+    {
+      "name": "Femur selection from pelvis switches to right hip",
+      "pass": true
+    },
+    {
+      "name": "Foot selection restores foot scope",
+      "pass": true
+    },
+    {
+      "name": "Original foot standard view plantar",
+      "pass": true
+    },
+    {
+      "name": "Original foot standard view medial",
+      "pass": true
+    },
+    {
+      "name": "Original foot standard view lateral",
+      "pass": true
+    },
+    {
+      "name": "Laptop layout no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Original help dialog opens",
+      "pass": true
+    },
+    {
+      "name": "Source dialog describes lumbar and left-leg limits",
+      "pass": true
+    },
+    {
+      "name": "Screenshot export works",
+      "pass": true
+    },
+    {
+      "name": "No browser or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "https://hengtong320.github.io/notionweb/hip-atlas/?release=35638600661"
+  ],
+  "browserVersion": "141.0.7390.37",
+  "deviceScaleFactor": 0.65,
+  "cssViewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "finishedAt": "2026-09-21T18:34:01.237Z"
+}

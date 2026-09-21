@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "checkedAt": "2026-09-21T18:34:18.867Z",
+  "deviceScaleFactor": 1,
+  "cssViewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "browser": "chromium",
+  "browserVersion": "141.0.7390.37",
+  "networkBlocked": true,
+  "errors": [],
+  "requests": [],
+  "states": [
+    {
+      "region": "pelvis",
+      "visible": 4,
+      "pass": true
+    },
+    {
+      "region": "hip",
+      "visible": 2,
+      "pass": true
+    },
+    {
+      "region": "pelvic-limb",
+      "visible": 36,
+      "pass": true
+    }
+  ],
+  "htmlSHA256": "b361f3111372411b19eea0115b516e4bb78aad669f9c129d8c3e3e1823b81ef6"
+}
