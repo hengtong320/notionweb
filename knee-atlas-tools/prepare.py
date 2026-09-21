@@ -4,7 +4,7 @@ import hashlib,json,os,re,shutil,subprocess,tempfile,urllib.request
 import numpy as np
 import trimesh
 ROOT=Path(__file__).resolve().parents[1]
-BASE_REF='cda7429af0fe45e80a1e36a300154edc7ef9d2cc'
+BASE_REF='3cd7d2bfb5cb9013cdf5f4b45ebd8c0933fd31f6'
 OUT=ROOT/'knee-atlas';OUT.mkdir(exist_ok=True)
 PKG=Path(os.environ['THREE_PACKAGE'])
 def original(path):return subprocess.check_output(['git','show',BASE_REF+':'+path],cwd=ROOT)
