@@ -1,0 +1,60 @@
+name: Foot atlas asset preparation
+on:
+  push:
+    paths:
+      - '.github/workflows/foot-atlas-assets.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch anatomical surface data and browser engine
+        run: |
+          mkdir -p atlas-assets
+          python3 - <<'PY'
+          import urllib.request, pathlib, json, struct, csv, io, re, concurrent.futures
+          out=pathlib.Path('atlas-assets'); (out/'fullres').mkdir(exist_ok=True)
+          def get(url,path):
+              req=urllib.request.Request(url,headers={'User-Agent':'FootAtlas-Education/1.0'})
+              with urllib.request.urlopen(req,timeout=90) as r: b=r.read()
+              path.write_bytes(b); return b
+          base='https://raw.githubusercontent.com/Liyucheng1997/242_lab-human-anatomy/main/'
+          b=get(base+'public/models/skeleton.glb',out/'z-anatomy-skeleton.glb')
+          n=struct.unpack_from('<I',b,12)[0]; doc=json.loads(b[20:20+n])
+          names=[x.get('name','') for x in doc.get('nodes',[])]
+          footnames=[x for x in names if any(k in x.lower() for k in ['talus','calcane','navicular','cuboid','cuneiform','metatars','phalan','sesamoid','tibia','fibula'])]
+          print('Z_ANATOMY_NODES',json.dumps(footnames)); (out/'z-anatomy-nodes.json').write_text(json.dumps(names,indent=2))
+          base2='https://raw.githubusercontent.com/olivercase/body_parts_3d_api/main/'
+          data=get(base2+'MANIFEST.csv',out/'bodyparts-manifest.csv').decode()
+          rows=list(csv.DictReader(io.StringIO(data))); print('COLUMNS',list(rows[0]))
+          selected=[]
+          for row in rows:
+              name=row.get('name','').lower()
+              isfoot=any(k in name for k in ['talus','calcaneus','navicular','cuboid','cuneiform','metatarsal']) or ('phalanx' in name and ('toe' in name or 'hallux' in name)) or ('sesamoid' in name and ('foot' in name or 'toe' in name or 'hallux' in name))
+              if 'right' in name and isfoot: selected.append(row)
+          print('BODY_PARTS_FOOT',json.dumps(selected)); (out/'foot-source-manifest.json').write_text(json.dumps(selected,indent=2))
+          # Keep all mesh coordinates as published; do not invent missing geometry.
+          def one(row):
+              filename='_'.join([row['fj_id'],row['bp_id'],row['fma_id'],row['name']])+'.obj'
+              url='https://media.githubusercontent.com/media/olivercase/body_parts_3d_api/main/meshes/'+urllib.parse.quote(filename)
+              try:
+                  get(url,out/'fullres'/filename)
+                  print('OK',filename)
+              except Exception as e: print('MESH_DOWNLOAD_ERROR',filename,str(e))
+          import urllib.parse
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool: list(pool.map(one,selected))
+          (out/'MODEL-LICENSES.txt').write_text('BodyParts3D, (c) The Database Center for Life Science licensed under CC Attribution-Share Alike 2.1 Japan. https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html\nZ-Anatomy, CC BY-SA 4.0, derived from BodyParts3D. https://github.com/Z-Anatomy/Models-of-human-anatomy ; web GLB export: https://github.com/Liyucheng1997/242_lab-human-anatomy\n')
+          PY
+          cd atlas-assets
+          npm pack three@0.180.0
+          tar xzf three-0.180.0.tgz
+          rm three-0.180.0.tgz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: foot-atlas-source-assets
+          path: atlas-assets/
+          retention-days: 7
