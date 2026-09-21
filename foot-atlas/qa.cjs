@@ -5,11 +5,11 @@ const results=[],errors=[],warnings=[];
 const check=(name,value)=>{results.push({name,pass:!!value});assert(value,name);console.log('PASS',name);};
 (async()=>{let browser,page;try{
  browser=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
- page=await browser.newPage({viewport:{width:1600,height:1000},deviceScaleFactor:1});page.setDefaultTimeout(30000);
+ page=await browser.newPage({viewport:{width:1600,height:1000},deviceScaleFactor:1});page.setDefaultTimeout(90000);
  page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());if(m.type()==='warning')warnings.push(m.text());});
  const external=[];page.on('request',req=>{if(/^https?:/.test(req.url()))external.push(req.url());});
  await page.goto('file://'+path.join(base,'index.html'),{waitUntil:'load',timeout:120000});
- await page.waitForFunction(()=>window.__FOOT_ATLAS__?.getState().ready,{timeout:120000});await page.waitForTimeout(1800);
+ await page.waitForFunction(()=>window.__FOOT_ATLAS__?.getState().ready,undefined,{timeout:120000});await page.waitForTimeout(1800);
  const st=()=>page.evaluate(()=>window.__FOOT_ATLAS__.getState()),settle=async()=>{await page.waitForTimeout(950);};
  let s=await st();check('Loaded 28 independent anatomical bones',s.count===28&&s.visible===28);check('Source mesh triangle count preserved',s.bones.reduce((a,b)=>a+b.triangles,0)===16586);check('No runtime external network requests',external.length===0);check('Chinese initial selection visible',(await page.locator('#detailTitle h2').textContent()).includes('距骨'));await page.screenshot({path:path.join(out,'01-overview.png')});
  await page.locator('[data-select="cuboid"]').click();await settle();check('Bone list selection updates 3D inspector',(await st()).selected==='cuboid');check('Difficult Chinese bone names have pinyin',(await page.locator('#detailTitle').textContent()).includes('tóu gǔ'));

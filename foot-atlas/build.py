@@ -18,7 +18,7 @@ with tempfile.TemporaryDirectory(prefix='foot-atlas-') as td:
  env={**os.environ,'ATLAS_SOURCE':str(work),'THREE_PACKAGE':str(package)}
  subprocess.run(['node',str(base/'decode_draco.cjs')],env=env,check=True)
  subprocess.run(['python',str(base/'prepare_model.py')],env=env,check=True)
- subprocess.run(['node','-e',"require('esbuild').buildSync({entryPoints:[process.argv[1]],bundle:true,minify:true,format:'iife',target:['es2020'],outfile:process.argv[2],legalComments:'inline'})",str(base/'app.js'),str(work/'app.bundle.js')],env=env,check=True,cwd=base.parent)
+ subprocess.run(['node','-e',"require('esbuild').buildSync({entryPoints:[process.argv[1]],bundle:true,minify:true,nodePaths:[process.env.NODE_PATH||'node_modules'],format:'iife',target:['es2020'],outfile:process.argv[2],legalComments:'inline'})",str(base/'app.js'),str(work/'app.bundle.js')],env=env,check=True,cwd=base.parent)
  html=(base/'index.template.html').read_text()
  html=html.replace('<link rel="stylesheet" href="styles.css">','<style>'+(base/'styles.css').read_text()+'</style>')
  html=re.sub(r'<script type="importmap">.*?</script>','',html,flags=re.S)

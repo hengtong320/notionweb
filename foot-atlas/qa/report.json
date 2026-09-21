@@ -1,0 +1,128 @@
+{
+  "success": true,
+  "checks": [
+    {
+      "name": "Loaded 28 independent anatomical bones",
+      "pass": true
+    },
+    {
+      "name": "Source mesh triangle count preserved",
+      "pass": true
+    },
+    {
+      "name": "No runtime external network requests",
+      "pass": true
+    },
+    {
+      "name": "Chinese initial selection visible",
+      "pass": true
+    },
+    {
+      "name": "Bone list selection updates 3D inspector",
+      "pass": true
+    },
+    {
+      "name": "Difficult Chinese bone names have pinyin",
+      "pass": true
+    },
+    {
+      "name": "Search filters to intended structure",
+      "pass": true
+    },
+    {
+      "name": "Raycast finds visible talus surface",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse click selects a 3D bone",
+      "pass": true
+    },
+    {
+      "name": "Direct mouse drag moves only selected bone",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit scene",
+      "pass": true
+    },
+    {
+      "name": "Original-position reference enabled",
+      "pass": true
+    },
+    {
+      "name": "Mouse gesture rotates one bone",
+      "pass": true
+    },
+    {
+      "name": "Reset restores exact source positions",
+      "pass": true
+    },
+    {
+      "name": "Reset restores exact source orientations",
+      "pass": true
+    },
+    {
+      "name": "Single-bone study isolates exactly one mesh",
+      "pass": true
+    },
+    {
+      "name": "Escape restores whole foot",
+      "pass": true
+    },
+    {
+      "name": "Neighbor study enabled",
+      "pass": true
+    },
+    {
+      "name": "Hide bone works",
+      "pass": true
+    },
+    {
+      "name": "Show all restores 28 bones",
+      "pass": true
+    },
+    {
+      "name": "Explosion slider separates full skeleton",
+      "pass": true
+    },
+    {
+      "name": "Individual Chinese labels present",
+      "pass": true
+    },
+    {
+      "name": "Plantar camera below foot",
+      "pass": true
+    },
+    {
+      "name": "Medial view on hallux side",
+      "pass": true
+    },
+    {
+      "name": "Lateral view on fifth-toe side",
+      "pass": true
+    },
+    {
+      "name": "Help dialog opens",
+      "pass": true
+    },
+    {
+      "name": "Provenance dialog opens",
+      "pass": true
+    },
+    {
+      "name": "No horizontal desktop overflow",
+      "pass": true
+    },
+    {
+      "name": "Capture creates a downloadable PNG",
+      "pass": true
+    },
+    {
+      "name": "No browser or shader errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "externalRequests": []
+}
