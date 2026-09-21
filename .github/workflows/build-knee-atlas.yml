@@ -1,0 +1,120 @@
+name: Build and verify knee atlas
+on:
+  push:
+    paths:
+      - 'knee-atlas-tools/**'
+      - '.github/workflows/build-knee-atlas.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: knee-atlas-build
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/knee-toolchain/node_modules
+      THREE_PACKAGE: /tmp/knee-toolchain/node_modules/three
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned model and browser tools
+        run: |
+          npm install --prefix /tmp/knee-toolchain three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          python -m pip install numpy==2.3.5 trimesh==4.11.1 scipy==1.17.0
+          /tmp/knee-toolchain/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Add only the original femur and patella meshes
+        run: python knee-atlas-tools/prepare.py
+      - name: Build the matching self-contained viewer
+        run: |
+          python knee-atlas-tools/extend.py
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          p=Path('knee-atlas')
+          for name in ['index.template.html','index.html']:
+              f=p/name;s=f.read_text()
+              s=s.replace('原足骨 28 块 + 小腿骨 2 块','原有 30 块 + 股骨、髌骨').replace('保留足骨原版；本次新增胫骨、腓骨。','原两版保持不变；本期增加大腿与膝。').replace('右侧 · 第一期','右侧 · 第二期').replace('下肢骨骼图谱 · Foot Atlas','下肢骨骼图谱 · Lower Limb Atlas')
+              s=s.replace('href="https://hengtong320.github.io/notionweb/foot-atlas/" target="_blank" rel="noopener">上一版：足踝','href="https://hengtong320.github.io/notionweb/ankle-atlas/" target="_blank" rel="noopener">上一版：足踝')
+              f.write_text(s)
+          f=p/'build-info.json';info=json.loads(f.read_text());data=(p/'index.html').read_bytes();info.update(htmlBytes=len(data),htmlSHA256=hashlib.sha256(data).hexdigest());f.write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          PY
+      - name: Test all original controls and new femur and patella with actual mouse input
+        run: node knee-atlas-tools/verify.cjs
+      - name: Test all viewing scopes in WebKit without network
+        env:
+          ATLAS_BROWSER: webkit
+        run: node knee-atlas-tools/verify.cjs
+      - name: Export candidate and browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: knee-atlas-candidate
+          path: |
+            knee-atlas/
+            knee-atlas-tools/
+          retention-days: 14
+      - name: Publish only the new atlas using a fresh worktree
+        run: |
+          git fetch origin main
+          test -z "$(git diff "$GITHUB_SHA" origin/main -- knee-atlas-tools/ .github/workflows/build-knee-atlas.yml)"
+          test -z "$(git diff cda7429af0fe45e80a1e36a300154edc7ef9d2cc origin/main -- foot-atlas/ ankle-atlas/)"
+          git worktree add --detach /tmp/knee-publish origin/main
+          mkdir -p /tmp/knee-publish/knee-atlas
+          cp -a knee-atlas/. /tmp/knee-publish/knee-atlas/
+          cd /tmp/knee-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add knee-atlas/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish browser-tested knee and thigh extension; retain foot and ankle editions'
+            git push origin HEAD:main
+          fi
+      - name: Verify GitHub Pages serves the exact tested HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,time,urllib.request
+          target=hashlib.sha256(Path('knee-atlas/index.html').read_bytes()).hexdigest()
+          for attempt in range(60):
+              try:
+                  url='https://hengtong320.github.io/notionweb/knee-atlas/?release='+target[:16]+'&attempt='+str(attempt)
+                  with urllib.request.urlopen(url,timeout=15) as response:data=response.read()
+                  if hashlib.sha256(data).hexdigest()==target:
+                      print('EXACT_LIVE_HTML',len(data),target,flush=True);break
+              except Exception as e:print(str(e),flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Public page did not match the tested release')
+          PY
+      - name: Run actual public-page mouse interaction tests
+        env:
+          ATLAS_LIVE_URL: https://hengtong320.github.io/notionweb/knee-atlas/?release=${{ github.run_id }}
+        run: node knee-atlas-tools/verify.cjs
+      - name: Commit successful public-page verification
+        run: |
+          cd /tmp/knee-publish
+          git fetch origin main
+          git checkout --detach origin/main
+          cp -a "$GITHUB_WORKSPACE/knee-atlas/qa/." knee-atlas/qa/
+          git add knee-atlas/qa/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record final knee atlas live browser verification'
+            git push origin HEAD:main
+          fi
+      - name: Export final complete release
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: knee-atlas-release
+          path: |
+            knee-atlas/
+            knee-atlas-tools/
+          retention-days: 14
