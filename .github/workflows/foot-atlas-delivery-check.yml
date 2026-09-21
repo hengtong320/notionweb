@@ -4,6 +4,7 @@ on:
     paths:
       - '.github/workflows/foot-atlas-delivery-check.yml'
       - 'foot-atlas/delivery-check.cjs'
+      - 'foot-atlas/fix-delivery.py'
       - 'foot-atlas/README.md'
   workflow_dispatch:
 permissions:
@@ -14,7 +15,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     env:
       NODE_PATH: /tmp/atlas-browser/node_modules
     steps:
@@ -22,13 +23,44 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install browser test tools
+      - name: Install pinned rendering and browser tools
         run: |
-          npm install --prefix /tmp/atlas-browser playwright@1.56.1
+          npm install --prefix /tmp/atlas-browser three@0.180.0 esbuild@0.25.10 playwright@1.56.1
           /tmp/atlas-browser/node_modules/.bin/playwright install --with-deps chromium webkit
           sudo apt-get install -y fonts-noto-cjk
+      - name: Repair standard views and rebuild using the verified embedded model
+        run: python foot-atlas/fix-delivery.py
       - name: Run complete offline interaction regression
         run: node foot-atlas/qa.cjs
+      - name: Publish the repaired self-contained webpage
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add foot-atlas/app.js foot-atlas/app.bundle.js foot-atlas/index.html foot-atlas/build-info.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Fix anatomical view switching and publish complete embedded-model atlas'
+            git stash push --include-untracked -- foot-atlas/qa/
+            git pull --rebase origin main
+            git push origin HEAD:main
+            git stash pop || true
+          fi
+      - name: Wait for GitHub Pages to serve exactly the tested HTML
+        run: |
+          python - <<'PY'
+          import hashlib,time,urllib.request
+          from pathlib import Path
+          target=hashlib.sha256(Path('foot-atlas/index.html').read_bytes()).hexdigest()
+          for attempt in range(36):
+              try:
+                  url='https://hengtong320.github.io/notionweb/foot-atlas/?build='+target[:16]+'&attempt='+str(attempt)
+                  with urllib.request.urlopen(url,timeout=20) as response:data=response.read()
+                  actual=hashlib.sha256(data).hexdigest()
+                  print('PAGES',attempt,len(data),actual,flush=True)
+                  if actual==target:break
+              except Exception as error:print(str(error),flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Pages is not yet serving the tested build')
+          PY
       - name: Verify the published URL, offline reopening and browser compatibility
         run: node foot-atlas/delivery-check.cjs
       - name: Save test evidence
