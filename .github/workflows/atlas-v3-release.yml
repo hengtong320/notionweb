@@ -42,6 +42,7 @@ jobs:
           assert set(z.namelist())=={'build.py','learning-v3.js','styles-v3.css','verify.cjs'}
           z.extractall('atlas-v3-tools/implementation')
           PY
+          python atlas-v3-tools/polish.py
       - name: Install pinned rendering and real-browser dependencies
         run: |
           npm install --prefix /tmp/atlas-v3 three@0.180.0 esbuild@0.25.10 playwright@1.56.1
