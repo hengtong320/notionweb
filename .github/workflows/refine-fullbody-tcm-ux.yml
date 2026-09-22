@@ -1,0 +1,262 @@
+name: Refine full-body TCM UX
+on:
+  push:
+    paths:
+      - 'fullbody-tcm-ux-tools/**'
+      - '.github/workflows/refine-fullbody-tcm-ux.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fullbody-tcm-ux
+  cancel-in-progress: true
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      NODE_PATH: /tmp/tcm-ux/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Restore and apply deterministic UX patch
+        run: |
+          base64 -d fullbody-tcm-ux-tools/upgrade_ux.py.gz.b64 | gzip -d > /tmp/upgrade_ux.py
+          python /tmp/upgrade_ux.py fullbody-tcm-atlas
+          node --check fullbody-tcm-atlas/app.js
+          node --check fullbody-tcm-atlas/learning-enhancements.js
+      - name: Install pinned renderer and browser tools
+        run: |
+          npm install --prefix /tmp/tcm-ux three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/tcm-ux/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Rebuild the self-contained tested webpage
+        run: |
+          node - <<'JS'
+          const esbuild=require('esbuild');
+          esbuild.buildSync({
+            entryPoints:['fullbody-tcm-atlas/app.js'],
+            bundle:true,minify:true,
+            nodePaths:[process.env.NODE_PATH],
+            format:'iife',target:['es2020'],
+            outfile:'fullbody-tcm-atlas/app.bundle.js',
+            legalComments:'inline'
+          });
+          JS
+          python - <<'PY'
+          from pathlib import Path
+          import re,base64,hashlib,json
+          p=Path('fullbody-tcm-atlas')
+          h=(p/'index.template.html').read_text()
+          h=h.replace('<link rel="stylesheet" href="styles.css">','<style>'+(p/'styles.css').read_text()+'</style>')
+          h=re.sub(r'<script type="importmap">.*?</script>','',h,flags=re.S)
+          bundle=(p/'app.bundle.js').read_text().replace('</script','<\\/script')
+          model=base64.b64encode((p/'assets/fullbody.glb').read_bytes()).decode()
+          h=h.replace('<script type="module" src="app.js"></script>','<script>window.FOOT_ATLAS_EMBEDDED="'+model+'";</script>\n<script>'+bundle+'</script>')
+          (p/'index.html').write_text(h)
+          info=json.loads((p/'build-info.json').read_text())
+          info.update({
+            'version':'fullbody-tcm-v2-ux',
+            'htmlBytes':len(h.encode()),
+            'htmlSHA256':hashlib.sha256(h.encode()).hexdigest(),
+            'uxRefinement':True,
+            'persistentTcmLayer':True,
+            'anatomicalExplode':True,
+            'responsiveProfiles':['desktop','tablet','mobile'],
+            'tcmGesturePriority':'drag-orbit, tap-select'
+          })
+          (p/'build-info.json').write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          print(json.dumps(info,ensure_ascii=False,indent=2))
+          PY
+      - name: Create browser regression suite
+        run: |
+          cat > /tmp/ux-verify.cjs <<'JS'
+          'use strict';
+          const fs=require('fs'),path=require('path'),crypto=require('crypto');
+          const {chromium,webkit}=require('playwright');
+          const base=path.resolve('fullbody-tcm-atlas'),out=path.join(base,'qa');fs.mkdirSync(out,{recursive:true});
+          const testURL=process.env.TEST_URL||('file://'+path.join(base,'index.html'));
+          const mode=process.env.BROWSER||'chromium';
+          const engine=mode==='webkit'?webkit:chromium;
+          const online=/^https?:/.test(testURL);
+          const report={startedAt:new Date().toISOString(),browser:mode,url:testURL,profiles:[],checks:[],errors:[],success:false};
+          function ck(name,pass,detail){report.checks.push({name,pass:!!pass,...(detail===undefined?{}:{detail})});if(!pass)throw Error(name+': '+JSON.stringify(detail));}
+          const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+          async function settle(page){await page.waitForFunction(()=>!window.__FOOT_ATLAS__.getState().cameraAnimating);await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));}
+          async function openPage(browser,profile){
+            const ctx=await browser.newContext({viewport:profile.viewport,deviceScaleFactor:profile.dsf||1,serviceWorkers:'block',isMobile:!!profile.mobile,hasTouch:!!profile.touch});
+            if(!online)await ctx.route(/^https?:/,r=>r.abort());
+            const page=await ctx.newPage();page.setDefaultTimeout(30000);
+            page.on('pageerror',e=>report.errors.push(profile.name+': '+String(e)));
+            await page.goto(testURL,{waitUntil:'load',timeout:90000});
+            await page.waitForFunction(()=>window.__FOOT_ATLAS__?.getState().ready&&window.__ATLAS_LEARNING__,undefined,{timeout:90000});
+            await settle(page);return {ctx,page};
+          }
+          async function desktop(browser){
+            const profile={name:'desktop',viewport:{width:1440,height:1000},dsf:1};const {ctx,page}=await openPage(browser,profile);
+            ck('210 bones remain loaded',(await page.evaluate(()=>window.__FOOT_ATLAS__.getState().count))===210);
+            let ls=await page.evaluate(()=>window.__ATLAS_LEARNING__.getState());
+            ck('361 acupoints and 14 meridians remain loaded',ls.standardAcupoints===361&&ls.meridians===14,ls);
+            await page.locator('#tcmBtn').click();await sleep(300);
+            ls=await page.evaluate(()=>window.__ATLAS_LEARNING__.getState());
+            ck('Opening TCM enables layer and panel',ls.enabled&&ls.panelOpen,ls);
+            ck('Default presentation highlights one meridian',ls.activeMeridian!=='ALL',ls.activeMeridian);
+            await page.locator('#tcmClose').click();await sleep(200);
+            ls=await page.evaluate(()=>window.__ATLAS_LEARNING__.getState());
+            ck('Closing controls keeps 3D TCM layer visible',ls.enabled&&!ls.panelOpen&&ls.statusVisible,ls);
+            await page.locator('#tcmStatusSettings').click();await sleep(150);
+            ck('Persistent status reopens controls',(await page.evaluate(()=>window.__ATLAS_LEARNING__.getState().panelOpen))===true);
+            await page.evaluate(()=>{window.__ATLAS_LEARNING__.setMeridian('LU');window.__ATLAS_LEARNING__.fitMeridian();});
+            await settle(page);
+            await page.evaluate(()=>window.__ATLAS_LEARNING__.selectPoint('LU1','right',false));
+            let p=await page.evaluate(()=>window.__ATLAS_LEARNING__.getPointScreen('LU5','right'));
+            ck('LU5 projects into visible viewport',!!p&&p.x>0&&p.y>0&&p.x<innerWidth&&p.y<innerHeight,p);
+            const before=await page.evaluate(()=>({cam:window.__FOOT_ATLAS__.getState().camera,sel:window.__ATLAS_LEARNING__.getState().selectedPoint}));
+            await page.mouse.move(p.x,p.y);await page.mouse.down();await page.mouse.move(p.x+78,p.y+24,{steps:10});await page.mouse.up();await sleep(250);
+            const afterDrag=await page.evaluate(()=>({cam:window.__FOOT_ATLAS__.getState().camera,sel:window.__ATLAS_LEARNING__.getState().selectedPoint}));
+            ck('Dragging from an acupoint rotates instead of selecting it',afterDrag.sel?.code===before.sel?.code,{before:before.sel,after:afterDrag.sel});
+            ck('Dragging from an acupoint changes camera',afterDrag.cam.some((v,i)=>Math.abs(v-before.cam[i])>.01),{before:before.cam,after:afterDrag.cam});
+            await page.evaluate(()=>{window.__ATLAS_LEARNING__.setMeridian('LU');window.__ATLAS_LEARNING__.fitMeridian();});await settle(page);
+            p=await page.evaluate(()=>window.__ATLAS_LEARNING__.getPointScreen('LU5','right'));
+            await page.mouse.click(p.x,p.y);await sleep(250);
+            ls=await page.evaluate(()=>window.__ATLAS_LEARNING__.getState());
+            ck('A true click selects the 3D acupoint',ls.selectedPoint?.code==='LU5',ls.selectedPoint);
+            await page.locator('#closePointCard').click();await sleep(100);
+            ls=await page.evaluate(()=>window.__ATLAS_LEARNING__.getState());
+            ck('Closing point card does not hide TCM layer',ls.enabled&&!ls.cardOpen&&ls.statusVisible,ls);
+            await page.evaluate(()=>{window.__FOOT_ATLAS__.setRegion('lumbar');window.__FOOT_ATLAS__.setExplode(100);});await settle(page);
+            const lumbar=await page.evaluate(()=>window.__FOOT_ATLAS__.getState().bones.filter(b=>/^L[1-5]$/.test(b.id)).map(b=>({id:b.id,d:b.position.map((v,i)=>v-b.home[i])})));
+            ck('Lumbar explosion has no sideways fanning',lumbar.every(x=>Math.abs(x.d[0])<.001&&Math.abs(x.d[2])<.001),lumbar);
+            const dy=lumbar.sort((a,b)=>Number(a.id.slice(1))-Number(b.id.slice(1))).map(x=>x.d[1]);
+            ck('Lumbar explosion is ordered vertically',dy.every((v,i)=>i===0||dy[i-1]>v),dy);
+            await page.locator('[data-explode-preset="30"]').click();await sleep(150);
+            ck('Light explode preset works',(await page.evaluate(()=>window.__FOOT_ATLAS__.getState().explode))===30);
+            await page.locator('[data-explode-preset="65"]').click();await sleep(150);
+            ck('Clear explode preset works',(await page.evaluate(()=>window.__FOOT_ATLAS__.getState().explode))===65);
+            for(const preset of ['craniovertebral','elbowjoint','kneejoint','anklejoint','plantar'])ck('Additional learning focus '+preset,await page.evaluate(id=>window.__ATLAS_LEARNING__.runPreset(id),preset));
+            ck('Desktop has no horizontal overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+            await page.evaluate(()=>{window.__FOOT_ATLAS__.setRegion('body');window.__FOOT_ATLAS__.setExplode(0);window.__ATLAS_LEARNING__.toggleTCM(true,true);window.__ATLAS_LEARNING__.setMeridian('BL');});await settle(page);
+            await page.screenshot({path:path.join(out,'ux-desktop-meridian.png')});
+            await page.evaluate(()=>{window.__FOOT_ATLAS__.setRegion('lumbar');window.__FOOT_ATLAS__.setExplode(100);});await settle(page);
+            await page.screenshot({path:path.join(out,'ux-desktop-lumbar-explode.png')});
+            report.profiles.push({name:profile.name,pass:true});await ctx.close();
+          }
+          async function compact(browser,profile){
+            const {ctx,page}=await openPage(browser,profile);
+            await page.locator('#tcmBtn').click();await sleep(200);
+            const box=await page.locator('#tcmControls').boundingBox();
+            ck(profile.name+' TCM controls fit viewport',!!box&&box.x>=0&&box.y>=0&&box.x+box.width<=profile.viewport.width+1&&box.y+box.height<=profile.viewport.height+1,box);
+            ck(profile.name+' has no horizontal overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+            await page.evaluate(()=>window.__ATLAS_LEARNING__.selectPoint('LU5','right',true));await settle(page);await sleep(150);
+            if(profile.mobile){const st=await page.evaluate(()=>window.__ATLAS_LEARNING__.getState());ck('Mobile point selection collapses controls but keeps layer',st.enabled&&!st.panelOpen&&st.cardOpen&&st.statusVisible,st);}
+            await page.screenshot({path:path.join(out,'ux-'+profile.name+'.png')});
+            report.profiles.push({name:profile.name,pass:true});await ctx.close();
+          }
+          (async()=>{
+            let browser;
+            try{
+              browser=await engine.launch({headless:true,...(mode==='chromium'?{args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage']}:{})});
+              if(mode==='chromium'){
+                await desktop(browser);
+                await compact(browser,{name:'tablet',viewport:{width:820,height:1180},dsf:1,touch:true});
+                await compact(browser,{name:'mobile',viewport:{width:390,height:844},dsf:1,mobile:true,touch:true});
+              }else{
+                await compact(browser,{name:'webkit-tablet',viewport:{width:820,height:1180},dsf:1,touch:true});
+                const {ctx,page}=await openPage(browser,{name:'webkit-desktop',viewport:{width:1280,height:900},dsf:1});
+                await page.locator('#tcmBtn').click();await page.locator('#tcmClose').click();
+                let st=await page.evaluate(()=>window.__ATLAS_LEARNING__.getState());
+                ck('WebKit keeps overlay after panel collapse',st.enabled&&!st.panelOpen&&st.statusVisible,st);
+                await page.evaluate(()=>{window.__FOOT_ATLAS__.setRegion('lumbar');window.__FOOT_ATLAS__.setExplode(100);});
+                const ok=await page.evaluate(()=>window.__FOOT_ATLAS__.getState().bones.filter(b=>/^L[1-5]$/.test(b.id)).every(b=>Math.abs(b.position[0]-b.home[0])<.001&&Math.abs(b.position[2]-b.home[2])<.001));
+                ck('WebKit lumbar explode remains vertical',ok);await ctx.close();
+              }
+              ck('No uncaught browser errors',report.errors.length===0,report.errors);
+              report.success=true;
+            }catch(e){report.failure=String(e);console.error(e);process.exitCode=1;}
+            finally{if(browser)await browser.close();report.finishedAt=new Date().toISOString();fs.writeFileSync(path.join(out,(online?'ux-live-':mode==='webkit'?'ux-webkit-':'ux-offline-')+'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({success:report.success,checks:report.checks.length,profiles:report.profiles,failure:report.failure},null,2));}
+          })();
+          JS
+      - name: Run Chromium desktop tablet mobile regression
+        run: node /tmp/ux-verify.cjs
+      - name: Run WebKit compatibility regression
+        env:
+          BROWSER: webkit
+        run: node /tmp/ux-verify.cjs
+      - name: Confirm accepted prior viewers remain unchanged
+        run: |
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/)"
+      - name: Export tested candidate and screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: fullbody-tcm-ux-candidate
+          path: fullbody-tcm-atlas/
+          retention-days: 14
+      - name: Publish only the refined TCM learning edition
+        run: |
+          git fetch origin main
+          git worktree add -B tcm-ux-release /tmp/tcm-ux-publish origin/main
+          rm -rf /tmp/tcm-ux-publish/fullbody-tcm-atlas
+          cp -a fullbody-tcm-atlas /tmp/tcm-ux-publish/fullbody-tcm-atlas
+          cd /tmp/tcm-ux-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-atlas/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refine TCM visibility, point gestures, anatomical explode and responsive UX'
+            git push origin HEAD:main
+          fi
+      - name: Wait for exact GitHub Pages build
+        run: |
+          python - <<'PY'
+          import hashlib,time,urllib.request
+          from pathlib import Path
+          target=hashlib.sha256(Path('fullbody-tcm-atlas/index.html').read_bytes()).hexdigest()
+          for i in range(60):
+              try:
+                  url='https://hengtong320.github.io/notionweb/fullbody-tcm-atlas/?ux='+target[:12]+'&n='+str(i)
+                  with urllib.request.urlopen(url,timeout=20) as r:data=r.read()
+                  actual=hashlib.sha256(data).hexdigest()
+                  print(i,len(data),actual,flush=True)
+                  if actual==target:break
+              except Exception as e:print(e,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Pages did not serve the tested UX build')
+          PY
+      - name: Re-run interaction suite against public page
+        env:
+          TEST_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-atlas/?release=${{ github.run_id }}
+        run: node /tmp/ux-verify.cjs
+      - name: Write and publish verified delivery record
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('fullbody-tcm-atlas')
+          info=json.loads((p/'build-info.json').read_text())
+          reports={}
+          for k,f in [('offline','ux-offline-report.json'),('webkit','ux-webkit-report.json'),('live','ux-live-report.json')]:
+              reports[k]=json.loads((p/'qa'/f).read_text());assert reports[k]['success']
+          release={**info,'status':'verified','url':reports['live']['url'],'checks':{k:len(v['checks']) for k,v in reports.items()},'checkedAt':reports['live']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'priorVersionsUnchanged':True}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          PY
+          cp fullbody-tcm-atlas/qa/ux-live-report.json /tmp/tcm-ux-publish/fullbody-tcm-atlas/qa/ux-live-report.json
+          cp fullbody-tcm-atlas/delivery-release.json /tmp/tcm-ux-publish/fullbody-tcm-atlas/delivery-release.json
+          cd /tmp/tcm-ux-publish
+          git add fullbody-tcm-atlas/qa/ux-live-report.json fullbody-tcm-atlas/delivery-release.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record verified public UX regression for TCM anatomy learning edition'
+            git push origin HEAD:main
+          fi
+      - name: Export final verified release
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fullbody-tcm-ux-final-release
+          path: |
+            fullbody-tcm-atlas/
+            fullbody-tcm-ux-tools/
+          retention-days: 14
