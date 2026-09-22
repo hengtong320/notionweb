@@ -1,0 +1,127 @@
+name: Build and verify full-body skeleton
+on:
+  push:
+    paths:
+      - 'fullbody-atlas-tools/**'
+      - '.github/workflows/build-fullbody-atlas.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fullbody-atlas
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      NODE_PATH: /tmp/fullbody-tools/node_modules
+      THREE_PACKAGE: /tmp/fullbody-tools/node_modules/three
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install fixed anatomy, rendering and browser tools
+        run: |
+          npm install --prefix /tmp/fullbody-tools three@0.180.0 esbuild@0.25.10
+          python -m pip install numpy==2.3.5 trimesh==4.11.1 scipy==1.17.0 playwright==1.56.0
+          python -m playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Preserve the approved 73 meshes and append all remaining standard bones
+        run: python fullbody-atlas-tools/prepare.py
+      - name: Build the matching self-contained whole-body viewer
+        run: python fullbody-atlas-tools/build.py
+      - name: Render all major new regions at full pixel density
+        env:
+          PREVIEW: '1'
+        run: python fullbody-atlas-tools/verify.py
+      - name: Export preliminary views for visual inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fullbody-visual-preview
+          path: fullbody-atlas/
+          retention-days: 14
+      - name: Test every catalog entry and real mouse operations offline
+        run: python fullbody-atlas-tools/verify.py
+      - name: Test complete regional coverage in WebKit offline
+        env:
+          BROWSER: webkit
+        run: python fullbody-atlas-tools/verify.py
+      - name: Publish only the new atlas through a fresh worktree
+        run: |
+          git fetch origin main
+          git worktree add -B fullbody-release /tmp/fullbody-publish origin/main
+          python - <<'PY'
+          from pathlib import Path
+          import json,subprocess,shutil
+          source=Path('fullbody-atlas')
+          info=json.loads((source/'build-info.json').read_text())
+          for name in ['offline','webkit','preview']:
+              report=json.loads((source/'qa'/(name+'-report.json')).read_text())
+              assert report['success'] and all(c['pass'] for c in report['checks']),name
+          assert not subprocess.check_output(['git','diff',info['baseRef'],'--','foot-atlas/','ankle-atlas/','knee-atlas/','hip-atlas/','lumbar-atlas/'],cwd='/tmp/fullbody-publish')
+          shutil.copytree(source,'/tmp/fullbody-publish/fullbody-atlas',dirs_exist_ok=True)
+          PY
+          cd /tmp/fullbody-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-atlas/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish verified full-body skeletal atlas; preserve five earlier versions'
+            git push origin HEAD:main
+          fi
+      - name: Match the public webpage to the exact tested build
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,urllib.request,time
+          target=hashlib.sha256(Path('fullbody-atlas/index.html').read_bytes()).hexdigest()
+          for attempt in range(48):
+              try:
+                  url='https://hengtong320.github.io/notionweb/fullbody-atlas/?build='+target[:12]+'&attempt='+str(attempt)
+                  with urllib.request.urlopen(url,timeout=40) as response:data=response.read()
+                  actual=hashlib.sha256(data).hexdigest()
+                  print('PAGES',attempt,len(data),actual,flush=True)
+                  if actual==target:break
+              except Exception as error:print(str(error),flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Public page does not match verified HTML')
+          PY
+      - name: Verify actual public-page identification and mouse interactions
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-atlas/?release=${{ github.run_id }}
+        run: python fullbody-atlas-tools/verify.py
+      - name: Publish successful delivery evidence
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,shutil,os,hashlib
+          p=Path('fullbody-atlas')
+          info=json.loads((p/'build-info.json').read_text())
+          reports={k:json.loads((p/'qa'/(k+'-report.json')).read_text()) for k in ['offline','webkit','live','preview']}
+          assert all(r['success'] and all(c['pass'] for c in r['checks']) for r in reports.values())
+          assert hashlib.sha256((p/'index.html').read_bytes()).hexdigest()==reports['live']['htmlSHA256']==info['htmlSHA256']
+          release={**info,'status':'verified','url':reports['live']['url'],'checks':{k:len(r['checks']) for k,r in reports.items()},'checkedAt':reports['live']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'priorVersionsUnchanged':True}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          shutil.copytree(p/'qa','/tmp/fullbody-publish/fullbody-atlas/qa',dirs_exist_ok=True)
+          shutil.copy(p/'delivery-release.json','/tmp/fullbody-publish/fullbody-atlas/delivery-release.json')
+          PY
+          cd /tmp/fullbody-publish
+          git add fullbody-atlas/qa/ fullbody-atlas/delivery-release.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record verified full-body public delivery and browser evidence'
+            git push origin HEAD:main
+          fi
+      - name: Export complete offline release, source and verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fullbody-atlas-release
+          path: |
+            fullbody-atlas/
+            fullbody-atlas-tools/
+          retention-days: 14
