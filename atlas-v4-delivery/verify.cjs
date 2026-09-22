@@ -16,8 +16,10 @@ async function settle(){await page.waitForFunction(()=>!window.__FOOT_ATLAS__.ge
  page.on('console',msg=>{if(msg.type()==='error'&&/shader|WebGLProgram|THREE.ERROR/.test(msg.text()))report.errors.push(msg.text());});
  page.on('request',r=>{if(/^https?:/.test(r.url()))network.push(r.url());});
  const response=await page.goto(url,{waitUntil:'load',timeout:120000});check('Webpage HTTP 200',response.status()===200,response.status());
- const bytes=await response.body();const expected=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'index.html'))).digest('hex');
- check('Online HTML matches tested V4 build',crypto.createHash('sha256').update(bytes).digest('hex')===expected);report.htmlSHA256=expected;
+ // Chromium evicts large inline model HTML from its inspector cache; check HTTP bytes independently.
+ const rawResponse=await ctx.request.get(url,{timeout:120000});check('HTML integrity request HTTP 200',rawResponse.status()===200);
+ const bytes=await rawResponse.body();const expected=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'index.html'))).digest('hex');
+ check('Served HTML matches tested V4 build',crypto.createHash('sha256').update(bytes).digest('hex')===expected);report.htmlSHA256=expected;await rawResponse.dispose();
  await page.waitForFunction(()=>window.__FOOT_ATLAS__?.getState().ready&&window.__ATLAS_TISSUES__&&window.__ATLAS_SPEECH__);await settle();
  let s=await page.evaluate(()=>window.__FOOT_ATLAS__.getState());check('210 original bones loaded',s.count===210,s.count);check('Cursor zoom enabled',s.zoomToCursor===true);
  check('Bone pinyin retained',await page.evaluate(()=>window.__FOOT_ATLAS__.getCatalog().every(b=>!!b.pinyin)));
