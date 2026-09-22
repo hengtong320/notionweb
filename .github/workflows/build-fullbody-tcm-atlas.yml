@@ -1,0 +1,137 @@
+name: Build and verify pronunciation + TCM atlas
+on:
+  push:
+    paths:
+      - 'fullbody-tcm-tools/**'
+      - '.github/workflows/build-fullbody-tcm-atlas.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fullbody-tcm-atlas
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 32
+    env:
+      NODE_PATH: /tmp/tcm-tools/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Restore deterministic build tools
+        run: |
+          cat fullbody-tcm-tools/payload/build_py.* | base64 -d | gzip -d > fullbody-tcm-tools/build.py
+          cat fullbody-tcm-tools/payload/learning-enhancements_js.* | base64 -d | gzip -d > fullbody-tcm-tools/learning-enhancements.js
+          cat fullbody-tcm-tools/payload/verify_cjs.* | base64 -d | gzip -d > fullbody-tcm-tools/verify.cjs
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('fullbody-tcm-tools/learning-enhancements.js')
+          s=p.read_text()
+          s=s.replace("document.querySelector('.detail-title').append(speakBtn);","document.querySelector('.detail-top').append(speakBtn);")
+          p.write_text(s)
+          p=Path('fullbody-tcm-tools/build.py')
+          s=p.read_text()
+          s=s.replace(".speak-bone-button{position:absolute;right:18px;top:46px;display:flex;",".speak-bone-button{margin-left:auto;display:flex;")
+          s=s.replace(".detail-title{position:relative}","")
+          s=s.replace(".speak-bone-button{right:12px}","")
+          p.write_text(s)
+          PY
+          python -m py_compile fullbody-tcm-tools/build.py
+          node --check fullbody-tcm-tools/learning-enhancements.js
+          node --check fullbody-tcm-tools/verify.cjs
+      - name: Install pinned build and browser tools
+        run: |
+          npm install --prefix /tmp/tcm-tools three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          python -m pip install pypinyin==0.55.0
+          /tmp/tcm-tools/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Build additive learning edition from the verified full-body atlas
+        run: python fullbody-tcm-tools/build.py
+      - name: Verify pronunciation, 361-point data and real mouse interactions offline
+        run: node fullbody-tcm-tools/verify.cjs
+      - name: Verify WebKit compatibility offline
+        env:
+          BROWSER: webkit
+        run: node fullbody-tcm-tools/verify.cjs
+      - name: Prove prior accepted viewers were not changed
+        run: |
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/)"
+      - name: Save candidate and evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: fullbody-tcm-candidate
+          path: fullbody-tcm-atlas/
+          retention-days: 14
+      - name: Publish only the new learning edition
+        run: |
+          git fetch origin main
+          git worktree add -B tcm-release /tmp/tcm-publish origin/main
+          rm -rf /tmp/tcm-publish/fullbody-tcm-atlas
+          cp -a fullbody-tcm-atlas /tmp/tcm-publish/fullbody-tcm-atlas
+          cd /tmp/tcm-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-atlas/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish bone pronunciation and 3D meridian-acupoint learning edition'
+            git push origin HEAD:main
+          fi
+      - name: Wait until Pages serves the exact tested HTML
+        run: |
+          python - <<'PY'
+          import hashlib,time,urllib.request
+          from pathlib import Path
+          target=hashlib.sha256(Path('fullbody-tcm-atlas/index.html').read_bytes()).hexdigest()
+          for i in range(50):
+              try:
+                  u='https://hengtong320.github.io/notionweb/fullbody-tcm-atlas/?b='+target[:12]+'&n='+str(i)
+                  with urllib.request.urlopen(u,timeout=20) as r:data=r.read()
+                  if hashlib.sha256(data).hexdigest()==target:
+                      print('PAGES_MATCH',target)
+                      break
+              except Exception as e:
+                  print(e,flush=True)
+              time.sleep(5)
+          else:
+              raise RuntimeError('Pages did not serve the tested build')
+          PY
+      - name: Verify the actual public page
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-atlas/?release=${{ github.run_id }}
+        run: node fullbody-tcm-tools/verify.cjs
+      - name: Publish delivery record only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('fullbody-tcm-atlas')
+          info=json.loads((p/'build-info.json').read_text())
+          live=json.loads((p/'qa/live-learning-report.json').read_text())
+          assert live['success'] and all(x['pass'] for x in live['checks'])
+          offline=json.loads((p/'qa/offline-learning-report.json').read_text())
+          webkit=json.loads((p/'qa/webkit-learning-report.json').read_text())
+          release={**info,'status':'verified','url':live['url'],'checks':{'offline':len(offline['checks']),'webkit':len(webkit['checks']),'live':len(live['checks'])},'checkedAt':live['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'priorVersionsUnchanged':True}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          PY
+          cp fullbody-tcm-atlas/qa/live-learning-report.json /tmp/tcm-publish/fullbody-tcm-atlas/qa/live-learning-report.json
+          cp fullbody-tcm-atlas/delivery-release.json /tmp/tcm-publish/fullbody-tcm-atlas/delivery-release.json
+          cd /tmp/tcm-publish
+          git add fullbody-tcm-atlas/qa/live-learning-report.json fullbody-tcm-atlas/delivery-release.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record verified public delivery for pronunciation and TCM learning atlas'
+            git push origin HEAD:main
+          fi
+      - name: Export final release
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fullbody-tcm-final-release
+          path: |
+            fullbody-tcm-atlas/
+            fullbody-tcm-tools/
+          retention-days: 14
