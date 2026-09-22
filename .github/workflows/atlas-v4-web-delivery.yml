@@ -53,11 +53,11 @@ jobs:
           p=Path('/tmp/v4-voice');v=json.loads((p/'voice-manifest.json').read_text())
           assert v['uniqueRecordings']==532
           for filename in set(v['mapping'].values()):assert (p/filename).stat().st_size>500,filename
-          p=Path('atlas-v4-delivery/verify.cjs');s=p.read_text()
-          old=" const response=await page.goto(url,"
-          assert old in s
-          s=s.replace(old," if(type==='chromium'){const cdp=await ctx.newCDPSession(page);await cdp.send('Network.enable',{maxTotalBufferSize:157286400,maxResourceBufferSize:73400320});}\n"+old)
-          p.write_text(s)
+          p=Path('atlas-v4-delivery/build.py');s=p.read_text()
+          needle="shutil.copy(V/'voice-manifest.json',O/'voice-map.json')"
+          assert needle in s
+          patch="\nvm=json.loads((O/'voice-map.json').read_text())\nfor name,filename in list(vm['mapping'].items()):\n alias=re.sub(r'\\s+[A-Za-z]+\\d+$','',name).strip();vm['mapping'].setdefault(alias,filename)\nassert vm['mapping'].get('寰椎')==vm['mapping'].get('寰椎 C1')\n(O/'voice-map.json').write_text(json.dumps(vm,ensure_ascii=False))\n"
+          p.write_text(s.replace(needle,needle+patch))
           PY
           python atlas-v4-delivery/build.py
           python -m http.server 8765 --bind 127.0.0.1 >/tmp/v4-http.log 2>&1 &
