@@ -1,0 +1,28 @@
+{
+  "version": "lumbar-bilateral-v1",
+  "baseRef": "151baae597565be72c82c4ac1e24e2754518ee71",
+  "bones": 73,
+  "addedLeftLimbBones": 32,
+  "addedLumbarBones": 5,
+  "priorBones": 36,
+  "totalTriangles": 84444,
+  "modelBytes": 2269292,
+  "approvedHipPreserved": true,
+  "maxPriorCoordinateErrorMillimeters": 0,
+  "sideValidatedPairs": 32,
+  "noRuntimeNetwork": true,
+  "threeVersion": "0.180.0",
+  "htmlBytes": 3759158,
+  "htmlSHA256": "cd0b4565a833f78037c261cd997f1e469178c6865a5185c25844cebbcdd9476b",
+  "patientDirectionLabels": true,
+  "status": "verified",
+  "url": "https://hengtong320.github.io/notionweb/lumbar-atlas/?release=35674256666",
+  "checks": {
+    "offline": 222,
+    "webkit": 83,
+    "live": 85
+  },
+  "checkedAt": "2026-09-22T01:19:29Z",
+  "workflowRun": "35674256666",
+  "priorVersionsUnchanged": true
+}
