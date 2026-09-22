@@ -113,6 +113,8 @@ jobs:
             await page.evaluate(()=>{window.__ATLAS_LEARNING__.setMeridian('LU');window.__ATLAS_LEARNING__.fitMeridian();});
             await settle(page);
             await page.evaluate(()=>window.__ATLAS_LEARNING__.selectPoint('LU1','right',false));
+            await page.evaluate(()=>window.__ATLAS_LEARNING__.setPanel(false));
+            await sleep(120);
             let p=await page.evaluate(()=>window.__ATLAS_LEARNING__.getPointScreen('LU5','right'));
             ck('LU5 projects into visible viewport',!!p&&p.x>0&&p.y>0&&p.x<1440&&p.y<1000,p);
             const before=await page.evaluate(()=>({cam:window.__FOOT_ATLAS__.getState().camera,sel:window.__ATLAS_LEARNING__.getState().selectedPoint}));
