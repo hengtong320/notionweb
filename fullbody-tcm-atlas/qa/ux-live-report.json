@@ -1,0 +1,311 @@
+{
+  "startedAt": "2026-09-22T03:56:41.346Z",
+  "browser": "chromium",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-atlas/?release=35684759957",
+  "profiles": [
+    {
+      "name": "desktop",
+      "pass": true
+    },
+    {
+      "name": "tablet",
+      "pass": true
+    },
+    {
+      "name": "mobile",
+      "pass": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "210 bones remain loaded",
+      "pass": true
+    },
+    {
+      "name": "361 acupoints and 14 meridians remain loaded",
+      "pass": true,
+      "detail": {
+        "enabled": false,
+        "panelOpen": false,
+        "linesOn": true,
+        "pointsOn": true,
+        "activeMeridian": "LU",
+        "cardOpen": false,
+        "statusVisible": false,
+        "selectedPoint": null,
+        "meridians": 14,
+        "standardAcupoints": 361,
+        "markerInstances": 670,
+        "routes": 26,
+        "autoSpeak": true
+      }
+    },
+    {
+      "name": "Opening TCM enables layer and panel",
+      "pass": true,
+      "detail": {
+        "enabled": true,
+        "panelOpen": true,
+        "linesOn": true,
+        "pointsOn": true,
+        "activeMeridian": "LU",
+        "cardOpen": false,
+        "statusVisible": true,
+        "selectedPoint": null,
+        "meridians": 14,
+        "standardAcupoints": 361,
+        "markerInstances": 670,
+        "routes": 26,
+        "autoSpeak": true
+      }
+    },
+    {
+      "name": "Default presentation highlights one meridian",
+      "pass": true,
+      "detail": "LU"
+    },
+    {
+      "name": "Closing controls keeps 3D TCM layer visible",
+      "pass": true,
+      "detail": {
+        "enabled": true,
+        "panelOpen": false,
+        "linesOn": true,
+        "pointsOn": true,
+        "activeMeridian": "LU",
+        "cardOpen": false,
+        "statusVisible": true,
+        "selectedPoint": null,
+        "meridians": 14,
+        "standardAcupoints": 361,
+        "markerInstances": 670,
+        "routes": 26,
+        "autoSpeak": true
+      }
+    },
+    {
+      "name": "Persistent status reopens controls",
+      "pass": true
+    },
+    {
+      "name": "LU5 projects into visible viewport",
+      "pass": true,
+      "detail": {
+        "x": 463.9217852390574,
+        "y": 379.21182351183904
+      }
+    },
+    {
+      "name": "Dragging from an acupoint rotates instead of selecting it",
+      "pass": true,
+      "detail": {
+        "before": {
+          "code": "LU1",
+          "name": "中府",
+          "side": "right"
+        },
+        "after": {
+          "code": "LU1",
+          "name": "中府",
+          "side": "right"
+        }
+      }
+    },
+    {
+      "name": "Dragging from an acupoint changes camera",
+      "pass": true,
+      "detail": {
+        "before": [
+          -256.7457147226438,
+          1166.9400374096876,
+          1486.1796820989132
+        ],
+        "after": [
+          -568.6923556730568,
+          1271.536679042657,
+          1352.7763002430079
+        ]
+      }
+    },
+    {
+      "name": "A true click selects the 3D acupoint",
+      "pass": true,
+      "detail": {
+        "code": "LU5",
+        "name": "尺泽",
+        "side": "right"
+      }
+    },
+    {
+      "name": "Closing point card does not hide TCM layer",
+      "pass": true,
+      "detail": {
+        "enabled": true,
+        "panelOpen": false,
+        "linesOn": true,
+        "pointsOn": true,
+        "activeMeridian": "LU",
+        "cardOpen": false,
+        "statusVisible": true,
+        "selectedPoint": {
+          "code": "LU5",
+          "name": "尺泽",
+          "side": "right"
+        },
+        "meridians": 14,
+        "standardAcupoints": 361,
+        "markerInstances": 670,
+        "routes": 26,
+        "autoSpeak": true
+      }
+    },
+    {
+      "name": "Lumbar explosion has no sideways fanning",
+      "pass": true,
+      "detail": [
+        {
+          "id": "L1",
+          "d": [
+            0,
+            110,
+            0
+          ]
+        },
+        {
+          "id": "L2",
+          "d": [
+            0,
+            55,
+            0
+          ]
+        },
+        {
+          "id": "L3",
+          "d": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "id": "L4",
+          "d": [
+            0,
+            -55,
+            0
+          ]
+        },
+        {
+          "id": "L5",
+          "d": [
+            0,
+            -110,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lumbar explosion is ordered vertically",
+      "pass": true,
+      "detail": [
+        110,
+        55,
+        0,
+        -55,
+        -110
+      ]
+    },
+    {
+      "name": "Light explode preset works",
+      "pass": true
+    },
+    {
+      "name": "Clear explode preset works",
+      "pass": true
+    },
+    {
+      "name": "Additional learning focus craniovertebral",
+      "pass": true
+    },
+    {
+      "name": "Additional learning focus elbowjoint",
+      "pass": true
+    },
+    {
+      "name": "Additional learning focus kneejoint",
+      "pass": true
+    },
+    {
+      "name": "Additional learning focus anklejoint",
+      "pass": true
+    },
+    {
+      "name": "Additional learning focus plantar",
+      "pass": true
+    },
+    {
+      "name": "Desktop has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "tablet TCM controls fit viewport",
+      "pass": true,
+      "detail": {
+        "x": 202,
+        "y": 262,
+        "width": 285,
+        "height": 610.59375
+      }
+    },
+    {
+      "name": "tablet has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "mobile TCM controls fit viewport",
+      "pass": true,
+      "detail": {
+        "x": 10,
+        "y": 199.171875,
+        "width": 370,
+        "height": 514.828125
+      }
+    },
+    {
+      "name": "mobile has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Mobile point selection collapses controls but keeps layer",
+      "pass": true,
+      "detail": {
+        "enabled": true,
+        "panelOpen": false,
+        "linesOn": true,
+        "pointsOn": true,
+        "activeMeridian": "LU",
+        "cardOpen": true,
+        "statusVisible": true,
+        "selectedPoint": {
+          "code": "LU5",
+          "name": "尺泽",
+          "side": "right"
+        },
+        "meridians": 14,
+        "standardAcupoints": 361,
+        "markerInstances": 670,
+        "routes": 26,
+        "autoSpeak": true
+      }
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "finishedAt": "2026-09-22T03:57:40.237Z"
+}
