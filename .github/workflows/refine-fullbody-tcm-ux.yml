@@ -114,7 +114,7 @@ jobs:
             await settle(page);
             await page.evaluate(()=>window.__ATLAS_LEARNING__.selectPoint('LU1','right',false));
             let p=await page.evaluate(()=>window.__ATLAS_LEARNING__.getPointScreen('LU5','right'));
-            ck('LU5 projects into visible viewport',!!p&&p.x>0&&p.y>0&&p.x<innerWidth&&p.y<innerHeight,p);
+            ck('LU5 projects into visible viewport',!!p&&p.x>0&&p.y>0&&p.x<1440&&p.y<1000,p);
             const before=await page.evaluate(()=>({cam:window.__FOOT_ATLAS__.getState().camera,sel:window.__ATLAS_LEARNING__.getState().selectedPoint}));
             await page.mouse.move(p.x,p.y);await page.mouse.down();await page.mouse.move(p.x+78,p.y+24,{steps:10});await page.mouse.up();await sleep(250);
             const afterDrag=await page.evaluate(()=>({cam:window.__FOOT_ATLAS__.getState().camera,sel:window.__ATLAS_LEARNING__.getState().selectedPoint}));
