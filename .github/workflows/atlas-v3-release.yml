@@ -1,0 +1,128 @@
+name: Build and verify atlas V3
+on:
+  push:
+    paths:
+      - 'atlas-v3-tools/**'
+      - '.github/workflows/atlas-v3-release.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas-v3-release
+  cancel-in-progress: true
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/atlas-v3/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify and unpack the readable source files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,hashlib,zipfile,io
+          p=Path('atlas-v3-tools/source')
+          parts=['00','01a','01b','01c','01d','02','03']
+          data=''
+          for n in parts:
+              s=(p/(n+'.b64')).read_text().strip()
+              print(n,len(s),hashlib.sha256(s.encode()).hexdigest(),flush=True)
+              data+=s
+          blob=base64.b64decode(data,validate=True)
+          actual=hashlib.sha256(blob).hexdigest()
+          assert actual=='d915ce53da63da11b6540dd8dd0ea25204c19cbee25d2e7c406fcacdd38bc393',actual
+          z=zipfile.ZipFile(io.BytesIO(blob))
+          assert set(z.namelist())=={'build.py','learning-v3.js','styles-v3.css','verify.cjs'}
+          z.extractall('atlas-v3-tools/implementation')
+          PY
+      - name: Install pinned rendering and real-browser dependencies
+        run: |
+          npm install --prefix /tmp/atlas-v3 three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/atlas-v3/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Build without changing any previously accepted viewer
+        run: |
+          python atlas-v3-tools/implementation/build.py .
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-atlas/)"
+          rm -rf fullbody-tcm-v3/qa
+          mkdir -p fullbody-tcm-v3/source
+          cp atlas-v3-tools/implementation/* fullbody-tcm-v3/source/
+      - name: Desktop and real touch-input regression in Chromium
+        run: node atlas-v3-tools/implementation/verify.cjs
+      - name: WebKit compact-screen compatibility regression
+        env:
+          BROWSER: webkit
+        run: node atlas-v3-tools/implementation/verify.cjs
+      - name: Export inspected candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v3-candidate
+          path: fullbody-tcm-v3/
+          retention-days: 14
+      - name: Publish only the new V3 directory
+        run: |
+          git fetch origin main
+          git worktree add -B atlas-v3-publish /tmp/atlas-v3-publish origin/main
+          cp -a fullbody-tcm-v3 /tmp/atlas-v3-publish/
+          cd /tmp/atlas-v3-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v3/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish verified V3 atlas with unobstructed controls and vertical spinal separation'
+            git push origin HEAD:main
+          fi
+      - name: Confirm the public page matches the tested HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,time,urllib.request
+          target=hashlib.sha256(Path('fullbody-tcm-v3/index.html').read_bytes()).hexdigest()
+          for i in range(60):
+              try:
+                  url='https://hengtong320.github.io/notionweb/fullbody-tcm-v3/?build='+target[:12]+'&n='+str(i)
+                  with urllib.request.urlopen(url,timeout=20) as r:data=r.read()
+                  if hashlib.sha256(data).hexdigest()==target:
+                      print('PUBLIC_MATCH',target);break
+              except Exception as e:print(e,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Published page did not match the verified V3 build')
+          PY
+      - name: Repeat actual interaction tests on the public URL
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v3/?release=${{ github.run_id }}
+        run: node atlas-v3-tools/implementation/verify.cjs
+      - name: Write verified delivery evidence
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,shutil,os
+          p=Path('fullbody-tcm-v3')
+          reports={k:json.loads((p/'qa-v3'/(k+'.json')).read_text()) for k in ['offline-chromium','offline-webkit','live-chromium']}
+          assert all(r['success'] for r in reports.values())
+          info=json.loads((p/'build-info.json').read_text())
+          r={**info,'status':'verified','url':reports['live-chromium']['url'],'checks':{k:len(v['checks']) for k,v in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'priorViewersUnchanged':True,'deviceCoverage':'Desktop/tablet/phone viewports in Chromium and WebKit; not physical-device certification'}
+          (p/'delivery-release.json').write_text(json.dumps(r,ensure_ascii=False,indent=2))
+          shutil.copytree(p/'qa-v3','/tmp/atlas-v3-publish/fullbody-tcm-v3/qa-v3',dirs_exist_ok=True)
+          shutil.copy(p/'delivery-release.json','/tmp/atlas-v3-publish/fullbody-tcm-v3/delivery-release.json')
+          PY
+          cd /tmp/atlas-v3-publish
+          git add fullbody-tcm-v3/qa-v3/ fullbody-tcm-v3/delivery-release.json
+          git commit -m 'Record exact public V3 browser and touch verification'
+          git push origin HEAD:main
+      - name: Export final files and any failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v3-release
+          path: |
+            fullbody-tcm-v3/
+            atlas-v3-tools/implementation/
+          retention-days: 14
