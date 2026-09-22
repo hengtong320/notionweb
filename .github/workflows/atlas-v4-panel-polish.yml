@@ -1,0 +1,101 @@
+name: Final V4 panel isolation
+on:
+  push:
+    paths: ['.github/workflows/atlas-v4-panel-polish.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NODE_PATH: /tmp/v4-polish/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned build and browser tools
+        run: |
+          npm install --prefix /tmp/v4-polish three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/v4-polish/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Apply one guarded panel-state correction and rebuild
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          p=Path('fullbody-tcm-v4');info=json.loads((p/'build-info.json').read_text())
+          assert hashlib.sha256((p/'index.html').read_bytes()).hexdigest()==info['htmlSHA256']
+          s=(p/'learning-enhancements.js').read_text();old='function setPanel(open){panelOpen=!!open;'
+          assert s.count(old)==1
+          new="function setPanel(open){if(open&&$('tissuePanel')){$('tissuePanel').hidden=true;$('layersTab')?.classList.remove('active');}panelOpen=!!open;"
+          (p/'learning-enhancements.js').write_text(s.replace(old,new))
+          PY
+          node - <<'JS'
+          require('esbuild').buildSync({entryPoints:['fullbody-tcm-v4/app.js'],bundle:true,minify:true,nodePaths:[process.env.NODE_PATH],format:'iife',target:['es2020'],loader:{'.txt':'text'},outfile:'fullbody-tcm-v4/app.bundle.js',legalComments:'inline'});
+          JS
+          python - <<'PY'
+          from pathlib import Path
+          import re,base64,json,hashlib
+          p=Path('fullbody-tcm-v4');h=(p/'index.template.html').read_text()
+          h=h.replace('<link rel="stylesheet" href="styles.css">','<style>'+(p/'styles.css').read_text()+'</style>')
+          h=re.sub(r'<script type="importmap">.*?</script>','',h,flags=re.S)
+          bundle=(p/'app.bundle.js').read_text().replace('</script','<\\/script')
+          h=h.replace('<script type="module" src="app.js"></script>','<script>window.FOOT_ATLAS_EMBEDDED="'+base64.b64encode((p/'assets/fullbody.glb').read_bytes()).decode()+'";</script>\n<script>'+bundle+'</script>')
+          (p/'index.html').write_text(h);info=json.loads((p/'build-info.json').read_text());info.update({'htmlSHA256':hashlib.sha256(h.encode()).hexdigest(),'htmlBytes':len(h.encode()),'panelIsolationGuard':True});(p/'build-info.json').write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          PY
+      - name: Prepare actual-browser panel regression
+        run: |
+          cat > /tmp/v4-panel.cjs <<'JS'
+          const {chromium}=require('playwright'),fs=require('fs'),crypto=require('crypto');
+          (async()=>{const browser=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});let page;const r={url:process.env.URL||'http://127.0.0.1:8765/fullbody-tcm-v4/',checks:[],errors:[],success:false};const ck=(n,b)=>{r.checks.push({name:n,pass:!!b});if(!b)throw Error(n);};try{
+          page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>r.errors.push(String(e)));const response=await page.goto(r.url,{waitUntil:'load'});ck('HTTP 200',response.status()===200);await page.waitForFunction(()=>window.__ATLAS_TISSUES__&&window.__ATLAS_LEARNING__);await page.waitForFunction(()=>!window.__FOOT_ATLAS__.getState().cameraAnimating);
+          const raw=await page.request.get(r.url);const hash=crypto.createHash('sha256').update(await raw.body()).digest('hex');ck('Published HTML checksum',hash===JSON.parse(fs.readFileSync('fullbody-tcm-v4/build-info.json')).htmlSHA256);r.htmlSHA256=hash;
+          await page.locator('#tcmBtn').click();await page.locator('#pairHeart').click();await page.locator('#tcmClose').click();await page.locator('#layersTab').click();ck('Tissue settings opened',await page.locator('#tissuePanel').isVisible());await page.locator('#tcmStatusSettings').click();ck('Quick settings hides the tissue panel',!(await page.locator('#tissuePanel').isVisible()));ck('Meridian settings stay visible',await page.locator('#tcmControls').isVisible());ck('Both selected channels retained',await page.evaluate(()=>{const s=window.__ATLAS_LEARNING__.getState();return s.enabled&&s.selectedMeridians.includes('HT')&&s.selectedMeridians.includes('SI');}));await page.locator('#tcmClose').click();await page.locator('#layersTab').click();ck('Tissue controls reopen normally',await page.locator('#muscularOn').isVisible());await page.locator('#tcmBtn').click();ck('Toolbar transition also hides tissue panel',!(await page.locator('#tissuePanel').isVisible()));await page.locator('#dockToggle').click();await page.screenshot({path:'fullbody-tcm-v4/qa-v4/final-panels.png'});ck('No browser errors',r.errors.length===0);r.success=true;
+          }catch(e){r.error=String(e);process.exitCode=1;}finally{r.finishedAt=new Date().toISOString();fs.writeFileSync('fullbody-tcm-v4/qa-v4/'+(process.env.URL?'panel-live.json':'panel-local.json'),JSON.stringify(r,null,2));await browser.close();console.log(r);}})();
+          JS
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/v4-panel-http.log 2>&1 &
+          node /tmp/v4-panel.cjs
+      - name: Publish only the verified V4 patch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v4/
+          git commit -m 'Prevent overlapping tissue and meridian controls in all navigation paths'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Wait for exact public build
+        run: |
+          python - <<'PY'
+          import json,urllib.request,time,hashlib
+          x=json.load(open('fullbody-tcm-v4/build-info.json'))['htmlSHA256']
+          for i in range(60):
+              try:
+                  with urllib.request.urlopen('https://hengtong320.github.io/notionweb/fullbody-tcm-v4/?patch='+x[:12]+'&n='+str(i),timeout=25) as r:actual=hashlib.sha256(r.read()).hexdigest()
+                  if actual==x:break
+              except Exception as e:print(e,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Public patch not ready')
+          PY
+      - name: Verify public panel transitions
+        env:
+          URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v4/?release=${{ github.run_id }}
+        run: node /tmp/v4-panel.cjs
+      - name: Record final public revision
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('fullbody-tcm-v4');r=json.loads((p/'qa-v4/panel-live.json').read_text());assert r['success'];d=json.loads((p/'delivery-release.json').read_text());d.update(json.loads((p/'build-info.json').read_text()));d.update({'url':r['url'],'lastPanelChecks':len(r['checks']),'panelPatchWorkflow':os.environ['GITHUB_RUN_ID'],'panelCheckedAt':r['finishedAt'],'coreVerificationWorkflow':d['workflowRun'],'coreChecksApplyToPrecedingRevision':True});(p/'delivery-release.json').write_text(json.dumps(d,ensure_ascii=False,indent=2))
+          PY
+          git add fullbody-tcm-v4/
+          git commit -m 'Record final public V4 panel transition checks'
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas-v4-final-panel-evidence
+          path: fullbody-tcm-v4/qa-v4/
+          retention-days: 14
