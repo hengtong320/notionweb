@@ -1,0 +1,60 @@
+name: Atlas V4 Mandarin neural voice
+on:
+  push:
+    paths: ['.github/workflows/atlas-v4-neural-voice.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare fixed voice runtime and name-only catalog
+        run: |
+          pip install sherpa-onnx==1.12.15 soundfile==0.13.1 numpy==2.2.6
+          npm install --prefix /tmp/voice-build esbuild@0.25.10
+          NODE_PATH=/tmp/voice-build/node_modules node - <<'JS'
+          const fs=require('fs'),esbuild=require('esbuild');
+          esbuild.buildSync({stdin:{contents:"import {BONES} from './bones-data.js';import {ACUPOINTS,MERIDIANS} from './acupoints-data.js';console.log(JSON.stringify([...BONES.map(x=>x.name),...ACUPOINTS.map(x=>x.name),...MERIDIANS.map(x=>x.name)]));",resolveDir:process.cwd()+'/fullbody-tcm-v3'},bundle:true,platform:'node',outfile:'/tmp/voice-names.cjs'});
+          JS
+          node /tmp/voice-names.cjs > /tmp/names.json
+          curl -fL --retry 3 -o /tmp/kokoro.tar.bz2 https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/kokoro-int8-multi-lang-v1_1.tar.bz2
+          mkdir /tmp/kokoro; tar xjf /tmp/kokoro.tar.bz2 -C /tmp/kokoro --strip-components=1
+      - name: Synthesize name recordings and verify audio signal
+        run: |
+          python - <<'PY'
+          import sherpa_onnx,soundfile as sf,numpy as np,json,hashlib,pathlib,re,time
+          m=pathlib.Path('/tmp/kokoro');out=pathlib.Path('/tmp/atlas-v4-voice');out.mkdir()
+          model=next(m.glob('*.onnx'))
+          config=sherpa_onnx.OfflineTtsConfig(model=sherpa_onnx.OfflineTtsModelConfig(kokoro=sherpa_onnx.OfflineTtsKokoroModelConfig(model=str(model),voices=str(m/'voices.bin'),tokens=str(m/'tokens.txt'),data_dir=str(m/'espeak-ng-data'),lexicon=','.join(str(m/n) for n in ['lexicon-us-en.txt','lexicon-zh.txt'])),num_threads=2))
+          assert config.validate();tts=sherpa_onnx.OfflineTts(config)
+          names=json.load(open('/tmp/names.json'))+['印堂','太阳','鱼腰','四神聪','安眠','牵正','耳尖','球后','上迎香','内迎香','额旁一线','胸大肌','胸小肌','三角肌','肱二头肌','肱三头肌','斜方肌','背阔肌','腹直肌','坐骨神经','正中神经','尺神经','桡神经','股神经','胫神经','脊髓','腓总神经','前锯肌','胸锁乳突肌','股直肌','臀大肌','腓肠肌','比目鱼肌','胫骨前肌']
+          # Same anatomical word shares one audio file; side stays visible in text.
+          canonical=lambda s:re.sub(r'^(右侧|左侧|右|左)','',s)
+          unique=sorted(set(canonical(s) for s in names));mapping={};signals=[]
+          for i,name in enumerate(unique):
+              speech=re.sub(r'[CLT]\d+','',name).strip(' ·（）() ')
+              if not speech:speech=name
+              a=tts.generate(text=speech+'。',sid=3,speed=1.0)
+              samples=np.asarray(a.samples,dtype=np.float32);rms=float(np.sqrt(np.mean(samples*samples)))
+              assert len(samples)>a.sample_rate*.15 and rms>.0001,(name,rms)
+              fn=hashlib.sha256(name.encode()).hexdigest()[:16]+'.mp3'
+              sf.write(out/fn,samples,a.sample_rate,format='MP3')
+              mapping[name]=fn;signals.append({'name':name,'seconds':len(samples)/a.sample_rate,'rms':rms})
+              if i%25==0:print(i,len(unique),name,flush=True)
+          for name in names:mapping[name]=mapping[canonical(name)]
+          manifest={'engine':'Kokoro 82M v1.1-zh / sherpa-onnx 1.12.15','synthetic':True,'speaker':'zf_001','source':'https://huggingface.co/hexgrad/Kokoro-82M-v1.1-zh','modelSHA256':hashlib.sha256(model.read_bytes()).hexdigest(),'license':'Apache-2.0 model','uniqueRecordings':len(unique),'mapping':mapping,'signalChecks':signals,'pronunciationReview':'Signal and playback validation only; specialist pronunciation not human-audited for every term.'}
+          (out/'voice-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
+          print('VOICE_COMPLETE',len(unique),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas-v4-neural-voice
+          path: /tmp/atlas-v4-voice/
+          retention-days: 14
