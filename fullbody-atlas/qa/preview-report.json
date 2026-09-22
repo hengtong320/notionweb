@@ -1,0 +1,71 @@
+{
+  "success": true,
+  "browser": "chromium",
+  "url": "file: embedded HTML",
+  "startedAt": "2026-09-22T01:52:03.061401+00:00",
+  "htmlSHA256": "feccc027682a2b35e9d12751342ced496ed60dbfc5badb5efa3a4b8db0482c43",
+  "deviceScaleFactor": 1,
+  "checks": [
+    {
+      "name": "All 210 independent bone objects loaded",
+      "pass": true
+    },
+    {
+      "name": "Every source triangle preserved",
+      "pass": true
+    },
+    {
+      "name": "No nonfinite bone positions",
+      "pass": true
+    },
+    {
+      "name": "No secondary model or renderer downloads",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "All 73 original bone coordinates preserved",
+      "pass": true
+    },
+    {
+      "name": "Five approved previous directories untouched",
+      "pass": true
+    },
+    {
+      "name": "Full density rendered body",
+      "pass": true
+    },
+    {
+      "name": "Full density rendered head",
+      "pass": true
+    },
+    {
+      "name": "Full density rendered cervical",
+      "pass": true
+    },
+    {
+      "name": "Full density rendered thorax",
+      "pass": true
+    },
+    {
+      "name": "Full density rendered hand",
+      "pass": true
+    },
+    {
+      "name": "Full density rendered auditory",
+      "pass": true
+    },
+    {
+      "name": "Full density rendered all",
+      "pass": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "finishedAt": "2026-09-22T01:53:31.833279+00:00"
+}

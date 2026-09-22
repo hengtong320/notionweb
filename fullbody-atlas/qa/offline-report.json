@@ -1,0 +1,1968 @@
+{
+  "success": true,
+  "browser": "chromium",
+  "url": "file: embedded HTML",
+  "startedAt": "2026-09-22T01:53:35.545857+00:00",
+  "htmlSHA256": "feccc027682a2b35e9d12751342ced496ed60dbfc5badb5efa3a4b8db0482c43",
+  "deviceScaleFactor": 0.55,
+  "checks": [
+    {
+      "name": "All 210 independent bone objects loaded",
+      "pass": true
+    },
+    {
+      "name": "Every source triangle preserved",
+      "pass": true
+    },
+    {
+      "name": "No nonfinite bone positions",
+      "pass": true
+    },
+    {
+      "name": "No secondary model or renderer downloads",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "All 73 original bone coordinates preserved",
+      "pass": true
+    },
+    {
+      "name": "Five approved previous directories untouched",
+      "pass": true
+    },
+    {
+      "name": "210 unique Chinese catalog entries",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: frontal",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: occipital",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: sphenoid",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: ethmoid",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: parietal-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: temporal-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: parietal-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: temporal-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: maxilla-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: zygomatic-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: nasal-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: lacrimal-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: palatine-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: inferior-concha-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: maxilla-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: zygomatic-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: nasal-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: lacrimal-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: palatine-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: inferior-concha-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: vomer",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: mandible",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hyoid",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: malleus-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: incus-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: stapes-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: malleus-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: incus-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: stapes-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: C1",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: C2",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: C3",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: C4",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: C5",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: C6",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: C7",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T1",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T2",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T3",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T4",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T5",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T6",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T7",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T8",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T9",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T10",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T11",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: T12",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: L1",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: L2",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: L3",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: L4",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: L5",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-1-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-2-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-3-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-4-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-5-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-6-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-7-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-8-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-9-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-10-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-11-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-12-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-1-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-2-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-3-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-4-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-5-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-6-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-7-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-8-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-9-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-10-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-11-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: rib-12-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: sternum",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: clavicle-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: scapula-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: clavicle-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: scapula-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: humerus-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: radius-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: ulna-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: humerus-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: radius-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: ulna-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: scaphoid-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: lunate-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: triquetrum-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: pisiform-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: trapezium-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: trapezoid-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: capitate-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hamate-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: scaphoid-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: lunate-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: triquetrum-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: pisiform-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: trapezium-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: trapezoid-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: capitate-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hamate-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-metacarpal-1-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-metacarpal-2-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-metacarpal-3-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-metacarpal-4-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-metacarpal-5-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-metacarpal-1-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-metacarpal-2-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-metacarpal-3-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-metacarpal-4-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-metacarpal-5-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-proximal-1-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-distal-1-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-proximal-2-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-middle-2-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-distal-2-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-proximal-3-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-middle-3-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-distal-3-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-proximal-4-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-middle-4-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-distal-4-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-proximal-5-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-middle-5-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-distal-5-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-proximal-1-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-distal-1-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-proximal-2-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-middle-2-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-distal-2-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-proximal-3-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-middle-3-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-distal-3-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-proximal-4-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-middle-4-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-distal-4-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-proximal-5-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-middle-5-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hand-distal-5-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hip-right",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: hip-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: sacrum",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: coccyx",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: femur",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: patella",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: femur-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: patella-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: tibia",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: fibula",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: tibia-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: fibula-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: talus",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: calcaneus",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: navicular",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: cuboid",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: cuneiform-medial",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: cuneiform-intermediate",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: cuneiform-lateral",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: talus-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: calcaneus-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: navicular-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: cuboid-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: cuneiform-medial-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: cuneiform-intermediate-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: cuneiform-lateral-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: metatarsal-1",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: metatarsal-2",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: metatarsal-3",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: metatarsal-4",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: metatarsal-5",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: metatarsal-1-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: metatarsal-2-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: metatarsal-3-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: metatarsal-4-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: metatarsal-5-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: proximal-1",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: distal-1",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: proximal-2",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: middle-2",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: distal-2",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: proximal-3",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: middle-3",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: distal-3",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: proximal-4",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: middle-4",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: distal-4",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: proximal-5",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: middle-5",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: distal-5",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: proximal-1-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: distal-1-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: proximal-2-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: middle-2-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: distal-2-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: proximal-3-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: middle-3-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: distal-3-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: proximal-4-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: middle-4-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: distal-4-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: proximal-5-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: middle-5-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: distal-5-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: sesamoid-medial",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: sesamoid-lateral",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: sesamoid-medial-left",
+      "pass": true
+    },
+    {
+      "name": "DOM name and description: sesamoid-lateral-left",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: body",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: body",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: head",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: head",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: auditory",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: auditory",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: cervical",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: cervical",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: thoracic",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: thoracic",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: spine",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: spine",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: thorax",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: thorax",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: shoulder",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: shoulder",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: upper",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: upper",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: elbow",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: elbow",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: wrist",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: wrist",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: hand",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: hand",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: foot",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: foot",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: ankle",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: ankle",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: leg",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: leg",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: knee",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: knee",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: whole",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: whole",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: hip",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: hip",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: pelvis",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: pelvis",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: pelvic-limb",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: pelvic-limb",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: lumbar",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: lumbar",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: lumbosacral",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: lumbosacral",
+      "pass": true
+    },
+    {
+      "name": "Region inventory: all",
+      "pass": true
+    },
+    {
+      "name": "Finite camera: all",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: body/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: body/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: head/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: head/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: thorax/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: thorax/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: upper/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: upper/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: shoulder/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: shoulder/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: elbow/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: elbow/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: wrist/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: wrist/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: hand/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: hand/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: foot/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: foot/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: knee/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: knee/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: whole/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: whole/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: hip/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: hip/left",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: all/right",
+      "pass": true
+    },
+    {
+      "name": "Patient side inventory: all/left",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: talus",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: talus",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: talus",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only talus",
+      "pass": true,
+      "detail": [
+        "talus"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: talus",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: talus",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: talus-left",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: talus-left",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: talus-left",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only talus-left",
+      "pass": true,
+      "detail": [
+        "talus-left"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: talus-left",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: talus-left",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: femur-left",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: femur-left",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: femur-left",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only femur-left",
+      "pass": true,
+      "detail": [
+        "femur-left"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: femur-left",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: femur-left",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: hip-right",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: hip-right",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: hip-right",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only hip-right",
+      "pass": true,
+      "detail": [
+        "hip-right"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: hip-right",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: hip-right",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: L3",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: L3",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: L3",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only L3",
+      "pass": true,
+      "detail": [
+        "L3"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: L3",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: L3",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: frontal",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: frontal",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: frontal",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only frontal",
+      "pass": true,
+      "detail": [
+        "frontal"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: frontal",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: frontal",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: sphenoid",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: sphenoid",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: sphenoid",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only sphenoid",
+      "pass": true,
+      "detail": [
+        "sphenoid"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: sphenoid",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: sphenoid",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: ethmoid",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: ethmoid",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: ethmoid",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only ethmoid",
+      "pass": true,
+      "detail": [
+        "ethmoid"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: ethmoid",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: ethmoid",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: mandible",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: mandible",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: mandible",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only mandible",
+      "pass": true,
+      "detail": [
+        "mandible"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: mandible",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: mandible",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: hyoid",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: hyoid",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: hyoid",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only hyoid",
+      "pass": true,
+      "detail": [
+        "hyoid"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: hyoid",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: hyoid",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: C1",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: C1",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: C1",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only C1",
+      "pass": true,
+      "detail": [
+        "C1"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: C1",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: C1",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: C2",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: C2",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: C2",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only C2",
+      "pass": true,
+      "detail": [
+        "C2"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: C2",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: C2",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: C7",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: C7",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: C7",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only C7",
+      "pass": true,
+      "detail": [
+        "C7"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: C7",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: C7",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: T1",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: T1",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: T1",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only T1",
+      "pass": true,
+      "detail": [
+        "T1"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: T1",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: T1",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: T12",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: T12",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: T12",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only T12",
+      "pass": true,
+      "detail": [
+        "T12"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: T12",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: T12",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: rib-1-right",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: rib-1-right",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: rib-1-right",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only rib-1-right",
+      "pass": true,
+      "detail": [
+        "rib-1-right"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: rib-1-right",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: rib-1-right",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: rib-12-left",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: rib-12-left",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: rib-12-left",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only rib-12-left",
+      "pass": true,
+      "detail": [
+        "rib-12-left"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: rib-12-left",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: rib-12-left",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: sternum",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: sternum",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: sternum",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only sternum",
+      "pass": true,
+      "detail": [
+        "sternum"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: sternum",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: sternum",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: scapula-right",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: scapula-right",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: scapula-right",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only scapula-right",
+      "pass": true,
+      "detail": [
+        "scapula-right"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: scapula-right",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: scapula-right",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: humerus-left",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: humerus-left",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: humerus-left",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only humerus-left",
+      "pass": true,
+      "detail": [
+        "humerus-left"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: humerus-left",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: humerus-left",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: radius-right",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: radius-right",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: radius-right",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only radius-right",
+      "pass": true,
+      "detail": [
+        "radius-right"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: radius-right",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: radius-right",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: ulna-left",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: ulna-left",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: ulna-left",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only ulna-left",
+      "pass": true,
+      "detail": [
+        "ulna-left"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: ulna-left",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: ulna-left",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: scaphoid-right",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: scaphoid-right",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: scaphoid-right",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only scaphoid-right",
+      "pass": true,
+      "detail": [
+        "scaphoid-right"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: scaphoid-right",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: scaphoid-right",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: capitate-left",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: capitate-left",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: capitate-left",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only capitate-left",
+      "pass": true,
+      "detail": [
+        "capitate-left"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: capitate-left",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: capitate-left",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: hand-distal-1-left",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: hand-distal-1-left",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: hand-distal-1-left",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only hand-distal-1-left",
+      "pass": true,
+      "detail": [
+        "hand-distal-1-left"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: hand-distal-1-left",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: hand-distal-1-left",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: stapes-right",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: stapes-right",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: stapes-right",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only stapes-right",
+      "pass": true,
+      "detail": [
+        "stapes-right"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: stapes-right",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: stapes-right",
+      "pass": true
+    },
+    {
+      "name": "Isolate one mesh: incus-left",
+      "pass": true
+    },
+    {
+      "name": "Visible raycast surface: incus-left",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse identification: incus-left",
+      "pass": true
+    },
+    {
+      "name": "Mouse drag changes only incus-left",
+      "pass": true,
+      "detail": [
+        "incus-left"
+      ]
+    },
+    {
+      "name": "Independent mouse rotation: incus-left",
+      "pass": true
+    },
+    {
+      "name": "Exact single-bone restore: incus-left",
+      "pass": true
+    },
+    {
+      "name": "Full-body expansion moves every independent bone",
+      "pass": true
+    },
+    {
+      "name": "Expansion creates no NaN coordinates",
+      "pass": true
+    },
+    {
+      "name": "Original-position reference retained",
+      "pass": true
+    },
+    {
+      "name": "All 210 positions and orientations restore exactly",
+      "pass": true
+    },
+    {
+      "name": "All left-hand bone labels available",
+      "pass": true
+    },
+    {
+      "name": "All head and hyoid labels available",
+      "pass": true
+    },
+    {
+      "name": "Neighbor emphasis retained",
+      "pass": true
+    },
+    {
+      "name": "Hide selected bone retained",
+      "pass": true
+    },
+    {
+      "name": "Search 寰",
+      "pass": true
+    },
+    {
+      "name": "Search scaphoid",
+      "pass": true
+    },
+    {
+      "name": "Search deng",
+      "pass": true
+    },
+    {
+      "name": "Group-color mode retained",
+      "pass": true
+    },
+    {
+      "name": "Laptop viewport without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Help dialog retained",
+      "pass": true
+    },
+    {
+      "name": "Model limitations and 206-bone coverage documented",
+      "pass": true
+    },
+    {
+      "name": "Current-view PNG download retained",
+      "pass": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "finishedAt": "2026-09-22T02:02:55.202018+00:00"
+}
