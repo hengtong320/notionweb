@@ -1,5 +1,5 @@
 {
-  "version": "fullbody-v1",
+  "version": "fullbody-tcm-v1",
   "baseRef": "78df9ba4183a13a231da54f2d3ffc94928e6e736",
   "bones": 210,
   "standardAdultBones": 206,
@@ -13,19 +13,22 @@
   "maxPriorCoordinateErrorMillimeters": 0,
   "noRuntimeNetwork": true,
   "threeVersion": "0.180.0",
-  "htmlBytes": 19505569,
-  "htmlSHA256": "feccc027682a2b35e9d12751342ced496ed60dbfc5badb5efa3a4b8db0482c43",
+  "htmlBytes": 19790040,
+  "htmlSHA256": "8af4c9ae1445112edbb9bac84c7560d159e2315064810957ab297ae8df344a44",
+  "baseFullbodySHA256": "feccc027682a2b35e9d12751342ced496ed60dbfc5badb5efa3a4b8db0482c43",
+  "bonePronunciationComplete": 210,
+  "standardAcupoints": 361,
+  "meridians": 14,
+  "physicalMarkerInstances": 670,
+  "tcmCoordinates": "anatomical-landmark schematic",
   "status": "verified",
-  "url": "https://hengtong320.github.io/notionweb/fullbody-atlas/?release=35678443510",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-atlas/?release=35681140051",
   "checks": {
-    "offline": 468,
-    "webkit": 305,
-    "preview": 14,
-    "live": 398
+    "offline": 27,
+    "webkit": 27,
+    "live": 28
   },
-  "checkedAt": "2026-09-22T02:15:27.860221+00:00",
-  "workflowRun": "35678443510",
-  "priorVersionsUnchanged": true,
-  "browserDocumentChecksumVerified": true,
-  "applicationChangedDuringDeliveryCheck": false
+  "checkedAt": "2026-09-22T02:57:48.070Z",
+  "workflowRun": "35681140051",
+  "priorVersionsUnchanged": true
 }
