@@ -1,0 +1,36 @@
+{
+  "muscular.glb": {
+    "source": "https://raw.githubusercontent.com/Liyucheng1997/242_lab-human-anatomy/322ba39e96ea91ce08601caad2c0aaade1dc99f0/public/models/muscular.glb",
+    "blobSHA": "bea9d9bb4aa45644562276f92530f419239a5630",
+    "sha256": "5234472152a791baf002bed614707c33ba3ab2b278e41f41899a79a453d40785",
+    "bytes": 8819872
+  },
+  "nervous.glb": {
+    "source": "https://raw.githubusercontent.com/Liyucheng1997/242_lab-human-anatomy/322ba39e96ea91ce08601caad2c0aaade1dc99f0/public/models/nervous.glb",
+    "blobSHA": "67cbeb15fcf2344209a3350e300ded7e71ee66bb",
+    "sha256": "838f8ab3332acf1c90ce23932843fc86ed0813310aa5e0efc151134ba582bd24",
+    "bytes": 6976748
+  },
+  "skeleton.glb": {
+    "source": "https://raw.githubusercontent.com/Liyucheng1997/242_lab-human-anatomy/322ba39e96ea91ce08601caad2c0aaade1dc99f0/public/models/skeleton.glb",
+    "blobSHA": "5e15f7ea303c554f6c25a417f7f184696234b436",
+    "sha256": "9fa642cc4ba501c0512cf8a2ab074b0c6a03fdd5dad7ab28a0c139e70e10ae82",
+    "bytes": 2722720
+  },
+  "anatomy.json": {
+    "source": "https://raw.githubusercontent.com/Liyucheng1997/242_lab-human-anatomy/322ba39e96ea91ce08601caad2c0aaade1dc99f0/src/anatomy.json",
+    "blobSHA": "e4165fe0126c2440511bc70496f820dbd3139597",
+    "sha256": "fc5d3c75e80ca483a1865d6c96699aaa6daa49f639eca1ac4947d5cad1cf0d6f",
+    "bytes": 442625
+  },
+  "acupoints.csv": {
+    "source": "https://raw.githubusercontent.com/SciCrunch/TARA-Ontology-Repository/b488d0bf855eef17a131946bd387d6e2e9dfa26d/curated-data/acupoints/acupoints.csv",
+    "sha256": "ae43ada45e80b0acebcf2773698d31aa100d4df9df87c789f05537735195aba1",
+    "bytes": 580859
+  },
+  "extra-acupoints.csv": {
+    "source": "https://raw.githubusercontent.com/SciCrunch/TARA-Ontology-Repository/b488d0bf855eef17a131946bd387d6e2e9dfa26d/curated-data/acupoints/extra-acupoints.csv",
+    "sha256": "39fdf61248df2cb13deb9877ec6d4c60da4ca06870c715a4835cce33e2b0fbf2",
+    "bytes": 33492
+  }
+}

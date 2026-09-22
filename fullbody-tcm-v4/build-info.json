@@ -1,0 +1,26 @@
+{
+  "version": "fullbody-tcm-v4",
+  "bones": 210,
+  "bonesUnchanged": true,
+  "htmlSHA256": "8feeed0cd9c2266885004a34c4e2d9136863f05ba0a2c5bb006868a05444faa9",
+  "htmlBytes": 20528869,
+  "tissues": {
+    "muscular": 683,
+    "nervous": 550
+  },
+  "neuralRecordings": 532,
+  "referenceNames": 107,
+  "individuallyMarkedReferenceNames": 95,
+  "supplementalDirectoryNames": 12,
+  "clinicalCalibration": false,
+  "oldInterpolatedCoordinatesRemoved": true,
+  "softTissueAlignment": {
+    "scale": 1000,
+    "subtractOrigin": [
+      -99.55318155698478,
+      47.33916081022471,
+      22.87590131163597
+    ]
+  },
+  "previousViewersUntouched": true
+}

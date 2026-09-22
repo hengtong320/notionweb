@@ -1,0 +1,234 @@
+{
+  "url": "http://127.0.0.1:8765/fullbody-tcm-v4/",
+  "browser": "chromium",
+  "startedAt": "2026-09-22T14:46:57.288Z",
+  "checks": [
+    {
+      "name": "Webpage HTTP 200",
+      "pass": true,
+      "detail": 200
+    },
+    {
+      "name": "HTML integrity request HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "Served HTML matches tested V4 build",
+      "pass": true
+    },
+    {
+      "name": "210 original bones loaded",
+      "pass": true,
+      "detail": 210
+    },
+    {
+      "name": "Cursor zoom enabled",
+      "pass": true
+    },
+    {
+      "name": "Bone pinyin retained",
+      "pass": true
+    },
+    {
+      "name": "Dock folds and releases viewing space",
+      "pass": true,
+      "detail": {
+        "original": 177,
+        "folded": 37
+      }
+    },
+    {
+      "name": "Heart and small intestine channels displayed together",
+      "pass": true,
+      "detail": {
+        "version": "4.0",
+        "selectedMeridians": [
+          "HT",
+          "SI"
+        ],
+        "suspended": false,
+        "legacyEqualSpacingRemoved": true,
+        "clinicalCalibration": false,
+        "enabled": true,
+        "panelOpen": true,
+        "linesOn": true,
+        "pointsOn": true,
+        "namesOn": true,
+        "xray": false,
+        "tcmSide": "both",
+        "activeMeridian": "MULTI",
+        "selectedPoint": null,
+        "cardOpen": false,
+        "statusVisible": true,
+        "meridians": 14,
+        "supplementalNames": 12,
+        "standardAcupoints": 361,
+        "annotatedNames": 95,
+        "markerInstances": 181,
+        "visiblePoints": 56,
+        "routes": 29,
+        "autoSpeak": false,
+        "lineWidthPixels": 3.5,
+        "pointSizePixels": 11
+      }
+    },
+    {
+      "name": "Old equal-spacing point algorithm removed",
+      "pass": true
+    },
+    {
+      "name": "Closing settings keeps layer",
+      "pass": true
+    },
+    {
+      "name": "Three channels independently selected",
+      "pass": true
+    },
+    {
+      "name": "Unmapped point has no invented 3D coordinate",
+      "pass": true
+    },
+    {
+      "name": "Missing position is visibly disclosed",
+      "pass": true
+    },
+    {
+      "name": "Lumbar bones separate vertically",
+      "pass": true
+    },
+    {
+      "name": "All bones return to original positions",
+      "pass": true
+    },
+    {
+      "name": "Lumbar actual mouse pick available",
+      "pass": true,
+      "detail": {
+        "x": 711.9168277505948,
+        "y": 513.4642899305675
+      }
+    },
+    {
+      "name": "Real bone click selects L3",
+      "pass": true
+    },
+    {
+      "name": "Original single-bone drag works",
+      "pass": true
+    },
+    {
+      "name": "Wheel zoom changes camera toward cursor",
+      "pass": true
+    },
+    {
+      "name": "Real muscle GLB decoded and visible",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "loaded": true,
+        "loading": false,
+        "count": 683,
+        "visible": 173,
+        "opacity": 0.68
+      }
+    },
+    {
+      "name": "Muscle opacity control works",
+      "pass": true
+    },
+    {
+      "name": "Real nervous GLB decoded",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "loaded": true,
+        "loading": false,
+        "count": 550,
+        "visible": 114,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "Muscles and nerves can be superimposed",
+      "pass": true
+    },
+    {
+      "name": "Chinese tissue labels present",
+      "pass": true,
+      "detail": "右胸大肌锁骨部"
+    },
+    {
+      "name": "Tissue detail selects correct name",
+      "pass": true
+    },
+    {
+      "name": "Single tissue isolation works",
+      "pass": true
+    },
+    {
+      "name": "Neural Mandarin audio is actually playing",
+      "pass": true,
+      "detail": {
+        "voice": "neural",
+        "rate": 1,
+        "lastName": "寰椎",
+        "lastEngine": "Kokoro 神经语音（合成）",
+        "lastError": "",
+        "playing": false,
+        "currentTime": 0.712917,
+        "recordings": 532,
+        "synthetic": true
+      }
+    },
+    {
+      "name": "Audio stop works",
+      "pass": true
+    },
+    {
+      "name": "Tissue overlay pauses during bone separation",
+      "pass": true
+    },
+    {
+      "name": "Point layer pauses with displaced bones",
+      "pass": true
+    },
+    {
+      "name": "Original tissue overlay resumes after reset",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow on desktop",
+      "pass": true
+    },
+    {
+      "name": "No external model, decoder or voice CDN requests",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Phone has usable 3D viewport",
+      "pass": true
+    },
+    {
+      "name": "Dock starts collapsed on phone",
+      "pass": true
+    },
+    {
+      "name": "Phone exposes tissue controls",
+      "pass": true
+    },
+    {
+      "name": "No phone horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "No uncaught JavaScript or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "htmlSHA256": "8feeed0cd9c2266885004a34c4e2d9136863f05ba0a2c5bb006868a05444faa9",
+  "finishedAt": "2026-09-22T14:49:05.575Z"
+}
