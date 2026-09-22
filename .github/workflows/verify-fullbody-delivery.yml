@@ -1,0 +1,73 @@
+name: Verify and deliver full-body atlas
+on:
+  push:
+    paths:
+      - 'fullbody-delivery-tools/**'
+      - '.github/workflows/verify-fullbody-delivery.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fullbody-delivery
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Confirm all tested anatomy and previous versions remain unchanged
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          p=Path('fullbody-atlas');info=json.loads((p/'build-info.json').read_text())
+          assert hashlib.sha256((p/'index.html').read_bytes()).hexdigest()==info['htmlSHA256']=='feccc027682a2b35e9d12751342ced496ed60dbfc5badb5efa3a4b8db0482c43'
+          assert info['standardAdultBones']==206 and info['bones']==210
+          for name,count in [('offline',468),('webkit',305),('preview',14)]:
+              report=json.loads((p/'qa'/(name+'-report.json')).read_text())
+              assert report['success'] and len(report['checks'])==count and all(c['pass'] for c in report['checks'])
+              assert report['htmlSHA256']==info['htmlSHA256']
+              print(name,count,'passed')
+          assert not subprocess.check_output(['git','diff',info['baseRef'],'--','foot-atlas/','ankle-atlas/','knee-atlas/','hip-atlas/','lumbar-atlas/'])
+          PY
+      - name: Install the fixed browser test runtime
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Verify the actual public webpage and all interaction checks
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-atlas/?release=${{ github.run_id }}
+        run: python fullbody-delivery-tools/verify.py
+      - name: Publish delivery record and successful browser evidence only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,hashlib
+          p=Path('fullbody-atlas');info=json.loads((p/'build-info.json').read_text())
+          reports={k:json.loads((p/'qa'/(k+'-report.json')).read_text()) for k in ['offline','webkit','preview','live']}
+          assert all(r['success'] and all(c['pass'] for c in r['checks']) for r in reports.values())
+          assert hashlib.sha256((p/'index.html').read_bytes()).hexdigest()==info['htmlSHA256']==reports['live']['htmlSHA256']
+          release={**info,'status':'verified','url':reports['live']['url'],'checks':{k:len(r['checks']) for k,r in reports.items()},'checkedAt':reports['live']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'priorVersionsUnchanged':True,'browserDocumentChecksumVerified':True,'applicationChangedDuringDeliveryCheck':False}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-atlas/qa/ fullbody-atlas/delivery-release.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record fully verified public delivery for the complete adult skeleton atlas'
+            git push origin HEAD:main
+          fi
+      - name: Export the verified offline webpage, source, model and test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fullbody-atlas-final-release
+          path: |
+            fullbody-atlas/
+            fullbody-atlas-tools/
+            fullbody-delivery-tools/
+          retention-days: 14
