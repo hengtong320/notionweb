@@ -1,0 +1,24 @@
+{
+  "version": "fullbody-tcm-v3",
+  "baselineHTMLSHA256": "87076e42ba71f57e9f74ae0c8bffbd30904af65c8b83939ef8dffc27d7c9d0ef",
+  "bones": 210,
+  "htmlSHA256": "2d3cfaed29d88ac68b1c803b64a90de9111fe233ab274aea9ebe3f7b51245bcf",
+  "htmlBytes": 19843477,
+  "modelSHA256": "f675737728bd5c21c553bb82490694f4c52cb744f7f9ebba346c66775aebd1c2",
+  "bonesUnchanged": true,
+  "standardPointNames": 361,
+  "coordinateStatus": "unvalidated schematic interpolation; not anatomical point localization",
+  "renderer": "three 0.180.0",
+  "noModelCDN": true,
+  "status": "verified",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v3/?release=35702164553",
+  "checks": {
+    "offline-chromium": 80,
+    "offline-webkit": 19,
+    "live-chromium": 88
+  },
+  "checkedAt": "2026-09-22T08:06:14.995Z",
+  "workflowRun": "35702164553",
+  "priorViewersUnchanged": true,
+  "deviceCoverage": "Desktop/tablet/phone viewports in Chromium and WebKit; not physical-device certification"
+}

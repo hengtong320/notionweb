@@ -1,0 +1,478 @@
+{
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v3/?release=35702164553",
+  "browser": "chromium",
+  "startedAt": "2026-09-22T08:03:35.661Z",
+  "checks": [
+    {
+      "name": "desktop live HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "desktop public build checksum",
+      "pass": true
+    },
+    {
+      "name": "V3 badge is visible",
+      "pass": true
+    },
+    {
+      "name": "All 210 original bones and 534003 triangles",
+      "pass": true
+    },
+    {
+      "name": "All bone names retain pinyin",
+      "pass": true
+    },
+    {
+      "name": "Panel and overlay enabled independently",
+      "pass": true
+    },
+    {
+      "name": "Desktop settings do not cover 3D canvas",
+      "pass": true,
+      "detail": {
+        "panel": {
+          "x": 0,
+          "y": 129,
+          "width": 269,
+          "height": 840
+        },
+        "viewport": {
+          "x": 270,
+          "y": 72,
+          "width": 868,
+          "height": 897
+        }
+      }
+    },
+    {
+      "name": "Collapsing settings retains meridian layer",
+      "pass": true
+    },
+    {
+      "name": "Dedicated layer button hides only layer",
+      "pass": true
+    },
+    {
+      "name": "Layer can be restored without panel",
+      "pass": true
+    },
+    {
+      "name": "Point is inside unobstructed canvas",
+      "pass": true,
+      "detail": {
+        "x": 549.6018608183954,
+        "y": 418.4495158840852,
+        "z": 0.9995748530724601
+      }
+    },
+    {
+      "name": "Drag starting on point rotates the camera",
+      "pass": true
+    },
+    {
+      "name": "Drag does not select another point",
+      "pass": true
+    },
+    {
+      "name": "A true point click selects LU5",
+      "pass": true
+    },
+    {
+      "name": "Point detail does not retain an unrelated bone preview",
+      "pass": true
+    },
+    {
+      "name": "Closing detail retains overlay and selected point",
+      "pass": true
+    },
+    {
+      "name": "Right channel side filter shows 11 LU points",
+      "pass": true
+    },
+    {
+      "name": "Switching side clears a wrong-side selection",
+      "pass": true
+    },
+    {
+      "name": "Bilateral LU shows 22 points",
+      "pass": true
+    },
+    {
+      "name": "No-tone pinyin searches across channels",
+      "pass": true
+    },
+    {
+      "name": "Search selection switches matching channel",
+      "pass": true
+    },
+    {
+      "name": "Next-point navigation follows code order",
+      "pass": true
+    },
+    {
+      "name": "Previous-point navigation returns LI4",
+      "pass": true
+    },
+    {
+      "name": "Point diameter stays constant during zoom",
+      "pass": true
+    },
+    {
+      "name": "lumbar pure vertical displacement",
+      "pass": true
+    },
+    {
+      "name": "lumbar full separation leaves actual surface-box gaps",
+      "pass": true,
+      "detail": [
+        23,
+        23,
+        23,
+        23
+      ]
+    },
+    {
+      "name": "cervical pure vertical displacement",
+      "pass": true
+    },
+    {
+      "name": "cervical full separation leaves actual surface-box gaps",
+      "pass": true,
+      "detail": [
+        23,
+        23,
+        23,
+        23,
+        23,
+        23
+      ]
+    },
+    {
+      "name": "thoracic pure vertical displacement",
+      "pass": true
+    },
+    {
+      "name": "thoracic full separation leaves actual surface-box gaps",
+      "pass": true,
+      "detail": [
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17
+      ]
+    },
+    {
+      "name": "spine pure vertical displacement",
+      "pass": true
+    },
+    {
+      "name": "spine full separation leaves actual surface-box gaps",
+      "pass": true,
+      "detail": [
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17
+      ]
+    },
+    {
+      "name": "lumbosacral pure vertical displacement",
+      "pass": true
+    },
+    {
+      "name": "lumbosacral full separation leaves actual surface-box gaps",
+      "pass": true,
+      "detail": [
+        23,
+        23,
+        23,
+        23,
+        23,
+        23
+      ]
+    },
+    {
+      "name": "Reset returns all bones exactly home",
+      "pass": true
+    },
+    {
+      "name": "L3 real pickable surface",
+      "pass": true
+    },
+    {
+      "name": "L3 independent bone drag",
+      "pass": true
+    },
+    {
+      "name": "L3 independent rotation",
+      "pass": true
+    },
+    {
+      "name": "talus real pickable surface",
+      "pass": true
+    },
+    {
+      "name": "talus independent bone drag",
+      "pass": true
+    },
+    {
+      "name": "talus independent rotation",
+      "pass": true
+    },
+    {
+      "name": "mandible real pickable surface",
+      "pass": true
+    },
+    {
+      "name": "mandible independent bone drag",
+      "pass": true
+    },
+    {
+      "name": "mandible independent rotation",
+      "pass": true
+    },
+    {
+      "name": "Flow mode switches rendering profile",
+      "pass": true
+    },
+    {
+      "name": "High mode can be restored",
+      "pass": true
+    },
+    {
+      "name": "Desktop has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "tablet live HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "tablet public build checksum",
+      "pass": true
+    },
+    {
+      "name": "tablet canvas uses full screen width",
+      "pass": true
+    },
+    {
+      "name": "tablet no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "tablet original region directory reachable",
+      "pass": true
+    },
+    {
+      "name": "tablet closing navigation preserves canvas",
+      "pass": true
+    },
+    {
+      "name": "tablet selection closes drawer but preserves point",
+      "pass": true
+    },
+    {
+      "name": "tablet acupoint focus restores anatomical context",
+      "pass": true
+    },
+    {
+      "name": "tablet no automatic detail obstruction",
+      "pass": true
+    },
+    {
+      "name": "tablet point detail accessible",
+      "pass": true
+    },
+    {
+      "name": "tablet closing detail preserves layer",
+      "pass": true
+    },
+    {
+      "name": "tablet real touch drag rotates",
+      "pass": true
+    },
+    {
+      "name": "tablet real two-finger pinch changes zoom",
+      "pass": true
+    },
+    {
+      "name": "tablet pinch does not accidentally select another point",
+      "pass": true
+    },
+    {
+      "name": "phone live HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "phone public build checksum",
+      "pass": true
+    },
+    {
+      "name": "phone canvas uses full screen width",
+      "pass": true
+    },
+    {
+      "name": "phone no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "phone original region directory reachable",
+      "pass": true
+    },
+    {
+      "name": "phone closing navigation preserves canvas",
+      "pass": true
+    },
+    {
+      "name": "phone selection closes drawer but preserves point",
+      "pass": true
+    },
+    {
+      "name": "phone acupoint focus restores anatomical context",
+      "pass": true
+    },
+    {
+      "name": "phone no automatic detail obstruction",
+      "pass": true
+    },
+    {
+      "name": "phone point detail accessible",
+      "pass": true
+    },
+    {
+      "name": "phone closing detail preserves layer",
+      "pass": true
+    },
+    {
+      "name": "phone real touch drag rotates",
+      "pass": true
+    },
+    {
+      "name": "phone real two-finger pinch changes zoom",
+      "pass": true
+    },
+    {
+      "name": "phone pinch does not accidentally select another point",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape live HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape public build checksum",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape canvas uses full screen width",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape original region directory reachable",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape closing navigation preserves canvas",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape selection closes drawer but preserves point",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape acupoint focus restores anatomical context",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape no automatic detail obstruction",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape point detail accessible",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape closing detail preserves layer",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape landscape dock remains compact",
+      "pass": true,
+      "detail": {
+        "x": 12,
+        "y": 303,
+        "width": 776,
+        "height": 60
+      }
+    },
+    {
+      "name": "No uncaught JS or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "profiles": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "tablet",
+      "w": 820,
+      "h": 1180,
+      "touch": true
+    },
+    {
+      "name": "phone",
+      "w": 390,
+      "h": 844,
+      "touch": true,
+      "mobile": true
+    },
+    {
+      "name": "phone-landscape",
+      "w": 844,
+      "h": 390,
+      "touch": true,
+      "mobile": true
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "navigationIntegrity": "Public navigation bytes hashed then forwarded unchanged to the browser",
+  "finishedAt": "2026-09-22T08:06:14.995Z"
+}
