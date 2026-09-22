@@ -1,0 +1,171 @@
+{
+  "startedAt": "2026-09-22T02:55:23.806Z",
+  "browser": "chromium",
+  "url": "file: embedded HTML",
+  "checks": [
+    {
+      "name": "Exact tested HTML checksum",
+      "pass": true,
+      "detail": {
+        "sha": "8af4c9ae1445112edbb9bac84c7560d159e2315064810957ab297ae8df344a44",
+        "expected": "8af4c9ae1445112edbb9bac84c7560d159e2315064810957ab297ae8df344a44"
+      }
+    },
+    {
+      "name": "210 bone catalog entries retained",
+      "pass": true,
+      "detail": 210
+    },
+    {
+      "name": "Every bone has tone-marked learning pinyin",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "14 meridians loaded",
+      "pass": true,
+      "detail": {
+        "enabled": false,
+        "linesOn": true,
+        "pointsOn": true,
+        "activeMeridian": "ALL",
+        "selectedPoint": null,
+        "meridians": 14,
+        "standardAcupoints": 361,
+        "markerInstances": 670,
+        "routes": 26,
+        "autoSpeak": true
+      }
+    },
+    {
+      "name": "361 standard named acupoints loaded",
+      "pass": true,
+      "detail": {
+        "enabled": false,
+        "linesOn": true,
+        "pointsOn": true,
+        "activeMeridian": "ALL",
+        "selectedPoint": null,
+        "meridians": 14,
+        "standardAcupoints": 361,
+        "markerInstances": 670,
+        "routes": 26,
+        "autoSpeak": true
+      }
+    },
+    {
+      "name": "Paired channels create 670 visible point instances",
+      "pass": true,
+      "detail": 670
+    },
+    {
+      "name": "26 three-dimensional meridian routes created",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "name": "TCM layer can be toggled on",
+      "pass": true
+    },
+    {
+      "name": "TCM controls become visible",
+      "pass": true
+    },
+    {
+      "name": "Named point can be selected in 3D",
+      "pass": true,
+      "detail": {
+        "code": "LU1",
+        "name": "中府",
+        "side": "right"
+      }
+    },
+    {
+      "name": "Acupoint card shows pinyin and nearby bones",
+      "pass": true
+    },
+    {
+      "name": "Acupoint marker projects into the viewport",
+      "pass": true,
+      "detail": {
+        "x": 627.1448510068979,
+        "y": 389.9714633463205
+      }
+    },
+    {
+      "name": "Actual mouse click selects a 3D acupoint",
+      "pass": true,
+      "detail": {
+        "code": "LU5",
+        "name": "尺泽",
+        "side": "right"
+      }
+    },
+    {
+      "name": "Learning preset face",
+      "pass": true
+    },
+    {
+      "name": "Learning preset skullbase",
+      "pass": true
+    },
+    {
+      "name": "Learning preset neckshoulder",
+      "pass": true
+    },
+    {
+      "name": "Learning preset shoulderjoint",
+      "pass": true
+    },
+    {
+      "name": "Learning preset forearm",
+      "pass": true
+    },
+    {
+      "name": "Learning preset palm",
+      "pass": true
+    },
+    {
+      "name": "Learning preset sacroiliac",
+      "pass": true
+    },
+    {
+      "name": "Original skeleton remains mouse-pickable",
+      "pass": true,
+      "detail": {
+        "x": 698.8060602269227,
+        "y": 352.66394643560153
+      }
+    },
+    {
+      "name": "Original bone click still identifies bone",
+      "pass": true
+    },
+    {
+      "name": "Manual speak control exists",
+      "pass": true
+    },
+    {
+      "name": "Auto-speak toggle exists",
+      "pass": true
+    },
+    {
+      "name": "Bone pinyin search works",
+      "pass": true
+    },
+    {
+      "name": "Offline page makes no runtime network request",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No uncaught browser/shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "success": true,
+  "finishedAt": "2026-09-22T02:55:48.434Z"
+}

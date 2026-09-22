@@ -1,0 +1,31 @@
+{
+  "version": "fullbody-v1",
+  "baseRef": "78df9ba4183a13a231da54f2d3ffc94928e6e736",
+  "bones": 210,
+  "standardAdultBones": 206,
+  "additionalHalluxSesamoids": 4,
+  "priorBones": 73,
+  "addedBones": 137,
+  "coverageComplete": true,
+  "totalTriangles": 534003,
+  "modelBytes": 13976684,
+  "approvedLumbarPreserved": true,
+  "maxPriorCoordinateErrorMillimeters": 0,
+  "noRuntimeNetwork": true,
+  "threeVersion": "0.180.0",
+  "htmlBytes": 19505569,
+  "htmlSHA256": "feccc027682a2b35e9d12751342ced496ed60dbfc5badb5efa3a4b8db0482c43",
+  "status": "verified",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-atlas/?release=35678443510",
+  "checks": {
+    "offline": 468,
+    "webkit": 305,
+    "preview": 14,
+    "live": 398
+  },
+  "checkedAt": "2026-09-22T02:15:27.860221+00:00",
+  "workflowRun": "35678443510",
+  "priorVersionsUnchanged": true,
+  "browserDocumentChecksumVerified": true,
+  "applicationChangedDuringDeliveryCheck": false
+}
