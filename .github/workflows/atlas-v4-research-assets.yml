@@ -1,0 +1,38 @@
+name: Collect atlas V4 source assets
+on:
+  push:
+    paths: ['.github/workflows/atlas-v4-research-assets.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect fixed-version source models and factual reference fields
+        run: |
+          python - <<'PY'
+          import urllib.request,pathlib,hashlib,json,csv,io
+          p=pathlib.Path('/tmp/atlas-v4-sources');p.mkdir()
+          base='https://raw.githubusercontent.com/Liyucheng1997/242_lab-human-anatomy/322ba39e96ea91ce08601caad2c0aaade1dc99f0/'
+          manifest={}
+          files={'muscular.glb':('public/models/muscular.glb','bea9d9bb4aa45644562276f92530f419239a5630'),'nervous.glb':('public/models/nervous.glb','67cbeb15fcf2344209a3350e300ded7e71ee66bb'),'skeleton.glb':('public/models/skeleton.glb','5e15f7ea303c554f6c25a417f7f184696234b436'),'anatomy.json':('src/anatomy.json',None)}
+          for name,(source,expected) in files.items():
+              data=urllib.request.urlopen(base+source,timeout=90).read()
+              sha=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+              if expected:assert sha==expected,(name,sha)
+              (p/name).write_bytes(data);manifest[name]={'source':base+source,'blobSHA':sha,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)}
+          tara='https://raw.githubusercontent.com/SciCrunch/TARA-Ontology-Repository/b488d0bf855eef17a131946bd387d6e2e9dfa26d/curated-data/acupoints/'
+          for name in ['acupoints.csv','extra-acupoints.csv']:
+              data=urllib.request.urlopen(tara+name,timeout=90).read()
+              (p/name).write_bytes(data);manifest[name]={'source':tara+name,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)}
+          (p/'source-manifest.json').write_text(json.dumps(manifest,indent=2))
+          print(json.dumps(manifest,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v4-source-assets
+          path: /tmp/atlas-v4-sources/
+          retention-days: 7
