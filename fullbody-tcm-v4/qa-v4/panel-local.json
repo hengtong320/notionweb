@@ -1,0 +1,45 @@
+{
+  "url": "http://127.0.0.1:8765/fullbody-tcm-v4/",
+  "checks": [
+    {
+      "name": "HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "Published HTML checksum",
+      "pass": true
+    },
+    {
+      "name": "Tissue settings opened",
+      "pass": true
+    },
+    {
+      "name": "Quick settings hides the tissue panel",
+      "pass": true
+    },
+    {
+      "name": "Meridian settings stay visible",
+      "pass": true
+    },
+    {
+      "name": "Both selected channels retained",
+      "pass": true
+    },
+    {
+      "name": "Tissue controls reopen normally",
+      "pass": true
+    },
+    {
+      "name": "Toolbar transition also hides tissue panel",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "htmlSHA256": "624623147b5df2e507f6bd63bcea0ece0c553b50454f481e6216a72550d2df1a",
+  "finishedAt": "2026-09-22T14:57:33.581Z"
+}

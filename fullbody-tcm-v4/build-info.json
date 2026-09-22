@@ -2,8 +2,8 @@
   "version": "fullbody-tcm-v4",
   "bones": 210,
   "bonesUnchanged": true,
-  "htmlSHA256": "8feeed0cd9c2266885004a34c4e2d9136863f05ba0a2c5bb006868a05444faa9",
-  "htmlBytes": 20528869,
+  "htmlSHA256": "624623147b5df2e507f6bd63bcea0ece0c553b50454f481e6216a72550d2df1a",
+  "htmlBytes": 20528962,
   "tissues": {
     "muscular": 683,
     "nervous": 550
@@ -22,5 +22,6 @@
       22.87590131163597
     ]
   },
-  "previousViewersUntouched": true
+  "previousViewersUntouched": true,
+  "panelIsolationGuard": true
 }
