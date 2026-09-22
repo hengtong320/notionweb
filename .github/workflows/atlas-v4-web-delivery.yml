@@ -1,0 +1,134 @@
+name: Deliver V4 anatomy website
+on:
+  push:
+    paths:
+      - 'atlas-v4-delivery/**'
+      - '.github/workflows/atlas-v4-web-delivery.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: atlas-v4-web-delivery
+  cancel-in-progress: true
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/v4-node/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve the previously prepared same-source meshes
+        uses: actions/download-artifact@v4
+        with:
+          name: atlas-v4-source-assets
+          run-id: 35711269271
+          github-token: ${{ github.token }}
+          path: /tmp/v4-upstream
+      - name: Retrieve prepared Mandarin neural recordings
+        uses: actions/download-artifact@v4
+        with:
+          name: atlas-v4-neural-voice
+          run-id: 35712657144
+          github-token: ${{ github.token }}
+          path: /tmp/v4-voice
+      - name: Install pinned renderer and real browsers
+        run: |
+          npm install --prefix /tmp/v4-node three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/v4-node/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Build the integrated V4 and validate input hashes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          p=Path('/tmp/v4-upstream');m=json.loads((p/'source-manifest.json').read_text())
+          for name,info in m.items():assert hashlib.sha256((p/name).read_bytes()).hexdigest()==info['sha256'],name
+          p=Path('/tmp/v4-voice');v=json.loads((p/'voice-manifest.json').read_text())
+          assert v['uniqueRecordings']==532
+          for filename in set(v['mapping'].values()):assert (p/filename).stat().st_size>500,filename
+          PY
+          python atlas-v4-delivery/build.py
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/v4-http.log 2>&1 &
+      - name: Test real 3D interactions, muscle and nerve decoding, and audio playback
+        run: node atlas-v4-delivery/verify.cjs
+      - name: Test WebKit and phone layout
+        env:
+          ATLAS_BROWSER: webkit
+        run: node atlas-v4-delivery/verify.cjs
+      - name: Verify previous accepted atlas directories unchanged
+        run: |
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-atlas/ fullbody-tcm-v3/)"
+      - name: Export browser-inspected candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v4-browser-candidate
+          path: fullbody-tcm-v4/
+          retention-days: 7
+      - name: Publish only the new V4 directory
+        run: |
+          git fetch origin main
+          git worktree add -B atlas-v4-public /tmp/v4-public origin/main
+          mkdir -p /tmp/v4-public/fullbody-tcm-v4
+          cp -a fullbody-tcm-v4/. /tmp/v4-public/fullbody-tcm-v4/
+          mkdir -p /tmp/v4-public/fullbody-tcm-v4/source
+          cp atlas-v4-delivery/build.py atlas-v4-delivery/verify.cjs /tmp/v4-public/fullbody-tcm-v4/source/
+          cd /tmp/v4-public
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v4/
+          git commit -m 'Publish V4 interactive anatomy: muscles, nerves, multi-channel reference and Mandarin voice'
+          git push origin HEAD:main
+      - name: Confirm public Pages serves the exact tested V4
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,urllib.request,time
+          expected=hashlib.sha256(Path('fullbody-tcm-v4/index.html').read_bytes()).hexdigest()
+          for i in range(60):
+              try:
+                  url='https://hengtong320.github.io/notionweb/fullbody-tcm-v4/?build='+expected[:12]+'&attempt='+str(i)
+                  with urllib.request.urlopen(url,timeout=25) as r:actual=hashlib.sha256(r.read()).hexdigest()
+                  if actual==expected:print('PUBLIC_MATCH',expected);break
+              except Exception as e:print(e,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Public page does not yet match tested V4')
+          PY
+      - name: Verify the public webpage including real layers and audio
+        env:
+          ATLAS_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v4/?release=${{ github.run_id }}
+        run: node atlas-v4-delivery/verify.cjs
+      - name: Record successful web delivery
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('fullbody-tcm-v4');reports={}
+          for n in ['local-chromium','local-webkit','live-chromium']:
+              r=json.loads((p/'qa-v4'/(n+'.json')).read_text());assert r['success'];reports[n]=r
+          info=json.loads((p/'build-info.json').read_text())
+          result={**info,'status':'verified','url':reports['live-chromium']['url'],'checks':{k:len(v['checks']) for k,v in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'browserCoverage':'Headless Chromium and WebKit with desktop and phone viewports, not all physical devices'}
+          (p/'delivery-release.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
+          PY
+          cp fullbody-tcm-v4/delivery-release.json /tmp/v4-public/fullbody-tcm-v4/
+          cp fullbody-tcm-v4/qa-v4/live-chromium.json /tmp/v4-public/fullbody-tcm-v4/qa-v4/
+          cd /tmp/v4-public
+          git add fullbody-tcm-v4/delivery-release.json fullbody-tcm-v4/qa-v4/live-chromium.json
+          git commit -m 'Record public V4 web delivery verification'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Export release and all test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v4-web-release
+          path: |
+            fullbody-tcm-v4/
+            atlas-v4-delivery/build.py
+            atlas-v4-delivery/verify.cjs
+            atlas-v4-delivery/styles.css
+          retention-days: 14
