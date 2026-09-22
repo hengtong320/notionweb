@@ -1,0 +1,25 @@
+name: Atlas v3 offline verification kit
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas-v3-build-kit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Package pinned public rendering dependencies
+        run: |
+          npm install --prefix /tmp/atlas-kit three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          tar -czf /tmp/atlas-v3-build-kit.tgz -C /tmp/atlas-kit node_modules package.json package-lock.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v3-build-kit
+          path: /tmp/atlas-v3-build-kit.tgz
+          retention-days: 2
