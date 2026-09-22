@@ -1,0 +1,58 @@
+{
+  "startedAt": "2026-09-22T03:55:09.380Z",
+  "browser": "webkit",
+  "url": "file:///home/runner/work/notionweb/notionweb/fullbody-tcm-atlas/index.html",
+  "profiles": [
+    {
+      "name": "webkit-tablet",
+      "pass": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "webkit-tablet TCM controls fit viewport",
+      "pass": true,
+      "detail": {
+        "x": 202,
+        "y": 262,
+        "width": 285,
+        "height": 607
+      }
+    },
+    {
+      "name": "webkit-tablet has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "WebKit keeps overlay after panel collapse",
+      "pass": true,
+      "detail": {
+        "enabled": true,
+        "panelOpen": false,
+        "linesOn": true,
+        "pointsOn": true,
+        "activeMeridian": "LU",
+        "cardOpen": false,
+        "statusVisible": true,
+        "selectedPoint": null,
+        "meridians": 14,
+        "standardAcupoints": 361,
+        "markerInstances": 670,
+        "routes": 26,
+        "autoSpeak": true
+      }
+    },
+    {
+      "name": "WebKit lumbar explode remains vertical",
+      "pass": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "finishedAt": "2026-09-22T03:55:35.853Z"
+}

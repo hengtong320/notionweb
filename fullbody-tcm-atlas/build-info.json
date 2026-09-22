@@ -1,5 +1,5 @@
 {
-  "version": "fullbody-tcm-v1",
+  "version": "fullbody-tcm-v2-ux",
   "baseRef": "78df9ba4183a13a231da54f2d3ffc94928e6e736",
   "bones": 210,
   "standardAdultBones": 206,
@@ -13,12 +13,21 @@
   "maxPriorCoordinateErrorMillimeters": 0,
   "noRuntimeNetwork": true,
   "threeVersion": "0.180.0",
-  "htmlBytes": 19790040,
-  "htmlSHA256": "8af4c9ae1445112edbb9bac84c7560d159e2315064810957ab297ae8df344a44",
+  "htmlBytes": 19801950,
+  "htmlSHA256": "87076e42ba71f57e9f74ae0c8bffbd30904af65c8b83939ef8dffc27d7c9d0ef",
   "baseFullbodySHA256": "feccc027682a2b35e9d12751342ced496ed60dbfc5badb5efa3a4b8db0482c43",
   "bonePronunciationComplete": 210,
   "standardAcupoints": 361,
   "meridians": 14,
   "physicalMarkerInstances": 670,
-  "tcmCoordinates": "anatomical-landmark schematic"
+  "tcmCoordinates": "anatomical-landmark schematic",
+  "uxRefinement": true,
+  "persistentTcmLayer": true,
+  "anatomicalExplode": true,
+  "responsiveProfiles": [
+    "desktop",
+    "tablet",
+    "mobile"
+  ],
+  "tcmGesturePriority": "drag-orbit, tap-select"
 }
