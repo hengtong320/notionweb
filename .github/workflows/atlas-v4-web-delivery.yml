@@ -2,7 +2,9 @@ name: Deliver V4 anatomy website
 on:
   push:
     paths:
-      - 'atlas-v4-delivery/**'
+      - 'atlas-v4-delivery/*.py'
+      - 'atlas-v4-delivery/*.css'
+      - 'atlas-v4-delivery/*.cjs'
       - '.github/workflows/atlas-v4-web-delivery.yml'
   workflow_dispatch:
 permissions:
@@ -51,6 +53,11 @@ jobs:
           p=Path('/tmp/v4-voice');v=json.loads((p/'voice-manifest.json').read_text())
           assert v['uniqueRecordings']==532
           for filename in set(v['mapping'].values()):assert (p/filename).stat().st_size>500,filename
+          p=Path('atlas-v4-delivery/verify.cjs');s=p.read_text()
+          old=" const response=await page.goto(url,"
+          assert old in s
+          s=s.replace(old," if(type==='chromium'){const cdp=await ctx.newCDPSession(page);await cdp.send('Network.enable',{maxTotalBufferSize:157286400,maxResourceBufferSize:73400320});}\n"+old)
+          p.write_text(s)
           PY
           python atlas-v4-delivery/build.py
           python -m http.server 8765 --bind 127.0.0.1 >/tmp/v4-http.log 2>&1 &
