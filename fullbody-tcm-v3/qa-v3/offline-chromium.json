@@ -1,7 +1,7 @@
 {
   "url": "file:///home/runner/work/notionweb/notionweb/fullbody-tcm-v3/index.html",
   "browser": "chromium",
-  "startedAt": "2026-09-22T07:41:22.934Z",
+  "startedAt": "2026-09-22T07:58:55.182Z",
   "checks": [
     {
       "name": "V3 badge is visible",
@@ -53,7 +53,7 @@
       "name": "Point is inside unobstructed canvas",
       "pass": true,
       "detail": {
-        "x": 549.6018608183953,
+        "x": 549.6018608183954,
         "y": 418.4495158840852,
         "z": 0.9995748530724601
       }
@@ -68,6 +68,10 @@
     },
     {
       "name": "A true point click selects LU5",
+      "pass": true
+    },
+    {
+      "name": "Point detail does not retain an unrelated bone preview",
       "pass": true
     },
     {
@@ -281,6 +285,10 @@
       "pass": true
     },
     {
+      "name": "tablet acupoint focus restores anatomical context",
+      "pass": true
+    },
+    {
       "name": "tablet no automatic detail obstruction",
       "pass": true
     },
@@ -322,6 +330,10 @@
     },
     {
       "name": "phone selection closes drawer but preserves point",
+      "pass": true
+    },
+    {
+      "name": "phone acupoint focus restores anatomical context",
       "pass": true
     },
     {
@@ -369,6 +381,10 @@
       "pass": true
     },
     {
+      "name": "phone-landscape acupoint focus restores anatomical context",
+      "pass": true
+    },
+    {
       "name": "phone-landscape no automatic detail obstruction",
       "pass": true
     },
@@ -379,6 +395,16 @@
     {
       "name": "phone-landscape closing detail preserves layer",
       "pass": true
+    },
+    {
+      "name": "phone-landscape landscape dock remains compact",
+      "pass": true,
+      "detail": {
+        "x": 12,
+        "y": 303,
+        "width": 776,
+        "height": 60
+      }
     },
     {
       "name": "No uncaught JS or shader errors",
@@ -415,5 +441,5 @@
   ],
   "errors": [],
   "success": true,
-  "finishedAt": "2026-09-22T07:43:46.512Z"
+  "finishedAt": "2026-09-22T08:01:39.560Z"
 }

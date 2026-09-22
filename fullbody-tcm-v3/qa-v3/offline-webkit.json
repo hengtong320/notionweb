@@ -1,7 +1,7 @@
 {
   "url": "file:///home/runner/work/notionweb/notionweb/fullbody-tcm-v3/index.html",
   "browser": "webkit",
-  "startedAt": "2026-09-22T07:43:46.795Z",
+  "startedAt": "2026-09-22T08:01:39.859Z",
   "checks": [
     {
       "name": "webkit-tablet canvas uses full screen width",
@@ -21,6 +21,10 @@
     },
     {
       "name": "webkit-tablet selection closes drawer but preserves point",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet acupoint focus restores anatomical context",
       "pass": true
     },
     {
@@ -53,6 +57,10 @@
     },
     {
       "name": "webkit-phone selection closes drawer but preserves point",
+      "pass": true
+    },
+    {
+      "name": "webkit-phone acupoint focus restores anatomical context",
       "pass": true
     },
     {
@@ -90,5 +98,5 @@
   ],
   "errors": [],
   "success": true,
-  "finishedAt": "2026-09-22T07:44:14.638Z"
+  "finishedAt": "2026-09-22T08:02:08.256Z"
 }

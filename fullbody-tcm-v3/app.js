@@ -256,7 +256,7 @@ function updateGizmo(){const inv=camera.quaternion.clone().invert(),axes=[['左'
 
 function focusBounds(box){
  if(!state.ready||box.isEmpty())return;cameraTween=null;const old=controls.enableDamping;controls.enableDamping=false;controls.update();
- const center=box.getCenter(new THREE.Vector3()),dir=camera.position.clone().sub(controls.target).normalize();if(dir.lengthSq()<.1)dir.set(0,.1,1).normalize();
+ const center=box.getCenter(new THREE.Vector3()),dir=camera.position.clone().sub(controls.target).normalize();if(dir.lengthSq()<.1||Math.abs(dir.y)>.96)dir.set(0,.1,1).normalize();
  camera.up.set(0,1,0);syncCameraUp();const right=new THREE.Vector3().crossVectors(camera.up,dir).normalize(),up=new THREE.Vector3().crossVectors(dir,right).normalize();let mx=0,my=0,depth=0;
  for(let i=0;i<8;i++){const v=new THREE.Vector3(i&1?box.max.x:box.min.x,i&2?box.max.y:box.min.y,i&4?box.max.z:box.min.z).sub(center);mx=Math.max(mx,Math.abs(v.dot(right)));my=Math.max(my,Math.abs(v.dot(up)));depth=Math.max(depth,Math.abs(v.dot(dir)));}
  const h=viewport.clientHeight,w=viewport.clientWidth,t=Math.tan(THREE.MathUtils.degToRad(camera.fov/2));const hf=clamp((h-350)/h,.34,.70),wf=clamp((w-80)/w,.50,.88);
