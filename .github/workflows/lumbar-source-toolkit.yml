@@ -1,0 +1,40 @@
+name: Prepare lumbar anatomy toolkit
+on:
+  push:
+    paths: ['.github/workflows/lumbar-source-toolkit.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare the existing verified source and pinned tools
+        run: |
+          mkdir -p /tmp/lumbar-toolkit
+          npm install --prefix /tmp/lumbar-toolkit three@0.180.0 esbuild@0.25.10
+          python - <<'PY'
+          from pathlib import Path
+          import urllib.request,hashlib,json,struct,shutil
+          p=Path('/tmp/lumbar-toolkit')
+          with urllib.request.urlopen('https://raw.githubusercontent.com/Liyucheng1997/242_lab-human-anatomy/main/public/models/skeleton.glb',timeout=90) as r:data=r.read()
+          sha=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+          assert sha=='5e15f7ea303c554f6c25a417f7f184696234b436'
+          (p/'source.glb').write_bytes(data)
+          doc=json.loads(data[20:20+struct.unpack_from('<I',data,12)[0]])
+          nodes=[{'index':i,'name':n.get('name'),'mesh':n.get('mesh'),'scale':n.get('scale'),'translation':n.get('translation')} for i,n in enumerate(doc['nodes']) if 'mesh' in n]
+          (p/'source-nodes.json').write_text(json.dumps(nodes,indent=2))
+          print(json.dumps([n for n in nodes if 'lumbar' in (n['name'] or '').lower() or any(x in (n['name'] or '') for x in ['Femur.','Tibia.','Fibula.','Talus.','Hip bone.'])],indent=2))
+          shutil.copy('foot-atlas/decode_draco.cjs',p/'decode-original.cjs')
+          shutil.copy(p/'node_modules/three/examples/jsm/libs/draco/gltf/draco_decoder.js',p/'draco_decoder.cjs')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumbar-source-toolkit
+          path: /tmp/lumbar-toolkit/
+          retention-days: 7
