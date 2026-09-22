@@ -1,0 +1,142 @@
+name: Build and verify lumbar bilateral atlas
+on:
+  push:
+    paths:
+      - 'lumbar-atlas-tools/**'
+      - '.github/workflows/build-lumbar-atlas.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: lumbar-bilateral-atlas
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    env:
+      NODE_PATH: /tmp/lumbar-tools/node_modules
+      THREE_PACKAGE: /tmp/lumbar-tools/node_modules/three
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned anatomy and browser tools
+        run: |
+          npm install --prefix /tmp/lumbar-tools three@0.180.0 esbuild@0.25.10
+          python -m pip install numpy==2.3.5 trimesh==4.11.1 scipy==1.17.0 playwright==1.56.1
+          python -m playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Preserve 36 bones and add the native left limb and L1-L5
+        run: python lumbar-atlas-tools/prepare.py
+      - name: Build the same-style self-contained viewer
+        run: |
+          python lumbar-atlas-tools/build.py
+          python lumbar-atlas-tools/finalize.py
+      - name: Capture full-resolution preliminary views
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          import json
+          p=Path('lumbar-atlas').resolve();out=p/'qa';out.mkdir(exist_ok=True)
+          with sync_playwright() as w:
+              b=w.chromium.launch(headless=True,args=['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage'])
+              page=b.new_page(viewport={'width':1440,'height':1000},device_scale_factor=1)
+              errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+              page.goto((p/'index.html').as_uri())
+              page.wait_for_function('window.__FOOT_ATLAS__?.getState().ready',timeout=90000)
+              for r,v in [('all','front'),('lumbar','overview'),('lumbosacral','overview'),('foot','overview')]:
+                  page.locator('[data-region="'+r+'"]').click()
+                  page.locator('[data-view="'+v+'"]').click()
+                  page.wait_for_function('!window.__FOOT_ATLAS__.getState().cameraAnimating')
+                  page.evaluate('new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
+                  page.screenshot(path=str(out/('full-density-'+r+'.png')))
+              assert not errors,errors
+              (out/'full-density-report.json').write_text(json.dumps({'success':True,'deviceScaleFactor':1,'viewport':{'width':1440,'height':1000},'errors':errors}))
+              b.close()
+          PY
+      - name: Export preliminary screenshots for inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumbar-visual-preview
+          path: lumbar-atlas/
+          retention-days: 7
+      - name: Test original and added bones with real mouse input offline
+        run: python lumbar-atlas-tools/verify.py
+      - name: Test bilateral and lumbar viewing in WebKit offline
+        env:
+          BROWSER: webkit
+        run: python lumbar-atlas-tools/verify.py
+      - name: Publish only the new atlas from a fresh worktree
+        run: |
+          git fetch origin main
+          git worktree add -B lumbar-release /tmp/lumbar-publish origin/main
+          python - <<'PY'
+          from pathlib import Path
+          import shutil,json,subprocess
+          src=Path('lumbar-atlas');dst=Path('/tmp/lumbar-publish/lumbar-atlas')
+          for name in ['offline-report.json','webkit-report.json']:
+              r=json.loads((src/'qa'/name).read_text());assert r['success'] and all(c['pass'] for c in r['checks'])
+          info=json.loads((src/'build-info.json').read_text())
+          assert not subprocess.check_output(['git','diff',info['baseRef'],'--','foot-atlas/','ankle-atlas/','knee-atlas/','hip-atlas/'],cwd='/tmp/lumbar-publish')
+          shutil.copytree(src,dst,dirs_exist_ok=True)
+          PY
+          cd /tmp/lumbar-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lumbar-atlas/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish verified bilateral lower limbs and lumbar spine; preserve four approved versions'
+            git push origin HEAD:main
+          fi
+      - name: Verify Pages serves the exact tested HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,urllib.request,time
+          target=hashlib.sha256(Path('lumbar-atlas/index.html').read_bytes()).hexdigest()
+          for i in range(48):
+              try:
+                  with urllib.request.urlopen('https://hengtong320.github.io/notionweb/lumbar-atlas/?build='+target[:12]+'&n='+str(i),timeout=20) as r:data=r.read()
+                  if hashlib.sha256(data).hexdigest()==target:print('PAGES_MATCH',target);break
+              except Exception as e:print(str(e),flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Published page does not match the tested build')
+          PY
+      - name: Verify actual public webpage
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/lumbar-atlas/?release=${{ github.run_id }}
+        run: python lumbar-atlas-tools/verify.py
+      - name: Publish successful delivery evidence
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,shutil,os
+          p=Path('lumbar-atlas');reports={k:json.loads((p/'qa'/(k+'-report.json')).read_text()) for k in ['offline','webkit','live']}
+          assert all(r['success'] for r in reports.values())
+          info=json.loads((p/'build-info.json').read_text())
+          release={**info,'status':'verified','url':reports['live']['url'],'checks':{k:len(r['checks']) for k,r in reports.items()},'checkedAt':reports['live']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'priorVersionsUnchanged':True}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          shutil.copytree(p/'qa','/tmp/lumbar-publish/lumbar-atlas/qa',dirs_exist_ok=True)
+          shutil.copy(p/'delivery-release.json','/tmp/lumbar-publish/lumbar-atlas/delivery-release.json')
+          PY
+          cd /tmp/lumbar-publish
+          git add lumbar-atlas/qa/ lumbar-atlas/delivery-release.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record verified public delivery and browser evidence for lumbar and both-leg atlas'
+            git push origin HEAD:main
+          fi
+      - name: Export complete release and verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumbar-bilateral-release
+          path: |
+            lumbar-atlas/
+            lumbar-atlas-tools/
+          retention-days: 14
