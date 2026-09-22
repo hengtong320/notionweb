@@ -1,13 +1,18 @@
 from pathlib import Path
 import json,hashlib,re,base64,subprocess
 ROOT=Path(__file__).resolve().parents[1];p=ROOT/'lumbar-atlas'
-s=(p/'app.js').read_text().replace('骨盆与下肢图谱 · 右下肢','腰椎与双下肢图谱');(p/'app.js').write_text(s)
+s=(p/'app.js').read_text().replace('骨盆与下肢图谱 · 右下肢','腰椎与双下肢图谱')
+# The axes describe the patient's fixed coordinate system, not the visible side.
+s=s.replace("(['pelvis','pelvic-limb'].includes(state.region)?'左':'内')","'左'").replace("state.region==='foot'?'背':'上'","'上'")
+(p/'app.js').write_text(s)
+template=(p/'index.template.html').read_text().replace(' · Pelvis & Limb Atlas',' · Lumbar & Lower Limb Atlas')
+(p/'index.template.html').write_text(template)
 subprocess.run(['node','-e',"require('esbuild').buildSync({entryPoints:[process.argv[1]],bundle:true,minify:true,nodePaths:[process.env.NODE_PATH],format:'iife',target:['es2020'],outfile:process.argv[2],legalComments:'inline'})",str(p/'app.js'),str(p/'app.bundle.js')],check=True)
-h=(p/'index.template.html').read_text().replace('<link rel="stylesheet" href="styles.css">','<style>'+(p/'styles.css').read_text()+'</style>')
+h=template.replace('<link rel="stylesheet" href="styles.css">','<style>'+(p/'styles.css').read_text()+'</style>')
 h=re.sub(r'<script type="importmap">.*?</script>','',h,flags=re.S)
 h=h.replace('<script type="module" src="app.js"></script>','<script>window.FOOT_ATLAS_EMBEDDED="'+base64.b64encode((p/'assets/lumbar.glb').read_bytes()).decode()+'";</script>\n<script>'+(p/'app.bundle.js').read_text().replace('</script','<\\/script')+'</script>')
 (p/'index.html').write_text(h)
-info=json.loads((p/'build-info.json').read_text());info.update({'htmlSHA256':hashlib.sha256(h.encode()).hexdigest(),'htmlBytes':len(h.encode())});(p/'build-info.json').write_text(json.dumps(info,indent=2))
+info=json.loads((p/'build-info.json').read_text());info.update({'htmlSHA256':hashlib.sha256(h.encode()).hexdigest(),'htmlBytes':len(h.encode()),'patientDirectionLabels':True});(p/'build-info.json').write_text(json.dumps(info,indent=2))
 (p/'README.md').write_text('''# 腰椎与双下肢图谱 · 第四期扩展
 
 在线访问：https://hengtong320.github.io/notionweb/lumbar-atlas/
@@ -15,7 +20,7 @@ info=json.loads((p/'build-info.json').read_text());info.update({'htmlSHA256':has
 原来四版 foot-atlas、ankle-atlas、knee-atlas、hip-atlas 保持不变。本版补齐源文件中的左侧下肢32块骨，并增加五节腰椎L1—L5。共73个独立骨块：双下肢64、骨盆4、腰椎5，其中包含4块额外拇趾籽骨。髌骨已计入常规骨，不重复计算。
 
 ## 左右与操作
-左右指人体自身，不随画面转动改变；正面看时人体右腿通常位于画面左边。原先是右下肢，本版补齐左下肢。左侧采用源文件原作者已发布的网格与反射变换，不是独立扫描的双侧个体差异模型。
+左右指人体自身，不随画面转动改变；正面看时人体右腿通常位于画面左边。原先是右下肢，本版补齐左下肢。左侧采用源文件原作者已发布的网格与反射变换，不是独立扫描的双侧个体差异模型。方向轴的左、上、前始终按人体固定方向标示；单侧观察中的内侧、外侧则根据所选肢体切换。
 
 所有原有操作继续保留：点选识名、G拆骨、T转骨、R浏览、缩放、平移、单骨观察、邻骨强调、隐藏、展开、原位参考、归位、搜索、配色、预览、截图及全屏。增加双侧/人体右侧/人体左侧切换及腰椎、腰骶与骨盆、腰椎与双腿范围。髋、膝、踝仅镜头聚焦，长骨没有被截短。
 
