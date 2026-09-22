@@ -1,0 +1,54 @@
+name: Inspect staged V4 delivery source
+on:
+  push:
+    paths: ['.github/workflows/atlas-v4-delivery-inspect.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode staged source without executing it
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,zlib,tarfile,io,json,shutil,re
+          out=Path('/tmp/v4-delivery-source');out.mkdir()
+          parts=sorted(Path('atlas-v4-tools/source').glob('*.b64'))
+          strings=[]
+          for p in parts:
+              s=p.read_text();strings.append(s);shutil.copy(p,out/p.name)
+              print(p,len(s),'begin',s[:60],'end',s[-60:])
+          s=''.join(strings)
+          for name,text in [('combined',s),('last',strings[-1])]:
+              cleaned=re.sub(r'[^A-Za-z0-9+/=]','',text)
+              try: raw=base64.b64decode(cleaned+'='*((-len(cleaned))%4))
+              except Exception as e: print(name,e);continue
+              dec=zlib.decompressobj(31);chunks=[]
+              try:
+                  for i in range(0,len(raw),256):chunks.append(dec.decompress(raw[i:i+256]))
+              except Exception as e:print(name,'inflate ended',e)
+              data=b''.join(chunks);print(name,'bytes',len(data),'complete',dec.eof)
+              (out/(name+'.decoded')).write_bytes(data)
+              try:
+                  tf=tarfile.open(fileobj=io.BytesIO(data),mode='r:')
+                  dest=out/name;dest.mkdir()
+                  while True:
+                      try:m=tf.next()
+                      except Exception as e:print('tar end',e);break
+                      if m is None:break
+                      print(name,'file',m.name,m.size)
+                      if m.isfile() and '..' not in Path(m.name).parts and not m.name.startswith('/'):
+                          try:
+                              d=dest/m.name;d.parent.mkdir(parents=True,exist_ok=True);d.write_bytes(tf.extractfile(m).read())
+                          except Exception as e:print(m.name,e)
+              except Exception as e:print(name,'not tar',e)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v4-readable-source
+          path: /tmp/v4-delivery-source/
+          retention-days: 7
