@@ -1,0 +1,359 @@
+{
+  "success": true,
+  "browser": "webkit",
+  "mode": "webkit",
+  "url": "self-contained local HTML",
+  "htmlSHA256": "cd0b4565a833f78037c261cd997f1e469178c6865a5185c25844cebbcdd9476b",
+  "deviceScaleFactor": 0.65,
+  "checks": [
+    {
+      "name": "73 independently loaded bones",
+      "pass": true
+    },
+    {
+      "name": "Default displays both legs and lumbar spine",
+      "pass": true
+    },
+    {
+      "name": "All source triangles retained",
+      "pass": true
+    },
+    {
+      "name": "All original 36 bone coordinates unchanged",
+      "pass": true
+    },
+    {
+      "name": "32 left/right anatomical pairs verified",
+      "pass": true
+    },
+    {
+      "name": "All four approved directories remain unchanged",
+      "pass": true
+    },
+    {
+      "name": "No external engine or model requests",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Region foot bone count",
+      "pass": true,
+      "detail": 56
+    },
+    {
+      "name": "Region foot camera finite",
+      "pass": true
+    },
+    {
+      "name": "Region ankle bone count",
+      "pass": true,
+      "detail": 60
+    },
+    {
+      "name": "Region ankle camera finite",
+      "pass": true
+    },
+    {
+      "name": "Region leg bone count",
+      "pass": true,
+      "detail": 60
+    },
+    {
+      "name": "Region leg camera finite",
+      "pass": true
+    },
+    {
+      "name": "Region knee bone count",
+      "pass": true,
+      "detail": 8
+    },
+    {
+      "name": "Region knee camera finite",
+      "pass": true
+    },
+    {
+      "name": "Region whole bone count",
+      "pass": true,
+      "detail": 64
+    },
+    {
+      "name": "Region whole camera finite",
+      "pass": true
+    },
+    {
+      "name": "Region hip bone count",
+      "pass": true,
+      "detail": 4
+    },
+    {
+      "name": "Region hip camera finite",
+      "pass": true
+    },
+    {
+      "name": "Region pelvis bone count",
+      "pass": true,
+      "detail": 4
+    },
+    {
+      "name": "Region pelvis camera finite",
+      "pass": true
+    },
+    {
+      "name": "Region pelvic-limb bone count",
+      "pass": true,
+      "detail": 68
+    },
+    {
+      "name": "Region pelvic-limb camera finite",
+      "pass": true
+    },
+    {
+      "name": "Region lumbar bone count",
+      "pass": true,
+      "detail": 5
+    },
+    {
+      "name": "Region lumbar camera finite",
+      "pass": true
+    },
+    {
+      "name": "Region lumbosacral bone count",
+      "pass": true,
+      "detail": 9
+    },
+    {
+      "name": "Region lumbosacral camera finite",
+      "pass": true
+    },
+    {
+      "name": "Region all bone count",
+      "pass": true,
+      "detail": 73
+    },
+    {
+      "name": "Region all camera finite",
+      "pass": true
+    },
+    {
+      "name": "Right foot only",
+      "pass": true
+    },
+    {
+      "name": "Right medial view looks from body midline",
+      "pass": true
+    },
+    {
+      "name": "Left foot only",
+      "pass": true
+    },
+    {
+      "name": "Left medial view reverses camera correctly",
+      "pass": true
+    },
+    {
+      "name": "Left lateral view reverses camera correctly",
+      "pass": true
+    },
+    {
+      "name": "Left scope retains pelvis and lumbar",
+      "pass": true
+    },
+    {
+      "name": "Right scope retains pelvis and lumbar",
+      "pass": true
+    },
+    {
+      "name": "Anterior view patient right appears screen left",
+      "pass": true
+    },
+    {
+      "name": "Laterality explanation visible",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification femur-left",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification talus-left",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification L1",
+      "pass": true
+    },
+    {
+      "name": "Chinese identification L5",
+      "pass": true
+    },
+    {
+      "name": "Left hip explicitly links left femur",
+      "pass": true
+    },
+    {
+      "name": "Sacrum links new L5",
+      "pass": true
+    },
+    {
+      "name": "Lumbar L1 is independent",
+      "pass": true
+    },
+    {
+      "name": "Isolate L1",
+      "pass": true
+    },
+    {
+      "name": "Lumbar L2 is independent",
+      "pass": true
+    },
+    {
+      "name": "Isolate L2",
+      "pass": true
+    },
+    {
+      "name": "Lumbar L3 is independent",
+      "pass": true
+    },
+    {
+      "name": "Isolate L3",
+      "pass": true
+    },
+    {
+      "name": "Lumbar L4 is independent",
+      "pass": true
+    },
+    {
+      "name": "Isolate L4",
+      "pass": true
+    },
+    {
+      "name": "Lumbar L5 is independent",
+      "pass": true
+    },
+    {
+      "name": "Isolate L5",
+      "pass": true
+    },
+    {
+      "name": "Search 左股骨",
+      "pass": true
+    },
+    {
+      "name": "Search L3",
+      "pass": true
+    },
+    {
+      "name": "Search 腰椎",
+      "pass": true
+    },
+    {
+      "name": "Search 髌",
+      "pass": true
+    },
+    {
+      "name": "Assembled bone raycast talus-left",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse selects talus-left",
+      "pass": true
+    },
+    {
+      "name": "Drag moves only talus-left",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit talus-left",
+      "pass": true
+    },
+    {
+      "name": "Independent rotation talus-left",
+      "pass": true
+    },
+    {
+      "name": "Exact restoration talus-left",
+      "pass": true
+    },
+    {
+      "name": "Single-bone study talus-left",
+      "pass": true
+    },
+    {
+      "name": "Assembled bone raycast L5",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse selects L5",
+      "pass": true
+    },
+    {
+      "name": "Drag moves only L5",
+      "pass": true
+    },
+    {
+      "name": "Bone drag does not orbit L5",
+      "pass": true
+    },
+    {
+      "name": "Independent rotation L5",
+      "pass": true
+    },
+    {
+      "name": "Exact restoration L5",
+      "pass": true
+    },
+    {
+      "name": "Single-bone study L5",
+      "pass": true
+    },
+    {
+      "name": "All 73 bones separate",
+      "pass": true
+    },
+    {
+      "name": "73 labels exist",
+      "pass": true
+    },
+    {
+      "name": "Neighbor emphasis",
+      "pass": true
+    },
+    {
+      "name": "Hide selected",
+      "pass": true
+    },
+    {
+      "name": "Show all respects lumbar scope",
+      "pass": true
+    },
+    {
+      "name": "Cross-side selection reveals left bone",
+      "pass": true
+    },
+    {
+      "name": "Laptop has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Help retained",
+      "pass": true
+    },
+    {
+      "name": "Source explains missing discs",
+      "pass": true
+    },
+    {
+      "name": "Capture download retained",
+      "pass": true
+    },
+    {
+      "name": "No JavaScript or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "browserVersion": "26.0",
+  "finishedAt": "2026-09-22T01:15:24Z"
+}
