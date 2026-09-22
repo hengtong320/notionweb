@@ -2,8 +2,8 @@
   "version": "fullbody-tcm-v4",
   "bones": 210,
   "bonesUnchanged": true,
-  "htmlSHA256": "8feeed0cd9c2266885004a34c4e2d9136863f05ba0a2c5bb006868a05444faa9",
-  "htmlBytes": 20528869,
+  "htmlSHA256": "624623147b5df2e507f6bd63bcea0ece0c553b50454f481e6216a72550d2df1a",
+  "htmlBytes": 20528962,
   "tissues": {
     "muscular": 683,
     "nervous": 550
@@ -24,7 +24,7 @@
   },
   "previousViewersUntouched": true,
   "status": "verified",
-  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v4/?release=35742546199",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v4/?release=35743752175",
   "checks": {
     "local-chromium": 38,
     "local-webkit": 24,
@@ -32,5 +32,11 @@
   },
   "checkedAt": "2026-09-22T14:53:37.906Z",
   "workflowRun": "35742546199",
-  "browserCoverage": "Headless Chromium and WebKit with desktop and phone viewports, not all physical devices"
+  "browserCoverage": "Headless Chromium and WebKit with desktop and phone viewports, not all physical devices",
+  "panelIsolationGuard": true,
+  "lastPanelChecks": 9,
+  "panelPatchWorkflow": "35743752175",
+  "panelCheckedAt": "2026-09-22T15:00:51.030Z",
+  "coreVerificationWorkflow": "35742546199",
+  "coreChecksApplyToPrecedingRevision": true
 }
