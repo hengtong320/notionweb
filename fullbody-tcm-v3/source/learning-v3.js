@@ -1,0 +1,121 @@
+import { Line2 } from 'three/addons/lines/Line2.js';
+import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
+import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
+
+// V3: panels are navigation; layer visibility is an independent, persistent state.
+export function initLearningEnhancements(ctx) {
+ const {THREE, scene, camera, renderer, viewport, bones, BONES, BY_ID, state, controls, toast, selectBone, setRegion, setSide, fitToContent} = ctx;
+ const $ = id => document.getElementById(id);
+ const store = {get(k,d){try{return localStorage.getItem(k)??d;}catch{return d;}},set(k,v){try{localStorage.setItem(k,v);}catch{}}};
+ const compact = () => innerWidth <= 1100;
+ const normalize = s => String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f\s·]/g,'');
+ const bonePinyin = id => ctx.bonePinyin(BY_ID[id]);
+ const meridianMap = Object.fromEntries(ctx.MERIDIANS.map(m=>[m.id,m]));
+ const PAIR = new Set(['LU','LI','ST','SP','HT','SI','BL','KI','PC','TE','GB','LR']);
+ const routeRoot = new THREE.Group(); routeRoot.name='TCM schematic overlay V3'; scene.add(routeRoot);
+ let enabled=false, panelOpen=false, linesOn=true, pointsOn=true, namesOn=true, xray=true;
+ let activeMeridian=store.get('atlas-meridian','LU'), tcmSide='both', selectedPoint=null, selectedMarker=null, cardOpen=false;
+ if(!meridianMap[activeMeridian] && activeMeridian!=='ALL') activeMeridian='LU';
+ const pointIndex=new Map(), routeRecords=[], labelNodes=[];
+ let hoveredPoint=null, lastHover=0, lastLabelRebuild='', lastPose='', lastSize='';
+ const autoSpeak=()=>store.get('atlas-auto-speak','1')!=='0';
+ function speak(text){
+  if(!text)return false;
+  if(!window.speechSynthesis || !window.SpeechSynthesisUtterance){toast('当前设备未提供语音，请看带声调拼音');return false;}
+  try{const synth=window.speechSynthesis; synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=.86;
+   const voices=synth.getVoices();u.voice=voices.find(v=>/^zh[-_]CN/i.test(v.lang))||voices.find(v=>/^zh/i.test(v.lang))||null;
+   u.onerror=e=>{if(!['canceled','interrupted'].includes(e.error))toast('中文语音暂不可用，拼音仍可查看');};synth.speak(u);return true;
+  }catch{toast('浏览器暂时无法朗读，拼音仍可查看');return false;}
+ }
+ function setAutoSpeak(on){store.set('atlas-auto-speak',on?'1':'0');$('autoSpeakBtn').classList.toggle('active',on);$('autoSpeakBtn').setAttribute('aria-pressed',String(on));}
+ const sidebar=document.querySelector('.sidebar'), detail=document.querySelector('.detail-panel');
+ const bonePane=document.createElement('div');bonePane.className='bone-pane';
+ while(sidebar.firstChild)bonePane.append(sidebar.firstChild);sidebar.append(bonePane);
+ const tabs=document.createElement('div');tabs.className='library-tabs';tabs.innerHTML='<button id="boneTab" class="active">骨骼目录</button><button id="tcmTab">经络穴位</button><button id="closeNav" title="收起目录" aria-label="收起目录">收起</button>';sidebar.prepend(tabs);
+ const drawer=document.createElement('div');drawer.className='drawer-buttons';drawer.innerHTML='<button id="openNav">部位 / 目录</button><button id="openDetail">详情</button>';document.querySelector('.header-actions').prepend(drawer);
+ const closeDetail=document.createElement('button');closeDetail.id='closeDetail';closeDetail.textContent='收起详情';document.querySelector('.detail-top').prepend(closeDetail);
+ const speakButton=document.createElement('button');speakButton.id='speakBoneBtn';speakButton.className='speak-bone-button';speakButton.textContent='▶ 朗读骨名';document.querySelector('.detail-top').append(speakButton);speakButton.onclick=()=>speak(BY_ID[state.selected]?.name);
+ const tools=document.querySelector('.stage-tools');
+ const auto=document.createElement('button');auto.id='autoSpeakBtn';auto.title='点选时自动朗读';auto.textContent='声';auto.setAttribute('aria-label','点选时自动朗读');tools.prepend(auto);auto.onclick=()=>setAutoSpeak(!autoSpeak());setAutoSpeak(autoSpeak());
+ const more=document.createElement('button');more.id='moreViewsBtn';more.title='更多学习焦点';more.textContent='局部';tools.prepend(more);
+ const viewPanel=document.createElement('div');viewPanel.id='moreViewsPanel';viewPanel.className='more-views-panel';viewPanel.hidden=true;viewPanel.innerHTML='<div class="panel-kicker">局部快捷观察</div><div class="preset-grid"></div>';document.querySelector('.stage').append(viewPanel);
+ const PRESETS=[['face','面颅与下颌','head','mandible'],['skullbase','颅底','head','sphenoid'],['craniovertebral','颅颈交界','cervical','C1'],['neckshoulder','颈肩','shoulder','clavicle-right'],['shoulderjoint','肩关节','shoulder','humerus-right'],['elbowjoint','肘关节','elbow','radius-right'],['forearm','前臂','upper','radius-right'],['palm','腕掌与手指','hand','capitate-right'],['kneejoint','膝关节','knee','patella'],['anklejoint','踝关节','ankle','talus'],['plantar','足底','foot','calcaneus'],['sacroiliac','骶髂区','pelvis','sacrum']];
+ for(const [id,name] of PRESETS){const b=document.createElement('button');b.dataset.preset=id;b.textContent=name;b.onclick=()=>runPreset(id);viewPanel.querySelector('.preset-grid').append(b);}
+ function runPreset(id){const p=PRESETS.find(p=>p[0]===id);if(!p)return false;let bid=p[3];if(state.side==='left'){const original=BY_ID[bid];bid=BONES.find(b=>b.side==='left'&&b.baseId===original?.baseId)?.id||bid;}
+  setRegion(p[2]);selectBone(bid,true,false);viewPanel.hidden=true;
+  if(id==='plantar')ctx.setView('plantar');else if(['skullbase','face'].includes(id))fitToContent(true,null,null,true);
+  document.body.classList.remove('nav-open');return true;
+ }
+ more.onclick=()=>{viewPanel.hidden=!viewPanel.hidden;};
+ const toolbar=document.createElement('div');toolbar.className='study-toolbar';toolbar.innerHTML='<button id="tcmLayerToggle" aria-pressed="false">经络：隐藏</button><select id="meridianQuick" aria-label="快速切换经脉"></select><button id="tcmQuickFit">看全线</button><button id="tcmBtn">经络设置</button>';document.querySelector('.stage').append(toolbar);
+ $('meridianQuick').innerHTML=ctx.MERIDIANS.map(m=>`<option value="${m.id}">${m.short} ${m.id}</option>`).join('')+'<option value="ALL">全部十四经脉</option>';$('meridianQuick').value=activeMeridian;
+ const panel=document.createElement('section');panel.id='tcmControls';panel.className='tcm-controls';panel.hidden=true;panel.innerHTML=`<div class="tcm-head"><div><b>经络与穴位名称</b><small>设置在侧栏，3D画面始终可操作</small></div><button id="tcmClose" aria-label="收起经络设置">收起</button></div><div class="tcm-master-row"><button id="tcmMasterToggle">显示经络</button><button id="tcmFitMeridian">看全线</button></div><div class="tcm-toggle-row"><button id="meridianLineToggle" class="active">线路</button><button id="acupointToggle" class="active">点位</button><button id="pointNamesToggle" class="active">穴名</button></div><div class="tcm-side-picker"><button data-tcm-side="right">人体右侧</button><button data-tcm-side="both" class="active">双侧</button><button data-tcm-side="left">人体左侧</button></div><label class="tcm-xray"><input id="tcmXray" type="checkbox" checked>透视显示（背侧点线也可见）</label><label class="tcm-search"><input id="acupointSearch" type="search" placeholder="穴名 / 无声调拼音 / LU5" autocomplete="off"></label><div id="meridianChips" class="meridian-chips"></div><div class="tcm-section-label">穴位名称目录 <small id="pointResultCount"></small></div><div id="acupointResults" class="acupoint-results"></div><p class="tcm-disclaimer">点位沿示意路径分布，未逐穴按标准体表位置校准；仅供名称与归经学习，不用于取穴、针刺或准确骨位对应。</p>`;sidebar.append(panel);
+ const status=document.createElement('div');status.id='tcmStatus';status.className='tcm-status';status.hidden=true;status.innerHTML='<span class="tcm-status-dot"></span><button id="tcmStatusMain"></button><button id="tcmStatusSettings">设置</button><button id="tcmStatusHide">隐藏图层</button>';document.querySelector('.stage').append(status);
+ const card=document.createElement('section');card.id='tcmPointCard';card.className='tcm-point-card';card.hidden=true;document.querySelector('.detail-scroll').prepend(card);
+ const chip=document.createElement('div');chip.id='selectionChip';chip.className='selection-chip';chip.innerHTML='<button id="selectionChipText"></button><button id="chipDetails">详情</button><button id="chipSpeak">朗读</button>';document.querySelector('.stage').append(chip);
+ const labels=document.createElement('div');labels.id='acupointLabels';labels.className='acupoint-label-layer';viewport.append(labels);
+ const hover=document.createElement('div');hover.id='acuHover';hover.className='acu-hover';hover.hidden=true;viewport.append(hover);
+ $('openNav').onclick=()=>{document.body.classList.toggle('nav-open');document.body.classList.remove('detail-open');};
+ $('closeNav').onclick=()=>{document.body.classList.remove('nav-open');};
+ $('openDetail').onclick=()=>{document.body.classList.toggle('detail-open');document.body.classList.remove('nav-open');};
+ $('closeDetail').onclick=()=>document.body.classList.remove('detail-open');
+ $('boneTab').onclick=()=>setPanel(false);$('tcmTab').onclick=()=>{toggleTCM(true);setPanel(true);};
+ $('chipDetails').onclick=$('selectionChipText').onclick=()=>{if(selectedPoint&&enabled){card.hidden=false;cardOpen=true;}document.body.classList.add('detail-open');document.body.classList.remove('nav-open');};
+ $('chipSpeak').onclick=()=>speak(selectedPoint&&enabled?selectedPoint.name:BY_ID[state.selected]?.name);
+ window.addEventListener('atlas:bone-selected',e=>{if(e.detail?.user){selectedPoint=null;cardOpen=false;card.hidden=true;clearSelectedMarker();if(autoSpeak())speak(BY_ID[e.detail.id]?.name);}updateStatus();});
+ window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.querySelector('dialog[open]')){document.body.classList.remove('nav-open','detail-open');viewPanel.hidden=true;if(panelOpen)setPanel(false);}});
+ $('meridianChips').innerHTML=ctx.MERIDIANS.map(m=>`<button data-meridian="${m.id}" style="--m:${m.color}">${m.short}<small>${m.id}</small></button>`).join('')+'<button data-meridian="ALL">全部经脉</button>';
+ $('meridianChips').querySelectorAll('button').forEach(b=>b.onclick=()=>setMeridian(b.dataset.meridian));
+ $('meridianQuick').onchange=()=>{setMeridian($('meridianQuick').value);toggleTCM(true);fitMeridian();};
+ $('tcmLayerToggle').onclick=()=>toggleTCM(!enabled);
+ $('tcmBtn').onclick=()=>{toggleTCM(true);setPanel(!panelOpen||!document.body.classList.contains('nav-open')&&compact());};
+ $('tcmClose').onclick=()=>setPanel(false);
+ $('tcmMasterToggle').onclick=()=>toggleTCM(!enabled);
+ $('tcmStatusSettings').onclick=()=>setPanel(true);
+ $('tcmStatusHide').onclick=()=>toggleTCM(false);
+ $('tcmStatusMain').onclick=()=>selectedPoint?focusPoint(selectedPoint.position):fitMeridian();
+ $('tcmQuickFit').onclick=$('tcmFitMeridian').onclick=()=>{toggleTCM(true);fitMeridian();};
+ for(const [id,get,set] of [['meridianLineToggle',()=>linesOn,v=>linesOn=v],['acupointToggle',()=>pointsOn,v=>pointsOn=v],['pointNamesToggle',()=>namesOn,v=>namesOn=v]])$(id).onclick=()=>{set(!get());$(id).classList.toggle('active',get());updateOverlayVisibility();};
+ panel.querySelectorAll('[data-tcm-side]').forEach(b=>b.onclick=()=>setTCMSide(b.dataset.tcmSide));
+ $('tcmXray').onchange=()=>{xray=$('tcmXray').checked;updateOverlayVisibility();};
+ $('acupointSearch').oninput=renderResults;
+ function setPanel(open){panelOpen=!!open;panel.hidden=!panelOpen;bonePane.hidden=panelOpen;sidebar.classList.toggle('tcm-mode',panelOpen);$('boneTab').classList.toggle('active',!panelOpen);$('tcmTab').classList.toggle('active',panelOpen);$('tcmBtn').setAttribute('aria-expanded',String(panelOpen));if(compact()){document.body.classList.toggle('nav-open',panelOpen);document.body.classList.remove('detail-open');}viewPanel.hidden=true;}
+ function toggleTCM(on){enabled=!!on;routeRoot.visible=enabled;updateOverlayVisibility();if(!enabled){card.hidden=true;cardOpen=false;hover.hidden=true;}updateStatus();}
+ function setMeridian(id){const next=meridianMap[id]||id==='ALL'?id:'LU';if(next!==activeMeridian){selectedPoint=null;card.hidden=true;cardOpen=false;clearSelectedMarker();}activeMeridian=next;store.set('atlas-meridian',next);$('meridianQuick').value=next;panel.querySelectorAll('[data-meridian]').forEach(b=>b.classList.toggle('active',b.dataset.meridian===next));updateOverlayVisibility();renderResults();}
+ function setTCMSide(side){if(!['right','both','left'].includes(side))return;tcmSide=side;panel.querySelectorAll('[data-tcm-side]').forEach(b=>b.classList.toggle('active',b.dataset.tcmSide===side));if(selectedPoint&&selectedPoint.side!=='midline'&&side!=='both'&&side!==selectedPoint.side){selectedPoint=null;card.hidden=true;cardOpen=false;clearSelectedMarker();}updateOverlayVisibility();}
+ function updateStatus(){if(!$('tcmStatusMain'))return;status.hidden=!enabled;const m=meridianMap[activeMeridian];const text=selectedPoint?`${selectedPoint.name} ${selectedPoint.code} · ${selectedPoint.side==='left'?'人体左':selectedPoint.side==='right'?'人体右':'中线'}`:`${m?.name||'全部十四经脉'} · 示意图`;$('tcmStatusMain').textContent=text;status.style.setProperty('--m',m?.color||'#467961');$('tcmLayerToggle').textContent=enabled?'经络：显示':'经络：隐藏';$('tcmLayerToggle').classList.toggle('active',enabled);$('tcmLayerToggle').setAttribute('aria-pressed',String(enabled));$('tcmMasterToggle').textContent=enabled?'隐藏经络图层':'显示经络图层';$('selectionChipText').textContent=selectedPoint&&enabled?`${selectedPoint.name} · ${selectedPoint.pinyin} · ${selectedPoint.code}`:`${BY_ID[state.selected]?.name||'选择骨骼'} · ${bonePinyin(state.selected)||''}`;}
+ /* ORIGINAL_ROUTES */
+ function makePointMaterial(color,size){return new THREE.ShaderMaterial({uniforms:{tint:{value:new THREE.Color(color)},pixelSize:{value:size},pixelRatio:{value:renderer.getPixelRatio()}},vertexShader:'uniform float pixelSize;uniform float pixelRatio;void main(){gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);gl_PointSize=pixelSize*pixelRatio;}',fragmentShader:'uniform vec3 tint;void main(){float d=length(gl_PointCoord-vec2(0.5));if(d>0.5)discard;vec3 c=d>0.35?vec3(0.98):tint;float a=1.0-smoothstep(0.44,0.5,d);gl_FragColor=vec4(c,a);\n#include <colorspace_fragment>\n}',transparent:true,depthWrite:false,depthTest:false,toneMapped:false});}
+ function buildRoutes(){for(const m of ctx.MERIDIANS){for(const side of PAIR.has(m.id)?['right','left']:['midline']){const curve=new THREE.CatmullRomCurve3(pathFor(m.id,side),false,'centripetal',.5);const data=ctx.ACUPOINTS.filter(p=>p.meridian===m.id).map((p,i,a)=>({...p,side,position:curve.getPointAt(i/(a.length-1))}));data.forEach(p=>pointIndex.set(p.code+'|'+side,p));const c=new THREE.Color(m.color);const hsl={};c.getHSL(hsl);c.setHSL(hsl.h,Math.max(.48,hsl.s),Math.min(.37,hsl.l));const color='#'+c.getHexString();const geo=new LineGeometry().setPositions(curve.getPoints(160).flatMap(v=>v.toArray()));const mat=new LineMaterial({color,linewidth:3.5,worldUnits:false,transparent:true,opacity:1,depthTest:false,depthWrite:false,toneMapped:false});const line=new Line2(geo,mat);line.renderOrder=20;line.computeLineDistances();const outline=new Line2(geo,new LineMaterial({color:'#ffffff',linewidth:6.5,worldUnits:false,transparent:true,opacity:.9,depthTest:false,depthWrite:false,toneMapped:false}));outline.renderOrder=19;const cloud=new THREE.Points(new THREE.BufferGeometry().setFromPoints(data.map(p=>p.position)),makePointMaterial(color,11));cloud.renderOrder=21;routeRoot.add(outline,line,cloud);routeRecords.push({meridian:m.id,side,data,line,outline,cloud,color});}}
+ }
+ buildRoutes();
+ function routeMatches(r){return (activeMeridian==='ALL'||r.meridian===activeMeridian)&&(tcmSide==='both'||r.side==='midline'||r.side===tcmSide);}
+ function getVisiblePoints(){return enabled&&pointsOn?routeRecords.filter(routeMatches).flatMap(r=>r.data):[];}
+ function updateOverlayVisibility(){routeRoot.visible=enabled;for(const r of routeRecords){const show=enabled&&routeMatches(r);r.line.visible=show&&linesOn;r.outline.visible=show&&linesOn;r.cloud.visible=show&&pointsOn;for(const obj of [r.line,r.outline,r.cloud])obj.material.depthTest=!xray;r.line.material.linewidth=activeMeridian==='ALL'?2.2:3.5;r.outline.material.linewidth=activeMeridian==='ALL'?4:6.5;r.line.material.opacity=activeMeridian==='ALL'?.62:1;r.cloud.material.uniforms.pixelSize.value=activeMeridian==='ALL'?7:11;}if(selectedMarker)selectedMarker.visible=enabled&&pointsOn&&!!selectedPoint;lastLabelRebuild='';updateStatus();}
+ function fitMeridian(){const pts=routeRecords.filter(routeMatches).flatMap(r=>r.data.map(p=>p.position));if(!pts.length)return;setRegion('body',false);ctx.focusBounds(new THREE.Box3().setFromPoints(pts).expandByScalar(45));if(compact())setPanel(false);}
+ function focusPoint(pos){ctx.focusBounds(new THREE.Box3(pos.clone().addScalar(-85),pos.clone().addScalar(85)));}
+ function renderResults(){const q=normalize($('acupointSearch').value);const arr=ctx.ACUPOINTS.filter(p=>(q||(activeMeridian==='ALL'||p.meridian===activeMeridian))&&(!q||normalize([p.code,p.name,p.pinyin,p.meridianName].join(' ')).includes(q)));$('pointResultCount').textContent=`${arr.length}项`;$('acupointResults').innerHTML=arr.length?arr.map(p=>`<button data-point="${p.code}" class="${selectedPoint?.code===p.code?'active':''}"><b>${p.name}<small>${p.pinyin}</small></b><span>${p.code}<small>${meridianMap[p.meridian].short}</small></span></button>`).join(''):'<p class="empty-search">未找到。可试：足三里、zus an li、ST36。</p>';$('acupointResults').querySelectorAll('button').forEach(b=>b.onclick=()=>{const p=ctx.ACUPOINTS.find(p=>p.code===b.dataset.point);if(activeMeridian!==p.meridian)setMeridian(p.meridian);toggleTCM(true);selectPoint(pointIndex.get(p.code+'|'+(PAIR.has(p.meridian)?(tcmSide==='left'?'left':'right'):'midline')),true);});}
+ function nearestBones(pos){return [...bones].map(([id,b])=>{const bb=b.geometry.boundingBox.clone().translate(b.userData.home);return {id,d:bb.distanceToPoint(pos)};}).sort((a,b)=>a.d-b.d).slice(0,3);}
+ function clearSelectedMarker(){if(selectedMarker){routeRoot.remove(selectedMarker);selectedMarker.geometry.dispose();selectedMarker.material.dispose();selectedMarker=null;}lastLabelRebuild='';}
+ function selectPoint(p,focus=false){if(!p?.position)return false;selectedPoint=p;clearSelectedMarker();selectedMarker=new THREE.Points(new THREE.BufferGeometry().setFromPoints([p.position]),makePointMaterial('#d37022',21));selectedMarker.renderOrder=30;routeRoot.add(selectedMarker);selectedMarker.visible=enabled&&pointsOn;
+  const m=meridianMap[p.meridian],near=nearestBones(p.position);cardOpen=true;card.hidden=false;card.innerHTML=`<div class="tcm-card-head"><span>${m.name} · ${p.code}</span><button id="closePointCard" aria-label="收起穴位详情">收起</button></div><h3>${p.name}<small>${p.pinyin} · ${p.side==='left'?'人体左侧':p.side==='right'?'人体右侧':'人体中线'}</small></h3><p class="coordinate-warning">此3D点未按标准位置逐穴校准，不能据此确定穴位在具体骨骼上的准确位置。</p><div class="tcm-card-actions"><button id="focusPointBtn">聚焦点位</button><button id="speakPointBtn">朗读穴名</button></div><div class="point-step"><button id="pointPrev">上一穴</button><button id="pointNext">下一穴</button></div><details class="bone-reference"><summary>示意点邻近网格（非取穴依据）</summary>${near.map(n=>`<button data-near="${n.id}">${BY_ID[n.id].name}<small>${bonePinyin(n.id)}</small></button>`).join('')}</details>`;
+  $('closePointCard').onclick=()=>{card.hidden=true;cardOpen=false;document.body.classList.remove('detail-open');};$('focusPointBtn').onclick=()=>{focusPoint(p.position);document.body.classList.remove('detail-open');};$('speakPointBtn').onclick=()=>speak(p.name);$('pointPrev').onclick=()=>stepPoint(-1);$('pointNext').onclick=()=>stepPoint(1);card.querySelectorAll('[data-near]').forEach(b=>b.onclick=()=>selectBone(b.dataset.near,true,true));renderResults();updateStatus();lastLabelRebuild='';if(focus){focusPoint(p.position);if(compact())setPanel(false);}if(autoSpeak())speak(p.name);return true;
+ }
+ function stepPoint(d){if(!selectedPoint)return;const a=ctx.ACUPOINTS.filter(p=>p.meridian===selectedPoint.meridian),i=a.findIndex(p=>p.code===selectedPoint.code),next=a[(i+d+a.length)%a.length];selectPoint(pointIndex.get(next.code+'|'+selectedPoint.side),true);}
+ function project(p){const v=p.position.clone().project(camera),r=viewport.getBoundingClientRect();return {x:r.left+(v.x*.5+.5)*r.width,y:r.top+(-v.y*.5+.5)*r.height,z:v.z};}
+ function hitPoint(e){if(!enabled||!pointsOn)return null;let best=null,bestD=e.pointerType==='touch'?23:14;for(const p of getVisiblePoints()){const v=project(p);if(v.z< -1||v.z>1)continue;const d=Math.hypot(e.clientX-v.x,e.clientY-v.y);if(d<bestD){bestD=d;best=p;}}return best;}
+ function handlePointerClick(e){if(state.mode!=='orbit'||e.button!==0)return false;const p=hitPoint(e);return !!p&&selectPoint(p,false);}
+ viewport.addEventListener('pointermove',e=>{if(e.buttons||e.pointerType==='touch'||performance.now()-lastHover<70){hover.hidden=true;return;}lastHover=performance.now();const p=hitPoint(e);hoveredPoint=p;if(!p){hover.hidden=true;return;}const r=viewport.getBoundingClientRect();hover.textContent=`${p.name} · ${p.pinyin} · ${p.code}`;hover.style.left=Math.min(e.clientX-r.left+15,r.width-210)+'px';hover.style.top=Math.max(8,e.clientY-r.top-38)+'px';hover.hidden=false;$('hoverTip').hidden=true;},{passive:true});
+ viewport.addEventListener('pointerleave',()=>hover.hidden=true);
+ function updateFrame(){
+  const w=viewport.clientWidth,h=viewport.clientHeight,dpr=renderer.getPixelRatio(),sz=`${w},${h},${dpr}`;
+  if(sz!==lastSize){lastSize=sz;for(const r of routeRecords){r.line.material.resolution.set(w,h);r.outline.material.resolution.set(w,h);r.cloud.material.uniforms.pixelRatio.value=dpr;}if(selectedMarker)selectedMarker.material.uniforms.pixelRatio.value=dpr;}
+  const displaced=state.explode>0||[...bones.values()].some(b=>b.userData.offset.lengthSq()>.1);document.body.classList.toggle('anatomy-displaced',displaced&&enabled);
+  const key=[enabled,pointsOn,namesOn,activeMeridian,tcmSide,selectedPoint?.code,selectedPoint?.side].join('|');
+  if(key!==lastLabelRebuild){lastLabelRebuild=key;labels.replaceChildren();labelNodes.length=0;let arr=namesOn?getVisiblePoints():[];if(activeMeridian==='ALL')arr=[];if(selectedPoint&&enabled&&pointsOn&&!arr.includes(selectedPoint))arr=[selectedPoint,...arr];if(selectedPoint)arr.sort((a,b)=>(a===selectedPoint?-1:0)-(b===selectedPoint?-1:0));for(const p of arr){const el=document.createElement('span');el.className='acu-name'+(p===selectedPoint?' selected':'');el.textContent=`${p.name} ${p.code}`;labels.append(el);labelNodes.push({p,el});}}
+  const occupied=[];let shown=0;const rect=viewport.getBoundingClientRect();for(const item of labelNodes){const v=project(item.p),x=v.x-rect.left+9,y=v.y-rect.top-10;let show=v.z>-1&&v.z<1&&x>0&&x<w-95&&y>185&&y<h-150;const box={x,y,w:92,h:25};if(show&&item.p!==selectedPoint&&(shown>=24||occupied.some(b=>x<b.x+b.w&&x+92>b.x&&y<b.y+b.h&&y+25>b.y)))show=false;item.el.hidden=!show;if(show){item.el.style.transform=`translate(${x}px,${y}px)`;occupied.push(box);shown++;}}
+ }
+ setMeridian(activeMeridian);renderResults();updateStatus();
+ window.__ATLAS_LEARNING__={handlePointerClick,hitPoint,toggleTCM,setPanel,setMeridian,setTCMSide,fitMeridian,runPreset,updateFrame,selectPoint:(code,side='right',focus=false)=>selectPoint(pointIndex.get(code+'|'+side)||pointIndex.get(code+'|midline'),focus),getPointScreen:(code,side='right')=>{const p=pointIndex.get(code+'|'+side)||pointIndex.get(code+'|midline');return p?project(p):null;},speakBone:id=>speak(BY_ID[id]?.name),getState:()=>({version:'3.0',enabled,panelOpen,linesOn,pointsOn,namesOn,xray,tcmSide,activeMeridian,selectedPoint:selectedPoint&&{code:selectedPoint.code,name:selectedPoint.name,side:selectedPoint.side},cardOpen,statusVisible:!status.hidden,meridians:ctx.MERIDIANS.length,standardAcupoints:ctx.ACUPOINTS.length,markerInstances:pointIndex.size,visiblePoints:getVisiblePoints().length,routes:routeRecords.length,autoSpeak:autoSpeak(),lineWidthPixels:activeMeridian==='ALL'?2.2:3.5,pointSizePixels:activeMeridian==='ALL'?7:11})};
+ return window.__ATLAS_LEARNING__;
+}

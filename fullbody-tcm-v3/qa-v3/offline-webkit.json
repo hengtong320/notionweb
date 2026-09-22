@@ -1,0 +1,94 @@
+{
+  "url": "file:///home/runner/work/notionweb/notionweb/fullbody-tcm-v3/index.html",
+  "browser": "webkit",
+  "startedAt": "2026-09-22T07:43:46.795Z",
+  "checks": [
+    {
+      "name": "webkit-tablet canvas uses full screen width",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet original region directory reachable",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet closing navigation preserves canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet selection closes drawer but preserves point",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet no automatic detail obstruction",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet point detail accessible",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet closing detail preserves layer",
+      "pass": true
+    },
+    {
+      "name": "webkit-phone canvas uses full screen width",
+      "pass": true
+    },
+    {
+      "name": "webkit-phone no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "webkit-phone original region directory reachable",
+      "pass": true
+    },
+    {
+      "name": "webkit-phone closing navigation preserves canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-phone selection closes drawer but preserves point",
+      "pass": true
+    },
+    {
+      "name": "webkit-phone no automatic detail obstruction",
+      "pass": true
+    },
+    {
+      "name": "webkit-phone point detail accessible",
+      "pass": true
+    },
+    {
+      "name": "webkit-phone closing detail preserves layer",
+      "pass": true
+    },
+    {
+      "name": "No uncaught JS or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "profiles": [
+    {
+      "name": "webkit-tablet",
+      "w": 820,
+      "h": 1180,
+      "touch": true
+    },
+    {
+      "name": "webkit-phone",
+      "w": 390,
+      "h": 844,
+      "touch": true,
+      "mobile": true
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "finishedAt": "2026-09-22T07:44:14.638Z"
+}
