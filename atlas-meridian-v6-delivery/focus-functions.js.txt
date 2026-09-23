@@ -1,3 +1,28 @@
+ const baseFocusBounds=ctx.focusBounds;
+ ctx.focusBounds=(box,options={})=>{
+  baseFocusBounds(box,options);
+  if(!options.direction||box.isEmpty())return;
+  const rect=viewport.getBoundingClientRect(),w=Math.max(1,rect.width),h=Math.max(1,rect.height);
+  let top=65;
+  for(const sel of ['.stage-heading','.view-switcher','.study-toolbar','#tcmStatus']){
+   const el=document.querySelector(sel);if(el&&!el.hidden&&el.getBoundingClientRect().height)top=Math.max(top,el.getBoundingClientRect().bottom-rect.top+18);
+  }
+  if(!status.hidden)top=Math.max(top,status.getBoundingClientRect().bottom-rect.top+18);
+  top=Math.min(top,h*.56);
+  let bottom=document.body.classList.contains('dock-collapsed')?(h<450?64:120):Math.min(225,h*.34);
+  const rails=enabled&&namesOn&&labelMode==='complete';
+  const left=rails?(w<540?136:165):35,right=rails?(w<540?54:165):60;
+  const usableW=Math.max(w*.22,w-left-right),usableH=Math.max(h*.18,h-top-bottom);
+  const center=box.getCenter(new THREE.Vector3()),dir=new THREE.Vector3(...options.direction).normalize();
+  const rightV=new THREE.Vector3().crossVectors(camera.up,dir).normalize(),upV=new THREE.Vector3().crossVectors(dir,rightV).normalize();let mx=0,my=0,depth=0;
+  for(let i=0;i<8;i++){const v=new THREE.Vector3(i&1?box.max.x:box.min.x,i&2?box.max.y:box.min.y,i&4?box.max.z:box.min.z).sub(center);mx=Math.max(mx,Math.abs(v.dot(rightV)));my=Math.max(my,Math.abs(v.dot(upV)));depth=Math.max(depth,Math.abs(v.dot(dir)));}
+  const t=Math.tan(THREE.MathUtils.degToRad(camera.fov/2));
+  const distance=Math.max(my/(t*(usableH/h)),mx/(t*camera.aspect*(usableW/w)))+depth+24;
+  const cx=left+usableW/2,cy=top+usableH/2;
+  camera.setViewOffset(w,h,w/2-cx,h/2-cy,w,h);camera.position.copy(center).addScaledVector(dir,distance);controls.target.copy(center);
+  controls.maxDistance=Math.max(5000,distance*4);camera.far=Math.max(24000,distance*8);camera.updateProjectionMatrix();
+  const damping=controls.enableDamping;controls.enableDamping=false;controls.update();controls.enableDamping=damping;camera.updateMatrixWorld(true);
+ };
  function prepareNavigation(){
   ctx.prepareReferenceFocus?.();suspended=false;pointsOn=true;namesOn=true;
   $('acupointToggle').classList.add('active');$('pointNamesToggle').classList.add('active');
