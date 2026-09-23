@@ -1,0 +1,21 @@
+{
+  "version": "fullbody-tcm-v6",
+  "bones": 210,
+  "standardNames": 361,
+  "standardMarkerInstances": 670,
+  "modelHashes": {
+    "fullbody.glb": "f675737728bd5c21c553bb82490694f4c52cb744f7f9ebba346c66775aebd1c2",
+    "muscular.glb": "e655e5d21e821778c277261026dac00747b929abee5bd61d2b5a156fe5fbcde7",
+    "nervous.glb": "647a754f729510b0f9e4297e5c6a2ef69b9e5b30142b1a07928ae929e3283652"
+  },
+  "scope": "Meridian labels, independent educational point layout, selection and camera focus",
+  "clinicalCalibration": false,
+  "coordinateProvenance": "Project-authored illustrative model positions; NOT WHO xyz data and not skin-registered",
+  "oldViewersUnchanged": true,
+  "sourceCheck": "Model hashes and deterministic source patch",
+  "status": "candidate",
+  "htmlSHA256": "e502676b80d0801503fe54da497e4beaf86d4cf58c8c7ed992996ab3f2bbdeb3",
+  "htmlBytes": 20563357,
+  "safeTemplateSubstitution": true,
+  "immediateCameraMatrixSync": true
+}
