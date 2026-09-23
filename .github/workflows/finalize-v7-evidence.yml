@@ -1,0 +1,53 @@
+name: Finalize verified V7 delivery record
+on:
+  push:
+    paths: ['.github/workflows/finalize-v7-evidence.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: fullbody-tcm-v7
+          fetch-depth: 1
+      - name: Restore only successful same-build verification reports
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl --fail --location --retry 2 --header "Authorization: Bearer $GH_TOKEN" --header 'Accept: application/vnd.github+json' https://api.github.com/repos/hengtong320/notionweb/actions/artifacts/10744815153/zip -o /tmp/v7-evidence.zip
+          python - <<'PY'
+          import json,zipfile,hashlib,urllib.request,os
+          from pathlib import Path
+          p=Path('fullbody-tcm-v7');expected='cfd5d9858b915c85727a7fa390cdcd08767d6a8fb710fa0fc1eff49685462ffa'
+          assert hashlib.sha256((p/'index.html').read_bytes()).hexdigest()==expected
+          with zipfile.ZipFile('/tmp/v7-evidence.zip') as z:
+              release=json.loads(z.read('fullbody-tcm-v7/delivery-release.json'))
+              assert release['htmlSHA256']==expected
+              for name in ['local-chromium','local-webkit','live-chromium']:
+                  data=z.read('fullbody-tcm-v7/checks/'+name+'.json');report=json.loads(data)
+                  assert report['success'] and report['htmlSHA256']==expected
+                  assert all(c['pass'] for c in report['checks']) and all(c['pass'] for c in report['pointChecks'])
+                  if name=='live-chromium':(p/'checks'/(name+'.json')).write_bytes(data)
+              extra=json.loads((p/'checks/additional-targeting.json').read_text())
+              assert extra['success'] and extra['htmlSHA256']==expected and all(c['pass'] for c in extra['checks'])
+              release.update({'additionalLiveTargetingChecks':len(extra['checks']),'targetingWorkflow':'35848225794','evidenceFinalizationWorkflow':os.environ['GITHUB_RUN_ID'],'evidenceFinalizationReason':'Verification completed successfully; original report-only commit was rebased onto intervening test-workflow commits. Viewer bytes unchanged.'})
+              url='https://hengtong320.github.io/notionweb/fullbody-tcm-v7/?verify='+expected[:12]
+              with urllib.request.urlopen(url,timeout=45) as response:
+                  assert response.status==200
+                  assert hashlib.sha256(response.read()).hexdigest()==expected
+              (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+              print('VERIFIED_PUBLIC_V7',release['url'],release['checks'],release['pointFocusChecks'])
+          PY
+      - name: Commit evidence only on top of current main
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v7/delivery-release.json fullbody-tcm-v7/checks/live-chromium.json
+          git commit -m 'Record all successful V7 focus and live targeting checks; no viewer changes'
+          git pull --rebase origin main
+          git push origin HEAD:main
