@@ -1,0 +1,39 @@
+{
+  "version": "fullbody-tcm-v7",
+  "bones": 210,
+  "classicalNames": 361,
+  "navigationMarkers": 670,
+  "scope": "meridian navigation and readable labels only",
+  "htmlSHA256": "cfd5d9858b915c85727a7fa390cdcd08767d6a8fb710fa0fc1eff49685462ffa",
+  "htmlBytes": 20834928,
+  "modelSHA256": {
+    "fullbody.glb": "f675737728bd5c21c553bb82490694f4c52cb744f7f9ebba346c66775aebd1c2",
+    "muscular.glb": "e655e5d21e821778c277261026dac00747b929abee5bd61d2b5a156fe5fbcde7",
+    "nervous.glb": "647a754f729510b0f9e4297e5c6a2ef69b9e5b30142b1a07928ae929e3283652"
+  },
+  "clinicalCalibration": false,
+  "allAudioHumanReviewed": false,
+  "previousViewersUnchanged": true,
+  "status": "published-and-browser-verified",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v7/?release=35847076394",
+  "checks": {
+    "local-chromium": 41,
+    "local-webkit": 37,
+    "live-chromium": 41
+  },
+  "pointFocusChecks": {
+    "local-chromium": 670,
+    "local-webkit": 17,
+    "live-chromium": 670
+  },
+  "checkedAt": "2026-09-23T10:21:56.465Z",
+  "workflowRun": "35847076394",
+  "browserCoverage": "Headless Chromium/WebKit, desktop and phone sizes, not all physical devices",
+  "clinicalAccuracyClaim": false,
+  "completeInternalMeridianBranches": false,
+  "screenshots": "Local exact matching build; public repeat does not duplicate screenshots",
+  "additionalLiveTargetingChecks": 9,
+  "targetingWorkflow": "35848225794",
+  "evidenceFinalizationWorkflow": "35848648082",
+  "evidenceFinalizationReason": "Verification completed successfully; original report-only commit was rebased onto intervening test-workflow commits. Viewer bytes unchanged."
+}

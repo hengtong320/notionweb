@@ -1,0 +1,5413 @@
+{
+  "startedAt": "2026-09-23T10:17:47.801Z",
+  "browser": "chromium",
+  "type": "browser-functional-navigation-not-clinical-validation",
+  "success": true,
+  "checks": [
+    {
+      "name": "Webpage HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "Public or served build matches exact tested bytes",
+      "pass": true
+    },
+    {
+      "name": "V7 application loaded",
+      "pass": true
+    },
+    {
+      "name": "210 original bone meshes remain",
+      "pass": true
+    },
+    {
+      "name": "Original bone geometry retained",
+      "pass": true
+    },
+    {
+      "name": "All 361 classical names have individual navigation references",
+      "pass": true
+    },
+    {
+      "name": "670 bilateral and midline navigation markers instantiated",
+      "pass": true,
+      "detail": 670
+    },
+    {
+      "name": "LU complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "LU",
+            "side": "right",
+            "referencePoints": 11,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 120,
+            "visible": true
+          },
+          {
+            "meridian": "LU",
+            "side": "left",
+            "referencePoints": 11,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 120,
+            "visible": true
+          }
+        ],
+        "points": 22,
+        "allInView": true
+      }
+    },
+    {
+      "name": "LI complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "LI",
+            "side": "right",
+            "referencePoints": 20,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 161,
+            "visible": true
+          },
+          {
+            "meridian": "LI",
+            "side": "left",
+            "referencePoints": 20,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 161,
+            "visible": true
+          }
+        ],
+        "points": 40,
+        "allInView": true
+      }
+    },
+    {
+      "name": "ST complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "ST",
+            "side": "right",
+            "referencePoints": 45,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 349,
+            "visible": true
+          },
+          {
+            "meridian": "ST",
+            "side": "left",
+            "referencePoints": 45,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 349,
+            "visible": true
+          }
+        ],
+        "points": 90,
+        "allInView": true
+      }
+    },
+    {
+      "name": "SP complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "SP",
+            "side": "right",
+            "referencePoints": 21,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 239,
+            "visible": true
+          },
+          {
+            "meridian": "SP",
+            "side": "left",
+            "referencePoints": 21,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 239,
+            "visible": true
+          }
+        ],
+        "points": 42,
+        "allInView": true
+      }
+    },
+    {
+      "name": "HT complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "HT",
+            "side": "right",
+            "referencePoints": 9,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 97,
+            "visible": true
+          },
+          {
+            "meridian": "HT",
+            "side": "left",
+            "referencePoints": 9,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 97,
+            "visible": true
+          }
+        ],
+        "points": 18,
+        "allInView": true
+      }
+    },
+    {
+      "name": "SI complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "SI",
+            "side": "right",
+            "referencePoints": 19,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 185,
+            "visible": true
+          },
+          {
+            "meridian": "SI",
+            "side": "left",
+            "referencePoints": 19,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 185,
+            "visible": true
+          }
+        ],
+        "points": 38,
+        "allInView": true
+      }
+    },
+    {
+      "name": "BL complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "BL",
+            "side": "right",
+            "referencePoints": 67,
+            "connected": true,
+            "guideCount": 4,
+            "guideVertices": 522,
+            "visible": true
+          },
+          {
+            "meridian": "BL",
+            "side": "left",
+            "referencePoints": 67,
+            "connected": true,
+            "guideCount": 4,
+            "guideVertices": 522,
+            "visible": true
+          }
+        ],
+        "points": 134,
+        "allInView": true
+      }
+    },
+    {
+      "name": "KI complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "KI",
+            "side": "right",
+            "referencePoints": 27,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 256,
+            "visible": true
+          },
+          {
+            "meridian": "KI",
+            "side": "left",
+            "referencePoints": 27,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 256,
+            "visible": true
+          }
+        ],
+        "points": 54,
+        "allInView": true
+      }
+    },
+    {
+      "name": "PC complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "PC",
+            "side": "right",
+            "referencePoints": 9,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 107,
+            "visible": true
+          },
+          {
+            "meridian": "PC",
+            "side": "left",
+            "referencePoints": 9,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 107,
+            "visible": true
+          }
+        ],
+        "points": 18,
+        "allInView": true
+      }
+    },
+    {
+      "name": "TE complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "TE",
+            "side": "right",
+            "referencePoints": 23,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 193,
+            "visible": true
+          },
+          {
+            "meridian": "TE",
+            "side": "left",
+            "referencePoints": 23,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 193,
+            "visible": true
+          }
+        ],
+        "points": 46,
+        "allInView": true
+      }
+    },
+    {
+      "name": "GB complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "GB",
+            "side": "right",
+            "referencePoints": 44,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 433,
+            "visible": true
+          },
+          {
+            "meridian": "GB",
+            "side": "left",
+            "referencePoints": 44,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 433,
+            "visible": true
+          }
+        ],
+        "points": 88,
+        "allInView": true
+      }
+    },
+    {
+      "name": "LR complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "LR",
+            "side": "right",
+            "referencePoints": 14,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 197,
+            "visible": true
+          },
+          {
+            "meridian": "LR",
+            "side": "left",
+            "referencePoints": 14,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 197,
+            "visible": true
+          }
+        ],
+        "points": 28,
+        "allInView": true
+      }
+    },
+    {
+      "name": "GV complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "GV",
+            "side": "midline",
+            "referencePoints": 28,
+            "connected": true,
+            "guideCount": 2,
+            "guideVertices": 197,
+            "visible": true
+          }
+        ],
+        "points": 28,
+        "allInView": true
+      }
+    },
+    {
+      "name": "CV complete channel can be framed",
+      "pass": true,
+      "detail": {
+        "routes": [
+          {
+            "meridian": "CV",
+            "side": "midline",
+            "referencePoints": 24,
+            "connected": true,
+            "guideCount": 1,
+            "guideVertices": 128,
+            "visible": true
+          }
+        ],
+        "points": 24,
+        "allInView": true
+      }
+    },
+    {
+      "name": "Kidney channel includes 27 labels from foot to chest",
+      "pass": true
+    },
+    {
+      "name": "Complete label pages expose all 27 kidney names",
+      "pass": true,
+      "detail": [
+        "KI27",
+        "KI26",
+        "KI25",
+        "KI24",
+        "KI23",
+        "KI22",
+        "KI21",
+        "KI20",
+        "KI19",
+        "KI18",
+        "KI17",
+        "KI16",
+        "KI15",
+        "KI14",
+        "KI13",
+        "KI12",
+        "KI11",
+        "KI10",
+        "KI9",
+        "KI7",
+        "KI8",
+        "KI3",
+        "KI4",
+        "KI6",
+        "KI5",
+        "KI2",
+        "KI1"
+      ]
+    },
+    {
+      "name": "All requested name-side targets focus correctly",
+      "pass": true,
+      "detail": {
+        "tested": 670
+      }
+    },
+    {
+      "name": "Yongquan focus views sole from below",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "KI1",
+          "name": "涌泉",
+          "side": "right"
+        },
+        "target": [
+          12.000000000000002,
+          -49.00000000000001,
+          20
+        ],
+        "position": [
+          12,
+          -49,
+          20
+        ],
+        "camera": [
+          12.000000000000002,
+          -418.11868414230673,
+          49.5294947313846
+        ],
+        "inView": true,
+        "centerError": 7.32410687763558e-15
+      }
+    },
+    {
+      "name": "Baihui focuses from above the head",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "GV20",
+          "name": "百会",
+          "side": "midline"
+        },
+        "target": [
+          99.553,
+          1668,
+          -40
+        ],
+        "position": [
+          99.553,
+          1668,
+          -40
+        ],
+        "camera": [
+          99.55300000000004,
+          2037.1186841423066,
+          -10.47050526861534
+        ],
+        "inView": true,
+        "centerError": 0
+      }
+    },
+    {
+      "name": "Spoken-name alias resolves to Yingxiang",
+      "pass": true
+    },
+    {
+      "name": "Real directory click focuses Yingxiang face region",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "LI20",
+          "name": "迎香",
+          "side": "right"
+        },
+        "target": [
+          80,
+          1512.0000000000005,
+          78
+        ],
+        "position": [
+          80,
+          1512,
+          78
+        ],
+        "camera": [
+          80,
+          1530.4249928309018,
+          446.49985661802674
+        ],
+        "inView": true,
+        "centerError": 4.547473508864641e-13
+      }
+    },
+    {
+      "name": "Real 3D point click focuses its own target",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "KI27",
+          "name": "俞府",
+          "side": "right"
+        },
+        "target": [
+          59.553000000000004,
+          1359,
+          36
+        ],
+        "position": [
+          59.553,
+          1359,
+          36
+        ],
+        "camera": [
+          59.553000000000004,
+          1405.9589149757107,
+          706.841642510154
+        ],
+        "inView": true,
+        "centerError": 7.105427357601002e-15
+      }
+    },
+    {
+      "name": "Selected point name remains legible and clickable",
+      "pass": true
+    },
+    {
+      "name": "Real label click focuses matching point",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "KI27",
+          "name": "俞府",
+          "side": "right"
+        },
+        "target": [
+          59.553000000000004,
+          1359,
+          36
+        ],
+        "position": [
+          59.553,
+          1359,
+          36
+        ],
+        "camera": [
+          59.553000000000004,
+          1405.9589149757107,
+          706.841642510154
+        ],
+        "inView": true,
+        "centerError": 7.105427357601002e-15
+      }
+    },
+    {
+      "name": "Dragging from a point still orbits without accidental focus",
+      "pass": true
+    },
+    {
+      "name": "Rapid sequential clicks retain the final point and correct side",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "KI27",
+          "name": "俞府",
+          "side": "left"
+        },
+        "target": [
+          139.55336311396957,
+          1359,
+          36
+        ],
+        "position": [
+          139.55336311396957,
+          1359,
+          36
+        ],
+        "camera": [
+          139.55336311396957,
+          1405.9589149757107,
+          706.841642510154
+        ],
+        "inView": true,
+        "centerError": 0
+      }
+    },
+    {
+      "name": "Acupoint focus exits exploded local bone mode",
+      "pass": true
+    },
+    {
+      "name": "Selecting four channels no longer hides all names",
+      "pass": true
+    },
+    {
+      "name": "Collapsing directory preserves points and routes",
+      "pass": true
+    },
+    {
+      "name": "Resizing to phone preserves selected target instead of zooming out",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "LI20",
+          "name": "迎香",
+          "side": "right"
+        },
+        "target": [
+          80.00000000000001,
+          1512.0000000000005,
+          78
+        ],
+        "position": [
+          80,
+          1512,
+          78
+        ],
+        "camera": [
+          80.00000000000001,
+          1545.4267739263712,
+          746.5354785274131
+        ],
+        "inView": true,
+        "centerError": 4.549693413077341e-13
+      }
+    },
+    {
+      "name": "Phone has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Phone landscape keeps focus",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "LI20",
+          "name": "迎香",
+          "side": "right"
+        },
+        "target": [
+          80.00000000000001,
+          1512.0000000000005,
+          78
+        ],
+        "position": [
+          80,
+          1512,
+          78
+        ],
+        "camera": [
+          80.00000000000001,
+          1535.2769624468751,
+          543.539248937494
+        ],
+        "inView": true,
+        "centerError": 4.549693413077341e-13
+      }
+    },
+    {
+      "name": "No third-party runtime model dependency",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No uncaught script or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "pointChecks": [
+    {
+      "code": "LU1",
+      "name": "中府",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LU2",
+      "name": "云门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LU3",
+      "name": "天府",
+      "side": "right",
+      "pass": true,
+      "error": 5.329070518200751e-15
+    },
+    {
+      "code": "LU4",
+      "name": "侠白",
+      "side": "right",
+      "pass": true,
+      "error": 5.329070518200751e-15
+    },
+    {
+      "code": "LU5",
+      "name": "尺泽",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LU6",
+      "name": "孔最",
+      "side": "right",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "LU7",
+      "name": "列缺",
+      "side": "right",
+      "pass": true,
+      "error": 2.847716647714797e-14
+    },
+    {
+      "code": "LU8",
+      "name": "经渠",
+      "side": "right",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "LU9",
+      "name": "太渊",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "LU10",
+      "name": "鱼际",
+      "side": "right",
+      "pass": true,
+      "error": 2.929642751054232e-14
+    },
+    {
+      "code": "LU11",
+      "name": "少商",
+      "side": "right",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "LU1",
+      "name": "中府",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LU2",
+      "name": "云门",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LU3",
+      "name": "天府",
+      "side": "left",
+      "pass": true,
+      "error": 5.695433295429594e-14
+    },
+    {
+      "code": "LU4",
+      "name": "侠白",
+      "side": "left",
+      "pass": true,
+      "error": 5.329070518200751e-15
+    },
+    {
+      "code": "LU5",
+      "name": "尺泽",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LU6",
+      "name": "孔最",
+      "side": "left",
+      "pass": true,
+      "error": 1.1370071466249427e-13
+    },
+    {
+      "code": "LU7",
+      "name": "列缺",
+      "side": "left",
+      "pass": true,
+      "error": 1.7763568394002505e-15
+    },
+    {
+      "code": "LU8",
+      "name": "经渠",
+      "side": "left",
+      "pass": true,
+      "error": 1.2715538963571249e-13
+    },
+    {
+      "code": "LU9",
+      "name": "太渊",
+      "side": "left",
+      "pass": true,
+      "error": 1.2711816071099836e-13
+    },
+    {
+      "code": "LU10",
+      "name": "鱼际",
+      "side": "left",
+      "pass": true,
+      "error": 1.2730419646209808e-13
+    },
+    {
+      "code": "LU11",
+      "name": "少商",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI1",
+      "name": "商阳",
+      "side": "right",
+      "pass": true,
+      "error": 2.929642751054232e-14
+    },
+    {
+      "code": "LI2",
+      "name": "二间",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI3",
+      "name": "三间",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI4",
+      "name": "合谷",
+      "side": "right",
+      "pass": true,
+      "error": 8.881784197001252e-16
+    },
+    {
+      "code": "LI5",
+      "name": "阳溪",
+      "side": "right",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "LI6",
+      "name": "偏历",
+      "side": "right",
+      "pass": true,
+      "error": 1.1374233532693354e-13
+    },
+    {
+      "code": "LI7",
+      "name": "温溜",
+      "side": "right",
+      "pass": true,
+      "error": 1.1457157353758233e-13
+    },
+    {
+      "code": "LI8",
+      "name": "下廉",
+      "side": "right",
+      "pass": true,
+      "error": 1.1740092732181256e-13
+    },
+    {
+      "code": "LI9",
+      "name": "上廉",
+      "side": "right",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "LI10",
+      "name": "手三里",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI11",
+      "name": "曲池",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI12",
+      "name": "肘髎",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI13",
+      "name": "手五里",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "LI14",
+      "name": "臂臑",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI15",
+      "name": "肩髃",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI16",
+      "name": "巨骨",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "LI17",
+      "name": "天鼎",
+      "side": "right",
+      "pass": true,
+      "error": 7.32410687763558e-15
+    },
+    {
+      "code": "LI18",
+      "name": "扶突",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI19",
+      "name": "口禾髎",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "LI20",
+      "name": "迎香",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "LI1",
+      "name": "商阳",
+      "side": "left",
+      "pass": true,
+      "error": 5.728578676879116e-14
+    },
+    {
+      "code": "LI2",
+      "name": "二间",
+      "side": "left",
+      "pass": true,
+      "error": 1.2715538963571249e-13
+    },
+    {
+      "code": "LI3",
+      "name": "三间",
+      "side": "left",
+      "pass": true,
+      "error": 1.2710574864626038e-13
+    },
+    {
+      "code": "LI4",
+      "name": "合谷",
+      "side": "left",
+      "pass": true,
+      "error": 5.685035733124713e-14
+    },
+    {
+      "code": "LI5",
+      "name": "阳溪",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI6",
+      "name": "偏历",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "LI7",
+      "name": "温溜",
+      "side": "left",
+      "pass": true,
+      "error": 5.728578676879116e-14
+    },
+    {
+      "code": "LI8",
+      "name": "下廉",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI9",
+      "name": "上廉",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "LI10",
+      "name": "手三里",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI11",
+      "name": "曲池",
+      "side": "left",
+      "pass": true,
+      "error": 5.684341886080802e-14
+    },
+    {
+      "code": "LI12",
+      "name": "肘髎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI13",
+      "name": "手五里",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI14",
+      "name": "臂臑",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI15",
+      "name": "肩髃",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI16",
+      "name": "巨骨",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "LI17",
+      "name": "天鼎",
+      "side": "left",
+      "pass": true,
+      "error": 1.7763568394002505e-15
+    },
+    {
+      "code": "LI18",
+      "name": "扶突",
+      "side": "left",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "LI19",
+      "name": "口禾髎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LI20",
+      "name": "迎香",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST1",
+      "name": "承泣",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "ST2",
+      "name": "四白",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST3",
+      "name": "巨髎",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST4",
+      "name": "地仓",
+      "side": "right",
+      "pass": true,
+      "error": 2.278173318171838e-13
+    },
+    {
+      "code": "ST5",
+      "name": "大迎",
+      "side": "right",
+      "pass": true,
+      "error": 7.32410687763558e-15
+    },
+    {
+      "code": "ST6",
+      "name": "颊车",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "ST7",
+      "name": "下关",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "ST8",
+      "name": "头维",
+      "side": "right",
+      "pass": true,
+      "error": 2.2740142932498854e-13
+    },
+    {
+      "code": "ST9",
+      "name": "人迎",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST10",
+      "name": "水突",
+      "side": "right",
+      "pass": true,
+      "error": 7.944109290391274e-15
+    },
+    {
+      "code": "ST11",
+      "name": "气舎",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST12",
+      "name": "缺盆",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST13",
+      "name": "气戶",
+      "side": "right",
+      "pass": true,
+      "error": 7.944109290391274e-15
+    },
+    {
+      "code": "ST14",
+      "name": "库房",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST15",
+      "name": "屋翳",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST16",
+      "name": "膺窓",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST17",
+      "name": "(乳)中",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST18",
+      "name": "(乳)根",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "ST19",
+      "name": "不容",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST20",
+      "name": "承满",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST21",
+      "name": "梁门",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "ST22",
+      "name": "关门",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "ST23",
+      "name": "太乙",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST24",
+      "name": "滑肉门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST25",
+      "name": "天枢",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST26",
+      "name": "外陵",
+      "side": "right",
+      "pass": true,
+      "error": 1.139086659085919e-13
+    },
+    {
+      "code": "ST27",
+      "name": "大巨",
+      "side": "right",
+      "pass": true,
+      "error": 1.1479169203741087e-13
+    },
+    {
+      "code": "ST28",
+      "name": "水道",
+      "side": "right",
+      "pass": true,
+      "error": 1.139086659085919e-13
+    },
+    {
+      "code": "ST29",
+      "name": "归来",
+      "side": "right",
+      "pass": true,
+      "error": 1.1413006294140622e-13
+    },
+    {
+      "code": "ST30",
+      "name": "气冲",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST31",
+      "name": "髀关",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST32",
+      "name": "伏兔",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST33",
+      "name": "阴市",
+      "side": "right",
+      "pass": true,
+      "error": 5.695433295429594e-14
+    },
+    {
+      "code": "ST34",
+      "name": "梁丘",
+      "side": "right",
+      "pass": true,
+      "error": 1.7763568394002505e-15
+    },
+    {
+      "code": "ST35",
+      "name": "犊鼻",
+      "side": "right",
+      "pass": true,
+      "error": 5.684341886080802e-14
+    },
+    {
+      "code": "ST36",
+      "name": "足三里",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST37",
+      "name": "上巨虚",
+      "side": "right",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "ST38",
+      "name": "条口",
+      "side": "right",
+      "pass": true,
+      "error": 1.7763568394002505e-15
+    },
+    {
+      "code": "ST39",
+      "name": "下巨虚",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST40",
+      "name": "丰隆",
+      "side": "right",
+      "pass": true,
+      "error": 2.864289338439558e-14
+    },
+    {
+      "code": "ST41",
+      "name": "解溪",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST42",
+      "name": "冲阳",
+      "side": "right",
+      "pass": true,
+      "error": 3.76822190084106e-15
+    },
+    {
+      "code": "ST43",
+      "name": "陥谷",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST44",
+      "name": "内庭",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "ST45",
+      "name": "厉兑",
+      "side": "right",
+      "pass": true,
+      "error": 1.4238583238573986e-14
+    },
+    {
+      "code": "ST1",
+      "name": "承泣",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST2",
+      "name": "四白",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "ST3",
+      "name": "巨髎",
+      "side": "left",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "ST4",
+      "name": "地仓",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST5",
+      "name": "大迎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST6",
+      "name": "颊车",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "ST7",
+      "name": "下关",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST8",
+      "name": "头维",
+      "side": "left",
+      "pass": true,
+      "error": 2.2914314707516465e-13
+    },
+    {
+      "code": "ST9",
+      "name": "人迎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST10",
+      "name": "水突",
+      "side": "left",
+      "pass": true,
+      "error": 2.864289338439558e-14
+    },
+    {
+      "code": "ST11",
+      "name": "气舎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST12",
+      "name": "缺盆",
+      "side": "left",
+      "pass": true,
+      "error": 2.273806142312601e-13
+    },
+    {
+      "code": "ST13",
+      "name": "气戶",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST14",
+      "name": "库房",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "ST15",
+      "name": "屋翳",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST16",
+      "name": "膺窓",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST17",
+      "name": "(乳)中",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST18",
+      "name": "(乳)根",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST19",
+      "name": "不容",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST20",
+      "name": "承满",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST21",
+      "name": "梁门",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST22",
+      "name": "关门",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST23",
+      "name": "太乙",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST24",
+      "name": "滑肉门",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "ST25",
+      "name": "天枢",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "ST26",
+      "name": "外陵",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "ST27",
+      "name": "大巨",
+      "side": "left",
+      "pass": true,
+      "error": 1.1457157353758233e-13
+    },
+    {
+      "code": "ST28",
+      "name": "水道",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "ST29",
+      "name": "归来",
+      "side": "left",
+      "pass": true,
+      "error": 1.180442248897588e-13
+    },
+    {
+      "code": "ST30",
+      "name": "气冲",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST31",
+      "name": "髀关",
+      "side": "left",
+      "pass": true,
+      "error": 1.7763568394002505e-15
+    },
+    {
+      "code": "ST32",
+      "name": "伏兔",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST33",
+      "name": "阴市",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "ST34",
+      "name": "梁丘",
+      "side": "left",
+      "pass": true,
+      "error": 2.847716647714797e-14
+    },
+    {
+      "code": "ST35",
+      "name": "犊鼻",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "ST36",
+      "name": "足三里",
+      "side": "left",
+      "pass": true,
+      "error": 6.355287432313019e-14
+    },
+    {
+      "code": "ST37",
+      "name": "上巨虚",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "ST38",
+      "name": "条口",
+      "side": "left",
+      "pass": true,
+      "error": 2.842257677890751e-14
+    },
+    {
+      "code": "ST39",
+      "name": "下巨虚",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST40",
+      "name": "丰隆",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST41",
+      "name": "解溪",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST42",
+      "name": "冲阳",
+      "side": "left",
+      "pass": true,
+      "error": 3.66205343881779e-15
+    },
+    {
+      "code": "ST43",
+      "name": "陥谷",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "ST44",
+      "name": "内庭",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "ST45",
+      "name": "厉兑",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP1",
+      "name": "隐白",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP2",
+      "name": "大都(都)",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SP3",
+      "name": "太白",
+      "side": "right",
+      "pass": true,
+      "error": 1.7763568394002505e-15
+    },
+    {
+      "code": "SP4",
+      "name": "公孙",
+      "side": "right",
+      "pass": true,
+      "error": 7.120157239281594e-15
+    },
+    {
+      "code": "SP5",
+      "name": "商丘",
+      "side": "right",
+      "pass": true,
+      "error": 7.944109290391274e-15
+    },
+    {
+      "code": "SP6",
+      "name": "三阴交",
+      "side": "right",
+      "pass": true,
+      "error": 1.7404671430534633e-14
+    },
+    {
+      "code": "SP7",
+      "name": "漏谷",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "SP8",
+      "name": "地机",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP9",
+      "name": "阴陵泉",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP10",
+      "name": "血海",
+      "side": "right",
+      "pass": true,
+      "error": 5.739584601870544e-14
+    },
+    {
+      "code": "SP11",
+      "name": "箕门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP12",
+      "name": "冲门",
+      "side": "right",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "SP13",
+      "name": "府舎",
+      "side": "right",
+      "pass": true,
+      "error": 8.881784197001252e-15
+    },
+    {
+      "code": "SP14",
+      "name": "腹结",
+      "side": "right",
+      "pass": true,
+      "error": 2.2743611691451335e-13
+    },
+    {
+      "code": "SP15",
+      "name": "大橫",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SP16",
+      "name": "腹哀",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SP17",
+      "name": "食窦",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "SP18",
+      "name": "天溪",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SP19",
+      "name": "胸乡",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP20",
+      "name": "周荣",
+      "side": "right",
+      "pass": true,
+      "error": 7.944109290391274e-15
+    },
+    {
+      "code": "SP21",
+      "name": "大包",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "SP1",
+      "name": "隐白",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP2",
+      "name": "大都(都)",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SP3",
+      "name": "太白",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP4",
+      "name": "公孙",
+      "side": "left",
+      "pass": true,
+      "error": 4.440892098500626e-16
+    },
+    {
+      "code": "SP5",
+      "name": "商丘",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SP6",
+      "name": "三阴交",
+      "side": "left",
+      "pass": true,
+      "error": 2.929642751054232e-14
+    },
+    {
+      "code": "SP7",
+      "name": "漏谷",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP8",
+      "name": "地机",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP9",
+      "name": "阴陵泉",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP10",
+      "name": "血海",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP11",
+      "name": "箕门",
+      "side": "left",
+      "pass": true,
+      "error": 1.171865515036332e-13
+    },
+    {
+      "code": "SP12",
+      "name": "冲门",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SP13",
+      "name": "府舎",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "SP14",
+      "name": "腹结",
+      "side": "left",
+      "pass": true,
+      "error": 1.1457157353758233e-13
+    },
+    {
+      "code": "SP15",
+      "name": "大橫",
+      "side": "left",
+      "pass": true,
+      "error": 1.1718571004216928e-13
+    },
+    {
+      "code": "SP16",
+      "name": "腹哀",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SP17",
+      "name": "食窦",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "SP18",
+      "name": "天溪",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "SP19",
+      "name": "胸乡",
+      "side": "left",
+      "pass": true,
+      "error": 2.929642751054232e-14
+    },
+    {
+      "code": "SP20",
+      "name": "周荣",
+      "side": "left",
+      "pass": true,
+      "error": 2.2914314707516465e-13
+    },
+    {
+      "code": "SP21",
+      "name": "大包",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "HT1",
+      "name": "极泉",
+      "side": "right",
+      "pass": true,
+      "error": 2.274864045243223e-13
+    },
+    {
+      "code": "HT2",
+      "name": "青灵",
+      "side": "right",
+      "pass": true,
+      "error": 8.881784197001252e-16
+    },
+    {
+      "code": "HT3",
+      "name": "少海",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "HT4",
+      "name": "灵道",
+      "side": "right",
+      "pass": true,
+      "error": 1.1374233532693354e-13
+    },
+    {
+      "code": "HT5",
+      "name": "通里",
+      "side": "right",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "HT6",
+      "name": "阴郄",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "HT7",
+      "name": "神门",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "HT8",
+      "name": "少府",
+      "side": "right",
+      "pass": true,
+      "error": 2.864289338439558e-14
+    },
+    {
+      "code": "HT9",
+      "name": "少冲",
+      "side": "right",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "HT1",
+      "name": "极泉",
+      "side": "left",
+      "pass": true,
+      "error": 8.881784197001252e-16
+    },
+    {
+      "code": "HT2",
+      "name": "青灵",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "HT3",
+      "name": "少海",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "HT4",
+      "name": "灵道",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "HT5",
+      "name": "通里",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "HT6",
+      "name": "阴郄",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "HT7",
+      "name": "神门",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "HT8",
+      "name": "少府",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "HT9",
+      "name": "少冲",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI1",
+      "name": "少泽",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "SI2",
+      "name": "前谷",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SI3",
+      "name": "后溪",
+      "side": "right",
+      "pass": true,
+      "error": 2.6645352591003757e-15
+    },
+    {
+      "code": "SI4",
+      "name": "腕骨",
+      "side": "right",
+      "pass": true,
+      "error": 1.1370071466249427e-13
+    },
+    {
+      "code": "SI5",
+      "name": "阳谷",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SI6",
+      "name": "养老",
+      "side": "right",
+      "pass": true,
+      "error": 1.1718571004216928e-13
+    },
+    {
+      "code": "SI7",
+      "name": "支正",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "SI8",
+      "name": "小海",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI9",
+      "name": "肩贞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI10",
+      "name": "臑俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI11",
+      "name": "天宗",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI12",
+      "name": "秉风",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI13",
+      "name": "曲垣",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI14",
+      "name": "肩外俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI15",
+      "name": "肩中俞",
+      "side": "right",
+      "pass": true,
+      "error": 2.274846706538671e-13
+    },
+    {
+      "code": "SI16",
+      "name": "天窓",
+      "side": "right",
+      "pass": true,
+      "error": 2.274864045243223e-13
+    },
+    {
+      "code": "SI17",
+      "name": "天容",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI18",
+      "name": "颧髎",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "SI19",
+      "name": "听宫",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737541016009064e-13
+    },
+    {
+      "code": "SI1",
+      "name": "少泽",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "SI2",
+      "name": "前谷",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SI3",
+      "name": "后溪",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "SI4",
+      "name": "腕骨",
+      "side": "left",
+      "pass": true,
+      "error": 1.7763568394002505e-15
+    },
+    {
+      "code": "SI5",
+      "name": "阳谷",
+      "side": "left",
+      "pass": true,
+      "error": 1.1370071466249427e-13
+    },
+    {
+      "code": "SI6",
+      "name": "养老",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI7",
+      "name": "支正",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI8",
+      "name": "小海",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "SI9",
+      "name": "肩贞",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "SI10",
+      "name": "臑俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI11",
+      "name": "天宗",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "SI12",
+      "name": "秉风",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI13",
+      "name": "曲垣",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI14",
+      "name": "肩外俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI15",
+      "name": "肩中俞",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "SI16",
+      "name": "天窓",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI17",
+      "name": "天容",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI18",
+      "name": "颧髎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "SI19",
+      "name": "听宫",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL1",
+      "name": "睛明",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL2",
+      "name": "攒竹",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL3",
+      "name": "眉冲",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL4",
+      "name": "曲差",
+      "side": "right",
+      "pass": true,
+      "error": 1.5888218580782548e-14
+    },
+    {
+      "code": "BL5",
+      "name": "五处",
+      "side": "right",
+      "pass": true,
+      "error": 7.944109290391274e-15
+    },
+    {
+      "code": "BL6",
+      "name": "承光",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL7",
+      "name": "通天",
+      "side": "right",
+      "pass": true,
+      "error": 1.0048591735576161e-14
+    },
+    {
+      "code": "BL8",
+      "name": "络却",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL9",
+      "name": "玉枕",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL10",
+      "name": "天柱",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "BL11",
+      "name": "大杼",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL12",
+      "name": "风门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL13",
+      "name": "肺俞",
+      "side": "right",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "BL14",
+      "name": "厥阴俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL15",
+      "name": "心俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL16",
+      "name": "督俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL17",
+      "name": "膈俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL18",
+      "name": "肝俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL19",
+      "name": "膽俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL20",
+      "name": "脾俞",
+      "side": "right",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "BL21",
+      "name": "胃俞",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL22",
+      "name": "三焦俞",
+      "side": "right",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "BL23",
+      "name": "腎俞",
+      "side": "right",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "BL24",
+      "name": "气海俞",
+      "side": "right",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "BL25",
+      "name": "大腸俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL26",
+      "name": "关元俞",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL27",
+      "name": "小肠俞",
+      "side": "right",
+      "pass": true,
+      "error": 1.1718571004216928e-13
+    },
+    {
+      "code": "BL28",
+      "name": "膀胱俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL29",
+      "name": "中膂俞",
+      "side": "right",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "BL30",
+      "name": "白环俞",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL31",
+      "name": "上髎",
+      "side": "right",
+      "pass": true,
+      "error": 1.1457157353758233e-13
+    },
+    {
+      "code": "BL32",
+      "name": "次髎",
+      "side": "right",
+      "pass": true,
+      "error": 1.1457157353758233e-13
+    },
+    {
+      "code": "BL33",
+      "name": "中髎",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL34",
+      "name": "下髎",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL35",
+      "name": "会阳",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL36",
+      "name": "承扶",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL37",
+      "name": "殷门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL38",
+      "name": "(浮)郄",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL39",
+      "name": "委阳",
+      "side": "right",
+      "pass": true,
+      "error": 1.4238583238573986e-14
+    },
+    {
+      "code": "BL40",
+      "name": "委中",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL41",
+      "name": "附分",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL42",
+      "name": "魄户",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "BL43",
+      "name": "膏肓",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL44",
+      "name": "神堂",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL45",
+      "name": "譩譆",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL46",
+      "name": "膈关",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL47",
+      "name": "魂门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL48",
+      "name": "阳纲",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL49",
+      "name": "意舎",
+      "side": "right",
+      "pass": true,
+      "error": 1.5888218580782548e-14
+    },
+    {
+      "code": "BL50",
+      "name": "胃仓",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL51",
+      "name": "肓门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL52",
+      "name": "志室",
+      "side": "right",
+      "pass": true,
+      "error": 2.278173318171838e-13
+    },
+    {
+      "code": "BL53",
+      "name": "胞肓",
+      "side": "right",
+      "pass": true,
+      "error": 1.139086659085919e-13
+    },
+    {
+      "code": "BL54",
+      "name": "秩边",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL55",
+      "name": "合阳",
+      "side": "right",
+      "pass": true,
+      "error": 5.684341886080802e-14
+    },
+    {
+      "code": "BL56",
+      "name": "承筋",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL57",
+      "name": "承山",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL58",
+      "name": "飞扬",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL59",
+      "name": "跗阳",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL60",
+      "name": "昆侖",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL61",
+      "name": "仆參(参)",
+      "side": "right",
+      "pass": true,
+      "error": 1.443119118362539e-14
+    },
+    {
+      "code": "BL62",
+      "name": "申脉",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL63",
+      "name": "金门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL64",
+      "name": "京骨",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL65",
+      "name": "束骨",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL66",
+      "name": "足通谷",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL67",
+      "name": "至阴",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "BL1",
+      "name": "睛明",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL2",
+      "name": "攒竹",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "BL3",
+      "name": "眉冲",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL4",
+      "name": "曲差",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL5",
+      "name": "五处",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL6",
+      "name": "承光",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL7",
+      "name": "通天",
+      "side": "left",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "BL8",
+      "name": "络却",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "BL9",
+      "name": "玉枕",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL10",
+      "name": "天柱",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL11",
+      "name": "大杼",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL12",
+      "name": "风门",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL13",
+      "name": "肺俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL14",
+      "name": "厥阴俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL15",
+      "name": "心俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL16",
+      "name": "督俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL17",
+      "name": "膈俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL18",
+      "name": "肝俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL19",
+      "name": "膽俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL20",
+      "name": "脾俞",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL21",
+      "name": "胃俞",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL22",
+      "name": "三焦俞",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL23",
+      "name": "腎俞",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "BL24",
+      "name": "气海俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL25",
+      "name": "大腸俞",
+      "side": "left",
+      "pass": true,
+      "error": 1.180442248897588e-13
+    },
+    {
+      "code": "BL26",
+      "name": "关元俞",
+      "side": "left",
+      "pass": true,
+      "error": 1.1718571004216928e-13
+    },
+    {
+      "code": "BL27",
+      "name": "小肠俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL28",
+      "name": "膀胱俞",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "BL29",
+      "name": "中膂俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL30",
+      "name": "白环俞",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "BL31",
+      "name": "上髎",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL32",
+      "name": "次髎",
+      "side": "left",
+      "pass": true,
+      "error": 1.1457157353758233e-13
+    },
+    {
+      "code": "BL33",
+      "name": "中髎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL34",
+      "name": "下髎",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL35",
+      "name": "会阳",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL36",
+      "name": "承扶",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL37",
+      "name": "殷门",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL38",
+      "name": "(浮)郄",
+      "side": "left",
+      "pass": true,
+      "error": 5.684341886080802e-14
+    },
+    {
+      "code": "BL39",
+      "name": "委阳",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "BL40",
+      "name": "委中",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL41",
+      "name": "附分",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL42",
+      "name": "魄户",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL43",
+      "name": "膏肓",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL44",
+      "name": "神堂",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL45",
+      "name": "譩譆",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL46",
+      "name": "膈关",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL47",
+      "name": "魂门",
+      "side": "left",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "BL48",
+      "name": "阳纲",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "BL49",
+      "name": "意舎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL50",
+      "name": "胃仓",
+      "side": "left",
+      "pass": true,
+      "error": 3.1776437161565096e-14
+    },
+    {
+      "code": "BL51",
+      "name": "肓门",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "BL52",
+      "name": "志室",
+      "side": "left",
+      "pass": true,
+      "error": 2.278173318171838e-13
+    },
+    {
+      "code": "BL53",
+      "name": "胞肓",
+      "side": "left",
+      "pass": true,
+      "error": 1.1718571004216928e-13
+    },
+    {
+      "code": "BL54",
+      "name": "秩边",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "BL55",
+      "name": "合阳",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "BL56",
+      "name": "承筋",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL57",
+      "name": "承山",
+      "side": "left",
+      "pass": true,
+      "error": 3.1776437161565096e-14
+    },
+    {
+      "code": "BL58",
+      "name": "飞扬",
+      "side": "left",
+      "pass": true,
+      "error": 3.1776437161565096e-14
+    },
+    {
+      "code": "BL59",
+      "name": "跗阳",
+      "side": "left",
+      "pass": true,
+      "error": 3.4809342861069267e-14
+    },
+    {
+      "code": "BL60",
+      "name": "昆侖",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "BL61",
+      "name": "仆參(参)",
+      "side": "left",
+      "pass": true,
+      "error": 1.432144669219779e-14
+    },
+    {
+      "code": "BL62",
+      "name": "申脉",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL63",
+      "name": "金门",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL64",
+      "name": "京骨",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "BL65",
+      "name": "束骨",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "BL66",
+      "name": "足通谷",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "BL67",
+      "name": "至阴",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI1",
+      "name": "涌泉",
+      "side": "right",
+      "pass": true,
+      "error": 7.32410687763558e-15
+    },
+    {
+      "code": "KI2",
+      "name": "然谷",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI3",
+      "name": "太溪",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI4",
+      "name": "大钟",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "KI5",
+      "name": "水泉",
+      "side": "right",
+      "pass": true,
+      "error": 1.5987211554602254e-14
+    },
+    {
+      "code": "KI6",
+      "name": "照海",
+      "side": "right",
+      "pass": true,
+      "error": 4.440892098500626e-16
+    },
+    {
+      "code": "KI7",
+      "name": "复溜",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI8",
+      "name": "交信",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI9",
+      "name": "筑宾",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "KI10",
+      "name": "阴谷",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "KI11",
+      "name": "橫骨",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "KI12",
+      "name": "大赫",
+      "side": "right",
+      "pass": true,
+      "error": 1.5888218580782548e-14
+    },
+    {
+      "code": "KI13",
+      "name": "气穴",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI14",
+      "name": "四满",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI15",
+      "name": "中注",
+      "side": "right",
+      "pass": true,
+      "error": 1.1457157353758233e-13
+    },
+    {
+      "code": "KI16",
+      "name": "肓俞",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI17",
+      "name": "商曲",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI18",
+      "name": "石关",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI19",
+      "name": "阴都",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI20",
+      "name": "腹通谷",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI21",
+      "name": "幽门",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI22",
+      "name": "歩廊",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI23",
+      "name": "神封",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI24",
+      "name": "灵墟",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "KI25",
+      "name": "神蔵",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "KI26",
+      "name": "彧中",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI27",
+      "name": "俞府",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "KI1",
+      "name": "涌泉",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "KI2",
+      "name": "然谷",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI3",
+      "name": "太溪",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI4",
+      "name": "大钟",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "KI5",
+      "name": "水泉",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI6",
+      "name": "照海",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI7",
+      "name": "复溜",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI8",
+      "name": "交信",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI9",
+      "name": "筑宾",
+      "side": "left",
+      "pass": true,
+      "error": 4.0194366942304644e-14
+    },
+    {
+      "code": "KI10",
+      "name": "阴谷",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI11",
+      "name": "橫骨",
+      "side": "left",
+      "pass": true,
+      "error": 1.5888218580782548e-14
+    },
+    {
+      "code": "KI12",
+      "name": "大赫",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI13",
+      "name": "气穴",
+      "side": "left",
+      "pass": true,
+      "error": 1.139086659085919e-13
+    },
+    {
+      "code": "KI14",
+      "name": "四满",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI15",
+      "name": "中注",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI16",
+      "name": "肓俞",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI17",
+      "name": "商曲",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI18",
+      "name": "石关",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI19",
+      "name": "阴都",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI20",
+      "name": "腹通谷",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI21",
+      "name": "幽门",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI22",
+      "name": "歩廊",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI23",
+      "name": "神封",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI24",
+      "name": "灵墟",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "KI25",
+      "name": "神蔵",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "KI26",
+      "name": "彧中",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "KI27",
+      "name": "俞府",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC1",
+      "name": "天池",
+      "side": "right",
+      "pass": true,
+      "error": 1.4458497151625688e-14
+    },
+    {
+      "code": "PC2",
+      "name": "天泉",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC3",
+      "name": "曲泽",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC4",
+      "name": "郄门",
+      "side": "right",
+      "pass": true,
+      "error": 1.1457157353758233e-13
+    },
+    {
+      "code": "PC5",
+      "name": "间使",
+      "side": "right",
+      "pass": true,
+      "error": 1.1374233532693354e-13
+    },
+    {
+      "code": "PC6",
+      "name": "內关",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC7",
+      "name": "大陵",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC8",
+      "name": "劳宫",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC9",
+      "name": "中冲",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC1",
+      "name": "天池",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC2",
+      "name": "天泉",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC3",
+      "name": "曲泽",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC4",
+      "name": "郄门",
+      "side": "left",
+      "pass": true,
+      "error": 1.2710574864626038e-13
+    },
+    {
+      "code": "PC5",
+      "name": "间使",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "PC6",
+      "name": "內关",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC7",
+      "name": "大陵",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "PC8",
+      "name": "劳宫",
+      "side": "left",
+      "pass": true,
+      "error": 5.684341886080802e-14
+    },
+    {
+      "code": "PC9",
+      "name": "中冲",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE1",
+      "name": "关冲",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE2",
+      "name": "液门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE3",
+      "name": "中渚",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE4",
+      "name": "阳池",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE5",
+      "name": "外关",
+      "side": "right",
+      "pass": true,
+      "error": 1.1723955140041653e-13
+    },
+    {
+      "code": "TE6",
+      "name": "支沟",
+      "side": "right",
+      "pass": true,
+      "error": 2.864289338439558e-14
+    },
+    {
+      "code": "TE7",
+      "name": "会宗",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "TE8",
+      "name": "三阳络",
+      "side": "right",
+      "pass": true,
+      "error": 2.929642751054232e-14
+    },
+    {
+      "code": "TE9",
+      "name": "四渎",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "TE10",
+      "name": "天井",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE11",
+      "name": "清令渊",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "TE12",
+      "name": "消泺",
+      "side": "right",
+      "pass": true,
+      "error": 2.2826012588281245e-13
+    },
+    {
+      "code": "TE13",
+      "name": "臑会",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "TE14",
+      "name": "肩髎",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE15",
+      "name": "天髎",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "TE16",
+      "name": "天牖",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "TE17",
+      "name": "翳风",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "TE18",
+      "name": "瘈脉",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE19",
+      "name": "颅息",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "TE20",
+      "name": "角孙",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE21",
+      "name": "耳门",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "TE22",
+      "name": "耳和髎",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "TE23",
+      "name": "丝竹空",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "TE1",
+      "name": "关冲",
+      "side": "left",
+      "pass": true,
+      "error": 5.728578676879116e-14
+    },
+    {
+      "code": "TE2",
+      "name": "液门",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "TE3",
+      "name": "中渚",
+      "side": "left",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "TE4",
+      "name": "阳池",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE5",
+      "name": "外关",
+      "side": "left",
+      "pass": true,
+      "error": 1.2730419646209808e-13
+    },
+    {
+      "code": "TE6",
+      "name": "支沟",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "TE7",
+      "name": "会宗",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "TE8",
+      "name": "三阳络",
+      "side": "left",
+      "pass": true,
+      "error": 1.2710574864626038e-13
+    },
+    {
+      "code": "TE9",
+      "name": "四渎",
+      "side": "left",
+      "pass": true,
+      "error": 1.2710574864626038e-13
+    },
+    {
+      "code": "TE10",
+      "name": "天井",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE11",
+      "name": "清令渊",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE12",
+      "name": "消泺",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "TE13",
+      "name": "臑会",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE14",
+      "name": "肩髎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE15",
+      "name": "天髎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE16",
+      "name": "天牖",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE17",
+      "name": "翳风",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE18",
+      "name": "瘈脉",
+      "side": "left",
+      "pass": true,
+      "error": 2.2914314707516465e-13
+    },
+    {
+      "code": "TE19",
+      "name": "颅息",
+      "side": "left",
+      "pass": true,
+      "error": 2.2925328558047906e-13
+    },
+    {
+      "code": "TE20",
+      "name": "角孙",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "TE21",
+      "name": "耳门",
+      "side": "left",
+      "pass": true,
+      "error": 8.881784197001252e-16
+    },
+    {
+      "code": "TE22",
+      "name": "耳和髎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "TE23",
+      "name": "丝竹空",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "GB1",
+      "name": "瞳子髎",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB2",
+      "name": "听会",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "GB3",
+      "name": "上关",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB4",
+      "name": "颔厌",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB5",
+      "name": "悬颅",
+      "side": "right",
+      "pass": true,
+      "error": 8.881784197001252e-16
+    },
+    {
+      "code": "GB6",
+      "name": "悬厘",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB7",
+      "name": "曲鬓",
+      "side": "right",
+      "pass": true,
+      "error": 2.2740142932498854e-13
+    },
+    {
+      "code": "GB8",
+      "name": "率谷",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB9",
+      "name": "天冲",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB10",
+      "name": "(浮)白",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GB11",
+      "name": "头窍阴",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB12",
+      "name": "完骨",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "GB13",
+      "name": "本神",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "GB14",
+      "name": "阳白",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB15",
+      "name": "头临泣",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GB16",
+      "name": "目窓",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB17",
+      "name": "正营",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "GB18",
+      "name": "承灵",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "GB19",
+      "name": "脑空",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GB20",
+      "name": "风池",
+      "side": "right",
+      "pass": true,
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "code": "GB21",
+      "name": "肩井",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB22",
+      "name": "渊液",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB23",
+      "name": "辄筋",
+      "side": "right",
+      "pass": true,
+      "error": 7.160723346098895e-15
+    },
+    {
+      "code": "GB24",
+      "name": "日月",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "GB25",
+      "name": "京门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB26",
+      "name": "带脉",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB27",
+      "name": "五枢",
+      "side": "right",
+      "pass": true,
+      "error": 3.554447978966673e-15
+    },
+    {
+      "code": "GB28",
+      "name": "维道",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB29",
+      "name": "居髎",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "GB30",
+      "name": "环跳",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB31",
+      "name": "风市",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB32",
+      "name": "中渎",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB33",
+      "name": "膝阳关",
+      "side": "right",
+      "pass": true,
+      "error": 5.728578676879116e-14
+    },
+    {
+      "code": "GB34",
+      "name": "阳陵泉",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB35",
+      "name": "阳交",
+      "side": "right",
+      "pass": true,
+      "error": 3.197442310920451e-14
+    },
+    {
+      "code": "GB36",
+      "name": "外邱",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "GB37",
+      "name": "光明",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB38",
+      "name": "阳辅",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GB39",
+      "name": "悬钟",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB40",
+      "name": "坵墟",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB41",
+      "name": "足临泣",
+      "side": "right",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "GB42",
+      "name": "地五会",
+      "side": "right",
+      "pass": true,
+      "error": 1.0048591735576161e-14
+    },
+    {
+      "code": "GB43",
+      "name": "侠溪",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB44",
+      "name": "足窍阴",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB1",
+      "name": "瞳子髎",
+      "side": "left",
+      "pass": true,
+      "error": 2.274846706538671e-13
+    },
+    {
+      "code": "GB2",
+      "name": "听会",
+      "side": "left",
+      "pass": true,
+      "error": 2.842517866562357e-14
+    },
+    {
+      "code": "GB3",
+      "name": "上关",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB4",
+      "name": "颔厌",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB5",
+      "name": "悬颅",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "GB6",
+      "name": "悬厘",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB7",
+      "name": "曲鬓",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB8",
+      "name": "率谷",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB9",
+      "name": "天冲",
+      "side": "left",
+      "pass": true,
+      "error": 2.2958338407482174e-13
+    },
+    {
+      "code": "GB10",
+      "name": "(浮)白",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GB11",
+      "name": "头窍阴",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GB12",
+      "name": "完骨",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB13",
+      "name": "本神",
+      "side": "left",
+      "pass": true,
+      "error": 2.274846706538671e-13
+    },
+    {
+      "code": "GB14",
+      "name": "阳白",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB15",
+      "name": "头临泣",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "GB16",
+      "name": "目窓",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "GB17",
+      "name": "正营",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB18",
+      "name": "承灵",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB19",
+      "name": "脑空",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB20",
+      "name": "风池",
+      "side": "left",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GB21",
+      "name": "肩井",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "GB22",
+      "name": "渊液",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "GB23",
+      "name": "辄筋",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "GB24",
+      "name": "日月",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB25",
+      "name": "京门",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB26",
+      "name": "带脉",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB27",
+      "name": "五枢",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB28",
+      "name": "维道",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB29",
+      "name": "居髎",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "GB30",
+      "name": "环跳",
+      "side": "left",
+      "pass": true,
+      "error": 3.1776437161565096e-14
+    },
+    {
+      "code": "GB31",
+      "name": "风市",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "GB32",
+      "name": "中渎",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB33",
+      "name": "膝阳关",
+      "side": "left",
+      "pass": true,
+      "error": 2.929642751054232e-14
+    },
+    {
+      "code": "GB34",
+      "name": "阳陵泉",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "GB35",
+      "name": "阳交",
+      "side": "left",
+      "pass": true,
+      "error": 3.1776437161565096e-14
+    },
+    {
+      "code": "GB36",
+      "name": "外邱",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "GB37",
+      "name": "光明",
+      "side": "left",
+      "pass": true,
+      "error": 2.929642751054232e-14
+    },
+    {
+      "code": "GB38",
+      "name": "阳辅",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GB39",
+      "name": "悬钟",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "GB40",
+      "name": "坵墟",
+      "side": "left",
+      "pass": true,
+      "error": 2.864289338439558e-14
+    },
+    {
+      "code": "GB41",
+      "name": "足临泣",
+      "side": "left",
+      "pass": true,
+      "error": 2.864289338439558e-14
+    },
+    {
+      "code": "GB42",
+      "name": "地五会",
+      "side": "left",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "GB43",
+      "name": "侠溪",
+      "side": "left",
+      "pass": true,
+      "error": 2.864289338439558e-14
+    },
+    {
+      "code": "GB44",
+      "name": "足窍阴",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "LR1",
+      "name": "大敦",
+      "side": "right",
+      "pass": true,
+      "error": 3.972054645195637e-15
+    },
+    {
+      "code": "LR2",
+      "name": "行间",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR3",
+      "name": "太冲",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR4",
+      "name": "中封",
+      "side": "right",
+      "pass": true,
+      "error": 7.944109290391274e-15
+    },
+    {
+      "code": "LR5",
+      "name": "蠡沟",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR6",
+      "name": "中都(都)",
+      "side": "right",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "LR7",
+      "name": "膝关",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR8",
+      "name": "曲泉",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR9",
+      "name": "阴包",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR10",
+      "name": "足五里",
+      "side": "right",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "LR11",
+      "name": "阴廉",
+      "side": "right",
+      "pass": true,
+      "error": 7.32410687763558e-15
+    },
+    {
+      "code": "LR12",
+      "name": "急脉",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR13",
+      "name": "章门",
+      "side": "right",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR14",
+      "name": "期门",
+      "side": "right",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "LR1",
+      "name": "大敦",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "LR2",
+      "name": "行间",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR3",
+      "name": "太冲",
+      "side": "left",
+      "pass": true,
+      "error": 2.842517866562357e-14
+    },
+    {
+      "code": "LR4",
+      "name": "中封",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "LR5",
+      "name": "蠡沟",
+      "side": "left",
+      "pass": true,
+      "error": 2.864289338439558e-14
+    },
+    {
+      "code": "LR6",
+      "name": "中都(都)",
+      "side": "left",
+      "pass": true,
+      "error": 4.0194366942304644e-14
+    },
+    {
+      "code": "LR7",
+      "name": "膝关",
+      "side": "left",
+      "pass": true,
+      "error": 3.552713678800501e-15
+    },
+    {
+      "code": "LR8",
+      "name": "曲泉",
+      "side": "left",
+      "pass": true,
+      "error": 6.355287432313019e-14
+    },
+    {
+      "code": "LR9",
+      "name": "阴包",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR10",
+      "name": "足五里",
+      "side": "left",
+      "pass": true,
+      "error": 1.7763568394002505e-15
+    },
+    {
+      "code": "LR11",
+      "name": "阴廉",
+      "side": "left",
+      "pass": true,
+      "error": 1.1370071466249427e-13
+    },
+    {
+      "code": "LR12",
+      "name": "急脉",
+      "side": "left",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "LR13",
+      "name": "章门",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "LR14",
+      "name": "期门",
+      "side": "left",
+      "pass": true,
+      "error": 2.842170943040401e-14
+    },
+    {
+      "code": "GV1",
+      "name": "长強",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV2",
+      "name": "腰俞",
+      "side": "midline",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "GV3",
+      "name": "腰阳关",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV4",
+      "name": "命门",
+      "side": "midline",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "GV5",
+      "name": "悬枢",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV6",
+      "name": "脊中",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GV7",
+      "name": "中枢",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV8",
+      "name": "筋缩",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV9",
+      "name": "至阳",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV10",
+      "name": "灵台",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV11",
+      "name": "神道",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV12",
+      "name": "身柱",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV13",
+      "name": "陶道",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV14",
+      "name": "大椎",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV15",
+      "name": "哑门",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GV16",
+      "name": "风府",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GV17",
+      "name": "脑戶",
+      "side": "midline",
+      "pass": true,
+      "error": 2.2958338407482174e-13
+    },
+    {
+      "code": "GV18",
+      "name": "強间",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV19",
+      "name": "后顶",
+      "side": "midline",
+      "pass": true,
+      "error": 2.278173318171838e-13
+    },
+    {
+      "code": "GV20",
+      "name": "百会",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV21",
+      "name": "前顶",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV22",
+      "name": "囟会",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV23",
+      "name": "上星",
+      "side": "midline",
+      "pass": true,
+      "error": 2.274846706538671e-13
+    },
+    {
+      "code": "GV24",
+      "name": "神庭",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV25",
+      "name": "素髎",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV26",
+      "name": "水沟",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "GV27",
+      "name": "兑端",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "GV28",
+      "name": "龈交",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV1",
+      "name": "会阴",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV2",
+      "name": "曲骨",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV3",
+      "name": "中极",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "CV4",
+      "name": "关元",
+      "side": "midline",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "CV5",
+      "name": "石门",
+      "side": "midline",
+      "pass": true,
+      "error": 1.1457157353758233e-13
+    },
+    {
+      "code": "CV6",
+      "name": "气海",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV7",
+      "name": "阴交",
+      "side": "midline",
+      "pass": true,
+      "error": 1.1457157353758233e-13
+    },
+    {
+      "code": "CV8",
+      "name": "神阙",
+      "side": "midline",
+      "pass": true,
+      "error": 1.1368683772161603e-13
+    },
+    {
+      "code": "CV9",
+      "name": "水分",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV10",
+      "name": "下脘",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "CV11",
+      "name": "建里",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV12",
+      "name": "中脘",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "CV13",
+      "name": "上脘",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "CV14",
+      "name": "巨阙",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV15",
+      "name": "鸠尾",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "CV16",
+      "name": "中庭",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV17",
+      "name": "膻中",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "CV18",
+      "name": "玉堂",
+      "side": "midline",
+      "pass": true,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "code": "CV19",
+      "name": "紫宫",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV20",
+      "name": "华盖",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV21",
+      "name": "璇玑",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    },
+    {
+      "code": "CV22",
+      "name": "天突",
+      "side": "midline",
+      "pass": true,
+      "error": 2.2740142932498854e-13
+    },
+    {
+      "code": "CV23",
+      "name": "廉泉",
+      "side": "midline",
+      "pass": true,
+      "error": 7.105427357601002e-15
+    },
+    {
+      "code": "CV24",
+      "name": "承浆",
+      "side": "midline",
+      "pass": true,
+      "error": 0
+    }
+  ],
+  "errors": [],
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v7/?release=35847076394",
+  "htmlSHA256": "cfd5d9858b915c85727a7fa390cdcd08767d6a8fb710fa0fc1eff49685462ffa",
+  "finishedAt": "2026-09-23T10:21:56.465Z"
+}
