@@ -1,21 +1,19 @@
-name: Publish V6 meridian navigation repair
+name: Publish V7 meridian focus repair
 on:
   push:
-    paths:
-      - 'atlas-meridian-v6-delivery/**'
-      - '.github/workflows/atlas-meridian-v6.yml'
+    paths: ['atlas-meridian-v6-delivery/**', '.github/workflows/atlas-meridian-v6.yml']
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: atlas-meridian-v6
+  group: atlas-meridian-v7
   cancel-in-progress: true
 jobs:
   deliver:
     runs-on: ubuntu-latest
     timeout-minutes: 28
     env:
-      NODE_PATH: /tmp/meridian-v6/node_modules
+      NODE_PATH: /tmp/meridian-v7/node_modules
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,102 +21,109 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply only the readable, guarded meridian repair
+      - name: Build an isolated revision without replacing the existing V6
         run: |
-          python atlas-meridian-v6-delivery/build.py
-          node --check fullbody-tcm-v6/app.js
-          node --check fullbody-tcm-v6/learning-enhancements.js
-          node --check atlas-meridian-v6-delivery/verify.cjs
-      - name: Install pinned renderer and real browsers
+          python - <<'PY'
+          from pathlib import Path
+          t=Path('atlas-meridian-v6-delivery')
+          s=(t/'build.py').read_text().replace("P=Path('fullbody-tcm-v6')","P=Path('fullbody-tcm-v7')").replace('fullbody-tcm-v6/','fullbody-tcm-v7/').replace('"6.0"','"7.0"').replace("'6.0'","'7.0'").replace('V6','V7')
+          (t/'build-v7.py').write_text(s)
+          s=(t/'verify.cjs').read_text().replace('fullbody-tcm-v6','fullbody-tcm-v7').replace("'6.0'","'7.0'").replace('V6','V7')
+          (t/'verify-v7.cjs').write_text(s)
+          PY
+          python atlas-meridian-v6-delivery/build-v7.py
+          node --check fullbody-tcm-v7/app.js
+          node --check fullbody-tcm-v7/learning-enhancements.js
+      - name: Install pinned renderer and browsers
         run: |
-          npm install --prefix /tmp/meridian-v6 three@0.180.0 esbuild@0.25.10 playwright@1.56.1
-          /tmp/meridian-v6/node_modules/.bin/playwright install --with-deps chromium webkit
+          npm install --prefix /tmp/meridian-v7 three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/meridian-v7/node_modules/.bin/playwright install --with-deps chromium webkit
           sudo apt-get install -y fonts-noto-cjk
-      - name: Bundle the complete bone viewer and verify unchanged model assets
+      - name: Bundle with literal-safe HTML substitution and unchanged anatomy
         run: |
           node - <<'JS'
           const fs=require('fs'),crypto=require('crypto'),esbuild=require('esbuild');
-          const root='fullbody-tcm-v6',hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+          const root='fullbody-tcm-v7',hash=b=>crypto.createHash('sha256').update(b).digest('hex');
           esbuild.buildSync({entryPoints:[root+'/app.js'],bundle:true,minify:true,format:'iife',target:['es2020'],loader:{'.txt':'text'},nodePaths:[process.env.NODE_PATH],outfile:root+'/app.bundle.js',legalComments:'inline'});
           let h=fs.readFileSync(root+'/index.template.html','utf8');
-          h=h.replace('<link rel="stylesheet" href="styles.css">','<style>'+fs.readFileSync(root+'/styles.css','utf8')+'</style>').replace(/<script type="importmap">[\s\S]*?<\/script>/g,'');
+          h=h.replace('<link rel="stylesheet" href="styles.css">',()=>'<style>'+fs.readFileSync(root+'/styles.css','utf8')+'</style>').replace(/<script type="importmap">[\s\S]*?<\/script>/g,'');
           const bundle=fs.readFileSync(root+'/app.bundle.js','utf8').replace(/<\/script/gi,'<\\/script');
-          h=h.replace('<script type="module" src="app.js"></script>','<script>window.FOOT_ATLAS_EMBEDDED='+JSON.stringify(fs.readFileSync(root+'/assets/fullbody.glb').toString('base64'))+';</script>\n<script>'+bundle+'</script>');
+          h=h.replace('<script type="module" src="app.js"></script>',()=>'<script>window.FOOT_ATLAS_EMBEDDED='+JSON.stringify(fs.readFileSync(root+'/assets/fullbody.glb').toString('base64'))+';</script>\n<script>'+bundle+'</script>');
           if(h.includes('src="app.js"')||!h.includes('FOOT_ATLAS_EMBEDDED'))throw Error('Unbundled template');
           fs.writeFileSync(root+'/index.html',h);
           const expected={'fullbody.glb':'f675737728bd5c21c553bb82490694f4c52cb744f7f9ebba346c66775aebd1c2','muscular.glb':'e655e5d21e821778c277261026dac00747b929abee5bd61d2b5a156fe5fbcde7','nervous.glb':'647a754f729510b0f9e4297e5c6a2ef69b9e5b30142b1a07928ae929e3283652'};
           for(const [name,sha] of Object.entries(expected))if(hash(fs.readFileSync(root+'/assets/'+name))!==sha)throw Error('Changed anatomy '+name);
-          const info={version:'fullbody-tcm-v6',bones:210,classicalNames:361,navigationMarkers:670,scope:'meridian navigation and readable labels only',htmlSHA256:hash(Buffer.from(h)),htmlBytes:Buffer.byteLength(h),modelSHA256:expected,clinicalCalibration:false,allAudioHumanReviewed:false,previousViewersUnchanged:true};
+          const info={version:'fullbody-tcm-v7',bones:210,classicalNames:361,navigationMarkers:670,scope:'meridian navigation and readable labels only',htmlSHA256:hash(Buffer.from(h)),htmlBytes:Buffer.byteLength(h),modelSHA256:expected,clinicalCalibration:false,allAudioHumanReviewed:false,previousViewersUnchanged:true};
           fs.writeFileSync(root+'/build-info.json',JSON.stringify(info,null,2));console.log(info);
           JS
-      - name: Real Chromium point-by-point and user interaction checks
-        run: node atlas-meridian-v6-delivery/verify.cjs
-      - name: WebKit focus and responsive compatibility checks
+      - name: Chromium all-point camera and real user interaction checks
+        run: node atlas-meridian-v6-delivery/verify-v7.cjs
+      - name: WebKit point focus and responsive checks
         env:
           BROWSER: webkit
-        run: node atlas-meridian-v6-delivery/verify.cjs
-      - name: Confirm every accepted prior viewer remains unchanged
+        run: node atlas-meridian-v6-delivery/verify-v7.cjs
+      - name: Ensure all approved previous viewers remain unchanged
         run: |
-          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-atlas/ fullbody-tcm-v3/ fullbody-tcm-v4/ fullbody-tcm-v5/)"
-      - name: Publish only the browser-tested V6 directory
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-atlas/ fullbody-tcm-v3/ fullbody-tcm-v4/ fullbody-tcm-v5/ fullbody-tcm-v6/)"
+      - name: Publish the tested V7 only
         run: |
           git fetch origin main
-          git worktree add -B meridian-v6-release /tmp/meridian-v6-publish origin/main
-          test ! -e /tmp/meridian-v6-publish/fullbody-tcm-v6
-          cp -a fullbody-tcm-v6 /tmp/meridian-v6-publish/fullbody-tcm-v6
-          cd /tmp/meridian-v6-publish
+          git worktree add -B meridian-v7-release /tmp/meridian-v7-publish origin/main
+          test ! -e /tmp/meridian-v7-publish/fullbody-tcm-v7
+          cp -a fullbody-tcm-v7 /tmp/meridian-v7-publish/fullbody-tcm-v7
+          cd /tmp/meridian-v7-publish
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add fullbody-tcm-v6/
+          git add fullbody-tcm-v7/
           git rm --ignore-unmatch atlas-meridian-v6-delivery/source.00.b64 atlas-meridian-v6-delivery/source.01.b64
-          git commit -m 'Publish V6 complete-name meridian navigation and reliable camera focus; preserve previous viewers'
+          git commit -m 'Publish V7 complete-name meridian focus and readable labels; preserve V5 and V6'
           git push origin HEAD:main
-      - name: Verify public Pages serves exactly the tested HTML
+      - name: Wait for exact public Pages build
         run: |
           python - <<'PY'
           from pathlib import Path
           import hashlib,urllib.request,time
-          expected=hashlib.sha256(Path('fullbody-tcm-v6/index.html').read_bytes()).hexdigest()
+          expected=hashlib.sha256(Path('fullbody-tcm-v7/index.html').read_bytes()).hexdigest()
           for attempt in range(60):
               try:
-                  url='https://hengtong320.github.io/notionweb/fullbody-tcm-v6/?build='+expected[:16]+'&attempt='+str(attempt)
+                  url='https://hengtong320.github.io/notionweb/fullbody-tcm-v7/?build='+expected[:16]+'&attempt='+str(attempt)
                   with urllib.request.urlopen(url,timeout=25) as response:data=response.read()
                   current=hashlib.sha256(data).hexdigest()
                   print('PAGES',attempt,len(data),current,flush=True)
                   if current==expected:break
               except Exception as e:print(str(e),flush=True)
               time.sleep(5)
-          else:raise RuntimeError('Published build does not match the tested V6')
+          else:raise RuntimeError('Pages is not serving the tested V7')
           PY
-      - name: Repeat all focus and interaction assertions on the public URL
+      - name: Repeat all focus assertions against actual public URL
         env:
-          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v6/?release=${{ github.run_id }}
-        run: node atlas-meridian-v6-delivery/verify.cjs
-      - name: Record verified public delivery without changing viewer code
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v7/?release=${{ github.run_id }}
+        run: node atlas-meridian-v6-delivery/verify-v7.cjs
+      - name: Save exact-build public delivery evidence
         run: |
           python - <<'PY'
           from pathlib import Path
           import json,os
-          root=Path('fullbody-tcm-v6');info=json.loads((root/'build-info.json').read_text());reports={}
+          root=Path('fullbody-tcm-v7');info=json.loads((root/'build-info.json').read_text());reports={}
           for name in ['local-chromium','local-webkit','live-chromium']:
               reports[name]=json.loads((root/'checks'/(name+'.json')).read_text())
               assert reports[name]['success'] and all(c['pass'] for c in reports[name]['checks'])
               assert reports[name]['htmlSHA256']==info['htmlSHA256']
-          release={**info,'status':'published-and-browser-verified','url':reports['live-chromium']['url'],'checks':{k:len(v['checks']) for k,v in reports.items()},'pointFocusChecks':{k:len(v['pointChecks']) for k,v in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'browserCoverage':'Headless Chromium and WebKit, desktop/phone portrait/landscape; not all physical devices','clinicalAccuracyClaim':False,'completeInternalMeridianBranches':False,'screenshots':'Local exact matching build; no duplicate public screenshots'}
+          release={**info,'status':'published-and-browser-verified','url':reports['live-chromium']['url'],'checks':{k:len(v['checks']) for k,v in reports.items()},'pointFocusChecks':{k:len(v['pointChecks']) for k,v in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'browserCoverage':'Headless Chromium/WebKit, desktop and phone sizes, not all physical devices','clinicalAccuracyClaim':False,'completeInternalMeridianBranches':False,'screenshots':'Local exact matching build; public repeat does not duplicate screenshots'}
           (root/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
           PY
-          cp fullbody-tcm-v6/checks/live-chromium.json /tmp/meridian-v6-publish/fullbody-tcm-v6/checks/live-chromium.json
-          cp fullbody-tcm-v6/delivery-release.json /tmp/meridian-v6-publish/fullbody-tcm-v6/delivery-release.json
-          cd /tmp/meridian-v6-publish
-          git add fullbody-tcm-v6/checks/live-chromium.json fullbody-tcm-v6/delivery-release.json
-          git commit -m 'Record V6 public per-point focus checks and deployment evidence'
+          cp fullbody-tcm-v7/checks/live-chromium.json /tmp/meridian-v7-publish/fullbody-tcm-v7/checks/live-chromium.json
+          cp fullbody-tcm-v7/delivery-release.json /tmp/meridian-v7-publish/fullbody-tcm-v7/delivery-release.json
+          cd /tmp/meridian-v7-publish
+          git add fullbody-tcm-v7/checks/live-chromium.json fullbody-tcm-v7/delivery-release.json
+          git commit -m 'Record V7 public per-point focus and deployment checks'
           git push origin HEAD:main
-      - name: Export candidate, actual screenshots and all test evidence
+      - name: Export candidate and evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-meridian-v6-release
+          name: atlas-meridian-v7-release
           path: |
-            fullbody-tcm-v6/
+            fullbody-tcm-v7/
             atlas-meridian-v6-delivery/
           retention-days: 14
