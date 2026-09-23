@@ -1,0 +1,62 @@
+{
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v7/?targeting=35848225794",
+  "startedAt": "2026-09-23T10:21:02.032Z",
+  "success": true,
+  "checks": [
+    {
+      "name": "Exact published viewer bytes",
+      "pass": true
+    },
+    {
+      "name": "A genuine line-only target is unobstructed",
+      "pass": true,
+      "detail": {
+        "x": 675.2859281235977,
+        "y": 736.3754937195698,
+        "z": 0.9998268757138512
+      }
+    },
+    {
+      "name": "Actual line click selects the matching channel",
+      "pass": true
+    },
+    {
+      "name": "Right rail contains a visible label",
+      "pass": true,
+      "detail": {
+        "code": "KI26",
+        "side": "right"
+      }
+    },
+    {
+      "name": "Right-side tool strip does not intercept label click",
+      "pass": true
+    },
+    {
+      "name": "Pinned selection does not remove names from the remaining pages",
+      "pass": true,
+      "detail": {
+        "expected": 54,
+        "actual": 54,
+        "pages": 2
+      }
+    },
+    {
+      "name": "Autofocus can be disabled without breaking selection",
+      "pass": true
+    },
+    {
+      "name": "Re-enabling autofocus restores actual camera movement",
+      "pass": true
+    },
+    {
+      "name": "No uncaught script errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "clinicalValidation": false,
+  "htmlSHA256": "cfd5d9858b915c85727a7fa390cdcd08767d6a8fb710fa0fc1eff49685462ffa",
+  "finishedAt": "2026-09-23T10:21:54.918Z"
+}
