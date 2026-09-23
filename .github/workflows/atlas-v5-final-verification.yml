@@ -1,0 +1,78 @@
+name: Final V5 public verification
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas-v5-final-verification.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NODE_PATH: /tmp/v5-final/node_modules
+      LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v5/?release=35825931159
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check unchanged build and completed local browser evidence
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          p=Path('fullbody-tcm-v5');h=hashlib.sha256((p/'index.html').read_bytes()).hexdigest()
+          assert h=='3489026c40d28258b19fc04075b2190dae1692819dda83ffd37e7f0bef11ccdb'
+          for browser in ['chromium','webkit']:
+              r=json.loads((p/'checks'/('local-'+browser+'.json')).read_text())
+              assert r['success'] and r['htmlSHA256']==h and all(c['pass'] for c in r['checks'])
+          source=Path('atlas-v5-delivery/verify.cjs').read_text()
+          # Keep every real-browser functional assertion and actual mouse gesture.
+          # Matching-build local screenshots are already committed. Repeated public
+          # screenshot rasterization exceeded the software GPU time limit; do not
+          # make artifact capture a prerequisite for rechecking public functionality.
+          for scene in ['gv','muscles','nerves','lumbar','phone']:
+              old="await page.screenshot({path:path.join(out,(live?'live-':'')+mode+'-"+scene+".png')});"
+              assert old in source,scene
+              source=source.replace(old,"await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));",1)
+          source=source.replace("type:'actual-browser-rendering'","type:'actual-browser-public-functionality',screenshotPolicy:'Reuse matching local-build screenshots; public assertions unchanged'")
+          Path('/tmp/v5-public-verify.cjs').write_text(source)
+          PY
+      - name: Install actual Chromium browser
+        run: |
+          npm install --prefix /tmp/v5-final playwright@1.56.1
+          /tmp/v5-final/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Run all public browser and actual mouse assertions
+        run: node /tmp/v5-public-verify.cjs
+      - name: Record exact public build verification without changing application files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,hashlib
+          p=Path('fullbody-tcm-v5');info=json.loads((p/'build-info.json').read_text());counts={}
+          for name in ['local-chromium','local-webkit','live-chromium']:
+              r=json.loads((p/'checks'/(name+'.json')).read_text())
+              assert r['success'] and all(c['pass'] for c in r['checks']) and r['htmlSHA256']==info['htmlSHA256']
+              counts[name]=len(r['checks'])
+          assert hashlib.sha256((p/'index.html').read_bytes()).hexdigest()==info['htmlSHA256']
+          info.update({'deploymentStatus':'published-and-browser-verified','url':os.environ['LIVE_URL'],'checks':counts,'checkedAt':r['finishedAt'],'publicationWorkflow':'35825931159','verificationWorkflow':os.environ['GITHUB_RUN_ID'],'browserCoverage':'Headless Chromium and WebKit at desktop and phone viewports; not all physical devices','screenshotCoverage':'Matching local build captured at deviceScaleFactor 1; public repeat verifies all functional assertions without duplicate captures'})
+          (p/'delivery-release.json').write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v5/checks/live-chromium.json fullbody-tcm-v5/delivery-release.json
+          git diff --cached --name-only
+          git commit -m 'Record successful actual public V5 functionality and exact build verification'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas-v5-final-public-verification
+          path: |
+            fullbody-tcm-v5/checks/
+            fullbody-tcm-v5/delivery-release.json
+          retention-days: 14
