@@ -51,8 +51,10 @@ async function settle(page){await page.waitForFunction(()=>!window.__FOOT_ATLAS_
   await page.evaluate(()=>window.__FOOT_ATLAS__.setMode('move'));await page.mouse.move(pt.x,pt.y);await page.mouse.down();await page.mouse.move(pt.x+45,pt.y-20,{steps:8});await page.mouse.up();
   check('Real mouse drag moves selected bone',await page.evaluate(()=>Math.hypot(...window.__FOOT_ATLAS__.getState().bones.find(b=>b.id==='L3').offset)>1));await page.evaluate(()=>window.__FOOT_ATLAS__.reset());await settle(page);
  }
- const voiceURL=new URL('./voice/'+Object.values(JSON.parse(fs.readFileSync(path.join(root,'voice-map.json'),'utf8')).mapping)[0],url).href;
- const vr=await fetch(voiceURL);check('Published audio file accessible',vr.status===200&&Number(vr.headers.get('content-length'))>500);
+ const voiceName=Object.values(JSON.parse(fs.readFileSync(path.join(root,'voice-map.json'),'utf8')).mapping)[0];
+ const voiceURL=new URL('./voice/'+voiceName,url).href;
+ const vr=await fetch(voiceURL),audioBytes=Buffer.from(await vr.arrayBuffer());
+ check('Published audio file accessible and intact',vr.status===200&&audioBytes.length>500&&hash(audioBytes)===hash(fs.readFileSync(path.join(root,'voice',voiceName))),{status:vr.status,bytes:audioBytes.length});
  check('Pronunciation guard active',await page.evaluate(()=>window.__ATLAS_SPEECH__.getState().readingGuard===true));
  check('No horizontal desktop overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  await page.setViewportSize({width:390,height:844});await settle(page);check('Phone has usable 3D viewport',await page.locator('#viewport').evaluate(e=>e.clientWidth>300&&e.clientHeight>300));
