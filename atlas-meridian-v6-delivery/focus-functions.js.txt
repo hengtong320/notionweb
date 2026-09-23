@@ -1,0 +1,30 @@
+ function prepareNavigation(){
+  ctx.prepareReferenceFocus?.();suspended=false;pointsOn=true;namesOn=true;
+  $('acupointToggle').classList.add('active');$('pointNamesToggle').classList.add('active');
+  if(compact())setPanel(false);
+ }
+ function frameNavigation(box,direction,up,title){
+  const serial=++focusSerial;
+  navigationFocus={box:box.clone(),direction:[...direction],up:[...up],title,serial};
+  const apply=()=>{if(serial!==focusSerial||!navigationFocus)return;ctx.focusBounds(box,{direction,up});$('viewBadge').lastElementChild.textContent=title;};
+  apply();requestAnimationFrame(()=>{apply();lastLabelsAt=0;});
+ }
+ function fitMeridian(requestedDirection=null){
+  const active=routeRecords.filter(routeMatches),pts=active.flatMap(r=>[...r.data.map(p=>p.position),...r.guides.flatMap(g=>g.points)]);
+  if(!pts.length){toast('该补充条目尚无三维参照；十四经的361个穴名均可导航');return false;}
+  prepareNavigation();toggleTCM(true);labelPage=0;
+  const ids=[...selectedMeridians];let dir=[0,.05,1];
+  if(ids.every(id=>['GV','BL','SI','TE'].includes(id)))dir=[0,.08,-1];
+  else if(ids.length===1&&ids[0]==='GB')dir=[tcmSide==='left'?1:-1,.05,.15];
+  frameNavigation(new THREE.Box3().setFromPoints(pts).expandByScalar(35),requestedDirection||dir,[0,1,0],ids.map(id=>meridianMap[id].short).join('＋')+' · 全段导航');
+  updateOverlayVisibility();return true;
+ }
+ function focusPoint(pos){
+  if(!pos)return false;
+  const p=selectedPoint?.position===pos?selectedPoint:getVisiblePoints().find(p=>p.position===pos);
+  prepareNavigation();toggleTCM(true);
+  let dir=p?.view?[...p.view]:[0,.05,1];if(p?.side==='left')dir[0]*=-1;
+  const up=Math.abs(dir[1])>.9?[0,0,1]:[0,1,0],radius=p?.focusRadius||70;
+  frameNavigation(new THREE.Box3(pos.clone().addScalar(-radius),pos.clone().addScalar(radius)),dir,up,(p?.name||'穴位')+' · '+(p?.code||'')+' 部位参照');
+  updateOverlayVisibility();return true;
+ }
