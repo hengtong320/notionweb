@@ -1,0 +1,159 @@
+name: Deliver V5 anatomy website
+on:
+  push:
+    paths:
+      - 'atlas-v5-delivery/**'
+      - '.github/workflows/atlas-v5-web-delivery.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas-v5-web-delivery
+  cancel-in-progress: true
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_PATH: /tmp/v5-node/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Restore exact V5 source and preserve all original viewers
+        run: |
+          python - <<'PY'
+          import base64,zlib,json,hashlib,subprocess,shutil
+          from pathlib import Path
+          encoded=Path('atlas-v5-delivery/source.b64').read_text().strip()
+          encoded=encoded.replace('hee2XNg10vPPrvGlgIj','hee2XNg10vPPrvngIj')
+          assert hashlib.sha256(encoded.encode()).hexdigest()=='09cb208e50734c2441a68aa7b87512f6f7092b698f495db09d3c1615218a50ed','Source transport checksum mismatch'
+          raw=zlib.decompress(base64.b64decode(encoded))
+          assert hashlib.sha256(raw).hexdigest()=='a7177d4e3b0b1617ca5243e67fc4660aad7389a14fb7b3cf5c1ebe1ccdf84290'
+          records=json.loads(raw);root=Path('fullbody-tcm-v5')
+          if root.exists():raise RuntimeError('V5 destination already exists; refusing to overwrite')
+          shutil.copytree('fullbody-tcm-v4',root)
+          for old in ['qa-v4','qa-v3','qa','checks']:
+              shutil.rmtree(root/old,ignore_errors=True)
+          for old in ['delivery-release.json','build-info.json']:(root/old).unlink(missing_ok=True)
+          for name,item in records.items():
+              assert '/' not in name and '..' not in name
+              if 'baseBlob' in item:
+                  content=subprocess.check_output(['git','cat-file','blob',item['baseBlob']]).decode()
+                  for start,end,replacement in reversed(item['edits']):content=content[:start]+replacement+content[end:]
+              else:content=item['content']
+              assert hashlib.sha256(content.encode()).hexdigest()==item['sha256'],name
+              (root/name).write_text(content)
+              print('EXACT_V5_SOURCE',name)
+          expected={'fullbody.glb':'f675737728bd5c21c553bb82490694f4c52cb744f7f9ebba346c66775aebd1c2','muscular.glb':'e655e5d21e821778c277261026dac00747b929abee5bd61d2b5a156fe5fbcde7','nervous.glb':'647a754f729510b0f9e4297e5c6a2ef69b9e5b30142b1a07928ae929e3283652'}
+          for name,digest in expected.items():assert hashlib.sha256((root/'assets'/name).read_bytes()).hexdigest()==digest,name
+          (root/'README.md').write_text('''# V5 分层观察 · 网页版
+          
+          入口：https://hengtong320.github.io/notionweb/fullbody-tcm-v5/
+          
+          从聊天交付的 V5 源码还原，保留原210个骨块。肌肉、神经和音频为同站点按需加载，无需下载HTML或手动部署。旧版本不覆盖。
+          
+          督脉走向导览独立于已标注穴位，显示为虚线；支持多经脉对照，收起控制区不隐藏图层。骨骼结构、肌肉外形、神经走行、分层对照四个预设；操作栏可折叠，鼠标指向缩放。
+          
+          经络路径与95个有手工参照标记的穴名均未完成临床定位校准；虚线顶点不是新增穴位。不用于准确取穴、针刺、诊断或复位。不存在完整皮肤与皮下脂肪层。模型显示预设中的透明、透视是学习效果，不代表实际组织透明度或真实遮挡。
+          
+          已知易错读音启用提示与普通话回退，但没有重新生成并逐条审听全部音频。浏览器测试检查加载、渲染及交互，不是解剖定位准确度或专业读音认证。
+          
+          发布结果与具体浏览器检查以 delivery-release.json 和 checks/ 内记录为准。模型许可与署名见 MODEL-LICENSES.txt。
+          ''')
+          (root/'build-info.json').write_text(json.dumps({'version':'fullbody-tcm-v5','source':'Chat V5 review package; exact source hashes checked','sourcePayloadSHA256':hashlib.sha256(raw).hexdigest(),'bones':210,'assetsSHA256':expected,'oldViewersUnchanged':True,'clinicalCalibration':False,'allAudioHumanReviewed':False,'deploymentStatus':'candidate'},indent=2))
+          PY
+      - name: Install pinned renderer and browser tools
+        run: |
+          npm install --prefix /tmp/v5-node three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/v5-node/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Bundle web entry with embedded bone model
+        run: |
+          node --check fullbody-tcm-v5/app.js
+          node --check fullbody-tcm-v5/learning-enhancements.js
+          node --check fullbody-tcm-v5/tissues-v4.js
+          node - <<'JS'
+          const fs=require('fs'),path=require('path'),crypto=require('crypto'),esbuild=require('esbuild');
+          const root='fullbody-tcm-v5';
+          esbuild.buildSync({entryPoints:[root+'/app.js'],bundle:true,minify:true,format:'iife',target:['es2020'],loader:{'.txt':'text'},nodePaths:[process.env.NODE_PATH],outfile:root+'/app.bundle.js',legalComments:'inline'});
+          let h=fs.readFileSync(root+'/index.template.html','utf8');
+          h=h.replace('<link rel="stylesheet" href="styles.css">','<style>'+fs.readFileSync(root+'/styles.css','utf8')+'</style>').replace(/<script type="importmap">[\s\S]*?<\/script>/g,'');
+          const model=fs.readFileSync(root+'/assets/fullbody.glb').toString('base64');
+          const bundle=fs.readFileSync(root+'/app.bundle.js','utf8').replace(/<\/script/gi,'<\\/script');
+          h=h.replace('<script type="module" src="app.js"></script>','<script>window.FOOT_ATLAS_EMBEDDED='+JSON.stringify(model)+';</script>\n<script>'+bundle+'</script>');
+          if(h.includes('src="app.js"')||!h.includes('FOOT_ATLAS_EMBEDDED'))throw Error('Unexpected template');
+          fs.writeFileSync(root+'/index.html',h);
+          const info=JSON.parse(fs.readFileSync(root+'/build-info.json','utf8'));
+          info.htmlSHA256=crypto.createHash('sha256').update(h).digest('hex');info.htmlBytes=Buffer.byteLength(h);
+          fs.writeFileSync(root+'/build-info.json',JSON.stringify(info,null,2));console.log(info);
+          JS
+      - name: Verify real Chromium rendering and key interactions
+        run: node atlas-v5-delivery/verify.cjs
+      - name: Verify WebKit rendering and compact layout
+        env:
+          BROWSER: webkit
+        run: node atlas-v5-delivery/verify.cjs
+      - name: Prove all accepted previous viewers unchanged
+        run: |
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-atlas/ fullbody-tcm-v3/ fullbody-tcm-v4/)"
+      - name: Publish the browser-tested V5 directory only
+        run: |
+          git fetch origin main
+          git worktree add -B atlas-v5-publish /tmp/v5-publish origin/main
+          test ! -e /tmp/v5-publish/fullbody-tcm-v5
+          cp -a fullbody-tcm-v5 /tmp/v5-publish/fullbody-tcm-v5
+          cd /tmp/v5-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v5/
+          git commit -m 'Publish V5 layered anatomy viewer and real-browser evidence'
+          git push origin HEAD:main
+      - name: Confirm GitHub Pages serves the exact V5 webpage
+        run: |
+          python - <<'PY'
+          import hashlib,time,urllib.request
+          from pathlib import Path
+          target=hashlib.sha256(Path('fullbody-tcm-v5/index.html').read_bytes()).hexdigest()
+          for i in range(60):
+              try:
+                  url='https://hengtong320.github.io/notionweb/fullbody-tcm-v5/?build='+target[:12]+'&n='+str(i)
+                  with urllib.request.urlopen(url,timeout=20) as r:data=r.read()
+                  if hashlib.sha256(data).hexdigest()==target:
+                      print('PUBLIC_V5_MATCH',target,flush=True);break
+              except Exception as e:print(str(e),flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Public page not yet matching verified build')
+          PY
+      - name: Repeat rendering checks on the real public URL
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v5/?release=${{ github.run_id }}
+        run: node atlas-v5-delivery/verify.cjs
+      - name: Record verified delivery
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('fullbody-tcm-v5');info=json.loads((p/'build-info.json').read_text());results={}
+          for name in ['local-chromium','local-webkit','live-chromium']:
+              r=json.loads((p/'checks'/(name+'.json')).read_text());assert r['success'];assert r['htmlSHA256']==info['htmlSHA256'];results[name]=len(r['checks'])
+          info.update({'deploymentStatus':'published-and-browser-verified','url':'https://hengtong320.github.io/notionweb/fullbody-tcm-v5/?release='+os.environ['GITHUB_RUN_ID'],'workflowRun':os.environ['GITHUB_RUN_ID'],'checks':results,'checkedAt':r['finishedAt'],'browserCoverage':'Headless Chromium and WebKit, desktop and phone viewports; not all physical devices'})
+          (p/'delivery-release.json').write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          PY
+          cp fullbody-tcm-v5/checks/live-chromium.json /tmp/v5-publish/fullbody-tcm-v5/checks/
+          cp fullbody-tcm-v5/delivery-release.json /tmp/v5-publish/fullbody-tcm-v5/
+          cd /tmp/v5-publish
+          git add fullbody-tcm-v5/checks/live-chromium.json fullbody-tcm-v5/delivery-release.json
+          git commit -m 'Record successful public V5 rendering and web delivery'
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas-v5-web-release
+          path: |
+            fullbody-tcm-v5/
+            atlas-v5-delivery/
+          retention-days: 14
