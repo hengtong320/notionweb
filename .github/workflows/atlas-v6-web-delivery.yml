@@ -44,17 +44,7 @@ jobs:
           /tmp/v6-node/node_modules/.bin/playwright install --with-deps chromium webkit
           sudo apt-get install -y fonts-noto-cjk
       - name: Bundle self-contained bone-model entry with same-site optional layers
-        run: |
-          node - <<'JS'
-          const fs=require('fs'),esbuild=require('esbuild'),crypto=require('crypto'),root='fullbody-tcm-v6';
-          esbuild.buildSync({entryPoints:[root+'/app.js'],bundle:true,minify:true,format:'iife',target:['es2020'],loader:{'.txt':'text'},nodePaths:[process.env.NODE_PATH],outfile:root+'/app.bundle.js',legalComments:'inline'});
-          let h=fs.readFileSync(root+'/index.template.html','utf8');
-          h=h.replace('<link rel="stylesheet" href="styles.css">','<style>'+fs.readFileSync(root+'/styles.css','utf8')+'</style>').replace(/<script type="importmap">[\s\S]*?<\/script>/g,'');
-          const model=fs.readFileSync(root+'/assets/fullbody.glb').toString('base64');const bundle=fs.readFileSync(root+'/app.bundle.js','utf8').replace(/<\/script/gi,'<\\/script');
-          h=h.replace('<script type="module" src="app.js"></script>','<script>window.FOOT_ATLAS_EMBEDDED='+JSON.stringify(model)+';</script>\n<script>'+bundle+'</script>');
-          if(h.includes('src="app.js"')||!h.includes('FOOT_ATLAS_EMBEDDED'))throw Error('Incomplete HTML');fs.writeFileSync(root+'/index.html',h);
-          const info=JSON.parse(fs.readFileSync(root+'/build-info.json','utf8'));info.htmlSHA256=crypto.createHash('sha256').update(h).digest('hex');info.htmlBytes=Buffer.byteLength(h);fs.writeFileSync(root+'/build-info.json',JSON.stringify(info,null,2));console.log(info);
-          JS
+        run: node atlas-v6-delivery/build.cjs
       - name: Chromium - all 361 focus targets plus actual list label and point clicks
         run: node atlas-v6-delivery/verify.cjs
       - name: WebKit - complete routes point focus and phone resize
