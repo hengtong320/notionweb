@@ -1,0 +1,37 @@
+name: Prepare meridian repair workbench
+on:
+  push:
+    paths: ['.github/workflows/atlas-meridian-workbench.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: fullbody-tcm-v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Pin data and build dependencies
+        run: |
+          mkdir -p /tmp/meridian-workbench/data
+          curl -fL --retry 2 https://raw.githubusercontent.com/SciCrunch/TARA-Ontology-Repository/master/curated-data/acupoints/acupoints.csv -o /tmp/meridian-workbench/data/acupoints.csv
+          npm install --prefix /tmp/meridian-workbench three@0.180.0 esbuild@0.25.10
+          cp fullbody-tcm-v5/build-info.json /tmp/meridian-workbench/data/base-build-info.json
+          python - <<'PY'
+          import csv,json,hashlib,pathlib
+          p=pathlib.Path('/tmp/meridian-workbench/data');data=(p/'acupoints.csv').read_bytes()
+          rows=list(csv.DictReader(data.decode('utf-8-sig').splitlines()))
+          (p/'point-locations.json').write_text(json.dumps([{k:r.get(k,'') for k in ['Acupoint','Pinyin Label','Chinese Label','WHO Location','Location','Reference-WHO']} for r in rows],ensure_ascii=False,indent=2))
+          (p/'source-sha256.txt').write_text(hashlib.sha256(data).hexdigest())
+          print('Reference rows:',len(rows))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: meridian-repair-workbench
+          path: /tmp/meridian-workbench/
+          retention-days: 7
