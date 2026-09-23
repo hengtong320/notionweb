@@ -1,0 +1,75 @@
+name: V7 live targeting details
+on:
+  push:
+    paths: ['.github/workflows/check-v7-targeting.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      NODE_PATH: /tmp/v7-targeting/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: fullbody-tcm-v7
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install real browser
+        run: |
+          npm install --prefix /tmp/v7-targeting playwright@1.56.1
+          /tmp/v7-targeting/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Verify the real published interaction targets
+        run: |
+          cat > /tmp/v7-targeting/check.cjs <<'JS'
+          const {chromium}=require('playwright');const fs=require('fs'),crypto=require('crypto');
+          const root='fullbody-tcm-v7',url='https://hengtong320.github.io/notionweb/fullbody-tcm-v7/?targeting='+process.env.GITHUB_RUN_ID;
+          const report={url,startedAt:new Date().toISOString(),success:false,checks:[],errors:[],clinicalValidation:false};
+          function ck(name,pass,detail){report.checks.push({name,pass:!!pass,...(detail===undefined?{}:{detail})});console.log(pass?'PASS':'FAIL',name);if(!pass)throw Error(name+': '+JSON.stringify(detail));}
+          async function settle(p){await p.waitForFunction(()=>!window.__FOOT_ATLAS__.getState().cameraAnimating);await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));}
+          (async()=>{let browser;try{
+            const response=await fetch(url),html=Buffer.from(await response.arrayBuffer()),info=JSON.parse(fs.readFileSync(root+'/build-info.json'));report.htmlSHA256=crypto.createHash('sha256').update(html).digest('hex');ck('Exact published viewer bytes',response.ok&&report.htmlSHA256===info.htmlSHA256);
+            browser=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});
+            const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});page.setDefaultTimeout(30000);
+            await page.addInitScript(()=>localStorage.setItem('atlas-auto-speak','0'));page.on('pageerror',e=>report.errors.push(String(e)));
+            await page.goto(url,{timeout:90000});await page.waitForFunction(()=>window.__ATLAS_LEARNING__?.getRouteScreen);await settle(page);
+            await page.evaluate(()=>{const l=window.__ATLAS_LEARNING__;l.setMeridians(['KI','GV']);l.setTCMSide('right');l.toggleTCM(true);l.fitMeridian();});await settle(page);
+            const candidate=await page.evaluate(()=>{const l=window.__ATLAS_LEARNING__,r=document.getElementById('viewport').getBoundingClientRect();const pts=l.getNavigationCatalog().filter(p=>['KI','GV'].includes(p.code.replace(/\d+$/,''))&&(p.side==='right'||p.side==='midline')).map(p=>l.getPointScreen(p.code,p.side));return l.getRouteScreen('KI','right').find(v=>{if(v.z< -1||v.z>1||v.x<r.left+170||v.x>r.right-225||v.y<r.top+235||v.y>r.bottom-145||pts.some(p=>Math.hypot(v.x-p.x,v.y-p.y)<26))return false;const el=document.elementFromPoint(v.x,v.y);return el&&(el.tagName==='CANVAS'||el.id==='viewport');});});
+            ck('A genuine line-only target is unobstructed',!!candidate,candidate);await page.mouse.click(candidate.x,candidate.y);await settle(page);
+            ck('Actual line click selects the matching channel',await page.evaluate(()=>{const s=window.__ATLAS_LEARNING__.getState();return s.selectedMeridians.length===1&&s.selectedMeridians[0]==='KI'&&s.navigationFocus.title.includes('肾经');}));
+            await page.waitForTimeout(180);
+            const right=await page.locator('[data-label-point]:visible').evaluateAll(els=>{const r=document.getElementById('viewport').getBoundingClientRect();const e=els.find(e=>e.getBoundingClientRect().left>r.left+r.width/2);return e&&{code:e.dataset.labelPoint,side:e.dataset.labelSide};});
+            ck('Right rail contains a visible label',!!right,right);await page.locator('[data-label-point="'+right.code+'"][data-label-side="'+right.side+'"]:visible').click();await settle(page);
+            ck('Right-side tool strip does not intercept label click',await page.evaluate(right=>{const l=window.__ATLAS_LEARNING__,p=l.getNavigationCatalog().find(p=>p.code===right.code&&p.side===right.side),s=window.__FOOT_ATLAS__.getState();return l.getState().selectedPoint.code===right.code&&Math.hypot(...s.target.map((v,i)=>v-p.position[i]))<.001;},right));
+            await page.evaluate(()=>{const l=window.__ATLAS_LEARNING__;l.setTCMSide('both');l.selectPoint('KI3','right',false);l.fitMeridian();});await settle(page);await page.waitForTimeout(180);
+            const pages=await page.evaluate(()=>window.__ATLAS_LEARNING__.getState().labelStats.pages);const seen=new Set();
+            for(let i=0;i<pages;i++){await page.evaluate(i=>window.__ATLAS_LEARNING__.setLabelPage(i),i);await page.waitForFunction(i=>window.__ATLAS_LEARNING__.getState().labelStats.page===i+1,i);const names=await page.locator('[data-label-point]:visible').evaluateAll(els=>els.map(e=>e.dataset.labelPoint+'|'+e.dataset.labelSide));names.forEach(n=>seen.add(n));}
+            ck('Pinned selection does not remove names from the remaining pages',seen.size===54,{expected:54,actual:seen.size,pages});
+            await page.evaluate(()=>window.__ATLAS_LEARNING__.setPanel(true));await page.locator('#autoFocusPoint').uncheck();await settle(page);
+            const before=await page.evaluate(()=>window.__FOOT_ATLAS__.getState().target);await page.locator('#acupointSearch').fill('KI27');await page.locator('#acupointResults [data-point="KI27"]').click();await settle(page);
+            ck('Autofocus can be disabled without breaking selection',await page.evaluate(before=>{const s=window.__FOOT_ATLAS__.getState();return window.__ATLAS_LEARNING__.getState().selectedPoint.code==='KI27'&&s.target.every((v,i)=>Math.abs(v-before[i])<.001);},before));
+            await page.locator('#autoFocusPoint').check();await page.locator('#acupointResults [data-point="KI27"]').click();await settle(page);
+            ck('Re-enabling autofocus restores actual camera movement',await page.evaluate(before=>window.__FOOT_ATLAS__.getState().target.some((v,i)=>Math.abs(v-before[i])>1),before));
+            ck('No uncaught script errors',report.errors.length===0,report.errors);report.success=true;
+          }catch(e){report.failure=String(e);console.error(e);process.exitCode=1;}finally{if(browser)await browser.close();report.finishedAt=new Date().toISOString();fs.mkdirSync(root+'/checks',{recursive:true});fs.writeFileSync(root+'/checks/additional-targeting.json',JSON.stringify(report,null,2));console.log(JSON.stringify({success:report.success,checks:report.checks.length,failure:report.failure}));}})();
+          JS
+          node /tmp/v7-targeting/check.cjs
+      - name: Save successful interaction evidence only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v7/checks/additional-targeting.json
+          git commit -m 'Record V7 live line and label targeting checks without changing the viewer'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v7-targeting-details
+          path: fullbody-tcm-v7/checks/additional-targeting.json
+          retention-days: 14
