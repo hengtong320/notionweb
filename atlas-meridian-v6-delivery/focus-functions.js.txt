@@ -11,7 +11,7 @@
   top=Math.min(top,h*.56);
   let bottom=document.body.classList.contains('dock-collapsed')?(h<450?64:120):Math.min(225,h*.34);
   const rails=enabled&&namesOn&&labelMode==='complete';
-  const left=rails?(w<540?136:165):35,right=rails?(w<540?54:165):60;
+  const left=rails?(w<540?136:165):35,right=rails?(w<540?54:225):60;
   const usableW=Math.max(w*.22,w-left-right),usableH=Math.max(h*.18,h-top-bottom);
   const center=box.getCenter(new THREE.Vector3()),dir=new THREE.Vector3(...options.direction).normalize();
   const rightV=new THREE.Vector3().crossVectors(camera.up,dir).normalize(),upV=new THREE.Vector3().crossVectors(dir,rightV).normalize();let mx=0,my=0,depth=0;
