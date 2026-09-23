@@ -1,0 +1,47 @@
+  updatePointLabels();
+ }
+ function updatePointLabels(){
+  const now=performance.now();if(now-lastLabelsAt<85)return;lastLabelsAt=now;
+  labelNav.hidden=!(enabled&&!suspended&&pointsOn&&namesOn);
+  labels.hidden=!(enabled&&!suspended&&pointsOn);
+  if(labels.hidden)return;
+  const rect=viewport.getBoundingClientRect(),w=rect.width,h=rect.height;
+  const top=Math.max(100,document.querySelector('.study-toolbar').getBoundingClientRect().bottom-rect.top+12,status.hidden?0:status.getBoundingClientRect().bottom-rect.top+12);
+  const bottom=h-(document.body.classList.contains('dock-collapsed')?100:200),rowHeight=25;
+  const perColumn=Math.max(1,Math.floor((bottom-top)/rowHeight)),columns=w<540?1:2,capacity=perColumn*columns;
+  const all=namesOn?getVisiblePoints():[];
+  let candidates=all.map(p=>({p,v:project(p)})).filter(x=>x.v.z> -1&&x.v.z<1&&x.v.x>=rect.left&&x.v.x<=rect.right&&x.v.y>=rect.top&&x.v.y<=rect.bottom);
+  candidates.sort((a,b)=>a.p.meridian.localeCompare(b.p.meridian)||a.p.side.localeCompare(b.p.side)||a.p.ordinal-b.p.ordinal);
+  const count=candidates.length,pages=Math.max(1,Math.ceil(count/capacity));labelPage=Math.max(0,Math.min(labelPage,pages-1));
+  let pageItems=labelMode==='complete'?candidates.slice(labelPage*capacity,(labelPage+1)*capacity):candidates;
+  const sp=selectedPoint?.position?{p:selectedPoint,v:project(selectedPoint)}:null;
+  if(sp&&sp.v.z> -1&&sp.v.z<1&&!pageItems.some(x=>x.p===sp.p))pageItems=[sp,...pageItems.slice(0,Math.max(0,capacity-1))];
+  const key=pageItems.map(x=>x.p.code+'|'+x.p.side).join(',')+':'+selectedPoint?.code+':'+labelMode;
+  if(key!==lastLabelRebuild){lastLabelRebuild=key;for(const x of labelNodes)x.el.remove();labelNodes.length=0;
+   for(const x of pageItems){
+    const el=document.createElement('button');el.type='button';el.className='acu-name v6-label'+(x.p===selectedPoint?' selected':'');
+    el.textContent=x.p.name+' '+x.p.code+(x.p.side==='midline'?'':x.p.side==='right'?' R':' L');
+    el.title=x.p.name+' · '+x.p.pinyin+' · 点击聚焦';el.dataset.labelPoint=x.p.code;el.dataset.labelSide=x.p.side;
+    el.addEventListener('pointerdown',e=>e.stopPropagation());el.onclick=e=>{e.stopPropagation();selectPoint(x.p,autoFocus);};labels.append(el);labelNodes.push({p:x.p,el});
+   }
+  }
+  wires.setAttribute('viewBox',`0 0 ${w} ${h}`);let paths='';let shown=0;const occupied=[];
+  for(let i=0;i<labelNodes.length;i++){
+   const item=labelNodes[i],v=project(item.p),width=Math.min(w<540?123:148,w*.32);let x,y,visible=v.z>-1&&v.z<1&&v.x>=rect.left&&v.x<=rect.right&&v.y>=rect.top&&v.y<=rect.bottom;
+   if(labelMode==='complete'){
+    const column=Math.floor(i/perColumn);x=column===0?8:w-width-8;y=top+(i%perColumn)*rowHeight;
+   }else{
+    x=v.x-rect.left+10;y=v.y-rect.top-12;if(x+width>w-5)x-=width+20;
+    visible=visible&&y>top&&y<bottom;
+    if(visible&&item.p!==selectedPoint&&occupied.some(b=>x<b.x+width&&x+width>b.x&&y<b.y+24&&y+24>b.y))visible=false;
+   }
+   item.el.hidden=!visible;if(!visible)continue;shown++;item.el.style.width=width+'px';item.el.style.transform=`translate(${x}px,${y}px)`;occupied.push({x,y});
+   if(labelMode==='complete'){
+    const sx=x<w/2?x+width:x,sy=y+11,tx=v.x-rect.left,ty=v.y-rect.top;
+    paths+=`<path d="M${sx.toFixed(1)},${sy.toFixed(1)} L${tx.toFixed(1)},${ty.toFixed(1)}" class="${item.p===selectedPoint?'active':''}"/>`;
+   }
+  }
+  wires.innerHTML=paths;labelStats={total:all.length,inView:count,shown,page:labelPage+1,pages,capacity};
+  $('labelPageInfo').textContent=`${shown}/${count} 视野内 · ${labelPage+1}/${pages}页`;
+  $('labelPrevious').disabled=labelPage===0;$('labelNext').disabled=labelPage>=pages-1;
+ }
