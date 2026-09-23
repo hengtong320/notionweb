@@ -1,0 +1,54 @@
+name: V6 public line and kidney navigation audit
+on:
+  push:
+    paths:
+      - 'atlas-v6-audit/**'
+      - '.github/workflows/atlas-v6-extra-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas-v6-extra-audit
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      NODE_PATH: /tmp/v6-extra/node_modules
+      LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v6/?audit=${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium audit runtime
+        run: |
+          npm install --prefix /tmp/v6-extra playwright@1.56.1
+          /tmp/v6-extra/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Run real line click and point navigation on the published build
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('atlas-v6-audit/interaction-extra.cjs')
+          s=p.read_text().replace("(await p.locator('#routeFit').count())===1&&(await p.locator('#pointCard').count())>=0","(await p.locator('#tcmPointCard').innerText()).includes('不是穴位')")
+          p.write_text(s)
+          PY
+          node atlas-v6-audit/interaction-extra.cjs
+      - name: Publish only audit evidence
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v6/checks/extra-live-interactions.json atlas-v6-audit/interaction-extra.cjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record real public V6 route click and kidney navigation audit'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas-v6-extra-audit
+          path: fullbody-tcm-v6/checks/
+          retention-days: 14
