@@ -7,7 +7,7 @@
   if(labels.hidden)return;
   const rect=viewport.getBoundingClientRect(),w=rect.width,h=rect.height;
   const top=Math.max(100,document.querySelector('.study-toolbar').getBoundingClientRect().bottom-rect.top+12,status.hidden?0:status.getBoundingClientRect().bottom-rect.top+12);
-  const bottom=h-(document.body.classList.contains('dock-collapsed')?100:200),rowHeight=25;
+  const bottom=h-(document.body.classList.contains('dock-collapsed')?120:220),rowHeight=25;
   const perColumn=Math.max(1,Math.floor((bottom-top)/rowHeight)),columns=w<540?1:2,capacity=perColumn*columns;
   const all=namesOn?getVisiblePoints():[];
   const inView=v=>v.z> -1&&v.z<1&&v.x>=rect.left&&v.x<=rect.right&&v.y>=rect.top&&v.y<=rect.bottom;
@@ -33,9 +33,9 @@
   for(let i=0;i<labelNodes.length;i++){
    const item=labelNodes[i],v=project(item.p),width=Math.min(w<540?123:148,w*.32);let x,y,visible=inView(v);
    if(labelMode==='complete'){
-    const column=i%columns;x=column===0?8:w-width-8;y=top+Math.floor(i/columns)*railStep;
+    const column=i%columns;x=column===0?8:w-width-68;y=top+Math.floor(i/columns)*railStep;
    }else{
-    x=v.x-rect.left+10;y=v.y-rect.top-12;if(x+width>w-5)x-=width+20;
+    x=v.x-rect.left+10;y=v.y-rect.top-12;if(x+width>w-65)x-=width+20;
     visible=visible&&y>top&&y<bottom;
     if(visible&&item.p!==selectedPoint&&occupied.some(b=>x<b.x+width&&x+width>b.x&&y<b.y+24&&y+24>b.y))visible=false;
    }
