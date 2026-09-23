@@ -1,0 +1,129 @@
+name: Deliver V6 meridian focus revision
+on:
+  push:
+    paths:
+      - 'atlas-v6-delivery/**'
+      - '.github/workflows/atlas-v6-web-delivery.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas-v6-web-delivery
+  cancel-in-progress: true
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/v6-node/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build only new V6 sources and validate unchanged model assets
+        run: |
+          python atlas-v6-delivery/patch.py
+          node --check fullbody-tcm-v6/acupoint-layout-v6.js
+          node --check fullbody-tcm-v6/learning-enhancements.js
+          node --check fullbody-tcm-v6/app.js
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          p=Path('fullbody-tcm-v6')
+          expected={'fullbody.glb':'f675737728bd5c21c553bb82490694f4c52cb744f7f9ebba346c66775aebd1c2','muscular.glb':'e655e5d21e821778c277261026dac00747b929abee5bd61d2b5a156fe5fbcde7','nervous.glb':'647a754f729510b0f9e4297e5c6a2ef69b9e5b30142b1a07928ae929e3283652'}
+          for n,h in expected.items():assert hashlib.sha256((p/'assets'/n).read_bytes()).hexdigest()==h,n
+          info={'version':'fullbody-tcm-v6','bones':210,'standardNames':361,'standardMarkerInstances':670,'modelHashes':expected,'scope':'Meridian labels, independent educational point layout, selection and camera focus','clinicalCalibration':False,'coordinateProvenance':'Project-authored illustrative model positions; NOT WHO xyz data and not skin-registered','oldViewersUnchanged':True,'sourceCheck':'Model hashes and deterministic source patch','status':'candidate'}
+          (p/'build-info.json').write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          PY
+      - name: Install pinned build and browser tools
+        run: |
+          npm install --prefix /tmp/v6-node three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/v6-node/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Bundle self-contained bone-model entry with same-site optional layers
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),esbuild=require('esbuild'),crypto=require('crypto'),root='fullbody-tcm-v6';
+          esbuild.buildSync({entryPoints:[root+'/app.js'],bundle:true,minify:true,format:'iife',target:['es2020'],loader:{'.txt':'text'},nodePaths:[process.env.NODE_PATH],outfile:root+'/app.bundle.js',legalComments:'inline'});
+          let h=fs.readFileSync(root+'/index.template.html','utf8');
+          h=h.replace('<link rel="stylesheet" href="styles.css">','<style>'+fs.readFileSync(root+'/styles.css','utf8')+'</style>').replace(/<script type="importmap">[\s\S]*?<\/script>/g,'');
+          const model=fs.readFileSync(root+'/assets/fullbody.glb').toString('base64');const bundle=fs.readFileSync(root+'/app.bundle.js','utf8').replace(/<\/script/gi,'<\\/script');
+          h=h.replace('<script type="module" src="app.js"></script>','<script>window.FOOT_ATLAS_EMBEDDED='+JSON.stringify(model)+';</script>\n<script>'+bundle+'</script>');
+          if(h.includes('src="app.js"')||!h.includes('FOOT_ATLAS_EMBEDDED'))throw Error('Incomplete HTML');fs.writeFileSync(root+'/index.html',h);
+          const info=JSON.parse(fs.readFileSync(root+'/build-info.json','utf8'));info.htmlSHA256=crypto.createHash('sha256').update(h).digest('hex');info.htmlBytes=Buffer.byteLength(h);fs.writeFileSync(root+'/build-info.json',JSON.stringify(info,null,2));console.log(info);
+          JS
+      - name: Chromium - all 361 focus targets plus actual list label and point clicks
+        run: node atlas-v6-delivery/verify.cjs
+      - name: WebKit - complete routes point focus and phone resize
+        env:
+          BROWSER: webkit
+        run: node atlas-v6-delivery/verify.cjs
+      - name: Verify no accepted previous viewer has changed
+        run: test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-atlas/ fullbody-tcm-v3/ fullbody-tcm-v4/ fullbody-tcm-v5/)"
+      - name: Publish tested V6 only
+        run: |
+          git fetch origin main
+          git worktree add -B v6-publish /tmp/v6-publish origin/main
+          rm -rf /tmp/v6-publish/fullbody-tcm-v6
+          cp -a fullbody-tcm-v6 /tmp/v6-publish/fullbody-tcm-v6
+          cd /tmp/v6-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v6/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish independently tested V6 meridian labels and point-focus revision'
+            git push origin HEAD:main
+          fi
+      - name: Confirm exact public GitHub Pages entry
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,urllib.request,time
+          expected=hashlib.sha256(Path('fullbody-tcm-v6/index.html').read_bytes()).hexdigest()
+          for i in range(60):
+              try:
+                  url='https://hengtong320.github.io/notionweb/fullbody-tcm-v6/?build='+expected[:16]+'&n='+str(i)
+                  with urllib.request.urlopen(url,timeout=30) as r:body=r.read()
+                  actual=hashlib.sha256(body).hexdigest()
+                  print('PAGES',i,len(body),actual,flush=True)
+                  if actual==expected:break
+              except Exception as error:print(error,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Public page does not yet match tested V6')
+          PY
+      - name: Repeat all focus and real-click checks on public website
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v6/?release=${{ github.run_id }}
+        run: node atlas-v6-delivery/verify.cjs
+      - name: Record verified public delivery
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('fullbody-tcm-v6');info=json.loads((p/'build-info.json').read_text());reports={}
+          for k in ['local-chromium','local-webkit','live-chromium']:
+              r=json.loads((p/'checks'/(k+'.json')).read_text());assert r['success'] and all(x['pass'] for x in r['checks']);reports[k]=r
+          release={**info,'status':'published-and-browser-verified','url':reports['live-chromium']['url'],'workflowRun':os.environ['GITHUB_RUN_ID'],'checks':{k:len(v['checks']) for k,v in reports.items()},'perPointFocusChecks':361,'checkedAt':reports['live-chromium']['finishedAt'],'browserCoverage':'Headless Chromium and WebKit at desktop and phone sizes, not all physical devices; interaction checks are not clinical localization audit'}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          PY
+          cp fullbody-tcm-v6/checks/live-chromium.json /tmp/v6-publish/fullbody-tcm-v6/checks/
+          cp fullbody-tcm-v6/delivery-release.json /tmp/v6-publish/fullbody-tcm-v6/
+          cd /tmp/v6-publish
+          git add fullbody-tcm-v6/checks/live-chromium.json fullbody-tcm-v6/delivery-release.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record exact public V6 all-point focus and UI verification'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Export release and actual browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v6-web-release
+          path: |
+            fullbody-tcm-v6/
+            atlas-v6-delivery/
+          retention-days: 14
