@@ -1,0 +1,17 @@
+{
+  "version": "fullbody-tcm-v5",
+  "source": "Chat V5 review package; exact source hashes checked",
+  "sourcePayloadSHA256": "a7177d4e3b0b1617ca5243e67fc4660aad7389a14fb7b3cf5c1ebe1ccdf84290",
+  "bones": 210,
+  "assetsSHA256": {
+    "fullbody.glb": "f675737728bd5c21c553bb82490694f4c52cb744f7f9ebba346c66775aebd1c2",
+    "muscular.glb": "e655e5d21e821778c277261026dac00747b929abee5bd61d2b5a156fe5fbcde7",
+    "nervous.glb": "647a754f729510b0f9e4297e5c6a2ef69b9e5b30142b1a07928ae929e3283652"
+  },
+  "oldViewersUnchanged": true,
+  "clinicalCalibration": false,
+  "allAudioHumanReviewed": false,
+  "deploymentStatus": "candidate",
+  "htmlSHA256": "3489026c40d28258b19fc04075b2190dae1692819dda83ffd37e7f0bef11ccdb",
+  "htmlBytes": 20545930
+}

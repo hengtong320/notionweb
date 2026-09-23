@@ -1,0 +1,127 @@
+{
+  "startedAt": "2026-09-23T06:19:40.780Z",
+  "type": "actual-browser-rendering",
+  "browser": "webkit",
+  "success": true,
+  "checks": [
+    {
+      "name": "Website HTTP 200",
+      "pass": true,
+      "detail": 200
+    },
+    {
+      "name": "Served HTML matches tested build",
+      "pass": true
+    },
+    {
+      "name": "V5 runtime loaded",
+      "pass": true
+    },
+    {
+      "name": "All 210 original bones rendered",
+      "pass": true
+    },
+    {
+      "name": "Original bone geometry preserved",
+      "pass": true
+    },
+    {
+      "name": "C3 retains corrected pinyin",
+      "pass": true
+    },
+    {
+      "name": "Toolbar starts collapsed",
+      "pass": true
+    },
+    {
+      "name": "Toolbar can be reopened",
+      "pass": true
+    },
+    {
+      "name": "GV schematic guide has visible geometry",
+      "pass": true
+    },
+    {
+      "name": "GV view faces posterior surface",
+      "pass": true
+    },
+    {
+      "name": "Closing controls keeps the guide visible",
+      "pass": true
+    },
+    {
+      "name": "Two selected meridians coexist",
+      "pass": true
+    },
+    {
+      "name": "All muscle-source meshes decoded",
+      "pass": true
+    },
+    {
+      "name": "Muscle profile is visible and opaque",
+      "pass": true
+    },
+    {
+      "name": "All nerve-source meshes decoded",
+      "pass": true
+    },
+    {
+      "name": "Nerve profile highlights nerve layer",
+      "pass": true
+    },
+    {
+      "name": "Comparison restores depth-tested nerve display",
+      "pass": true
+    },
+    {
+      "name": "Lumbar vertebrae separate only vertically",
+      "pass": true
+    },
+    {
+      "name": "Reset restores original coordinates",
+      "pass": true
+    },
+    {
+      "name": "Mouse-centered zoom enabled",
+      "pass": true
+    },
+    {
+      "name": "Published audio file accessible and intact",
+      "pass": true,
+      "detail": {
+        "status": 200,
+        "bytes": 5304
+      }
+    },
+    {
+      "name": "Pronunciation guard active",
+      "pass": true
+    },
+    {
+      "name": "No horizontal desktop overflow",
+      "pass": true
+    },
+    {
+      "name": "Phone has usable 3D viewport",
+      "pass": true
+    },
+    {
+      "name": "No horizontal phone overflow",
+      "pass": true
+    },
+    {
+      "name": "No third-party runtime model dependency",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No uncaught JavaScript or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "url": "http://127.0.0.1:36577/",
+  "htmlSHA256": "3489026c40d28258b19fc04075b2190dae1692819dda83ffd37e7f0bef11ccdb",
+  "finishedAt": "2026-09-23T06:20:25.756Z"
+}
