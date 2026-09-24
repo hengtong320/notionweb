@@ -1,0 +1,188 @@
+name: Publish V12 learning atlas
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas12-finish-publish.yml'
+      - 'atlas12-delivery/finish.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pages: write
+concurrency:
+  group: atlas12-final-delivery
+  cancel-in-progress: false
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NODE_PATH: /tmp/atlas12-final/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Save the approved entry and source state
+        run: |
+          test ! -d fullbody-tcm-v12
+          cp anatomy/index.html /tmp/atlas12-original-entry.html
+          git rev-parse HEAD > /tmp/atlas12-base-ref
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas12-candidate
+          run-id: 36000708777
+          github-token: ${{ github.token }}
+          path: /tmp/atlas12-candidate
+      - name: Verify source artifact and finish the navigation fixes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,shutil
+          p=Path('/tmp/atlas12-candidate/fullbody-tcm-v12')
+          info=json.loads((p/'build-info.json').read_text())
+          assert info['femaleUsesMaleMeshes'] is False
+          for n,r in info['files'].items():
+              assert hashlib.sha256((p/n).read_bytes()).hexdigest()==r['sha256'],n
+          manifest=json.loads((p/'assets/female/compression-manifest.json').read_text())
+          for r in manifest['files']:
+              b=(p/'assets/female'/r['file']).read_bytes()
+              assert b[:4]==b'glTF' and hashlib.sha256(b).hexdigest()==r['sha256'],r['file']
+          shutil.copytree(p,'fullbody-tcm-v12')
+          shutil.rmtree('fullbody-tcm-v12/checks')
+          Path('fullbody-tcm-v12/checks').mkdir()
+          PY
+          python atlas12-delivery/finish.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned renderer and actual browser tools
+        run: |
+          npm install --prefix /tmp/atlas12-final three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1
+          /tmp/atlas12-final/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Compile the final version without changing mesh data
+        run: |
+          node --check fullbody-tcm-v12/app.js
+          node --check fullbody-tcm-v12/female-v12.js
+          node --check fullbody-tcm-v12/refinement-v12.js
+          node - <<'JS'
+          const fs=require('fs'),crypto=require('crypto'),esbuild=require('esbuild');
+          const p='fullbody-tcm-v12';
+          for(const [entry,out] of [['app.js','app.bundle.js'],['evidence-page-v10.js','evidence.bundle.js']])
+            esbuild.buildSync({entryPoints:[p+'/'+entry],outfile:p+'/'+out,bundle:true,minify:true,format:'iife',target:['es2020'],nodePaths:[process.env.NODE_PATH],loader:{'.txt':'text'},legalComments:'inline'});
+          fs.copyFileSync(p+'/index.template.html',p+'/index.html');
+          const info=JSON.parse(fs.readFileSync(p+'/build-info.json'));
+          info.version='12.0.1';info.status='pending-browser-verification';info.published=false;
+          info.originalCandidateRun=36000708777;
+          info.sameDocumentFemaleNavigation=true;info.savedLayerCombinations=true;
+          info.files=Object.fromEntries(['index.html','app.bundle.js','evidence.bundle.js','styles.css','refinement-v12.css','female-v12.js','refinement-v12.js','assets/female/catalog.json'].map(n=>{const b=fs.readFileSync(p+'/'+n);return[n,{bytes:b.length,sha256:crypto.createHash('sha256').update(b).digest('hex')}];}));
+          fs.writeFileSync(p+'/build-info.json',JSON.stringify(info,null,2));
+          JS
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-v9/ fullbody-tcm-v10-1/ fullbody-tcm-v11/ anatomy/)"
+      - name: Chromium complete male and native female regression
+        run: node /tmp/atlas12-candidate/atlas12-tools/verify.cjs
+      - name: WebKit complete male and native female regression
+        env:
+          BROWSER: webkit
+        run: node /tmp/atlas12-candidate/atlas12-tools/verify.cjs
+      - name: Require both real browser reports and preserve prior versions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,subprocess
+          p=Path('fullbody-tcm-v12')
+          for name in ['local-chromium.json','local-webkit.json']:
+              r=json.loads((p/'checks'/name).read_text())
+              assert r['success'] and all(c['pass'] for c in r['checks']),name
+          assert not subprocess.check_output(['git','diff','HEAD','--','fullbody-tcm-v11/','fullbody-tcm-v10-1/','fullbody-tcm-v9/','anatomy/'])
+          for r in json.loads((p/'assets/female/compression-manifest.json').read_text())['files']:
+              assert hashlib.sha256((p/'assets/female'/r['file']).read_bytes()).hexdigest()==r['sha256']
+          PY
+      - name: Publish the new version only
+        run: |
+          git fetch origin main
+          git worktree add -B atlas12-delivery /tmp/atlas12-publish origin/main
+          test ! -d /tmp/atlas12-publish/fullbody-tcm-v12
+          cp -a fullbody-tcm-v12 /tmp/atlas12-publish/fullbody-tcm-v12
+          cd /tmp/atlas12-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v12/
+          git commit -m 'Publish browser-verified V12 with native female reference and streamlined learning controls'
+          git push origin HEAD:main
+      - name: Request branch Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Explicit build request not supported; waiting for repository Pages deployment.'
+      - name: Verify public HTML and application match the tested version
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,time,urllib.request
+          p=Path('fullbody-tcm-v12');info=json.loads((p/'build-info.json').read_text())
+          base='https://hengtong320.github.io/notionweb/fullbody-tcm-v12/'
+          for n in ['index.html','app.bundle.js']:
+              expected=info['files'][n]['sha256']
+              for i in range(70):
+                  try:
+                      with urllib.request.urlopen(base+n+'?sha='+expected[:16]+'&n='+str(i),timeout=30) as r:b=r.read()
+                      if hashlib.sha256(b).hexdigest()==expected:break
+                  except Exception as e:print(n,str(e),flush=True)
+                  time.sleep(5)
+              else:raise RuntimeError('Public file mismatch: '+n)
+              print('PUBLIC_MATCH',n,expected,flush=True)
+          PY
+      - name: Test the actual public website
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v12/?release=${{ github.run_id }}
+        run: node /tmp/atlas12-candidate/atlas12-tools/verify.cjs
+      - name: Record delivery and switch the fixed entry only after public verification
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,shutil,hashlib
+          p=Path('fullbody-tcm-v12');dest=Path('/tmp/atlas12-publish/fullbody-tcm-v12')
+          info=json.loads((p/'build-info.json').read_text())
+          reports={k:json.loads((p/'checks'/f'{k}.json').read_text()) for k in ['local-chromium','local-webkit','live-chromium']}
+          for k,r in reports.items():assert r['success'] and all(x['pass'] for x in r['checks']),k
+          release={**info,'status':'published-and-browser-verified','published':True,'url':reports['live-chromium']['url'],'stableURL':'https://hengtong320.github.io/notionweb/anatomy/','workflowRun':os.environ['GITHUB_RUN_ID'],'checks':{k:len(r['checks']) for k,r in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'browserCoverage':'Headless Chromium and WebKit; desktop and mobile viewports, not all physical devices','femaleReferenceRendered':True,'completeFemaleSkeleton':False,'femaleClinicalAcupointRegistration':False}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          shutil.copy2(p/'delivery-release.json',dest/'delivery-release.json')
+          shutil.copytree(p/'checks',dest/'checks',dirs_exist_ok=True)
+          entry=Path('/tmp/atlas12-publish/anatomy/index.html')
+          assert entry.read_bytes()==Path('/tmp/atlas12-original-entry.html').read_bytes(),'Stable entry changed concurrently; do not overwrite'
+          html=entry.read_text().replace('fullbody-tcm-v11','fullbody-tcm-v12').replace('V11 器官与体表','V12 双参考与简洁观察')
+          entry.write_text(html)
+          PY
+          cd /tmp/atlas12-publish
+          git add fullbody-tcm-v12/delivery-release.json fullbody-tcm-v12/checks/ anatomy/index.html
+          git commit -m 'Confirm public V12 delivery and move the stable anatomy entry to the verified version'
+          git push origin HEAD:main
+      - name: Request updated entry deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Waiting for repository Pages deployment.'
+      - name: Confirm the fixed public entry reaches V12
+        run: |
+          python - <<'PY'
+          import time,urllib.request
+          for i in range(70):
+              with urllib.request.urlopen('https://hengtong320.github.io/notionweb/anatomy/?v=12&n='+str(i),timeout=30) as r:s=r.read().decode()
+              if 'fullbody-tcm-v12' in s:break
+              time.sleep(5)
+          else:raise RuntimeError('Stable entry not updated')
+          print('STABLE_ENTRY_UPDATED')
+          PY
+          node - <<'JS'
+          const {chromium}=require('playwright'),fs=require('fs');
+          (async()=>{const b=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});try{const p=await b.newPage();await p.goto('https://hengtong320.github.io/notionweb/anatomy/?v=12',{timeout:90000});await p.waitForFunction(()=>window.__ATLAS_FEMALE__&&window.__FOOT_ATLAS__.getState().ready,{},{timeout:90000});if(!p.url().includes('/fullbody-tcm-v12/'))throw Error('Unexpected final URL');fs.writeFileSync('fullbody-tcm-v12/checks/stable-entry.json',JSON.stringify({success:true,url:p.url(),checkedAt:new Date().toISOString()},null,2));}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - name: Export final viewer and verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas12-final-published
+          path: |
+            fullbody-tcm-v12/
+            atlas12-delivery/
+          retention-days: 14
