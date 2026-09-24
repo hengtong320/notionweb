@@ -1,0 +1,122 @@
+name: Publish V8 smooth routes and head focus
+on:
+  push:
+    paths:
+      - 'atlas-v8-refine/**'
+      - '.github/workflows/atlas-v8-refine.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas-v8-refine
+  cancel-in-progress: true
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    env:
+      NODE_PATH: /tmp/v8-node/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build guarded V8 from the exact accepted V7
+        run: |
+          python atlas-v8-refine/build.py
+          node --check fullbody-tcm-v8/app.js
+          node --check fullbody-tcm-v8/learning-enhancements.js
+          node --check fullbody-tcm-v8/tissues-v4.js
+          node --check atlas-v8-refine/verify.cjs
+      - name: Install pinned renderer and real browser engines
+        run: |
+          npm install --prefix /tmp/v8-node three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/v8-node/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Bundle and assert original model and point data unchanged
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),crypto=require('crypto'),esbuild=require('esbuild');
+          const root='fullbody-tcm-v8',hash=x=>crypto.createHash('sha256').update(x).digest('hex');
+          for(const f of ['assets/fullbody.glb','assets/muscular.glb','assets/nervous.glb','navigation-points-v6.js','acupoints-data.js','voice-map.json'])if(hash(fs.readFileSync(root+'/'+f))!==hash(fs.readFileSync('fullbody-tcm-v7/'+f)))throw Error('Previous data changed: '+f);
+          esbuild.buildSync({entryPoints:[root+'/app.js'],bundle:true,minify:true,format:'iife',target:['es2020'],loader:{'.txt':'text'},nodePaths:[process.env.NODE_PATH],outfile:root+'/app.bundle.js',legalComments:'inline'});
+          let h=fs.readFileSync(root+'/index.template.html','utf8');
+          h=h.replace('<link rel="stylesheet" href="styles.css">',()=>'<style>'+fs.readFileSync(root+'/styles.css','utf8')+'</style>').replace(/<script type="importmap">[\s\S]*?<\/script>/g,'');
+          const model=fs.readFileSync(root+'/assets/fullbody.glb').toString('base64'),bundle=fs.readFileSync(root+'/app.bundle.js','utf8').replace(/<\/script/gi,'<\\/script');
+          h=h.replace('<script type="module" src="app.js"></script>',()=>'<script>window.FOOT_ATLAS_EMBEDDED='+JSON.stringify(model)+';</script>\n<script>'+bundle+'</script>');
+          if(h.includes('src="app.js"')||!h.includes('FOOT_ATLAS_EMBEDDED'))throw Error('Invalid web entry');
+          fs.writeFileSync(root+'/index.html',h);
+          const info=JSON.parse(fs.readFileSync(root+'/build-info.json'));info.htmlSHA256=hash(Buffer.from(h));info.htmlBytes=Buffer.byteLength(h);info.modelsAndPointDataUnchanged=true;fs.writeFileSync(root+'/build-info.json',JSON.stringify(info,null,2));console.log(info);
+          JS
+      - name: Chromium real rendering and supplemental target interactions
+        run: node atlas-v8-refine/verify.cjs
+      - name: WebKit head focus, curve and responsive checks
+        env:
+          BROWSER: webkit
+        run: node atlas-v8-refine/verify.cjs
+      - name: Preserve every earlier accepted viewer
+        run: |
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-atlas/ fullbody-tcm-v3/ fullbody-tcm-v4/ fullbody-tcm-v5/ fullbody-tcm-v6/ fullbody-tcm-v7/)"
+      - name: Publish only the inspected V8 directory
+        run: |
+          git fetch origin main
+          git worktree add --detach /tmp/v8-publish origin/main
+          test ! -e /tmp/v8-publish/fullbody-tcm-v8
+          cp -a fullbody-tcm-v8 /tmp/v8-publish/
+          cd /tmp/v8-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v8/
+          git commit -m 'Publish V8 smooth route rendering and supplemental head-region navigation'
+          git push origin HEAD:main
+      - name: Verify Pages serves the exact browser-tested HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,urllib.request,time
+          target=hashlib.sha256(Path('fullbody-tcm-v8/index.html').read_bytes()).hexdigest()
+          for attempt in range(50):
+              try:
+                  url='https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?build='+target[:12]+'&attempt='+str(attempt)
+                  with urllib.request.urlopen(url,timeout=30) as response:data=response.read()
+                  actual=hashlib.sha256(data).hexdigest()
+                  print('PAGES',attempt,len(data),actual,flush=True)
+                  if actual==target:break
+              except Exception as e:print(str(e),flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Published build did not match')
+          PY
+      - name: Repeat requested scenarios against the live website
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?release=${{ github.run_id }}
+        run: node atlas-v8-refine/verify.cjs
+      - name: Record tested public delivery without changing the viewer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('fullbody-tcm-v8');info=json.loads((p/'build-info.json').read_text());reports={}
+          for key in ['local-chromium','local-webkit','live-chromium']:
+              r=json.loads((p/'checks'/(key+'.json')).read_text());assert r['success'] and all(c['pass'] for c in r['checks']);assert r['htmlSHA256']==info['htmlSHA256'];reports[key]=r
+          info.update({'status':'published-and-browser-verified','url':reports['live-chromium']['url'],'checks':{k:len(v['checks']) for k,v in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'browserCoverage':'Headless Chromium/WebKit, desktop and phone viewports; not every physical device','clinicalCalibration':False,'allAudioHumanReviewed':False})
+          (p/'delivery-release.json').write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          PY
+          cp fullbody-tcm-v8/checks/live-chromium.json /tmp/v8-publish/fullbody-tcm-v8/checks/
+          cp fullbody-tcm-v8/delivery-release.json /tmp/v8-publish/fullbody-tcm-v8/
+          cd /tmp/v8-publish
+          git add fullbody-tcm-v8/checks/live-chromium.json fullbody-tcm-v8/delivery-release.json
+          git commit -m 'Record exact-build V8 live interaction verification'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+      - name: Export viewer, actual screenshots and test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v8-release
+          path: |
+            fullbody-tcm-v8/
+            atlas-v8-refine/
+          retention-days: 14
