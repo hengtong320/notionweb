@@ -32,30 +32,28 @@ jobs:
           with zipfile.ZipFile('/tmp/z-anatomy.zip') as z:
             n=next(n for n in z.namelist() if n.endswith('Startup.blend'));Path('/tmp/Startup.blend').write_bytes(z.read(n))
           PY
-      - name: Inspect original skin and ear structures, export without modifying anatomy
+      - name: Export regional surface and ear in unmodified source coordinates
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y blender
           cat > /tmp/extract-surface.py <<'PY'
           import bpy,json,re
           from pathlib import Path
-          p=Path('atlas-systems-11/source').resolve()
-          bpy.ops.wm.open_mainfile(filepath='/tmp/Startup.blend')
+          from mathutils import Vector
+          p=Path('atlas-systems-11/source').resolve();bpy.ops.wm.open_mainfile(filepath='/tmp/Startup.blend')
           objs=[o for o in bpy.data.objects if o.type=='MESH']
-          manifest=[{'name':o.name,'collections':[c.name for c in o.users_collection],'vertices':len(o.data.vertices),'matrix':[list(r) for r in o.matrix_world]} for o in objs]
+          manifest=[{'name':o.name,'collections':[c.name for c in o.users_collection],'vertices':len(o.data.vertices),'faces':len(o.data.polygons),'matrix':[list(r) for r in o.matrix_world],'worldBounds':[list(o.matrix_world@Vector(c)) for c in o.bound_box]} for o in objs]
           (p/'blender-objects.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
-          names=[o for o in objs if re.match(r'^Skin(?:\.|$)',o.name,re.I)]
-          ears=[o for o in objs if re.match(r'^(Auricle|Auricular cartilage|Cartilage of auricle)(?:\.|$)',o.name,re.I)]
-          print('SKIN',[o.name for o in names]);print('EARS',[o.name for o in ears])
+          names=[o for o in objs if any(c.name=='9: Regions of human body' for c in o.users_collection) and len(o.data.polygons)>0 and not re.search(r'\.(?:g|j|t)(?:\.|$)',o.name) and not any(c.name=='Hairs' for c in o.users_collection)]
+          ears=[o for o in names if any(c.name=='Auricular region' for c in o.users_collection)]
+          assert len(names)>100 and len(ears)>10
           def export(sel,name):
-            if not sel:return
             bpy.ops.object.select_all(action='DESELECT')
-            for o in sel:
-              o.hide_set(False);o.hide_viewport=False;o.select_set(True)
+            for o in sel:o.hide_set(False);o.hide_viewport=False;o.select_set(True)
             bpy.context.view_layer.objects.active=sel[0]
             bpy.ops.export_scene.gltf(filepath=str(p/name),export_format='GLB',use_selection=True,export_apply=True,export_yup=True,export_materials='NONE',export_normals=True)
           export(names,'skin-original.glb');export(ears,'ear-original.glb')
-          (p/'surface-inspection.json').write_text(json.dumps({'skin':[o.name for o in names],'ears':[o.name for o in ears],'sourceZipBlob':'f43cabc6f366b2a6058dd2ed4a2b3c7b9b2492cb','blenderVersion':bpy.app.version_string,'clinicalCalibration':False},indent=2))
+          (p/'surface-inspection.json').write_text(json.dumps({'kind':'regional body surface, not histological skin','skin':[o.name for o in names],'ears':[o.name for o in ears],'sourceZipBlob':'f43cabc6f366b2a6058dd2ed4a2b3c7b9b2492cb','blenderVersion':bpy.app.version_string,'clinicalCalibration':False},indent=2))
           PY
           blender -b --python /tmp/extract-surface.py
       - name: Export inspection files
