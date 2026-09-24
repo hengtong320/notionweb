@@ -1,0 +1,34 @@
+{
+  "version": "fullbody-tcm-v9-research",
+  "status": "candidate",
+  "sourcePayloadSHA256": "3a81132d41511f352d4c5834e2c977148bad20e1cefa95efc8ccfb92bc39e71e",
+  "sourceFileSHA256": {
+    "README.md": "b13072e24e935de7eca174f5b7f216178c725629412a9fd1d097fc0e477de07f",
+    "RESEARCH-AND-ACCEPTANCE.md": "752e2d54ae35ee0a072e3c0b5badca3ac5d856f65598c3bb7219f0a5b253ecaa",
+    "coordinate-audit.csv": "9f50e5c9286a04820f49019eb93d5acb887fb243e06988e1f92bae96060be779",
+    "evidence-data-v9.json": "ee571dc4543ec06fe76e5ea3ea82119ed58735a2946db9985337c41ac5199a3b",
+    "evidence-ui-v9.js": "631d67483743f141b6838a702723e9bb0d61b8f238ed61aecc56a12c7a935754",
+    "evidence.html": "552ebb7f48351d7c74c7484e9f16adff00e301af904a41ff7d5b4cf7e42dd527",
+    "index.template.html": "1a00ce41f7397dcd7764b45a6f1f1e2e90492498a1ceb79b6618549e901abc4e",
+    "learning-enhancements.js": "fc274b2f35a77aa219c0345573fd1020e5a37388567179b567cb0e9f0600d9ea",
+    "registration-template.json": "aba5ead2876222c29512265bfe5b4a5018220893fe3bf6a122d2bd803139d215",
+    "route-geometry-v9.js": "1f34380fb60ac765d1fb49f75fd6f81cc070b1748c5d3205bac419858d5f79f5",
+    "styles.css": "76d1b82a25c1e06a347fa5d1820a6703df887727ffdf11d277a16a29d6974282",
+    "tools/validate_registration.py": "966ecc0562b3ee6249a7f70a991f7cca7a6c903290799b5ebfae75b6aa50155e"
+  },
+  "modelsSHA256": {
+    "fullbody.glb": "f675737728bd5c21c553bb82490694f4c52cb744f7f9ebba346c66775aebd1c2",
+    "muscular.glb": "e655e5d21e821778c277261026dac00747b929abee5bd61d2b5a156fe5fbcde7",
+    "nervous.glb": "647a754f729510b0f9e4297e5c6a2ef69b9e5b30142b1a07928ae929e3283652"
+  },
+  "bones": 210,
+  "standardNames": 361,
+  "defaultMode": "strict",
+  "clinicalCalibration": false,
+  "audioChanged": false,
+  "allAudioHumanReviewed": false,
+  "previousViewersUnchanged": true,
+  "evidenceHTMLSHA256": "552ebb7f48351d7c74c7484e9f16adff00e301af904a41ff7d5b4cf7e42dd527",
+  "htmlSHA256": "70acd90b6d022f2563ca3dce5d3bbfcf30a202599f8af3a6681cbb9508a3cc47",
+  "htmlBytes": 21478596
+}
