@@ -1,0 +1,141 @@
+name: Publish inspected organs and body surface
+on:
+  push:
+    paths: ['.github/workflows/atlas-11-publish.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: atlas-11-public-delivery
+  cancel-in-progress: false
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_PATH: /tmp/atlas11-live/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - name: Keep approved versions unchanged
+        run: cp anatomy/index.html /tmp/previous-anatomy-entry.html
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install real browser for published-page verification
+        run: |
+          npm install --prefix /tmp/atlas11-live playwright@1.56.1
+          /tmp/atlas11-live/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Require the exact candidate browser run to succeed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PYCODE'
+          import os,time,json,urllib.request
+          u='https://api.github.com/repos/hengtong320/notionweb/actions/runs/35991336253'
+          for i in range(60):
+              r=urllib.request.Request(u,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              d=json.load(urllib.request.urlopen(r,timeout=20))
+              if d['status']=='completed':
+                  assert d['conclusion']=='success',d['conclusion']
+                  break
+              time.sleep(5)
+          else:raise RuntimeError('Candidate has not finished')
+          PYCODE
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas-11-candidate
+          run-id: 35991336253
+          github-token: ${{ github.token }}
+          path: /tmp/atlas11-approved
+      - name: Validate the inspected candidate and copy only new viewer
+        run: |
+          python - <<'PY'
+          import json,hashlib,shutil
+          from pathlib import Path
+          source=Path('/tmp/atlas11-approved/fullbody-tcm-v11')
+          info=json.loads((source/'build-info.json').read_text())
+          for name,key in [('index.html','htmlSHA256'),('app.bundle.js','appSHA256'),('styles.css','stylesSHA256')]:
+              assert hashlib.sha256((source/name).read_bytes()).hexdigest()==info[key]
+          for engine in ['chromium','webkit']:
+              report=json.loads((source/'checks'/('local-'+engine+'.json')).read_text())
+              assert report['success'] and all(c['pass'] for c in report['checks'])
+              print(engine,len(report['checks']),'checks passed')
+          for asset in info['newSourceModels']:
+              assert hashlib.sha256((source/'assets'/asset['file']).read_bytes()).hexdigest()==asset['sha256']
+          assert not info['clinicalCalibration'] and info['originalCoordinatesUnchanged']
+          shutil.copytree(source,'fullbody-tcm-v11',dirs_exist_ok=True)
+          shutil.copy2('/tmp/atlas11-approved/atlas-systems-11/verify.cjs','/tmp/atlas11-live-check.cjs')
+          PY
+          test -z "$(git diff HEAD -- fullbody-tcm-v9/ fullbody-tcm-v10/ fullbody-tcm-v10-1/ anatomy/)"
+      - name: Publish inspected viewer only, not stable entry yet
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm --ignore-unmatch atlas-systems-11/payload.00 atlas-systems-11/source.part3
+          git add fullbody-tcm-v11/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish inspected V11 organs, vessels, ears and reversible body-surface display'
+            git push origin HEAD:main
+          fi
+      - name: Match public HTML and app to the inspected candidate
+        run: |
+          python - <<'PY'
+          import hashlib,time,urllib.request
+          from pathlib import Path
+          base='https://hengtong320.github.io/notionweb/fullbody-tcm-v11/'
+          for name in ['index.html','app.bundle.js']:
+              target=hashlib.sha256(Path('fullbody-tcm-v11',name).read_bytes()).hexdigest()
+              for attempt in range(50):
+                  try:
+                      with urllib.request.urlopen(base+name+'?build='+target[:16]+'&attempt='+str(attempt),timeout=25) as r:data=r.read()
+                      if hashlib.sha256(data).hexdigest()==target:break
+                  except Exception as e:print(str(e),flush=True)
+                  time.sleep(5)
+              else:raise RuntimeError('Pages did not serve the exact '+name)
+              print('LIVE_MATCH',name,target,flush=True)
+          PY
+      - name: Real public organ, vessel, ear, projection and bone regression
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v11/?release=${{ github.run_id }}
+        run: node /tmp/atlas11-live-check.cjs
+      - name: Record successful delivery and update stable entry
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,hashlib
+          p=Path('fullbody-tcm-v11');info=json.loads((p/'build-info.json').read_text())
+          reports={name:json.loads((p/'checks'/(name+'.json')).read_text()) for name in ['local-chromium','local-webkit','live-chromium']}
+          assert all(r['success'] and all(c['pass'] for c in r['checks']) for r in reports.values())
+          assert Path('anatomy/index.html').read_bytes()==Path('/tmp/previous-anatomy-entry.html').read_bytes()
+          release={**info,'status':'published-and-browser-verified','url':reports['live-chromium']['url'],'stableURL':'https://hengtong320.github.io/notionweb/anatomy/','checks':{k:len(v['checks']) for k,v in reports.items()},'candidateRun':'35991336253','workflowRun':os.environ['GITHUB_RUN_ID'],'checkedAt':reports['live-chromium']['finishedAt'],'previousVersionsUnchanged':True,'surfaceProjectionIsDisplayOnly':True,'browserCoverage':'Headless Chromium and WebKit, desktop and phone viewports; not every physical device','audioChanged':False,'skinClinicalRegistration':False}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          h='''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>人体研习室 · 固定入口</title><style>body{font:16px/1.8 system-ui;margin:60px auto;max-width:600px;padding:20px;background:#f3f6ed;color:#315842}a{color:#246a50}</style><h1>人体研习室</h1><p>当前版本：V11 器官与体表</p><p><a id="open" href="../fullbody-tcm-v11/">进入三维网页</a> · <a href="../fullbody-tcm-v11/versions.html">查看历史版本</a></p><script>const u=new URL('../fullbody-tcm-v11/',location.href);u.hash=location.hash;u.search=location.search;document.getElementById('open').href=u.href;location.replace(u.href);</script></html>'''
+          Path('anatomy/index.html').write_text(h)
+          PY
+          git add fullbody-tcm-v11/checks/ fullbody-tcm-v11/delivery-release.json anatomy/index.html
+          git commit -m 'Record verified V11 public delivery and update the fixed anatomy entry'
+          git push origin HEAD:main
+      - name: Confirm stable public entry
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,time,urllib.request
+          target=hashlib.sha256(Path('anatomy/index.html').read_bytes()).hexdigest()
+          for attempt in range(50):
+              try:
+                  with urllib.request.urlopen('https://hengtong320.github.io/notionweb/anatomy/?delivery='+target[:12]+'&attempt='+str(attempt),timeout=20) as r:b=r.read()
+                  if hashlib.sha256(b).hexdigest()==target:break
+              except Exception as e:print(e,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Stable entry has not updated')
+          print('STABLE_ENTRY_VERIFIED',target)
+          PY
+      - name: Export verified public viewer and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-11-public-release
+          path: fullbody-tcm-v11/
+          retention-days: 14
