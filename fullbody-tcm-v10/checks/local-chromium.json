@@ -1,7 +1,7 @@
 {
   "version": "10.0.0",
   "browser": "chromium",
-  "startedAt": "2026-09-24T07:20:31.142Z",
+  "startedAt": "2026-09-24T07:25:49.277Z",
   "checks": [
     {
       "name": "HTTP 200 and exact online HTML",
@@ -96,7 +96,7 @@
           "神道 GV11"
         ],
         "mode": "三维示意 · 穴位与经络位置未校准",
-        "bytes": 514545,
+        "bytes": 513078,
         "width": 868,
         "height": 897
       }
@@ -137,7 +137,7 @@
           "神道 GV11"
         ],
         "mode": "三维示意 · 穴位与经络位置未校准",
-        "bytes": 514545,
+        "bytes": 513078,
         "width": 868,
         "height": 897
       }
@@ -211,24 +211,24 @@
       "pass": true,
       "detail": {
         "before": {
-          "framesRendered": 46,
+          "framesRendered": 45,
           "renderScheduled": false,
           "onDemand": true,
           "calls": 1,
           "triangles": 1,
           "geometries": 776,
           "textures": 9,
-          "readyMs": 1289.3999999999942
+          "readyMs": 1241.9000000000087
         },
         "after": {
-          "framesRendered": 46,
+          "framesRendered": 45,
           "renderScheduled": false,
           "onDemand": true,
           "calls": 1,
           "triangles": 1,
           "geometries": 776,
           "textures": 9,
-          "readyMs": 1289.3999999999942
+          "readyMs": 1241.9000000000087
         }
       }
     },
@@ -302,18 +302,18 @@
   "errors": [],
   "success": true,
   "clinicalValidation": false,
-  "url": "http://127.0.0.1:43081/fullbody-tcm-v10/",
+  "url": "http://127.0.0.1:42909/fullbody-tcm-v10/",
   "htmlSHA256": "b8cb2588094b9cfbabd55f8b1e0b5dca5e3cf7f2a18c06a72cd162b93c7e2b59",
   "appSHA256": "47b387a4cf02cab04e77dd9538c5aa40771fd25c1480ec879f66449738f0073c",
   "metrics": {
-    "framesRendered": 46,
+    "framesRendered": 45,
     "renderScheduled": false,
     "onDemand": true,
     "calls": 1,
     "triangles": 1,
     "geometries": 776,
     "textures": 9,
-    "readyMs": 1289.3999999999942
+    "readyMs": 1241.9000000000087
   },
-  "finishedAt": "2026-09-24T07:21:46.991Z"
+  "finishedAt": "2026-09-24T07:27:07.790Z"
 }
