@@ -1,0 +1,130 @@
+name: Deliver V10 stability upgrade
+on:
+  push:
+    paths:
+      - 'atlas-v10-upgrade/files/**'
+      - 'atlas-v10-upgrade/prepare.py'
+      - 'atlas-v10-upgrade/polish.py'
+      - '.github/workflows/atlas-v10-deliver.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas-v10-deliver
+  cancel-in-progress: true
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    env:
+      NODE_PATH: /tmp/atlas-v10/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build from verified V9 with guarded incremental changes
+        run: |
+          python atlas-v10-upgrade/prepare.py
+          python atlas-v10-upgrade/build.py
+          python atlas-v10-upgrade/polish.py
+          node --check fullbody-tcm-v10/app.js
+          node --check fullbody-tcm-v10/stability-v10.js
+      - name: Install pinned build tools and real browser engines
+        run: |
+          npm install --prefix /tmp/atlas-v10 three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/atlas-v10/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Compile online entry and separate offline export
+        env:
+          OFFLINE_EXPORT: atlas-v10-offline.html
+        run: node atlas-v10-upgrade/compile.cjs
+      - name: Real Chromium complete learning journey and screenshot-button test
+        run: node atlas-v10-upgrade/verify.cjs
+      - name: Real WebKit terminology, focus, export and responsive checks
+        env:
+          BROWSER: webkit
+        run: node atlas-v10-upgrade/verify.cjs
+      - name: Validate prior viewers and coordinate data are unchanged
+        run: |
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-atlas/ fullbody-tcm-v3/ fullbody-tcm-v4/ fullbody-tcm-v5/ fullbody-tcm-v6/ fullbody-tcm-v7/ fullbody-tcm-v8/ fullbody-tcm-v9/)"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          for name in ['navigation-points-v6.js','reference-data.js','route-guides-v6.js']:
+              assert Path('fullbody-tcm-v9',name).read_bytes()==Path('fullbody-tcm-v10',name).read_bytes(),name
+          hashes={'fullbody.glb':'f675737728bd5c21c553bb82490694f4c52cb744f7f9ebba346c66775aebd1c2','muscular.glb':'e655e5d21e821778c277261026dac00747b929abee5bd61d2b5a156fe5fbcde7','nervous.glb':'647a754f729510b0f9e4297e5c6a2ef69b9e5b30142b1a07928ae929e3283652'}
+          for name,expected in hashes.items():assert hashlib.sha256(Path('fullbody-tcm-v9/assets',name).read_bytes()).hexdigest()==expected,name
+          print('Anatomy, coordinates and prior viewers unchanged')
+          PY
+      - name: Publish only browser-tested V10, preserving all earlier files
+        run: |
+          git fetch origin main
+          git worktree add -B v10-release /tmp/atlas-v10-publish origin/main
+          rm -rf /tmp/atlas-v10-publish/fullbody-tcm-v10
+          cp -a fullbody-tcm-v10 /tmp/atlas-v10-publish/
+          cp atlas-v10-upgrade/build.py atlas-v10-upgrade/compile.cjs atlas-v10-upgrade/verify.cjs /tmp/atlas-v10-publish/atlas-v10-upgrade/
+          cp atlas-v10-upgrade/files/evidence-ui-v9.js /tmp/atlas-v10-publish/atlas-v10-upgrade/files/
+          cd /tmp/atlas-v10-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v10/ atlas-v10-upgrade/build.py atlas-v10-upgrade/compile.cjs atlas-v10-upgrade/verify.cjs atlas-v10-upgrade/files/evidence-ui-v9.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish V10 shared terminology, consistent study state and labeled export'
+            git push origin HEAD:main
+          fi
+      - name: Confirm Pages serves the exact HTML and JS build
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,time,urllib.request
+          checks={n:hashlib.sha256(Path('fullbody-tcm-v10',n).read_bytes()).hexdigest() for n in ['index.html','app.bundle.js','evidence.bundle.js']}
+          for attempt in range(48):
+              ok=True
+              for n,expected in checks.items():
+                  try:
+                      url='https://hengtong320.github.io/notionweb/fullbody-tcm-v10/'+n+'?build='+expected[:12]+'&attempt='+str(attempt)
+                      with urllib.request.urlopen(url,timeout=30) as r:data=r.read()
+                      if hashlib.sha256(data).hexdigest()!=expected:ok=False
+                  except Exception as e:ok=False;print(n,str(e),flush=True)
+              if ok:print('Exact Pages build ready',checks,flush=True);break
+              time.sleep(5)
+          else:raise RuntimeError('Public build differs from tested artifacts')
+          PY
+      - name: Repeat complete learning journey against the public website
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v10/?release=${{ github.run_id }}
+        run: node atlas-v10-upgrade/verify.cjs
+      - name: Publish exact verification evidence and stable project entry
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,hashlib
+          root=Path('fullbody-tcm-v10');d=json.loads((root/'build-info.json').read_text());reports={}
+          for name in ['local-chromium','local-webkit','live-chromium']:
+              r=json.loads((root/'checks'/(name+'.json')).read_text());assert r['success'] and all(c['pass'] for c in r['checks']);reports[name]=r
+          d.update({'status':'published-and-browser-verified','url':reports['live-chromium']['url'],'stableURL':'https://hengtong320.github.io/notionweb/anatomy/','checks':{n:len(r['checks']) for n,r in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'browserCoverage':'Headless Chromium and WebKit, desktop and phone viewport; not all real devices','clinicalValidation':False,'audioHumanReviewed':False,'testScope':'Shared terminology, full learning journeys, actual export button, rendering, idle scheduling and deep links'})
+          (root/'delivery-release.json').write_text(json.dumps(d,ensure_ascii=False,indent=2))
+          p=Path('/tmp/atlas-v10-publish/anatomy');p.mkdir(exist_ok=True)
+          (p/'index.html').write_text('''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>人体研习室 · 固定入口</title><style>body{font:16px/1.8 system-ui;margin:60px auto;max-width:600px;padding:20px;background:#f3f6ed;color:#315842}a{color:#246a50}</style><h1>人体研习室</h1><p>当前版本：V10 稳定修订</p><p><a id="open" href="../fullbody-tcm-v10/">进入三维网页</a> · <a href="../fullbody-tcm-v10/versions.html">查看历史版本</a></p><script>const u=new URL('../fullbody-tcm-v10/',location.href);u.hash=location.hash;u.search=location.search;document.getElementById('open').href=u.href;location.replace(u.href);</script></html>''')
+          (p/'current.json').write_text(json.dumps({'version':'10.0.0','path':'../fullbody-tcm-v10/','workflow':os.environ['GITHUB_RUN_ID'],'verified':True},indent=2))
+          PY
+          cp fullbody-tcm-v10/delivery-release.json /tmp/atlas-v10-publish/fullbody-tcm-v10/
+          cp fullbody-tcm-v10/checks/live-chromium.json /tmp/atlas-v10-publish/fullbody-tcm-v10/checks/
+          cd /tmp/atlas-v10-publish
+          git add fullbody-tcm-v10/delivery-release.json fullbody-tcm-v10/checks/live-chromium.json anatomy/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record exact V10 public learning-journey verification and stable anatomy entry'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Export viewer, source and actual browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v10-tested-release
+          path: |
+            fullbody-tcm-v10/
+            atlas-v10-upgrade/
+            atlas-v10-offline.html
+          retention-days: 14
