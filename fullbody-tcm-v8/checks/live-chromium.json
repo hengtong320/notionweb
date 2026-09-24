@@ -1,0 +1,1179 @@
+{
+  "startedAt": "2026-09-24T01:16:35.331Z",
+  "browser": "chromium",
+  "success": true,
+  "checks": [
+    {
+      "name": "Published or local HTTP 200 and exact V8 HTML",
+      "pass": true
+    },
+    {
+      "name": "V8 and all original 210 bones",
+      "pass": true
+    },
+    {
+      "name": "Original 670 standard marker instances retained",
+      "pass": true
+    },
+    {
+      "name": "Every original route branch remains finite and sampled",
+      "pass": true,
+      "detail": {
+        "branches": 33
+      }
+    },
+    {
+      "name": "Curves actually depart from straight segments",
+      "pass": true
+    },
+    {
+      "name": "Smoothing is bounded, preserves anchors and endpoints",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: LU",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: LI",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: ST",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: SP",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: HT",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: SI",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: BL",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: KI",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: PC",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: TE",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: GB",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: LR",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: GV",
+      "pass": true
+    },
+    {
+      "name": "Visible branch coverage: CV",
+      "pass": true
+    },
+    {
+      "name": "Dashed reference option works",
+      "pass": true
+    },
+    {
+      "name": "Collapse retains routes",
+      "pass": true
+    },
+    {
+      "name": "Actual Yintang directory click leaves thorax for eyebrow area",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-YINTANG",
+          "name": "印堂",
+          "side": "midline",
+          "areaOnly": true
+        },
+        "center": [
+          99.55318155698478,
+          1560,
+          68
+        ],
+        "target": [
+          99.5531815569848,
+          1560,
+          68
+        ],
+        "camera": [
+          99.5531815569848,
+          1574.7283495451704,
+          436.208738629262
+        ],
+        "area": true,
+        "inView": true,
+        "error": 1.4210854715202004e-14
+      }
+    },
+    {
+      "name": "Actual Anmian click reaches posterior-lateral head area",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-ANMIAN",
+          "name": "安眠",
+          "side": "right",
+          "areaOnly": true
+        },
+        "center": [
+          42.5,
+          1494.5,
+          -70
+        ],
+        "target": [
+          42.5,
+          1494.5,
+          -70
+        ],
+        "camera": [
+          -532.5279960800858,
+          1523.2513998040042,
+          -386.2653978440475
+        ],
+        "area": true,
+        "inView": true,
+        "error": 0
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-YINTANG",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-YINTANG",
+          "name": "印堂",
+          "side": "midline",
+          "areaOnly": true
+        },
+        "center": [
+          99.55318155698478,
+          1560,
+          68
+        ],
+        "target": [
+          99.5531815569848,
+          1560,
+          68
+        ],
+        "camera": [
+          99.5531815569848,
+          1574.7283495451704,
+          436.208738629262
+        ],
+        "area": true,
+        "inView": true,
+        "error": 1.4210854715202004e-14
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-TAIYANG",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-TAIYANG",
+          "name": "太阳",
+          "side": "right",
+          "areaOnly": true
+        },
+        "center": [
+          28,
+          1550,
+          27
+        ],
+        "target": [
+          28,
+          1550,
+          27
+        ],
+        "camera": [
+          -512.485118836679,
+          1566.2145535651005,
+          243.19404753467163
+        ],
+        "area": true,
+        "inView": true,
+        "error": 0
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-YUYAO",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-YUYAO",
+          "name": "鱼腰",
+          "side": "right",
+          "areaOnly": true
+        },
+        "center": [
+          70,
+          1564,
+          65
+        ],
+        "target": [
+          70.00000000000001,
+          1564,
+          65
+        ],
+        "camera": [
+          -36.09624901068908,
+          1588.1127838660657,
+          547.2556773213141
+        ],
+        "area": true,
+        "inView": true,
+        "error": 1.4210854715202004e-14
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-SISHENCONG",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-SISHENCONG",
+          "name": "四神聪",
+          "side": "midline",
+          "areaOnly": true
+        },
+        "center": [
+          99.553,
+          1668,
+          -40
+        ],
+        "target": [
+          99.553,
+          1668,
+          -40
+        ],
+        "camera": [
+          99.55300000000007,
+          2230.6939024111543,
+          -6.238365855330699
+        ],
+        "area": true,
+        "inView": true,
+        "error": 0
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-ANMIAN",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-ANMIAN",
+          "name": "安眠",
+          "side": "right",
+          "areaOnly": true
+        },
+        "center": [
+          42.5,
+          1494.5,
+          -70
+        ],
+        "target": [
+          42.5,
+          1494.5,
+          -70
+        ],
+        "camera": [
+          -532.5279960800858,
+          1523.2513998040042,
+          -386.2653978440475
+        ],
+        "area": true,
+        "inView": true,
+        "error": 0
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-ERJIAN",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-ERJIAN",
+          "name": "耳尖",
+          "side": "right",
+          "areaOnly": true
+        },
+        "center": [
+          15,
+          1570,
+          -22
+        ],
+        "target": [
+          14.999999999999998,
+          1570,
+          -21.999999999999993
+        ],
+        "camera": [
+          -586.7862507868823,
+          1588.0535875236064,
+          98.35725015737646
+        ],
+        "area": true,
+        "inView": true,
+        "error": 7.32410687763558e-15
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-QIUHOU",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-QIUHOU",
+          "name": "球后",
+          "side": "right",
+          "areaOnly": true
+        },
+        "center": [
+          59,
+          1525,
+          61
+        ],
+        "target": [
+          59,
+          1525,
+          61
+        ],
+        "camera": [
+          -129.90219462899304,
+          1498.013972195858,
+          600.7205560828374
+        ],
+        "area": true,
+        "inView": true,
+        "error": 0
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-SHANGLIANQUAN",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-SHANGLIANQUAN",
+          "name": "上廉泉",
+          "side": "midline",
+          "areaOnly": true
+        },
+        "center": [
+          99.55318155698478,
+          1457,
+          39
+        ],
+        "target": [
+          99.5531815569848,
+          1457.0000000000002,
+          39
+        ],
+        "camera": [
+          99.5531815569848,
+          1315.747242665433,
+          543.4741333377394
+        ],
+        "area": true,
+        "inView": true,
+        "error": 2.278173318171838e-13
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-JIACHENGJIANG",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-JIACHENGJIANG",
+          "name": "夹承浆",
+          "side": "right",
+          "areaOnly": true
+        },
+        "center": [
+          73,
+          1468,
+          62
+        ],
+        "target": [
+          73,
+          1468.0000000000002,
+          62
+        ],
+        "camera": [
+          -58.78522118768987,
+          1468.0000000000002,
+          589.1408847507595
+        ],
+        "area": true,
+        "inView": true,
+        "error": 2.2737367544323206e-13
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-JINJING",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-JINJING",
+          "name": "金津",
+          "side": "right",
+          "areaOnly": true
+        },
+        "center": [
+          89,
+          1482,
+          37
+        ],
+        "target": [
+          89,
+          1482,
+          37
+        ],
+        "camera": [
+          89,
+          1529.9399009957813,
+          636.2487624472674
+        ],
+        "area": true,
+        "inView": true,
+        "error": 0
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-YUYE",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-YUYE",
+          "name": "玉液",
+          "side": "right",
+          "areaOnly": true
+        },
+        "center": [
+          110,
+          1482,
+          37
+        ],
+        "target": [
+          109.99999999999999,
+          1482,
+          37
+        ],
+        "camera": [
+          109.99999999999999,
+          1529.9399009957813,
+          636.2487624472673
+        ],
+        "area": true,
+        "inView": true,
+        "error": 1.4210854715202004e-14
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-BITONG",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-BITONG",
+          "name": "鼻通",
+          "side": "right",
+          "areaOnly": true
+        },
+        "center": [
+          84,
+          1531,
+          73
+        ],
+        "target": [
+          84,
+          1531,
+          73
+        ],
+        "camera": [
+          17.625376969306075,
+          1544.2749246061387,
+          515.4974868712928
+        ],
+        "area": true,
+        "inView": true,
+        "error": 0
+      }
+    },
+    {
+      "name": "Anmian left/right orientation mirrors correctly",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-ANMIAN",
+          "name": "安眠",
+          "side": "left",
+          "areaOnly": true
+        },
+        "center": [
+          156.60636311396956,
+          1494.5,
+          -70
+        ],
+        "target": [
+          156.6063631139696,
+          1494.5,
+          -70
+        ],
+        "camera": [
+          731.6343591940554,
+          1523.2513998040042,
+          -386.2653978440476
+        ],
+        "area": true,
+        "inView": true,
+        "error": 2.842170943040401e-14
+      }
+    },
+    {
+      "name": "Profile bones keeps Anmian and camera target",
+      "pass": true
+    },
+    {
+      "name": "Profile muscles keeps Anmian and camera target",
+      "pass": true
+    },
+    {
+      "name": "Local muscle context renders actual meshes",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "loaded": true,
+        "loading": false,
+        "count": 683,
+        "visible": 163,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "Profile nerves keeps Anmian and camera target",
+      "pass": true
+    },
+    {
+      "name": "Local nerve context renders actual meshes",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "loaded": true,
+        "loading": false,
+        "count": 550,
+        "visible": 337,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "Profile compare keeps Anmian and camera target",
+      "pass": true
+    },
+    {
+      "name": "Existing Yingxiang target still focuses correctly",
+      "pass": true
+    },
+    {
+      "name": "Two channels and names remain selectable",
+      "pass": true
+    },
+    {
+      "name": "Original lumbar vertical separation preserved",
+      "pass": true
+    },
+    {
+      "name": "Extra navigation also restores separated bones",
+      "pass": true
+    },
+    {
+      "name": "Phone resize keeps Yintang study area on screen",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-YINTANG",
+          "name": "印堂",
+          "side": "midline",
+          "areaOnly": true
+        },
+        "center": [
+          99.55318155698478,
+          1560,
+          68
+        ],
+        "target": [
+          99.5531815569848,
+          1560,
+          68
+        ],
+        "camera": [
+          99.5531815569848,
+          1586.7351652247967,
+          736.379130619918
+        ],
+        "area": true,
+        "inView": true,
+        "error": 1.4210854715202004e-14
+      }
+    },
+    {
+      "name": "Phone no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Landscape extra focus remains on screen",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-ANMIAN",
+          "name": "安眠",
+          "side": "left",
+          "areaOnly": true
+        },
+        "center": [
+          156.60636311396956,
+          1494.5,
+          -70
+        ],
+        "target": [
+          156.6063631139696,
+          1494.5,
+          -70
+        ],
+        "camera": [
+          726.0694492720514,
+          1522.973154307904,
+          -383.2046973869453
+        ],
+        "area": true,
+        "inView": true,
+        "error": 2.842170943040401e-14
+      }
+    },
+    {
+      "name": "No third-party runtime dependencies",
+      "pass": true
+    },
+    {
+      "name": "No JavaScript or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "clinicalCalibration": false,
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?release=35941634866",
+  "htmlSHA256": "f3b823e9eb3d0db9a91b52e508c727a50423574af02ae257be05372be9387574",
+  "curves": [
+    {
+      "meridian": "LU",
+      "side": "right",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 11,
+      "segments": 10,
+      "samples": 420,
+      "curvedSegments": 10,
+      "maxDeviation": 4.318260076751964,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "LU",
+      "side": "left",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 11,
+      "segments": 10,
+      "samples": 420,
+      "curvedSegments": 10,
+      "maxDeviation": 4.318260076751967,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "LI",
+      "side": "right",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 20,
+      "segments": 19,
+      "samples": 575,
+      "curvedSegments": 18,
+      "maxDeviation": 2.812740378741963,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "LI",
+      "side": "left",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 20,
+      "segments": 19,
+      "samples": 575,
+      "curvedSegments": 18,
+      "maxDeviation": 2.8127403787419585,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "ST",
+      "side": "right",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 45,
+      "segments": 44,
+      "samples": 1256,
+      "curvedSegments": 37,
+      "maxDeviation": 5.326597224486131,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "ST",
+      "side": "left",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 45,
+      "segments": 44,
+      "samples": 1256,
+      "curvedSegments": 37,
+      "maxDeviation": 5.326597224486121,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "SP",
+      "side": "right",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 21,
+      "segments": 20,
+      "samples": 826,
+      "curvedSegments": 19,
+      "maxDeviation": 3.8390151082142916,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "SP",
+      "side": "left",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 21,
+      "segments": 20,
+      "samples": 826,
+      "curvedSegments": 19,
+      "maxDeviation": 3.839015108214293,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "HT",
+      "side": "right",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 9,
+      "segments": 8,
+      "samples": 353,
+      "curvedSegments": 8,
+      "maxDeviation": 1.1989165395369104,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "HT",
+      "side": "left",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 9,
+      "segments": 8,
+      "samples": 353,
+      "curvedSegments": 8,
+      "maxDeviation": 1.1989165395369439,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "SI",
+      "side": "right",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 19,
+      "segments": 18,
+      "samples": 672,
+      "curvedSegments": 18,
+      "maxDeviation": 3.739214902144803,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "SI",
+      "side": "left",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 19,
+      "segments": 18,
+      "samples": 672,
+      "curvedSegments": 18,
+      "maxDeviation": 3.7392149021448033,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "BL",
+      "side": "right",
+      "note": "头颈段；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 10,
+      "segments": 9,
+      "samples": 227,
+      "curvedSegments": 9,
+      "maxDeviation": 2.5742518061216204,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "BL",
+      "side": "right",
+      "note": "背内侧及下肢段；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 40,
+      "segments": 39,
+      "samples": 993,
+      "curvedSegments": 38,
+      "maxDeviation": 2.9439612229251373,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "BL",
+      "side": "right",
+      "note": "背外侧支线；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 17,
+      "segments": 16,
+      "samples": 577,
+      "curvedSegments": 16,
+      "maxDeviation": 0.9100070020141752,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "BL",
+      "side": "right",
+      "note": "骶后区参照点组；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 4,
+      "segments": 3,
+      "samples": 49,
+      "curvedSegments": 0,
+      "maxDeviation": 0.07235902880895718,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "BL",
+      "side": "left",
+      "note": "头颈段；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 10,
+      "segments": 9,
+      "samples": 227,
+      "curvedSegments": 9,
+      "maxDeviation": 2.5742518061216204,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "BL",
+      "side": "left",
+      "note": "背内侧及下肢段；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 40,
+      "segments": 39,
+      "samples": 993,
+      "curvedSegments": 38,
+      "maxDeviation": 2.9439612229251373,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "BL",
+      "side": "left",
+      "note": "背外侧支线；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 17,
+      "segments": 16,
+      "samples": 577,
+      "curvedSegments": 16,
+      "maxDeviation": 0.9100070020141569,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "BL",
+      "side": "left",
+      "note": "骶后区参照点组；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 4,
+      "segments": 3,
+      "samples": 49,
+      "curvedSegments": 0,
+      "maxDeviation": 0.07235902880895718,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "KI",
+      "side": "right",
+      "note": "足底至腹胸段；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 30,
+      "segments": 29,
+      "samples": 909,
+      "curvedSegments": 22,
+      "maxDeviation": 3.249934299219705,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "KI",
+      "side": "left",
+      "note": "足底至腹胸段；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 30,
+      "segments": 29,
+      "samples": 909,
+      "curvedSegments": 22,
+      "maxDeviation": 3.249934299219704,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "PC",
+      "side": "right",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 9,
+      "segments": 8,
+      "samples": 377,
+      "curvedSegments": 7,
+      "maxDeviation": 3.466067635366278,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "PC",
+      "side": "left",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 9,
+      "segments": 8,
+      "samples": 377,
+      "curvedSegments": 7,
+      "maxDeviation": 3.466067635366178,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "TE",
+      "side": "right",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 23,
+      "segments": 22,
+      "samples": 697,
+      "curvedSegments": 22,
+      "maxDeviation": 3.780628577507722,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "TE",
+      "side": "left",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 23,
+      "segments": 22,
+      "samples": 697,
+      "curvedSegments": 22,
+      "maxDeviation": 3.7806285775077186,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "GB",
+      "side": "right",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 44,
+      "segments": 43,
+      "samples": 1567,
+      "curvedSegments": 42,
+      "maxDeviation": 4.1829851771870565,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "GB",
+      "side": "left",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 44,
+      "segments": 43,
+      "samples": 1567,
+      "curvedSegments": 42,
+      "maxDeviation": 4.182985177187002,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "LR",
+      "side": "right",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 14,
+      "segments": 13,
+      "samples": 687,
+      "curvedSegments": 13,
+      "maxDeviation": 2.1395946775820756,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "LR",
+      "side": "left",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 14,
+      "segments": 13,
+      "samples": 687,
+      "curvedSegments": 13,
+      "maxDeviation": 2.1395946775820756,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "GV",
+      "side": "midline",
+      "note": "骶腰背、颈及头顶段；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 24,
+      "segments": 23,
+      "samples": 599,
+      "curvedSegments": 23,
+      "maxDeviation": 3.1464496693105852,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "GV",
+      "side": "midline",
+      "note": "面部及上唇区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 6,
+      "segments": 5,
+      "samples": 98,
+      "curvedSegments": 4,
+      "maxDeviation": 1.4130656468608302,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    },
+    {
+      "meridian": "CV",
+      "side": "midline",
+      "note": "各穴名对应区域；体表区域导览，未含全部内行和支脉，非临床定位线",
+      "anchors": 24,
+      "segments": 23,
+      "samples": 459,
+      "curvedSegments": 17,
+      "maxDeviation": 2.492967319887391,
+      "maximumHandle": 10,
+      "joinTangentError": 0,
+      "endpointsPreserved": true,
+      "anchorPointsPreserved": true,
+      "clinicalCalibration": false
+    }
+  ],
+  "finishedAt": "2026-09-24T01:19:30.723Z"
+}
