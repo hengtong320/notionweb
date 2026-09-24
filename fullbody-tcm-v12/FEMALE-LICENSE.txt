@@ -1,0 +1,6 @@
+HRA / HuBMAP Female Reference v1.5
+Kristen Browne; Heidi Schlehlein (2023)
+CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+https://doi.org/10.48539/HBM352.BTSQ.586
+https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.5/metadata.json
+Adaptations: original world matrices baked, metres converted to millimetres, uniform translation [100,760,0], original native systems separated, labels translated conservatively, Draco compression (16bit positions). No male geometry borrowed. Pregnancy-specific structures excluded. Partial skeletal and muscle coverage.

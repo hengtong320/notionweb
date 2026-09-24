@@ -1,0 +1,53 @@
+{
+  "version": "12.0.1",
+  "base": "V11",
+  "baseCommit": "da4bd9020ca02f64f98b20a086964ec71cedc35a",
+  "maleModelsUnchanged": true,
+  "sourceAcupointCoordinatesUnchanged": true,
+  "femaleSource": "HRA united-female v1.5",
+  "femaleUsesMaleMeshes": false,
+  "femaleAcupointRegistration": false,
+  "clinicalCalibration": false,
+  "allAudioHumanReviewed": false,
+  "oldVersionsUnchanged": true,
+  "femaleStructureCount": 880,
+  "files": {
+    "index.html": {
+      "bytes": 16239,
+      "sha256": "781a8d8e15ec30df8a7af72b1cc4b5cf5c2891fc4c8d1ddb6f980f6ca4e55cc8"
+    },
+    "app.bundle.js": {
+      "bytes": 2875889,
+      "sha256": "2d6daa19e4151e252c88220dff3e9a5b9cab28a5f7450f09b75cb1c07b592216"
+    },
+    "evidence.bundle.js": {
+      "bytes": 934677,
+      "sha256": "46ee926001fb5d538517b5284e11847435eeb412004d337d78efa70b573508f3"
+    },
+    "styles.css": {
+      "bytes": 68507,
+      "sha256": "a44fa3b83f8eb19fa21b5710e76173126b5b7298da0fa713528b2e522fe8893a"
+    },
+    "refinement-v12.css": {
+      "bytes": 9461,
+      "sha256": "04423f57b9c30718fb9066de4a26e22d227b17bb04824d5d7f6934ffcb1d086d"
+    },
+    "female-v12.js": {
+      "bytes": 22842,
+      "sha256": "412dbd0b5b028dfac141c48c4ed6537d233ef8a248c4be83abe87498c4bfe542"
+    },
+    "refinement-v12.js": {
+      "bytes": 9234,
+      "sha256": "a88ff6e303ae26ad000fdea31d649bd746a764a9124d2b50de29c1cf37d1a2c3"
+    },
+    "assets/female/catalog.json": {
+      "bytes": 507373,
+      "sha256": "438809211b1c14ab3f26aba8f496a6c26caaaecc70731674f0947e103e5390e8"
+    }
+  },
+  "status": "pending-browser-verification",
+  "published": false,
+  "originalCandidateRun": 36000708777,
+  "sameDocumentFemaleNavigation": true,
+  "savedLayerCombinations": true
+}

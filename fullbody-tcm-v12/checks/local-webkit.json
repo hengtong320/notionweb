@@ -1,0 +1,206 @@
+{
+  "version": "12.0.1",
+  "browser": "webkit",
+  "startedAt": "2026-09-24T13:18:37.357Z",
+  "checks": [
+    {
+      "name": "All 210 male bones remain",
+      "pass": true
+    },
+    {
+      "name": "Exact candidate HTML",
+      "pass": true
+    },
+    {
+      "name": "No large positioning-audit dashboard",
+      "pass": true
+    },
+    {
+      "name": "TCM shows illustrative routes without a blocking mode gate",
+      "pass": true
+    },
+    {
+      "name": "Compact qualification retained",
+      "pass": true
+    },
+    {
+      "name": "Source details remain accessible",
+      "pass": true
+    },
+    {
+      "name": "Closing sidebar preserves meridians",
+      "pass": true
+    },
+    {
+      "name": "Custom layers and advanced controls start collapsed",
+      "pass": true
+    },
+    {
+      "name": "Off layer opacity is hidden",
+      "pass": true
+    },
+    {
+      "name": "Male chest scene still loads source organs",
+      "pass": true
+    },
+    {
+      "name": "Focus stage hides sidebars without changing organ profile",
+      "pass": true
+    },
+    {
+      "name": "Escape restores panels",
+      "pass": true
+    },
+    {
+      "name": "Independent female body surface loads",
+      "pass": true,
+      "detail": {
+        "active": true,
+        "preset": "surface",
+        "mode": "solid",
+        "side": "both",
+        "view": "front",
+        "selected": null,
+        "isolated": false,
+        "source": "HRA united-female v1.5",
+        "maleMixedIn": false,
+        "visible": 1,
+        "hidden": [],
+        "loaded": 1,
+        "systems": {
+          "surface": {
+            "on": true,
+            "loaded": true,
+            "count": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "Male bones and tissues are not mixed into female",
+      "pass": true
+    },
+    {
+      "name": "Male acupoint layer disabled in female",
+      "pass": true
+    },
+    {
+      "name": "Female selection hides male TCM controls",
+      "pass": true
+    },
+    {
+      "name": "Native female uterus and bilateral ovaries are present",
+      "pass": true
+    },
+    {
+      "name": "Chinese search selects female uterus",
+      "pass": true
+    },
+    {
+      "name": "Female isolation leaves one source mesh",
+      "pass": true
+    },
+    {
+      "name": "Female mesh surface is actually pickable",
+      "pass": true,
+      "detail": {
+        "x": 704,
+        "y": 498.5
+      }
+    },
+    {
+      "name": "Actual mouse click identifies female uterus",
+      "pass": true
+    },
+    {
+      "name": "Focused learning mode selectable",
+      "pass": true
+    },
+    {
+      "name": "Hidden female structure stays hidden after render mode change",
+      "pass": true
+    },
+    {
+      "name": "Female cardiopulmonary assembly loads independently",
+      "pass": true
+    },
+    {
+      "name": "Female left-side plus midline filter is active",
+      "pass": true
+    },
+    {
+      "name": "Female breast includes 16 native structures",
+      "pass": true
+    },
+    {
+      "name": "Screenshot uses female context not stale male sternum",
+      "pass": true
+    },
+    {
+      "name": "Phone page has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Sex selector accessible on phone",
+      "pass": true
+    },
+    {
+      "name": "Male model restores original chest context",
+      "pass": true
+    },
+    {
+      "name": "Male lumbar vertical separation retained",
+      "pass": true
+    },
+    {
+      "name": "Male global reset restores 210 bones",
+      "pass": true
+    },
+    {
+      "name": "Reloaded female deep link restores exact target and display context",
+      "pass": true
+    },
+    {
+      "name": "Female numbered view shortcuts do not invoke male camera",
+      "pass": true
+    },
+    {
+      "name": "Phone female directory can be opened",
+      "pass": true
+    },
+    {
+      "name": "Phone female directory has a working close control",
+      "pass": true
+    },
+    {
+      "name": "Phone female detail has its own close control",
+      "pass": true
+    },
+    {
+      "name": "Phone closes detail to expose the actual model",
+      "pass": true
+    },
+    {
+      "name": "Female tools exclude stale bone-only controls",
+      "pass": true
+    },
+    {
+      "name": "Full page reload restores the native female deep link",
+      "pass": true
+    },
+    {
+      "name": "Saved layer combination restores an actual visibility change",
+      "pass": true
+    },
+    {
+      "name": "No uncaught page errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "clinicalValidation": false,
+  "url": "http://127.0.0.1:38277/fullbody-tcm-v12/",
+  "finishedAt": "2026-09-24T13:19:24.277Z"
+}
