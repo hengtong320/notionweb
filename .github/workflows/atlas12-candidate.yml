@@ -1,0 +1,66 @@
+name: Build independent female and streamlined atlas
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas12-candidate.yml'
+      - 'atlas12-tools/*.py'
+      - 'atlas12-tools/*.js'
+      - 'atlas12-tools/*.css'
+      - 'atlas12-tools/*.cjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: atlas12-candidate
+  cancel-in-progress: true
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/atlas12/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas12-female-source
+          run-id: 35996785070
+          github-token: ${{ github.token }}
+          path: female-inspection
+      - name: Install pinned geometry and browser tools
+        run: |
+          npm install --prefix /tmp/atlas12 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1 @gltf-transform/core@4.2.1 @gltf-transform/extensions@4.2.1 @gltf-transform/functions@4.2.1 draco3dgltf@1.5.7
+          python -m pip install numpy pypinyin==0.55.0
+          /tmp/atlas12/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Build without touching previous viewers
+        run: |
+          python atlas12-tools/patch.py
+          python atlas12-tools/prepare_female.py female-inspection
+          node --check fullbody-tcm-v12/app.js
+          node --check fullbody-tcm-v12/female-v12.js
+          node --check fullbody-tcm-v12/refinement-v12.js
+          node atlas12-tools/build.cjs
+          test -z "$(git diff HEAD -- fullbody-tcm-v11/ fullbody-tcm-v10-1/ fullbody-tcm-v9/ anatomy/)"
+      - name: Chromium actual female and male learning journeys
+        run: node atlas12-tools/verify.cjs
+      - name: WebKit actual female and male learning journeys
+        env:
+          BROWSER: webkit
+        run: node atlas12-tools/verify.cjs
+      - name: Export candidate with source manifest and real rendered evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas12-candidate
+          path: |
+            fullbody-tcm-v12/
+            atlas12-tools/*.py
+            atlas12-tools/*.js
+            atlas12-tools/*.css
+            atlas12-tools/*.cjs
+          retention-days: 14
