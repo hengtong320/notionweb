@@ -41,6 +41,7 @@ jobs:
         run: |
           python atlas12-tools/patch.py
           python atlas12-tools/prepare_female.py female-inspection
+          python atlas12-tools/review.py
           node --check fullbody-tcm-v12/app.js
           node --check fullbody-tcm-v12/female-v12.js
           node --check fullbody-tcm-v12/refinement-v12.js
