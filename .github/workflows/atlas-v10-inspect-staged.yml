@@ -1,0 +1,48 @@
+name: Inspect V10 staged source
+on:
+  push:
+    paths: ['.github/workflows/atlas-v10-inspect-staged.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Decode staged payload as data only
+        run: |
+          mkdir -p /tmp/v10-inspection
+          python - <<'PY'
+          from pathlib import Path
+          import base64,gzip,json,hashlib
+          out=Path('/tmp/v10-inspection')
+          for folder,extension in [('payload','b64'),('chunks','txt')]:
+              files=sorted(Path('atlas-v10-upgrade',folder).glob('*.'+extension))
+              text=''.join(p.read_text().strip() for p in files)
+              (out/(folder+'-encoded.txt')).write_text(text)
+              try:
+                  blob=base64.b64decode(text,validate=True)
+                  raw=gzip.decompress(blob)
+                  (out/(folder+'-decoded.txt')).write_bytes(raw)
+                  print(folder,'decoded bytes',len(raw),'sha256',hashlib.sha256(raw).hexdigest(),flush=True)
+                  try:
+                      data=json.loads(raw)
+                      print(folder,'JSON',type(data).__name__,list(data)[:25] if isinstance(data,dict) else '',flush=True)
+                  except Exception:print(folder,'not JSON; saved for inspection only')
+              except Exception as e:print(folder,'decode issue',str(e),flush=True)
+          PY
+      - name: Prepare pinned JS build tools
+        run: |
+          npm install --prefix /tmp/v10-inspection/build-tools three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          tar -czf /tmp/v10-inspection/build-tools.tgz -C /tmp/v10-inspection/build-tools node_modules package.json package-lock.json
+          rm -rf /tmp/v10-inspection/build-tools
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v10-inspect-staged
+          path: /tmp/v10-inspection/
+          retention-days: 7
