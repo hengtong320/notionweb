@@ -1,0 +1,45 @@
+name: V13 corrected term recordings
+on:
+  push:
+    paths: ['.github/workflows/atlas13-corrected-voice.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare fixed Mandarin voice
+        run: |
+          pip install sherpa-onnx==1.12.26 soundfile==0.13.1 numpy==2.2.6
+          curl -fL --retry 3 -o /tmp/model.tar.bz2 https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/kokoro-int8-multi-lang-v1_1.tar.bz2
+          mkdir /tmp/kokoro
+          tar xjf /tmp/model.tar.bz2 -C /tmp/kokoro --strip-components=1
+      - name: Synthesize explicit unambiguous phonetic hints
+        run: |
+          python - <<'PY'
+          import sherpa_onnx,soundfile as sf,numpy as np,json,hashlib,pathlib
+          m=pathlib.Path('/tmp/kokoro');out=pathlib.Path('/tmp/voice-corrected');out.mkdir()
+          model=next(m.glob('*.onnx'))
+          c=sherpa_onnx.OfflineTtsConfig(model=sherpa_onnx.OfflineTtsModelConfig(kokoro=sherpa_onnx.OfflineTtsKokoroModelConfig(model=str(model),voices=str(m/'voices.bin'),tokens=str(m/'tokens.txt'),data_dir=str(m/'espeak-ng-data'),lexicon=','.join(str(m/n) for n in ['lexicon-us-en.txt','lexicon-zh.txt'])),num_threads=2))
+          assert c.validate();tts=sherpa_onnx.OfflineTts(c)
+          terms=[('长强','常强','cháng qiáng'),('大椎','大锥','dà zhuī'),('少商','绍商','shào shāng'),('少冲','绍冲','shào chōng'),('少府','绍府','shào fǔ'),('少海','绍海','shào hǎi'),('少泽','绍泽','shào zé'),('郄门','隙门','xì mén'),('阴郄','阴隙','yīn xì'),('龈交','银交','yín jiāo'),('尺泽','尺泽','chǐ zé'),('商阳','商阳','shāng yáng'),('阳池','阳池','yáng chí')]
+          mapping={}
+          for name,hint,py in terms:
+            a=tts.generate(text=hint+'。',sid=3,speed=.93)
+            samples=np.asarray(a.samples,dtype=np.float32);rms=float(np.sqrt(np.mean(samples*samples)))
+            assert len(samples)>a.sample_rate*.2 and rms>.0001,(name,rms)
+            fn=hashlib.sha256(name.encode()).hexdigest()[:16]+'.mp3';sf.write(out/fn,samples,a.sample_rate,format='MP3')
+            mapping[name]={'file':fn,'spokenText':hint,'pinyin':py,'seconds':len(samples)/a.sample_rate,'rms':rms,'sha256':hashlib.sha256((out/fn).read_bytes()).hexdigest()}
+          (out/'manifest.json').write_text(json.dumps({'engine':'Kokoro-82M v1.1-zh / sherpa-onnx1.12.26','synthetic':True,'speaker':'zf_001','license':'Apache-2.0 model','source':'https://huggingface.co/hexgrad/Kokoro-82M-v1.1-zh','modelSHA256':hashlib.sha256(model.read_bytes()).hexdigest(),'method':'Explicit homophone input for reported polyphones; written labels keep standard orthography','allAudioHumanReviewed':False,'mapping':mapping},ensure_ascii=False,indent=2))
+          print('RECORDINGS',len(mapping))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atlas13-corrected-voice
+          path: /tmp/voice-corrected/
+          retention-days: 14
