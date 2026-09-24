@@ -11,7 +11,11 @@
   "clinicalCalibration": false,
   "audioChanged": false,
   "previousViewersUntouched": true,
-  "htmlSHA256": "f3b823e9eb3d0db9a91b52e508c727a50423574af02ae257be05372be9387574",
-  "htmlBytes": 20848037,
-  "modelsAndPointDataUnchanged": true
+  "htmlSHA256": "2ad61c9c3fb2e209c8f7e3771ca2c6e02f483271169e7f2d17b71b7d378ba0d6",
+  "htmlBytes": 20848364,
+  "modelsAndPointDataUnchanged": true,
+  "visualRevision": "8.0.1",
+  "precedingHTMLSHA256": "f3b823e9eb3d0db9a91b52e508c727a50423574af02ae257be05372be9387574",
+  "markersAboveGuides": true,
+  "fixedSidedSupplementLabels": true
 }

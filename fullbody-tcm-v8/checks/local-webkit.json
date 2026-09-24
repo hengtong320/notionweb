@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-09-24T01:13:46.900Z",
+  "startedAt": "2026-09-24T01:27:25.229Z",
   "browser": "webkit",
   "success": true,
   "checks": [
@@ -13,6 +13,10 @@
     },
     {
       "name": "Original 670 standard marker instances retained",
+      "pass": true
+    },
+    {
+      "name": "Point markers render above continuous guide strokes",
       "pass": true
     },
     {
@@ -431,6 +435,36 @@
         "selected": {
           "code": "EX-JINJING",
           "name": "金津",
+          "side": "left",
+          "areaOnly": true
+        },
+        "center": [
+          110,
+          1482,
+          37
+        ],
+        "target": [
+          109.99999999999999,
+          1482,
+          37
+        ],
+        "camera": [
+          109.99999999999999,
+          1529.9399009957813,
+          636.2487624472673
+        ],
+        "area": true,
+        "inView": true,
+        "error": 1.4210854715202004e-14
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-YUYE",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-YUYE",
+          "name": "玉液",
           "side": "right",
           "areaOnly": true
         },
@@ -452,36 +486,6 @@
         "area": true,
         "inView": true,
         "error": 0
-      }
-    },
-    {
-      "name": "Supplement region navigation: EX-YUYE",
-      "pass": true,
-      "detail": {
-        "selected": {
-          "code": "EX-YUYE",
-          "name": "玉液",
-          "side": "right",
-          "areaOnly": true
-        },
-        "center": [
-          110,
-          1482,
-          37
-        ],
-        "target": [
-          109.99999999999999,
-          1482,
-          37
-        ],
-        "camera": [
-          109.99999999999999,
-          1529.9399009957813,
-          636.2487624472673
-        ],
-        "area": true,
-        "inView": true,
-        "error": 1.4210854715202004e-14
       }
     },
     {
@@ -513,6 +517,14 @@
         "inView": true,
         "error": 0
       }
+    },
+    {
+      "name": "Fixed-sided supplemental label: EX-JINJING",
+      "pass": true
+    },
+    {
+      "name": "Fixed-sided supplemental label: EX-YUYE",
+      "pass": true
     },
     {
       "name": "Anmian left/right orientation mirrors correctly",
@@ -676,8 +688,8 @@
   ],
   "errors": [],
   "clinicalCalibration": false,
-  "url": "http://127.0.0.1:39383/",
-  "htmlSHA256": "f3b823e9eb3d0db9a91b52e508c727a50423574af02ae257be05372be9387574",
+  "url": "http://127.0.0.1:46115/",
+  "htmlSHA256": "2ad61c9c3fb2e209c8f7e3771ca2c6e02f483271169e7f2d17b71b7d378ba0d6",
   "curves": [
     {
       "meridian": "LU",
@@ -1175,5 +1187,5 @@
       "clinicalCalibration": false
     }
   ],
-  "finishedAt": "2026-09-24T01:14:57.342Z"
+  "finishedAt": "2026-09-24T01:28:20.392Z"
 }

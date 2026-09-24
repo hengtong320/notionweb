@@ -13,14 +13,14 @@ export function headStudyReferences(references, navigation) {
   'EX-QIUHOU':{center:[59,1525,61],view:[-.35,-.05,1],radius:60,ring:23,label:'眼眶下外侧',landmarks:['zygomatic-right','maxilla-right'],note:'仅导航到眼眶下外侧观察范围，不能把眼球、眼睑缺失的骨模型用作取穴。'},
   'EX-SHANGLIANQUAN':{center:[mid,1457,39],view:[0,-.28,1],radius:65,ring:25,label:'颏下与舌骨附近',landmarks:['mandible','hyoid']},
   'EX-JIACHENGJIANG':{center:[73,1468,62],view:[-.25,0,1],radius:60,ring:22,label:'颏唇旁',landmarks:['mandible']},
-  'EX-JINJING':{center:[89,1482,37],view:[0,.08,1],radius:80,ring:30,label:'口腔与舌下区域',landmarks:['mandible','hyoid'],note:'金津为舌下相关条目。本模型未包含可核对的舌下黏膜及静脉，只打开口腔—下颌的观察范围，不绘制精确穴点。'},
-  'EX-YUYE':{center:[110,1482,37],view:[0,.08,1],radius:80,ring:30,label:'口腔与舌下区域',landmarks:['mandible','hyoid'],note:'玉液为舌下相关条目。本模型缺少相应软组织，光环仅用于区域导航，不代表取穴位置。'},
+  'EX-JINJING':{fixedSide:'left',center:[110,1482,37],view:[0,.08,1],radius:80,ring:30,label:'口腔与舌下区域',landmarks:['mandible','hyoid'],note:'金津为舌下左侧相关条目。本模型未包含可核对的舌下黏膜及静脉，只打开口腔—下颌的观察范围，不绘制精确穴点。'},
+  'EX-YUYE':{fixedSide:'right',center:[89,1482,37],view:[0,.08,1],radius:80,ring:30,label:'口腔与舌下区域',landmarks:['mandible','hyoid'],note:'玉液为舌下右侧相关条目。本模型缺少相应软组织，光环仅用于区域导航，不代表取穴位置。'},
   'EX-BITONG':{center:[84,1531,73],view:[-.15,.03,1],radius:52,ring:16,label:'鼻旁',landmarks:['nasal-right','maxilla-right']}
  };
  return references.map(p=>{
   if(p.meridian!=='EX'||!areas[p.code])return p;
   const a=areas[p.code];
-  return {...p,position:null,parts:undefined,mapped:false,areaNavigation:true,
+  return {...p,side:a.fixedSide||p.side,position:null,parts:undefined,mapped:false,areaNavigation:true,
    navigationArea:{...a,center:[...a.center],quality:'broad-study-area-not-acupoint',clinicalCalibration:false},
    locationNote:a.note||`${a.label}的区域导航。本模型缺少完整皮肤及体表标志；光环只提示观察范围，不是准确穴位坐标。`,
    landmarks:a.landmarks,reference:a.reference||p.reference,sourceScheme:'文字资料与项目区域导航；光环尺寸为界面提示，不是取穴误差或人体测量值。'};
