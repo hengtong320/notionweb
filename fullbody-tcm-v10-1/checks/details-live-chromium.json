@@ -1,0 +1,81 @@
+{
+  "version": "10.1.0",
+  "browser": "chromium",
+  "startedAt": "2026-09-24T09:52:25.488Z",
+  "checks": [
+    {
+      "name": "Exact current HTML, not a cached predecessor",
+      "pass": true
+    },
+    {
+      "name": "Direct point link retains target, side and nerve profile",
+      "pass": true
+    },
+    {
+      "name": "Quiet nearby labels are default, not a full-body text wall",
+      "pass": true
+    },
+    {
+      "name": "Nearby mode does not suggest hidden pages can be turned",
+      "pass": true
+    },
+    {
+      "name": "Explanation receives selected layer",
+      "pass": true
+    },
+    {
+      "name": "Return link preserves layer plus exact target and side",
+      "pass": true
+    },
+    {
+      "name": "Actual explanation-to-3D click restores nerve context",
+      "pass": true
+    },
+    {
+      "name": "Restoring tissue target no longer clears selection after profile switch",
+      "pass": true
+    },
+    {
+      "name": "Selected tissue is in an enabled layer",
+      "pass": true
+    },
+    {
+      "name": "Actual export still includes selected Chinese label",
+      "pass": true
+    },
+    {
+      "name": "Strict export does not leak labels hidden by their parent",
+      "pass": true
+    },
+    {
+      "name": "Bone selection cannot remove the uncalibrated warning when meridians remain enabled",
+      "pass": true
+    },
+    {
+      "name": "Unknown point does not silently become a fabricated position",
+      "pass": true
+    },
+    {
+      "name": "Phone width remains inside viewport",
+      "pass": true
+    },
+    {
+      "name": "Phone resize preserves the selected head area",
+      "pass": true
+    },
+    {
+      "name": "Mobile result click moves the detail heading into view",
+      "pass": true
+    },
+    {
+      "name": "No uncaught script errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "clinicalValidation": false,
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v10-1/?release=35983245980",
+  "finishedAt": "2026-09-24T09:53:15.348Z"
+}
