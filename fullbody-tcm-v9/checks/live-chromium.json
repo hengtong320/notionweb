@@ -1,0 +1,307 @@
+{
+  "startedAt": "2026-09-24T04:13:57.602Z",
+  "browser": "chromium",
+  "live": true,
+  "success": true,
+  "checks": [
+    {
+      "name": "HTTP 200 and exact V9 HTML",
+      "pass": true
+    },
+    {
+      "name": "Actual WebGL2 drawing context created",
+      "pass": true
+    },
+    {
+      "name": "All 210 original bones loaded and visible",
+      "pass": true
+    },
+    {
+      "name": "V9 research module and 361-name evidence dataset",
+      "pass": true
+    },
+    {
+      "name": "Default strict mode does not claim calibrated coordinates",
+      "pass": true
+    },
+    {
+      "name": "Explicit illustration switch enables kidney tube routes",
+      "pass": true
+    },
+    {
+      "name": "All 33 curve branches are genuine finite tube geometry",
+      "pass": true,
+      "detail": [
+        {
+          "meridian": "LU",
+          "side": "right",
+          "triangles": 6360
+        },
+        {
+          "meridian": "LU",
+          "side": "left",
+          "triangles": 6360
+        },
+        {
+          "meridian": "LI",
+          "side": "right",
+          "triangles": 8664
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "triangles": 8664
+        },
+        {
+          "meridian": "ST",
+          "side": "right",
+          "triangles": 18216
+        },
+        {
+          "meridian": "ST",
+          "side": "left",
+          "triangles": 18216
+        },
+        {
+          "meridian": "SP",
+          "side": "right",
+          "triangles": 12936
+        },
+        {
+          "meridian": "SP",
+          "side": "left",
+          "triangles": 12936
+        },
+        {
+          "meridian": "HT",
+          "side": "right",
+          "triangles": 5160
+        },
+        {
+          "meridian": "HT",
+          "side": "left",
+          "triangles": 5160
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "triangles": 9960
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "triangles": 9960
+        },
+        {
+          "meridian": "BL",
+          "side": "right",
+          "triangles": 3312
+        },
+        {
+          "meridian": "BL",
+          "side": "right",
+          "triangles": 14664
+        },
+        {
+          "meridian": "BL",
+          "side": "right",
+          "triangles": 8928
+        },
+        {
+          "meridian": "BL",
+          "side": "right",
+          "triangles": 864
+        },
+        {
+          "meridian": "BL",
+          "side": "left",
+          "triangles": 3312
+        },
+        {
+          "meridian": "BL",
+          "side": "left",
+          "triangles": 14664
+        },
+        {
+          "meridian": "BL",
+          "side": "left",
+          "triangles": 8928
+        },
+        {
+          "meridian": "BL",
+          "side": "left",
+          "triangles": 864
+        },
+        {
+          "meridian": "KI",
+          "side": "right",
+          "triangles": 13512
+        },
+        {
+          "meridian": "KI",
+          "side": "left",
+          "triangles": 13512
+        },
+        {
+          "meridian": "PC",
+          "side": "right",
+          "triangles": 5856
+        },
+        {
+          "meridian": "PC",
+          "side": "left",
+          "triangles": 5856
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "triangles": 10224
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "triangles": 10224
+        },
+        {
+          "meridian": "GB",
+          "side": "right",
+          "triangles": 23184
+        },
+        {
+          "meridian": "GB",
+          "side": "left",
+          "triangles": 23184
+        },
+        {
+          "meridian": "LR",
+          "side": "right",
+          "triangles": 10728
+        },
+        {
+          "meridian": "LR",
+          "side": "left",
+          "triangles": 10728
+        },
+        {
+          "meridian": "GV",
+          "side": "midline",
+          "triangles": 8952
+        },
+        {
+          "meridian": "GV",
+          "side": "midline",
+          "triangles": 1200
+        },
+        {
+          "meridian": "CV",
+          "side": "midline",
+          "triangles": 6384
+        }
+      ]
+    },
+    {
+      "name": "Closing settings leaves illustration visible",
+      "pass": true
+    },
+    {
+      "name": "Actual point-directory click selects PC6",
+      "pass": true
+    },
+    {
+      "name": "Point explanation contains bounded modern evidence and location status",
+      "pass": true
+    },
+    {
+      "name": "Channel explanation is accessible from the control",
+      "pass": true
+    },
+    {
+      "name": "Returning to strict mode hides schematic routes",
+      "pass": true
+    },
+    {
+      "name": "Same-site muscle model loads",
+      "pass": true
+    },
+    {
+      "name": "Same-site nerve model loads",
+      "pass": true
+    },
+    {
+      "name": "Lumbar separation remains vertical",
+      "pass": true
+    },
+    {
+      "name": "Reset restores original bone positions",
+      "pass": true
+    },
+    {
+      "name": "L3 has a directly pickable surface",
+      "pass": true
+    },
+    {
+      "name": "Actual mouse drag still separates a bone",
+      "pass": true
+    },
+    {
+      "name": "Existing audio downloads with exact bytes",
+      "pass": true
+    },
+    {
+      "name": "No off-site runtime model requests",
+      "pass": true
+    },
+    {
+      "name": "Phone has usable canvas without page overflow",
+      "pass": true
+    },
+    {
+      "name": "Evidence page HTTP 200 and exact delivered bytes",
+      "pass": true
+    },
+    {
+      "name": "Evidence directory includes all 361 names",
+      "pass": true
+    },
+    {
+      "name": "Pinyin search works",
+      "pass": true
+    },
+    {
+      "name": "Search result opens the point explanation",
+      "pass": true
+    },
+    {
+      "name": "Kidney evidence directory has all 27 names",
+      "pass": true
+    },
+    {
+      "name": "Animal evidence is identified as animal evidence",
+      "pass": true
+    },
+    {
+      "name": "All 14 channel descriptions available",
+      "pass": true
+    },
+    {
+      "name": "Channel description distinguishes tradition and nerves",
+      "pass": true
+    },
+    {
+      "name": "Evidence phone layout has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "No uncaught JavaScript or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "clinicalValidation": false,
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v9/?release=35954481448",
+  "htmlSHA256": "70acd90b6d022f2563ca3dce5d3bbfcf30a202599f8af3a6681cbb9508a3cc47",
+  "evidenceURL": "https://hengtong320.github.io/notionweb/fullbody-tcm-v9/evidence.html",
+  "evidenceHTMLSHA256": "552ebb7f48351d7c74c7484e9f16adff00e301af904a41ff7d5b4cf7e42dd527",
+  "finishedAt": "2026-09-24T04:14:40.105Z"
+}
