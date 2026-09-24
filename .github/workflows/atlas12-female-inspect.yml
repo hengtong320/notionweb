@@ -1,0 +1,39 @@
+name: Inspect HRA female reference
+on:
+  push:
+    paths: ['.github/workflows/atlas12-female-inspect.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve official female reference and metadata
+        run: |
+          mkdir -p female-inspection
+          python - <<'PY'
+          import urllib.request,json,struct,hashlib,concurrent.futures
+          from pathlib import Path
+          p=Path('female-inspection');base='https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.5/'
+          u=base+'assets/3d-vh-f-united.glb'
+          b=urllib.request.urlopen(u,timeout=150).read();assert b[:4]==b'glTF';(p/'female-source.glb').write_bytes(b)
+          n=struct.unpack_from('<I',b,12)[0];j=json.loads(b[20:20+n]);(p/'female-source.json').write_text(json.dumps(j,indent=2))
+          report={'source':u,'sha256':hashlib.sha256(b).hexdigest(),'bytes':len(b),'asset':j.get('asset'),'extensions':j.get('extensionsUsed'),'nodes':len(j.get('nodes',[])),'meshes':len(j.get('meshes',[]))}
+          (p/'inspection.json').write_text(json.dumps(report,indent=2));print(report)
+          urls=[base+'metadata.json',base+'metadata.yaml',base+'raw/metadata.yaml',base+'assets/metadata.yaml',base+'graph.jsonld',base+'graph.ttl','https://purl.humanatlas.io/ref-organ/united-female/v1.5.jsonld','https://purl.humanatlas.io/ref-organ/united-female/v1.5.ttl']
+          def meta(pair):
+            i,url=pair
+            try:
+              r=urllib.request.urlopen(url,timeout=20);d=r.read();(p/f'metadata-{i}.txt').write_bytes(d);return {'url':url,'status':r.status,'bytes':len(d),'file':f'metadata-{i}.txt'}
+            except Exception as e:return {'url':url,'error':str(e)}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex:res=list(ex.map(meta,enumerate(urls)))
+          (p/'metadata-sources.json').write_text(json.dumps(res,indent=2));print(res)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atlas12-female-source
+          path: female-inspection/
+          retention-days: 14
