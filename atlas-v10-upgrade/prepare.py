@@ -18,7 +18,12 @@ s=s.replace('严谨查阅：隐藏未校准的点线','资料查阅：不显示�
 s=s.replace("const set=v=>{api.setPrecisionMode(v?'strict':'illustrative');", "const sync=v=>{")
 s=s.replace("document.getElementById('v9Strict').onchange=e=>set(e.target.checked);", "const set=v=>{api.setPrecisionMode(v?'strict':'illustrative');sync(v);};window.addEventListener('atlas:precision-changed',()=>sync(api.getState().precisionMode==='strict'));document.getElementById('v9Strict').onchange=e=>set(e.target.checked);")
 s=s.replace('<a href="coordinate-audit.csv" download>查看逐穴校准清单</a>','<a href="calibration.html">定位校准工作台 ↗</a>')
-s=s.replace('return `<section class="v9-evidence"><span class="v9-quality">', 'return `<section class="v9-evidence"><p class="v10-point-summary"><b>${esc(r.name)} · ${esc(r.region)}</b><br>${esc(r.location)}</p><span class="v9-quality">',1)
+s=s.replace('return `<section class="v9-evidence"><span class="v9-quality">三维坐标：', 'return `<section class="v9-evidence"><p class="v10-point-summary"><b>${esc(r.name)} · ${esc(r.region)}</b><br>${esc(r.location)}</p><span class="v9-quality">三维坐标：',1)
 s=s.replace('本模型原有骨性导航参照（不是取穴坐标）','附近骨性参照（不是已核实的医学关联）')
 (F/'evidence-ui-v9.js').write_text(s)
-print('Restored hash-checked readable build sources and generated shared-evidence UI')
+p=F/'stability-v10.js';s=p.read_text()
+marker='// Whole-body navigation restores the sidebar without changing layer visibility.'
+if marker not in s:
+ s+='\n'+marker+'\n'+"window.addEventListener('atlas:region-changed',e=>{if(e.detail?.region==='body'){window.__ATLAS_TISSUES__?.showPanel(false);window.__ATLAS_LEARNING__?.setPanel(false);document.body.classList.remove('nav-open');}});\n"
+ p.write_text(s)
+print('Restored hash-checked readable build sources and prepared shared evidence UI')
