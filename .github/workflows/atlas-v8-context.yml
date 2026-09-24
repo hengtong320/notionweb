@@ -1,0 +1,131 @@
+name: V8 focused-region clarity
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas-v8-context.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas-v8-context
+  cancel-in-progress: true
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_PATH: /tmp/v8-context/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Start from completed visual-details delivery
+        run: |
+          ready=0
+          for n in $(seq 1 90); do
+            git fetch --depth=1 origin main
+            git show origin/main:fullbody-tcm-v8/delivery-release.json > /tmp/v8-ready.json
+            if python -c "import json; r=json.load(open('/tmp/v8-ready.json')); assert r.get('visualRevision')=='8.0.1' and r.get('status')=='published-and-browser-verified'"; then
+              git checkout --detach origin/main
+              ready=1
+              break
+            fi
+            sleep 5
+          done
+          test "$ready" = 1
+      - name: Apply only focused-region clarity change
+        run: |
+          python atlas-v8-context-window.py
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('atlas-v8-context-check.cjs');s=p.read_text()
+          # The preceding scenario explicitly selects the right side: KI27 + LI20.
+          s=s.replace('full.visible.length===94&&full.drawnPoints===94','full.visible.length===47&&full.drawnPoints===47')
+          p.write_text(s)
+          PY
+          node --check fullbody-tcm-v8/learning-enhancements.js
+          node --check atlas-v8-context-check.cjs
+      - name: Install real browsers and pinned renderer
+        run: |
+          npm install --prefix /tmp/v8-context three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/v8-context/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Bundle final viewer without changing anatomy or route anchors
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),crypto=require('crypto'),esbuild=require('esbuild'),p='fullbody-tcm-v8';
+          esbuild.buildSync({entryPoints:[p+'/app.js'],bundle:true,minify:true,format:'iife',target:['es2020'],loader:{'.txt':'text'},nodePaths:[process.env.NODE_PATH],outfile:p+'/app.bundle.js',legalComments:'inline'});
+          let h=fs.readFileSync(p+'/index.template.html','utf8');h=h.replace('<link rel="stylesheet" href="styles.css">',()=>'<style>'+fs.readFileSync(p+'/styles.css','utf8')+'</style>').replace(/<script type="importmap">[\s\S]*?<\/script>/g,'');
+          h=h.replace('<script type="module" src="app.js"></script>',()=>'<script>window.FOOT_ATLAS_EMBEDDED='+JSON.stringify(fs.readFileSync(p+'/assets/fullbody.glb').toString('base64'))+';</script>\n<script>'+fs.readFileSync(p+'/app.bundle.js','utf8').replace(/<\/script/gi,'<\\/script')+'</script>');
+          fs.writeFileSync(p+'/index.html',h);const info=JSON.parse(fs.readFileSync(p+'/build-info.json'));info.htmlSHA256=crypto.createHash('sha256').update(h).digest('hex');info.htmlBytes=Buffer.byteLength(h);fs.writeFileSync(p+'/build-info.json',JSON.stringify(info,null,2));
+          JS
+      - name: Actual Chromium focused-region regression
+        run: node atlas-v8-context-check.cjs
+      - name: Actual WebKit focused-region regression
+        env:
+          BROWSER: webkit
+        run: node atlas-v8-context-check.cjs
+      - name: Validate original data and previous viewers unchanged
+        run: |
+          test -z "$(git diff HEAD -- fullbody-tcm-v8/assets/ fullbody-tcm-v8/navigation-points-v6.js fullbody-tcm-v8/acupoints-data.js fullbody-tcm-v8/route-guides-v6.js fullbody-tcm-v8/route-smoothing-v8.js fullbody-tcm-v7/ fullbody-tcm-v6/ fullbody-tcm-v5/ fullbody-tcm-v4/ fullbody-tcm-v3/ fullbody-tcm-atlas/ fullbody-atlas/ foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/)"
+      - name: Publish only the final V8 context refinement
+        run: |
+          git fetch origin main
+          git worktree add --detach /tmp/v8-context-publish origin/main
+          cp -a fullbody-tcm-v8/. /tmp/v8-context-publish/fullbody-tcm-v8/
+          cp atlas-v8-context-check.cjs /tmp/v8-context-publish/atlas-v8-context-check.cjs
+          cd /tmp/v8-context-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v8/ atlas-v8-context-check.cjs
+          git commit -m 'Restrict focused labels and guides to the study region; preserve complete-route mode'
+          git push origin HEAD:main
+      - name: Match the final public build
+        run: |
+          python - <<'PY'
+          import urllib.request,time,hashlib
+          from pathlib import Path
+          target=hashlib.sha256(Path('fullbody-tcm-v8/index.html').read_bytes()).hexdigest()
+          for i in range(60):
+              try:
+                  with urllib.request.urlopen('https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?context='+target[:12]+'&i='+str(i),timeout=30) as r:b=r.read()
+                  if hashlib.sha256(b).hexdigest()==target:break
+              except Exception as e:print(e,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Public build mismatch')
+          PY
+      - name: Repeat target scenarios on public website
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?release=${{ github.run_id }}
+        run: node atlas-v8-context-check.cjs
+      - name: Record final exact-build verification
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('fullbody-tcm-v8');info=json.loads((p/'build-info.json').read_text());previous=json.loads((p/'delivery-release.json').read_text());rs={}
+          for k in ['local-chromium','local-webkit','live-chromium']:
+              r=json.loads((p/'checks'/('context-'+k+'.json')).read_text());assert r['success'] and all(c['pass'] for c in r['checks']);assert r['htmlSHA256']==info['htmlSHA256'];rs[k]=r
+          info.update({'status':'published-and-browser-verified','url':rs['live-chromium']['url'],'checks':{k:len(v['checks']) for k,v in rs.items()},'checkedAt':rs['live-chromium']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'priorCoreChecks':previous.get('checks'),'priorCoreChecksApplyToPreviousRevision':True,'priorCoreWorkflow':previous.get('workflowRun'),'browserCoverage':'Headless Chromium/WebKit, desktop and phone viewports, not every physical device','clinicalCalibration':False,'allAudioHumanReviewed':False})
+          (p/'delivery-release.json').write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          PY
+          cp fullbody-tcm-v8/checks/context-live-chromium.json /tmp/v8-context-publish/fullbody-tcm-v8/checks/
+          cp fullbody-tcm-v8/delivery-release.json /tmp/v8-context-publish/fullbody-tcm-v8/
+          cd /tmp/v8-context-publish
+          git add fullbody-tcm-v8/checks/context-live-chromium.json fullbody-tcm-v8/delivery-release.json
+          git commit -m 'Record final V8 focused-region public verification'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas-v8-context-final
+          path: |
+            fullbody-tcm-v8/
+            atlas-v8-context-check.cjs
+            atlas-v8-context-window.py
+          retention-days: 14
