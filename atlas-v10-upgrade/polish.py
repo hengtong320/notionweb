@@ -12,10 +12,30 @@ for n in ['index.template.html','index.html']:
 for n in ['voice','assets']:
  d=P/n
  if d.exists():shutil.rmtree(d)
-# Non-destructive selective retries are already provided by layer enable; make them explicit.
 edit('tissues-v4.js',lambda s:s.replace('加载失败，可重试','加载失败，请重新勾选重试'))
 edit('app.js',lambda s:s.replace("e.target.matches('input,textarea,[contenteditable]')","e.target.matches('input,textarea,select,[contenteditable]')"))
 completed=['shared-terminology','global-active-target','point-and-region-focus-reset','annotated-screenshot-export','evidence-viewer-deep-links','shared-same-origin-models','on-demand-rendering','explicit-layer-visibility','responsive-control-targets','calibration-pilot-records']
 openitems=['full-body-skin-registration','independent-clinical-coordinate-audit','full-audio-human-listening-review','all-361-point-evidence-expansion','real-device-performance-baseline','region-geometry-LOD','shared-repository-branch-protection']
 (P/'implementation-status.json').write_text(json.dumps({'implemented':completed,'requiresFurtherWork':openitems,'clinicalApproved':False,'originalModelDataUnchanged':True},ensure_ascii=False,indent=2))
 (P/'IMPLEMENTATION.md').write_text('''# V10 实现范围\n\n保留V9三列布局、颜色、骨骼与拆解手感。新增的学习对象栏位于原详情区域，不替换主体界面。\n\n本轮实现：统一术语数据；当前对象、聚焦、返回整体与上次对象；可见穴名/引线和模式状态截图；资料页与三维页同目标往返与链接分享；同站点资源独立加载；静止阅读按需绘制；神经突出与透视说明；文字与触控区调整；六项定位审核样例及完整审核清单入口。\n\n未宣称完成：全身皮肤配准、独立临床定位审核、音频逐条人工审听、361条专项证据扩写、真实设备性能基线、按解剖部位拆分模型LOD。没有改动共享仓库的分支保护策略。\n\n在线入口体积下降不等于实测网速等比例提高。模型首次仍需下载，来自同站点保留的V9资源；离线导出为另外一个文件。不得删除V9资源目录。\n\n软件测试验证数据一致性和完整任务，不是临床认证。\n''')
+
+# A preview ResizeObserver must not reset the main camera's view offset.
+def camera_details(s):
+ old="renderer.setSize(w,h);camera.aspect=w/h;camera.setViewOffset(w,h,0,22,w,h);camera.updateProjectionMatrix();composer.setSize(w,h);"
+ new="if(changed){renderer.setSize(w,h);camera.aspect=w/h;camera.setViewOffset(w,h,0,22,w,h);camera.updateProjectionMatrix();composer.setSize(w,h);}"
+ assert old in s
+ s=s.replace(old,new)
+ s=s.replace("function pick(e){pointerCoords(e);", "function pick(e){camera.updateMatrixWorld(true);scene.updateMatrixWorld(true);pointerCoords(e);")
+ return s
+edit('app.js',camera_details)
+edit('catalog-v10.js',lambda s:s.replace("BONES.map(b=>[b.id,b])", "BONES.map((b,i)=>[b.id,{...b,index:i+1}])"))
+edit('stability-v10.css',lambda s:s+'\nbody[data-current-kind="point"] .bone-label,body[data-current-kind="point"] .label-line,body[data-current-kind="meridian"] .bone-label,body[data-current-kind="meridian"] .label-line{display:none!important}\n')
+# Reacquire actual surface coordinates after mode changes, not a stale pre-layout hit.
+p=Path('atlas-v10-upgrade/verify.cjs');s=p.read_text()
+old="await page.locator('[data-mode=\"move\"]').click();await page.mouse.move(pt.x,pt.y);await page.mouse.down();await page.mouse.move(pt.x+45,pt.y-25,{steps:7});await page.mouse.up();"
+new="""await page.locator('[data-mode="move"]').click();await settle(page);
+  const dragPoint=await page.evaluate(()=>window.__FOOT_ATLAS__.getPickPoint('L3'));ck('Post-mode real L3 surface remains accessible',!!dragPoint,dragPoint);
+  await page.mouse.move(dragPoint.x,dragPoint.y);await page.mouse.down();await page.mouse.move(dragPoint.x+45,dragPoint.y-25,{steps:7});await page.mouse.up();
+  ck('Dragging selects the intended L3, not its neighbor',await page.evaluate(()=>window.__FOOT_ATLAS__.getState().selected==='L3'));"""
+assert old in s;s=s.replace(old,new)
+p.write_text(s)
