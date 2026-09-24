@@ -1,0 +1,33 @@
+{
+  "version": "10.0.0",
+  "baseCommit": "9bc00022e97fad7613c9d8ba576146b57abb302f",
+  "base": "V9",
+  "sourceHTMLSHA256": "70acd90b6d022f2563ca3dce5d3bbfcf30a202599f8af3a6681cbb9508a3cc47",
+  "modelsUnchanged": true,
+  "coordinatesUnchanged": true,
+  "clinicalCalibration": false,
+  "allAudioHumanReviewed": false,
+  "sharedResourceBase": "../fullbody-tcm-v9/",
+  "pilotCases": 6,
+  "onlineHTMLBytes": 16248,
+  "htmlSHA256": "b8cb2588094b9cfbabd55f8b1e0b5dca5e3cf7f2a18c06a72cd162b93c7e2b59",
+  "appSHA256": "47b387a4cf02cab04e77dd9538c5aa40771fd25c1480ec879f66449738f0073c",
+  "evidenceSHA256": "06845cb7b2f308572840bbf9d30e80782ddad8e79982935fd99f5a2fc31152af",
+  "evidenceBundleSHA256": "3101d2b487c9f013d981bc8f2f58ed538cad4b5f97517fb207f2766bc454c2e0",
+  "onlineEntryBytes": 16218,
+  "bundleBytes": 2774498,
+  "status": "published-and-browser-verified",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v10/?release=35969397237",
+  "stableURL": "https://hengtong320.github.io/notionweb/anatomy/",
+  "checks": {
+    "local-chromium": 47,
+    "local-webkit": 42,
+    "live-chromium": 47
+  },
+  "checkedAt": "2026-09-24T07:29:11.886Z",
+  "workflowRun": "35969397237",
+  "browserCoverage": "Headless Chromium and WebKit, desktop and phone viewport; not all real devices",
+  "clinicalValidation": false,
+  "audioHumanReviewed": false,
+  "testScope": "Shared terminology, full learning journeys, actual export button, rendering, idle scheduling and deep links"
+}
