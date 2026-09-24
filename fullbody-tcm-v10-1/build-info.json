@@ -1,0 +1,21 @@
+{
+  "version": "10.1.0",
+  "baseCommit": "37d78170c0ed6a704514340e6c8fb0d59960e80b",
+  "base": "V10",
+  "sourceHTMLSHA256": "70acd90b6d022f2563ca3dce5d3bbfcf30a202599f8af3a6681cbb9508a3cc47",
+  "modelsUnchanged": true,
+  "coordinatesUnchanged": true,
+  "clinicalCalibration": false,
+  "allAudioHumanReviewed": false,
+  "sharedResourceBase": "../fullbody-tcm-v9/",
+  "pilotCases": 6,
+  "onlineHTMLBytes": 16248,
+  "htmlSHA256": "7d560d0cbbb7d3393a8dd6bd84e6413ab052e861012ce6d9776b37c1d6793c50",
+  "appSHA256": "80f508962e919ce40d5ae0da3fecb879d3d264ed0317afdc3967c98c394b7f33",
+  "evidenceSHA256": "06845cb7b2f308572840bbf9d30e80782ddad8e79982935fd99f5a2fc31152af",
+  "evidenceBundleSHA256": "dda504015b07598fb99844e3eadb3bffb1286f7f4cd9d6ce2d9bd880f95992ca",
+  "onlineEntryBytes": 16224,
+  "bundleBytes": 2775566,
+  "status": "candidate",
+  "minorRevision": true
+}

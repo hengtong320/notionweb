@@ -1,0 +1,22 @@
+ANATOMICAL MODEL ATTRIBUTION
+Z-Anatomy, Gauthier Kervyn and contributors; derived right-foot meshes licensed CC BY-SA 4.0.
+https://github.com/Z-Anatomy/Models-of-human-anatomy
+https://creativecommons.org/licenses/by-sa/4.0/
+Upstream: BodyParts3D, (c) The Database Center for Life Science licensed under CC Attribution-Share Alike 2.1 Japan.
+https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/README_e.html
+https://creativecommons.org/licenses/by-sa/2.1/jp/
+GLB export: https://github.com/Liyucheng1997/242_lab-human-anatomy/blob/main/public/models/skeleton.glb
+Verified source Git blob: 5e15f7ea303c554f6c25a417f7f184696234b436
+Changes: right-foot extraction, separation of the two connected sesamoid components, coordinate centering/unit conversion, visualization materials. Original relative bone positions and surface geometry preserved. See assets/provenance.json.
+No claim of clinical accuracy. No patient CT, soft tissues, internal bone structure, or joint-motion simulation.
+Three.js: MIT; see vendor/THREE-LICENSE.txt.
+
+2026-09-21 extension: added right Tibia and Fibula source meshes; retained approved foot geometry. No clinical or joint-motion claim.
+
+Second additive extension: source right femur and patella extracted in the same coordinate frame; original 30 ankle/foot meshes unchanged. No additional decimation. See assets/provenance.json.
+
+Third additive extension: original right/left hip bones, sacrum and coccyx. Preserved source transforms, including source left hip reflection. Kept all 32 previous meshes with unchanged face indices and vertex positions. No clinical certification or joint-motion simulation.
+
+Fourth extension: L1-L5 and native left lower-limb meshes including source-authored reflection. All prior 36 meshes preserved. No new geometry or physical joint simulation. See assets/provenance.json.
+
+V4肌肉与神经：Z-Anatomy / BodyParts3D，CC BY-SA 4.0；固定来源提交322ba39e96ea91ce08601caad2c0aaade1dc99f0。米转毫米并减去原足骨基准原点，原骨网格未修改。神经语音为Kokoro-82M-v1.1-zh合成输出，模型Apache-2.0，见voice/voice-manifest.json。Draco decoder来自Three.js 0.180.0，保留原许可证头。

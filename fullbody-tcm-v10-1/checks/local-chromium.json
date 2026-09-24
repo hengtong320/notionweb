@@ -1,0 +1,321 @@
+{
+  "version": "10.1.0",
+  "browser": "chromium",
+  "startedAt": "2026-09-24T09:47:14.897Z",
+  "checks": [
+    {
+      "name": "HTTP 200 and exact online HTML",
+      "pass": true
+    },
+    {
+      "name": "Online entry is under 30KB and no embedded anatomy",
+      "pass": true,
+      "detail": 16224
+    },
+    {
+      "name": "Exact published application bundle",
+      "pass": true
+    },
+    {
+      "name": "V10 loads all 210 original bones",
+      "pass": true
+    },
+    {
+      "name": "All 670 illustrative markers and original geometry retained",
+      "pass": true
+    },
+    {
+      "name": "Strict mode is default; no calibrated-coordinate claim",
+      "pass": true
+    },
+    {
+      "name": "Correct pinyin finds Dazhui in 3D directory",
+      "pass": true
+    },
+    {
+      "name": "Point selection becomes the current study object",
+      "pass": true
+    },
+    {
+      "name": "Correct pinyin on point and explanation data",
+      "pass": true
+    },
+    {
+      "name": "Stale bone preview is not displayed during point study",
+      "pass": true
+    },
+    {
+      "name": "Global focus keeps current point, not previous sternum",
+      "pass": true
+    },
+    {
+      "name": "F key focuses the same active point",
+      "pass": true
+    },
+    {
+      "name": "Precision UI is synchronized with API state",
+      "pass": true
+    },
+    {
+      "name": "Point target is retained when switching to illustrative view",
+      "pass": true
+    },
+    {
+      "name": "Actual screenshot button uses active object filename",
+      "pass": true,
+      "detail": {
+        "filename": "人体研习-大椎-GV14-V10.1-2026-09-24.png",
+        "object": {
+          "kind": "point",
+          "id": "GV14",
+          "name": "大椎",
+          "side": "midline"
+        },
+        "labels": [
+          "大椎 GV14",
+          "风府 GV16",
+          "听宫 SI19 L",
+          "听宫 SI19 R",
+          "哑门 GV15",
+          "天容 SI17 L",
+          "天容 SI17 R",
+          "天窗 SI16 L",
+          "天窗 SI16 R",
+          "肩中俞 SI15 L",
+          "肩中俞 SI15 R",
+          "肩外俞 SI14 L",
+          "肩外俞 SI14 R",
+          "陶道 GV13",
+          "曲垣 SI13 L",
+          "曲垣 SI13 R",
+          "秉风 SI12 L",
+          "秉风 SI12 R",
+          "身柱 GV12",
+          "天宗 SI11 L",
+          "天宗 SI11 R",
+          "神道 GV11"
+        ],
+        "layerProfile": "custom",
+        "mode": "三维示意 · 穴位与经络位置未校准",
+        "bytes": 513254,
+        "width": 868,
+        "height": 897
+      }
+    },
+    {
+      "name": "Screenshot captures visible acupoint label and uncalibrated state",
+      "pass": true,
+      "detail": {
+        "filename": "人体研习-大椎-GV14-V10.1-2026-09-24.png",
+        "object": {
+          "kind": "point",
+          "id": "GV14",
+          "name": "大椎",
+          "side": "midline"
+        },
+        "labels": [
+          "大椎 GV14",
+          "风府 GV16",
+          "听宫 SI19 L",
+          "听宫 SI19 R",
+          "哑门 GV15",
+          "天容 SI17 L",
+          "天容 SI17 R",
+          "天窗 SI16 L",
+          "天窗 SI16 R",
+          "肩中俞 SI15 L",
+          "肩中俞 SI15 R",
+          "肩外俞 SI14 L",
+          "肩外俞 SI14 R",
+          "陶道 GV13",
+          "曲垣 SI13 L",
+          "曲垣 SI13 R",
+          "秉风 SI12 L",
+          "秉风 SI12 R",
+          "身柱 GV12",
+          "天宗 SI11 L",
+          "天宗 SI11 R",
+          "神道 GV11"
+        ],
+        "layerProfile": "custom",
+        "mode": "三维示意 · 穴位与经络位置未校准",
+        "bytes": 513254,
+        "width": 868,
+        "height": 897
+      }
+    },
+    {
+      "name": "Nerve layer loads 550 source structures",
+      "pass": true
+    },
+    {
+      "name": "Nerve profile preserves active acupoint and camera",
+      "pass": true
+    },
+    {
+      "name": "Nerve reading profile is explicit and separates muscle layer",
+      "pass": true
+    },
+    {
+      "name": "Return to whole body clears both point context and camera context",
+      "pass": true
+    },
+    {
+      "name": "Global layer is no longer confined to the old point window",
+      "pass": true
+    },
+    {
+      "name": "Return to last object restores PC6",
+      "pass": true
+    },
+    {
+      "name": "Programmatic region navigation also clears point context",
+      "pass": true
+    },
+    {
+      "name": "Lumbar vertical separation preserved",
+      "pass": true
+    },
+    {
+      "name": "Bone reset preserves region and restores coordinates",
+      "pass": true
+    },
+    {
+      "name": "Real L3 surface is pickable",
+      "pass": true,
+      "detail": {
+        "x": 681.9168277505945,
+        "y": 583.9642899305675
+      }
+    },
+    {
+      "name": "Real bone click updates current object",
+      "pass": true
+    },
+    {
+      "name": "Post-mode real L3 surface remains accessible",
+      "pass": true,
+      "detail": {
+        "x": 681.9168277505944,
+        "y": 583.9642899305675
+      }
+    },
+    {
+      "name": "Dragging selects the intended L3, not its neighbor",
+      "pass": true
+    },
+    {
+      "name": "Original single-bone dragging remains usable",
+      "pass": true
+    },
+    {
+      "name": "Idle reading stops continuous GPU redraws",
+      "pass": true,
+      "detail": {
+        "before": {
+          "framesRendered": 46,
+          "renderScheduled": false,
+          "onDemand": true,
+          "calls": 1,
+          "triangles": 1,
+          "geometries": 776,
+          "textures": 9,
+          "readyMs": 981.5
+        },
+        "after": {
+          "framesRendered": 46,
+          "renderScheduled": false,
+          "onDemand": true,
+          "calls": 1,
+          "triangles": 1,
+          "geometries": 776,
+          "textures": 9,
+          "readyMs": 981.5
+        }
+      }
+    },
+    {
+      "name": "Head supplement focus survives shared context integration",
+      "pass": true
+    },
+    {
+      "name": "Phone viewport remains usable and no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Direct link restores point and body side",
+      "pass": true
+    },
+    {
+      "name": "3D evidence link preserves same target",
+      "pass": true
+    },
+    {
+      "name": "Explanation page restores same target",
+      "pass": true
+    },
+    {
+      "name": "Explanation correct pinyin finds Dazhui",
+      "pass": true
+    },
+    {
+      "name": "Explanation heading and shared data use the same reading",
+      "pass": true
+    },
+    {
+      "name": "Explanation-to-3D link preserves code and side",
+      "pass": true
+    },
+    {
+      "name": "Incorrect Dazhui pinyin is not the canonical search result",
+      "pass": true
+    },
+    {
+      "name": "All 361 evidence names still searchable",
+      "pass": true
+    },
+    {
+      "name": "All displayed evidence terms match canonical catalog",
+      "pass": true
+    },
+    {
+      "name": "Fourteen channel descriptions retained",
+      "pass": true
+    },
+    {
+      "name": "Explanation mobile layout remains within screen",
+      "pass": true
+    },
+    {
+      "name": "Six calibration pilot records contain no fabricated approvals or errors",
+      "pass": true
+    },
+    {
+      "name": "Runtime anatomy is same-origin only",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No uncaught JavaScript errors in study journeys",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "clinicalValidation": false,
+  "url": "http://127.0.0.1:39047/fullbody-tcm-v10-1/",
+  "htmlSHA256": "7d560d0cbbb7d3393a8dd6bd84e6413ab052e861012ce6d9776b37c1d6793c50",
+  "appSHA256": "80f508962e919ce40d5ae0da3fecb879d3d264ed0317afdc3967c98c394b7f33",
+  "metrics": {
+    "framesRendered": 46,
+    "renderScheduled": false,
+    "onDemand": true,
+    "calls": 1,
+    "triangles": 1,
+    "geometries": 776,
+    "textures": 9,
+    "readyMs": 981.5
+  },
+  "finishedAt": "2026-09-24T09:48:14.410Z"
+}

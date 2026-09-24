@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light"><meta name="description" content="有来源的解剖模型驱动的骨盆与下肢 3D 学习工具。旋转、逐骨点选、自由拆解、单骨观察与中文解剖标注。">
+<title>全身骨骼研习室 V10.1 · 稳定修订</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23276865'/%3E%3Cpath d='M12 29 20 9l8 20M15 22h10' stroke='%23fff' stroke-width='2.5' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+
+<link rel="stylesheet" href="stability-v10.css"><script>window.ATLAS_RESOURCE_BASE="../fullbody-tcm-v9/";</script></head>
+<body>
+<svg class="icon-library" aria-hidden="true"><defs>
+<symbol id="i-orbit" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="5" transform="rotate(-30 12 12)"/><ellipse cx="12" cy="12" rx="5" ry="10" transform="rotate(-30 12 12)"/><circle cx="12" cy="12" r="1.5"/></symbol>
+<symbol id="i-move" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M9 6l3-3 3 3M18 9l3 3-3 3M9 18l3 3 3-3M6 9l-3 3 3 3"/></symbol>
+<symbol id="i-rotate" viewBox="0 0 24 24"><path d="M20 9a8 8 0 1 0 0 6M20 3v6h-6"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M6 9v11h12V9M10 20v-7h4v7"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+<symbol id="i-focus" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/><circle cx="12" cy="12" r="4"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="m2 8 10-5 10 5-10 5Zm0 5 10 5 10-5M2 18l10 5 10-5"/></symbol>
+<symbol id="i-label" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4ZM8 9h8M8 12h5"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M8 5 10 2h4l2 3h5v15H3V9Z"/><circle cx="12" cy="12" r="4"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a3 3 0 0 1 5.6 1c0 2-2.8 2-2.8 4M12 17h.01"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4 4l2 2M18 18l2 2M4 20l2-2M18 6l2-2"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+</defs></svg>
+<header class="topbar">
+ <a class="brand" href="#" aria-label="全身骨骼研习室首页"><span class="brand-mark"><svg><use href="#i-layers"/></svg></span><span><strong>全身骨骼研习室</strong><small>HUMAN SKELETAL ATLAS</small></span></a>
+ <div class="breadcrumb">人体解剖 <span>/</span> 全身 <span>/</span> <b>全身解剖 · 学习观察</b></div>
+ <span class="release-badge" id="releaseBadge">V10.1 · 稳定修订</span><div class="header-actions"><select id="renderQuality" class="quality-select" aria-label="渲染画质"><option value="auto">画质自动</option><option value="high">高清</option><option value="balanced">流畅</option></select><a class="baseline-link" href="https://hengtong320.github.io/notionweb/fullbody-tcm-v3/" target="_blank" rel="noopener">保留原版 V3 ↗</a><span class="private-badge"><i></i>同站点资源 · 语音另行区分</span><button id="helpBtn" class="text-button"><svg><use href="#i-help"/></svg>操作指南</button><button id="fullscreenBtn" class="icon-button" title="全屏查看"><svg><use href="#i-focus"/></svg></button><button id="captureBtn" class="icon-button" title="保存当前视图"><svg><use href="#i-camera"/></svg></button></div>
+</header>
+<div class="workspace">
+ <aside class="sidebar" aria-label="骨骼目录">
+  <div class="sidebar-intro"><div class="eyebrow">STRUCTURE LIBRARY</div><h1>从整体，到每一块骨。</h1><p>找到它，转动它，看清彼此的关系。</p></div>
+  <div class="region-picker" aria-label="观察部位"><button data-region="body" class="active">全身总览</button><button data-region="head">头颅与舌骨</button><button data-region="auditory">听小骨</button><button data-region="cervical">颈椎</button><button data-region="thoracic">胸椎</button><button data-region="spine">脊柱全览</button><button data-region="thorax">胸廓</button><button data-region="shoulder">肩部</button><button data-region="upper">上肢全览</button><button data-region="elbow">肘部</button><button data-region="wrist">腕部</button><button data-region="hand">手部</button><button data-region="foot">足部</button><button data-region="ankle">足踝</button><button data-region="leg">小腿与足</button><button data-region="knee">膝部</button><button data-region="whole">下肢全览</button><button data-region="hip">髋部</button><button data-region="pelvis">骨盆</button><button data-region="pelvic-limb">骨盆与下肢</button><button data-region="lumbar">腰椎</button><button data-region="lumbosacral">腰骶与骨盆</button><button data-region="all">腰椎与双腿</button></div><div class="side-picker" aria-label="人体左右侧"><button data-side="both" class="active">双侧</button><button data-side="right">人体右侧 R</button><button data-side="left">人体左侧 L</button></div><p id="regionHint" class="region-hint">全身骨骼已接入 · 210 个独立对象</p>
+  <label class="search-box"><svg><use href="#i-search"/></svg><input id="search" type="search" placeholder="骨名 / 拼音 / English" autocomplete="off"><kbd>/</kbd></label>
+  <div class="library-meta"><span>解剖结构 <b>210</b></span><button id="showAllBtn">全部显示</button></div>
+  <div id="boneTree" class="bone-tree"></div>
+  <div class="sidebar-bottom"><span class="small-dot"></span><div><strong>206 块标准骨 + 4 块足部籽骨</strong><p>按成人常用清单核对，牙齿不计为骨。</p></div></div>
+  <button id="sourceBtn" class="source-button"><span>模型来源与使用边界</span><span>↗</span></button>
+ </aside>
+ <main id="stage" class="stage" aria-label="人体解剖与经穴学习三维模型">
+  <div class="stage-heading"><div><span class="eyebrow">ANATOMICAL EXPLORER</span><h2 id="regionHeading">全身骨骼 <span>Complete skeleton</span></h2></div><div class="model-status"><i></i><span id="visibleCount">模型准备中</span></div></div>
+  <div id="viewport" class="viewport" tabindex="0" aria-label="3D 视图：拖拽旋转，滚轮缩放，点击骨骼选择"></div>
+  <div id="loading" class="loading-overlay"><div class="loading-card"><span class="loading-orbit"></span><h3 id="loadingTitle">正在准备解剖模型</h3><p id="loadingDetail">加载原始骨表面与中文结构索引</p><div class="loading-track"><span id="loadingProgress"></span></div><small>不是示意拼装，每一块骨都是独立网格。</small></div></div>
+  <div class="view-switcher" aria-label="标准解剖视角"><button data-view="overview" class="active">立体</button><button data-view="dorsal">足背</button><button data-view="plantar">足底</button><button data-view="medial">内侧</button><button data-view="lateral">外侧</button><button data-view="front">趾端</button><button data-view="back">后面</button></div>
+  <div id="viewBadge" class="view-badge"><span class="small-dot"></span><span>立体视角</span></div>
+  <div class="stage-tools"><button id="homeBtn" title="返回全身并清除局部观察（H）"><svg><use href="#i-home"/></svg></button><button id="focusBtn" title="聚焦当前学习对象（F）"><svg><use href="#i-focus"/></svg></button><span></span><button id="labelsBtn" title="显示 / 隐藏骨名标注（L）" aria-pressed="false"><svg><use href="#i-label"/></svg></button><button id="colorBtn" title="骨色 / 解剖分组配色" aria-pressed="false"><svg><use href="#i-grid"/></svg></button><button id="ghostBtn" title="显示 / 隐藏原位参考影" aria-pressed="false"><svg><use href="#i-layers"/></svg></button><span></span><button id="zoomInBtn" title="放大">＋</button><button id="zoomOutBtn" title="缩小">−</button></div>
+  <div id="isolateBanner" class="isolate-banner" hidden><span>单骨观察</span><button id="exitIsolateBtn">返回区域 <kbd>Esc</kbd></button></div>
+  <div id="labels" class="labels-overlay" aria-hidden="true"></div>
+  <div id="hoverTip" class="hover-tip" hidden></div>
+  <div id="axisGizmo" class="axis-gizmo" aria-hidden="true"></div>
+  <div class="control-dock">
+   <div class="mode-row"><div class="mode-switcher"><button data-mode="orbit" class="active" title="浏览：拖拽旋转模型（R）"><svg><use href="#i-orbit"/></svg>浏览<kbd>R</kbd></button><button data-mode="move" title="拆骨：直接拖动骨头（G）"><svg><use href="#i-move"/></svg>拆骨<kbd>G</kbd></button><button data-mode="rotate" class="" title="转骨：直接转动骨头（T）"><svg><use href="#i-rotate"/></svg>转骨<kbd>T</kbd></button></div><button id="resetBonesBtn" class="reset-button">归位骨骼</button></div>
+   <div class="explode-row"><label for="explode">整体展开</label><input id="explode" type="range" min="0" max="100" value="0" aria-label="骨骼整体展开程度"><output id="explodeValue">0<span>%</span></output><div class="explode-presets" aria-label="展开预设"><button data-explode-preset="30">轻</button><button data-explode-preset="65">清晰</button><button data-explode-preset="100">完全</button></div></div><div id="explodeNote" class="explode-note">按解剖方向分层：中轴上下、左右骨向身体两侧</div>
+   <div class="dock-hint"><span id="modeHint">拖拽空白或骨骼旋转模型 · 单击选择一块骨</span><span id="movedCount" hidden></span></div>
+  </div>
+  <div id="sideNotice" class="side-notice"></div><div class="stage-caption">保留原始解剖位置 <span>·</span> 展开和转骨仅用于观察，不模拟关节运动</div>
+ </main>
+ <aside class="detail-panel" aria-label="选中骨骼的解剖信息">
+  <div class="detail-top"><span class="eyebrow">STRUCTURE INSIGHT</span><span id="boneIndex" class="bone-index">01 / 210</span></div>
+  <div id="detailTitle" class="detail-title"><span class="group-tag">请选择骨骼</span><h2>探索全身骨骼</h2><p>从三维模型或左侧目录中选择</p></div>
+  <div class="preview-wrap"><div id="preview" class="preview"></div><span class="preview-label">单骨预览</span><span class="preview-hint">可拖拽旋转</span></div>
+  <div class="detail-actions"><button id="isolateBtn" class="primary-button"><svg><use href="#i-focus"/></svg>单独查看</button><button id="neighborsBtn" class="secondary-button" aria-pressed="false">观察相邻</button></div>
+  <div class="detail-scroll"><section><h3>它在哪里</h3><p id="description"></p></section><section><h3>转动时看什么</h3><p id="look"></p></section><section><h3>主要邻接骨 <small>点击跳转</small></h3><div id="neighbors" class="neighbor-chips"></div></section><div id="studyTip" class="study-tip"></div><div class="bone-actions"><button id="resetSelectedBtn"><svg><use href="#i-rotate"/></svg>本骨归位</button><button id="hideSelectedBtn"><svg><use href="#i-eye"/></svg>隐藏本骨</button></div></div>
+  <div class="detail-note">解剖教学参考 · 不用于诊断或复位指导</div>
+ </aside>
+</div>
+<footer class="statusbar"><div><span class="online-dot"></span><span id="renderStatus">初始化三维引擎</span></div><span>左键旋转 / 点选 <b>·</b> 滚轮缩放 <b>·</b> 右键平移</span><button id="footerSource">Z-Anatomy / BodyParts3D ↗</button><a href="./versions.html" class="v10-source-badge">V10.1 · 版本记录</a></footer>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<dialog id="helpDialog"><div class="dialog-head"><div><span class="eyebrow">YOUR FIRST EXPLORATION</span><h2>用鼠标，把结构看清楚。</h2></div><button class="icon-button" data-close><svg><use href="#i-close"/></svg></button></div><div class="guide-cards"><article><b>01</b><h3>先找位置</h3><p>默认“浏览”模式，左键拖动旋转，滚轮缩放，右键平移。单击一块骨或左侧骨名，即可查看解剖说明。</p></article><article><b>02</b><h3>再拆开看</h3><p>切换“拆骨”，按住骨头直接拖出。空白处仍可旋转模型。切换“转骨”可单独转动选中的骨。</p></article><article><b>03</b><h3>回到关系里</h3><p>“整体展开”按解剖方向分层：脊柱沿上下顺序展开，左右骨向身体两侧分开；“原位参考影”保留原位置。“观察相邻”突出相关骨，“一键归位”恢复骨骼原始排列。</p></article></div><div class="notice">左侧可切换全身或各个局部观察区域，使用“双侧 / 人体右侧 / 人体左侧”选择观察范围。腰椎、腰骶与骨盆、骨盆区域固定显示中轴结构。切换保留已拖动骨块的位置；恢复排列请用“一键归位”。“髋部”聚焦髋关节，股骨下端可能在画面外，但完整骨形没有被截短。</div><div class="guide-shortcuts"><span><kbd>R</kbd>浏览</span><span><kbd>G</kbd>拆骨</span><span><kbd>T</kbd>转骨</span><span><kbd>F</kbd>聚焦</span><span><kbd>L</kbd>标注</span><span><kbd>H</kbd>全部复原</span><span><kbd>Esc</kbd>退出单骨</span></div><div class="notice">左右按人体自身的左右区分，不随画面改变。下肢内侧朝向身体中线；足部内侧是拇趾侧，外侧是小趾侧。本模型包含骨骼及可选的软组织层，不包含完整皮肤、关节囊、韧带与微观结构。拆解位移不是人体允许的关节活动范围。</div><button class="primary-button dialog-done" data-close>开始探索 <span>→</span></button></dialog>
+<dialog id="sourceDialog"><div class="dialog-head"><div><span class="eyebrow">PROVENANCE & LIMITATIONS</span><h2>真实来源，清楚边界。</h2></div><button class="icon-button" data-close><svg><use href="#i-close"/></svg></button></div><p class="source-intro">本版包含成人常用清单的206块骨，加上原有4块足部籽骨。源模型来自 Z-Anatomy / BodyParts3D；原73块骨保持不变，新增137块骨。包含完整脊柱、胸廓、双上肢和手、颅骨、舌骨与6块听小骨。胸骨的三个源部件按一块骨处理；牙齿、肋软骨、椎间盘、鼻软骨、鼻窦内容物不当作骨头。仍为表面教学模型，不代表患者CT或临床精度。多数左侧沿用源文件镜像变换。</p><div class="model-facts"><div><strong>210</strong><span>206 标准骨 + 4 足部籽骨</span></div><div><strong>534,003</strong><span>源模型表面三角形</span></div><div><strong>同站</strong><span>同站点模型，语音服务另行区分</span></div></div><p class="source-intro">支持逐骨拆开、旋转与归位，但骨缝、成人髋骨的融合区以及胸骨各部并非可任意活动的关节。包含可选肌肉与神经层；尚无完整皮肤、软骨、关节盘和韧带；骨间空隙不能理解为没有软组织。听小骨请使用单侧或单骨观察。全身标注只显示重点骨名；进入各局部区域可查看全部标注。</p><div id="sourceLinks" class="source-links"></div><div class="notice">模型衍生文件按 CC BY-SA 4.0 提供。BodyParts3D, © The Database Center for Life Science licensed under CC Attribution-Share Alike 2.1 Japan. 网页代码采用 MIT 许可。请保留来源与许可，不用于诊断、测量精度要求或手法复位指导。</div></dialog>
+<noscript><div class="noscript">需要启用 JavaScript 才能显示交互式三维骨骼。</div></noscript>
+<script src="app.bundle.js" defer></script>
+</body></html>
