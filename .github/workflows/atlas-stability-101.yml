@@ -1,0 +1,142 @@
+name: Publish anatomy stability 10.1
+on:
+  push:
+    paths:
+      - 'atlas-stability-101/**'
+      - '.github/workflows/atlas-stability-101.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: anatomy-stability-101
+  cancel-in-progress: true
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      NODE_PATH: /tmp/anatomy-101/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply guarded maintenance fixes on the exact V10 baseline
+        run: |
+          cp anatomy/index.html /tmp/original-anatomy-entry.html
+          python atlas-stability-101/patch.py
+          node --check fullbody-tcm-v10-1/stability-v10.js
+          node --check fullbody-tcm-v10-1/learning-enhancements.js
+          node --check fullbody-tcm-v10-1/evidence-page-v10.js
+          node --check atlas-stability-101/verify-details.cjs
+      - name: Install pinned renderer and browser tools
+        run: |
+          npm install --prefix /tmp/anatomy-101 three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/anatomy-101/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Compile the current minor revision and full journey tests
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for name in ['compile.cjs','verify.cjs']:
+              s=Path('atlas-v10-upgrade',name).read_text().replace('fullbody-tcm-v10','fullbody-tcm-v10-1').replace('10.0.0','10.1.0')
+              Path('/tmp/101-'+name).write_text(s)
+          PY
+          node /tmp/101-compile.cjs
+      - name: Chromium full learning journeys including actual export
+        run: node /tmp/101-verify.cjs
+      - name: WebKit full learning journeys
+        env:
+          BROWSER: webkit
+        run: node /tmp/101-verify.cjs
+      - name: Additional Chromium round-trip and hidden-label regression
+        run: node atlas-stability-101/verify-details.cjs
+      - name: Additional WebKit round-trip and hidden-label regression
+        env:
+          BROWSER: webkit
+        run: node atlas-stability-101/verify-details.cjs
+      - name: Check that previous viewers, anatomy and coordinate data remain unchanged
+        run: |
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-atlas/ fullbody-tcm-v3/ fullbody-tcm-v4/ fullbody-tcm-v5/ fullbody-tcm-v6/ fullbody-tcm-v7/ fullbody-tcm-v8/ fullbody-tcm-v9/ fullbody-tcm-v10/ anatomy/)"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          for name in ['navigation-points-v6.js','reference-data.js','route-guides-v6.js','head-study-v8.js','acupoints-data.js','bones-data.js','calibration-pilot.json']:
+              assert Path('fullbody-tcm-v10',name).read_bytes()==Path('fullbody-tcm-v10-1',name).read_bytes(),name
+          print('Unchanged approved data; no clinical calibration claimed')
+          PY
+      - name: Publish only the tested maintenance directory
+        run: |
+          git fetch origin main
+          git worktree add -B anatomy-101-publish /tmp/anatomy-101-publish origin/main
+          test ! -e /tmp/anatomy-101-publish/fullbody-tcm-v10-1
+          cp -a fullbody-tcm-v10-1 /tmp/anatomy-101-publish/
+          cd /tmp/anatomy-101-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v10-1/
+          git commit -m 'Publish minor anatomy stability revision with preserved original layout and resources'
+          git push origin HEAD:main
+      - name: Wait for exact public viewer and bundle
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,time,urllib.request
+          names=['index.html','app.bundle.js','evidence.bundle.js']
+          expected={n:hashlib.sha256(Path('fullbody-tcm-v10-1',n).read_bytes()).hexdigest() for n in names}
+          for attempt in range(60):
+              try:
+                  matched=True
+                  for name,target in expected.items():
+                      with urllib.request.urlopen('https://hengtong320.github.io/notionweb/fullbody-tcm-v10-1/'+name+'?rev='+target[:12]+'&try='+str(attempt),timeout=30) as r:
+                          matched=matched and hashlib.sha256(r.read()).hexdigest()==target
+                  if matched: print('Exact public revision ready');break
+              except Exception as e: print(e,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Pages did not serve the tested revision')
+          PY
+      - name: Repeat full learning journeys on the public URL
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v10-1/?release=${{ github.run_id }}
+        run: node /tmp/101-verify.cjs
+      - name: Repeat additional actual navigation and export checks online
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v10-1/?release=${{ github.run_id }}
+        run: node atlas-stability-101/verify-details.cjs
+      - name: Publish evidence and update the stable entry only after online checks pass
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('fullbody-tcm-v10-1');info=json.loads((p/'build-info.json').read_text())
+          reports={}
+          for name in ['local-chromium','local-webkit','live-chromium','details-local-chromium','details-local-webkit','details-live-chromium']:
+              r=json.loads((p/'checks'/f'{name}.json').read_text());assert r['success'] and all(c['pass'] for c in r['checks']),name;reports[name]=len(r['checks'])
+          info.update(status='published-and-browser-verified',url='https://hengtong320.github.io/notionweb/fullbody-tcm-v10-1/?release='+os.environ['GITHUB_RUN_ID'],stableURL='https://hengtong320.github.io/notionweb/anatomy/',checks=reports,workflowRun=os.environ['GITHUB_RUN_ID'],previousVersionsUnchanged=True,checkedAt=r['finishedAt'],clinicalCalibration=False,allAudioHumanReviewed=False,browserCoverage='Headless Chromium and WebKit; desktop and phone viewports; not all physical devices')
+          (p/'delivery-release.json').write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          PY
+          cd /tmp/anatomy-101-publish
+          git fetch origin main
+          git rebase origin/main
+          cmp anatomy/index.html /tmp/original-anatomy-entry.html
+          cp "$GITHUB_WORKSPACE/fullbody-tcm-v10-1/delivery-release.json" fullbody-tcm-v10-1/
+          cp "$GITHUB_WORKSPACE/fullbody-tcm-v10-1/checks/"*json fullbody-tcm-v10-1/checks/
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('anatomy/index.html');s=p.read_text();assert '../fullbody-tcm-v10/' in s
+          s=s.replace('../fullbody-tcm-v10/','../fullbody-tcm-v10-1/').replace('V10 稳定修订','V10.1 细节修订');p.write_text(s)
+          PY
+          git add fullbody-tcm-v10-1/checks/ fullbody-tcm-v10-1/delivery-release.json anatomy/index.html
+          git commit -m 'Record verified stability journeys and point the fixed anatomy entry to 10.1'
+          git push origin HEAD:main
+      - name: Export final viewer and actual test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: anatomy-stability-101-release
+          path: |
+            fullbody-tcm-v10-1/
+            atlas-stability-101/
+          retention-days: 14
