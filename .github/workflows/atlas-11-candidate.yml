@@ -4,6 +4,7 @@ on:
     paths:
       - '.github/workflows/atlas-11-candidate.yml'
       - 'atlas-systems-11/corrections.py'
+      - 'atlas-systems-11/review-*.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -54,6 +55,7 @@ jobs:
           python atlas-systems-11/patch.py
           python atlas-systems-11/prepare.py
           if test -f atlas-systems-11/corrections.py; then python atlas-systems-11/corrections.py; fi
+          for f in atlas-systems-11/review-*.py; do test ! -f "$f" || python "$f"; done
           node --check fullbody-tcm-v11/tissues-v4.js
           node --check fullbody-tcm-v11/learning-enhancements.js
           node atlas-systems-11/compile.cjs
