@@ -1,0 +1,1060 @@
+{
+  "startedAt": "2026-09-24T01:36:54.441Z",
+  "browser": "webkit",
+  "checks": [
+    {
+      "name": "HTTP 200 with exact final HTML",
+      "pass": true
+    },
+    {
+      "name": "Original 210 bones and 670 point records retained",
+      "pass": true
+    },
+    {
+      "name": "Actual Yintang directory click focuses the forehead",
+      "pass": true
+    },
+    {
+      "name": "Distant kidney points no longer label the focused face",
+      "pass": true,
+      "detail": {
+        "active": true,
+        "bounds": [
+          [
+            22.75318155698477,
+            1483.2,
+            -8.800000000000011
+          ],
+          [
+            176.3531815569848,
+            1636.8,
+            144.8
+          ]
+        ],
+        "visible": [],
+        "drawnPoints": 0,
+        "clippedRouteMaterials": 2
+      }
+    },
+    {
+      "name": "Guide geometry is limited to the focus window",
+      "pass": true
+    },
+    {
+      "name": "No misleading zero-point pager over extra region ring",
+      "pass": true
+    },
+    {
+      "name": "Actual Anmian click remains in the ear/neck region",
+      "pass": true
+    },
+    {
+      "name": "No distant chest marker is drawn over Anmian",
+      "pass": true
+    },
+    {
+      "name": "Layer profile preserves head focus: bones",
+      "pass": true
+    },
+    {
+      "name": "Layer profile preserves head focus: muscles",
+      "pass": true
+    },
+    {
+      "name": "Layer profile preserves head focus: nerves",
+      "pass": true
+    },
+    {
+      "name": "Layer profile preserves head focus: compare",
+      "pass": true
+    },
+    {
+      "name": "Original muscle and nerve meshes decode",
+      "pass": true
+    },
+    {
+      "name": "Full-route command restores all 54 kidney markers",
+      "pass": true,
+      "detail": {
+        "active": false,
+        "bounds": null,
+        "visible": [
+          {
+            "code": "KI1",
+            "side": "right",
+            "position": [
+              12,
+              -49,
+              20
+            ]
+          },
+          {
+            "code": "KI2",
+            "side": "right",
+            "position": [
+              55,
+              0,
+              -13
+            ]
+          },
+          {
+            "code": "KI3",
+            "side": "right",
+            "position": [
+              63,
+              16,
+              -90
+            ]
+          },
+          {
+            "code": "KI4",
+            "side": "right",
+            "position": [
+              58,
+              -2,
+              -96
+            ]
+          },
+          {
+            "code": "KI5",
+            "side": "right",
+            "position": [
+              52,
+              -10,
+              -97
+            ]
+          },
+          {
+            "code": "KI6",
+            "side": "right",
+            "position": [
+              58,
+              -3,
+              -68
+            ]
+          },
+          {
+            "code": "KI7",
+            "side": "right",
+            "position": [
+              60,
+              71,
+              -90
+            ]
+          },
+          {
+            "code": "KI8",
+            "side": "right",
+            "position": [
+              63,
+              71,
+              -75
+            ]
+          },
+          {
+            "code": "KI9",
+            "side": "right",
+            "position": [
+              62,
+              140,
+              -82
+            ]
+          },
+          {
+            "code": "KI10",
+            "side": "right",
+            "position": [
+              57,
+              390,
+              -102
+            ]
+          },
+          {
+            "code": "KI11",
+            "side": "right",
+            "position": [
+              89.053,
+              810,
+              55.5
+            ]
+          },
+          {
+            "code": "KI12",
+            "side": "right",
+            "position": [
+              89.053,
+              848,
+              59.68
+            ]
+          },
+          {
+            "code": "KI13",
+            "side": "right",
+            "position": [
+              89.053,
+              886,
+              63.86
+            ]
+          },
+          {
+            "code": "KI14",
+            "side": "right",
+            "position": [
+              89.053,
+              924,
+              68.04
+            ]
+          },
+          {
+            "code": "KI15",
+            "side": "right",
+            "position": [
+              89.053,
+              962,
+              85
+            ]
+          },
+          {
+            "code": "KI16",
+            "side": "right",
+            "position": [
+              89.053,
+              1000,
+              85
+            ]
+          },
+          {
+            "code": "KI17",
+            "side": "right",
+            "position": [
+              89.053,
+              1045,
+              85
+            ]
+          },
+          {
+            "code": "KI18",
+            "side": "right",
+            "position": [
+              89.053,
+              1067.5,
+              85
+            ]
+          },
+          {
+            "code": "KI19",
+            "side": "right",
+            "position": [
+              89.053,
+              1090,
+              85
+            ]
+          },
+          {
+            "code": "KI20",
+            "side": "right",
+            "position": [
+              89.053,
+              1112.5,
+              85
+            ]
+          },
+          {
+            "code": "KI21",
+            "side": "right",
+            "position": [
+              89.053,
+              1135,
+              85
+            ]
+          },
+          {
+            "code": "KI22",
+            "side": "right",
+            "position": [
+              59.553,
+              1187,
+              102
+            ]
+          },
+          {
+            "code": "KI23",
+            "side": "right",
+            "position": [
+              59.553,
+              1223,
+              101
+            ]
+          },
+          {
+            "code": "KI24",
+            "side": "right",
+            "position": [
+              59.553,
+              1257,
+              90
+            ]
+          },
+          {
+            "code": "KI25",
+            "side": "right",
+            "position": [
+              59.553,
+              1287,
+              74
+            ]
+          },
+          {
+            "code": "KI26",
+            "side": "right",
+            "position": [
+              59.553,
+              1320,
+              57
+            ]
+          },
+          {
+            "code": "KI27",
+            "side": "right",
+            "position": [
+              59.553,
+              1359,
+              36
+            ]
+          },
+          {
+            "code": "KI1",
+            "side": "left",
+            "position": [
+              187.10636311396956,
+              -49,
+              20
+            ]
+          },
+          {
+            "code": "KI2",
+            "side": "left",
+            "position": [
+              144.10636311396956,
+              0,
+              -13
+            ]
+          },
+          {
+            "code": "KI3",
+            "side": "left",
+            "position": [
+              136.10636311396956,
+              16,
+              -90
+            ]
+          },
+          {
+            "code": "KI4",
+            "side": "left",
+            "position": [
+              141.10636311396956,
+              -2,
+              -96
+            ]
+          },
+          {
+            "code": "KI5",
+            "side": "left",
+            "position": [
+              147.10636311396956,
+              -10,
+              -97
+            ]
+          },
+          {
+            "code": "KI6",
+            "side": "left",
+            "position": [
+              141.10636311396956,
+              -3,
+              -68
+            ]
+          },
+          {
+            "code": "KI7",
+            "side": "left",
+            "position": [
+              139.10636311396956,
+              71,
+              -90
+            ]
+          },
+          {
+            "code": "KI8",
+            "side": "left",
+            "position": [
+              136.10636311396956,
+              71,
+              -75
+            ]
+          },
+          {
+            "code": "KI9",
+            "side": "left",
+            "position": [
+              137.10636311396956,
+              140,
+              -82
+            ]
+          },
+          {
+            "code": "KI10",
+            "side": "left",
+            "position": [
+              142.10636311396956,
+              390,
+              -102
+            ]
+          },
+          {
+            "code": "KI11",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              810,
+              55.5
+            ]
+          },
+          {
+            "code": "KI12",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              848,
+              59.68
+            ]
+          },
+          {
+            "code": "KI13",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              886,
+              63.86
+            ]
+          },
+          {
+            "code": "KI14",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              924,
+              68.04
+            ]
+          },
+          {
+            "code": "KI15",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              962,
+              85
+            ]
+          },
+          {
+            "code": "KI16",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1000,
+              85
+            ]
+          },
+          {
+            "code": "KI17",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1045,
+              85
+            ]
+          },
+          {
+            "code": "KI18",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1067.5,
+              85
+            ]
+          },
+          {
+            "code": "KI19",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1090,
+              85
+            ]
+          },
+          {
+            "code": "KI20",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1112.5,
+              85
+            ]
+          },
+          {
+            "code": "KI21",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1135,
+              85
+            ]
+          },
+          {
+            "code": "KI22",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1187,
+              102
+            ]
+          },
+          {
+            "code": "KI23",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1223,
+              101
+            ]
+          },
+          {
+            "code": "KI24",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1257,
+              90
+            ]
+          },
+          {
+            "code": "KI25",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1287,
+              74
+            ]
+          },
+          {
+            "code": "KI26",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1320,
+              57
+            ]
+          },
+          {
+            "code": "KI27",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1359,
+              36
+            ]
+          }
+        ],
+        "drawnPoints": 54,
+        "clippedRouteMaterials": 0
+      }
+    },
+    {
+      "name": "All smooth guide branches retained",
+      "pass": true
+    },
+    {
+      "name": "Markers draw above the guides",
+      "pass": true
+    },
+    {
+      "name": "Existing standard point focus still works",
+      "pass": true
+    },
+    {
+      "name": "User can disable local filtering without losing selection",
+      "pass": true,
+      "detail": {
+        "active": false,
+        "bounds": null,
+        "visible": [
+          {
+            "code": "LI1",
+            "side": "right",
+            "position": [
+              -224.499,
+              662.74,
+              61.996
+            ]
+          },
+          {
+            "code": "LI2",
+            "side": "right",
+            "position": [
+              -218,
+              714,
+              28
+            ]
+          },
+          {
+            "code": "LI3",
+            "side": "right",
+            "position": [
+              -211,
+              738,
+              17
+            ]
+          },
+          {
+            "code": "LI4",
+            "side": "right",
+            "position": [
+              -191.923,
+              770.723,
+              -7.629
+            ]
+          },
+          {
+            "code": "LI5",
+            "side": "right",
+            "position": [
+              -187.535,
+              819.558,
+              -18.75
+            ]
+          },
+          {
+            "code": "LI6",
+            "side": "right",
+            "position": [
+              -170.389,
+              879,
+              -31.475
+            ]
+          },
+          {
+            "code": "LI7",
+            "side": "right",
+            "position": [
+              -164.652,
+              919,
+              -41.311
+            ]
+          },
+          {
+            "code": "LI8",
+            "side": "right",
+            "position": [
+              -156.045,
+              979,
+              -56.066
+            ]
+          },
+          {
+            "code": "LI9",
+            "side": "right",
+            "position": [
+              -153.176,
+              999,
+              -60.984
+            ]
+          },
+          {
+            "code": "LI10",
+            "side": "right",
+            "position": [
+              -157,
+              1006,
+              -35
+            ]
+          },
+          {
+            "code": "LI11",
+            "side": "right",
+            "position": [
+              -159,
+              1058,
+              -21
+            ]
+          },
+          {
+            "code": "LI12",
+            "side": "right",
+            "position": [
+              -153,
+              1074,
+              -31
+            ]
+          },
+          {
+            "code": "LI13",
+            "side": "right",
+            "position": [
+              -137,
+              1131,
+              -31
+            ]
+          },
+          {
+            "code": "LI14",
+            "side": "right",
+            "position": [
+              -112,
+              1233,
+              -22
+            ]
+          },
+          {
+            "code": "LI15",
+            "side": "right",
+            "position": [
+              -74,
+              1341,
+              1
+            ]
+          },
+          {
+            "code": "LI16",
+            "side": "right",
+            "position": [
+              -39,
+              1383,
+              -51
+            ]
+          },
+          {
+            "code": "LI17",
+            "side": "right",
+            "position": [
+              49,
+              1430,
+              12
+            ]
+          },
+          {
+            "code": "LI18",
+            "side": "right",
+            "position": [
+              59,
+              1453,
+              28
+            ]
+          },
+          {
+            "code": "LI19",
+            "side": "right",
+            "position": [
+              91,
+              1504,
+              81
+            ]
+          },
+          {
+            "code": "LI20",
+            "side": "right",
+            "position": [
+              80,
+              1512,
+              78
+            ]
+          },
+          {
+            "code": "KI1",
+            "side": "right",
+            "position": [
+              12,
+              -49,
+              20
+            ]
+          },
+          {
+            "code": "KI2",
+            "side": "right",
+            "position": [
+              55,
+              0,
+              -13
+            ]
+          },
+          {
+            "code": "KI3",
+            "side": "right",
+            "position": [
+              63,
+              16,
+              -90
+            ]
+          },
+          {
+            "code": "KI4",
+            "side": "right",
+            "position": [
+              58,
+              -2,
+              -96
+            ]
+          },
+          {
+            "code": "KI5",
+            "side": "right",
+            "position": [
+              52,
+              -10,
+              -97
+            ]
+          },
+          {
+            "code": "KI6",
+            "side": "right",
+            "position": [
+              58,
+              -3,
+              -68
+            ]
+          },
+          {
+            "code": "KI7",
+            "side": "right",
+            "position": [
+              60,
+              71,
+              -90
+            ]
+          },
+          {
+            "code": "KI8",
+            "side": "right",
+            "position": [
+              63,
+              71,
+              -75
+            ]
+          },
+          {
+            "code": "KI9",
+            "side": "right",
+            "position": [
+              62,
+              140,
+              -82
+            ]
+          },
+          {
+            "code": "KI10",
+            "side": "right",
+            "position": [
+              57,
+              390,
+              -102
+            ]
+          },
+          {
+            "code": "KI11",
+            "side": "right",
+            "position": [
+              89.053,
+              810,
+              55.5
+            ]
+          },
+          {
+            "code": "KI12",
+            "side": "right",
+            "position": [
+              89.053,
+              848,
+              59.68
+            ]
+          },
+          {
+            "code": "KI13",
+            "side": "right",
+            "position": [
+              89.053,
+              886,
+              63.86
+            ]
+          },
+          {
+            "code": "KI14",
+            "side": "right",
+            "position": [
+              89.053,
+              924,
+              68.04
+            ]
+          },
+          {
+            "code": "KI15",
+            "side": "right",
+            "position": [
+              89.053,
+              962,
+              85
+            ]
+          },
+          {
+            "code": "KI16",
+            "side": "right",
+            "position": [
+              89.053,
+              1000,
+              85
+            ]
+          },
+          {
+            "code": "KI17",
+            "side": "right",
+            "position": [
+              89.053,
+              1045,
+              85
+            ]
+          },
+          {
+            "code": "KI18",
+            "side": "right",
+            "position": [
+              89.053,
+              1067.5,
+              85
+            ]
+          },
+          {
+            "code": "KI19",
+            "side": "right",
+            "position": [
+              89.053,
+              1090,
+              85
+            ]
+          },
+          {
+            "code": "KI20",
+            "side": "right",
+            "position": [
+              89.053,
+              1112.5,
+              85
+            ]
+          },
+          {
+            "code": "KI21",
+            "side": "right",
+            "position": [
+              89.053,
+              1135,
+              85
+            ]
+          },
+          {
+            "code": "KI22",
+            "side": "right",
+            "position": [
+              59.553,
+              1187,
+              102
+            ]
+          },
+          {
+            "code": "KI23",
+            "side": "right",
+            "position": [
+              59.553,
+              1223,
+              101
+            ]
+          },
+          {
+            "code": "KI24",
+            "side": "right",
+            "position": [
+              59.553,
+              1257,
+              90
+            ]
+          },
+          {
+            "code": "KI25",
+            "side": "right",
+            "position": [
+              59.553,
+              1287,
+              74
+            ]
+          },
+          {
+            "code": "KI26",
+            "side": "right",
+            "position": [
+              59.553,
+              1320,
+              57
+            ]
+          },
+          {
+            "code": "KI27",
+            "side": "right",
+            "position": [
+              59.553,
+              1359,
+              36
+            ]
+          }
+        ],
+        "drawnPoints": 47,
+        "clippedRouteMaterials": 0
+      }
+    },
+    {
+      "name": "User can restore local filtering",
+      "pass": true
+    },
+    {
+      "name": "Jinjin keeps its left-side designation",
+      "pass": true
+    },
+    {
+      "name": "Yuye keeps its right-side designation",
+      "pass": true
+    },
+    {
+      "name": "Phone keeps the requested forehead region",
+      "pass": true
+    },
+    {
+      "name": "Phone layout has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Landscape left Anmian remains on screen",
+      "pass": true
+    },
+    {
+      "name": "Same-origin runtime assets only",
+      "pass": true
+    },
+    {
+      "name": "No script or clipping shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "clinicalCalibration": false,
+  "url": "http://127.0.0.1:35059/",
+  "htmlSHA256": "0af6cccf622776fa2cf685ff2055ac9d5c86a238f4a4d10c1c579c274b915a31",
+  "finishedAt": "2026-09-24T01:37:52.043Z"
+}

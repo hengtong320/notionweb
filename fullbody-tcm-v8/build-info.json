@@ -11,11 +11,12 @@
   "clinicalCalibration": false,
   "audioChanged": false,
   "previousViewersUntouched": true,
-  "htmlSHA256": "2ad61c9c3fb2e209c8f7e3771ca2c6e02f483271169e7f2d17b71b7d378ba0d6",
-  "htmlBytes": 20848364,
+  "htmlSHA256": "0af6cccf622776fa2cf685ff2055ac9d5c86a238f4a4d10c1c579c274b915a31",
+  "htmlBytes": 20850233,
   "modelsAndPointDataUnchanged": true,
-  "visualRevision": "8.0.1",
+  "visualRevision": "8.0.2",
   "precedingHTMLSHA256": "f3b823e9eb3d0db9a91b52e508c727a50423574af02ae257be05372be9387574",
   "markersAboveGuides": true,
-  "fixedSidedSupplementLabels": true
+  "fixedSidedSupplementLabels": true,
+  "focusWindowFiltersDistantPointsAndLines": true
 }
