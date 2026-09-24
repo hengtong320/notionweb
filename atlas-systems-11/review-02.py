@@ -6,7 +6,7 @@ f.write_text(s)
 f=p/'learning-enhancements.js';s=f.read_text()
 s=s.replace('surfaceProjector.project(p.sourcePosition,2.4)','surfaceProjector.project(p.sourcePosition,4.1)')
 a='g.tube.material.opacity=xray?.82:.97;';assert a in s
-s=s.replace(a,"g.tube.material.opacity=surfaceAttached?1:xray?.82:.97;g.tube.material.color.set(surfaceAttached?'#49328a':r.color);g.tube.material.emissive.set(surfaceAttached?'#23113f':'#000000');g.tube.material.emissiveIntensity=surfaceAttached?.13:0;")
+s=s.replace(a,"g.tube.material.opacity=surfaceAttached?1:xray?.82:.97;g.tube.material.color.set(r.color);if(surfaceAttached)g.tube.material.color.multiplyScalar(.68);g.tube.material.emissive.set(surfaceAttached?r.color:'#000000');g.tube.material.emissiveIntensity=surfaceAttached?.13:0;")
 a='r.cloud.material.uniforms.pixelSize.value=selectedMeridians.size>3?8:12;';assert a in s
 s=s.replace(a,'r.cloud.material.uniforms.pixelSize.value=surfaceAttached?8:selectedMeridians.size>3?8:12;')
 f.write_text(s)
