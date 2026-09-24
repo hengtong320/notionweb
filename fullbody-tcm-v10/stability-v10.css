@@ -1,0 +1,23 @@
+/* Preserve the accepted layout, spacing palette and model presentation. */
+:root{--readable-ink:#284b3b}
+.current-study{padding:13px 15px;margin:0 0 14px;border:1px solid #d1deca;border-radius:12px;background:#f7faf3;color:var(--readable-ink)}
+.current-study>small{font-size:11px;color:#657d63}.current-study h3{margin:4px 0;font-size:18px;line-height:1.4}.current-study p{font-size:12px;line-height:1.6;margin:4px 0 9px}
+.v10-current-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}.v10-current-actions button{min-height:32px;border:1px solid #bbceb6;background:#fff;color:#315b48;border-radius:7px;font-size:12px;cursor:pointer}.v10-current-actions button:disabled{opacity:.45;cursor:default}
+.v10-current-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px;font-size:11px}.v10-current-links a{color:#2e6b50}.v10-current-links button{background:none;border:0;color:#2e6b50;cursor:pointer;font-size:11px;padding:4px 0}
+.v10-live-status{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+body:not([data-current-kind="bone"]) .preview-wrap,body:not([data-current-kind="bone"]) .bone-actions,body:not([data-current-kind="bone"]) #speakBoneBtn{display:none!important}
+body[data-current-kind="point"] #detailTitle,body[data-current-kind="meridian"] #detailTitle,body[data-current-kind="tissue"] #detailTitle{display:none!important}
+body[data-current-kind="point"] #boneIndex,body[data-current-kind="meridian"] #boneIndex,body[data-current-kind="tissue"] #boneIndex{visibility:hidden}
+.v10-point-summary{padding:10px 12px;background:#f0f5eb;border-left:3px solid #659775;border-radius:4px;color:#284c39;line-height:1.75!important}
+.v10-layer-note{font-size:12px!important;line-height:1.6;color:#405a44;background:#f2f6ed;border-radius:8px;padding:9px}
+.short-pinyin{font-size:11px!important}.tcm-point-card p,.v9-evidence p,.detail-scroll>p{font-size:14px;line-height:1.8}.v9-audit{font-size:12px}.tcm-point-card small{font-size:12px;line-height:1.6}
+#selectionChip{display:none!important}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #418265;outline-offset:3px}
+#v10Fallback{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:18px}#v10Fallback a{color:#27694c}#v10Fallback button{padding:9px 16px;border-radius:8px;border:1px solid #bdd1b9;background:#fff}
+.v10-source-badge{font-size:11px;color:#4a7357;text-decoration:none}.v9-mode-box a{display:block;color:#326f52;padding-top:8px}
+@media(max-width:1100px){.current-study{margin:0 0 12px}.v10-current-actions button{min-height:40px}.tcm-point-card p{font-size:15px}}
+@media(max-width:600px){.tcm-controls button:not(.acu-name),.current-study button,.profile-grid button{min-height:44px}.v10-current-links a,.v10-current-links button{min-height:32px;display:inline-flex;align-items:center}.tcm-search input,.search-box input{font-size:16px}.detail-scroll{padding-bottom:calc(22px + env(safe-area-inset-bottom))}.release-badge{font-size:10px}.v9-precision-badge{font-size:10px!important;line-height:1.35!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+body .detail-scroll>#currentStudy{display:block!important}body[data-current-kind="point"] .detail-scroll>section:not(#currentStudy):not(#tcmPointCard),body[data-current-kind="meridian"] .detail-scroll>section:not(#currentStudy):not(#v9MeridianCard){display:none!important}body:not([data-current-kind="bone"]) #studyTip,body:not([data-current-kind="bone"]) .detail-actions{display:none!important}.current-study h3{font-size:18px!important}.current-study p{color:#405c47;font-size:12px!important}.tcm-point-card p{color:#46604e;font-size:14px!important}
+
+body[data-current-kind="point"] .bone-label,body[data-current-kind="point"] .label-line,body[data-current-kind="meridian"] .bone-label,body[data-current-kind="meridian"] .label-line{display:none!important}

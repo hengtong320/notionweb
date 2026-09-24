@@ -1,0 +1,82 @@
+{
+  "scope": "Representative registration workflow, not completed clinical calibration",
+  "cases": [
+    {
+      "code": "GV14",
+      "name": "大椎",
+      "locationSummary": "后正中线上，第7颈椎棘突下方的凹陷区域。",
+      "requiredLandmarks": "第7颈椎棘突、后正中线、体表凹陷",
+      "referencePageHint": null,
+      "textReview": "pending-original-standard-review",
+      "skinMesh": null,
+      "surfaceRegistration": null,
+      "reviewer": null,
+      "measuredError": null,
+      "clinicalApproved": false
+    },
+    {
+      "code": "PC6",
+      "name": "内关",
+      "locationSummary": "前臂掌侧，腕掌侧远端横纹上方2骨度分寸，在掌长肌腱与桡侧腕屈肌腱之间。",
+      "requiredLandmarks": "腕掌侧远端横纹、两条肌腱、前臂分寸",
+      "referencePageHint": 154,
+      "textReview": "pending-original-standard-review",
+      "skinMesh": null,
+      "surfaceRegistration": null,
+      "reviewer": null,
+      "measuredError": null,
+      "clinicalApproved": false
+    },
+    {
+      "code": "KI3",
+      "name": "太溪",
+      "locationSummary": "足踝内侧，内踝尖与跟腱之间的凹陷区域。",
+      "requiredLandmarks": "内踝尖、跟腱、皮肤凹陷",
+      "referencePageHint": 137,
+      "textReview": "pending-original-standard-review",
+      "skinMesh": null,
+      "surfaceRegistration": null,
+      "reviewer": null,
+      "measuredError": null,
+      "clinicalApproved": false
+    },
+    {
+      "code": "KI27",
+      "name": "俞府",
+      "locationSummary": "前胸上部，锁骨下缘，前正中线外侧2骨度分寸对应区域。",
+      "requiredLandmarks": "锁骨下缘、前正中线、胸部骨度分寸",
+      "referencePageHint": 149,
+      "textReview": "pending-original-standard-review",
+      "skinMesh": null,
+      "surfaceRegistration": null,
+      "reviewer": null,
+      "measuredError": null,
+      "clinicalApproved": false
+    },
+    {
+      "code": "LI20",
+      "name": "迎香",
+      "locationSummary": "鼻翼外缘中点相邻的鼻唇沟区域。",
+      "requiredLandmarks": "鼻翼外缘中点、鼻唇沟",
+      "referencePageHint": 43,
+      "textReview": "pending-original-standard-review",
+      "skinMesh": null,
+      "surfaceRegistration": null,
+      "reviewer": null,
+      "measuredError": null,
+      "clinicalApproved": false
+    },
+    {
+      "code": "EX-YINTANG",
+      "name": "印堂",
+      "locationSummary": "眉间观察范围；尚无本模型的体表配准。",
+      "requiredLandmarks": "眉的内侧端、眉间体表",
+      "textReview": "pending-original-standard-review",
+      "skinMesh": null,
+      "surfaceRegistration": null,
+      "reviewer": null,
+      "measuredError": null,
+      "clinicalApproved": false
+    }
+  ]
+}

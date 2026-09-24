@@ -1,0 +1,25 @@
+{
+  "implemented": [
+    "shared-terminology",
+    "global-active-target",
+    "point-and-region-focus-reset",
+    "annotated-screenshot-export",
+    "evidence-viewer-deep-links",
+    "shared-same-origin-models",
+    "on-demand-rendering",
+    "explicit-layer-visibility",
+    "responsive-control-targets",
+    "calibration-pilot-records"
+  ],
+  "requiresFurtherWork": [
+    "full-body-skin-registration",
+    "independent-clinical-coordinate-audit",
+    "full-audio-human-listening-review",
+    "all-361-point-evidence-expansion",
+    "real-device-performance-baseline",
+    "region-geometry-LOD",
+    "shared-repository-branch-protection"
+  ],
+  "clinicalApproved": false,
+  "originalModelDataUnchanged": true
+}
