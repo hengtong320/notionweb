@@ -1,0 +1,135 @@
+name: Finalize V8 visual details
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas-v8-final-details.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas-v8-final-details
+  cancel-in-progress: true
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    env:
+      NODE_PATH: /tmp/v8-final/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply small guarded corrections to the tested V8
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          p=Path('fullbody-tcm-v8')
+          h=hashlib.sha256((p/'index.html').read_bytes()).hexdigest()
+          assert h=='f3b823e9eb3d0db9a91b52e508c727a50423574af02ae257be05372be9387574'
+          def replace(s,a,b):
+              assert a in s,a[:80]
+              return s.replace(a,b,1)
+          f=p/'head-study-v8.js';s=f.read_text()
+          s=replace(s,"'EX-JINJING':{center:[89,1482,37]","'EX-JINJING':{fixedSide:'left',center:[110,1482,37]")
+          s=replace(s,"'EX-YUYE':{center:[110,1482,37]","'EX-YUYE':{fixedSide:'right',center:[89,1482,37]")
+          s=replace(s,'return {...p,position:null','return {...p,side:a.fixedSide||p.side,position:null')
+          s=s.replace('金津为舌下相关条目。','金津为舌下左侧相关条目。').replace('玉液为舌下相关条目。','玉液为舌下右侧相关条目。')
+          f.write_text(s)
+          f=p/'learning-enhancements.js';s=f.read_text()
+          s=replace(s,'cloud.renderOrder=21;','cloud.renderOrder=30;')
+          s=replace(s,"function selectPoint(p,focus=false){if(!p?.name||!p?.code)return false;", "function selectPoint(p,focus=false){if(!p?.name||!p?.code)return false;\n if(p.navigationArea?.fixedSide)p={...p,side:p.navigationArea.fixedSide};")
+          s=replace(s,"b.onclick=async()=>{await window.__ATLAS_TISSUES__?.setProfile", "b.onclick=async()=>{if(!studyContext&&selectedPoint)focusReference(selectedPoint);await window.__ATLAS_TISSUES__?.setProfile")
+          s=replace(s,'referencePoints:r.data.length,','markerRenderOrder:r.cloud.renderOrder,guideRenderOrder:Math.max(0,...r.guides.map(g=>g.guide.renderOrder)),referencePoints:r.data.length,')
+          s=replace(s,'wires.innerHTML=paths;labelStats=', 'if(selectedPoint?.navigationArea&&count===0)labelNav.hidden=true;\n  wires.innerHTML=paths;labelStats=')
+          s=s.replace('虚线展示体表区域','导览线展示体表区域')
+          f.write_text(s)
+          f=p/'tissues-v4.js';s=f.read_text();s=replace(s,'虚线导览：非定位','经络导览：非定位');f.write_text(s)
+          info=json.loads((p/'build-info.json').read_text());info.update({'visualRevision':'8.0.1','precedingHTMLSHA256':h,'markersAboveGuides':True,'fixedSidedSupplementLabels':True});(p/'build-info.json').write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          f=Path('atlas-v8-refine/verify.cjs');s=f.read_text()
+          s=replace(s,"const curves=await page.evaluate", "ck('Point markers render above continuous guide strokes',await page.evaluate(()=>window.__ATLAS_LEARNING__.getState().routeDiagnostics.every(r=>r.markerRenderOrder>r.guideRenderOrder)));\n const curves=await page.evaluate")
+          s=replace(s,"await page.evaluate(()=>window.__ATLAS_LEARNING__.selectPoint('EX-ANMIAN','left',true));", "for(const [code,requested,actual] of [['EX-JINJING','right','left'],['EX-YUYE','left','right']]){await page.evaluate(({code,requested})=>window.__ATLAS_LEARNING__.selectPoint(code,requested,true),{code,requested});await settle(page);ck('Fixed-sided supplemental label: '+code,await page.evaluate(side=>window.__ATLAS_LEARNING__.getState().selectedPoint.side===side,actual));}\n await page.evaluate(()=>window.__ATLAS_LEARNING__.selectPoint('EX-ANMIAN','left',true));")
+          f.with_name('verify-final.cjs').write_text(s)
+          PY
+      - name: Install pinned rendering and browser tools
+        run: |
+          npm install --prefix /tmp/v8-final three@0.180.0 esbuild@0.25.10 playwright@1.56.1
+          /tmp/v8-final/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Rebuild exact standalone entry
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),crypto=require('crypto'),esbuild=require('esbuild'),p='fullbody-tcm-v8';
+          esbuild.buildSync({entryPoints:[p+'/app.js'],bundle:true,minify:true,format:'iife',target:['es2020'],loader:{'.txt':'text'},nodePaths:[process.env.NODE_PATH],outfile:p+'/app.bundle.js',legalComments:'inline'});
+          let h=fs.readFileSync(p+'/index.template.html','utf8');h=h.replace('<link rel="stylesheet" href="styles.css">',()=>'<style>'+fs.readFileSync(p+'/styles.css','utf8')+'</style>').replace(/<script type="importmap">[\s\S]*?<\/script>/g,'');
+          h=h.replace('<script type="module" src="app.js"></script>',()=>'<script>window.FOOT_ATLAS_EMBEDDED='+JSON.stringify(fs.readFileSync(p+'/assets/fullbody.glb').toString('base64'))+';</script>\n<script>'+fs.readFileSync(p+'/app.bundle.js','utf8').replace(/<\/script/gi,'<\\/script')+'</script>');
+          fs.writeFileSync(p+'/index.html',h);const info=JSON.parse(fs.readFileSync(p+'/build-info.json'));info.htmlSHA256=crypto.createHash('sha256').update(h).digest('hex');info.htmlBytes=Buffer.byteLength(h);fs.writeFileSync(p+'/build-info.json',JSON.stringify(info,null,2));
+          JS
+      - name: Re-run requested scenarios and capture final appearance
+        run: node atlas-v8-refine/verify-final.cjs
+      - name: Re-run WebKit final revision
+        env:
+          BROWSER: webkit
+        run: node atlas-v8-refine/verify-final.cjs
+      - name: Preserve original anatomy and all preceding viewers
+        run: |
+          test -z "$(git diff HEAD -- fullbody-tcm-v8/assets/ fullbody-tcm-v8/navigation-points-v6.js fullbody-tcm-v8/acupoints-data.js fullbody-tcm-v7/ fullbody-tcm-v6/ fullbody-tcm-v5/ fullbody-tcm-v4/ fullbody-tcm-v3/ fullbody-tcm-atlas/ fullbody-atlas/ foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/)"
+      - name: Publish final V8 only
+        run: |
+          git fetch origin main
+          git worktree add --detach /tmp/v8-final-publish origin/main
+          cp -a fullbody-tcm-v8/. /tmp/v8-final-publish/fullbody-tcm-v8/
+          cd /tmp/v8-final-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v8/
+          git commit -m 'Keep acupoint markers above smooth guides and refine head-region navigation details'
+          git push origin HEAD:main
+      - name: Match public HTML to final tested revision
+        run: |
+          python - <<'PY'
+          import urllib.request,time,hashlib
+          from pathlib import Path
+          target=hashlib.sha256(Path('fullbody-tcm-v8/index.html').read_bytes()).hexdigest()
+          for i in range(60):
+              try:
+                  with urllib.request.urlopen('https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?final='+target[:12]+'&i='+str(i),timeout=30) as r:data=r.read()
+                  if hashlib.sha256(data).hexdigest()==target:break
+              except Exception as e:print(e,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Pages did not serve final tested revision')
+          PY
+      - name: Re-test live final revision
+        env:
+          LIVE_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?release=${{ github.run_id }}
+        run: node atlas-v8-refine/verify-final.cjs
+      - name: Update final delivery evidence
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('fullbody-tcm-v8');info=json.loads((p/'build-info.json').read_text());rs={}
+          for key in ['local-chromium','local-webkit','live-chromium']:
+              r=json.loads((p/'checks'/(key+'.json')).read_text());assert r['success'] and all(c['pass'] for c in r['checks']);assert r['htmlSHA256']==info['htmlSHA256'];rs[key]=r
+          info.update({'status':'published-and-browser-verified','url':rs['live-chromium']['url'],'checks':{k:len(v['checks']) for k,v in rs.items()},'checkedAt':rs['live-chromium']['finishedAt'],'workflowRun':os.environ['GITHUB_RUN_ID'],'browserCoverage':'Headless Chromium and WebKit, desktop and phone viewports; not every physical device','clinicalCalibration':False,'allAudioHumanReviewed':False})
+          (p/'delivery-release.json').write_text(json.dumps(info,ensure_ascii=False,indent=2))
+          PY
+          cp fullbody-tcm-v8/checks/live-chromium.json /tmp/v8-final-publish/fullbody-tcm-v8/checks/
+          cp fullbody-tcm-v8/delivery-release.json /tmp/v8-final-publish/fullbody-tcm-v8/
+          cd /tmp/v8-final-publish
+          git add fullbody-tcm-v8/checks/live-chromium.json fullbody-tcm-v8/delivery-release.json
+          git commit -m 'Record complete browser verification for final V8 visual details'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas-v8-final-release
+          path: |
+            fullbody-tcm-v8/
+            atlas-v8-refine/verify-final.cjs
+          retention-days: 14
