@@ -1,0 +1,67 @@
+name: Inspect same-source organs and surface
+on:
+  push:
+    paths: ['.github/workflows/atlas-11-source-inspection.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve pinned existing source systems and verified upstream atlas
+        run: |
+          mkdir -p atlas-systems-11/source
+          python - <<'PY'
+          import urllib.request,json,struct,hashlib,concurrent.futures,zipfile
+          from pathlib import Path
+          p=Path('atlas-systems-11/source');ref='322ba39e96ea91ce08601caad2c0aaade1dc99f0'
+          files={'cardiovascular.glb':'ecbd24affd7013c944eecf5b777df39369365e74','visceral.glb':'cec586a1ffe762fb3caffd9a080052669fecf9f5','nervous.glb':'67cbeb15fcf2344209a3350e300ded7e71ee66bb','skeleton.glb':'5e15f7ea303c554f6c25a417f7f184696234b436'}
+          def grab(item):
+            name,sha=item;u=f'https://raw.githubusercontent.com/Liyucheng1997/242_lab-human-anatomy/{ref}/public/models/{name}'
+            b=urllib.request.urlopen(u,timeout=90).read();assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==sha
+            (p/name).write_bytes(b);n=struct.unpack_from('<I',b,12)[0];j=json.loads(b[20:20+n]);(p/(name+'.json')).write_text(json.dumps(j,ensure_ascii=False,indent=2));return name
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as e:print(list(e.map(grab,files.items())))
+          u=f'https://raw.githubusercontent.com/Liyucheng1997/242_lab-human-anatomy/{ref}/src/anatomy.json'
+          (p/'anatomy.json').write_bytes(urllib.request.urlopen(u,timeout=90).read())
+          b=urllib.request.urlopen('https://raw.githubusercontent.com/Z-Anatomy/Models-of-human-anatomy/master/Z-Anatomy.zip',timeout=120).read()
+          assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()=='f43cabc6f366b2a6058dd2ed4a2b3c7b9b2492cb'
+          Path('/tmp/z-anatomy.zip').write_bytes(b)
+          with zipfile.ZipFile('/tmp/z-anatomy.zip') as z:
+            n=next(n for n in z.namelist() if n.endswith('Startup.blend'));Path('/tmp/Startup.blend').write_bytes(z.read(n))
+          PY
+      - name: Inspect original skin and ear structures, export without modifying anatomy
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y blender
+          cat > /tmp/extract-surface.py <<'PY'
+          import bpy,json,re
+          from pathlib import Path
+          p=Path('atlas-systems-11/source').resolve()
+          bpy.ops.wm.open_mainfile(filepath='/tmp/Startup.blend')
+          objs=[o for o in bpy.data.objects if o.type=='MESH']
+          manifest=[{'name':o.name,'collections':[c.name for c in o.users_collection],'vertices':len(o.data.vertices),'matrix':[list(r) for r in o.matrix_world]} for o in objs]
+          (p/'blender-objects.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
+          names=[o for o in objs if re.match(r'^Skin(?:\.|$)',o.name,re.I)]
+          ears=[o for o in objs if re.match(r'^(Auricle|Auricular cartilage|Cartilage of auricle)(?:\.|$)',o.name,re.I)]
+          print('SKIN',[o.name for o in names]);print('EARS',[o.name for o in ears])
+          def export(sel,name):
+            if not sel:return
+            bpy.ops.object.select_all(action='DESELECT')
+            for o in sel:
+              o.hide_set(False);o.hide_viewport=False;o.select_set(True)
+            bpy.context.view_layer.objects.active=sel[0]
+            bpy.ops.export_scene.gltf(filepath=str(p/name),export_format='GLB',use_selection=True,export_apply=True,export_yup=True,export_materials='NONE',export_normals=True)
+          export(names,'skin-original.glb');export(ears,'ear-original.glb')
+          (p/'surface-inspection.json').write_text(json.dumps({'skin':[o.name for o in names],'ears':[o.name for o in ears],'sourceZipBlob':'f43cabc6f366b2a6058dd2ed4a2b3c7b9b2492cb','blenderVersion':bpy.app.version_string,'clinicalCalibration':False},indent=2))
+          PY
+          blender -b --python /tmp/extract-surface.py
+      - name: Export inspection files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-11-source-inspection
+          path: atlas-systems-11/source/
+          retention-days: 14
