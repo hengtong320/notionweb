@@ -1,0 +1,246 @@
+{
+  "startedAt": "2026-09-24T11:13:31.189Z",
+  "browser": "chromium",
+  "checks": [
+    {
+      "name": "HTTP 200 and exact final HTML",
+      "pass": true
+    },
+    {
+      "name": "210 accepted bones remain unchanged",
+      "pass": true
+    },
+    {
+      "name": "Default strict mode remains explicit",
+      "pass": true
+    },
+    {
+      "name": "Chest preset loads heart and visceral anatomy",
+      "pass": true,
+      "detail": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 17,
+          "visible": 4,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 119,
+          "visible": 35,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        }
+      }
+    },
+    {
+      "name": "Five individually identified lung lobes available",
+      "pass": true
+    },
+    {
+      "name": "Four heart chambers are available",
+      "pass": true
+    },
+    {
+      "name": "Chest scene excludes abdominal organ meshes",
+      "pass": true
+    },
+    {
+      "name": "Organ view removes stale bone controls",
+      "pass": true
+    },
+    {
+      "name": "Chinese lung name is available",
+      "pass": true
+    },
+    {
+      "name": "Actual lung surface is clickable",
+      "pass": true,
+      "detail": {
+        "x": 587.4243422949438,
+        "y": 420.57887772741987
+      }
+    },
+    {
+      "name": "Actual mouse identifies lung",
+      "pass": true
+    },
+    {
+      "name": "Isolating an organ leaves one visible new structure",
+      "pass": true
+    },
+    {
+      "name": "Heart view includes same-source vessels",
+      "pass": true
+    },
+    {
+      "name": "Whole vascular system decodes",
+      "pass": true
+    },
+    {
+      "name": "Independent artery and vein filters",
+      "pass": true,
+      "detail": {
+        "veinCount": 231,
+        "arteryCount": 396
+      }
+    },
+    {
+      "name": "Abdominal organs can be observed",
+      "pass": true
+    },
+    {
+      "name": "Ear region scoped to right",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "loaded": true,
+        "loading": false,
+        "count": 48,
+        "visible": 24,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "External helix and cochlea on right",
+      "pass": true
+    },
+    {
+      "name": "Ear region scoped to left",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "loaded": true,
+        "loading": false,
+        "count": 48,
+        "visible": 24,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "External helix and cochlea on left",
+      "pass": true
+    },
+    {
+      "name": "External ear can be removed to see inner structures",
+      "pass": true
+    },
+    {
+      "name": "Same-source regional body surface loaded",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "loaded": true,
+        "loading": false,
+        "count": 250,
+        "visible": 250,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "Surface view explicitly enables visual-only projection",
+      "pass": true
+    },
+    {
+      "name": "All original point reference coordinates retained",
+      "pass": true
+    },
+    {
+      "name": "All 670 display marker instances retained",
+      "pass": true
+    },
+    {
+      "name": "Actual regional surface geometry used for projection",
+      "pass": true,
+      "detail": {
+        "excludedInnerTriangles": 53817,
+        "surfaceTriangles": 60545,
+        "calls": 121249,
+        "maxSourceDistance": 64.19912697283381,
+        "coordinateCalibration": false,
+        "method": "display-only nearest regional surface; smooth then reproject"
+      }
+    },
+    {
+      "name": "Front-side surface routes have visible sampled segments",
+      "pass": true,
+      "detail": {
+        "samples": 42
+      }
+    },
+    {
+      "name": "Projected point still selects and focuses",
+      "pass": true
+    },
+    {
+      "name": "Disabling projection restores exact reference coordinates",
+      "pass": true
+    },
+    {
+      "name": "New layers do not break lumbar vertical separation",
+      "pass": true
+    },
+    {
+      "name": "Original bone coordinates restore",
+      "pass": true
+    },
+    {
+      "name": "Phone view has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "No uncaught scripts or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "clinicalCalibration": false,
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v11/?release=35991518299",
+  "frontSurfaceVisibleSamples": 42,
+  "finishedAt": "2026-09-24T11:14:19.306Z"
+}

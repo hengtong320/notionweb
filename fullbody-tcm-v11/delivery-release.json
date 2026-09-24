@@ -1,0 +1,73 @@
+{
+  "version": "11.0.0",
+  "baseCommit": "37d78170c0ed6a704514340e6c8fb0d59960e80b",
+  "base": "V10.1",
+  "sourceHTMLSHA256": "70acd90b6d022f2563ca3dce5d3bbfcf30a202599f8af3a6681cbb9508a3cc47",
+  "modelsUnchanged": true,
+  "coordinatesUnchanged": true,
+  "clinicalCalibration": false,
+  "allAudioHumanReviewed": false,
+  "sharedResourceBase": "../fullbody-tcm-v9/",
+  "pilotCases": 6,
+  "onlineHTMLBytes": 16224,
+  "htmlSHA256": "e096289c76e5211850af408c259a619099a7475cebb4b5a801874d83f60ebd76",
+  "appSHA256": "d25882d5023782212c4f52e3685492d75e6082adb1a1a5fb98406f3ea09b3886",
+  "evidenceSHA256": "06845cb7b2f308572840bbf9d30e80782ddad8e79982935fd99f5a2fc31152af",
+  "evidenceBundleSHA256": "1a831ea4934d5bebe4ff17a3aa98e0865a8a1f9ed5d4143cad52e0849940766b",
+  "onlineEntryBytes": 16224,
+  "bundleBytes": 2845860,
+  "status": "published-and-browser-verified",
+  "minorRevision": true,
+  "originalCoordinatesUnchanged": true,
+  "regionalSurfaceIsNotHistologicalSkin": true,
+  "visualRevision": "11.0.2",
+  "surfaceProjection": "display-only outward regional shell projection",
+  "stylesSHA256": "a44fa3b83f8eb19fa21b5710e76173126b5b7298da0fa713528b2e522fe8893a",
+  "newSourceModels": [
+    {
+      "file": "visceral.glb",
+      "sha256": "5e90326b1bc4633ee8c271fb67f5a6b117de628d636790d0bbb24b255e34e317",
+      "bytes": 2075520,
+      "structures": 119
+    },
+    {
+      "file": "heart.glb",
+      "sha256": "d73371077553ca33a574cc083b335c862f26f70c605a7c89b6e197942758ebba",
+      "bytes": 330020,
+      "structures": 17
+    },
+    {
+      "file": "vessels.glb",
+      "sha256": "5931cd9752ec308fb52713169e50623e9af102ae8c9ed002cc4341fe0619c6b0",
+      "bytes": 9689328,
+      "structures": 659
+    },
+    {
+      "file": "surface.glb",
+      "sha256": "dad76aed1a0df0b6842ac1a9f554db9884d3c593f0224967d4450296cc6de8fc",
+      "bytes": 3217360,
+      "structures": 250
+    },
+    {
+      "file": "ear.glb",
+      "sha256": "4dee5d9c29adcd7717eee66966ac55d1491d9d5bf18d667a6fe6240a8e78d229",
+      "bytes": 246320,
+      "structures": 48
+    }
+  ],
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v11/?release=35991518299",
+  "stableURL": "https://hengtong320.github.io/notionweb/anatomy/",
+  "checks": {
+    "local-chromium": 33,
+    "local-webkit": 33,
+    "live-chromium": 33
+  },
+  "candidateRun": "35991336253",
+  "workflowRun": "35991518299",
+  "checkedAt": "2026-09-24T11:14:19.306Z",
+  "previousVersionsUnchanged": true,
+  "surfaceProjectionIsDisplayOnly": true,
+  "browserCoverage": "Headless Chromium and WebKit, desktop and phone viewports; not every physical device",
+  "audioChanged": false,
+  "skinClinicalRegistration": false
+}
