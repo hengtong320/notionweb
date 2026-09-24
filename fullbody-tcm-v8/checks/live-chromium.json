@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-09-24T01:16:35.331Z",
+  "startedAt": "2026-09-24T01:30:51.400Z",
   "browser": "chromium",
   "success": true,
   "checks": [
@@ -13,6 +13,10 @@
     },
     {
       "name": "Original 670 standard marker instances retained",
+      "pass": true
+    },
+    {
+      "name": "Point markers render above continuous guide strokes",
       "pass": true
     },
     {
@@ -297,7 +301,7 @@
         "camera": [
           -532.5279960800858,
           1523.2513998040042,
-          -386.2653978440475
+          -386.2653978440476
         ],
         "area": true,
         "inView": true,
@@ -355,7 +359,7 @@
           61
         ],
         "camera": [
-          -129.90219462899304,
+          -129.9021946289931,
           1498.013972195858,
           600.7205560828374
         ],
@@ -431,6 +435,36 @@
         "selected": {
           "code": "EX-JINJING",
           "name": "金津",
+          "side": "left",
+          "areaOnly": true
+        },
+        "center": [
+          110,
+          1482,
+          37
+        ],
+        "target": [
+          109.99999999999999,
+          1482,
+          37
+        ],
+        "camera": [
+          109.99999999999999,
+          1529.9399009957813,
+          636.2487624472675
+        ],
+        "area": true,
+        "inView": true,
+        "error": 1.4210854715202004e-14
+      }
+    },
+    {
+      "name": "Supplement region navigation: EX-YUYE",
+      "pass": true,
+      "detail": {
+        "selected": {
+          "code": "EX-YUYE",
+          "name": "玉液",
           "side": "right",
           "areaOnly": true
         },
@@ -452,36 +486,6 @@
         "area": true,
         "inView": true,
         "error": 0
-      }
-    },
-    {
-      "name": "Supplement region navigation: EX-YUYE",
-      "pass": true,
-      "detail": {
-        "selected": {
-          "code": "EX-YUYE",
-          "name": "玉液",
-          "side": "right",
-          "areaOnly": true
-        },
-        "center": [
-          110,
-          1482,
-          37
-        ],
-        "target": [
-          109.99999999999999,
-          1482,
-          37
-        ],
-        "camera": [
-          109.99999999999999,
-          1529.9399009957813,
-          636.2487624472673
-        ],
-        "area": true,
-        "inView": true,
-        "error": 1.4210854715202004e-14
       }
     },
     {
@@ -513,6 +517,14 @@
         "inView": true,
         "error": 0
       }
+    },
+    {
+      "name": "Fixed-sided supplemental label: EX-JINJING",
+      "pass": true
+    },
+    {
+      "name": "Fixed-sided supplemental label: EX-YUYE",
+      "pass": true
     },
     {
       "name": "Anmian left/right orientation mirrors correctly",
@@ -676,8 +688,8 @@
   ],
   "errors": [],
   "clinicalCalibration": false,
-  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?release=35941634866",
-  "htmlSHA256": "f3b823e9eb3d0db9a91b52e508c727a50423574af02ae257be05372be9387574",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?release=35942702031",
+  "htmlSHA256": "2ad61c9c3fb2e209c8f7e3771ca2c6e02f483271169e7f2d17b71b7d378ba0d6",
   "curves": [
     {
       "meridian": "LU",
@@ -1175,5 +1187,5 @@
       "clinicalCalibration": false
     }
   ],
-  "finishedAt": "2026-09-24T01:19:30.723Z"
+  "finishedAt": "2026-09-24T01:32:51.446Z"
 }

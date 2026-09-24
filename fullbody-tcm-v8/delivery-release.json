@@ -11,18 +11,22 @@
   "clinicalCalibration": false,
   "audioChanged": false,
   "previousViewersUntouched": true,
-  "htmlSHA256": "f3b823e9eb3d0db9a91b52e508c727a50423574af02ae257be05372be9387574",
-  "htmlBytes": 20848037,
+  "htmlSHA256": "2ad61c9c3fb2e209c8f7e3771ca2c6e02f483271169e7f2d17b71b7d378ba0d6",
+  "htmlBytes": 20848364,
   "modelsAndPointDataUnchanged": true,
+  "visualRevision": "8.0.1",
+  "precedingHTMLSHA256": "f3b823e9eb3d0db9a91b52e508c727a50423574af02ae257be05372be9387574",
+  "markersAboveGuides": true,
+  "fixedSidedSupplementLabels": true,
   "status": "published-and-browser-verified",
-  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?release=35941634866",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v8/?release=35942702031",
   "checks": {
-    "local-chromium": 52,
-    "local-webkit": 52,
-    "live-chromium": 52
+    "local-chromium": 55,
+    "local-webkit": 55,
+    "live-chromium": 55
   },
-  "checkedAt": "2026-09-24T01:19:30.723Z",
-  "workflowRun": "35941634866",
-  "browserCoverage": "Headless Chromium/WebKit, desktop and phone viewports; not every physical device",
+  "checkedAt": "2026-09-24T01:32:51.446Z",
+  "workflowRun": "35942702031",
+  "browserCoverage": "Headless Chromium and WebKit, desktop and phone viewports; not every physical device",
   "allAudioHumanReviewed": false
 }
