@@ -1,0 +1,21 @@
+name: Prepare atlas14 build tools
+on:
+  push:
+    paths: ['.github/workflows/atlas14-build-tools.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tools:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --prefix /tmp/atlas14 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atlas14-pinned-build-tools
+          path: /tmp/atlas14
+          retention-days: 3
