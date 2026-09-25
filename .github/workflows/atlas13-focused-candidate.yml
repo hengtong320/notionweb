@@ -1,0 +1,73 @@
+name: Validate focused V13 repairs
+on:
+  push:
+    paths: ['.github/workflows/atlas13-focused-candidate.yml','atlas13-tools/patch.py','atlas13-tools/shared-v13.*','atlas13-tools/surface-v13.js','atlas13-tools/route-corridors-v13.js','atlas13-tools/verify.cjs','atlas13-tools/focused-review*.py']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: atlas13-focused
+  cancel-in-progress: true
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/atlas13/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas13-corrected-voice
+          run-id: 36010769806
+          github-token: ${{ github.token }}
+          path: corrected-voice-source
+      - name: Install pinned geometry and browser tools
+        run: |
+          npm install --prefix /tmp/atlas13 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1
+          /tmp/atlas13/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Build without changing previous viewers
+        run: |
+          python atlas13-tools/patch.py
+          python - <<'PY'
+          import json,hashlib,shutil
+          from pathlib import Path
+          p=Path('fullbody-tcm-v13');src=Path('corrected-voice-source');out=p/'voice-corrected';out.mkdir(exist_ok=True)
+          manifest=json.loads((src/'manifest.json').read_text());used=[]
+          for name,file in {'长强':'changqiang','大椎':'dazhui','龈交':'yinjiao','郄门':'ximen','阴郄':'yinxi'}.items():
+              record=manifest['mapping'][name];data=(src/record['file']).read_bytes();assert hashlib.sha256(data).hexdigest()==record['sha256'];(out/(file+'.mp3')).write_bytes(data);used.append({'name':name,**record,'file':file+'.mp3'})
+          (out/'manifest.json').write_text(json.dumps({'engine':manifest['engine'],'synthetic':True,'source':manifest['source'],'method':manifest['method'],'allAudioHumanReviewed':False,'used':used},ensure_ascii=False,indent=2))
+          f=p/'speech-v4.js';s=f.read_text().replace(",'膻中':'danzhong'",'').replace('六个易错词','五个易错词');f.write_text(s)
+          PY
+          for f in atlas13-tools/focused-review*.py; do test ! -f "$f" || python "$f"; done
+          node --check fullbody-tcm-v13/app.js
+          node --check fullbody-tcm-v13/female-v12.js
+          node --check fullbody-tcm-v13/shared-v13.js
+          node --check fullbody-tcm-v13/learning-enhancements.js
+          node atlas13-tools/build.cjs
+          test -z "$(git diff HEAD -- fullbody-tcm-v12/ fullbody-tcm-v11/ fullbody-tcm-v9/ anatomy/)"
+      - name: Chromium complete interaction regression
+        run: node atlas13-tools/verify.cjs
+      - name: WebKit complete interaction regression
+        if: success() || failure()
+        env:
+          BROWSER: webkit
+        run: node atlas13-tools/verify.cjs
+      - name: Export exact candidate and diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas13-focused-candidate
+          path: |
+            fullbody-tcm-v13/
+            atlas13-tools/*.py
+            atlas13-tools/*.js
+            atlas13-tools/*.css
+            atlas13-tools/*.cjs
+            atlas13-tools/README.md
+          retention-days: 14
