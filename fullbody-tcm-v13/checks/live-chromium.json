@@ -1,0 +1,623 @@
+{
+  "version": "13.0.0",
+  "browser": "chromium",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v13/?release=36080254242",
+  "startedAt": "2026-09-25T01:07:50.098Z",
+  "checks": [
+    {
+      "name": "Exact published HTML",
+      "pass": true
+    },
+    {
+      "name": "All original 210 bones load",
+      "pass": true
+    },
+    {
+      "name": "Canonical Changqiang is chang qiang",
+      "pass": true
+    },
+    {
+      "name": "Opening meridian panel preserves hand view",
+      "pass": true,
+      "detail": {
+        "before": {
+          "position": [
+            -282.1176394858661,
+            793.2659556591065,
+            468.8065286728836
+          ],
+          "target": [
+            -180.79690987057984,
+            733.3579254364595,
+            30.125253435224298
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": true,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 0,
+            "offsetY": 22,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "free"
+        },
+        "after": {
+          "position": [
+            -282.1176394858661,
+            793.2659556591065,
+            468.8065286728836
+          ],
+          "target": [
+            -180.79690987057984,
+            733.3579254364595,
+            30.125253435224298
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": true,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 0,
+            "offsetY": 22,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "free"
+        }
+      }
+    },
+    {
+      "name": "Actual HT checkbox preserves camera",
+      "pass": true
+    },
+    {
+      "name": "Actual PC checkbox preserves camera",
+      "pass": true
+    },
+    {
+      "name": "Actual GV checkbox preserves camera",
+      "pass": true
+    },
+    {
+      "name": "Actual BL checkbox preserves camera",
+      "pass": true
+    },
+    {
+      "name": "Actual CV checkbox preserves camera",
+      "pass": true
+    },
+    {
+      "name": "Actual KI checkbox preserves camera",
+      "pass": true
+    },
+    {
+      "name": "Actual PC checkbox preserves camera",
+      "pass": true
+    },
+    {
+      "name": "Meridian filters do not restore whole skeleton",
+      "pass": true,
+      "detail": {
+        "r": "hand",
+        "s": "right"
+      }
+    },
+    {
+      "name": "Quick selector does not force rear view",
+      "pass": true
+    },
+    {
+      "name": "Left-right filter does not move camera",
+      "pass": true
+    },
+    {
+      "name": "Pair comparison does not move camera",
+      "pass": true
+    },
+    {
+      "name": "Explicit fit does move camera",
+      "pass": true
+    },
+    {
+      "name": "670 marker instances remain",
+      "pass": true,
+      "detail": 670
+    },
+    {
+      "name": "Original points retained in revision records",
+      "pass": true
+    },
+    {
+      "name": "Unprojected HT-PC distinct right",
+      "pass": true,
+      "detail": {
+        "samples": 67,
+        "min": 19.979907846463117,
+        "median": 25.447532755248236,
+        "overlapFraction": 0
+      }
+    },
+    {
+      "name": "Unprojected HT-PC distinct left",
+      "pass": true,
+      "detail": {
+        "samples": 67,
+        "min": 19.97990784646315,
+        "median": 25.447532755248368,
+        "overlapFraction": 0
+      }
+    },
+    {
+      "name": "Surface projection active",
+      "pass": true
+    },
+    {
+      "name": "Surface retains HT/PC distinction right",
+      "pass": true,
+      "detail": {
+        "samples": 81,
+        "min": 20.90265860276971,
+        "median": 26.144245766961483,
+        "overlapFraction": 0
+      }
+    },
+    {
+      "name": "Surface retains HT/PC distinction left",
+      "pass": true,
+      "detail": {
+        "samples": 81,
+        "min": 20.902661844503488,
+        "median": 26.144243617889458,
+        "overlapFraction": 0
+      }
+    },
+    {
+      "name": "Surface retains LU/PC distinction right",
+      "pass": true,
+      "detail": {
+        "samples": 80,
+        "min": 21.264340713630883,
+        "median": 27.367725290712627,
+        "overlapFraction": 0
+      }
+    },
+    {
+      "name": "Surface retains LU/PC distinction left",
+      "pass": true,
+      "detail": {
+        "samples": 80,
+        "min": 21.264337327887848,
+        "median": 27.367725194086173,
+        "overlapFraction": 0
+      }
+    },
+    {
+      "name": "Surface retains LI/TE distinction right",
+      "pass": true,
+      "detail": {
+        "samples": 81,
+        "min": 20.15579088177621,
+        "median": 26.43632030854388,
+        "overlapFraction": 0
+      }
+    },
+    {
+      "name": "Surface retains LI/TE distinction left",
+      "pass": true,
+      "detail": {
+        "samples": 81,
+        "min": 20.155789831083172,
+        "median": 26.43632385925134,
+        "overlapFraction": 0
+      }
+    },
+    {
+      "name": "PC forearm stays on forearm not torso right",
+      "pass": true,
+      "detail": {
+        "samples": 80,
+        "median": 0.025329270334765397,
+        "p95": 0.18984442939324708
+      }
+    },
+    {
+      "name": "PC forearm stays on forearm not torso left",
+      "pass": true,
+      "detail": {
+        "samples": 80,
+        "median": 0.02532927033479382,
+        "p95": 0.18984442939321866
+      }
+    },
+    {
+      "name": "All 14 meridian guides finite",
+      "pass": true
+    },
+    {
+      "name": "Projected route segments have no cross-partition jumps",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Surface toggle keeps final zoom",
+      "pass": true
+    },
+    {
+      "name": "Point navigation focuses PC6",
+      "pass": true
+    },
+    {
+      "name": "Detachment restores source revision",
+      "pass": true
+    },
+    {
+      "name": "Gender switch keeps view direction",
+      "pass": true,
+      "detail": {
+        "male": [
+          -0.13396847555995964,
+          0.12044899719706265,
+          0.9836383922104517
+        ],
+        "female": [
+          -0.13396847555995964,
+          0.12044899719706262,
+          0.9836383922104518
+        ]
+      }
+    },
+    {
+      "name": "Gender switch keeps relative zoom",
+      "pass": true
+    },
+    {
+      "name": "Both bodies retain same visible tabs",
+      "pass": true
+    },
+    {
+      "name": "Same viewport and tab placement",
+      "pass": true,
+      "detail": {
+        "male": {
+          "x": 270,
+          "y": 72,
+          "width": 868,
+          "height": 897
+        },
+        "female": {
+          "x": 270,
+          "y": 72,
+          "width": 868,
+          "height": 897
+        }
+      }
+    },
+    {
+      "name": "Same layer panel remains visible",
+      "pass": true
+    },
+    {
+      "name": "Female retains chest scene",
+      "pass": true
+    },
+    {
+      "name": "Male acupuncture not reused as female",
+      "pass": true
+    },
+    {
+      "name": "Female display mode preserves camera",
+      "pass": true
+    },
+    {
+      "name": "Female acupoint directory preserves camera",
+      "pass": true
+    },
+    {
+      "name": "Female no-registration note accessible",
+      "pass": true
+    },
+    {
+      "name": "Return to male keeps current direction",
+      "pass": true
+    },
+    {
+      "name": "Round-trip framing retained",
+      "pass": true
+    },
+    {
+      "name": "Lumbar separation remains vertical",
+      "pass": true
+    },
+    {
+      "name": "L3 mesh pickable",
+      "pass": true
+    },
+    {
+      "name": "Actual drag separates L3",
+      "pass": true
+    },
+    {
+      "name": "Reset restores all bone offsets",
+      "pass": true
+    },
+    {
+      "name": "Changqiang plays corrected recording",
+      "pass": true,
+      "detail": {
+        "voice": "reading",
+        "rate": 0.95,
+        "lastName": "长强",
+        "spokenText": "常强",
+        "lastEngine": "V13 专项读音",
+        "lastError": "",
+        "playing": true,
+        "audioURL": "https://hengtong320.github.io/notionweb/fullbody-tcm-v13/voice-corrected/changqiang.mp3",
+        "currentTime": 0.366364,
+        "recordings": 532,
+        "synthetic": true,
+        "readingGuard": true,
+        "termSource": "catalog-v10",
+        "remoteVoicePossible": true,
+        "allAudioHumanReviewed": false
+      }
+    },
+    {
+      "name": "Evidence search uses correct pinyin",
+      "pass": true
+    },
+    {
+      "name": "Phone common layer tab accessible",
+      "pass": true
+    },
+    {
+      "name": "Phone no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Phone female same layer panel",
+      "pass": true
+    },
+    {
+      "name": "No uncaught script errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "clinicalCalibration": false,
+  "routeDiagnostics": [
+    {
+      "meridian": "LU",
+      "side": "right",
+      "vertices": 324,
+      "finite": true,
+      "longestSegment": 3.8605054199418247
+    },
+    {
+      "meridian": "LU",
+      "side": "left",
+      "vertices": 324,
+      "finite": true,
+      "longestSegment": 3.8605023774965512
+    },
+    {
+      "meridian": "LI",
+      "side": "right",
+      "vertices": 700,
+      "finite": true,
+      "longestSegment": 17.78256319379657
+    },
+    {
+      "meridian": "LI",
+      "side": "left",
+      "vertices": 700,
+      "finite": true,
+      "longestSegment": 17.782546659521614
+    },
+    {
+      "meridian": "ST",
+      "side": "right",
+      "vertices": 1121,
+      "finite": true,
+      "longestSegment": 6.5922961085770195
+    },
+    {
+      "meridian": "ST",
+      "side": "left",
+      "vertices": 1121,
+      "finite": true,
+      "longestSegment": 6.592298622570071
+    },
+    {
+      "meridian": "SP",
+      "side": "right",
+      "vertices": 775,
+      "finite": true,
+      "longestSegment": 4.481259059141845
+    },
+    {
+      "meridian": "SP",
+      "side": "left",
+      "vertices": 779,
+      "finite": true,
+      "longestSegment": 4.481260090879918
+    },
+    {
+      "meridian": "HT",
+      "side": "right",
+      "vertices": 262,
+      "finite": true,
+      "longestSegment": 14.292434105347763
+    },
+    {
+      "meridian": "HT",
+      "side": "left",
+      "vertices": 262,
+      "finite": true,
+      "longestSegment": 14.292397730537077
+    },
+    {
+      "meridian": "SI",
+      "side": "right",
+      "vertices": 622,
+      "finite": true,
+      "longestSegment": 13.452846124894723
+    },
+    {
+      "meridian": "SI",
+      "side": "left",
+      "vertices": 622,
+      "finite": true,
+      "longestSegment": 13.453163346276487
+    },
+    {
+      "meridian": "BL",
+      "side": "right",
+      "vertices": 1839,
+      "finite": true,
+      "longestSegment": 17.29281970581725
+    },
+    {
+      "meridian": "BL",
+      "side": "left",
+      "vertices": 1839,
+      "finite": true,
+      "longestSegment": 17.29281856359131
+    },
+    {
+      "meridian": "KI",
+      "side": "right",
+      "vertices": 815,
+      "finite": true,
+      "longestSegment": 10.861361645014414
+    },
+    {
+      "meridian": "KI",
+      "side": "left",
+      "vertices": 815,
+      "finite": true,
+      "longestSegment": 10.86136662606124
+    },
+    {
+      "meridian": "PC",
+      "side": "right",
+      "vertices": 350,
+      "finite": true,
+      "longestSegment": 4.976398149601779
+    },
+    {
+      "meridian": "PC",
+      "side": "left",
+      "vertices": 350,
+      "finite": true,
+      "longestSegment": 4.976394572490708
+    },
+    {
+      "meridian": "TE",
+      "side": "right",
+      "vertices": 609,
+      "finite": true,
+      "longestSegment": 14.661342912474549
+    },
+    {
+      "meridian": "TE",
+      "side": "left",
+      "vertices": 609,
+      "finite": true,
+      "longestSegment": 14.66136493731464
+    },
+    {
+      "meridian": "GB",
+      "side": "right",
+      "vertices": 1681,
+      "finite": true,
+      "longestSegment": 16.40387799717744
+    },
+    {
+      "meridian": "GB",
+      "side": "left",
+      "vertices": 1681,
+      "finite": true,
+      "longestSegment": 16.403890503585497
+    },
+    {
+      "meridian": "LR",
+      "side": "right",
+      "vertices": 658,
+      "finite": true,
+      "longestSegment": 4.7329793716268025
+    },
+    {
+      "meridian": "LR",
+      "side": "left",
+      "vertices": 658,
+      "finite": true,
+      "longestSegment": 4.732978226041339
+    },
+    {
+      "meridian": "GV",
+      "side": "midline",
+      "vertices": 582,
+      "finite": true,
+      "longestSegment": 12.553956176305059
+    },
+    {
+      "meridian": "CV",
+      "side": "midline",
+      "vertices": 357,
+      "finite": true,
+      "longestSegment": 16.723776138204034
+    },
+    {
+      "meridian": "EX",
+      "side": "right",
+      "vertices": 0,
+      "finite": true,
+      "longestSegment": 0
+    },
+    {
+      "meridian": "EX",
+      "side": "left",
+      "vertices": 0,
+      "finite": true,
+      "longestSegment": 0
+    },
+    {
+      "meridian": "EX",
+      "side": "midline",
+      "vertices": 0,
+      "finite": true,
+      "longestSegment": 0
+    }
+  ],
+  "surface": {
+    "version": 13,
+    "method": "regional directional projection with connected-surface transitions",
+    "calls": 16794,
+    "rayHits": 13802,
+    "fallbacks": 2992,
+    "maxSourceDistance": 126.51680372063232,
+    "regions": 46,
+    "surfacePathBridges": 169,
+    "unconnectedDisplayBridges": 4,
+    "clinicalCalibration": false
+  },
+  "finishedAt": "2026-09-25T01:09:25.723Z"
+}
