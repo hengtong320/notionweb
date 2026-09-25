@@ -1,0 +1,197 @@
+{
+  "version": "14.0.0",
+  "browser": "chromium",
+  "online": false,
+  "startedAt": "2026-09-25T05:25:20.452Z",
+  "checks": [
+    {
+      "name": "Public/local page returns HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "All 210 existing bones remain loaded",
+      "pass": true
+    },
+    {
+      "name": "Read-only mode gate actually removed",
+      "pass": true
+    },
+    {
+      "name": "Single shared directory and search",
+      "pass": true
+    },
+    {
+      "name": "Male structure directory searches real bones",
+      "pass": true
+    },
+    {
+      "name": "Actual directory click selects sternum",
+      "pass": true
+    },
+    {
+      "name": "Common layer rows work on male",
+      "pass": true
+    },
+    {
+      "name": "Male common opacity changes real material state",
+      "pass": true
+    },
+    {
+      "name": "Shared DOM instances survive male-to-female switch",
+      "pass": true
+    },
+    {
+      "name": "Current layers tab preserved",
+      "pass": true
+    },
+    {
+      "name": "Expanded custom controls remain open",
+      "pass": true
+    },
+    {
+      "name": "Female has the same nine layer rows",
+      "pass": true
+    },
+    {
+      "name": "Search and filter values survive switching",
+      "pass": true
+    },
+    {
+      "name": "Gender switch retains vascular opacity",
+      "pass": true
+    },
+    {
+      "name": "Female common opacity remains available",
+      "pass": true
+    },
+    {
+      "name": "Female common opacity changes real source materials",
+      "pass": true
+    },
+    {
+      "name": "Same directory renderer searches female structures",
+      "pass": true
+    },
+    {
+      "name": "Female uterus is a source entry",
+      "pass": true
+    },
+    {
+      "name": "Same directory actual click selects female uterus",
+      "pass": true
+    },
+    {
+      "name": "Female selected detail uses common detail scroll",
+      "pass": true
+    },
+    {
+      "name": "Female directory does not claim unregistered navigation",
+      "pass": true
+    },
+    {
+      "name": "Female has shared usable meridian catalog",
+      "pass": true
+    },
+    {
+      "name": "Female multi-select does not move camera",
+      "pass": true
+    },
+    {
+      "name": "Heart and pericardium selections shared",
+      "pass": true
+    },
+    {
+      "name": "Female point click has real shared explanation, not a blank placeholder",
+      "pass": true
+    },
+    {
+      "name": "Unregistered female coordinates are not fabricated",
+      "pass": true
+    },
+    {
+      "name": "Female point selection keeps current view",
+      "pass": true
+    },
+    {
+      "name": "Female channel introduction uses same populated card",
+      "pass": true
+    },
+    {
+      "name": "Switch back preserves selected TCM tab",
+      "pass": true
+    },
+    {
+      "name": "Same meridian query survives round trip",
+      "pass": true
+    },
+    {
+      "name": "Selected point survives round trip",
+      "pass": true
+    },
+    {
+      "name": "The same populated point card works on male",
+      "pass": true
+    },
+    {
+      "name": "Male filtering preserves current camera",
+      "pass": true
+    },
+    {
+      "name": "Re-enabled layer is not accidentally invisible",
+      "pass": true
+    },
+    {
+      "name": "Common saved layer combination restores visibility",
+      "pass": true
+    },
+    {
+      "name": "Existing lumbar separation stays vertical",
+      "pass": true
+    },
+    {
+      "name": "Global restore retains 210 bones",
+      "pass": true
+    },
+    {
+      "name": "Phone body switch retains same directory input",
+      "pass": true
+    },
+    {
+      "name": "Phone has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Phone female description opens",
+      "pass": true
+    },
+    {
+      "name": "Phone point detail closes",
+      "pass": true
+    },
+    {
+      "name": "Female explanation link keeps body identity",
+      "pass": true
+    },
+    {
+      "name": "Shared separate explanation contains target",
+      "pass": true
+    },
+    {
+      "name": "Explanation return link keeps female target",
+      "pass": true
+    },
+    {
+      "name": "Full return loads shared female point explanation",
+      "pass": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "url": "http://127.0.0.1:42149/fullbody-tcm-v14/",
+  "finishedAt": "2026-09-25T05:27:03.627Z"
+}
