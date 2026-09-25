@@ -1,0 +1,140 @@
+name: Publish unified V14 learning interface
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas14-publish.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pages: write
+concurrency:
+  group: atlas14-public-release
+  cancel-in-progress: false
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/atlas14-public/node_modules
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Record the current stable entry
+        run: |
+          cp anatomy/index.html /tmp/stable-before.html
+          git rev-parse HEAD > /tmp/release-before.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install actual public-page browser
+        run: |
+          npm install --prefix /tmp/atlas14-public playwright@1.56.1
+          /tmp/atlas14-public/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Require the final candidate browser run
+        run: |
+          python - <<'PY'
+          import subprocess,json,time
+          for i in range(80):
+              r=json.loads(subprocess.check_output(['gh','api','repos/${{ github.repository }}/actions/runs/36098409079']))
+              if r['status']=='completed':
+                  assert r['conclusion']=='success',r['conclusion']
+                  break
+              time.sleep(5)
+          else:raise RuntimeError('Candidate verification not finished')
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas14-unified-candidate
+          run-id: 36098409079
+          github-token: ${{ github.token }}
+          path: /tmp/reviewed14
+      - name: Verify source fingerprint and actual reports
+        run: |
+          python - <<'PY'
+          import json,hashlib,shutil
+          from pathlib import Path
+          p=Path('/tmp/reviewed14/fullbody-tcm-v14')
+          info=json.loads((p/'build-info.json').read_text())
+          for f,v in info['files'].items():assert hashlib.sha256((p/f).read_bytes()).hexdigest()==v['sha256'],f
+          for f in ['local-chromium.json','local-webkit.json']:
+              r=json.loads((p/'checks'/f).read_text());assert r['success'] and not r['errors'] and all(c['pass'] for c in r['checks'])
+              print(f,len(r['checks']))
+          assert not Path('fullbody-tcm-v14').exists(),'Do not overwrite an already published version silently'
+          shutil.copytree(p,'fullbody-tcm-v14')
+          PY
+      - name: Publish only the tested new viewer
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          test -z "$(git diff HEAD -- fullbody-tcm-v9/ fullbody-tcm-v11/ fullbody-tcm-v12/ fullbody-tcm-v13/ anatomy/)"
+          git add fullbody-tcm-v14/
+          git commit -m 'Publish V14 unified structure and meridian interface from reviewed candidate'
+          git pull --rebase origin main
+          git push origin HEAD:main
+          gh api --method POST repos/${{ github.repository }}/pages/builds || true
+      - name: Verify exact public HTML scripts and styles
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,time,urllib.request
+          p=Path('fullbody-tcm-v14');files=json.loads((p/'build-info.json').read_text())['files']
+          pending={f:v for f,v in files.items() if f in ['index.html','app.bundle.js','evidence.bundle.js','styles.css','shared-v14.css']}
+          for attempt in range(75):
+              for f in list(pending):
+                  try:
+                      u='https://hengtong320.github.io/notionweb/fullbody-tcm-v14/'+f+'?build='+pending[f]['sha256'][:14]+'&n='+str(attempt)
+                      with urllib.request.urlopen(u,timeout=25) as r:b=r.read()
+                      if hashlib.sha256(b).hexdigest()==pending[f]['sha256']:
+                          print('MATCH',f,flush=True);del pending[f]
+                  except Exception as e:print(f,str(e),flush=True)
+              if not pending:break
+              time.sleep(5)
+          assert not pending,list(pending)
+          PY
+      - name: Repeat the real shared interface learning journey online
+        env:
+          TEST_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v14/?release=${{ github.run_id }}
+        run: node /tmp/reviewed14/atlas14-delivery/verify.cjs
+      - name: Record successful public delivery and update stable entry
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('fullbody-tcm-v14');info=json.loads((p/'build-info.json').read_text())
+          reports={k:json.loads((p/'checks'/f).read_text()) for k,f in [('chromium','local-chromium.json'),('webkit','local-webkit.json'),('public','live-chromium.json')]}
+          assert all(r['success'] and all(c['pass'] for c in r['checks']) for r in reports.values())
+          release={**info,'status':'published-and-browser-verified','published':True,'url':reports['public']['url'],'stableURL':'https://hengtong320.github.io/notionweb/anatomy/','workflowRun':os.environ['GITHUB_RUN_ID'],'candidateRun':36098409079,'checks':{k:len(r['checks']) for k,r in reports.items()},'checkedAt':reports['public']['finishedAt'],'priorVersionsUnchanged':True,'femaleClinicalRegistration':False,'commonDOMConfirmed':True,'browserCoverage':'Actual headless Chromium and WebKit; desktop and phone viewports, not all physical devices'}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          stable=Path('anatomy/index.html');assert stable.read_bytes()==Path('/tmp/stable-before.html').read_bytes(),'Stable entry changed concurrently'
+          s=stable.read_text().replace('fullbody-tcm-v13','fullbody-tcm-v14').replace('V13 视角保持与经脉分辨','V14 共用学习界面')
+          assert 'fullbody-tcm-v14' in s;stable.write_text(s)
+          PY
+          git add fullbody-tcm-v14/delivery-release.json fullbody-tcm-v14/checks/ anatomy/index.html
+          git commit -m 'Verify V14 public interaction and move stable anatomy entry'
+          git pull --rebase origin main
+          git push origin HEAD:main
+          gh api --method POST repos/${{ github.repository }}/pages/builds || true
+      - name: Confirm the stable public entry
+        run: |
+          python - <<'PY'
+          import urllib.request,time
+          for i in range(75):
+              try:
+                  u='https://hengtong320.github.io/notionweb/anatomy/?release=${{ github.run_id }}&n='+str(i)
+                  with urllib.request.urlopen(u,timeout=20) as r:s=r.read().decode()
+                  if '../fullbody-tcm-v14/' in s:print('STABLE_V14_OK');break
+              except Exception as e:print(e)
+              time.sleep(5)
+          else:raise RuntimeError('Stable entry not updated')
+          PY
+      - name: Export final viewer and real public evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas14-final-published
+          path: fullbody-tcm-v14/
+          retention-days: 14
