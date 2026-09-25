@@ -1,0 +1,16 @@
+from pathlib import Path
+import shutil
+p=Path('fullbody-tcm-v13');tools=Path('/tmp/atlas13-reviewed/atlas13-tools')
+shutil.copy('atlas13-delivery/surface-final.js',p/'surface-v13.js')
+f=p/'surface-v13.js';s=f.read_text();a="samples.push({source:refs[i].clone(),point:b.clone()});";assert a in s;s=s.replace(a,"samples.push({source:refs[i-1].clone().lerp(refs[i],length?(travelled+len)/length:1),point:b.clone()});");f.write_text(s)
+f=p/'tissues-v4.js';s=f.read_text();a='root.visible=!displaced&&!state.isolated;';assert a in s;s=s.replace(a,"root.visible=!displaced&&!state.isolated&&state.bodySex!=='female';");f.write_text(s)
+f=p/'shared-v13.js';s=f.read_text();a='async function choose(key,preserve=false){const token=++pendingScene,';assert a in s;s=s.replace(a,'async function choose(key,preserve=false){const startedFemale=female.active;const token=++pendingScene,');s=s.replace('if(token!==pendingScene)return;','if(token!==pendingScene||startedFemale!==female.active)return;');s=s.replace("window.addEventListener('atlas:sex-changed',()=>{redraw();","window.addEventListener('atlas:sex-changed',()=>{pendingScene++;redraw();");f.write_text(s)
+f=p/'versions.html';f.write_text('''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>人体研习室 · 版本记录</title><style>body{max-width:760px;margin:40px auto;padding:20px;font:16px/1.8 system-ui;background:#f4f7ee;color:#315945}a{color:#276d62}</style><h1>V13 视角保持与经脉分辨</h1><p>筛选不抢镜头；男女共用主要控制区；修订上肢经脉分区与体表显示；修正长强等读音。经穴仍为未配准的学习示意。</p><p><a href="../anatomy/">固定入口</a> · <a href="../fullbody-tcm-v12/">V12 双参考</a> · <a href="../fullbody-tcm-v11/">V11 器官体表</a> · <a href="../fullbody-tcm-v10-1/">V10.1</a> · <a href="../foot-atlas/">足骨原版</a></p></html>''')
+f=p/'README.md';s=f.read_text()+'''\n最终复核：投影连接在同源体表网格上寻找连续过渡，不再把前一段的投影方向沿用到后续全部点。未连通分区的显示连接、投影回退数量在 checks 报告中记录，这不是逐穴配准。额外检查心包经的前臂段必须仍在前臂，不能只用“与心经分开”作为正确性依据。\n''';f.write_text(s)
+f=tools/'verify.cjs';s=f.read_text();a="report.routeDiagnostics=routes.map";assert a in s
+insert="""for(const side of ['right','left']){const r=routes.find(r=>r.meridian==='PC'&&r.side===side),points=r.branches.flat().filter(v=>v[1]>830&&v[1]<1020),sections=[[830,-161.2],[850,-155.6],[900,-146.6],[950,-139.25],[1000,-133.3],[1020,-130.8]],error=v=>{let i=sections.findIndex(a=>a[0]>=v[1]);if(i<1)i=1;const a=sections[i-1],b=sections[i],x=a[1]+(b[1]-a[1])*(v[1]-a[0])/(b[0]-a[0]);return Math.abs((side==='left'?2*99.55318155698478-v[0]:v[0])-x);},es=points.map(error).sort((a,b)=>a-b);ck('PC forearm stays on forearm not torso '+side,points.length>40&&es[Math.floor(es.length*.95)]<18,{samples:points.length,median:es[Math.floor(es.length*.5)],p95:es[Math.floor(es.length*.95)]});}
+ """
+s=s.replace(a,insert+a)
+a="await snap(page,'forearm-courses');";assert a in s;s=s.replace(a,a+"\n await page.evaluate(()=>{const v=__FOOT_ATLAS__.captureCamera();v.position=[-135,1250,800];v.target=[-90,1200,-20];v.view=null;__FOOT_ATLAS__.restoreCamera(v);});await settle(page);await snap(page,'upper-arm-course');await page.evaluate(()=>{const v=__FOOT_ATLAS__.captureCamera();v.position=[-148,930,700];v.target=[-148,930,-25];v.view=null;__FOOT_ATLAS__.restoreCamera(v);});await settle(page);")
+f.write_text(s)
+print('FINAL_SPATIAL_AND_UI_GUARDS_READY')
