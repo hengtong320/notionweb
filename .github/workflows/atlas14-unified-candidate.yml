@@ -33,6 +33,7 @@ jobs:
           python atlas14-delivery/patch.py
           if test -f atlas14-delivery/fixes.py; then python atlas14-delivery/fixes.py; fi
           if test -f atlas14-delivery/final.py; then python atlas14-delivery/final.py; fi
+          if test -f atlas14-delivery/review.py; then python atlas14-delivery/review.py; fi
           node --check fullbody-tcm-v14/shared-v14.js
           node --check fullbody-tcm-v14/female-v12.js
           node --check fullbody-tcm-v14/learning-enhancements.js
