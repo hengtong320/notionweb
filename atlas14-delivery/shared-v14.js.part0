@@ -1,0 +1,64 @@
+// One persistent UI, two data adapters. No male coordinates are used as female anatomy.
+export function initSharedControls(ctx){
+ const {learning,tissues,female,state,toast,invalidate,captureCamera,restoreCamera}=ctx;
+ const $=id=>document.getElementById(id),el=(tag,cls)=>Object.assign(document.createElement(tag),{className:cls||''});
+ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const norm=v=>String(v??'').normalize('NFD').replace(/[\u0300-\u036f\s]/g,'').toLowerCase();
+ const panel=$('tissuePanel'),sidebar=document.querySelector('.sidebar'),bonePane=document.querySelector('.bone-pane');
+ const layers=[
+  {id:'skeletal',name:'骨骼与关节',male:['bones'],female:['skeletal']},
+  {id:'muscular',name:'肌肉',male:['muscular'],female:['muscular']},
+  {id:'nervous',name:'神经',male:['nervous'],female:['nervous']},
+  {id:'organs',name:'器官与气道',male:['visceral'],female:['respiratory','digestive','urinary','reproductive']},
+  {id:'vascular',name:'心脏与血管',male:['heart','vessels'],female:['vascular']},
+  {id:'surface',name:'体表',male:['surface'],female:['surface']},
+  {id:'ear',name:'耳部',male:['ear'],female:[]},
+  {id:'breast',name:'乳腺',male:[],female:['breast']},
+  {id:'lymphatic',name:'淋巴与免疫',male:[],female:['lymphatic']}
+ ];
+ const sceneNames={bones:'骨骼结构',muscles:'肌肉外形',nerves:'神经走行',compare:'分层对照',chest:'胸腔器官',heart:'心脏特写',abdomen:'腹部器官',vascular:'心血管',surface:'体表经络',pelvis:'盆腔结构',breast:'乳腺结构','ear-right':'右耳','ear-left':'左耳'};
+ let section='directory',scene='bones',libraryPage=0,selectionTicket=0,viewTicket=0,catalogPromise=null,maleCatalog=[],queued=false,sexSwitching=false;
+ const cache={male:null,female:null};let currentPoint=null,currentReference=false;const historyUI={};
+ document.body.dataset.sharedUi='14';document.body.dataset.bodySex=female.active?'female':'male';
+ $('boneTab').textContent='结构目录';$('layersTab').textContent='结构图层';$('tcmTab').textContent='经络穴位';
+ $('releaseBadge').textContent='V14 · 共用学习界面';$('tissueSearch').hidden=true;$('tissueList').hidden=true;
+ $('organQuickBar')?.remove();$('femaleLibrary').hidden=true;
+ const directory=el('section','shared-directory');directory.id='structureLibrary';
+ directory.innerHTML='<h2>结构目录</h2><p class="shared-intro">搜索、筛选，点击查看同一结构。</p><label class="search-box"><input id="structureSearch" type="search" placeholder="名称 / 拼音 / English" aria-label="搜索结构" autocomplete="off"></label><div class="shared-filters"><select id="structureSystem" aria-label="结构系统"><option value="all">全部系统</option>'+layers.map(x=>`<option value="${x.id}">${x.name}</option>`).join('')+'</select><select id="structureScope" aria-label="结构范围"><option value="all">全部目录</option><option value="visible">画面可见</option></select></div><p id="structureSummary" class="shared-summary" role="status"></p><div id="structureResults" class="shared-results"></div><div class="shared-pager"><button id="structurePrevious">上一页</button><span id="structurePage"></span><button id="structureNext">下一页</button></div>';
+ sidebar.append(directory);
+ const sides=document.querySelector('.side-picker');directory.querySelector('.shared-filters').after(sides);
+ const regions=el('details','v12-disclosure');regions.id='structureRegions';regions.innerHTML='<summary>骨骼部位快捷查看</summary>';regions.append(document.querySelector('.region-picker'));directory.querySelector('h2').after(regions);
+ const paneHeader=panel.querySelector('h2');const coverage=el('p','shared-coverage');coverage.id='sharedCoverage';paneHeader.after(coverage);
+ // Keep existing load callbacks alive but take the old controls out of layout.
+ const legacy=$('customLayers').querySelector('.v12-custom-body');legacy.hidden=true;
+ const layerRows=el('div','shared-layer-rows');layerRows.id='sharedLayerRows';
+ layerRows.innerHTML=layers.map(x=>`<section data-shared-layer="${x.id}" class="shared-layer"><label><input type="checkbox" id="sharedLayer-${x.id}"><b>${x.name}</b><small id="sharedLayerState-${x.id}"></small></label><label class="shared-opacity" id="sharedOpacityRow-${x.id}"><span>不透明度</span><input id="sharedOpacity-${x.id}" type="range" min="8" max="100" value="100" aria-label="${x.name}不透明度"><output id="sharedOpacityValue-${x.id}">100%</output></label></section>`).join('');$('customLayers').append(layerRows);
+ for(const l of layers){$('sharedLayer-'+l.id).onchange=e=>enableLayer(l,e.target.checked).catch(fail);$('sharedOpacity-'+l.id).oninput=e=>opacityLayer(l,Number(e.target.value)/100);}
+ const display=el('label','layer-check');display.id='sharedDisplayRow';display.innerHTML='显示方式<select id="sharedDisplay" aria-label="显示方式"><option value="solid">清晰原色</option><option value="context">透明参照</option><option value="focus">突出当前</option></select>';panel.querySelector('.v12-tasks').after(display);
+ $('sharedDisplay').onchange=()=>{const mode=$('sharedDisplay').value;if(female.active)female.setDisplayMode(mode);else{for(const[k,x]of Object.entries(tissues.getState().systems))if(x.on)tissues.setOpacity(k,mode==='context'?.28:1);tissues.setBoneOpacity(mode==='context'?.3:1);if(mode==='focus'&&tissues.getState().selected)tissues.choose(tissues.getState().selected.id,false);}schedule();};
+ const more=el('details','v12-disclosure');more.id='sharedMoreRegions';more.innerHTML='<summary>更多部位</summary><div class="profile-grid"><button data-shared-scene="pelvis">盆腔结构</button><button data-shared-scene="breast">乳腺结构</button></div>';panel.querySelector('.v12-tasks').append(more);
+ panel.querySelectorAll('[data-profile]').forEach(b=>b.onclick=()=>choose(b.dataset.profile,true).catch(fail));
+ panel.querySelectorAll('[data-system-view]').forEach(b=>b.onclick=()=>choose(b.dataset.systemView,false).catch(fail));
+ more.querySelectorAll('[data-shared-scene]').forEach(b=>b.onclick=()=>choose(b.dataset.sharedScene,false).catch(fail));
+ $('tissueClear').textContent='只留骨骼';$('tissueClear').onclick=()=>choose('bones',true).catch(fail);$('chestCompare').hidden=true;
+ const unavailable=el('p','shared-coverage');unavailable.id='sharedAcupointCoverage';unavailable.textContent='女性点位未标注；名称、搜索与介绍照常使用。';unavailable.hidden=true;$('tcmControls').querySelector('.tcm-head').after(unavailable);
+ const tcmMore=el('details','v12-disclosure');tcmMore.id='sharedMeridianOptions';tcmMore.innerHTML='<summary>更多显示选项</summary><div></div>';
+ for(const x of [...$('tcmControls').querySelectorAll('.tcm-xray,.guide-actions')])tcmMore.lastElementChild.append(x);
+ $('tcmControls').querySelector('.tcm-side-picker').after(tcmMore);$('tcmControls').querySelector('.tcm-head b').textContent='经络穴位';$('tcmControls').querySelector('.tcm-head small').textContent='同一目录，可多选对照';
+ const pair=el('button');pair.id='pairHeartPericardium';pair.textContent='心经＋心包经';$('pairHeart').after(pair);pair.onclick=()=>{learning.setMeridians(['HT','PC']);learning.toggleTCM(true);schedule();};
+ const hint=el('small','shared-coverage');hint.textContent='勾选只改显示；需要移动镜头时点“看全线”。';$('meridianChips').after(hint);
+ // Female and male descriptions occupy the SAME scroll container.
+ document.querySelector('.detail-scroll').append($('femaleDetail'));
+ const tabs=[['boneTab','directory'],['tcmTab','meridians'],['layersTab','layers']];
+ for(const[id,tab]of tabs)$(id).addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();showSection(tab);},true);
+ $('tcmBtn').addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();showSection('meridians');},true);
+ function fail(e){toast('操作未完成：'+e.message);schedule();}
+ function schedule(){if(queued)return;queued=true;queueMicrotask(()=>{queued=false;redraw();});}
+ function sex(){return female.active?'female':'male';}
+ function systemsFor(l){return l[sex()];}
+ function available(l){return systemsFor(l).length>0;}
+ function snapshots(){const t=tissues.getState(),f=female.getState();return female.active?f.systems:{bones:{on:state.bonesOn,loaded:true,count:210,visible:window.__FOOT_ATLAS__.getState().visible,opacity:t.boneOpacity},...t.systems};}
+ async function ensureCatalog(){
+  if(!catalogPromise)catalogPromise=Promise.all([fetch('../fullbody-tcm-v11/assets/new-catalog.json').then(r=>{if(!r.ok)throw Error('器官目录加载失败');return r.json();}),fetch('../fullbody-tcm-v9/assets/tissue-catalog.json').then(r=>{if(!r.ok)throw Error('组织目录加载失败');return r.json();})]).then(([n,t])=>{maleCatalog=[...window.__FOOT_ATLAS__.getCatalog().map(r=>({...r,system:'bones',kind:'bone'})),...t.map(r=>({...r,system:r.id.split('-')[0],kind:'tissue'})),...n.map(r=>({...r,kind:'tissue'}))];cache.male=maleCatalog;renderDirectory();}).catch(e=>{catalogPromise=null;$('structureSummary').textContent=e.message+'，点击结构目录重试。';});
+  await catalogPromise;if(female.active)cache.female=female.getCatalog();
+ }
