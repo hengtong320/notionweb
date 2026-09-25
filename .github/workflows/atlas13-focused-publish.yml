@@ -1,0 +1,154 @@
+name: Publish focused V13 repairs
+on:
+  push:
+    paths: ['.github/workflows/atlas13-focused-publish.yml','atlas13-delivery/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pages: write
+concurrency:
+  group: atlas13-focused-publish
+  cancel-in-progress: false
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      NODE_PATH: /tmp/atlas13/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preserve accepted entry
+        run: cp anatomy/index.html /tmp/atlas13-original-entry.html
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas13-focused-candidate
+          run-id: 36079577127
+          github-token: ${{ github.token }}
+          path: /tmp/atlas13-reviewed
+      - name: Require both reviewed candidate reports and validate candidate hashes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,shutil
+          p=Path('/tmp/atlas13-reviewed/fullbody-tcm-v13')
+          for name in ['local-chromium.json','local-webkit.json']:
+              r=json.loads((p/'checks'/name).read_text());assert r['success'] and all(c['pass'] for c in r['checks']),name
+          info=json.loads((p/'build-info.json').read_text())
+          for name,row in info['files'].items():assert hashlib.sha256((p/name).read_bytes()).hexdigest()==row['sha256'],name
+          out=Path('fullbody-tcm-v13')
+          if out.exists():shutil.rmtree(out)
+          shutil.copytree(p,out)
+          PY
+      - name: Install pinned geometry and browser tools
+        run: |
+          npm install --prefix /tmp/atlas13 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1
+          /tmp/atlas13/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Final spatial guard and common-control refinements
+        run: |
+          python atlas13-delivery/finish.py
+          node --check fullbody-tcm-v13/surface-v13.js
+          node --check fullbody-tcm-v13/shared-v13.js
+          node --check /tmp/atlas13-reviewed/atlas13-tools/verify.cjs
+          node /tmp/atlas13-reviewed/atlas13-tools/build.cjs
+          test -z "$(git diff HEAD -- fullbody-tcm-v12/ fullbody-tcm-v11/ fullbody-tcm-v9/ anatomy/)"
+      - name: Final Chromium actual camera gender meridian and voice journey
+        run: node /tmp/atlas13-reviewed/atlas13-tools/verify.cjs
+      - name: Final WebKit actual camera gender meridian and voice journey
+        env:
+          BROWSER: webkit
+        run: node /tmp/atlas13-reviewed/atlas13-tools/verify.cjs
+      - name: Check actual reports and publish only V13
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          for n in ['local-chromium.json','local-webkit.json']:
+              r=json.loads((Path('fullbody-tcm-v13/checks')/n).read_text());assert r['success'] and all(c['pass'] for c in r['checks']),n
+          PY
+          git fetch origin main
+          git worktree add -B atlas13-delivery /tmp/atlas13-publish origin/main
+          rm -rf /tmp/atlas13-publish/fullbody-tcm-v13
+          cp -a fullbody-tcm-v13 /tmp/atlas13-publish/fullbody-tcm-v13
+          cd /tmp/atlas13-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v13/
+          if test -f atlas13-tools/source.00; then git rm atlas13-tools/source.00; fi
+          git diff --cached --name-only | grep -Ev '^(fullbody-tcm-v13/|atlas13-tools/source.00$)' && exit 1 || true
+          git commit -m 'Publish tested V13 view-preserving controls, native gender switching and regional meridian repair'
+          git push origin HEAD:main
+      - name: Request Pages deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Waiting for branch Pages deployment.'
+      - name: Verify exact public files
+        run: |
+          python - <<'PY'
+          import hashlib,json,time,urllib.request
+          from pathlib import Path
+          p=Path('fullbody-tcm-v13');info=json.loads((p/'build-info.json').read_text());base='https://hengtong320.github.io/notionweb/fullbody-tcm-v13/'
+          for n in ['index.html','app.bundle.js','shared-v13.css']:
+              expected=info['files'][n]['sha256']
+              for i in range(70):
+                  try:
+                      with urllib.request.urlopen(base+n+'?sha='+expected[:16]+'&n='+str(i),timeout=30) as r:b=r.read()
+                      if hashlib.sha256(b).hexdigest()==expected:break
+                  except Exception as e:print(n,str(e),flush=True)
+                  time.sleep(5)
+              else:raise RuntimeError('Public file mismatch '+n)
+              print('PUBLIC_MATCH',n,expected,flush=True)
+          PY
+      - name: Repeat the complete journey on the real public website
+        env:
+          TEST_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v13/?release=${{ github.run_id }}
+        run: node /tmp/atlas13-reviewed/atlas13-tools/verify.cjs
+      - name: Record delivery and move stable entry after public success
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,shutil
+          p=Path('fullbody-tcm-v13');dest=Path('/tmp/atlas13-publish/fullbody-tcm-v13');info=json.loads((p/'build-info.json').read_text())
+          reports={k:json.loads((p/'checks'/f'{k}.json').read_text()) for k in ['local-chromium','local-webkit','live-chromium']}
+          for k,r in reports.items():assert r['success'] and all(c['pass'] for c in r['checks']),k
+          release={**info,'status':'published-and-browser-verified','published':True,'url':reports['live-chromium']['url'],'stableURL':'https://hengtong320.github.io/notionweb/anatomy/','workflowRun':os.environ['GITHUB_RUN_ID'],'candidateRun':36079577127,'checks':{k:len(r['checks']) for k,r in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'browserCoverage':'Headless Chromium and WebKit with desktop and phone viewports; not every physical device','priorVersionsUnchanged':True,'anatomyMeshesUnchanged':True,'sharedGenderControlShell':True,'preservesCameraOnMeridianFilter':True,'sexSwitchPreservesRelativeView':True,'forearmRegionalProjectionChecked':True,'clinicalCalibration':False,'femaleAcupointRegistration':False,'allAudioHumanReviewed':False,'correctedNameRecordings':['长强','大椎','龈交','郄门','阴郄'],'projectionDiagnostics':reports['live-chromium'].get('surface')}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2));shutil.copy2(p/'delivery-release.json',dest/'delivery-release.json');shutil.copytree(p/'checks',dest/'checks',dirs_exist_ok=True)
+          entry=Path('/tmp/atlas13-publish/anatomy/index.html');assert entry.read_bytes()==Path('/tmp/atlas13-original-entry.html').read_bytes(),'Entry changed concurrently'
+          html=entry.read_text().replace('fullbody-tcm-v12','fullbody-tcm-v13').replace('V12 双参考与简洁观察','V13 视角保持与经脉分辨');assert 'fullbody-tcm-v13' in html;entry.write_text(html)
+          PY
+          cd /tmp/atlas13-publish
+          git add fullbody-tcm-v13/delivery-release.json fullbody-tcm-v13/checks/ anatomy/index.html
+          git commit -m 'Record V13 public regression and update the stable anatomy entry'
+          git push origin HEAD:main
+      - name: Request stable entry deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Waiting for branch Pages deployment.'
+      - name: Confirm stable public entry
+        run: |
+          python - <<'PY'
+          import urllib.request,time
+          for i in range(70):
+              with urllib.request.urlopen('https://hengtong320.github.io/notionweb/anatomy/?v=13&n='+str(i),timeout=30) as r:s=r.read().decode()
+              if 'fullbody-tcm-v13' in s:break
+              time.sleep(5)
+          else:raise RuntimeError('Stable entry not updated')
+          print('STABLE_ENTRY_UPDATED')
+          PY
+          node - <<'JS'
+          const {chromium}=require('playwright'),fs=require('fs');(async()=>{const b=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});try{const p=await b.newPage();await p.goto('https://hengtong320.github.io/notionweb/anatomy/?v=13',{timeout:90000});await p.waitForFunction(()=>window.__ATLAS_SHARED__&&window.__FOOT_ATLAS__.getState().ready,undefined,{timeout:90000});if(!p.url().includes('/fullbody-tcm-v13/'))throw Error('Wrong stable target');fs.writeFileSync('fullbody-tcm-v13/checks/stable-entry.json',JSON.stringify({success:true,url:p.url(),checkedAt:new Date().toISOString()},null,2));}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - name: Export final website and real diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas13-final-website
+          path: |
+            fullbody-tcm-v13/
+            atlas13-delivery/
+            /tmp/atlas13-reviewed/atlas13-tools/verify.cjs
+          retention-days: 14
