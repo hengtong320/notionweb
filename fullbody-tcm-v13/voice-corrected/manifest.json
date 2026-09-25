@@ -1,0 +1,54 @@
+{
+  "engine": "Kokoro-82M v1.1-zh / sherpa-onnx1.12.26",
+  "synthetic": true,
+  "source": "https://huggingface.co/hexgrad/Kokoro-82M-v1.1-zh",
+  "method": "Explicit homophone input for reported polyphones; written labels keep standard orthography",
+  "allAudioHumanReviewed": false,
+  "used": [
+    {
+      "name": "长强",
+      "file": "changqiang.mp3",
+      "spokenText": "常强",
+      "pinyin": "cháng qiáng",
+      "seconds": 0.807375,
+      "rms": 0.06753792613744736,
+      "sha256": "a7706c8040f60844e284c7d00945e7c292e65539bcdd84fa68418a611e159494"
+    },
+    {
+      "name": "大椎",
+      "file": "dazhui.mp3",
+      "spokenText": "大锥",
+      "pinyin": "dà zhuī",
+      "seconds": 0.7056666666666667,
+      "rms": 0.06938865780830383,
+      "sha256": "4e4691129a3eaa8539831054b6e9bdfd15bfec1a861c205689a44b4a29edbcf5"
+    },
+    {
+      "name": "龈交",
+      "file": "yinjiao.mp3",
+      "spokenText": "银交",
+      "pinyin": "yín jiāo",
+      "seconds": 0.68825,
+      "rms": 0.07632584124803543,
+      "sha256": "5a6a2674df90877804def196953b03c4a845ef65fecc1351d29fa78b1378a9a9"
+    },
+    {
+      "name": "郄门",
+      "file": "ximen.mp3",
+      "spokenText": "隙门",
+      "pinyin": "xì mén",
+      "seconds": 0.7209583333333334,
+      "rms": 0.07386869192123413,
+      "sha256": "920b2b165278c2f2209fbe44e7209942b728e3dea28f80c360b3379e4f6cb526"
+    },
+    {
+      "name": "阴郄",
+      "file": "yinxi.mp3",
+      "spokenText": "阴隙",
+      "pinyin": "yīn xì",
+      "seconds": 0.7289583333333334,
+      "rms": 0.0737769678235054,
+      "sha256": "16c6e3bcc4c4f65d776925b8e92e716794b0fbaf6458768d238cfaba40a78b61"
+    }
+  ]
+}

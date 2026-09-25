@@ -1,0 +1,36 @@
+{
+  "version": "13.0.0",
+  "base": "V12.0.1",
+  "anatomyGeometryUnchanged": true,
+  "navigationCorridorRevision": 13,
+  "clinicalCalibration": false,
+  "femaleAcupointRegistration": false,
+  "allAudioHumanReviewed": false,
+  "cameraSelectorsPreserveView": true,
+  "sharedGenderControls": true,
+  "files": {
+    "index.html": {
+      "bytes": 16290,
+      "sha256": "e1a243a50f6f891a453c117db2215ca96c9b8e1a9eee9ee35a6d0cddf99841ca"
+    },
+    "app.bundle.js": {
+      "bytes": 2895524,
+      "sha256": "d3aa96b672e10f584da5cb30e0a738f43806bb68208121f64679c70aad6b3097"
+    },
+    "evidence.bundle.js": {
+      "bytes": 934921,
+      "sha256": "c391638308bc7b715600446c3e83ac7a1fa03d6e6f2bb07e3b01ec974d610643"
+    },
+    "styles.css": {
+      "bytes": 68507,
+      "sha256": "a44fa3b83f8eb19fa21b5710e76173126b5b7298da0fa713528b2e522fe8893a"
+    },
+    "shared-v13.css": {
+      "bytes": 2428,
+      "sha256": "e2098ff8703a2c036566c5b2bed9675d7c65cc3cc4ab25403d0d96d4d15eebb6"
+    }
+  },
+  "generatedAt": "2026-09-25T01:03:39.806Z",
+  "status": "candidate",
+  "published": false
+}
