@@ -1,0 +1,66 @@
+{
+  "version": "14.0.0",
+  "base": "13.0.0",
+  "files": {
+    "index.html": {
+      "bytes": 16259,
+      "sha256": "ba293371075d75c89a2d52c45fed870d81395a73f47d03ef7958407667fddd96"
+    },
+    "app.bundle.js": {
+      "bytes": 2909823,
+      "sha256": "440d3a9ba55e4a4276d161efffd05a400077324192252d5cbdd3b7c9ef86ac36"
+    },
+    "shared-v14.js": {
+      "bytes": 24752,
+      "sha256": "d5dd43cd402b69bcfa8d8594bdaebf970e92ee2f832bea30f2eff39e9487d70f"
+    },
+    "shared-v14.css": {
+      "bytes": 6513,
+      "sha256": "c1bca064e7346a9a494bf0be869ce7be64647f124de6a281849744974afb54de"
+    },
+    "styles.css": {
+      "bytes": 68625,
+      "sha256": "02690d26e411ad8c587254d68494e9b0fe9103af37aca5edd485b05c43b100e4"
+    },
+    "evidence.bundle.js": {
+      "bytes": 935093,
+      "sha256": "5e0a53477cf6ad4bb2e1ea7d558785d19d3389f41cb1b1576c59ca11f23fbf04"
+    },
+    "female-v12.js": {
+      "bytes": 26299,
+      "sha256": "74b24133745f6063bc4c2cc56b46fc6d7b06d5deb7a9265bca45be33b0c521a8"
+    },
+    "learning-enhancements.js": {
+      "bytes": 58191,
+      "sha256": "177dc74952469d57559e221e416ac5399fc877a615463c09cb4ba2595c0d68f9"
+    },
+    "evidence-ui-v9.js": {
+      "bytes": 5539,
+      "sha256": "2bd84fb1a833281416e98559a781f022e8cabaf593f3ea024dc1e7cb0d543b87"
+    }
+  },
+  "clinicalCalibration": false,
+  "sourceModelsUnchanged": true,
+  "femaleAcupointCoordinates": false,
+  "sharedDirectory": true,
+  "sharedLayerControls": true,
+  "sharedAcupointDescriptions": true,
+  "removedReadOnlyGate": true,
+  "builtAt": "2026-09-25T05:25:19.985Z",
+  "status": "published-and-browser-verified",
+  "published": true,
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v14/?release=36098664055",
+  "stableURL": "https://hengtong320.github.io/notionweb/anatomy/",
+  "workflowRun": "36098664055",
+  "candidateRun": 36098409079,
+  "checks": {
+    "chromium": 46,
+    "webkit": 46,
+    "public": 46
+  },
+  "checkedAt": "2026-09-25T05:31:48.094Z",
+  "priorVersionsUnchanged": true,
+  "femaleClinicalRegistration": false,
+  "commonDOMConfirmed": true,
+  "browserCoverage": "Actual headless Chromium and WebKit; desktop and phone viewports, not all physical devices"
+}
