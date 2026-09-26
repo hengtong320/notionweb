@@ -1,0 +1,63 @@
+'use strict';
+const {chromium,webkit}=require('playwright');
+const fs=require('fs'),path=require('path'),http=require('http');
+const type=process.env.BROWSER||'chromium',online=!!process.env.TEST_URL,root=path.resolve('fullbody-tcm-v15'),out=path.join(root,'checks');fs.mkdirSync(out,{recursive:true});
+const report={version:'15.0.0',browser:type,online,startedAt:new Date().toISOString(),checks:[],errors:[],success:false};
+let browser,server,page;
+const ck=(name,pass,detail)=>{report.checks.push({name,pass:!!pass,...(detail===undefined?{}:{detail})});if(!pass)throw Error(name+': '+JSON.stringify(detail));};
+const distance=(a,b)=>Math.max(...['position','target','up'].flatMap(k=>a[k].map((v,i)=>Math.abs(v-b[k][i]))));
+async function settle(){await page.waitForFunction(()=>!__FOOT_ATLAS__.getState().cameraAnimating&&!__ATLAS_SHARED__.getState().busy&&!__ATLAS_LEARNING__.getSurfaceState().busy);await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));}
+const cam=()=>page.evaluate(()=>__FOOT_ATLAS__.captureCamera());
+const snap=async name=>{await settle();await page.screenshot({path:path.join(out,(online?'live-':'')+type+'-'+name+'.png')});};
+(async()=>{try{
+ if(!online){const base=process.cwd();server=http.createServer((q,r)=>{let f=path.resolve(base,'.'+decodeURIComponent(new URL(q.url,'http://local').pathname));if(!f.startsWith(base+path.sep)){r.statusCode=403;return r.end();}if(fs.existsSync(f)&&fs.statSync(f).isDirectory())f=path.join(f,'index.html');if(!fs.existsSync(f)){r.statusCode=404;return r.end();}r.setHeader('Content-Type',({'.js':'text/javascript','.html':'text/html','.css':'text/css','.json':'application/json','.glb':'model/gltf-binary','.mp3':'audio/mpeg','.wasm':'application/wasm'})[path.extname(f)]||'application/octet-stream');fs.createReadStream(f).pipe(r);});await new Promise(r=>server.listen(0,'127.0.0.1',r));}
+ report.url=process.env.TEST_URL||'http://127.0.0.1:'+server.address().port+'/fullbody-tcm-v15/';
+ browser=await(type==='webkit'?webkit:chromium).launch({headless:true,...type==='chromium'?{args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage']}: {}});
+ page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});page.setDefaultTimeout(60000);page.on('pageerror',e=>report.errors.push(String(e)));await page.addInitScript(()=>localStorage.setItem('atlas-auto-speak','0'));
+ const response=await page.goto(report.url,{timeout:90000});ck('Viewer HTTP 200',response.status()===200);await page.waitForFunction(()=>window.__ATLAS_SHARED__?.getState().version==='15.0.0'&&__FOOT_ATLAS__.getState().ready);await page.evaluate(()=>__ATLAS_SHARED__.ready);await settle();
+ ck('Original 210 bones loaded',await page.evaluate(()=>__FOOT_ATLAS__.getState().count===210));
+ await page.evaluate(()=>window.sameControls=['structureLibrary','structureSearch','sharedLayerRows','tcmControls'].map(id=>document.getElementById(id)));
+ await page.locator('#tcmTab').click();await page.locator('#acupointSearch').fill('内关');await page.locator('[data-point="PC6"]').first().click();await settle();
+ ck('Actual PC6 click selects reference',await page.evaluate(()=>__ATLAS_LEARNING__.getState().selectedPoint.code==='PC6'));
+ const before=await cam();await page.evaluate(()=>__ATLAS_LEARNING__.setMeridians(['KI']));await settle();const windowState=await page.evaluate(()=>__ATLAS_LEARNING__.getReferenceWindowState());
+ ck('Channel switch clears stale local clipping',!windowState.active&&windowState.clippedRouteMaterials===0,windowState);
+ ck('All bilateral kidney points remain available',windowState.visible.length===54&&windowState.drawnPoints===54,{visible:windowState.visible.length,drawn:windowState.drawnPoints});
+ ck('Channel switch preserves rotated and zoomed camera',distance(before,await cam())<.001);
+ await page.evaluate(()=>{__ATLAS_LEARNING__.setMeridians(['HT','PC']);__ATLAS_LEARNING__.setTCMSide('right');__ATLAS_LEARNING__.fitMeridian();});await settle();await page.locator('#acupointSearch').fill('');await page.locator('#tcmClose').click();
+ const linePoint=await page.evaluate(()=>{const l=__ATLAS_LEARNING__;for(const v of l.getRouteScreen('PC','right')){if(v.x<390||v.x>1040||v.y<200||v.y>760||document.elementFromPoint(v.x,v.y)?.tagName!=='CANVAS')continue;const e={clientX:v.x,clientY:v.y,button:0,pointerType:'mouse'};if(!l.hitPoint(e)&&l.hitRoute(e)?.meridian==='PC')return v;}return null;});
+ ck('Visible PC line has an actual click target',!!linePoint,linePoint);
+ const lineCam=await cam();await page.mouse.click(linePoint.x,linePoint.y);await settle();ck('Actual route click preserves multi-channel selection',await page.evaluate(()=>__ATLAS_LEARNING__.getState().selectedMeridians.slice().sort().join(',')==='HT,PC'));
+ ck('Route click opens the correct populated description',await page.locator('#v9MeridianCard').isVisible()&&(await page.locator('#v9MeridianCard').innerText()).includes('心包'));
+ ck('Route click does not move camera',distance(lineCam,await cam())<.001);
+ await page.evaluate(()=>__ATLAS_SHARED__.choose('surface',true));await settle();ck('Surface scene preserves the selected comparison',await page.evaluate(()=>__ATLAS_LEARNING__.getState().selectedMeridians.slice().sort().join(',')==='HT,PC'));
+ ck('Skin attachment is enabled',await page.evaluate(()=>__ATLAS_LEARNING__.getSurfaceState().attached));
+ const audit=await page.evaluate(()=>__ATLAS_LEARNING__.getDisplayAudit());fs.writeFileSync(path.join(out,(online?'live-':'')+type+'-projection-audit.json'),JSON.stringify(audit,null,2));
+ ck('670 points checked independently of guide geometry',audit.count===670);
+ ck('No secondary point relocation to nearby guide samples',audit.maxSecondaryShift<.000001,audit.maxSecondaryShift);
+ ck('Each attached point lies on its own sampled route',audit.maxLineGap<.01,audit.maxLineGap);
+ ck('No distinct same-side names collapse to identical coordinates',audit.collisions.length===0,audit.collisions);
+ const te=audit.points.filter(p=>p.side==='right'&&['TE6','TE7'].includes(p.code));const sep=Math.hypot(...te[0].position.map((v,i)=>v-te[1].position[i]));ck('Zhigou and Huizong retained as distinct reference points',sep>1,{points:te,separation:sep});
+ await page.evaluate(()=>{__ATLAS_LEARNING__.setTCMSide('both');__ATLAS_LEARNING__.fitMeridian();});await snap('heart-pericardium');
+ await page.evaluate(()=>{__ATLAS_LEARNING__.setMeridians(['TE']);__ATLAS_LEARNING__.selectPoint('TE6','right',true);});await snap('zhigou-huizong');
+ await page.evaluate(()=>__ATLAS_LEARNING__.setSurfaceAttachment(false));const race=await page.evaluate(async()=>{const a=__ATLAS_LEARNING__.setSurfaceAttachment(true);const b=__ATLAS_LEARNING__.setSurfaceAttachment(false);await Promise.all([a,b]);return __ATLAS_LEARNING__.getSurfaceState();});ck('Fast on/off ends OFF',!race.attached&&!race.busy&&!race.desired,race);
+ const plain=await page.evaluate(()=>__ATLAS_LEARNING__.getDisplayAudit());ck('Turning attachment off restores source coordinates',plain.maxSecondaryShift<.000001);ck('Corridor revision does not merge same-height names',plain.collisions.length===0,plain.collisions);
+ const lastOn=await page.evaluate(async()=>{const a=__ATLAS_LEARNING__.setSurfaceAttachment(true);const b=__ATLAS_LEARNING__.setSurfaceAttachment(false);const c=__ATLAS_LEARNING__.setSurfaceAttachment(true);await Promise.all([a,b,c]);return __ATLAS_LEARNING__.getSurfaceState();});ck('Fast on/off/on ends ON',lastOn.attached&&!lastOn.busy,lastOn);
+ await page.evaluate(async()=>{const a=__ATLAS_LEARNING__.setSurfaceAttachment(false);__ATLAS_LEARNING__.selectPoint('HT7','right',false);await a;});ck('Projection completion keeps the most recent selected point',await page.evaluate(()=>__ATLAS_LEARNING__.getState().selectedPoint.code==='HT7'));
+ await page.locator('#tcmTab').click();await page.evaluate(()=>__ATLAS_LEARNING__.toggleTCM(false));await page.locator('#layersTab').click();await page.locator('#tcmTab').click();await settle();ck('Reopening settings respects hidden meridians',await page.evaluate(()=>!__ATLAS_LEARNING__.getState().enabled));
+ ck('Hidden point layer leaves no leader wires',await page.evaluate(()=>{const w=document.querySelector('#acupointWires');return !w||w.children.length===0||getComputedStyle(w).display==='none';}));
+ await page.evaluate(()=>{__ATLAS_LEARNING__.setMeridians(['PC']);__ATLAS_LEARNING__.toggleTCM(true);__ATLAS_LEARNING__.selectPoint('PC6','right',false);document.getElementById('autoFocusPoint').checked=false;document.getElementById('autoFocusPoint').dispatchEvent(new Event('change'));});await settle();const navCam=await cam();await page.locator('#pointNext').click();await settle();ck('Previous/next obey autofocus OFF',distance(navCam,await cam())<.001&&await page.evaluate(()=>__ATLAS_LEARNING__.getState().selectedPoint.code==='PC7'));
+ await page.evaluate(async()=>{const a=__ATLAS_SHARED__.switchSex('female');const b=__ATLAS_SHARED__.choose('chest',true);await Promise.all([a,b]);});await settle();ck('Switch plus scene ends in the requested female chest',await page.evaluate(()=>__ATLAS_FEMALE__.active&&__ATLAS_SHARED__.getState().scene==='chest'&&!__ATLAS_SHARED__.getState().busy));
+ ck('Original shared directory and layer nodes survive',await page.evaluate(()=>sameControls.every((n,i)=>n===document.getElementById(['structureLibrary','structureSearch','sharedLayerRows','tcmControls'][i]))));
+ ck('Female never displays male reference coordinates',await page.evaluate(()=>__ATLAS_LEARNING__.getState().suspended&&__ATLAS_LEARNING__.getState().routeDiagnostics.every(r=>!r.visible)));
+ await snap('female-shared');
+ await page.evaluate(async()=>{await Promise.all([__ATLAS_SHARED__.switchSex('male'),__ATLAS_SHARED__.switchSex('female'),__ATLAS_SHARED__.switchSex('male')]);});await settle();ck('Rapid sex requests end on the last requested male model',await page.evaluate(()=>!__ATLAS_FEMALE__.active&&!__ATLAS_SHARED__.getState().busy&&__FOOT_ATLAS__.getState().bodySex!=='female'));
+ await page.evaluate(()=>__ATLAS_SHARED__.choose('bones',true));await settle();await page.evaluate(()=>{__FOOT_ATLAS__.setRegion('lumbar');__FOOT_ATLAS__.setExplode(100);});await settle();ck('Original lumbar separation remains vertical',await page.evaluate(()=>__FOOT_ATLAS__.getState().bones.filter(b=>/^L[1-5]$/.test(b.id)).every(b=>Math.abs(b.position[0]-b.home[0])<.001&&Math.abs(b.position[2]-b.home[2])<.001)));
+ await page.evaluate(()=>__FOOT_ATLAS__.reset());await settle();ck('Reset restores all 210 original bones',await page.evaluate(()=>__FOOT_ATLAS__.getState().count===210));
+ await page.setViewportSize({width:390,height:844});await page.locator('#openNav').click();await page.locator('#tcmTab').click();await page.locator('#acupointSearch').fill('内关');await page.locator('[data-point="PC6"]').first().click();await settle();ck('Phone selected point description is visible',await page.locator('#tcmPointCard').isVisible());await snap('phone-point');
+ await page.locator('#closePointCard').click();ck('Phone point description can close',await page.evaluate(()=>!document.body.classList.contains('detail-open')));
+ ck('Phone no horizontal overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await page.setViewportSize({width:844,height:390});await settle();ck('Landscape no horizontal overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ ck('No uncaught JavaScript errors',report.errors.length===0,report.errors);report.success=true;
+ }catch(e){report.failure=String(e);console.error(e);process.exitCode=1;if(page)try{await page.screenshot({path:path.join(out,(online?'live-':'')+type+'-failure.png')});report.state=await page.evaluate(()=>({shared:__ATLAS_SHARED__?.getState(),learning:__ATLAS_LEARNING__?.getState(),surface:__ATLAS_LEARNING__?.getSurfaceState()}));}catch{}}
+ finally{report.finishedAt=new Date().toISOString();if(browser)await browser.close();if(server)await new Promise(r=>server.close(r));fs.writeFileSync(path.join(out,(online?'live-':'local-')+type+'.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({success:report.success,checks:report.checks.length,failure:report.failure}));}
+})();
