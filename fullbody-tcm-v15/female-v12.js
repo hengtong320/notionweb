@@ -77,18 +77,24 @@ export function initFemale(ctx){
  const ray=new THREE.Raycaster();function hit(e){if(!active)return null;const r=viewport.getBoundingClientRect();ray.setFromCamera(new THREE.Vector2((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1),camera);return ray.intersectObjects(visible(),false)[0]||null;}
  function click(e){const h=hit(e);if(h){select(h.object.name,false);return true;}return false;}
 
+
  const viewCue=document.createElement('div');viewCue.id='femaleViewCue';viewCue.className='empty-view-cue';viewCue.hidden=true;viewCue.setAttribute('role','status');viewCue.innerHTML='<span></span><button type="button">看当前结构</button>';document.querySelector('.stage').append(viewCue);
- const viewFrustum=new THREE.Frustum(),viewMatrix=new THREE.Matrix4(),viewBox=new THREE.Box3();let viewCoverage={active:false,loadedVisible:0,inFrustum:0,needsRefocus:false};
+ const viewFrustum=new THREE.Frustum(),viewMatrix=new THREE.Matrix4(),viewBox=new THREE.Box3(),sampleVertex=new THREE.Vector3(),visibilityRay=new THREE.Raycaster();let coverageSignature='',viewCoverage={active:false,loadedVisible:0,inFrustum:0,visibleSurfaceHits:0,needsRefocus:false};
  function syncViewCoverage(){
-  if(!active){viewCue.hidden=true;viewCoverage={active:false,loadedVisible:0,inFrustum:0,needsRefocus:false};return;}
+  if(!active){viewCue.hidden=true;coverageSignature='';viewCoverage={active:false,loadedVisible:0,inFrustum:0,visibleSurfaceHits:0,needsRefocus:false};return;}
   const pending=sexBusy||window.__ATLAS_SHARED__?.getState().busy||[...systems.values()].some(x=>x.promise&&!x.loaded);
-  camera.updateMatrixWorld(true);root.updateMatrixWorld(true);viewMatrix.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);viewFrustum.setFromProjectionMatrix(viewMatrix);
-  const ns=visible();let inFrame=0;
-  for(const n of ns){if(!n.geometry.boundingBox)n.geometry.computeBoundingBox();viewBox.copy(n.geometry.boundingBox).applyMatrix4(n.matrixWorld);if(viewFrustum.intersectsBox(viewBox))inFrame++;}
-  viewCoverage={active:true,loadedVisible:ns.length,inFrustum:inFrame,needsRefocus:!pending&&ns.length>0&&inFrame===0};
-  viewCue.hidden=!!pending||inFrame>0;
-  viewCue.querySelector('span').textContent=ns.length?'当前结构在视野外，已保留你的视角。':'当前图层没有可见结构。';
-  viewCue.querySelector('button').textContent=ns.length?'看当前结构':'看女性体表';
+  if(pending){viewCue.hidden=true;coverageSignature='';return;}
+  camera.updateMatrixWorld(true);root.updateMatrixWorld(true);
+  const ns=visible(),signature=camera.matrixWorld.elements.join(',')+'|'+camera.projectionMatrix.elements.join(',')+'|'+ns.map(n=>n.uuid).join(',');if(signature===coverageSignature)return;coverageSignature=signature;
+  viewMatrix.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);viewFrustum.setFromProjectionMatrix(viewMatrix);
+  const candidates=[];for(const n of ns){if(!n.geometry.boundingBox)n.geometry.computeBoundingBox();viewBox.copy(n.geometry.boundingBox).applyMatrix4(n.matrixWorld);if(viewFrustum.intersectsBox(viewBox))candidates.push(n);}
+  let surfaceHits=0,samples=0,rayChecks=0;
+  for(const n of candidates){const a=n.geometry.attributes.position,step=Math.max(1,Math.floor(a.count/64));for(let i=0;i<a.count;i+=step){sampleVertex.fromBufferAttribute(a,i).applyMatrix4(n.matrixWorld).project(camera);samples++;if(sampleVertex.z>=-1&&sampleVertex.z<=1&&Math.abs(sampleVertex.x)<.92&&sampleVertex.y>-.82&&sampleVertex.y<.56){surfaceHits++;break;}}if(surfaceHits)break;}
+  // A large surface can fill the view even when all sampled vertices are outside.
+  // Confirm with real triangle hits; a loose artery bounding box is not a visible organ.
+  if(!surfaceHits&&candidates.length){visibilityRay.near=camera.near;visibilityRay.far=camera.far;for(const [x,y]of [[0,0],[0,.35],[0,-.35],[-.35,0],[.35,0]]){visibilityRay.setFromCamera(new THREE.Vector2(x,y),camera);rayChecks++;if(visibilityRay.intersectObjects(candidates,false).length){surfaceHits++;break;}}}
+  viewCoverage={active:true,loadedVisible:ns.length,inFrustum:candidates.length,visibleSurfaceHits:surfaceHits,sampledVertices:samples,raycastChecks:rayChecks,needsRefocus:ns.length>0&&surfaceHits===0};
+  viewCue.hidden=surfaceHits>0;viewCue.querySelector('span').textContent=ns.length?'当前结构不在主要视野内，已保留你的视角。':'当前图层没有可见结构。';viewCue.querySelector('button').textContent=ns.length?'看当前结构':'看女性体表';
  }
  viewCue.querySelector('button').onclick=()=>{if(visible().length){fit(camera.position.clone().sub(controls.target).normalize().toArray());invalidate();}else window.__ATLAS_SHARED__?.choose('surface',false);};
  function updateLabel(){syncViewCoverage();if(active){const n=visible().length+' 个女性结构';if($('visibleCount').textContent!==n)$('visibleCount').textContent=n;if($('renderStatus').textContent!=='女性 · HRA参考')$('renderStatus').textContent='女性 · HRA参考';}if(!active||!selected){tag.hidden=true;return;}const n=maps.get(selected);if(!n?.visible){tag.hidden=true;return;}const v=new THREE.Box3().setFromObject(n).getCenter(new THREE.Vector3()).project(camera),r=viewport.getBoundingClientRect();tag.hidden=v.z<-1||v.z>1;tag.textContent=n.userData.female.name;tag.style.left=Math.max(5,Math.min(r.width-180,(v.x*.5+.5)*r.width+10))+'px';tag.style.top=Math.max(30,Math.min(r.height-80,(-v.y*.5+.5)*r.height))+'px';}
