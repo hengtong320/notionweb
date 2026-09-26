@@ -1,0 +1,881 @@
+{
+  "version": "15.0.0",
+  "browser": "chromium",
+  "online": true,
+  "startedAt": "2026-09-26T20:50:28.021Z",
+  "checks": [
+    {
+      "name": "Viewer HTTP 200",
+      "pass": true
+    },
+    {
+      "name": "Original 210 bones loaded",
+      "pass": true
+    },
+    {
+      "name": "Actual PC6 click selects reference",
+      "pass": true
+    },
+    {
+      "name": "Channel switch clears stale local clipping",
+      "pass": true,
+      "detail": {
+        "active": false,
+        "bounds": null,
+        "visible": [
+          {
+            "code": "KI1",
+            "side": "right",
+            "position": [
+              12,
+              -49,
+              20
+            ]
+          },
+          {
+            "code": "KI2",
+            "side": "right",
+            "position": [
+              55,
+              0,
+              -13
+            ]
+          },
+          {
+            "code": "KI3",
+            "side": "right",
+            "position": [
+              63,
+              16,
+              -90
+            ]
+          },
+          {
+            "code": "KI4",
+            "side": "right",
+            "position": [
+              58,
+              -2,
+              -96
+            ]
+          },
+          {
+            "code": "KI5",
+            "side": "right",
+            "position": [
+              52,
+              -10,
+              -97
+            ]
+          },
+          {
+            "code": "KI6",
+            "side": "right",
+            "position": [
+              58,
+              -3,
+              -68
+            ]
+          },
+          {
+            "code": "KI7",
+            "side": "right",
+            "position": [
+              60,
+              71,
+              -90
+            ]
+          },
+          {
+            "code": "KI8",
+            "side": "right",
+            "position": [
+              63,
+              71,
+              -75
+            ]
+          },
+          {
+            "code": "KI9",
+            "side": "right",
+            "position": [
+              62,
+              140,
+              -82
+            ]
+          },
+          {
+            "code": "KI10",
+            "side": "right",
+            "position": [
+              57,
+              390,
+              -102
+            ]
+          },
+          {
+            "code": "KI11",
+            "side": "right",
+            "position": [
+              89.053,
+              810,
+              55.5
+            ]
+          },
+          {
+            "code": "KI12",
+            "side": "right",
+            "position": [
+              89.053,
+              848,
+              59.68
+            ]
+          },
+          {
+            "code": "KI13",
+            "side": "right",
+            "position": [
+              89.053,
+              886,
+              63.86
+            ]
+          },
+          {
+            "code": "KI14",
+            "side": "right",
+            "position": [
+              89.053,
+              924,
+              68.04
+            ]
+          },
+          {
+            "code": "KI15",
+            "side": "right",
+            "position": [
+              89.053,
+              962,
+              85
+            ]
+          },
+          {
+            "code": "KI16",
+            "side": "right",
+            "position": [
+              89.053,
+              1000,
+              85
+            ]
+          },
+          {
+            "code": "KI17",
+            "side": "right",
+            "position": [
+              89.053,
+              1045,
+              85
+            ]
+          },
+          {
+            "code": "KI18",
+            "side": "right",
+            "position": [
+              89.053,
+              1067.5,
+              85
+            ]
+          },
+          {
+            "code": "KI19",
+            "side": "right",
+            "position": [
+              89.053,
+              1090,
+              85
+            ]
+          },
+          {
+            "code": "KI20",
+            "side": "right",
+            "position": [
+              89.053,
+              1112.5,
+              85
+            ]
+          },
+          {
+            "code": "KI21",
+            "side": "right",
+            "position": [
+              89.053,
+              1135,
+              85
+            ]
+          },
+          {
+            "code": "KI22",
+            "side": "right",
+            "position": [
+              59.553,
+              1187,
+              102
+            ]
+          },
+          {
+            "code": "KI23",
+            "side": "right",
+            "position": [
+              59.553,
+              1223,
+              101
+            ]
+          },
+          {
+            "code": "KI24",
+            "side": "right",
+            "position": [
+              59.553,
+              1257,
+              90
+            ]
+          },
+          {
+            "code": "KI25",
+            "side": "right",
+            "position": [
+              59.553,
+              1287,
+              74
+            ]
+          },
+          {
+            "code": "KI26",
+            "side": "right",
+            "position": [
+              59.553,
+              1320,
+              57
+            ]
+          },
+          {
+            "code": "KI27",
+            "side": "right",
+            "position": [
+              59.553,
+              1359,
+              36
+            ]
+          },
+          {
+            "code": "KI1",
+            "side": "left",
+            "position": [
+              187.10636311396956,
+              -49,
+              20
+            ]
+          },
+          {
+            "code": "KI2",
+            "side": "left",
+            "position": [
+              144.10636311396956,
+              0,
+              -13
+            ]
+          },
+          {
+            "code": "KI3",
+            "side": "left",
+            "position": [
+              136.10636311396956,
+              16,
+              -90
+            ]
+          },
+          {
+            "code": "KI4",
+            "side": "left",
+            "position": [
+              141.10636311396956,
+              -2,
+              -96
+            ]
+          },
+          {
+            "code": "KI5",
+            "side": "left",
+            "position": [
+              147.10636311396956,
+              -10,
+              -97
+            ]
+          },
+          {
+            "code": "KI6",
+            "side": "left",
+            "position": [
+              141.10636311396956,
+              -3,
+              -68
+            ]
+          },
+          {
+            "code": "KI7",
+            "side": "left",
+            "position": [
+              139.10636311396956,
+              71,
+              -90
+            ]
+          },
+          {
+            "code": "KI8",
+            "side": "left",
+            "position": [
+              136.10636311396956,
+              71,
+              -75
+            ]
+          },
+          {
+            "code": "KI9",
+            "side": "left",
+            "position": [
+              137.10636311396956,
+              140,
+              -82
+            ]
+          },
+          {
+            "code": "KI10",
+            "side": "left",
+            "position": [
+              142.10636311396956,
+              390,
+              -102
+            ]
+          },
+          {
+            "code": "KI11",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              810,
+              55.5
+            ]
+          },
+          {
+            "code": "KI12",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              848,
+              59.68
+            ]
+          },
+          {
+            "code": "KI13",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              886,
+              63.86
+            ]
+          },
+          {
+            "code": "KI14",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              924,
+              68.04
+            ]
+          },
+          {
+            "code": "KI15",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              962,
+              85
+            ]
+          },
+          {
+            "code": "KI16",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1000,
+              85
+            ]
+          },
+          {
+            "code": "KI17",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1045,
+              85
+            ]
+          },
+          {
+            "code": "KI18",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1067.5,
+              85
+            ]
+          },
+          {
+            "code": "KI19",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1090,
+              85
+            ]
+          },
+          {
+            "code": "KI20",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1112.5,
+              85
+            ]
+          },
+          {
+            "code": "KI21",
+            "side": "left",
+            "position": [
+              110.05336311396957,
+              1135,
+              85
+            ]
+          },
+          {
+            "code": "KI22",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1187,
+              102
+            ]
+          },
+          {
+            "code": "KI23",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1223,
+              101
+            ]
+          },
+          {
+            "code": "KI24",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1257,
+              90
+            ]
+          },
+          {
+            "code": "KI25",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1287,
+              74
+            ]
+          },
+          {
+            "code": "KI26",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1320,
+              57
+            ]
+          },
+          {
+            "code": "KI27",
+            "side": "left",
+            "position": [
+              139.55336311396957,
+              1359,
+              36
+            ]
+          }
+        ],
+        "drawnPoints": 54,
+        "clippedRouteMaterials": 0
+      }
+    },
+    {
+      "name": "All bilateral kidney points remain available",
+      "pass": true,
+      "detail": {
+        "visible": 54,
+        "drawn": 54
+      }
+    },
+    {
+      "name": "Channel switch preserves rotated and zoomed camera",
+      "pass": true
+    },
+    {
+      "name": "All 14 filters release previous local crop and retain their complete point catalogs",
+      "pass": true,
+      "detail": [
+        {
+          "id": "LU",
+          "expected": 22,
+          "actual": 22,
+          "unclipped": true
+        },
+        {
+          "id": "LI",
+          "expected": 40,
+          "actual": 40,
+          "unclipped": true
+        },
+        {
+          "id": "ST",
+          "expected": 90,
+          "actual": 90,
+          "unclipped": true
+        },
+        {
+          "id": "SP",
+          "expected": 42,
+          "actual": 42,
+          "unclipped": true
+        },
+        {
+          "id": "HT",
+          "expected": 18,
+          "actual": 18,
+          "unclipped": true
+        },
+        {
+          "id": "SI",
+          "expected": 38,
+          "actual": 38,
+          "unclipped": true
+        },
+        {
+          "id": "BL",
+          "expected": 134,
+          "actual": 134,
+          "unclipped": true
+        },
+        {
+          "id": "KI",
+          "expected": 54,
+          "actual": 54,
+          "unclipped": true
+        },
+        {
+          "id": "PC",
+          "expected": 18,
+          "actual": 18,
+          "unclipped": true
+        },
+        {
+          "id": "TE",
+          "expected": 46,
+          "actual": 46,
+          "unclipped": true
+        },
+        {
+          "id": "GB",
+          "expected": 88,
+          "actual": 88,
+          "unclipped": true
+        },
+        {
+          "id": "LR",
+          "expected": 28,
+          "actual": 28,
+          "unclipped": true
+        },
+        {
+          "id": "GV",
+          "expected": 28,
+          "actual": 28,
+          "unclipped": true
+        },
+        {
+          "id": "CV",
+          "expected": 24,
+          "actual": 24,
+          "unclipped": true
+        }
+      ]
+    },
+    {
+      "name": "Visible PC line has an actual click target",
+      "pass": true,
+      "detail": {
+        "x": 734.5774082834384,
+        "y": 357.2229548941084,
+        "z": 0.9995438939731611
+      }
+    },
+    {
+      "name": "Actual route click preserves multi-channel selection",
+      "pass": true
+    },
+    {
+      "name": "Route click opens the correct populated description",
+      "pass": true
+    },
+    {
+      "name": "Route click does not move camera",
+      "pass": true
+    },
+    {
+      "name": "Surface scene preserves the selected comparison",
+      "pass": true
+    },
+    {
+      "name": "Skin attachment is enabled",
+      "pass": true
+    },
+    {
+      "name": "One unclipped qualification badge in the actual stage",
+      "pass": true
+    },
+    {
+      "name": "Hidden skeleton does not produce a bone hover in skin view",
+      "pass": true
+    },
+    {
+      "name": "670 points checked independently of guide geometry",
+      "pass": true
+    },
+    {
+      "name": "All route vertices and normals are finite",
+      "pass": true
+    },
+    {
+      "name": "No secondary point relocation to nearby guide samples",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "Each attached point lies on its own sampled route",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "Projection audit reports source displacement instead of claiming anatomical accuracy",
+      "pass": true
+    },
+    {
+      "name": "No distinct same-side names collapse to identical coordinates",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Zhigou and Huizong retained as distinct reference points",
+      "pass": true,
+      "detail": {
+        "points": [
+          {
+            "code": "TE6",
+            "name": "支沟",
+            "side": "right",
+            "sourcePosition": [
+              -150.65032000000002,
+              874,
+              -40.424
+            ],
+            "displayDisplacement": 10.315951459468913,
+            "position": [
+              -150.65032000000002,
+              874,
+              -50.73995145946891
+            ],
+            "expected": [
+              -150.65032000000002,
+              874,
+              -50.73995145946891
+            ],
+            "secondaryShift": 0,
+            "lineGap": 0
+          },
+          {
+            "code": "TE7",
+            "name": "会宗",
+            "side": "right",
+            "sourcePosition": [
+              -140.65032000000005,
+              874,
+              -40.42400000000001
+            ],
+            "displayDisplacement": 8.394871063540947,
+            "position": [
+              -140.65032000000005,
+              874,
+              -48.81887106354095
+            ],
+            "expected": [
+              -140.65032000000005,
+              874,
+              -48.81887106354095
+            ],
+            "secondaryShift": 0,
+            "lineGap": 0
+          }
+        ],
+        "separation": 10.182855684316563
+      }
+    },
+    {
+      "name": "Fast on/off ends OFF",
+      "pass": true,
+      "detail": {
+        "projectionDiagnostics": {
+          "version": 13,
+          "method": "regional directional projection with connected-surface transitions",
+          "calls": 17419,
+          "rayHits": 14396,
+          "fallbacks": 3023,
+          "maxSourceDistance": 126.51680372063232,
+          "regions": 46,
+          "surfacePathBridges": 254,
+          "unconnectedDisplayBridges": 8,
+          "clinicalCalibration": false
+        },
+        "attached": false,
+        "desired": false,
+        "busy": false,
+        "originalRecordsPreserved": true,
+        "navigationRevision": 15,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "name": "Turning attachment off restores source coordinates",
+      "pass": true
+    },
+    {
+      "name": "Corridor revision does not merge same-height names",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Fast on/off/on ends ON",
+      "pass": true,
+      "detail": {
+        "projectionDiagnostics": {
+          "version": 13,
+          "method": "regional directional projection with connected-surface transitions",
+          "calls": 18089,
+          "rayHits": 15011,
+          "fallbacks": 3078,
+          "maxSourceDistance": 126.51680372063232,
+          "regions": 46,
+          "surfacePathBridges": 254,
+          "unconnectedDisplayBridges": 8,
+          "clinicalCalibration": false
+        },
+        "attached": true,
+        "desired": true,
+        "busy": false,
+        "originalRecordsPreserved": true,
+        "navigationRevision": 15,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "name": "Projection completion keeps the most recent selected point",
+      "pass": true
+    },
+    {
+      "name": "Reopening settings respects hidden meridians",
+      "pass": true
+    },
+    {
+      "name": "Hiding meridians leaves no obsolete projection badge",
+      "pass": true
+    },
+    {
+      "name": "Hidden point layer leaves no leader wires",
+      "pass": true
+    },
+    {
+      "name": "Previous/next obey autofocus OFF",
+      "pass": true
+    },
+    {
+      "name": "Switch plus scene ends in the requested female chest",
+      "pass": true
+    },
+    {
+      "name": "Original shared directory and layer nodes survive",
+      "pass": true
+    },
+    {
+      "name": "Female never displays male reference coordinates",
+      "pass": true
+    },
+    {
+      "name": "Rapid sex requests end on the last requested male model",
+      "pass": true
+    },
+    {
+      "name": "Original lumbar separation remains vertical",
+      "pass": true
+    },
+    {
+      "name": "Reset restores all 210 original bones",
+      "pass": true
+    },
+    {
+      "name": "Phone selected point description is visible",
+      "pass": true
+    },
+    {
+      "name": "Phone selection opens detail independently of camera autofocus",
+      "pass": true
+    },
+    {
+      "name": "Phone next point is visible and respects disabled autofocus",
+      "pass": true
+    },
+    {
+      "name": "Phone point description can close",
+      "pass": true
+    },
+    {
+      "name": "Phone no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Landscape point description is readable with autofocus off",
+      "pass": true
+    },
+    {
+      "name": "Landscape no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Version history describes the current V15 and preserves V14 link",
+      "pass": true
+    },
+    {
+      "name": "No uncaught JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v15/?release=36270682152",
+  "finishedAt": "2026-09-26T20:51:07.429Z"
+}
