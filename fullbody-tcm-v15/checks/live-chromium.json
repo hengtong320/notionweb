@@ -1,8 +1,8 @@
 {
-  "version": "15.0.1",
+  "version": "15.0.2",
   "browser": "chromium",
   "online": true,
-  "startedAt": "2026-09-26T20:58:09.994Z",
+  "startedAt": "2026-09-26T21:07:35.373Z",
   "checks": [
     {
       "name": "Viewer HTTP 200",
@@ -825,17 +825,28 @@
       "pass": true
     },
     {
-      "name": "Offscreen female structures are explained without forcing a camera reset",
+      "name": "Female view has an actual mesh surface or an explicit recovery control",
       "pass": true,
       "detail": {
         "active": true,
         "loadedVisible": 121,
         "inFrustum": 1,
-        "needsRefocus": false
+        "visibleSurfaceHits": 0,
+        "sampledVertices": 65,
+        "raycastChecks": 5,
+        "needsRefocus": true
       }
     },
     {
       "name": "Offscreen helper never changes the preserved camera",
+      "pass": true
+    },
+    {
+      "name": "Deliberately panned-out view always offers an actual recovery control",
+      "pass": true
+    },
+    {
+      "name": "Actual recovery button returns real female surfaces to the view",
       "pass": true
     },
     {
@@ -890,6 +901,6 @@
   ],
   "errors": [],
   "success": true,
-  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v15/?release=36271081024",
-  "finishedAt": "2026-09-26T20:59:01.990Z"
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v15/?release=36271583945",
+  "finishedAt": "2026-09-26T21:08:45.219Z"
 }

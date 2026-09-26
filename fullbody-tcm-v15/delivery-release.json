@@ -1,18 +1,18 @@
 {
-  "version": "15.0.1",
+  "version": "15.0.2",
   "base": "14.0.0",
   "files": {
     "index.html": {
-      "bytes": 16259,
-      "sha256": "ba293371075d75c89a2d52c45fed870d81395a73f47d03ef7958407667fddd96"
+      "bytes": 16304,
+      "sha256": "2075af203b4c3064939c239ff9925b422a9254ea80f4ee85c20a766bdcc83023"
     },
     "app.bundle.js": {
-      "bytes": 2917072,
-      "sha256": "c2e0296cc7c788f810a92e86ca1aa7322502414834e62dc804cdeb904868fd19"
+      "bytes": 2917923,
+      "sha256": "5ba997d77c390d6f6469bf23088f3629af1654750209ec10f8e5dabdec6d43cb"
     },
     "shared-v14.js": {
       "bytes": 25801,
-      "sha256": "bbd90f50b531d6671bd32ffa2f5b6a031d0682bfd85e208d88fb30d3f20afb01"
+      "sha256": "52ce159f9a996f3eff30feb62b78295986171c7c829918d7bfbd0c61c8e58613"
     },
     "shared-v14.css": {
       "bytes": 7841,
@@ -27,8 +27,8 @@
       "sha256": "5e0a53477cf6ad4bb2e1ea7d558785d19d3389f41cb1b1576c59ca11f23fbf04"
     },
     "female-v12.js": {
-      "bytes": 28128,
-      "sha256": "c8a3d788644358cd813fcd838d9ba53a0d5a23f34ec73da69d59766dc6a3649c"
+      "bytes": 29557,
+      "sha256": "484ea362b8bc7f566fbb6b534fab9dd44b5517aebad7d412e70245d3a3ce80ba"
     },
     "learning-enhancements.js": {
       "bytes": 61579,
@@ -59,20 +59,20 @@
   "secondaryPointSnappingRemoved": true,
   "preserveOriginalSameLevelOffsets": true,
   "latestRequestedSurfaceState": true,
-  "builtAt": "2026-09-26T20:55:02.697Z",
+  "builtAt": "2026-09-26T21:03:59.221Z",
   "status": "published-and-browser-verified",
   "published": true,
-  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v15/?release=36271081024",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v15/?release=36271583945",
   "stableURL": "https://hengtong320.github.io/notionweb/anatomy/",
-  "workflowRun": "36271081024",
+  "workflowRun": "36271583945",
   "candidateRun": 36270630390,
   "candidateCommit": "6d33e12ec899b071cc64473efdede8c25f99fec0",
   "checks": {
-    "local-chromium": 48,
-    "local-webkit": 48,
-    "live-chromium": 48
+    "local-chromium": 50,
+    "local-webkit": 50,
+    "live-chromium": 50
   },
-  "checkedAt": "2026-09-26T20:59:01.990Z",
+  "checkedAt": "2026-09-26T21:08:45.219Z",
   "priorVersionsUnchanged": true,
   "sharedGenderControlsRetained": true,
   "allFourteenMeridianFiltersChecked": true,
@@ -88,7 +88,9 @@
   "femaleClinicalAcupointRegistration": false,
   "allAudioHumanReviewed": false,
   "browserCoverage": "Headless Chromium and WebKit, desktop and phone portrait/landscape viewports; not every physical device",
-  "previousPublishRun": 36270682152,
+  "previousPublishRun": 36271081024,
   "viewContextReview": true,
-  "explicitRefocusOnly": true
+  "explicitRefocusOnly": true,
+  "actualSurfaceVisibilityChecked": true,
+  "runtimeAssetVersion": "15.0.2"
 }
