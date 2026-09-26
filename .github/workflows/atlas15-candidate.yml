@@ -38,6 +38,7 @@ jobs:
           python atlas15-delivery/patch.py
           python atlas15-delivery/refine.py
           python atlas15-delivery/finish.py
+          python atlas15-delivery/visual-review.py
           for f in fullbody-tcm-v15/{learning-enhancements,shared-v14,route-corridors-v13,surface-v13,tissues-v4}.js; do node --check "$f"; done
           node atlas15-delivery/build.cjs
           test -z "$(git diff HEAD -- fullbody-tcm-v9/ fullbody-tcm-v11/ fullbody-tcm-v12/ fullbody-tcm-v13/ fullbody-tcm-v14/ anatomy/)"
