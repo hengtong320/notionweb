@@ -1,0 +1,46 @@
+name: Diagnose V14 meridian and switching defects
+on:
+  push:
+    paths: ['.github/workflows/atlas15-diagnose.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NODE_PATH: /tmp/atlas15/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --prefix /tmp/atlas15 playwright@1.56.1
+          /tmp/atlas15/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Reproduce on the unmodified V14 and save real scene data
+        run: |
+          mkdir -p atlas15-diagnostics
+          cat > /tmp/atlas15/diagnose.cjs <<'JS'
+          const {chromium}=require('playwright'),fs=require('fs'),path=require('path'),http=require('http');
+          const out='atlas15-diagnostics',report={startedAt:new Date().toISOString(),cases:{},errors:[]};
+          const server=http.createServer((q,r)=>{let f=path.join(process.cwd(),decodeURIComponent(new URL(q.url,'http://local').pathname));if(fs.existsSync(f)&&fs.statSync(f).isDirectory())f=path.join(f,'index.html');if(!fs.existsSync(f)){r.statusCode=404;return r.end();}r.setHeader('Content-Type',({'.js':'text/javascript','.json':'application/json','.html':'text/html','.css':'text/css','.glb':'model/gltf-binary'})[path.extname(f)]||'application/octet-stream');fs.createReadStream(f).pipe(r);});
+          (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const b=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});const p=await b.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});p.on('pageerror',e=>report.errors.push(String(e)));await p.addInitScript(()=>localStorage.setItem('atlas-auto-speak','0'));
+          try{await p.goto('http://127.0.0.1:'+server.address().port+'/fullbody-tcm-v14/',{timeout:90000});await p.waitForFunction(()=>window.__ATLAS_SHARED__&&__FOOT_ATLAS__.getState().ready);const settle=async()=>{await p.waitForFunction(()=>!__FOOT_ATLAS__.getState().cameraAnimating);await p.waitForTimeout(150);};
+          await p.evaluate(()=>{__ATLAS_LEARNING__.setMeridians(['PC']);__ATLAS_LEARNING__.toggleTCM(true);__ATLAS_LEARNING__.selectPoint('PC6','right',true);});await settle();await p.evaluate(()=>__ATLAS_LEARNING__.setMeridians(['KI']));await settle();report.cases.staleLocalWindow=await p.evaluate(()=>__ATLAS_LEARNING__.getReferenceWindowState());await p.screenshot({path:out+'/stale-kidney-after-PC6.png'});
+          await p.evaluate(()=>{__ATLAS_LEARNING__.clearStudyContext();__ATLAS_LEARNING__.setMeridians(['HT','PC']);__ATLAS_LEARNING__.setTCMSide('right');__ATLAS_LEARNING__.fitMeridian();});await settle();report.cases.lineSelection=await p.evaluate(()=>{const l=__ATLAS_LEARNING__;for(const v of l.getRouteScreen('PC','right')){if(v.x<400||v.x>1070||v.y<180||v.y>760)continue;const e={clientX:v.x,clientY:v.y,button:0,pointerType:'mouse'};if(!l.hitPoint(e)&&l.handlePointerClick(e))return {screen:v,after:l.getState().selectedMeridians};}return null;});
+          await p.evaluate(()=>__ATLAS_TISSUES__.setAnatomyView('surface'));await p.evaluate(()=>{__ATLAS_LEARNING__.clearStudyContext();__ATLAS_LEARNING__.setMeridians(['HT','PC']);__ATLAS_LEARNING__.setTCMSide('right');__ATLAS_LEARNING__.fitMeridian();});await settle();await p.screenshot({path:out+'/baseline-heart-pericardium.png'});
+          fs.writeFileSync(out+'/positions.json',JSON.stringify(await p.evaluate(()=>__ATLAS_LEARNING__.getNavigationCatalog())));fs.writeFileSync(out+'/routes.json',JSON.stringify(await p.evaluate(()=>__ATLAS_LEARNING__.getRouteGeometry())));report.cases.surfaceStatistics=await p.evaluate(()=>__ATLAS_TISSUES__.getSurfaceStats());
+          await p.evaluate(()=>__ATLAS_LEARNING__.setSurfaceAttachment(false));report.cases.surfaceRace=await p.evaluate(async()=>{const on=__ATLAS_LEARNING__.setSurfaceAttachment(true);await __ATLAS_LEARNING__.setSurfaceAttachment(false);await on;return __ATLAS_LEARNING__.getSurfaceState();});
+          report.cases.genderRace=await p.evaluate(async()=>{const a=__ATLAS_SHARED__.switchSex('female');await new Promise(r=>setTimeout(r,15));const c=__ATLAS_SHARED__.switchSex('male');await Promise.allSettled([a,c]);return {shared:__ATLAS_SHARED__.getState(),female:__ATLAS_FEMALE__.getState(),bonesOn:__FOOT_ATLAS__.getState().bonesOn,suspended:__ATLAS_LEARNING__.getState().suspended};});
+          console.log(JSON.stringify(report));}catch(e){report.failure=String(e);console.error(e);process.exitCode=1;}finally{report.finishedAt=new Date().toISOString();fs.writeFileSync(out+'/baseline.json',JSON.stringify(report,null,2));await b.close();server.close();}})();
+          JS
+          node /tmp/atlas15/diagnose.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas15-baseline-diagnostics
+          path: atlas15-diagnostics/
+          retention-days: 14
