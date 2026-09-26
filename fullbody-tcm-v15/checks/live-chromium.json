@@ -1,8 +1,8 @@
 {
-  "version": "15.0.0",
+  "version": "15.0.1",
   "browser": "chromium",
   "online": true,
-  "startedAt": "2026-09-26T20:50:28.021Z",
+  "startedAt": "2026-09-26T20:58:09.994Z",
   "checks": [
     {
       "name": "Viewer HTTP 200",
@@ -825,6 +825,20 @@
       "pass": true
     },
     {
+      "name": "Offscreen female structures are explained without forcing a camera reset",
+      "pass": true,
+      "detail": {
+        "active": true,
+        "loadedVisible": 121,
+        "inFrustum": 1,
+        "needsRefocus": false
+      }
+    },
+    {
+      "name": "Offscreen helper never changes the preserved camera",
+      "pass": true
+    },
+    {
       "name": "Rapid sex requests end on the last requested male model",
       "pass": true
     },
@@ -876,6 +890,6 @@
   ],
   "errors": [],
   "success": true,
-  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v15/?release=36270682152",
-  "finishedAt": "2026-09-26T20:51:07.429Z"
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v15/?release=36271081024",
+  "finishedAt": "2026-09-26T20:59:01.990Z"
 }

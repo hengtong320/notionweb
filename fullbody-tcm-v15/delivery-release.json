@@ -1,5 +1,5 @@
 {
-  "version": "15.0.0",
+  "version": "15.0.1",
   "base": "14.0.0",
   "files": {
     "index.html": {
@@ -7,16 +7,16 @@
       "sha256": "ba293371075d75c89a2d52c45fed870d81395a73f47d03ef7958407667fddd96"
     },
     "app.bundle.js": {
-      "bytes": 2915431,
-      "sha256": "62febe28b3c30aed759a3c434cf950540f6bd2c598e47609f77106023c2d001b"
+      "bytes": 2917072,
+      "sha256": "c2e0296cc7c788f810a92e86ca1aa7322502414834e62dc804cdeb904868fd19"
     },
     "shared-v14.js": {
       "bytes": 25801,
-      "sha256": "25de26d9a56eacea87db7ed95f8b77be507ee2eb7039050ae4fe0fc349f8f2f4"
+      "sha256": "bbd90f50b531d6671bd32ffa2f5b6a031d0682bfd85e208d88fb30d3f20afb01"
     },
     "shared-v14.css": {
-      "bytes": 7085,
-      "sha256": "e7bf129ec02588f556af9b68ec2f0d7a0fe4da46899d6a60385d7d7573b360bc"
+      "bytes": 7841,
+      "sha256": "22f494ac5d6e72d356574069a44c629e8c3c4aad701a91f0c35e1550a69c7020"
     },
     "styles.css": {
       "bytes": 68625,
@@ -27,8 +27,8 @@
       "sha256": "5e0a53477cf6ad4bb2e1ea7d558785d19d3389f41cb1b1576c59ca11f23fbf04"
     },
     "female-v12.js": {
-      "bytes": 26299,
-      "sha256": "74b24133745f6063bc4c2cc56b46fc6d7b06d5deb7a9265bca45be33b0c521a8"
+      "bytes": 28128,
+      "sha256": "c8a3d788644358cd813fcd838d9ba53a0d5a23f34ec73da69d59766dc6a3649c"
     },
     "learning-enhancements.js": {
       "bytes": 61579,
@@ -59,20 +59,20 @@
   "secondaryPointSnappingRemoved": true,
   "preserveOriginalSameLevelOffsets": true,
   "latestRequestedSurfaceState": true,
-  "builtAt": "2026-09-26T20:46:45.230Z",
+  "builtAt": "2026-09-26T20:55:02.697Z",
   "status": "published-and-browser-verified",
   "published": true,
-  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v15/?release=36270682152",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v15/?release=36271081024",
   "stableURL": "https://hengtong320.github.io/notionweb/anatomy/",
-  "workflowRun": "36270682152",
+  "workflowRun": "36271081024",
   "candidateRun": 36270630390,
   "candidateCommit": "6d33e12ec899b071cc64473efdede8c25f99fec0",
   "checks": {
-    "local-chromium": 46,
-    "local-webkit": 46,
-    "live-chromium": 46
+    "local-chromium": 48,
+    "local-webkit": 48,
+    "live-chromium": 48
   },
-  "checkedAt": "2026-09-26T20:51:07.429Z",
+  "checkedAt": "2026-09-26T20:59:01.990Z",
   "priorVersionsUnchanged": true,
   "sharedGenderControlsRetained": true,
   "allFourteenMeridianFiltersChecked": true,
@@ -87,5 +87,8 @@
   },
   "femaleClinicalAcupointRegistration": false,
   "allAudioHumanReviewed": false,
-  "browserCoverage": "Headless Chromium and WebKit, desktop and phone portrait/landscape viewports; not every physical device"
+  "browserCoverage": "Headless Chromium and WebKit, desktop and phone portrait/landscape viewports; not every physical device",
+  "previousPublishRun": 36270682152,
+  "viewContextReview": true,
+  "explicitRefocusOnly": true
 }

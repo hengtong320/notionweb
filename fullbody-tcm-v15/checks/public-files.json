@@ -8,17 +8,17 @@
     },
     {
       "file": "app.bundle.js",
-      "sha256": "62febe28b3c30aed759a3c434cf950540f6bd2c598e47609f77106023c2d001b",
+      "sha256": "c2e0296cc7c788f810a92e86ca1aa7322502414834e62dc804cdeb904868fd19",
       "pass": true
     },
     {
       "file": "shared-v14.js",
-      "sha256": "25de26d9a56eacea87db7ed95f8b77be507ee2eb7039050ae4fe0fc349f8f2f4",
+      "sha256": "bbd90f50b531d6671bd32ffa2f5b6a031d0682bfd85e208d88fb30d3f20afb01",
       "pass": true
     },
     {
       "file": "shared-v14.css",
-      "sha256": "e7bf129ec02588f556af9b68ec2f0d7a0fe4da46899d6a60385d7d7573b360bc",
+      "sha256": "22f494ac5d6e72d356574069a44c629e8c3c4aad701a91f0c35e1550a69c7020",
       "pass": true
     },
     {
@@ -33,7 +33,7 @@
     },
     {
       "file": "female-v12.js",
-      "sha256": "74b24133745f6063bc4c2cc56b46fc6d7b06d5deb7a9265bca45be33b0c521a8",
+      "sha256": "c8a3d788644358cd813fcd838d9ba53a0d5a23f34ec73da69d59766dc6a3649c",
       "pass": true
     },
     {
@@ -59,16 +59,6 @@
     {
       "file": "tissues-v4.js",
       "sha256": "99fd5077db5c7742fdaf3123b829c9260dfea2441b3229aedc1980722fe58c7d",
-      "pass": true
-    },
-    {
-      "file": "versions.html",
-      "sha256": "3fd10d4eafa820fa50aa1bc8b4cfa0e7e2bfa6e953637e3f69053ea50fdadaff",
-      "pass": true
-    },
-    {
-      "file": "evidence.html",
-      "sha256": "06845cb7b2f308572840bbf9d30e80782ddad8e79982935fd99f5a2fc31152af",
       "pass": true
     }
   ]
