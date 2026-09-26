@@ -21,3 +21,6 @@ body.female-view.reference-detail #femalePointLabel{display:none!important}
 #surfaceProjectedBadge{display:none!important}
 #v9PrecisionBadge{transform:none!important;width:auto;left:12px;right:auto;bottom:8px;max-width:calc(100% - 24px);white-space:normal;text-align:left}
 @media(max-width:650px){#v9PrecisionBadge{left:8px;bottom:6px;max-width:calc(100% - 16px)}}
+
+.empty-view-cue{position:absolute;z-index:6;left:50%;bottom:108px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;max-width:calc(100% - 32px);padding:10px 13px;background:#fffffff2;border:1px solid #d7e1d8;border-radius:10px;box-shadow:0 3px 14px #2645320a;font-size:12px;line-height:1.6;color:#426253}.empty-view-cue button{flex:none;min-height:36px;border:1px solid #bed1c2;padding:5px 10px;border-radius:7px;background:#eef5e9;color:#2d6554}.empty-view-cue span{min-width:0}.empty-view-cue[hidden]{display:none!important}
+@media(max-width:600px){.empty-view-cue{bottom:90px;gap:8px;padding:8px 10px;width:calc(100% - 28px)}.empty-view-cue button{min-height:42px}.detail-open .empty-view-cue,.nav-open .empty-view-cue{display:none}}
