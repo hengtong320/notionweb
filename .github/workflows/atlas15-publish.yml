@@ -1,0 +1,173 @@
+name: Publish V15 meridian and switching fixes
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas15-publish.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pages: write
+concurrency:
+  group: atlas15-publish
+  cancel-in-progress: false
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    env:
+      NODE_PATH: /tmp/atlas15-public/node_modules
+      CANDIDATE_RUN: '36270630390'
+      CANDIDATE_SHA: '6d33e12ec899b071cc64473efdede8c25f99fec0'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preserve the current working entry
+        run: |
+          cp anatomy/index.html /tmp/atlas15-original-entry.html
+          git rev-parse HEAD > /tmp/atlas15-original-head.txt
+          test ! -d fullbody-tcm-v15
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install actual public browser tools
+        run: |
+          npm install --prefix /tmp/atlas15-public playwright@1.56.1
+          /tmp/atlas15-public/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Require exact successful candidate with both browser engines
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess,time
+          for i in range(70):
+              data=json.loads(subprocess.check_output(['gh','api',f'repos/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{os.environ["CANDIDATE_RUN"]}']))
+              assert data['head_sha']==os.environ['CANDIDATE_SHA'],'Candidate changed'
+              if data['status']=='completed':
+                  assert data['conclusion']=='success',data['conclusion']
+                  break
+              time.sleep(5)
+          else:raise RuntimeError('Candidate has not completed successfully')
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas15-candidate
+          run-id: 36270630390
+          github-token: ${{ github.token }}
+          path: /tmp/atlas15-reviewed
+      - name: Validate actual reports and candidate fingerprints
+        run: |
+          python - <<'PY'
+          import json,hashlib,shutil
+          from pathlib import Path
+          src=Path('/tmp/atlas15-reviewed/fullbody-tcm-v15')
+          info=json.loads((src/'build-info.json').read_text())
+          assert info['version']=='15.0.0' and info['clinicalCalibration'] is False
+          for name,meta in info['files'].items():
+              assert hashlib.sha256((src/name).read_bytes()).hexdigest()==meta['sha256'],name
+          for name in ['local-chromium.json','local-webkit.json']:
+              report=json.loads((src/'checks'/name).read_text())
+              assert report['success'] and all(x['pass'] for x in report['checks']),name
+              print(name,len(report['checks']),'PASS')
+          for name in ['chromium-projection-audit.json','webkit-projection-audit.json']:
+              report=json.loads((src/'checks'/name).read_text())
+              assert report['count']==670 and report['geometryFinite'] and not report['collisions']
+              assert report['maxSecondaryShift']<0.000001 and report['maxLineGap']<0.01
+          shutil.copytree(src,'fullbody-tcm-v15')
+          PY
+          test -z "$(git diff HEAD -- foot-atlas/ ankle-atlas/ knee-atlas/ hip-atlas/ lumbar-atlas/ fullbody-atlas/ fullbody-tcm-v9/ fullbody-tcm-v11/ fullbody-tcm-v12/ fullbody-tcm-v13/ fullbody-tcm-v14/ anatomy/)"
+      - name: Publish only the new version without changing historical pages
+        run: |
+          git fetch origin main
+          git worktree add -B atlas15-public-release /tmp/atlas15-publish origin/main
+          test ! -d /tmp/atlas15-publish/fullbody-tcm-v15
+          cp -a fullbody-tcm-v15 /tmp/atlas15-publish/fullbody-tcm-v15
+          cd /tmp/atlas15-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v15/
+          git commit -m 'Publish V15 display-consistency and interaction repairs after Chromium and WebKit regression'
+          git push origin HEAD:main
+      - name: Request GitHub Pages deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Waiting for normal Pages deployment'
+      - name: Require exact public scripts styles and HTML
+        run: |
+          python - <<'PY'
+          import hashlib,json,time,urllib.request,os
+          from pathlib import Path
+          p=Path('fullbody-tcm-v15');info=json.loads((p/'build-info.json').read_text())
+          base='https://hengtong320.github.io/notionweb/fullbody-tcm-v15/'
+          files={name:meta['sha256'] for name,meta in info['files'].items()}
+          files['versions.html']=hashlib.sha256((p/'versions.html').read_bytes()).hexdigest()
+          files['evidence.html']=hashlib.sha256((p/'evidence.html').read_bytes()).hexdigest()
+          result=[]
+          for name,expected in files.items():
+              for i in range(75):
+                  try:
+                      with urllib.request.urlopen(base+name+'?release='+os.environ['GITHUB_RUN_ID']+'&n='+str(i),timeout=30) as response:data=response.read()
+                      if hashlib.sha256(data).hexdigest()==expected:break
+                  except Exception as e:print(name,str(e),flush=True)
+                  time.sleep(5)
+              else:raise RuntimeError('Public file mismatch: '+name)
+              result.append({'file':name,'sha256':expected,'pass':True});print('PUBLIC_MATCH',name,flush=True)
+          (p/'checks/public-files.json').write_text(json.dumps({'success':True,'files':result},indent=2))
+          PY
+      - name: Repeat the complete real meridian and switching journey online
+        env:
+          TEST_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v15/?release=${{ github.run_id }}
+        run: node /tmp/atlas15-reviewed/atlas15-delivery/verify.cjs
+      - name: Record verified delivery and update the fixed entry
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,shutil,hashlib
+          p=Path('fullbody-tcm-v15');dest=Path('/tmp/atlas15-publish/fullbody-tcm-v15')
+          info=json.loads((p/'build-info.json').read_text())
+          names=['local-chromium','local-webkit','live-chromium']
+          reports={name:json.loads((p/'checks'/f'{name}.json').read_text()) for name in names}
+          for name,r in reports.items():assert r['success'] and all(x['pass'] for x in r['checks']),name
+          audit=json.loads((p/'checks/live-chromium-projection-audit.json').read_text())
+          release={**info,'status':'published-and-browser-verified','published':True,'url':reports['live-chromium']['url'],'stableURL':'https://hengtong320.github.io/notionweb/anatomy/','workflowRun':os.environ['GITHUB_RUN_ID'],'candidateRun':int(os.environ['CANDIDATE_RUN']),'candidateCommit':os.environ['CANDIDATE_SHA'],'checks':{name:len(r['checks']) for name,r in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'priorVersionsUnchanged':True,'sharedGenderControlsRetained':True,'allFourteenMeridianFiltersChecked':True,'projectionDiagnostic':{'purpose':'Display consistency, not anatomical or clinical accuracy','pointInstances':audit['count'],'sameSideExactCoordinateCollisions':len(audit['collisions']),'secondaryRelocation':audit['maxSecondaryShift'],'sampledRouteGap':audit['maxLineGap'],'geometryFinite':audit['geometryFinite'],'maxDisplayDisplacementModelUnits':max(x['displayDisplacement'] for x in audit['points'])},'femaleClinicalAcupointRegistration':False,'allAudioHumanReviewed':False,'browserCoverage':'Headless Chromium and WebKit, desktop and phone portrait/landscape viewports; not every physical device'}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          shutil.copy2(p/'delivery-release.json',dest/'delivery-release.json')
+          shutil.copytree(p/'checks',dest/'checks',dirs_exist_ok=True)
+          entry=Path('/tmp/atlas15-publish/anatomy/index.html')
+          assert entry.read_bytes()==Path('/tmp/atlas15-original-entry.html').read_bytes(),'Stable entry changed concurrently; refusing overwrite'
+          text=entry.read_text();assert 'fullbody-tcm-v14' in text
+          entry.write_text(text.replace('fullbody-tcm-v14','fullbody-tcm-v15').replace('V14 共用学习界面','V15 经络与切换修订'))
+          PY
+          cd /tmp/atlas15-publish
+          git add fullbody-tcm-v15/delivery-release.json fullbody-tcm-v15/checks/ anatomy/index.html
+          git commit -m 'Confirm real public V15 regression and update the fixed anatomy entry'
+          git push origin HEAD:main
+      - name: Request fixed-entry deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Waiting for normal Pages deployment'
+      - name: Verify the actual stable entry opens V15
+        run: |
+          python - <<'PY'
+          import time,urllib.request,os
+          for i in range(75):
+              try:
+                  with urllib.request.urlopen('https://hengtong320.github.io/notionweb/anatomy/?release='+os.environ['GITHUB_RUN_ID']+'&n='+str(i),timeout=30) as response:text=response.read().decode()
+                  if 'fullbody-tcm-v15' in text:break
+              except Exception as e:print(str(e),flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Fixed entry did not update')
+          PY
+          node - <<'JS'
+          const {chromium}=require('playwright'),fs=require('fs');
+          (async()=>{const browser=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});try{const p=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];p.on('pageerror',e=>errors.push(String(e)));await p.goto('https://hengtong320.github.io/notionweb/anatomy/?release='+process.env.GITHUB_RUN_ID,{timeout:90000});await p.waitForFunction(()=>window.__ATLAS_SHARED__?.getState().version==='15.0.0'&&__FOOT_ATLAS__.getState().ready,undefined,{timeout:90000});if(!p.url().includes('/fullbody-tcm-v15/')||errors.length)throw Error(JSON.stringify({url:p.url(),errors}));fs.writeFileSync('fullbody-tcm-v15/checks/stable-entry.json',JSON.stringify({success:true,url:p.url(),checkedAt:new Date().toISOString(),errors},null,2));}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - name: Export final viewer and real public evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas15-final-website
+          path: |
+            fullbody-tcm-v15/
+            /tmp/atlas15-reviewed/atlas15-delivery/
+          retention-days: 14
