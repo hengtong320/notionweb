@@ -1,0 +1,57 @@
+name: Verify V15 meridian display and switching repairs
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas15-candidate.yml'
+      - 'atlas15-delivery/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: atlas15-candidate
+  cancel-in-progress: true
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    env:
+      NODE_PATH: /tmp/atlas15/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned build and real browser tools
+        run: |
+          npm install --prefix /tmp/atlas15 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1
+          /tmp/atlas15/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Require the diagnosed baseline and build only the new viewer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          p=Path('fullbody-tcm-v14')
+          assert hashlib.sha256((p/'app.bundle.js').read_bytes()).hexdigest()=='440d3a9ba55e4a4276d161efffd05a400077324192252d5cbdd3b7c9ef86ac36'
+          PY
+          python atlas15-delivery/patch.py
+          if test -f atlas15-delivery/refine.py; then python atlas15-delivery/refine.py; fi
+          for f in fullbody-tcm-v15/{learning-enhancements,shared-v14,route-corridors-v13,surface-v13,tissues-v4}.js; do node --check "$f"; done
+          node atlas15-delivery/build.cjs
+          test -z "$(git diff HEAD -- fullbody-tcm-v9/ fullbody-tcm-v11/ fullbody-tcm-v12/ fullbody-tcm-v13/ fullbody-tcm-v14/ anatomy/)"
+      - name: Chromium actual meridian and model-switch journeys
+        run: node atlas15-delivery/verify.cjs
+      - name: WebKit actual meridian and model-switch journeys
+        env:
+          BROWSER: webkit
+        run: node atlas15-delivery/verify.cjs
+      - name: Export candidate with actual rendered evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas15-candidate
+          path: |
+            fullbody-tcm-v15/
+            atlas15-delivery/
+          retention-days: 14
