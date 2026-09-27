@@ -1,0 +1,29 @@
+/* Same DOM, enlarged viewport; no model swap or scene reparenting. */
+#viewport,#viewport canvas{touch-action:none;overscroll-behavior:contain;-webkit-user-select:none;user-select:none}
+#wideViewBar[hidden],#wideViewBottom[hidden],#heguReferenceCard[hidden]{display:none!important}
+#wideClosePanel{display:none}#fitVisibleBtn{font-size:11px;min-height:36px;line-height:1.2}
+#wideViewBar,#wideViewBottom{position:absolute;display:flex;align-items:center;justify-content:center;gap:6px;z-index:25;padding:7px;background:#fafcf7f5;border:1px solid #cfddcd;border-radius:12px;box-shadow:0 3px 20px #29483410}
+#wideViewBar{top:max(8px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);max-width:calc(100% - 16px);width:max-content}
+#wideViewBottom{bottom:max(8px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);max-width:calc(100% - 16px);width:max-content}
+#wideViewBar button,#wideViewBottom button,#wideClosePanel{min-width:44px;min-height:44px;white-space:nowrap;padding:7px 12px;border:1px solid #c8d8c7;border-radius:8px;color:#295840;background:#f3f8ee;font:500 14px/1.4 system-ui;touch-action:manipulation;cursor:pointer}
+#wideViewBar .wide-title{padding:0 8px;white-space:nowrap;font-size:14px;color:#3c634b}
+#wideViewBottom small{max-width:92px;line-height:1.4;font-size:12px;color:#627861}#widePan[aria-pressed=true]{background:#dcebd3}
+body.atlas-expanded{overflow:hidden!important;height:var(--atlas-view-height,100dvh);overscroll-behavior:none}
+body.atlas-expanded>.topbar,body.atlas-expanded>.statusbar{display:none!important}
+body.atlas-expanded .workspace{position:fixed!important;inset:auto 0!important;top:var(--atlas-view-top,0px)!important;height:var(--atlas-view-height,100dvh)!important;width:100%!important;margin:0!important;grid-template-columns:minmax(0,1fr)!important;z-index:300;overflow:hidden}
+body.atlas-expanded .stage{position:relative!important;grid-column:1!important;grid-row:1!important;width:100%;height:100%;min-height:0;border-radius:0}
+body.atlas-expanded #viewport{position:absolute!important;inset:0!important;width:100%!important;height:100%!important}
+body.atlas-expanded .stage-heading,body.atlas-expanded .view-switcher,body.atlas-expanded .study-toolbar,body.atlas-expanded #tcmStatus,body.atlas-expanded .stage-tools,body.atlas-expanded .control-dock,body.atlas-expanded .zoom-instruction,body.atlas-expanded #axisGizmo{display:none!important}
+body.atlas-expanded .sidebar,body.atlas-expanded .detail-panel{display:none!important;position:absolute!important;top:72px!important;bottom:80px!important;height:auto!important;max-height:none!important;width:min(350px,calc(100% - 24px))!important;z-index:40;overflow:auto;background:#f8fbf4!important;box-shadow:0 8px 30px #23493224;transform:none!important;border:1px solid #cbdcc8;border-radius:10px}
+body.atlas-expanded.nav-open .sidebar{display:flex!important;left:12px!important;right:auto!important}
+body.atlas-expanded.detail-open .detail-panel{display:flex!important;right:12px!important;left:auto!important}
+body.atlas-expanded #wideClosePanel{position:absolute;right:18px;top:76px;z-index:45;display:none}
+body.atlas-expanded.nav-open #wideClosePanel,body.atlas-expanded.detail-open #wideClosePanel{display:block}
+body.atlas-expanded .detail-panel .detail-scroll{padding-top:56px;min-height:0;overflow:auto}
+body.atlas-expanded .sidebar{padding-top:52px}
+body.atlas-expanded .empty-view-cue{bottom:94px}
+#heguReferenceCard{padding:14px 16px;background:#f0f6e9;border:1px solid #d2dfc5;border-radius:10px;margin:12px 0}
+#heguReferenceCard h3{font-size:15px;margin:0 0 8px}#heguReferenceCard p{font-size:14px;line-height:1.7;margin:6px 0}#heguReferenceCard small{display:block;font-size:12px;line-height:1.6;color:#687765;margin-top:8px}
+#heguLandmarks,.body-context-button{min-height:44px;padding:7px 12px;background:#eef6e4;border:1px solid #bfd3ae;border-radius:7px;color:#31573e;cursor:pointer}
+body.point-detail-active .detail-scroll>#heguReferenceCard:not([hidden]){display:block!important}
+@media(max-width:650px){#wideViewBar,#wideViewBottom{gap:4px;padding:5px}#wideViewBar .wide-title,#wideViewBottom small{display:none}#wideViewBar button,#wideViewBottom button{font-size:12px;padding:5px 7px}#wideNative{display:none}body.atlas-expanded .sidebar,body.atlas-expanded .detail-panel{top:65px!important;bottom:72px!important}}
