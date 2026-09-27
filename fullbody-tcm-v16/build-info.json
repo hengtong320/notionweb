@@ -1,0 +1,63 @@
+{
+  "version": "16.0.0",
+  "base": "15.0.2",
+  "files": {
+    "index.html": {
+      "bytes": 16363,
+      "sha256": "63f5e19d000d41414356baf83d537407cda407b72b32228c8b622823ab280efb"
+    },
+    "app.bundle.js": {
+      "bytes": 2929641,
+      "sha256": "507917d7342be513c9b1dd64dc03b2d00fdb59b89652e8307f870795fd33abd9"
+    },
+    "view-v16.js": {
+      "bytes": 10954,
+      "sha256": "eda62dd9d8f25b35dce0386412494f13624fde7c670ebf7868dcdfdb81cd94c4"
+    },
+    "view-v16.css": {
+      "bytes": 4788,
+      "sha256": "7292f71da405fd43c971e3543b2592869afc5ab619ae79b345aa6d14cc8d0b96"
+    },
+    "styles.css": {
+      "bytes": 68625,
+      "sha256": "02690d26e411ad8c587254d68494e9b0fe9103af37aca5edd485b05c43b100e4"
+    },
+    "shared-v14.css": {
+      "bytes": 7841,
+      "sha256": "22f494ac5d6e72d356574069a44c629e8c3c4aad701a91f0c35e1550a69c7020"
+    },
+    "shared-v14.js": {
+      "bytes": 25994,
+      "sha256": "12f5debd7c1edbacc5923c740ce9d245e58548347b2cc3139650d54a36bda948"
+    },
+    "tissues-v4.js": {
+      "bytes": 29765,
+      "sha256": "f0c99ed4e27e264d8eedb1349d353d752b8623ad10fc7a46366be7bf86f9da23"
+    },
+    "female-v12.js": {
+      "bytes": 30530,
+      "sha256": "db36e8103edcd14886d9c93699ef72af42e36871d0151fe86ebc21906e7b50e8"
+    },
+    "navigation-points-v6.js": {
+      "bytes": 204371,
+      "sha256": "490fcef0caaa0b617b65b2e62d8ab53c728dfa2519d27b8c247012e168a3141e"
+    },
+    "hegu-reference-v16.json": {
+      "bytes": 1306,
+      "sha256": "2f73514cc831a9b4cc996c21d4b91c9be080b07e5a150ffc9d47a6ac4e89469e"
+    },
+    "evidence.bundle.js": {
+      "bytes": 935417,
+      "sha256": "02b34fde0252886bcfb7cf3fc22b5a4516723d4e9aa06f994fcecd6da354803b"
+    }
+  },
+  "builtAt": "2026-09-27T00:38:06.409Z",
+  "clinicalCalibration": false,
+  "sourceMeshesUnchanged": true,
+  "heguBoneMidshaftReference": true,
+  "otherAcupointCoordinatesUnchanged": true,
+  "stableInPageExpansion": true,
+  "organBodyContext": true,
+  "femaleUsesNativeContext": true,
+  "physicalIPadTested": false
+}

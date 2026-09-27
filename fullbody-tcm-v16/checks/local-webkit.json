@@ -1,0 +1,356 @@
+{
+  "version": "16.0.0",
+  "browser": "webkit",
+  "online": false,
+  "startedAt": "2026-09-27T00:39:53.074Z",
+  "checks": [
+    {
+      "name": "Viewer returns HTTP200",
+      "pass": true
+    },
+    {
+      "name": "Original 210 bone meshes retained",
+      "pass": true
+    },
+    {
+      "name": "iPad-sized touch session opens stable expanded view",
+      "pass": true
+    },
+    {
+      "name": "Tablet expansion does not require native fullscreen",
+      "pass": true
+    },
+    {
+      "name": "Viewport uses actual expanded height",
+      "pass": true
+    },
+    {
+      "name": "Same gender selector is available inside expanded mode",
+      "pass": true
+    },
+    {
+      "name": "WebKit zoom button changes view",
+      "pass": true
+    },
+    {
+      "name": "WebKit pointer pan changes camera",
+      "pass": true
+    },
+    {
+      "name": "Pan toggle uses shared camera",
+      "pass": true
+    },
+    {
+      "name": "Fullscreen-exit state notification does not collapse webpage expansion",
+      "pass": true
+    },
+    {
+      "name": "Fullscreen state handling preserves target and zoom",
+      "pass": true
+    },
+    {
+      "name": "Native fullscreen unsupported or declined does not lose expanded state",
+      "pass": true
+    },
+    {
+      "name": "Complete-display contains all visible bone bounding corners",
+      "pass": true,
+      "detail": {
+        "corners": [
+          [
+            -0.4437723988097174,
+            -0.7304165081323751,
+            0.9997687120924063
+          ],
+          [
+            0.3519488376450303,
+            -0.6875903611257976,
+            0.9997797439296728
+          ],
+          [
+            -0.4628404779633559,
+            0.7683113350788255,
+            0.9997573022387125
+          ],
+          [
+            0.3664173388252177,
+            0.7480743701960249,
+            0.9997692810955396
+          ],
+          [
+            -0.39236332738610746,
+            -0.8010454689819898,
+            0.9997505183659829
+          ],
+          [
+            0.45318815690598707,
+            -0.7522885625874709,
+            0.9997630779421897
+          ],
+          [
+            -0.4104307538914834,
+            0.8018444731163148,
+            0.9997374529845462
+          ],
+          [
+            0.4730921216366538,
+            0.7786746008485981,
+            0.9997511679158219
+          ]
+        ],
+        "fit": {
+          "hf": 0.8542372881355932,
+          "wf": 0.94,
+          "top": 86,
+          "bottom": 80,
+          "left": 18,
+          "right": 18,
+          "width": 820,
+          "height": 1180
+        },
+        "near": 0.5,
+        "far": 29193.99063678663
+      }
+    },
+    {
+      "name": "Orientation keeps chosen camera rather than resets overview",
+      "pass": true
+    },
+    {
+      "name": "Landscape remains expanded with no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Original layer panel accessible inside expanded view",
+      "pass": true
+    },
+    {
+      "name": "Closing panel does not exit expanded view",
+      "pass": true
+    },
+    {
+      "name": "Same gender selector returns to original header",
+      "pass": true
+    },
+    {
+      "name": "User can explicitly exit expansion",
+      "pass": true
+    },
+    {
+      "name": "Male chest preset shows heart and lungs",
+      "pass": true
+    },
+    {
+      "name": "Organs default to skeleton-in-body context, not isolated",
+      "pass": true,
+      "detail": {
+        "visibleBones": 210,
+        "boneOpacity": 0.32
+      }
+    },
+    {
+      "name": "No default organ clipping planes",
+      "pass": true
+    },
+    {
+      "name": "Source lung available",
+      "pass": true,
+      "detail": "visceral-93"
+    },
+    {
+      "name": "Lung has a real mouse hit target",
+      "pass": true,
+      "detail": {
+        "x": 547.0134575299957,
+        "y": 407.0100967528118
+      }
+    },
+    {
+      "name": "Actual organ click selects that source structure",
+      "pass": true
+    },
+    {
+      "name": "Organ selection keeps skeleton visible",
+      "pass": true
+    },
+    {
+      "name": "Explicit single-organ inspection still works",
+      "pass": true
+    },
+    {
+      "name": "Returning from single organ restores body reference",
+      "pass": true
+    },
+    {
+      "name": "Visible body-position action present",
+      "pass": true
+    },
+    {
+      "name": "Abdominal organs also keep skeleton context",
+      "pass": true
+    },
+    {
+      "name": "Female organs retain own surface and partial skeleton",
+      "pass": true,
+      "detail": {
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 61,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 87,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 0.1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "skeletal": {
+          "on": true,
+          "opacity": 0.35,
+          "loaded": true,
+          "loading": false,
+          "count": 91,
+          "visible": 57
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 70,
+          "visible": 70
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 124,
+          "visible": 51
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "name": "Female context never uses male skeleton",
+      "pass": true
+    },
+    {
+      "name": "Actual Hegu catalog click selects LI4",
+      "pass": true
+    },
+    {
+      "name": "LI4 source reference equals reproducible shaft-midpoint derivation",
+      "pass": true,
+      "detail": {
+        "position": [
+          -193.98471817890913,
+          755.9842375995376,
+          3.947292289192927
+        ],
+        "fraction": 0.49999999999999845,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "name": "Hegu viewing direction is dorsal, not old palm view",
+      "pass": true,
+      "detail": [
+        -0.6871418551963485,
+        0.0215113783725345,
+        -0.7262047448466817
+      ]
+    },
+    {
+      "name": "Actual LI4 focus is on hand-dorsal side",
+      "pass": true
+    },
+    {
+      "name": "Hegu landmark explanation is readable",
+      "pass": true
+    },
+    {
+      "name": "Landmark control preserves selected LI4 and shows hand reference",
+      "pass": true
+    },
+    {
+      "name": "Left Hegu uses corresponding mirrored reference",
+      "pass": true
+    },
+    {
+      "name": "Meridian switches still preserve chosen view",
+      "pass": true
+    },
+    {
+      "name": "Lumbar separation remains vertical",
+      "pass": true
+    },
+    {
+      "name": "Original skeleton restores",
+      "pass": true
+    },
+    {
+      "name": "No unhandled JavaScript error",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "success": true,
+  "physicalIPadTested": false,
+  "url": "http://127.0.0.1:46563/fullbody-tcm-v16/",
+  "nativeFullscreenActuallyEntered": false,
+  "finishedAt": "2026-09-27T00:40:22.786Z"
+}
