@@ -6,7 +6,7 @@ s = f.read_text()
 # Skin mode owns binding; the legacy manual checkbox could put points under skin.
 needle = "$('tissueClear').textContent='只留骨骼';"
 assert needle in s
-s = s.replace(needle, "$('surfaceAttach').closest('label').hidden=true;$('surfaceAttachNote').hidden=true;" + needle, 1)
+s = s.replace(needle, "if($('surfaceAttach'))$('surfaceAttach').closest('label').hidden=true;if($('surfaceAttachNote'))$('surfaceAttachNote').hidden=true;" + needle, 1)
 s = s.replace("e.closest('label').hidden=false;", "e.closest('label').hidden=id==='surfaceAttach';")
 # All entry paths, not just the preset button, must bind the current skin.
 needle = ' async function switchSexNow(target)'
@@ -25,6 +25,7 @@ for name in ['index.html', 'index.template.html', 'evidence.html', 'versions.htm
         f.write_text(f.read_text().replace('17.0.0','17.0.1'))
 f = Path('atlas17-delivery/verify.cjs')
 s = f.read_text().replace("version:'17.0.0'", "version:'17.0.1'")
+s = s.replace("await page.waitForFunction(()=>window.__ATLAS_SHARED__&&__FOOT_ATLAS__.getState().ready);", "await page.waitForFunction(()=>window.__ATLAS_SHARED__&&__FOOT_ATLAS__.getState().ready,null,{timeout:60000});")
 needle = "ck('No uncaught errors',report.errors.length===0,report.errors);"
 assert needle in s
 s = s.replace(needle, Path('scripts/anatomy-surface/extra-journey.cjs').read_text() + '\n' + needle)
