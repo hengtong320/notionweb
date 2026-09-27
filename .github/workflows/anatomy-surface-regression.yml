@@ -1,0 +1,37 @@
+name: Anatomy surface regression
+on:
+  push:
+    paths:
+      - '.github/workflows/anatomy-surface-regression.yml'
+      - 'scripts/anatomy-surface/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare source workspace
+        run: |
+          mkdir -p surface-workspace
+          cp -a fullbody-tcm-v15 surface-workspace/
+          cp -a anatomy surface-workspace/
+          if [ -d scripts/anatomy-surface ]; then cp -a scripts/anatomy-surface surface-workspace/tests; fi
+          find .github/workflows -maxdepth 1 -type f -print > surface-workspace/workflows.txt
+          find fullbody-tcm-v15 -maxdepth 2 -type f -printf '%p %s\n' > surface-workspace/inventory.txt
+      - name: Install graphics and test dependencies
+        run: |
+          cd surface-workspace
+          npm init -y
+          npm install --save-exact three@0.170.0 esbuild@0.25.10 @playwright/test@1.55.1
+      - name: Source workspace artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: anatomy-surface-workspace
+          path: surface-workspace
+          retention-days: 3
