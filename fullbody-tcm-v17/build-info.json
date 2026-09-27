@@ -1,0 +1,185 @@
+{
+  "version": "17.0.1",
+  "base": "16.0.1",
+  "clinicalCalibration": false,
+  "femaleClinicalRegistration": false,
+  "femaleDisplayMapping": "independent skin with proportional regional transfer, illustrative only",
+  "sourceMeshesUnchanged": true,
+  "files": {
+    "acupoints-data.js": {
+      "bytes": 69118,
+      "sha256": "018cfb7926dba5c4ca693d04fc8778e0ab0f26478c3acf09b7c5464d801d5fc9"
+    },
+    "app.bundle.js": {
+      "bytes": 2933892,
+      "sha256": "300609795620ed430edaf5dce7daa58ef38cd117686f9d0b85f33f73c982cf81"
+    },
+    "app.js": {
+      "bytes": 92756,
+      "sha256": "027113fc881ce8d38f319dd64cd6958dff84975c80139eb20941c8e502b7f4d2"
+    },
+    "baseline-data.js": {
+      "bytes": 20580,
+      "sha256": "daea303f5008a3dc422ba736e7f4c5db4cf4e71e7fcaf5fe01387d953a1d9eef"
+    },
+    "bone-pinyin.js": {
+      "bytes": 9109,
+      "sha256": "5d22a11eb4e38952782ec0c111ee58fa60759950c8f5704c162641c2795da8a9"
+    },
+    "bones-data.js": {
+      "bytes": 2622,
+      "sha256": "3074249933a0c7ae79fd89f00a514e736899e851d5ce36f2e7baa52470d6d826"
+    },
+    "calibration.html": {
+      "bytes": 1542,
+      "sha256": "0bddf9236e1e13f5d4a28cd04bdd1b51d347fa18d10a2d8648ce0fd6a98e1cbf"
+    },
+    "catalog-v10.js": {
+      "bytes": 3204,
+      "sha256": "98467b5e1f24e6fca2b8316187214943d0a70d455fe8cde473b9d10faad15a4f"
+    },
+    "evidence-page-v10.js": {
+      "bytes": 5554,
+      "sha256": "b560dec1c50eade57bfef2ef578303d2ea614ee9960381085f2d67d7d776137b"
+    },
+    "evidence-ui-v9.js": {
+      "bytes": 5497,
+      "sha256": "5c680cd198f433bdbedf5c3213aeed5759d400d5339719715e6d16e2bb5acd65"
+    },
+    "evidence.bundle.js": {
+      "bytes": 935617,
+      "sha256": "32ce625313349318e54eb32aa87fd56e96a3c7ceb8fc0256734f3d17157ba603"
+    },
+    "evidence.html": {
+      "bytes": 5660,
+      "sha256": "6962f33a4fa6e1f6da853d1024a7dc98a91f2b03929be057a11268017025c9da"
+    },
+    "female-v12.js": {
+      "bytes": 31908,
+      "sha256": "db28e7a9eb140817f5e479c79e3b2ec92538b0f4e9c9bd8bc0eadbf2f02cdbca"
+    },
+    "head-study-v8.js": {
+      "bytes": 3679,
+      "sha256": "b22cac416e9ae462f88d29de3194b66e3808db1d7fe18ccfabd3ad4c15564ce8"
+    },
+    "index.html": {
+      "bytes": 16357,
+      "sha256": "72e997b5e182771f581a5c331569bb8533f7df815f90f93a40de778f57f0e55c"
+    },
+    "index.template.html": {
+      "bytes": 16290,
+      "sha256": "e1a243a50f6f891a453c117db2215ca96c9b8e1a9eee9ee35a6d0cddf99841ca"
+    },
+    "learning-enhancements.js": {
+      "bytes": 63401,
+      "sha256": "0c6aef2ae0dd970060c3adb1148d06b1f14908f4c03afc68be41f49ab870e6c4"
+    },
+    "navigation-points-v6.js": {
+      "bytes": 204371,
+      "sha256": "490fcef0caaa0b617b65b2e62d8ab53c728dfa2519d27b8c247012e168a3141e"
+    },
+    "pronunciation-v5.js": {
+      "bytes": 2669,
+      "sha256": "95973facf55e5f65fe7d4c730435a7403f9501c992d1f035f30895d7a796fea9"
+    },
+    "reference-data.js": {
+      "bytes": 58908,
+      "sha256": "ec06e60dea8a95e8709b5200025b626f8a912fe73caf13a98daaec46c1ff56a9"
+    },
+    "refinement-v12.css": {
+      "bytes": 9143,
+      "sha256": "4b6bd341b4c74e02521619d63e39279d83d63f72caa4e05b7ff03aca20199f43"
+    },
+    "refinement-v12.js": {
+      "bytes": 9348,
+      "sha256": "216ed72874633db6f99bcc51e13e9060b5bace3c1f1196523a4ffcdf5148c703"
+    },
+    "route-corridors-v13.js": {
+      "bytes": 3190,
+      "sha256": "38dd6e369c85757a181bbeecca491be5951e4bc84783ee289ef334352d9f4593"
+    },
+    "route-geometry-v9.js": {
+      "bytes": 4267,
+      "sha256": "1f34380fb60ac765d1fb49f75fd6f81cc070b1748c5d3205bac419858d5f79f5"
+    },
+    "route-guides-v5.js": {
+      "bytes": 2758,
+      "sha256": "80b3c4ba67b8f20e35f36607bf1068a217f0df161e36d9409ddb8c72f784c653"
+    },
+    "route-guides-v6.js": {
+      "bytes": 1213,
+      "sha256": "c587e0ce94c2aa61a136f6c89671e4967818b3bec9c2b40fca68cfd17c2760fc"
+    },
+    "route-smoothing-v8.js": {
+      "bytes": 2253,
+      "sha256": "b627c74cdfdc05aac0624d77fe51401c0e2b72a4c9df6758cc315f96d7f7b412"
+    },
+    "selection-rules-v10.js": {
+      "bytes": 679,
+      "sha256": "d71885e2df398c77bfd95af4ab2947e2b34bf9612c6883fd37c537d8f79444f9"
+    },
+    "shared-v13.css": {
+      "bytes": 2306,
+      "sha256": "930ae0dbe5270a440077c8397383422372e334185d4aeea81f60cfa5e23d1367"
+    },
+    "shared-v13.js": {
+      "bytes": 10464,
+      "sha256": "4bca1ee67bd98be1c698d1c8ef3980bf3a4ab765c63219b2b42a818d95728aa2"
+    },
+    "shared-v14.css": {
+      "bytes": 7713,
+      "sha256": "604c107344499172cc19ae241278da62f496c717c0c3214d42787705ba8c27a1"
+    },
+    "shared-v14.js": {
+      "bytes": 26674,
+      "sha256": "f3cf7db06e7f86836de00b7645820f1c27cad6d05f3824e411e0a7b329ca7c53"
+    },
+    "skin-v17.js": {
+      "bytes": 12278,
+      "sha256": "a08dddbc15ea88ce423d54dbf47228d2e02b49ddf3c8816513ca9a04e4ae8756"
+    },
+    "speech-v4.js": {
+      "bytes": 5483,
+      "sha256": "1514277daf81034a7e6ddccc57cae54e58071213bc7ac1fe47c9386161097bef"
+    },
+    "stability-v10.css": {
+      "bytes": 4394,
+      "sha256": "be7f048e65285c9e87363e25b09cf7d093daddb708e758f82a48e6643831f794"
+    },
+    "stability-v10.js": {
+      "bytes": 13066,
+      "sha256": "629593bbf3205ad69814ba7f0e6aa95696b482991ee10094c71fbd7f5dfd5501"
+    },
+    "styles.css": {
+      "bytes": 68625,
+      "sha256": "02690d26e411ad8c587254d68494e9b0fe9103af37aca5edd485b05c43b100e4"
+    },
+    "surface-v11.js": {
+      "bytes": 4811,
+      "sha256": "28a199fc35e696a014d81e64be8f132f9b81fa79feb58d988d040a3b4f25645d"
+    },
+    "surface-v13.js": {
+      "bytes": 10415,
+      "sha256": "90c9577b54426737de1c1b0dc91412f6e04492df347e740ae58186b1a33e2512"
+    },
+    "tissues-v4.js": {
+      "bytes": 30007,
+      "sha256": "7304f2a04b903bb05b96c90b516c5e0efc7fbd02eba5cc8fafe018902eb945b8"
+    },
+    "versions.html": {
+      "bytes": 1386,
+      "sha256": "847c9bae14fc6f67d9f1c869122d932f270b3f7c533f8935827e4487f8e9dc04"
+    },
+    "view-v16.css": {
+      "bytes": 4788,
+      "sha256": "7292f71da405fd43c971e3543b2592869afc5ab619ae79b345aa6d14cc8d0b96"
+    },
+    "view-v16.js": {
+      "bytes": 10970,
+      "sha256": "a9d68c423da9b0debbd86b06e77d69345e83e581a21451e6f268500ea156abd1"
+    }
+  },
+  "builtAt": "2026-09-27T13:45:21.020Z",
+  "sourceCommit": "2add8894444f67e1669da51503df4cdc89cfef9d",
+  "verificationRun": "36323418731"
+}

@@ -1,0 +1,21 @@
+{
+  "version": "17.0.1",
+  "sourceCommit": "2add8894444f67e1669da51503df4cdc89cfef9d",
+  "verificationRun": 36323418731,
+  "localBrowserChecks": {
+    "chromium": {
+      "passed": 43,
+      "finishedAt": "2026-09-27T13:46:53.037Z"
+    },
+    "webkit": {
+      "passed": 43,
+      "finishedAt": "2026-09-27T13:47:52.961Z"
+    }
+  },
+  "bundleSHA256": "300609795620ed430edaf5dce7daa58ef38cd117686f9d0b85f33f73c982cf81",
+  "defaultXray": false,
+  "maleFemaleIndependentSkin": true,
+  "sourceMeshesUnchanged": true,
+  "clinicalCalibration": false,
+  "femaleMapping": "分部位比例与独立皮肤投影，学习示意，未逐穴临床配准"
+}

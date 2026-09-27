@@ -1,0 +1,26 @@
+{
+  "points": [
+    {
+      "code": "PC6",
+      "side": "right",
+      "standardEdition": null,
+      "standardSection": null,
+      "sourceURL": null,
+      "posture": null,
+      "landmarkIDs": [],
+      "skinModelSHA256": null,
+      "triangleIndex": null,
+      "barycentric": null,
+      "reviewRecords": [],
+      "measurementProtocol": null,
+      "measuredError": null,
+      "positionSource": "legacy-navigation",
+      "renderOffset": {
+        "value": 0,
+        "units": "model-unit",
+        "changesClinicalCoordinate": false
+      },
+      "note": "Template with intentionally missing fields. This is not a registered coordinate."
+    }
+  ]
+}
