@@ -1,0 +1,57 @@
+name: Verify V17 independent skin meridians
+on:
+  push:
+    paths: ['atlas17-delivery/**', '.github/workflows/atlas17-candidate.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: atlas17-candidate
+  cancel-in-progress: true
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/a17/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Restore complete repair sources
+        run: |
+          python - <<'PY'
+          import json,gzip,base64
+          from pathlib import Path
+          p=Path('atlas17-delivery')
+          parts=''.join((p/('payload.%02d'%i)).read_text() for i in range(4))
+          assert len(parts)==16368
+          obj=json.loads(gzip.decompress(base64.b64decode(parts)))
+          for name,content in obj.items():
+              assert '/' not in name
+              (p/name).write_text(content)
+          PY
+          if test -f atlas17-delivery/fixes.py; then python atlas17-delivery/fixes.py; fi
+      - name: Install pinned renderer and browsers
+        run: |
+          npm install --prefix /tmp/a17 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1
+          /tmp/a17/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Build only V17 while preserving the stable V16
+        run: |
+          python atlas17-delivery/patch.py
+          node atlas17-delivery/build.cjs
+          test -z "$(git diff HEAD -- fullbody-tcm-v16/ anatomy/)"
+      - name: Chromium real normal-depth skin journey
+        run: node atlas17-delivery/verify.cjs
+      - name: WebKit real normal-depth skin journey
+        env: {BROWSER: webkit}
+        run: node atlas17-delivery/verify.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas17-candidate
+          path: |
+            atlas17-delivery/
+            fullbody-tcm-v17/
+          retention-days: 14
