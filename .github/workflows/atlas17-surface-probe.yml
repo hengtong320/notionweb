@@ -1,0 +1,45 @@
+name: Inspect V17 skin projection baseline
+on:
+  push:
+    paths: ['.github/workflows/atlas17-surface-probe.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NODE_PATH: /tmp/a17/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install pinned tools
+        run: |
+          npm install --prefix /tmp/a17 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1
+          /tmp/a17/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Inspect actual baseline without publishing
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('fullbody-tcm-v16/app.js');s=p.read_text();s=s.replace('femaleViewer=initFemale(', 'window.__SKIN_DEBUG__={THREE,scene,camera,controls,renderer,invalidate};femaleViewer=initFemale(');p.write_text(s)
+          PY
+          node - <<'JS'
+          const esbuild=require('esbuild');esbuild.buildSync({entryPoints:['fullbody-tcm-v16/app.js'],outfile:'fullbody-tcm-v16/app.bundle.js',bundle:true,minify:true,loader:{'.txt':'text'},nodePaths:[process.env.NODE_PATH]});
+          JS
+          mkdir -p atlas17-probe
+          cat > /tmp/probe17.cjs <<'JS'
+          const {chromium}=require('playwright'),fs=require('fs'),http=require('http'),path=require('path');
+          (async()=>{const server=http.createServer((q,s)=>{const p=path.join(process.cwd(),decodeURIComponent(q.url.split('?')[0]));const f=p.endsWith('/')?p+'index.html':p;fs.readFile(f,(e,b)=>{s.statusCode=e?404:200;s.setHeader('Content-Type',f.endsWith('.js')?'application/javascript':f.endsWith('.html')?'text/html':f.endsWith('.css')?'text/css':'application/octet-stream');s.end(e?'missing':b);});}).listen(8765);const browser=await chromium.launch({args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});const page=await browser.newPage({viewport:{width:1440,height:1000}});page.setDefaultTimeout(120000);const out={errors:[]};page.on('pageerror',e=>out.errors.push(String(e)));try{await page.goto('http://localhost:8765/fullbody-tcm-v16/');await page.waitForFunction(()=>window.__ATLAS_SHARED__&&window.__FOOT_ATLAS__?.getState().ready);await page.evaluate(async()=>{__ATLAS_LEARNING__.setMeridians(['HT','PC']);await __ATLAS_SHARED__.choose('surface',false);__ATLAS_LEARNING__.setMeridians(['HT','PC']);__ATLAS_LEARNING__.fitMeridian([0,0,1]);});await page.waitForTimeout(1200);
+          out.male=await page.evaluate(()=>{const {THREE,scene,camera}=__SKIN_DEBUG__,skin=[];scene.traverse(n=>{if(n.isMesh&&n.userData.atlas?.system==='surface')skin.push(n);});const ray=new THREE.Raycaster(),v=new THREE.Vector3(),points=__ATLAS_LEARNING__.getNavigationCatalog().filter(p=>p.code.startsWith('HT')||p.code.startsWith('PC'));return {state:__ATLAS_LEARNING__.getState(),stats:__ATLAS_LEARNING__.getSurfaceState(),skin:skin.map(n=>({name:n.userData.atlas.en,side:n.userData.atlas.side,visible:n.visible,box:new THREE.Box3().setFromObject(n).toJSON?.()||[new THREE.Box3().setFromObject(n).min.toArray(),new THREE.Box3().setFromObject(n).max.toArray()]})),points:points.map(p=>{v.fromArray(p.position);const d=v.clone().sub(camera.position),len=d.length();ray.set(camera.position,d.normalize());ray.far=Infinity;const hit=ray.intersectObjects(skin,false)[0];return {code:p.code,side:p.side,position:p.position,screen:__ATLAS_LEARNING__.getPointScreen(p.code,p.side),occlusion:hit?len-hit.distance:null};})};});await page.screenshot({path:'atlas17-probe/male-baseline.png'});
+          await page.evaluate(async()=>{await __ATLAS_SHARED__.switchSex('female');await __ATLAS_SHARED__.choose('surface',false);});await page.waitForTimeout(1000);out.female=await page.evaluate(()=>{const {THREE,scene}=__SKIN_DEBUG__,skin=[];scene.traverse(n=>{if(n.isMesh&&n.userData.female?.system==='surface')skin.push(n);});const box=new THREE.Box3();skin.forEach(n=>box.expandByObject(n));const verts=[];for(const n of skin){const a=n.geometry.attributes.position,v=new THREE.Vector3();for(let i=0;i<a.count;i++){v.fromBufferAttribute(a,i).applyMatrix4(n.matrixWorld);verts.push(v.toArray());}}return {box:[box.min.toArray(),box.max.toArray()],state:__ATLAS_FEMALE__.getState(),meshes:skin.map(n=>({name:n.userData.female,vertices:n.geometry.attributes.position.count,box:[new THREE.Box3().setFromObject(n).min.toArray(),new THREE.Box3().setFromObject(n).max.toArray()]})),profiles:Array.from({length:20},(_,i)=>{const y=box.min.y+(box.max.y-box.min.y)*i/19,ps=verts.filter(v=>Math.abs(v[1]-y)<8);return {y,count:ps.length,x:ps.map(p=>p[0]).sort((a,b)=>a-b).filter((v,k)=>k%Math.max(1,Math.floor(ps.length/30))===0),z:ps.length?[Math.min(...ps.map(p=>p[2])),Math.max(...ps.map(p=>p[2]))]:[]};})};});await page.screenshot({path:'atlas17-probe/female-baseline.png'});
+          }catch(e){out.failure=String(e);await page.screenshot({path:'atlas17-probe/failure.png'});throw e;}finally{fs.writeFileSync('atlas17-probe/baseline.json',JSON.stringify(out,null,2));await browser.close();server.close();}})();
+          JS
+          node /tmp/probe17.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas17-surface-baseline
+          path: atlas17-probe/
