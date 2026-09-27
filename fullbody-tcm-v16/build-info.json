@@ -1,18 +1,18 @@
 {
-  "version": "16.0.0",
+  "version": "16.0.1",
   "base": "15.0.2",
   "files": {
     "index.html": {
       "bytes": 16363,
-      "sha256": "63f5e19d000d41414356baf83d537407cda407b72b32228c8b622823ab280efb"
+      "sha256": "395adcd4a7bb965b03dfe76a2405593f60ee1c31b5b1ea1cb918234620d1ac14"
     },
     "app.bundle.js": {
-      "bytes": 2929641,
-      "sha256": "507917d7342be513c9b1dd64dc03b2d00fdb59b89652e8307f870795fd33abd9"
+      "bytes": 2930426,
+      "sha256": "deb7a994551ee0bdad5e99d4b47ac7037eee01a443a4694d9ae2125711c8a5b3"
     },
     "view-v16.js": {
-      "bytes": 10954,
-      "sha256": "eda62dd9d8f25b35dce0386412494f13624fde7c670ebf7868dcdfdb81cd94c4"
+      "bytes": 10970,
+      "sha256": "a9d68c423da9b0debbd86b06e77d69345e83e581a21451e6f268500ea156abd1"
     },
     "view-v16.css": {
       "bytes": 4788,
@@ -27,16 +27,16 @@
       "sha256": "22f494ac5d6e72d356574069a44c629e8c3c4aad701a91f0c35e1550a69c7020"
     },
     "shared-v14.js": {
-      "bytes": 25994,
-      "sha256": "12f5debd7c1edbacc5923c740ce9d245e58548347b2cc3139650d54a36bda948"
+      "bytes": 26157,
+      "sha256": "a6b31147e2c1e471ad2e4a247aa1a1e418e502bace459a8948e4a4fa3b3e526a"
     },
     "tissues-v4.js": {
-      "bytes": 29765,
-      "sha256": "f0c99ed4e27e264d8eedb1349d353d752b8623ad10fc7a46366be7bf86f9da23"
+      "bytes": 29715,
+      "sha256": "77946b8dbf80109b90618fa67931a4760dedd59a72375104af4cdbbcf0fa9ac2"
     },
     "female-v12.js": {
-      "bytes": 30530,
-      "sha256": "db36e8103edcd14886d9c93699ef72af42e36871d0151fe86ebc21906e7b50e8"
+      "bytes": 30967,
+      "sha256": "fd23d868b6d6d03c77b2847de657743cb04f04c98ced19588481fed5d0750b36"
     },
     "navigation-points-v6.js": {
       "bytes": 204371,
@@ -46,12 +46,20 @@
       "bytes": 1306,
       "sha256": "2f73514cc831a9b4cc996c21d4b91c9be080b07e5a150ffc9d47a6ac4e89469e"
     },
+    "surface-v13.js": {
+      "bytes": 10415,
+      "sha256": "90c9577b54426737de1c1b0dc91412f6e04492df347e740ae58186b1a33e2512"
+    },
+    "evidence-data-v9.json": {
+      "bytes": 461164,
+      "sha256": "c8bdd4acabd07738e70f2dc113e5ce911faf63c5c6da6537191025cfd0a9c9e3"
+    },
     "evidence.bundle.js": {
-      "bytes": 935417,
-      "sha256": "02b34fde0252886bcfb7cf3fc22b5a4516723d4e9aa06f994fcecd6da354803b"
+      "bytes": 935617,
+      "sha256": "32ce625313349318e54eb32aa87fd56e96a3c7ceb8fc0256734f3d17157ba603"
     }
   },
-  "builtAt": "2026-09-27T00:38:06.409Z",
+  "builtAt": "2026-09-27T04:00:52.327Z",
   "clinicalCalibration": false,
   "sourceMeshesUnchanged": true,
   "heguBoneMidshaftReference": true,

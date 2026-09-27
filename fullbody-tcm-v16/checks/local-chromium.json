@@ -1,8 +1,8 @@
 {
-  "version": "16.0.0",
+  "version": "16.0.1",
   "browser": "chromium",
   "online": false,
-  "startedAt": "2026-09-27T00:38:06.647Z",
+  "startedAt": "2026-09-27T04:00:52.616Z",
   "checks": [
     {
       "name": "Viewer returns HTTP200",
@@ -66,44 +66,44 @@
       "detail": {
         "corners": [
           [
-            -0.4437723988097174,
-            -0.7304165081323751,
+            -0.44377239880971747,
+            -0.7304165081323752,
             0.9997687120924063
           ],
           [
-            0.3519488376450303,
-            -0.6875903611257976,
+            0.35194883764503043,
+            -0.6875903611257977,
             0.9997797439296728
           ],
           [
-            -0.4628404779633559,
-            0.7683113350788255,
-            0.9997573022387125
+            -0.462840477963356,
+            0.768311335078826,
+            0.9997573022387124
           ],
           [
-            0.3664173388252177,
-            0.7480743701960249,
+            0.3664173388252178,
+            0.7480743701960253,
             0.9997692810955396
           ],
           [
-            -0.39236332738610746,
-            -0.8010454689819898,
-            0.9997505183659829
+            -0.3923633273861077,
+            -0.8010454689819901,
+            0.999750518365983
           ],
           [
-            0.45318815690598707,
-            -0.7522885625874709,
-            0.9997630779421897
+            0.45318815690598735,
+            -0.752288562587471,
+            0.9997630779421895
           ],
           [
-            -0.4104307538914834,
-            0.8018444731163148,
-            0.9997374529845462
+            -0.4104307538914836,
+            0.8018444731163152,
+            0.9997374529845461
           ],
           [
-            0.4730921216366538,
-            0.7786746008485981,
-            0.9997511679158219
+            0.4730921216366542,
+            0.7786746008485984,
+            0.999751167915822
           ]
         ],
         "fit": {
@@ -117,7 +117,7 @@
           "height": 1180
         },
         "near": 0.5,
-        "far": 29193.99063678663
+        "far": 29193.990636786624
       }
     },
     {
@@ -219,7 +219,7 @@
         },
         "surface": {
           "on": true,
-          "opacity": 0.1,
+          "opacity": 0.18,
           "loaded": true,
           "loading": false,
           "count": 1,
@@ -227,7 +227,7 @@
         },
         "skeletal": {
           "on": true,
-          "opacity": 0.35,
+          "opacity": 0.4,
           "loaded": true,
           "loading": false,
           "count": 91,
@@ -296,6 +296,18 @@
       "pass": true
     },
     {
+      "name": "Female chest current-object title matches its actual scene",
+      "pass": true
+    },
+    {
+      "name": "Female chest reference is visible rather than multiplied away",
+      "pass": true
+    },
+    {
+      "name": "Expanded focus remains in the female model and scene",
+      "pass": true
+    },
+    {
       "name": "Actual Hegu catalog click selects LI4",
       "pass": true
     },
@@ -334,6 +346,37 @@
       "pass": true
     },
     {
+      "name": "LI4 attached point and dorsal route use same anchor",
+      "pass": true,
+      "detail": {
+        "code": "LI4",
+        "name": "合谷",
+        "side": "right",
+        "sourcePosition": [
+          -193.98471817890913,
+          755.9842375995376,
+          3.947292289192927
+        ],
+        "displayDisplacement": 12.572009281875198,
+        "position": [
+          -202.62347196040255,
+          756.254678848103,
+          -5.182560503561379
+        ],
+        "expected": [
+          -202.62347196040255,
+          756.254678848103,
+          -5.182560503561379
+        ],
+        "secondaryShift": 0,
+        "lineGap": 0
+      }
+    },
+    {
+      "name": "Skin guide geometry finite after hand direction correction",
+      "pass": true
+    },
+    {
       "name": "Left Hegu uses corresponding mirrored reference",
       "pass": true
     },
@@ -358,7 +401,7 @@
   "errors": [],
   "success": true,
   "physicalIPadTested": false,
-  "url": "http://127.0.0.1:44719/fullbody-tcm-v16/",
+  "url": "http://127.0.0.1:34313/fullbody-tcm-v16/",
   "nativeFullscreenActuallyEntered": true,
-  "finishedAt": "2026-09-27T00:39:51.709Z"
+  "finishedAt": "2026-09-27T04:03:34.519Z"
 }

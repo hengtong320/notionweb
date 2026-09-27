@@ -45,6 +45,10 @@
     "tube": {
       "title": "Three.js TubeGeometry 文档",
       "url": "https://threejs.org/docs/pages/TubeGeometry.html"
+    },
+    "hegu-location": {
+      "title": "中日友好医院医生：合谷穴定位说明",
+      "url": "https://www.haodf.com/neirong/wenzhang/7980866877.html"
     }
   },
   "points": {
@@ -399,7 +403,8 @@
       "evidence": "本修订未收录足以支持该单穴独立疗效结论的专项证据。不能把整体针灸研究或多穴方案的结果直接归因于这一穴；这不表示相关研究一定不存在。",
       "evidenceLevel": "专项证据尚未录入",
       "evidenceSources": [
-        "nccih"
+        "nccih",
+        "hegu-location"
       ],
       "sourcePage": 35,
       "positionStatus": "bone-reference-unregistered",

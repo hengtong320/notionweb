@@ -1,8 +1,8 @@
 {
-  "version": "16.0.0",
+  "version": "16.0.1",
   "browser": "webkit",
   "online": false,
-  "startedAt": "2026-09-27T00:39:53.074Z",
+  "startedAt": "2026-09-27T04:03:36.041Z",
   "checks": [
     {
       "name": "Viewer returns HTTP200",
@@ -211,7 +211,7 @@
         },
         "surface": {
           "on": true,
-          "opacity": 0.1,
+          "opacity": 0.18,
           "loaded": true,
           "loading": false,
           "count": 1,
@@ -219,7 +219,7 @@
         },
         "skeletal": {
           "on": true,
-          "opacity": 0.35,
+          "opacity": 0.4,
           "loaded": true,
           "loading": false,
           "count": 91,
@@ -288,6 +288,18 @@
       "pass": true
     },
     {
+      "name": "Female chest current-object title matches its actual scene",
+      "pass": true
+    },
+    {
+      "name": "Female chest reference is visible rather than multiplied away",
+      "pass": true
+    },
+    {
+      "name": "Expanded focus remains in the female model and scene",
+      "pass": true
+    },
+    {
       "name": "Actual Hegu catalog click selects LI4",
       "pass": true
     },
@@ -326,6 +338,37 @@
       "pass": true
     },
     {
+      "name": "LI4 attached point and dorsal route use same anchor",
+      "pass": true,
+      "detail": {
+        "code": "LI4",
+        "name": "合谷",
+        "side": "right",
+        "sourcePosition": [
+          -193.98471817890913,
+          755.9842375995376,
+          3.947292289192927
+        ],
+        "displayDisplacement": 12.572009281875198,
+        "position": [
+          -202.62347196040255,
+          756.254678848103,
+          -5.182560503561379
+        ],
+        "expected": [
+          -202.62347196040255,
+          756.254678848103,
+          -5.182560503561379
+        ],
+        "secondaryShift": 0,
+        "lineGap": 0
+      }
+    },
+    {
+      "name": "Skin guide geometry finite after hand direction correction",
+      "pass": true
+    },
+    {
       "name": "Left Hegu uses corresponding mirrored reference",
       "pass": true
     },
@@ -350,7 +393,7 @@
   "errors": [],
   "success": true,
   "physicalIPadTested": false,
-  "url": "http://127.0.0.1:46563/fullbody-tcm-v16/",
+  "url": "http://127.0.0.1:46795/fullbody-tcm-v16/",
   "nativeFullscreenActuallyEntered": false,
-  "finishedAt": "2026-09-27T00:40:22.786Z"
+  "finishedAt": "2026-09-27T04:04:16.008Z"
 }
