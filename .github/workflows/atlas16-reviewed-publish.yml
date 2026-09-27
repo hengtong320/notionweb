@@ -1,0 +1,180 @@
+name: Finalize V16 tablet and original-position organs
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas16-reviewed-publish.yml'
+      - 'atlas16-finalize/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pages: write
+concurrency:
+  group: atlas16-reviewed-publish
+  cancel-in-progress: false
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    env:
+      NODE_PATH: /tmp/atlas16/node_modules
+      ATLAS16_TOOLS: /tmp/atlas16-reviewed/atlas16-delivery
+      BASE_APP_SHA: '507917d7342be513c9b1dd64dc03b2d00fdb59b89652e8307f870795fd33abd9'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preserve current entry and unfinalized V16 build
+        run: |
+          cp anatomy/index.html /tmp/atlas16-entry-original.html
+          tar -czf /tmp/atlas16-previous.tgz fullbody-tcm-v16
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,os
+          assert hashlib.sha256(Path('fullbody-tcm-v16/app.bundle.js').read_bytes()).hexdigest()==os.environ['BASE_APP_SHA'],'Existing V16 changed; reconcile first'
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Require successfully tested source candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/${{ github.repository }}/actions/runs/36292507758 > /tmp/atlas16-source-run.json
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/atlas16-source-run.json'))
+          assert r['conclusion']=='success' and r['head_sha']=='0a9e6c48a23dbc724d645797bd584b8da573be4a'
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas16-candidate
+          run-id: 36292507758
+          github-token: ${{ github.token }}
+          path: /tmp/atlas16-reviewed
+      - name: Install pinned build and real browser engines
+        run: |
+          npm install --prefix /tmp/atlas16 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1
+          /tmp/atlas16/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Apply only inspected view corrections and build
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,shutil
+          p=Path('/tmp/atlas16-reviewed/fullbody-tcm-v16')
+          info=json.loads((p/'build-info.json').read_text())
+          for n,x in info['files'].items():assert hashlib.sha256((p/n).read_bytes()).hexdigest()==x['sha256'],n
+          for k in ['local-chromium','local-webkit']:
+              r=json.loads((p/'checks'/f'{k}.json').read_text());assert r['success'] and all(c['pass'] for c in r['checks'])
+          shutil.rmtree('fullbody-tcm-v16');shutil.copytree(p,'fullbody-tcm-v16')
+          shutil.rmtree('fullbody-tcm-v16/checks');Path('fullbody-tcm-v16/checks').mkdir()
+          PY
+          python atlas16-finalize/review.py
+          for f in fullbody-tcm-v16/{view-v16,shared-v14,female-v12,tissues-v4}.js; do node --check "$f"; done
+          node /tmp/atlas16-reviewed/atlas16-delivery/build.cjs
+          test -z "$(git diff HEAD -- anatomy/ fullbody-tcm-v15/ fullbody-tcm-v14/ fullbody-tcm-v12/ fullbody-tcm-v11/ fullbody-tcm-v9/)"
+      - name: Chromium touch fullscreen and body-context journey
+        run: node /tmp/atlas16-reviewed/atlas16-delivery/verify.cjs
+      - name: WebKit tablet and body-context journey
+        env:
+          BROWSER: webkit
+        run: node /tmp/atlas16-reviewed/atlas16-delivery/verify.cjs
+      - name: Save tested candidate with actual screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas16-reviewed-1601
+          path: fullbody-tcm-v16/
+          retention-days: 14
+      - name: Commit exact tested V16 files without altering prior versions
+        run: |
+          git fetch origin main
+          git worktree add -B atlas16-final-release /tmp/atlas16-final-publish origin/main
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,os,shutil,json
+          dest=Path('/tmp/atlas16-final-publish/fullbody-tcm-v16')
+          assert hashlib.sha256((dest/'app.bundle.js').read_bytes()).hexdigest()==os.environ['BASE_APP_SHA'],'Concurrent V16 change'
+          for k in ['local-chromium','local-webkit']:
+              r=json.loads(Path(f'fullbody-tcm-v16/checks/{k}.json').read_text());assert r['success'] and all(x['pass'] for x in r['checks'])
+          shutil.rmtree(dest);shutil.copytree('fullbody-tcm-v16',dest)
+          PY
+          cd /tmp/atlas16-final-publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v16/
+          git commit -m 'Publish V16.0.1 tablet-safe viewing, in-body organ context and LI4 landmark reference'
+          git push origin HEAD:main
+      - name: Request Pages deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Waiting for branch Pages deployment'
+      - name: Wait for exact public application and styles
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,time,urllib.request
+          p=Path('fullbody-tcm-v16');info=json.loads((p/'build-info.json').read_text())
+          for n in ['index.html','app.bundle.js','view-v16.css','shared-v14.css','evidence.bundle.js','hegu-reference-v16.json']:
+              expected=info['files'][n]['sha256']
+              for i in range(75):
+                  try:
+                      u='https://hengtong320.github.io/notionweb/fullbody-tcm-v16/'+n+'?v=16.0.1&sha='+expected[:12]+'&n='+str(i)
+                      with urllib.request.urlopen(u,timeout=30) as r:b=r.read()
+                      if hashlib.sha256(b).hexdigest()==expected:break
+                  except Exception as e:print(e,flush=True)
+                  time.sleep(5)
+              else:raise RuntimeError('Public mismatch '+n)
+              print('PUBLIC_MATCH',n,expected,flush=True)
+          PY
+      - name: Repeat actual touch fullscreen and anatomy journey online
+        env:
+          TEST_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v16/?release=${{ github.run_id }}
+        run: node /tmp/atlas16-reviewed/atlas16-delivery/verify.cjs
+      - name: Record actual delivery and update stable entry
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,shutil
+          p=Path('fullbody-tcm-v16');dest=Path('/tmp/atlas16-final-publish/fullbody-tcm-v16')
+          rs={k:json.loads((p/'checks'/f'{k}.json').read_text()) for k in ['local-chromium','local-webkit','live-chromium']}
+          for k,r in rs.items():assert r['success'] and all(c['pass'] for c in r['checks']),k
+          info=json.loads((p/'build-info.json').read_text())
+          release={**info,'published':True,'status':'published-and-browser-verified','url':rs['live-chromium']['url'],'stableURL':'https://hengtong320.github.io/notionweb/anatomy/','workflowRun':os.environ['GITHUB_RUN_ID'],'sourceCandidateRun':36292507758,'checks':{k:len(r['checks']) for k,r in rs.items()},'checkedAt':rs['live-chromium']['finishedAt'],'nativeFullscreenActuallyEntered':{k:r.get('nativeFullscreenActuallyEntered',False) for k,r in rs.items()},'physicalIPadTested':False,'chromiumTouchEventsInjected':True,'femaleUsesOwnPartialSkeletonAndSurface':True,'allAcupointsClinicallyRegistered':False,'clinicalCalibration':False,'oldVersionsUnchanged':True,'heguHandSurfaceDirectionReviewed':True,'femaleSceneAndFramingReviewed':True,'browserCoverage':'Headless Chromium with injected touch; WebKit tablet-layout/pointer tests. Not physical iPadOS validation.'}
+          (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          shutil.copy2(p/'delivery-release.json',dest/'delivery-release.json');shutil.copytree(p/'checks',dest/'checks',dirs_exist_ok=True)
+          entry=Path('/tmp/atlas16-final-publish/anatomy/index.html')
+          assert entry.read_bytes()==Path('/tmp/atlas16-entry-original.html').read_bytes(),'Concurrent entry update'
+          entry.write_text(entry.read_text().replace('fullbody-tcm-v15','fullbody-tcm-v16').replace('V15 经络与切换修订','V16 平板与人体观察'))
+          PY
+          cd /tmp/atlas16-final-publish
+          git add fullbody-tcm-v16/delivery-release.json fullbody-tcm-v16/checks/ anatomy/index.html
+          git commit -m 'Record verified public V16.0.1 and update fixed anatomy entry'
+          git push origin HEAD:main
+      - name: Request fixed entry update
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Waiting for entry deployment'
+      - name: Verify public fixed entry loads final application
+        run: |
+          python - <<'PY'
+          import urllib.request,time
+          for i in range(75):
+              try:
+                  with urllib.request.urlopen('https://hengtong320.github.io/notionweb/anatomy/?v=1601&n='+str(i),timeout=30) as r:s=r.read().decode()
+                  if 'fullbody-tcm-v16' in s:break
+              except Exception as e:print(e,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Stable entry mismatch')
+          PY
+          node - <<'JS'
+          const fs=require('fs'),{chromium}=require('playwright');
+          (async()=>{const b=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});try{const p=await b.newPage();await p.goto('https://hengtong320.github.io/notionweb/anatomy/?v=1601',{timeout:90000});await p.waitForFunction(()=>window.__ATLAS_VIEW__?.getState().version==='16.0.1'&&window.__FOOT_ATLAS__.getState().ready,undefined,{timeout:90000});if(!p.url().includes('/fullbody-tcm-v16/'))throw Error('Unexpected stable target');fs.writeFileSync('fullbody-tcm-v16/checks/stable-entry.json',JSON.stringify({success:true,url:p.url(),version:'16.0.1',checkedAt:new Date().toISOString()},null,2));console.log('STABLE_ENTRY_VERIFIED');}finally{await b.close()}})().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - name: Export final application and inspected public screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas16-final-reviewed
+          path: |
+            fullbody-tcm-v16/
+            atlas16-finalize/
+          retention-days: 14
