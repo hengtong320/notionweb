@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "entryPointsTo": "fullbody-tcm-v17",
+  "version": "17.0.1",
+  "bundleSHA256": "300609795620ed430edaf5dce7daa58ef38cd117686f9d0b85f33f73c982cf81",
+  "checkedAt": 1790517140.4609175,
+  "publicVerificationRun": 36323738929,
+  "sourceArtifactRun": 36323418731,
+  "clinicalCalibration": false,
+  "chromium": {
+    "success": true,
+    "passedChecks": 43,
+    "uncaughtErrors": 0,
+    "finishedAt": "2026-09-27T13:53:33.437Z"
+  },
+  "webkit": {
+    "success": true,
+    "passedChecks": 43,
+    "uncaughtErrors": 0,
+    "finishedAt": "2026-09-27T13:54:23.054Z"
+  },
+  "verifiedPublicURL": "https://hengtong320.github.io/notionweb/anatomy/?v=17.0.1",
+  "scope": "Display, skin-depth occlusion, point picking, channel and side filters, body switching, layer restoration, and tablet viewport regression. Not clinical acupuncture-point registration."
+}
