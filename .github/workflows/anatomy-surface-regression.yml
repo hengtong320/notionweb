@@ -44,6 +44,7 @@ jobs:
         run: |
           python atlas17-delivery/patch.py
           python scripts/anatomy-surface/finish.py
+          python scripts/anatomy-surface/seams.py
           node atlas17-delivery/build.cjs
           python - <<'PY'
           import json,os
