@@ -1,0 +1,95 @@
+{
+  "version": "16.0.1",
+  "base": "15.0.2",
+  "files": {
+    "index.html": {
+      "bytes": 16363,
+      "sha256": "395adcd4a7bb965b03dfe76a2405593f60ee1c31b5b1ea1cb918234620d1ac14"
+    },
+    "app.bundle.js": {
+      "bytes": 2930426,
+      "sha256": "deb7a994551ee0bdad5e99d4b47ac7037eee01a443a4694d9ae2125711c8a5b3"
+    },
+    "view-v16.js": {
+      "bytes": 10970,
+      "sha256": "a9d68c423da9b0debbd86b06e77d69345e83e581a21451e6f268500ea156abd1"
+    },
+    "view-v16.css": {
+      "bytes": 4788,
+      "sha256": "7292f71da405fd43c971e3543b2592869afc5ab619ae79b345aa6d14cc8d0b96"
+    },
+    "styles.css": {
+      "bytes": 68625,
+      "sha256": "02690d26e411ad8c587254d68494e9b0fe9103af37aca5edd485b05c43b100e4"
+    },
+    "shared-v14.css": {
+      "bytes": 7841,
+      "sha256": "22f494ac5d6e72d356574069a44c629e8c3c4aad701a91f0c35e1550a69c7020"
+    },
+    "shared-v14.js": {
+      "bytes": 26157,
+      "sha256": "a6b31147e2c1e471ad2e4a247aa1a1e418e502bace459a8948e4a4fa3b3e526a"
+    },
+    "tissues-v4.js": {
+      "bytes": 29715,
+      "sha256": "77946b8dbf80109b90618fa67931a4760dedd59a72375104af4cdbbcf0fa9ac2"
+    },
+    "female-v12.js": {
+      "bytes": 30967,
+      "sha256": "fd23d868b6d6d03c77b2847de657743cb04f04c98ced19588481fed5d0750b36"
+    },
+    "navigation-points-v6.js": {
+      "bytes": 204371,
+      "sha256": "490fcef0caaa0b617b65b2e62d8ab53c728dfa2519d27b8c247012e168a3141e"
+    },
+    "hegu-reference-v16.json": {
+      "bytes": 1306,
+      "sha256": "2f73514cc831a9b4cc996c21d4b91c9be080b07e5a150ffc9d47a6ac4e89469e"
+    },
+    "surface-v13.js": {
+      "bytes": 10415,
+      "sha256": "90c9577b54426737de1c1b0dc91412f6e04492df347e740ae58186b1a33e2512"
+    },
+    "evidence-data-v9.json": {
+      "bytes": 461164,
+      "sha256": "c8bdd4acabd07738e70f2dc113e5ce911faf63c5c6da6537191025cfd0a9c9e3"
+    },
+    "evidence.bundle.js": {
+      "bytes": 935617,
+      "sha256": "32ce625313349318e54eb32aa87fd56e96a3c7ceb8fc0256734f3d17157ba603"
+    }
+  },
+  "builtAt": "2026-09-27T04:00:52.327Z",
+  "clinicalCalibration": false,
+  "sourceMeshesUnchanged": true,
+  "heguBoneMidshaftReference": true,
+  "otherAcupointCoordinatesUnchanged": true,
+  "stableInPageExpansion": true,
+  "organBodyContext": true,
+  "femaleUsesNativeContext": true,
+  "physicalIPadTested": false,
+  "published": true,
+  "status": "published-and-browser-verified",
+  "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v16/?release=36293009096",
+  "stableURL": "https://hengtong320.github.io/notionweb/anatomy/",
+  "workflowRun": "36293009096",
+  "sourceCandidateRun": 36292507758,
+  "checks": {
+    "local-chromium": 50,
+    "local-webkit": 48,
+    "live-chromium": 50
+  },
+  "checkedAt": "2026-09-27T04:08:37.111Z",
+  "nativeFullscreenActuallyEntered": {
+    "local-chromium": true,
+    "local-webkit": false,
+    "live-chromium": true
+  },
+  "chromiumTouchEventsInjected": true,
+  "femaleUsesOwnPartialSkeletonAndSurface": true,
+  "allAcupointsClinicallyRegistered": false,
+  "oldVersionsUnchanged": true,
+  "heguHandSurfaceDirectionReviewed": true,
+  "femaleSceneAndFramingReviewed": true,
+  "browserCoverage": "Headless Chromium with injected touch; WebKit tablet-layout/pointer tests. Not physical iPadOS validation."
+}
