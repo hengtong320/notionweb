@@ -1,0 +1,36 @@
+name: Prepare V18 point reference
+on:
+  push:
+    paths: ['.github/workflows/atlas18-reference.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  reference:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retrieve pinned open ontology source
+        run: |
+          mkdir -p references
+          python - <<'PY'
+          import urllib.request,hashlib,json
+          from pathlib import Path
+          ref='b488d0bf855eef17a131946bd387d6e2e9dfa26d'
+          root='https://raw.githubusercontent.com/SciCrunch/TARA-Ontology-Repository/'+ref+'/'
+          files=['curated-data/acupoints/acupoints-locations.csv','LICENSE','README.md']
+          manifest=[]
+          for name in files:
+              try:
+                  data=urllib.request.urlopen(root+name,timeout=30).read()
+                  out=Path('references')/name.split('/')[-1]
+                  out.write_bytes(data)
+                  manifest.append({'source':root+name,'file':out.name,'sha256':hashlib.sha256(data).hexdigest()})
+              except Exception as e:
+                  if name.endswith('.csv'):raise
+                  print(name,e)
+          Path('references/provenance.json').write_text(json.dumps(manifest,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atlas18-point-reference
+          path: references
+          retention-days: 3
