@@ -1,0 +1,112 @@
+name: Publish verified V17 skin repair
+on:
+  push:
+    paths: ['.github/workflows/anatomy-v17-publish.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: anatomy-v17-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_PATH: /tmp/a17/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          name: anatomy-surface-v17-verified
+          run-id: 36323418731
+          github-token: ${{ github.token }}
+          path: /tmp/verified-v17
+      - name: Validate reviewed artifact and publish versioned directory only
+        run: |
+          python - <<'PY'
+          import json,hashlib,shutil
+          from pathlib import Path
+          source=Path('/tmp/verified-v17/fullbody-tcm-v17')
+          b=json.loads((source/'build-info.json').read_text())
+          assert b['version']=='17.0.1'
+          assert b['sourceCommit']=='2add8894444f67e1669da51503df4cdc89cfef9d'
+          assert b['sourceMeshesUnchanged'] and not b['clinicalCalibration']
+          for name,info in b['files'].items():
+              assert '/' not in name
+              assert hashlib.sha256((source/name).read_bytes()).hexdigest()==info['sha256'],name
+          reports={}
+          for engine in ['chromium','webkit']:
+              r=json.loads((source/'checks'/('local-'+engine+'.json')).read_text())
+              assert r['success'] and not r['errors'] and r['expandedRegression']
+              assert len(r['checks'])>=43 and all(c['pass'] for c in r['checks'])
+              assert all(t['maxDrawnSurfaceGap']<=3.3 for sex in ['male','female'] for t in r[sex+'SurfaceTrace'])
+              reports[engine]={'passed':len(r['checks']),'finishedAt':r['finishedAt']}
+          dest=Path('fullbody-tcm-v17')
+          assert not dest.exists(),'Refuse to overwrite an existing release'
+          shutil.copytree(source,dest)
+          (dest/'versions.html').write_text('''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>人体研习室 · 版本记录</title><style>body{max-width:760px;margin:40px auto;padding:20px;font:16px/1.8 system-ui;background:#f4f7ee;color:#315945}a{color:#276d62}li{margin:10px 0}</style><h1>V17.0.1 男女体表经络</h1><p>体表经络自动贴合当前皮肤。正常模式保留身体遮挡；透视仅辅助查看背侧。女性模型启用独立皮肤投影，男女切换保留经脉、左右侧与图层操作。</p><p>修复自定义体表图层、恢复已保存组合时贴肤状态不同步。保留 V16 平板布局及人体观察功能，不改变原始解剖模型。</p><p>点位和线路是学习示意，女性为分部位比例适配；均未完成逐穴临床配准。</p><p><a href="../anatomy/">固定入口</a> · <a href="./">进入当前版本</a> · <a href="release.json">构建与验证记录</a></p><ul><li><a href="../fullbody-tcm-v16/">V16 平板与人体观察（保留回退）</a></li><li><a href="../fullbody-tcm-v15/">V15 图形一致性修复</a></li><li><a href="../fullbody-tcm-v14/">V14 共用学习界面</a></li><li><a href="../fullbody-tcm-v13/">V13 视角保持与经脉分辨</a></li><li><a href="../fullbody-tcm-v12/">V12 双参考</a></li><li><a href="../foot-atlas/">足骨原版</a></li></ul></html>''',encoding='utf-8')
+          v=(dest/'versions.html').read_bytes()
+          b['files']['versions.html']={'bytes':len(v),'sha256':hashlib.sha256(v).hexdigest()}
+          (dest/'build-info.json').write_text(json.dumps(b,ensure_ascii=False,indent=2))
+          release={'version':'17.0.1','sourceCommit':b['sourceCommit'],'verificationRun':36323418731,'localBrowserChecks':reports,'bundleSHA256':b['files']['app.bundle.js']['sha256'],'defaultXray':False,'maleFemaleIndependentSkin':True,'sourceMeshesUnchanged':True,'clinicalCalibration':False,'femaleMapping':'分部位比例与独立皮肤投影，学习示意，未逐穴临床配准'}
+          (dest/'release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          print(json.dumps(release,ensure_ascii=False))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v17
+          git commit -m "Publish verified V17.0.1 independent male and female skin meridians"
+          git push origin HEAD:main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browsers for public-site verification
+        run: |
+          npm install --prefix /tmp/a17 playwright@1.56.1
+          /tmp/a17/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Verify public release content after Pages deployment
+        run: |
+          python - <<'PY'
+          import urllib.request,json,time,hashlib
+          from pathlib import Path
+          base='https://hengtong320.github.io/notionweb/'
+          expected=json.loads(Path('fullbody-tcm-v17/release.json').read_text())['bundleSHA256']
+          for attempt in range(36):
+              try:
+                  bust='?verify='+str(time.time_ns())
+                  def get(p):
+                      req=urllib.request.Request(base+p+bust,headers={'Cache-Control':'no-cache'})
+                      return urllib.request.urlopen(req,timeout=20).read()
+                  entrance=get('anatomy/').decode()
+                  assert '../fullbody-tcm-v17/' in entrance,'Entrance still points to previous version'
+                  info=json.loads(get('fullbody-tcm-v17/build-info.json'))
+                  assert info['version']=='17.0.1'
+                  assert hashlib.sha256(get('fullbody-tcm-v17/app.bundle.js')).hexdigest()==expected
+                  Path('fullbody-tcm-v17/checks/live-content.json').write_text(json.dumps({'success':True,'entryPointsTo':'fullbody-tcm-v17','version':'17.0.1','bundleSHA256':expected,'checkedAt':time.time()},indent=2))
+                  break
+              except Exception as e:
+                  print('Deployment not yet verified:',e,flush=True)
+                  if attempt==35: raise
+                  time.sleep(10)
+          PY
+      - name: Chromium public fixed entrance journey
+        env:
+          TEST_URL: https://hengtong320.github.io/notionweb/anatomy/?v=17.0.1
+        run: node /tmp/verified-v17/atlas17-delivery/verify.cjs
+      - name: WebKit public fixed entrance journey
+        env:
+          BROWSER: webkit
+          TEST_URL: https://hengtong320.github.io/notionweb/anatomy/?v=17.0.1
+        run: node /tmp/verified-v17/atlas17-delivery/verify.cjs
+      - name: Upload public-site reports and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: anatomy-v17-public-verification
+          path: fullbody-tcm-v17/checks/live-*
+          retention-days: 14
