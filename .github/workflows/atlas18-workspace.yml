@@ -1,0 +1,26 @@
+name: Prepare V18 anatomical workspace
+on:
+  push:
+    paths: ['.github/workflows/atlas18-workspace.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Prepare source and original assets
+        run: |
+          mkdir -p /tmp/workspace
+          cp -a fullbody-tcm-v17 /tmp/workspace/
+          for dir in fullbody-tcm-v9 fullbody-tcm-v11 fullbody-tcm-v12; do mkdir -p /tmp/workspace/$dir; cp -a $dir/assets /tmp/workspace/$dir/; done
+          cp -a anatomy /tmp/workspace/
+          npm install --prefix /tmp/workspace three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atlas18-source-models
+          path: /tmp/workspace
+          retention-days: 3
