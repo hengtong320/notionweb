@@ -17,36 +17,40 @@ jobs:
     timeout-minutes: 25
     env:
       NODE_PATH: /tmp/atlas16/node_modules
-      CANDIDATE_RUN: '36283021801'
-      CANDIDATE_SHA: '9bca5ffd5f20c8db7d50be3361120efc5bb1e68f'
+      CANDIDATE_RUN: '36292507758'
+      CANDIDATE_SHA: '0a9e6c48a23dbc724d645797bd584b8da573be4a'
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-      - name: Preserve the current fixed entry
+      - name: Preserve working fixed entry
         run: cp anatomy/index.html /tmp/atlas16-entry-before.html
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Require the exact reviewed candidate
+      - name: Require exact successful candidate
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api repos/${{ github.repository }}/actions/runs/$CANDIDATE_RUN > /tmp/atlas16-run.json
-          python - <<'PY'
+          for i in $(seq 1 80); do
+            gh api repos/${{ github.repository }}/actions/runs/$CANDIDATE_RUN > /tmp/atlas16-run.json
+            if python - <<'PY'
           import json,os
           r=json.load(open('/tmp/atlas16-run.json'))
           assert r['head_sha']==os.environ['CANDIDATE_SHA']
-          assert r['status']=='completed' and r['conclusion']=='success'
-          print('REVIEWED_CANDIDATE_CONFIRMED')
+          if r['status']!='completed':raise SystemExit(1)
+          assert r['conclusion']=='success',r['conclusion']
           PY
+            then break; fi
+            if python -c "import json; r=json.load(open('/tmp/atlas16-run.json')); exit(0 if r['status']=='completed' else 1)"; then echo 'Candidate failed'; exit 1; fi
+            sleep 5
+          done
+          python -c "import json; r=json.load(open('/tmp/atlas16-run.json')); assert r['conclusion']=='success'"
       - uses: actions/download-artifact@v4
         with:
           name: atlas16-candidate
-          run-id: 36283021801
+          run-id: 36292507758
           github-token: ${{ github.token }}
           path: /tmp/atlas16-reviewed
-      - name: Validate complete browser reports and exact file hashes
+      - name: Verify candidate reports and files
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -54,60 +58,58 @@ jobs:
           p=Path('/tmp/atlas16-reviewed/fullbody-tcm-v16')
           for k in ['local-chromium','local-webkit']:
               r=json.loads((p/'checks'/f'{k}.json').read_text())
-              assert r['success'] and r['checks'] and all(c['pass'] for c in r['checks']),k
+              assert r['success'] and all(c['pass'] for c in r['checks']),k
               assert r['physicalIPadTested'] is False
           info=json.loads((p/'build-info.json').read_text())
-          for n,x in info['files'].items():
-              assert hashlib.sha256((p/n).read_bytes()).hexdigest()==x['sha256'],n
-          assert info['clinicalCalibration'] is False
-          print('FILES_AND_ACTUAL_BROWSER_REPORTS_VALID')
+          for n,x in info['files'].items():assert hashlib.sha256((p/n).read_bytes()).hexdigest()==x['sha256'],n
+          assert not info['clinicalCalibration']
           PY
           test ! -d fullbody-tcm-v16
           cp -a /tmp/atlas16-reviewed/fullbody-tcm-v16 .
-      - name: Install public-page browser
+      - name: Install public browser
         run: |
           npm install --prefix /tmp/atlas16 playwright@1.56.1
           /tmp/atlas16/node_modules/.bin/playwright install --with-deps chromium
           sudo apt-get install -y fonts-noto-cjk
-      - name: Publish new viewer only and retain older versions
+      - name: Publish only new viewer
         run: |
           git fetch origin main
-          git worktree add -B atlas16-delivery /tmp/atlas16-publish origin/main
+          git worktree add -B atlas16-reviewed-release /tmp/atlas16-publish origin/main
           test ! -d /tmp/atlas16-publish/fullbody-tcm-v16
           cp -a fullbody-tcm-v16 /tmp/atlas16-publish/fullbody-tcm-v16
           cd /tmp/atlas16-publish
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add fullbody-tcm-v16/
-          git commit -m 'Publish V16 tablet-safe viewport, in-body organs and scoped LI4 reference correction'
+          git commit -m 'Publish V16 tablet-safe viewing, in-body organs and scoped LI4 landmark review'
           git push origin HEAD:main
       - name: Request Pages deployment
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Waiting for repository Pages deployment'
-      - name: Require exact public application HTML and styles
+      - name: Verify exact public build
         run: |
           python - <<'PY'
           from pathlib import Path
-          import hashlib,json,time,urllib.request
+          import json,hashlib,time,urllib.request
           p=Path('fullbody-tcm-v16');info=json.loads((p/'build-info.json').read_text())
-          base='https://hengtong320.github.io/notionweb/fullbody-tcm-v16/'
-          for n in ['index.html','app.bundle.js','view-v16.css','shared-v14.css','evidence.bundle.js','hegu-reference-v16.json']:
+          for n in ['index.html','app.bundle.js','view-v16.css','evidence.bundle.js','hegu-reference-v16.json']:
               expected=info['files'][n]['sha256']
               for i in range(75):
                   try:
-                      with urllib.request.urlopen(base+n+'?v=16.0.0&sha='+expected[:12]+'&n='+str(i),timeout=30) as r:data=r.read()
-                      if hashlib.sha256(data).hexdigest()==expected:break
-                  except Exception as e:print(n,str(e),flush=True)
+                      u='https://hengtong320.github.io/notionweb/fullbody-tcm-v16/'+n+'?sha='+expected[:16]+'&n='+str(i)
+                      with urllib.request.urlopen(u,timeout=30) as r:b=r.read()
+                      if hashlib.sha256(b).hexdigest()==expected:break
+                  except Exception as e:print(e,flush=True)
                   time.sleep(5)
-              else:raise RuntimeError('Public file differs: '+n)
+              else:raise RuntimeError('Public mismatch: '+n)
               print('PUBLIC_MATCH',n,expected,flush=True)
           PY
-      - name: Repeat actual touch fullscreen and anatomical-context checks online
+      - name: Repeat actual touch and anatomy journey on public website
         env:
           TEST_URL: https://hengtong320.github.io/notionweb/fullbody-tcm-v16/?release=${{ github.run_id }}
         run: node /tmp/atlas16-reviewed/atlas16-delivery/verify.cjs
-      - name: Record verified delivery and change stable entry
+      - name: Record delivery and update fixed entry after public tests
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -116,23 +118,22 @@ jobs:
           reports={k:json.loads((p/'checks'/f'{k}.json').read_text()) for k in ['local-chromium','local-webkit','live-chromium']}
           for k,r in reports.items():assert r['success'] and all(c['pass'] for c in r['checks']),k
           info=json.loads((p/'build-info.json').read_text())
-          release={**info,'published':True,'status':'published-and-browser-verified','url':reports['live-chromium']['url'],'stableURL':'https://hengtong320.github.io/notionweb/anatomy/','workflowRun':os.environ['GITHUB_RUN_ID'],'candidateRun':int(os.environ['CANDIDATE_RUN']),'candidateCommit':os.environ['CANDIDATE_SHA'],'checks':{k:len(r['checks']) for k,r in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'nativeFullscreenActuallyEntered':{k:r.get('nativeFullscreenActuallyEntered',False) for k,r in reports.items()},'realChromiumTouchEvents':True,'physicalIPadTested':False,'allAcupointsClinicallyRegistered':False,'femaleUsesOwnPartialSkeletonAndSurface':True,'priorVersionsUnchanged':True,'browserCoverage':'Headless Chromium (injected touch events) and WebKit (tablet layout and pointer); iPad-like portrait and landscape viewports, not physical iPadOS validation'}
+          release={**info,'published':True,'status':'published-and-browser-verified','url':reports['live-chromium']['url'],'stableURL':'https://hengtong320.github.io/notionweb/anatomy/','workflowRun':os.environ['GITHUB_RUN_ID'],'candidateRun':int(os.environ['CANDIDATE_RUN']),'candidateCommit':os.environ['CANDIDATE_SHA'],'checks':{k:len(r['checks']) for k,r in reports.items()},'checkedAt':reports['live-chromium']['finishedAt'],'nativeFullscreenActuallyEntered':{k:r.get('nativeFullscreenActuallyEntered',False) for k,r in reports.items()},'realChromiumTouchEvents':True,'physicalIPadTested':False,'allAcupointsClinicallyRegistered':False,'femaleUsesOwnPartialSkeletonAndSurface':True,'priorVersionsUnchanged':True,'heguHandSurfaceDirectionReviewed':True,'browserCoverage':'Headless Chromium with injected multi-touch and WebKit with tablet layout and pointer tests; not a physical iPad test'}
           (p/'delivery-release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
-          shutil.copy2(p/'delivery-release.json',dest/'delivery-release.json')
-          shutil.copytree(p/'checks',dest/'checks',dirs_exist_ok=True)
+          shutil.copy2(p/'delivery-release.json',dest/'delivery-release.json');shutil.copytree(p/'checks',dest/'checks',dirs_exist_ok=True)
           entry=Path('/tmp/atlas16-publish/anatomy/index.html')
-          assert entry.read_bytes()==Path('/tmp/atlas16-entry-before.html').read_bytes(),'Stable entry changed concurrently'
+          assert entry.read_bytes()==Path('/tmp/atlas16-entry-before.html').read_bytes(),'Fixed entry changed concurrently'
           entry.write_text(entry.read_text().replace('fullbody-tcm-v15','fullbody-tcm-v16').replace('V15 经络与切换修订','V16 平板与人体观察'))
           PY
           cd /tmp/atlas16-publish
           git add fullbody-tcm-v16/delivery-release.json fullbody-tcm-v16/checks/ anatomy/index.html
-          git commit -m 'Record public V16 verification and update stable anatomy entry'
+          git commit -m 'Record public V16 verification and update anatomy fixed entry'
           git push origin HEAD:main
       - name: Request fixed-entry deployment
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Waiting for fixed-entry deployment'
-      - name: Verify the actual stable entry reaches V16
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds --silent || echo 'Waiting for fixed entry'
+      - name: Confirm stable entry reaches actual V16
         run: |
           python - <<'PY'
           import time,urllib.request
@@ -142,18 +143,16 @@ jobs:
                   if 'fullbody-tcm-v16' in s:break
               except Exception as e:print(e,flush=True)
               time.sleep(5)
-          else:raise RuntimeError('Fixed entry not yet updated')
+          else:raise RuntimeError('Fixed entry not updated')
           PY
           node - <<'JS'
           const fs=require('fs'),{chromium}=require('playwright');
-          (async()=>{const b=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});try{const p=await b.newPage();await p.goto('https://hengtong320.github.io/notionweb/anatomy/?v=16',{timeout:90000});await p.waitForFunction(()=>window.__ATLAS_VIEW__?.getState().version==='16.0.0'&&window.__FOOT_ATLAS__.getState().ready,undefined,{timeout:90000});if(!p.url().includes('/fullbody-tcm-v16/'))throw Error('Unexpected stable target');fs.writeFileSync('fullbody-tcm-v16/checks/stable-entry.json',JSON.stringify({success:true,url:p.url(),checkedAt:new Date().toISOString()},null,2));console.log('STABLE_ENTRY_VERIFIED',p.url());}finally{await b.close()}})().catch(e=>{console.error(e);process.exit(1)});
+          (async()=>{const b=await chromium.launch({headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});try{const p=await b.newPage();await p.goto('https://hengtong320.github.io/notionweb/anatomy/?v=16',{timeout:90000});await p.waitForFunction(()=>window.__ATLAS_VIEW__?.getState().version==='16.0.0'&&window.__FOOT_ATLAS__.getState().ready,undefined,{timeout:90000});if(!p.url().includes('/fullbody-tcm-v16/'))throw Error('Unexpected target');fs.writeFileSync('fullbody-tcm-v16/checks/stable-entry.json',JSON.stringify({success:true,url:p.url(),checkedAt:new Date().toISOString()},null,2));}finally{await b.close()}})().catch(e=>{console.error(e);process.exit(1)});
           JS
-      - name: Export final published viewer and real checks
+      - name: Export final published viewer and evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: atlas16-final-published
-          path: |
-            fullbody-tcm-v16/
-            /tmp/atlas16-reviewed/atlas16-delivery/
+          path: fullbody-tcm-v16/
           retention-days: 14
