@@ -29,8 +29,9 @@ jobs:
       - name: Build only V16 and preserve previous releases
         run: |
           python atlas16-delivery/patch.py
-          if test -f atlas16-delivery/refine.py; then python atlas16-delivery/refine.py; fi
-          for f in fullbody-tcm-v16/{app,view-v16,female-v12,tissues-v4,shared-v14}.js; do node --check "$f"; done
+          python atlas16-delivery/refine.py
+          python atlas16-delivery/hand-surface-review.py
+          for f in fullbody-tcm-v16/{app,view-v16,female-v12,tissues-v4,shared-v14,surface-v13}.js; do node --check "$f"; done
           node atlas16-delivery/build.cjs
           test -z "$(git diff HEAD -- fullbody-tcm-v9/ fullbody-tcm-v11/ fullbody-tcm-v12/ fullbody-tcm-v14/ fullbody-tcm-v15/ anatomy/)"
           python - <<'PY'
