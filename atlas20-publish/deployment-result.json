@@ -1,0 +1,36 @@
+{
+  "version": "20.0.1",
+  "published": true,
+  "fixedEntrance": "https://hengtong320.github.io/notionweb/anatomy/",
+  "versionUrl": "https://hengtong320.github.io/notionweb/fullbody-tcm-v20/",
+  "coreSourceCommit": "3038d0712560bdee4f2064612794bcf0d588e25f",
+  "finalSourceCommit": "9db4c79de9476c31e61ba62c8d343427d2906242",
+  "entranceCommit": "954c3034fb6c3a2b1f8b1e33d6f81f972e021b0e",
+  "candidateRun": 36409931479,
+  "corePublishRun": 36410227618,
+  "finalPublishRun": 36411519148,
+  "pagesDeploymentRun": 36411893812,
+  "bundleSHA256": "65bba69553135f2061ed0bc64fe6bf1aca1de69ab349006cf2fbcfc4b5a15841",
+  "publicContentHashVerified": true,
+  "coreRegression": {"version": "20.0.0", "chromium": 95, "webkit": 95, "success": true},
+  "corePublicChecks": {
+    "version": "20.0.0",
+    "chromium": {"passed": 48, "success": true, "errors": [], "finishedAt": "2026-09-28T10:44:40.542Z"},
+    "webkit": {"passed": 48, "success": true, "errors": [], "finishedAt": "2026-09-28T10:46:15.204Z"}
+  },
+  "finalPublicChecks": {
+    "version": "20.0.1",
+    "scope": "Source captions, actual rendered body ownership, chest/skeleton/skin roundtrips, native organ crops, mesh opacity retention and skin pigment availability.",
+    "chromium": {"passed": 14, "success": true, "errors": [], "finishedAt": "2026-09-28T10:51:06.267Z"},
+    "webkit": {"passed": 14, "success": true, "errors": [], "finishedAt": "2026-09-28T10:51:27.054Z"}
+  },
+  "coreEvidenceArtifact": 10964890608,
+  "coreEvidenceSHA256": "b0bb60beb30945428a019065fd915d4978ff460e61125431e95f1defa60f2632",
+  "finalEvidenceArtifact": 10965076708,
+  "finalEvidenceSHA256": "e40cfbc076da693f78d343e02d3d9fd3b0aceb81ade47a967d0482ef408722e0",
+  "originalModelsUnchanged": true,
+  "pointRegistrationUnchanged": true,
+  "previousV19Preserved": true,
+  "clinicalCalibration": false,
+  "limitations": "女性来源的骨骼、肌肉和周围神经仍为部分覆盖；本次修复切换状态与显示，未补齐缺失解剖结构，未把经穴定位升级为临床配准通过。"
+}
