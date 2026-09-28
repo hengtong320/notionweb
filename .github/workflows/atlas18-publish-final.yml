@@ -1,0 +1,134 @@
+name: Publish final reviewed V18
+on:
+  push:
+    paths:
+      - '.github/workflows/atlas18-publish-final.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: atlas18-final-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/a18/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas18-candidate
+          run-id: 36327730083
+          github-token: ${{ github.token }}
+          path: /tmp/v18-reviewed
+      - name: Restore candidate and apply exact final reviewed fixes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,shutil
+          source=Path('/tmp/v18-reviewed/fullbody-tcm-v18')
+          for engine in ['chromium','webkit']:
+              r=json.loads((source/'checks'/('local-'+engine+'.json')).read_text())
+              assert r['success'] and not r['errors'] and len(r['checks'])>=56
+          dest=Path('fullbody-tcm-v18')
+          assert not dest.exists(),'Refuse to overwrite an existing V18 release'
+          shutil.copytree(source,dest)
+          shutil.rmtree(dest/'checks')
+          (dest/'build-info.json').unlink(missing_ok=True)
+          shutil.copytree('/tmp/v18-reviewed/atlas18-delivery','/tmp/v18-tests')
+          PY
+          python atlas18-publish/finalize.py
+      - name: Install pinned renderer and browsers
+        run: |
+          npm install --prefix /tmp/a18 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1
+          /tmp/a18/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Validate source and build final files
+        run: |
+          node /tmp/v18-tests/validate.cjs
+          node /tmp/v18-tests/build.cjs
+          test -z "$(git diff HEAD -- fullbody-tcm-v17/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+      - name: Chromium final-build browser regression
+        run: node /tmp/v18-tests/verify.cjs
+      - name: WebKit final-build browser regression
+        env:
+          BROWSER: webkit
+        run: node /tmp/v18-tests/verify.cjs
+      - name: Publish only the tested versioned directory
+        run: |
+          python - <<'PY'
+          import json,hashlib,os
+          from pathlib import Path
+          p=Path('fullbody-tcm-v18')
+          reports={}
+          for engine in ['chromium','webkit']:
+              r=json.loads((p/'checks'/('local-'+engine+'.json')).read_text())
+              assert r['success'] and not r['errors'] and len(r['checks'])>=56
+              assert all(c['pass'] for c in r['checks'])
+              assert r['registration']['clinicalVerified']==0
+              reports[engine]={'passed':len(r['checks']),'finishedAt':r['finishedAt']}
+          m=json.loads((p/'final-source-match.json').read_text())
+          for n,sha in m['matchedFinalFiles'].items():
+              assert hashlib.sha256((p/n).read_bytes()).hexdigest()==sha,n
+          b=json.loads((p/'build-info.json').read_text())
+          for n,entry in b['files'].items():
+              assert hashlib.sha256((p/n).read_bytes()).hexdigest()==entry['sha256'],n
+          b.update(sourceCommit=os.environ['GITHUB_SHA'],verificationRun=os.environ['GITHUB_RUN_ID'],releaseRevision='final-shape-hand-1')
+          (p/'build-info.json').write_text(json.dumps(b,ensure_ascii=False,indent=2))
+          release={'version':'18.0.0','revision':'final-shape-hand-1','sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID'],'localBrowserChecks':reports,'finalRenderingFilesMatchReviewedArchive':True,'bundleSHA256':b['files']['app.bundle.js']['sha256'],'sourceMeshesUnchanged':True,'clinicalCalibration':False,'pointNames':361,'modelConstraintUpdated':190,'remainingDetailedReview':171}
+          (p/'release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          print(json.dumps(release,ensure_ascii=False))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v18
+          git commit -m 'Publish final V18 with reviewed body proportions and skin routes after browser checks'
+          git push origin HEAD:main
+      - name: Confirm public release and fixed entrance after activation
+        run: |
+          python - <<'PY'
+          import urllib.request,json,time,hashlib
+          from pathlib import Path
+          base='https://hengtong320.github.io/notionweb/'
+          expected=json.loads(Path('fullbody-tcm-v18/release.json').read_text())['bundleSHA256']
+          for attempt in range(60):
+              try:
+                  suffix='?releasecheck='+str(time.time_ns())
+                  def get(path):
+                      req=urllib.request.Request(base+path+suffix,headers={'Cache-Control':'no-cache'})
+                      return urllib.request.urlopen(req,timeout=20).read()
+                  assert '../fullbody-tcm-v18/' in get('anatomy/').decode(),'Fixed entrance not activated yet'
+                  r=json.loads(get('fullbody-tcm-v18/release.json'))
+                  assert r['version']=='18.0.0' and r['revision']=='final-shape-hand-1'
+                  assert hashlib.sha256(get('fullbody-tcm-v18/app.bundle.js')).hexdigest()==expected
+                  Path('fullbody-tcm-v18/checks/live-content.json').write_text(json.dumps({'success':True,'version':'18.0.0','revision':'final-shape-hand-1','entry':'anatomy/','bundleSHA256':expected,'checkedAt':time.time()},indent=2))
+                  break
+              except Exception as e:
+                  print('Public verification pending:',e,flush=True)
+                  if attempt==59:raise
+                  time.sleep(10)
+          PY
+      - name: Chromium public fixed-entrance journey
+        env:
+          TEST_URL: https://hengtong320.github.io/notionweb/anatomy/?v=18.0.0-r1
+        run: node /tmp/v18-tests/verify.cjs
+      - name: WebKit public fixed-entrance journey
+        env:
+          BROWSER: webkit
+          TEST_URL: https://hengtong320.github.io/notionweb/anatomy/?v=18.0.0-r1
+        run: node /tmp/v18-tests/verify.cjs
+      - name: Collect release evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas18-final-public-release
+          path: |
+            fullbody-tcm-v18/
+            atlas18-publish/
+          retention-days: 14
