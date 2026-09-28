@@ -22,7 +22,9 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - name: Build versioned repair without modifying V21
-        run: python atlas22-repair/patch.py
+        run: |
+          python atlas22-repair/patch.py
+          python atlas22-repair/finalize.py
       - name: Install pinned renderer and browser
         run: |
           npm install --prefix /tmp/a22 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1 pngjs@7.0.0
