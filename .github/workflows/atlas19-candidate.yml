@@ -1,0 +1,57 @@
+name: Verify V19 skin pigment and body switching
+on:
+  push:
+    paths: ['atlas19-repair/**', '.github/workflows/atlas19-candidate.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+concurrency:
+  group: atlas19-candidate
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env: {NODE_PATH: /tmp/a19/node_modules}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Assemble repair without touching published V18
+        run: |
+          test ! -d fullbody-tcm-v19
+          cp -a fullbody-tcm-v18 fullbody-tcm-v19
+          rm -rf fullbody-tcm-v19/checks
+          rm -f fullbody-tcm-v19/build-info.json fullbody-tcm-v19/release.json
+          python atlas19-repair/render-repair.py
+          python atlas19-repair/switch-repair.py
+          if test -f atlas19-repair/finalize.py; then python atlas19-repair/finalize.py; fi
+      - name: Install pinned renderer and browsers
+        run: |
+          npm install --prefix /tmp/a19 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a19/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Build and record artifact hashes
+        run: |
+          node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v19/app.js'],outfile:'fullbody-tcm-v19/app.bundle.js',bundle:true,format:'iife',loader:{'.txt':'text'},minify:true})"
+          node --check atlas19-repair/verify.cjs
+          python - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          p=Path('fullbody-tcm-v19');files={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in p.iterdir() if f.is_file()}
+          (p/'build-info.json').write_text(json.dumps({'version':'19.0.0','sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID'],'sha256':files,'clinicalCalibration':False},indent=2))
+          PY
+          test -z "$(git diff -- fullbody-tcm-v18/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+      - name: Chromium rendered-pixel and switching regression
+        run: node atlas19-repair/verify.cjs
+      - name: WebKit rendered-pixel and switching regression
+        if: '!cancelled()'
+        env: {BROWSER: webkit}
+        run: node atlas19-repair/verify.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas19-candidate
+          path: |
+            fullbody-tcm-v19/
+            atlas19-repair/
+          retention-days: 14
