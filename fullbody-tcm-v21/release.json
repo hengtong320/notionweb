@@ -1,0 +1,122 @@
+{
+  "version": "21.0.0",
+  "sourceCommit": "4765af757ab5a56c028cfc2f0351430c4a64ae30",
+  "candidateRun": 36448173800,
+  "publishRun": "36449132501",
+  "bundleSHA256": "49fa4357333e801a244b147dc08bf9515e39cfe5f5225933f7a81b913df8a08d",
+  "browserChecks": {
+    "chromium": {
+      "passed": 63,
+      "finishedAt": "2026-09-28T16:07:59.056Z",
+      "pixelChecks": [
+        {
+          "sex": "male",
+          "linePixels": 6145,
+          "pointPixels": 1622
+        },
+        {
+          "sex": "female",
+          "linePixels": 5994,
+          "pointPixels": 1578
+        }
+      ]
+    },
+    "webkit": {
+      "passed": 63,
+      "finishedAt": "2026-09-28T16:08:54.170Z",
+      "pixelChecks": [
+        {
+          "sex": "male",
+          "linePixels": 6226,
+          "pointPixels": 1582
+        },
+        {
+          "sex": "female",
+          "linePixels": 6074,
+          "pointPixels": 1548
+        }
+      ]
+    }
+  },
+  "femaleCoverage": {
+    "source": "Z-Anatomy / BodyParts3D",
+    "nativeFemalePelvis": true,
+    "clinicalRegistration": false,
+    "excludedMaleOnlyVessels": [
+      {
+        "id": "vessels-127",
+        "name": "右睾丸动脉",
+        "en": "Right testicular artery"
+      },
+      {
+        "id": "vessels-141",
+        "name": "左阴茎深动脉",
+        "en": "Deep artery of penis"
+      },
+      {
+        "id": "vessels-142",
+        "name": "右阴茎背动脉",
+        "en": "Dorsal artery of penis"
+      },
+      {
+        "id": "vessels-143",
+        "name": "左阴茎背动脉",
+        "en": "Dorsal artery of penis"
+      },
+      {
+        "id": "vessels-549",
+        "name": "右睾丸静脉",
+        "en": "Right testicular vein"
+      },
+      {
+        "id": "vessels-554",
+        "name": "阴茎背深静脉",
+        "en": "Deep dorsal vein of penis"
+      },
+      {
+        "id": "vessels-573",
+        "name": "阴茎背浅静脉",
+        "en": "Superficial dorsal veins of penis"
+      },
+      {
+        "id": "vessels-648",
+        "name": "右阴茎深动脉",
+        "en": "Deep artery of penis"
+      },
+      {
+        "id": "vessels-651",
+        "name": "左睾丸动脉",
+        "en": "Left testicular artery"
+      },
+      {
+        "id": "vessels-653",
+        "name": "左睾丸静脉",
+        "en": "Left testicular vein"
+      }
+    ],
+    "primaryBoneParts": 210,
+    "note": "完整教学参考与女性原生细节分开计数；网格部件数不是人体标准骨数。",
+    "systems": {
+      "skeletal": 210,
+      "muscular": 683,
+      "nervous": 550,
+      "vessels": 649,
+      "ear": 48
+    },
+    "nativeDetails": 469
+  },
+  "quickViews": [
+    "surface",
+    "skin",
+    "bones",
+    "muscles",
+    "nerves",
+    "organs"
+  ],
+  "alwaysOpenCustomLayers": true,
+  "clinicalCalibration": false,
+  "previousV20Preserved": true,
+  "originalModelFilesUnchanged": true,
+  "pointRegistrationUnchanged": true,
+  "note": "Female native skin, pelvis and organs plus attributed common-proportion teaching anatomy. Model-part counts are not standard human bone counts. Male-only vessels are excluded, not used to inflate female counts. No new native female scan or clinical registration claim."
+}
