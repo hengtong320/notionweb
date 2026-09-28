@@ -3,7 +3,9 @@ on:
   push:
     paths: ['atlas22-repair/**', '.github/workflows/atlas22-candidate.yml']
   workflow_dispatch:
-permissions: {contents: read}
+permissions:
+  contents: read
+  actions: read
 concurrency:
   group: atlas22-candidate
   cancel-in-progress: true
@@ -21,6 +23,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas21-chromium
+          run-id: 36448173800
+          github-token: ${{ github.token }}
+          path: /tmp/v21-released-tests
       - name: Build versioned repair without modifying V21
         run: |
           python atlas22-repair/patch.py
@@ -39,9 +47,13 @@ jobs:
           from pathlib import Path
           p=Path('fullbody-tcm-v22')
           (p/'build-info.json').write_text(json.dumps({'version':'22.0.0','sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID'],'sha256':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in p.iterdir() if f.is_file()},'clinicalCalibration':False,'pointRegistrationUnchanged':True},indent=2))
-          s=Path('atlas21-repair/verify.cjs').read_text().replace('fullbody-tcm-v21','fullbody-tcm-v22').replace("version:'21.0.0'","version:'22.0.0'")
+          raw=Path('/tmp/v21-released-tests/atlas21-repair/verify.cjs').read_bytes()
+          assert hashlib.sha256(raw).hexdigest()=='3b29ae22c9e0ad790fb7f3ecdff0fc0160594fada9e9edabe37521d36d485d46','Wrong source test artifact'
+          s=raw.decode().replace('fullbody-tcm-v21','fullbody-tcm-v22').replace("version:'21.0.0'","version:'22.0.0'")
           s=s.replace("(live?'live-':'local-')+engine","(live?'compatibility-live-':'compatibility-local-')+engine")
-          s=s.replace("await p.locator('#v21LayersOpen').click();await settle();await p.locator('#tissuePanel')", "if(!await p.evaluate(()=>document.body.classList.contains('nav-open')&&__ATLAS_SHARED__.getState().section==='layers'))await p.locator('#v21LayersOpen').click();await settle();await p.locator('#tissuePanel')")
+          old="await p.locator('#v21LayersOpen').click();await settle();await p.locator('#tissuePanel')"
+          assert s.count(old)==1
+          s=s.replace(old,"if(!await p.evaluate(()=>document.body.classList.contains('nav-open')&&__ATLAS_SHARED__.getState().section==='layers'))await p.locator('#v21LayersOpen').click();await settle();await p.locator('#tissuePanel')")
           Path('atlas22-repair/compatibility.cjs').write_text(s)
           PY
           test -z "$(git diff -- fullbody-tcm-v21/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
