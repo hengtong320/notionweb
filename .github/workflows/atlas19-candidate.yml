@@ -21,7 +21,7 @@ jobs:
           test ! -d fullbody-tcm-v19
           cp -a fullbody-tcm-v18 fullbody-tcm-v19
           rm -rf fullbody-tcm-v19/checks
-          rm -f fullbody-tcm-v19/build-info.json fullbody-tcm-v19/release.json
+          rm -f fullbody-tcm-v19/build-info.json fullbody-tcm-v19/release.json fullbody-tcm-v19/app.bundle.js
           python atlas19-repair/render-repair.py
           python atlas19-repair/switch-repair.py
           if test -f atlas19-repair/finalize.py; then python atlas19-repair/finalize.py; fi
@@ -31,8 +31,9 @@ jobs:
           /tmp/a19/node_modules/.bin/playwright install --with-deps chromium webkit
           sudo apt-get install -y fonts-noto-cjk
       - name: Build and record artifact hashes
+        id: build
         run: |
-          node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v19/app.js'],outfile:'fullbody-tcm-v19/app.bundle.js',bundle:true,format:'iife',loader:{'.txt':'text'},minify:true})"
+          node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v19/app.js'],outfile:'fullbody-tcm-v19/app.bundle.js',bundle:true,format:'iife',nodePaths:[process.env.NODE_PATH],loader:{'.txt':'text'},minify:true})"
           node --check atlas19-repair/verify.cjs
           python - <<'PY'
           import hashlib,json,os
@@ -44,7 +45,7 @@ jobs:
       - name: Chromium rendered-pixel and switching regression
         run: node atlas19-repair/verify.cjs
       - name: WebKit rendered-pixel and switching regression
-        if: '!cancelled()'
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         env: {BROWSER: webkit}
         run: node atlas19-repair/verify.cjs
       - uses: actions/upload-artifact@v4
