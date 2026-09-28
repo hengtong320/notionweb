@@ -1,12 +1,17 @@
 from pathlib import Path
 p=Path('fullbody-tcm-v21')
-f=p/'female-v12.js';s=f.read_text();assert 'selected=id;isolated=keepIsolated;' in s;s=s.replace('selected=id;isolated=keepIsolated;','selected=id;isolated=keepIsolated||!!row.nativeDetail;',1);s=s.replace("root.name='HRA Female Reference (separate source)'","root.name='Female teaching body (native HRA plus attributed shared reference)'");s=s.replace("organs:['respiratory','vascular','digestive','urinary','reproductive','skeletal']","organs:['respiratory','vascular','digestive','urinary','reproductive','lymphatic','skeletal']");f.write_text(s)
+f=p/'female-v12.js';s=f.read_text();assert 'selected=id;isolated=keepIsolated;' in s;s=s.replace('selected=id;isolated=keepIsolated;','selected=id;isolated=keepIsolated||!!row.nativeDetail;',1);s=s.replace("root.name='HRA Female Reference (separate source)'","root.name='Female teaching body (native HRA plus attributed shared reference)'");s=s.replace("organs:['respiratory','vascular','digestive','urinary','reproductive','skeletal']","organs:['respiratory','vascular','digestive','urinary','reproductive','lymphatic','skeletal']");s=s.replace("skeletal:'#e4d9bb'","skeletal:'#c3b79d'");s=s.replace("const contextual=!isolated&&['chest','heart','abdomen','pelvis']","const contextual=!isolated&&['organs','chest','heart','abdomen','pelvis']");f.write_text(s)
 f=p/'layers-ui-v21.js';s=f.read_text();s=s.replace("const b=audit?.systems;","const b=audit?.systems,mc=api.getModelCounts();");s=s.replace('<td>683</td>',"<td>'+(mc.muscular||'读取中')+'</td>").replace('<td>550</td>',"<td>'+(mc.nervous||'读取中')+'</td>")
-# Attach the destination before moving existing controls, so getElementById
-# can still resolve them while initialization continues.
-s=s.replace("actions.className='v21-mixer-actions';actions.append(","actions.className='v21-mixer-actions';custom.querySelector('h3').after(actions);actions.append(")
-f.write_text(s)
+s=s.replace("actions.className='v21-mixer-actions';actions.append(","actions.className='v21-mixer-actions';custom.querySelector('h3').after(actions);actions.append(");f.write_text(s)
+# More room for the always-open custom mixer; no repeated shortcut subtitles.
+f=p/'layers-ui-v21.css';s=f.read_text();s+='\n.v21-panel-heading{margin-bottom:15px}.v21-quick-grid button{min-height:48px;padding:10px}.v21-quick-grid small{display:none}.v21-region-row{margin-bottom:16px}.layers-v21 #customLayers{padding-top:15px!important}@media(max-width:600px){.v21-quick-grid button{min-height:48px}}\n';f.write_text(s)
+f=p/'versions.html';s=f.read_text();s=s.replace('人体研习室 · V20','人体研习室 · V21').replace('修复男女切换导致器官范围丢失、重新点选改变图层、经络状态不同步的问题。完整场景统一切换，资源失败恢复原画面。','六个直达视图与常驻自定义图层。女性骨盆和特有结构保留原生来源，全身骨架、肌肉与神经使用明确标源的统一比例教学参考补齐。').replace('女性模型部分结构缺失的来源边界保持不变。','教学补充不是女性原生扫描，模型部件数不等于人体标准骨数。').replace('<h2>历史版本</h2>','<h2>历史版本</h2><p><a href="../fullbody-tcm-v20/">V20 男女场景同步</a></p>');f.write_text(s)
 f=p/'app.js';s=f.read_text();assert 'function displayError(error){' in s;s=s.replace('function displayError(error){','function displayError(error){window.__ATLAS_STARTUP_ERROR__=String(error?.stack||error);',1);f.write_text(s)
 f=Path('atlas21-repair/verify.cjs');s=f.read_text();s=s.replace("await p.waitForFunction(()=>window.__ATLAS_LAYERS_V21__&&__FOOT_ATLAS__.getState().ready);","await p.waitForFunction(()=>window.__ATLAS_STARTUP_ERROR__||(window.__ATLAS_LAYERS_V21__&&__FOOT_ATLAS__.getState().ready));const startup=await p.evaluate(()=>window.__ATLAS_STARTUP_ERROR__||null);ck('Application initializes without a caught startup error',!startup,startup);")
+# The unchanged source includes two valid sesamoid meshes with 42 vertices.
+# Check real geometry and exact source correspondence, not arbitrary complexity.
+s=s.replace('femBones.every(n=>n.vertices>50)','femBones.every(n=>n.vertices>=3)')
+needle=" const pelvis=femBones.filter(n=>n.origin==='female-native');";assert needle in s
+s=s.replace(needle," ck('Teaching bone geometry exactly matches each source mesh, including small sesamoids',await p.evaluate(()=>{const source=new Map(),female=[];__ATLAS_RENDER_AUDIT__.scene.traverse(n=>{if(n.isMesh&&n.userData.home)source.set(n.name,n.geometry.attributes.position.count);if(n.isMesh&&n.userData.female?.system==='skeletal'&&n.userData.female.origin==='shared-teaching')female.push(n);});return female.length===206&&female.every(n=>n.geometry.attributes.position.count===source.get(n.userData.female.sourceId)&&Number.isFinite(n.geometry.boundingSphere.radius));}));\n"+needle,1)
 f.write_text(s)
-print('Native detail isolation, live model counts and attached save/load controls installed')
+print('Compact mixer, exact source-mesh validation and native-female details ready')
