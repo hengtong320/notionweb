@@ -1,10 +1,28 @@
 {
-  "version": "20.0.0",
-  "sourceCommit": "3038d0712560bdee4f2064612794bcf0d588e25f",
+  "version": "20.0.1",
+  "sourceCommit": "9db4c79de9476c31e61ba62c8d343427d2906242",
   "candidateRun": 36409931479,
-  "publishRun": "36410227618",
-  "bundleSHA256": "3b2cd8066fe22cf94af1fdb04664b527b53659b3a1da946d2d93dc9ddc55323e",
+  "publishRun": "36411519148",
+  "bundleSHA256": "65bba69553135f2061ed0bc64fe6bf1aca1de69ab349006cf2fbcfc4b5a15841",
   "browserChecks": {
+    "chromium": {
+      "passed": 14,
+      "finishedAt": "2026-09-28T10:46:51.262Z"
+    },
+    "webkit": {
+      "passed": 14,
+      "finishedAt": "2026-09-28T10:47:21.187Z"
+    }
+  },
+  "clinicalCalibration": false,
+  "pointRegistrationUnchanged": true,
+  "originalModelsUnchanged": true,
+  "previousV19Preserved": true,
+  "note": "场景状态和渲染回归通过，不代表缺失女性结构已经补全或穴位完成临床配准。",
+  "coreVersion": "20.0.0",
+  "coreSourceCommit": "3038d0712560bdee4f2064612794bcf0d588e25f",
+  "corePublishRun": "36410227618",
+  "coreBrowserChecks": {
     "chromium": {
       "passed": 95,
       "finishedAt": "2026-09-28T10:36:38.508Z",
@@ -38,9 +56,5 @@
       ]
     }
   },
-  "clinicalCalibration": false,
-  "pointRegistrationUnchanged": true,
-  "originalModelsUnchanged": true,
-  "previousV19Preserved": true,
-  "note": "场景状态和渲染回归通过，不代表缺失女性结构已经补全或穴位完成临床配准。"
+  "browserCheckScope": "source caption, actual body ownership, organ crop and skin pigment retention"
 }

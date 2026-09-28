@@ -1,0 +1,94 @@
+{
+  "version": "20.0.1",
+  "engine": "webkit",
+  "live": false,
+  "checks": [
+    {
+      "name": "HTTP success",
+      "pass": true
+    },
+    {
+      "name": "chest: female caption and actual meshes agree",
+      "pass": true,
+      "detail": {
+        "source": "女性 · HRA参考",
+        "sex": "female"
+      }
+    },
+    {
+      "name": "chest: male caption and actual meshes agree",
+      "pass": true,
+      "detail": {
+        "source": "男性 · 解剖参考",
+        "sex": "male"
+      }
+    },
+    {
+      "name": "chest: native crop and rendered structures unchanged by caption repair",
+      "pass": true
+    },
+    {
+      "name": "Male chest title remains chest",
+      "pass": true,
+      "detail": "男性 · 胸腔器官"
+    },
+    {
+      "name": "bones: female caption and actual meshes agree",
+      "pass": true,
+      "detail": {
+        "source": "女性 · HRA参考",
+        "sex": "female"
+      }
+    },
+    {
+      "name": "bones: male caption and actual meshes agree",
+      "pass": true,
+      "detail": {
+        "source": "男性 · 解剖参考",
+        "sex": "male"
+      }
+    },
+    {
+      "name": "bones: native crop and rendered structures unchanged by caption repair",
+      "pass": true
+    },
+    {
+      "name": "surface: female caption and actual meshes agree",
+      "pass": true,
+      "detail": {
+        "source": "女性 · HRA参考",
+        "sex": "female"
+      }
+    },
+    {
+      "name": "Female skin pigment retained",
+      "pass": true
+    },
+    {
+      "name": "surface: male caption and actual meshes agree",
+      "pass": true,
+      "detail": {
+        "source": "男性 · 解剖参考",
+        "sex": "male"
+      }
+    },
+    {
+      "name": "surface: native crop and rendered structures unchanged by caption repair",
+      "pass": true
+    },
+    {
+      "name": "Male skin pigment retained",
+      "pass": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "startedAt": "2026-09-28T10:46:51.668Z",
+  "clinicalCalibration": false,
+  "success": true,
+  "finishedAt": "2026-09-28T10:47:21.187Z"
+}
