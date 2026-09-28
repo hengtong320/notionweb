@@ -1,0 +1,323 @@
+{
+  "version": "19.0.0",
+  "engine": "chromium",
+  "online": false,
+  "checks": [
+    {
+      "name": "HTTP200",
+      "pass": true
+    },
+    {
+      "name": "male surface is really opaque",
+      "pass": true,
+      "detail": 250
+    },
+    {
+      "name": "male pigment is skin geometry with normal depth testing",
+      "pass": true
+    },
+    {
+      "name": "male does not depend on xray",
+      "pass": true
+    },
+    {
+      "name": "male lines produce visible pixels on opaque skin",
+      "pass": true,
+      "detail": {
+        "linePixels": 7808
+      }
+    },
+    {
+      "name": "male points produce visible pixels on opaque skin",
+      "pass": true,
+      "detail": {
+        "pointPixels": 3517
+      }
+    },
+    {
+      "name": "male palmar points no longer project to the back of the palm",
+      "pass": true,
+      "detail": [
+        {
+          "code": "HT8",
+          "side": "right",
+          "buried": -2.477863082888689
+        },
+        {
+          "code": "HT8",
+          "side": "left",
+          "buried": -2.477863966007135
+        },
+        {
+          "code": "PC8",
+          "side": "right",
+          "buried": -2.504287751238735
+        },
+        {
+          "code": "PC8",
+          "side": "left",
+          "buried": -2.5042874387954726
+        }
+      ]
+    },
+    {
+      "name": "male back-view ink is visible without transparency",
+      "pass": true
+    },
+    {
+      "name": "female surface is really opaque",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "female pigment is skin geometry with normal depth testing",
+      "pass": true
+    },
+    {
+      "name": "female does not depend on xray",
+      "pass": true
+    },
+    {
+      "name": "female lines produce visible pixels on opaque skin",
+      "pass": true,
+      "detail": {
+        "linePixels": 7663
+      }
+    },
+    {
+      "name": "female points produce visible pixels on opaque skin",
+      "pass": true,
+      "detail": {
+        "pointPixels": 3407
+      }
+    },
+    {
+      "name": "female palmar points no longer project to the back of the palm",
+      "pass": true,
+      "detail": [
+        {
+          "code": "HT8",
+          "side": "right",
+          "buried": -2.40163674143605
+        },
+        {
+          "code": "HT8",
+          "side": "left",
+          "buried": -2.401633034628503
+        },
+        {
+          "code": "PC8",
+          "side": "right",
+          "buried": -2.524065209408036
+        },
+        {
+          "code": "PC8",
+          "side": "left",
+          "buried": -2.5509873592127406
+        }
+      ]
+    },
+    {
+      "name": "female back-view ink is visible without transparency",
+      "pass": true
+    },
+    {
+      "name": "bones switch to female preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "female bones visible, not covered by leftover skin",
+      "pass": true
+    },
+    {
+      "name": "bones switch to male preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "male bones visible, not covered by leftover skin",
+      "pass": true
+    },
+    {
+      "name": "bones switch to female preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "female bones visible, not covered by leftover skin",
+      "pass": true
+    },
+    {
+      "name": "Female label control is enabled",
+      "pass": true
+    },
+    {
+      "name": "Female labels reference female structures",
+      "pass": true
+    },
+    {
+      "name": "No female labels remain on male model",
+      "pass": true
+    },
+    {
+      "name": "Male label text is visible with meridian details open",
+      "pass": true
+    },
+    {
+      "name": "Hiding male labels removes text and leaders together",
+      "pass": true
+    },
+    {
+      "name": "Showing male labels restores text and leaders together",
+      "pass": true
+    },
+    {
+      "name": "nerves switch to female preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "female nerves visible",
+      "pass": true
+    },
+    {
+      "name": "nerves switch to male preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "male nerves visible",
+      "pass": true
+    },
+    {
+      "name": "nerves switch to female preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "female nerves visible",
+      "pass": true
+    },
+    {
+      "name": "surface switch to female preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "female return to surface restores full opacity",
+      "pass": true
+    },
+    {
+      "name": "surface switch to male preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "male return to surface restores full opacity",
+      "pass": true
+    },
+    {
+      "name": "surface switch to female preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "female return to surface restores full opacity",
+      "pass": true
+    },
+    {
+      "name": "muscles switch to female preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "muscles switch to male preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "muscles switch to female preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "compare switch to female preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "compare switch to male preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "compare switch to female preserves the requested scene",
+      "pass": true
+    },
+    {
+      "name": "Female specific structures remain available",
+      "pass": true
+    },
+    {
+      "name": "Rapid switches settle on the latest body",
+      "pass": true
+    },
+    {
+      "name": "Xray toggling does not move point coordinates",
+      "pass": true
+    },
+    {
+      "name": "male all selected meridians have rendered skin triangles",
+      "pass": true
+    },
+    {
+      "name": "male hiding skin disables pigment layer",
+      "pass": true
+    },
+    {
+      "name": "male re-enabling skin restores pigment on opaque surface",
+      "pass": true
+    },
+    {
+      "name": "male saved opacity is restored without an implicit multiplier",
+      "pass": true
+    },
+    {
+      "name": "male surface preset resets to opaque after a custom combination",
+      "pass": true
+    },
+    {
+      "name": "female all selected meridians have rendered skin triangles",
+      "pass": true
+    },
+    {
+      "name": "female hiding skin disables pigment layer",
+      "pass": true
+    },
+    {
+      "name": "female re-enabling skin restores pigment on opaque surface",
+      "pass": true
+    },
+    {
+      "name": "female saved opacity is restored without an implicit multiplier",
+      "pass": true
+    },
+    {
+      "name": "female surface preset resets to opaque after a custom combination",
+      "pass": true
+    },
+    {
+      "name": "Tablet canvas remains usable",
+      "pass": true
+    },
+    {
+      "name": "No uncaught or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "pixelChecks": [
+    {
+      "sex": "male",
+      "linePixels": 7808,
+      "pointPixels": 3517
+    },
+    {
+      "sex": "female",
+      "linePixels": 7663,
+      "pointPixels": 3407
+    }
+  ],
+  "startedAt": "2026-09-28T01:45:27.425Z",
+  "clinicalCalibration": false,
+  "success": true,
+  "finishedAt": "2026-09-28T01:49:07.406Z"
+}

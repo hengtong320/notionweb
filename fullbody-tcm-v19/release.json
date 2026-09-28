@@ -1,0 +1,47 @@
+{
+  "version": "19.0.0",
+  "sourceCommit": "ab739b88cdfedaa72c633c39af34f6b57c706ec7",
+  "verificationRun": "36367124049",
+  "bundleSHA256": "2ada0169453d8d5e876968a03083ed30ea502950de79916400807d7ed91a5daf",
+  "localBrowserChecks": {
+    "chromium": {
+      "passed": 60,
+      "pixelChecks": [
+        {
+          "sex": "male",
+          "linePixels": 7808,
+          "pointPixels": 3517
+        },
+        {
+          "sex": "female",
+          "linePixels": 7663,
+          "pointPixels": 3407
+        }
+      ],
+      "finishedAt": "2026-09-28T01:49:07.406Z"
+    },
+    "webkit": {
+      "passed": 60,
+      "pixelChecks": [
+        {
+          "sex": "male",
+          "linePixels": 7898,
+          "pointPixels": 3570
+        },
+        {
+          "sex": "female",
+          "linePixels": 7766,
+          "pointPixels": 3466
+        }
+      ],
+      "finishedAt": "2026-09-28T01:50:47.603Z"
+    }
+  },
+  "skinRendering": "pigment on actual skin triangles with normal depth testing",
+  "defaultSurfaceOpacity": 1,
+  "originalModelsUnchanged": true,
+  "previousV18Preserved": true,
+  "clinicalCalibration": false,
+  "pointModelConstraintsUnchanged": true,
+  "note": "图形显示与交互修复；女性来源仍为部分结构覆盖，穴位未逐一临床配准。"
+}
