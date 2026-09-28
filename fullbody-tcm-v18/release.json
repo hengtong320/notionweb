@@ -1,0 +1,23 @@
+{
+  "version": "18.0.0",
+  "revision": "final-shape-hand-1",
+  "sourceCommit": "4ea33132c87204ba8154816a6846da3bf7c9d477",
+  "verificationRun": "36361245646",
+  "localBrowserChecks": {
+    "chromium": {
+      "passed": 56,
+      "finishedAt": "2026-09-28T00:15:21.481Z"
+    },
+    "webkit": {
+      "passed": 56,
+      "finishedAt": "2026-09-28T00:16:24.120Z"
+    }
+  },
+  "finalRenderingFilesMatchReviewedArchive": true,
+  "bundleSHA256": "2a63eceae570c91804e2b6eb111fbf95c56a83cbdd193d7cbbc2151b1eef2651",
+  "sourceMeshesUnchanged": true,
+  "clinicalCalibration": false,
+  "pointNames": 361,
+  "modelConstraintUpdated": 190,
+  "remainingDetailedReview": 171
+}

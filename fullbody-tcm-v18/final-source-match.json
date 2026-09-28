@@ -1,0 +1,10 @@
+{
+  "sourceArchiveSHA256": "53f76bc3c254840f1df190ae43fe3d715f03b23959ab6ad3c6ce0fe4b15bf27b",
+  "matchedFinalFiles": {
+    "body-frame-v18.js": "0a3a93bd7b058efb82a1da8bde7c59edc3282add21438c9fef980770ee77f2f3",
+    "body-frame-v18.json": "acb5fe7c123321f81844e87930911cc69a6ecc8cc313b7401d8e9fe8e19ba7f9",
+    "skin-v17.js": "08e548bfd1205ff90352200f1ea3315c71ef3b27cd08ba6598ff7449fd830f39",
+    "female-hand-route-v18.json": "1edd6a2217cfd03b497e7289239c84e388f2ecb3fa3bb397adf00c5ec3b2c5ee"
+  },
+  "clinicalCalibration": false
+}
