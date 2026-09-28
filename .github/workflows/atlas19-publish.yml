@@ -1,0 +1,115 @@
+name: Publish reviewed V19 skin pigment repair
+on:
+  push:
+    paths: ['.github/workflows/atlas19-publish.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: atlas19-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_PATH: /tmp/a19/node_modules
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - name: Require successful final candidate tests
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import os,json,time,urllib.request
+          url='https://api.github.com/repos/hengtong320/notionweb/actions/runs/36367124049'
+          for attempt in range(60):
+              req=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              data=json.load(urllib.request.urlopen(req,timeout=20))
+              assert data['head_sha']=='ab739b88cdfedaa72c633c39af34f6b57c706ec7'
+              if data['status']=='completed':
+                  assert data['conclusion']=='success',data['conclusion']
+                  break
+              if attempt==59:raise RuntimeError('Candidate did not finish')
+              time.sleep(10)
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas19-candidate
+          run-id: 36367124049
+          github-token: ${{ github.token }}
+          path: /tmp/reviewed-v19
+      - name: Validate exact tested artifact and publish the new version only
+        run: |
+          python - <<'PY'
+          import json,hashlib,shutil
+          from pathlib import Path
+          source=Path('/tmp/reviewed-v19/fullbody-tcm-v19')
+          b=json.loads((source/'build-info.json').read_text())
+          assert b['version']=='19.0.0' and b['sourceCommit']=='ab739b88cdfedaa72c633c39af34f6b57c706ec7'
+          assert not b['clinicalCalibration']
+          for name,sha in b['sha256'].items():
+              assert '/' not in name and hashlib.sha256((source/name).read_bytes()).hexdigest()==sha,name
+          checks={}
+          for engine in ['chromium','webkit']:
+              r=json.loads((source/'checks'/('local-'+engine+'.json')).read_text())
+              assert r['success'] and not r['errors'] and len(r['checks'])>=60 and all(c['pass'] for c in r['checks'])
+              assert len(r['pixelChecks'])==2
+              assert all(p['linePixels']>350 and p['pointPixels']>150 for p in r['pixelChecks'])
+              checks[engine]={'passed':len(r['checks']),'pixelChecks':r['pixelChecks'],'finishedAt':r['finishedAt']}
+          dest=Path('fullbody-tcm-v19')
+          assert not dest.exists(),'Refuse to replace an existing V19'
+          shutil.copytree(source,dest)
+          release={'version':'19.0.0','sourceCommit':b['sourceCommit'],'verificationRun':b['verificationRun'],'bundleSHA256':b['sha256']['app.bundle.js'],'localBrowserChecks':checks,'skinRendering':'pigment on actual skin triangles with normal depth testing','defaultSurfaceOpacity':1,'originalModelsUnchanged':True,'previousV18Preserved':True,'clinicalCalibration':False,'pointModelConstraintsUnchanged':True,'note':'图形显示与交互修复；女性来源仍为部分结构覆盖，穴位未逐一临床配准。'}
+          (dest/'release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          print(json.dumps(release,ensure_ascii=False))
+          PY
+          test -z "$(git diff -- fullbody-tcm-v18/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v19
+          git commit -m "Publish V19 opaque skin pigment and consistent body switching"
+          git push origin HEAD:main
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install real browsers for public verification
+        run: |
+          npm install --prefix /tmp/a19 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a19/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Confirm fixed entrance and exact public bundle
+        run: |
+          python - <<'PY'
+          import json,hashlib,time,urllib.request
+          from pathlib import Path
+          expected=json.loads(Path('fullbody-tcm-v19/release.json').read_text())['bundleSHA256']
+          base='https://hengtong320.github.io/notionweb/'
+          for attempt in range(48):
+              try:
+                  def get(path):
+                      req=urllib.request.Request(base+path+'?verify='+str(time.time_ns()),headers={'Cache-Control':'no-cache'})
+                      return urllib.request.urlopen(req,timeout=20).read()
+                  assert '../fullbody-tcm-v19/' in get('anatomy/').decode(),'Fixed entrance still uses previous version'
+                  r=json.loads(get('fullbody-tcm-v19/release.json'))
+                  assert r['version']=='19.0.0'
+                  assert hashlib.sha256(get('fullbody-tcm-v19/app.bundle.js')).hexdigest()==expected
+                  Path('fullbody-tcm-v19/checks/live-content.json').write_text(json.dumps({'success':True,'version':'19.0.0','bundleSHA256':expected,'fixedEntrance':'anatomy/','checkedAt':time.time()},indent=2))
+                  break
+              except Exception as e:
+                  print(str(e),flush=True)
+                  if attempt==47:raise
+                  time.sleep(10)
+          PY
+      - name: Chromium public rendering and switching checks
+        run: node atlas19-publish/smoke.cjs
+      - name: WebKit public rendering and switching checks
+        env: {BROWSER: webkit}
+        run: node atlas19-publish/smoke.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas19-public-verification
+          path: fullbody-tcm-v19/checks/live-*
+          retention-days: 14
