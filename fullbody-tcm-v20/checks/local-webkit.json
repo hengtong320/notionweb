@@ -1,0 +1,669 @@
+{
+  "version": "20.0.0",
+  "engine": "webkit",
+  "live": false,
+  "baseline": false,
+  "checks": [
+    {
+      "name": "Published page responds",
+      "pass": true
+    },
+    {
+      "name": "bones: female owns all actually visible meshes",
+      "pass": true,
+      "detail": {
+        "skeletal": 57
+      }
+    },
+    {
+      "name": "bones: semantic scene is unchanged",
+      "pass": true
+    },
+    {
+      "name": "bones: no unsolicited female skin mask",
+      "pass": true
+    },
+    {
+      "name": "bones: male crop is retained",
+      "pass": true,
+      "detail": {
+        "before": null,
+        "after": null
+      }
+    },
+    {
+      "name": "bones: male meshes and opacities restore exactly",
+      "pass": true,
+      "detail": {
+        "before": 210,
+        "after": 210
+      }
+    },
+    {
+      "name": "bones: no opposite-body meshes remain",
+      "pass": true
+    },
+    {
+      "name": "bones: independent meridian toggles preserved",
+      "pass": true
+    },
+    {
+      "name": "chest: female owns all actually visible meshes",
+      "pass": true,
+      "detail": {
+        "skeletal": 57,
+        "vascular": 51,
+        "respiratory": 70
+      }
+    },
+    {
+      "name": "chest: semantic scene is unchanged",
+      "pass": true
+    },
+    {
+      "name": "chest: no unsolicited female skin mask",
+      "pass": true
+    },
+    {
+      "name": "chest: male crop is retained",
+      "pass": true,
+      "detail": {
+        "before": [
+          [
+            -120,
+            1050,
+            -175
+          ],
+          [
+            315,
+            1420,
+            155
+          ]
+        ],
+        "after": [
+          [
+            -120,
+            1050,
+            -175
+          ],
+          [
+            315,
+            1420,
+            155
+          ]
+        ]
+      }
+    },
+    {
+      "name": "chest: male meshes and opacities restore exactly",
+      "pass": true,
+      "detail": {
+        "before": 249,
+        "after": 249
+      }
+    },
+    {
+      "name": "chest: header describes the active organ scene",
+      "pass": true,
+      "detail": "男性 · 胸腔器官"
+    },
+    {
+      "name": "chest: no opposite-body meshes remain",
+      "pass": true
+    },
+    {
+      "name": "chest: independent meridian toggles preserved",
+      "pass": true
+    },
+    {
+      "name": "heart: female owns all actually visible meshes",
+      "pass": true,
+      "detail": {
+        "skeletal": 57,
+        "vascular": 51
+      }
+    },
+    {
+      "name": "heart: semantic scene is unchanged",
+      "pass": true
+    },
+    {
+      "name": "heart: no unsolicited female skin mask",
+      "pass": true
+    },
+    {
+      "name": "Female heart excludes lungs",
+      "pass": true
+    },
+    {
+      "name": "heart: male crop is retained",
+      "pass": true,
+      "detail": {
+        "before": [
+          [
+            8,
+            1120,
+            -105
+          ],
+          [
+            224,
+            1390,
+            105
+          ]
+        ],
+        "after": [
+          [
+            8,
+            1120,
+            -105
+          ],
+          [
+            224,
+            1390,
+            105
+          ]
+        ]
+      }
+    },
+    {
+      "name": "heart: male meshes and opacities restore exactly",
+      "pass": true,
+      "detail": {
+        "before": 234,
+        "after": 234
+      }
+    },
+    {
+      "name": "heart: header describes the active organ scene",
+      "pass": true,
+      "detail": "男性 · 心脏特写"
+    },
+    {
+      "name": "heart: no opposite-body meshes remain",
+      "pass": true
+    },
+    {
+      "name": "heart: independent meridian toggles preserved",
+      "pass": true
+    },
+    {
+      "name": "abdomen: female owns all actually visible meshes",
+      "pass": true,
+      "detail": {
+        "skeletal": 57,
+        "digestive": 54,
+        "urinary": 18
+      }
+    },
+    {
+      "name": "abdomen: semantic scene is unchanged",
+      "pass": true
+    },
+    {
+      "name": "abdomen: no unsolicited female skin mask",
+      "pass": true
+    },
+    {
+      "name": "abdomen: male crop is retained",
+      "pass": true,
+      "detail": {
+        "before": [
+          [
+            -100,
+            690,
+            -155
+          ],
+          [
+            305,
+            1140,
+            165
+          ]
+        ],
+        "after": [
+          [
+            -100,
+            690,
+            -155
+          ],
+          [
+            305,
+            1140,
+            165
+          ]
+        ]
+      }
+    },
+    {
+      "name": "abdomen: male meshes and opacities restore exactly",
+      "pass": true,
+      "detail": {
+        "before": 248,
+        "after": 248
+      }
+    },
+    {
+      "name": "abdomen: header describes the active organ scene",
+      "pass": true,
+      "detail": "男性 · 腹部器官"
+    },
+    {
+      "name": "abdomen: no opposite-body meshes remain",
+      "pass": true
+    },
+    {
+      "name": "abdomen: independent meridian toggles preserved",
+      "pass": true
+    },
+    {
+      "name": "vascular: female owns all actually visible meshes",
+      "pass": true,
+      "detail": {
+        "skeletal": 57,
+        "vascular": 124
+      }
+    },
+    {
+      "name": "vascular: semantic scene is unchanged",
+      "pass": true
+    },
+    {
+      "name": "vascular: male crop is retained",
+      "pass": true,
+      "detail": {
+        "before": null,
+        "after": null
+      }
+    },
+    {
+      "name": "vascular: male meshes and opacities restore exactly",
+      "pass": true,
+      "detail": {
+        "before": 873,
+        "after": 873
+      }
+    },
+    {
+      "name": "vascular: no opposite-body meshes remain",
+      "pass": true
+    },
+    {
+      "name": "vascular: independent meridian toggles preserved",
+      "pass": true
+    },
+    {
+      "name": "pelvis: female owns all actually visible meshes",
+      "pass": true,
+      "detail": {
+        "skeletal": 57,
+        "reproductive": 38,
+        "urinary": 8
+      }
+    },
+    {
+      "name": "pelvis: semantic scene is unchanged",
+      "pass": true
+    },
+    {
+      "name": "pelvis: male crop is retained",
+      "pass": true,
+      "detail": {
+        "before": [
+          [
+            -130,
+            650,
+            -200
+          ],
+          [
+            340,
+            990,
+            200
+          ]
+        ],
+        "after": [
+          [
+            -130,
+            650,
+            -200
+          ],
+          [
+            340,
+            990,
+            200
+          ]
+        ]
+      }
+    },
+    {
+      "name": "pelvis: male meshes and opacities restore exactly",
+      "pass": true,
+      "detail": {
+        "before": 233,
+        "after": 233
+      }
+    },
+    {
+      "name": "pelvis: no opposite-body meshes remain",
+      "pass": true
+    },
+    {
+      "name": "pelvis: independent meridian toggles preserved",
+      "pass": true
+    },
+    {
+      "name": "nerves: female owns all actually visible meshes",
+      "pass": true,
+      "detail": {
+        "nervous": 362,
+        "skeletal": 57
+      }
+    },
+    {
+      "name": "nerves: semantic scene is unchanged",
+      "pass": true
+    },
+    {
+      "name": "nerves: no unsolicited female skin mask",
+      "pass": true
+    },
+    {
+      "name": "nerves: male crop is retained",
+      "pass": true,
+      "detail": {
+        "before": null,
+        "after": null
+      }
+    },
+    {
+      "name": "nerves: male meshes and opacities restore exactly",
+      "pass": true,
+      "detail": {
+        "before": 760,
+        "after": 760
+      }
+    },
+    {
+      "name": "nerves: no opposite-body meshes remain",
+      "pass": true
+    },
+    {
+      "name": "nerves: independent meridian toggles preserved",
+      "pass": true
+    },
+    {
+      "name": "muscles: female owns all actually visible meshes",
+      "pass": true,
+      "detail": {
+        "muscular": 16
+      }
+    },
+    {
+      "name": "muscles: semantic scene is unchanged",
+      "pass": true
+    },
+    {
+      "name": "muscles: male crop is retained",
+      "pass": true,
+      "detail": {
+        "before": null,
+        "after": null
+      }
+    },
+    {
+      "name": "muscles: male meshes and opacities restore exactly",
+      "pass": true,
+      "detail": {
+        "before": 783,
+        "after": 783
+      }
+    },
+    {
+      "name": "muscles: no opposite-body meshes remain",
+      "pass": true
+    },
+    {
+      "name": "muscles: independent meridian toggles preserved",
+      "pass": true
+    },
+    {
+      "name": "compare: female owns all actually visible meshes",
+      "pass": true,
+      "detail": {
+        "nervous": 362,
+        "skeletal": 57,
+        "muscular": 16
+      }
+    },
+    {
+      "name": "compare: semantic scene is unchanged",
+      "pass": true
+    },
+    {
+      "name": "compare: male crop is retained",
+      "pass": true,
+      "detail": {
+        "before": null,
+        "after": null
+      }
+    },
+    {
+      "name": "compare: male meshes and opacities restore exactly",
+      "pass": true,
+      "detail": {
+        "before": 1333,
+        "after": 1333
+      }
+    },
+    {
+      "name": "compare: no opposite-body meshes remain",
+      "pass": true
+    },
+    {
+      "name": "compare: independent meridian toggles preserved",
+      "pass": true
+    },
+    {
+      "name": "surface: female owns all actually visible meshes",
+      "pass": true,
+      "detail": {
+        "surface": 1
+      }
+    },
+    {
+      "name": "surface: semantic scene is unchanged",
+      "pass": true
+    },
+    {
+      "name": "surface: male crop is retained",
+      "pass": true,
+      "detail": {
+        "before": null,
+        "after": null
+      }
+    },
+    {
+      "name": "surface: male meshes and opacities restore exactly",
+      "pass": true,
+      "detail": {
+        "before": 250,
+        "after": 250
+      }
+    },
+    {
+      "name": "surface: no opposite-body meshes remain",
+      "pass": true
+    },
+    {
+      "name": "surface: independent meridian toggles preserved",
+      "pass": true
+    },
+    {
+      "name": "Selected point and channel settings survive female switch",
+      "pass": true,
+      "detail": {
+        "before": {
+          "enabled": true,
+          "linesOn": true,
+          "pointsOn": true,
+          "namesOn": false,
+          "xray": false,
+          "guideOn": true,
+          "curveStyle": "smooth",
+          "tcmSide": "left",
+          "selectedMeridians": [
+            "HT",
+            "PC"
+          ],
+          "selectedPoint": {
+            "code": "PC6",
+            "name": "内关",
+            "side": "left",
+            "areaOnly": false
+          }
+        },
+        "after": {
+          "enabled": true,
+          "linesOn": true,
+          "pointsOn": true,
+          "namesOn": false,
+          "xray": false,
+          "guideOn": true,
+          "curveStyle": "smooth",
+          "tcmSide": "left",
+          "selectedMeridians": [
+            "HT",
+            "PC"
+          ],
+          "selectedPoint": {
+            "code": "PC6",
+            "name": "内关",
+            "side": "left",
+            "areaOnly": false
+          }
+        }
+      }
+    },
+    {
+      "name": "Selected point survives male return",
+      "pass": true
+    },
+    {
+      "name": "male: opaque skin and correct pigment body",
+      "pass": true
+    },
+    {
+      "name": "male: drawn lines and dots are actually visible",
+      "pass": true,
+      "detail": {
+        "linePixels": 7898,
+        "pointPixels": 3570
+      }
+    },
+    {
+      "name": "female: opaque skin and correct pigment body",
+      "pass": true
+    },
+    {
+      "name": "female: drawn lines and dots are actually visible",
+      "pass": true,
+      "detail": {
+        "linePixels": 7766,
+        "pointPixels": 3466
+      }
+    },
+    {
+      "name": "Female labels contain only current female structures",
+      "pass": true
+    },
+    {
+      "name": "Female labels are removed on male return",
+      "pass": true
+    },
+    {
+      "name": "User nerve opacity survives gender change",
+      "pass": true
+    },
+    {
+      "name": "User nerve opacity survives return",
+      "pass": true
+    },
+    {
+      "name": "Saved combination restores native scope and opacities",
+      "pass": true
+    },
+    {
+      "name": "Female chest has a selectable sourced lung",
+      "pass": true
+    },
+    {
+      "name": "Selecting a female organ does not open an unrelated skin layer",
+      "pass": true
+    },
+    {
+      "name": "Female selected-organ isolation restores after roundtrip",
+      "pass": true
+    },
+    {
+      "name": "Female hidden-structure set restores after roundtrip",
+      "pass": true
+    },
+    {
+      "name": "Male chest has a selectable sourced heart",
+      "pass": true
+    },
+    {
+      "name": "Male selected-organ isolation and scope restore after roundtrip",
+      "pass": true
+    },
+    {
+      "name": "Male skeleton poses cannot leak into the female body",
+      "pass": true
+    },
+    {
+      "name": "Male bone separation restores rather than moving female anatomy",
+      "pass": true
+    },
+    {
+      "name": "Interleaved latest body and scene requests win together",
+      "pass": true
+    },
+    {
+      "name": "No unexpected transition errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Injected asset failure is reported",
+      "pass": true
+    },
+    {
+      "name": "Failed scene change rolls back to visible female bones",
+      "pass": true
+    },
+    {
+      "name": "Failed layer can be retried without reload",
+      "pass": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "pixelChecks": [
+    {
+      "sex": "male",
+      "linePixels": 7898,
+      "pointPixels": 3570
+    },
+    {
+      "sex": "female",
+      "linePixels": 7766,
+      "pointPixels": 3466
+    }
+  ],
+  "startedAt": "2026-09-28T10:36:38.966Z",
+  "clinicalCalibration": false,
+  "success": true,
+  "finishedAt": "2026-09-28T10:38:49.224Z"
+}

@@ -1,0 +1,46 @@
+{
+  "version": "20.0.0",
+  "sourceCommit": "3038d0712560bdee4f2064612794bcf0d588e25f",
+  "candidateRun": 36409931479,
+  "publishRun": "36410227618",
+  "bundleSHA256": "3b2cd8066fe22cf94af1fdb04664b527b53659b3a1da946d2d93dc9ddc55323e",
+  "browserChecks": {
+    "chromium": {
+      "passed": 95,
+      "finishedAt": "2026-09-28T10:36:38.508Z",
+      "pixelChecks": [
+        {
+          "sex": "male",
+          "linePixels": 15705,
+          "pointPixels": 10497
+        },
+        {
+          "sex": "female",
+          "linePixels": 7663,
+          "pointPixels": 3407
+        }
+      ]
+    },
+    "webkit": {
+      "passed": 95,
+      "finishedAt": "2026-09-28T10:38:49.224Z",
+      "pixelChecks": [
+        {
+          "sex": "male",
+          "linePixels": 7898,
+          "pointPixels": 3570
+        },
+        {
+          "sex": "female",
+          "linePixels": 7766,
+          "pointPixels": 3466
+        }
+      ]
+    }
+  },
+  "clinicalCalibration": false,
+  "pointRegistrationUnchanged": true,
+  "originalModelsUnchanged": true,
+  "previousV19Preserved": true,
+  "note": "场景状态和渲染回归通过，不代表缺失女性结构已经补全或穴位完成临床配准。"
+}
