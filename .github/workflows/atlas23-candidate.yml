@@ -1,0 +1,84 @@
+name: Verify V23 structure selection
+on:
+  push:
+    paths: ['atlas23-repair/**', '.github/workflows/atlas23-candidate.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+concurrency:
+  group: atlas23-candidate
+  cancel-in-progress: true
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix: {browser: [chromium, webkit]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/a23/node_modules
+      BROWSER: ${{ matrix.browser }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas22-webkit
+          run-id: 36455216654
+          github-token: ${{ github.token }}
+          path: /tmp/prior22
+      - name: Build isolated selection repair and prepare exact prior release tests
+        run: |
+          python atlas23-repair/patch.py
+          if test -f atlas23-repair/finalize.py; then python atlas23-repair/finalize.py; fi
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('atlas23-repair/verify.cjs')
+          s=p.read_text()
+          # Legacy right-side foot-atlas IDs have no -right suffix.
+          s=s.replace("r.sourceId==='femur-right'", "r.sourceId==='femur'")
+          p.write_text(s)
+          src=Path('/tmp/prior22/atlas22-repair')
+          for old,new in [('compatibility.cjs','compatibility.cjs'),('verify.cjs','prior-interactions.cjs')]:
+              s=(src/old).read_text().replace('fullbody-tcm-v22','fullbody-tcm-v23').replace('22.0.0','23.0.0').replace('-V22','-V23')
+              s=s.replace("version=baseline?'21':'22'", "version=baseline?'22':'23'")
+              if new.startswith('prior'):s=s.replace("live?'live-':'local-'", "live?'prior-live-':'prior-local-'")
+              Path('atlas23-repair',new).write_text(s)
+          PY
+      - name: Install pinned renderer and real browser
+        run: |
+          npm install --prefix /tmp/a23 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a23/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Bundle and record source hashes
+        run: |
+          node --check atlas23-repair/verify.cjs
+          node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v23/app.js'],outfile:'fullbody-tcm-v23/app.bundle.js',bundle:true,format:'iife',nodePaths:[process.env.NODE_PATH],loader:{'.txt':'text'},minify:true})"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os
+          p=Path('fullbody-tcm-v23')
+          d={'version':'23.0.0','sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID'],'sha256':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in p.iterdir() if f.is_file()},'pointRegistrationUnchanged':True,'clinicalCalibration':False}
+          (p/'build-info.json').write_text(json.dumps(d,indent=2))
+          PY
+          test -z "$(git diff -- fullbody-tcm-v22/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+      - name: Reproduce selection issues in unchanged V22
+        if: matrix.browser == 'chromium'
+        env: {BASELINE: '1'}
+        run: node atlas23-repair/verify.cjs
+      - name: Actual new selection and directory journeys
+        run: node atlas23-repair/verify.cjs
+      - name: Prior 20 interaction regressions
+        if: '!cancelled()'
+        run: node atlas23-repair/prior-interactions.cjs
+      - name: Prior 63 model, layer and skin regressions
+        if: '!cancelled()'
+        run: node atlas23-repair/compatibility.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas23-${{ matrix.browser }}
+          path: |
+            fullbody-tcm-v23/
+            atlas23-repair/
+          retention-days: 14
