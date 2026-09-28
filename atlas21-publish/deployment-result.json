@@ -1,0 +1,48 @@
+{
+  "version": "21.0.0",
+  "published": true,
+  "fixedEntrance": "https://hengtong320.github.io/notionweb/anatomy/",
+  "versionUrl": "https://hengtong320.github.io/notionweb/fullbody-tcm-v21/",
+  "sourceCommit": "4765af757ab5a56c028cfc2f0351430c4a64ae30",
+  "entranceCommit": "269192e24a5eb8bbf57b4ad9f8fce4ed6c881638",
+  "candidateRun": 36448173800,
+  "publishRun": 36449132501,
+  "pagesDeploymentRun": 36449247986,
+  "bundleSHA256": "49fa4357333e801a244b147dc08bf9515e39cfe5f5225933f7a81b913df8a08d",
+  "publicContentHashVerified": true,
+  "localBrowserChecks": {"chromium": 63, "webkit": 63, "success": true},
+  "publicBrowserChecks": {
+    "chromium": {
+      "passed": 63, "success": true, "errors": [], "finishedAt": "2026-09-28T16:20:07.478Z",
+      "pixelChecks": [{"sex":"male","linePixels":14300,"pointPixels":8611},{"sex":"female","linePixels":5994,"pointPixels":1578}],
+      "artifactId": 10983700508,
+      "artifactSHA256": "7a967db2397808684527b7da72e93615462f858a0e331fed9e6ca5cad6092f9e"
+    },
+    "webkit": {
+      "passed": 63, "success": true, "errors": [], "finishedAt": "2026-09-28T16:17:30.860Z",
+      "pixelChecks": [{"sex":"male","linePixels":6226,"pointPixels":1582},{"sex":"female","linePixels":6074,"pointPixels":1548}],
+      "artifactId": 10983031666,
+      "artifactSHA256": "b277c3e5524b907b65b4d5ed54e8838b3464f1bf226214679f724db2bddd16f7"
+    }
+  },
+  "quickViews": ["体表经络", "纯体表", "全身骨骼", "全身肌肉", "全身神经", "胸腹内脏"],
+  "alwaysOpenCustomLayers": true,
+  "mobileAndTabletDirectLayersButton": true,
+  "testedViewports": [[1440,1000],[1024,768],[390,844]],
+  "modelPartCounts": {
+    "male": {"skeletal":210,"muscularWithAncillary":683,"nervous":550,"vessels":659,"ear":48},
+    "femaleTeaching": {"skeletal":210,"muscularWithAncillary":683,"nervous":550,"vessels":649,"ear":48},
+    "musclePrimaryParts":573,
+    "muscleAncillaryPartsControlledByDetailToggle":110,
+    "femaleNativePelvicBoneParts":4,
+    "excludedMaleOnlyVesselParts":10,
+    "femaleNativeLocalDetailsPreservedSeparately":469,
+    "countMeaning":"Selectable model parts within each system, not standard human bone counts. On-screen totals vary with enabled layers and detail filters. Native female heart and uterine vessels are retained separately from the shared whole-body vessel reference."
+  },
+  "sourcePolicy":"Native HRA female skin, pelvis, viscera and sex-specific organs are preserved. Missing whole-body systems are supplemented with explicitly attributed Z-Anatomy / BodyParts3D common-proportion teaching geometry, not a newly acquired female scan.",
+  "originalModelFilesUnchanged": true,
+  "pointRegistrationUnchanged": true,
+  "previousV20Preserved": true,
+  "clinicalCalibration": false,
+  "limitations":"Full-body teaching coverage is not a claim of fully calibrated native female anatomy. Acupoints remain educational and are not clinically registered."
+}
