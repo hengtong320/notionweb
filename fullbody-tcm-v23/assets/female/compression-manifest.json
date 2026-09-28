@@ -1,0 +1,83 @@
+{
+  "sourceSHA256": "472567a56896b9b7890508da6501fbf858e56aaa30745365f7a71ade782b529c",
+  "codec": "Draco 16-bit positions / 12-bit normals; quantization, no simplification",
+  "files": [
+    {
+      "file": "breast.glb",
+      "rawBytes": 34596080,
+      "bytes": 5002860,
+      "sha256": "8552f4c8ee9c232780f74093a0f46bbc2436320865677a821f53faeac8679f56",
+      "meshes": 16
+    },
+    {
+      "file": "digestive.glb",
+      "rawBytes": 5478832,
+      "bytes": 1124420,
+      "sha256": "43d9c3cb78fbc1635e0f395025eab4be02560de4c8cc6c2f997dc77e504c8b3d",
+      "meshes": 61
+    },
+    {
+      "file": "lymphatic.glb",
+      "rawBytes": 4777180,
+      "bytes": 986928,
+      "sha256": "8597bd73696ddaa1b228a214b7cab690f4350a8888fd392fd08fc8654a43d8ee",
+      "meshes": 14
+    },
+    {
+      "file": "muscular.glb",
+      "rawBytes": 5079756,
+      "bytes": 1025388,
+      "sha256": "573f62dc852b0c155d40371ec4e6aa9dfb1a75b59228e67a3a44dfebea706166",
+      "meshes": 16
+    },
+    {
+      "file": "nervous.glb",
+      "rawBytes": 61833660,
+      "bytes": 12879188,
+      "sha256": "610c4915df2405679aa2dda32f0e53a85063d13115b934b8769842b114a3f866",
+      "meshes": 362
+    },
+    {
+      "file": "reproductive.glb",
+      "rawBytes": 3016592,
+      "bytes": 546584,
+      "sha256": "da7e5a395c801c5a3351cbe5580c90e1db30a845d496af84ad5876f994f580d6",
+      "meshes": 38
+    },
+    {
+      "file": "respiratory.glb",
+      "rawBytes": 18040640,
+      "bytes": 4035056,
+      "sha256": "e89a1cc453f8b543c5faaac45a3980486689665a937dd384a92404e2a8f68c7c",
+      "meshes": 70
+    },
+    {
+      "file": "skeletal.glb",
+      "rawBytes": 10283144,
+      "bytes": 1912052,
+      "sha256": "9d2470fa0a958753c13e35626324afa4a3fdbb62eb742923e70c0d649d7ce599",
+      "meshes": 91
+    },
+    {
+      "file": "surface.glb",
+      "rawBytes": 9184484,
+      "bytes": 751900,
+      "sha256": "a62b1a87c1fdeb264cbe3b364aae2f56a10169592277741918dbf0776feb23a0",
+      "meshes": 1
+    },
+    {
+      "file": "urinary.glb",
+      "rawBytes": 4786796,
+      "bytes": 927856,
+      "sha256": "3346586a34b7b0e5cc9540f458f0e8a02bde017b6ca318120dd6c404fa2795c9",
+      "meshes": 87
+    },
+    {
+      "file": "vascular.glb",
+      "rawBytes": 14374900,
+      "bytes": 2707956,
+      "sha256": "833a812035c775e4ad9af1bcef1375ef8388f599887c32cfb2c5b455c757532c",
+      "meshes": 124
+    }
+  ]
+}

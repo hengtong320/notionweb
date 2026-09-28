@@ -1,0 +1,29 @@
+{
+  "version": "7.0",
+  "classicalNames": 361,
+  "navigationReferences": 361,
+  "bilateralMarkers": 670,
+  "clinicalCalibration": false,
+  "sourceNote": "WHO 2008 locations and TARA curated catalog consulted; positions are model-specific approximate regional references, not clinical registration",
+  "sourceURLs": [
+    "https://github.com/SciCrunch/TARA-Ontology-Repository/blob/master/curated-data/acupoints/acupoints.csv",
+    "https://iris.who.int/handle/10665/353407"
+  ],
+  "channels": {
+    "LU": 11,
+    "LI": 20,
+    "ST": 45,
+    "SP": 21,
+    "HT": 9,
+    "SI": 19,
+    "BL": 67,
+    "KI": 27,
+    "PC": 9,
+    "TE": 23,
+    "GB": 44,
+    "LR": 14,
+    "GV": 28,
+    "CV": 24
+  },
+  "coordinateTableSHA256": "37fd8902cc9d68482cca83b08849853f174ad8f0b527777d87547d95e7d70ba2"
+}

@@ -1,0 +1,163 @@
+{
+  "version": "22.0.0",
+  "engine": "chromium",
+  "baseline": true,
+  "live": false,
+  "checks": [
+    {
+      "name": "Male bone selected from opaque skin is actually visible",
+      "pass": false,
+      "detail": {
+        "visible": false,
+        "rays": 0,
+        "reason": "target-not-rendered"
+      }
+    },
+    {
+      "name": "Opaque-skin selection has an explicit return action",
+      "pass": false
+    },
+    {
+      "name": "Switching from isolated soft tissue to a bone reveals the bone",
+      "pass": true,
+      "detail": {
+        "boneOn": true,
+        "tissueIsolated": false,
+        "visible": 873
+      }
+    },
+    {
+      "name": "Explicitly searched fascia is rendered with general detail toggle off",
+      "pass": false,
+      "detail": {
+        "id": "muscular-47",
+        "fasciaToggle": false,
+        "rendered": false
+      }
+    },
+    {
+      "name": "Male hidden structure is removed from both scene and current-study card",
+      "pass": false,
+      "detail": {
+        "study": {
+          "kind": "tissue",
+          "id": "muscular-47",
+          "name": "右帽状腱膜",
+          "side": "right"
+        }
+      }
+    },
+    {
+      "name": "Female left-side filter excludes the previously selected right bone",
+      "pass": false,
+      "detail": {
+        "side": "left",
+        "unexpected": [
+          {
+            "id": "shared21-femur",
+            "side": "right",
+            "system": "skeletal",
+            "sex": "female",
+            "opacity": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "Filtered-out female selection is cleared from current study",
+      "pass": false,
+      "detail": {
+        "study": {
+          "kind": "tissue",
+          "id": "shared21-femur",
+          "name": "右股骨",
+          "side": "right"
+        }
+      }
+    },
+    {
+      "name": "Choosing a same-side female bone preserves right-side filtering",
+      "pass": false,
+      "detail": {
+        "side": "both"
+      }
+    },
+    {
+      "name": "Female individual structure inspection contains exactly the target",
+      "pass": true
+    },
+    {
+      "name": "Hiding the isolated female bone immediately restores the remaining 209 bones",
+      "pass": false,
+      "detail": {
+        "visible": 0
+      }
+    },
+    {
+      "name": "Hidden female structure no longer owns the study card",
+      "pass": false,
+      "detail": {
+        "study": {
+          "kind": "tissue",
+          "id": "shared21-femur",
+          "name": "右股骨",
+          "side": "right"
+        }
+      }
+    },
+    {
+      "name": "Restore hidden returns all 210 female bone parts",
+      "pass": true
+    },
+    {
+      "name": "Female bone selected beneath opaque skin is actually visible",
+      "pass": true,
+      "detail": {
+        "visible": true,
+        "rays": 7,
+        "hits": 3,
+        "drawn": true
+      }
+    },
+    {
+      "name": "Female opaque-skin selection keeps an explicit return action",
+      "pass": false
+    },
+    {
+      "name": "Changing the view discards stale temporary preview return",
+      "pass": true
+    },
+    {
+      "name": "Model dialog stays open when clicking its interior padding",
+      "pass": false
+    },
+    {
+      "name": "No-result search offers an accessible clear-filter action",
+      "pass": false
+    },
+    {
+      "name": "Next page focuses its first result rather than leaving focus at page footer",
+      "pass": false
+    },
+    {
+      "name": "Phone preview return stays within the visible viewport",
+      "pass": false,
+      "detail": null
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No failed shared-state transitions",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "startedAt": "2026-09-28T23:30:31.212Z",
+  "clinicalCalibration": false,
+  "success": false,
+  "finishedAt": "2026-09-28T23:32:48.179Z"
+}

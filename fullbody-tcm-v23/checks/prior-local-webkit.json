@@ -1,0 +1,169 @@
+{
+  "version": "23.0.0",
+  "engine": "webkit",
+  "baseline": false,
+  "live": false,
+  "checks": [
+    {
+      "name": "Save pressed during queued view change records the finished skin view",
+      "pass": true,
+      "detail": {
+        "savedScene": "skin"
+      }
+    },
+    {
+      "name": "A later view request cannot cancel the view captured by Save",
+      "pass": true,
+      "detail": {
+        "savedScene": "skin"
+      }
+    },
+    {
+      "name": "Saved point restores the shared selected point and learning point together",
+      "pass": true,
+      "detail": {
+        "shared": {
+          "code": "PC6",
+          "name": "内关",
+          "side": "right",
+          "areaOnly": false
+        },
+        "learning": {
+          "code": "PC6",
+          "name": "内关",
+          "side": "right",
+          "areaOnly": false
+        }
+      }
+    },
+    {
+      "name": "Fine-detail preference transfers from male to female",
+      "pass": true,
+      "detail": {
+        "fineDetails": true,
+        "visible": 683
+      }
+    },
+    {
+      "name": "Fine-detail preference transfers back to male",
+      "pass": true,
+      "detail": {
+        "details": false,
+        "fascia": false
+      }
+    },
+    {
+      "name": "Female-only custom layers fall back to an actual visible male body",
+      "pass": true,
+      "detail": {
+        "scene": "skin",
+        "actualCount": 250
+      }
+    },
+    {
+      "name": "Returning from unsupported-layer fallback restores original female custom view",
+      "pass": true,
+      "detail": {
+        "scene": "custom",
+        "breast": {
+          "on": true,
+          "opacity": 0.55,
+          "loaded": true,
+          "loading": false,
+          "count": 16,
+          "visible": 16
+        },
+        "surface": {
+          "on": false,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "name": "bones male: only the current body is visible",
+      "pass": true,
+      "detail": {
+        "count": 210
+      }
+    },
+    {
+      "name": "bones female: only the current body is visible",
+      "pass": true,
+      "detail": {
+        "count": 210
+      }
+    },
+    {
+      "name": "chest male: only the current body is visible",
+      "pass": true,
+      "detail": {
+        "count": 249
+      }
+    },
+    {
+      "name": "chest female: only the current body is visible",
+      "pass": true,
+      "detail": {
+        "count": 331
+      }
+    },
+    {
+      "name": "surface male: only the current body is visible",
+      "pass": true,
+      "detail": {
+        "count": 250
+      }
+    },
+    {
+      "name": "male: returned surface is opaque and skin ink is bound",
+      "pass": true
+    },
+    {
+      "name": "surface female: only the current body is visible",
+      "pass": true,
+      "detail": {
+        "count": 1
+      }
+    },
+    {
+      "name": "female: returned surface is opaque and skin ink is bound",
+      "pass": true
+    },
+    {
+      "name": "Mobile layer button closes an already open layer drawer",
+      "pass": true
+    },
+    {
+      "name": "Mobile quick view reveals the model after applying the preset",
+      "pass": true
+    },
+    {
+      "name": "male: exported image filename uses current release",
+      "pass": true,
+      "detail": {
+        "filename": "人体研习-男性 · 纯体表-skin-V23-2026-09-28.png"
+      }
+    },
+    {
+      "name": "female: exported image filename uses current release",
+      "pass": true,
+      "detail": {
+        "filename": "人体研习-女性-女性参考-V23.png"
+      }
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "startedAt": "2026-09-28T23:31:28.453Z",
+  "clinicalCalibration": false,
+  "success": true,
+  "finishedAt": "2026-09-28T23:32:39.071Z"
+}

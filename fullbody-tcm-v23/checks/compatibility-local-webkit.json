@@ -1,0 +1,491 @@
+{
+  "version": "23.0.0",
+  "engine": "webkit",
+  "live": false,
+  "checks": [
+    {
+      "name": "Page responds",
+      "pass": true
+    },
+    {
+      "name": "Application initializes without a caught startup error",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Six direct views are visible without expanding anything",
+      "pass": true
+    },
+    {
+      "name": "Custom mixer is not a collapsed details element",
+      "pass": true
+    },
+    {
+      "name": "No visible nested disclosures or duplicate display selector in layer panel",
+      "pass": true
+    },
+    {
+      "name": "Unsupported female-only options do not clutter male mixer",
+      "pass": true
+    },
+    {
+      "name": "Pure skin shortcut turns meridians off and keeps opaque skin",
+      "pass": true
+    },
+    {
+      "name": "Pure skin mode survives female switch",
+      "pass": true
+    },
+    {
+      "name": "Female complete skeleton contains 210 real bone meshes",
+      "pass": true,
+      "detail": {
+        "count": 210
+      }
+    },
+    {
+      "name": "Every male bone identifier has a corresponding selectable female teaching part",
+      "pass": true
+    },
+    {
+      "name": "Teaching bone geometry exactly matches each source mesh, including small sesamoids",
+      "pass": true
+    },
+    {
+      "name": "Four pelvic bones retain native female geometry",
+      "pass": true,
+      "detail": [
+        "coccyx",
+        "hip-left",
+        "hip-right",
+        "sacrum"
+      ]
+    },
+    {
+      "name": "Female full skeleton includes head, spine, both arms and both feet",
+      "pass": true,
+      "detail": [
+        "cervical",
+        "tarsal",
+        "carpal",
+        "shoulder",
+        "pelvis",
+        "phalanges",
+        "cranial",
+        "thigh",
+        "leg",
+        "hand-phalanges",
+        "metacarpal",
+        "arm",
+        "head-other",
+        "facial",
+        "lumbar",
+        "metatarsal",
+        "thorax",
+        "sesamoid",
+        "thoracic"
+      ]
+    },
+    {
+      "name": "No original male scene meshes remain in female skeleton",
+      "pass": true
+    },
+    {
+      "name": "Complete female bones have usable structure labels",
+      "pass": true
+    },
+    {
+      "name": "Bone directory counts whole selectable bones, not added fine meshes",
+      "pass": true
+    },
+    {
+      "name": "Original 91 female bone/joint detail meshes remain accessible",
+      "pass": true
+    },
+    {
+      "name": "Native detail opens independently without a duplicate full skeleton",
+      "pass": true,
+      "detail": [
+        "hraf-963"
+      ]
+    },
+    {
+      "name": "muscles: actual complete female system is loaded",
+      "pass": true,
+      "detail": {
+        "system": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 683,
+          "visible": 573
+        }
+      }
+    },
+    {
+      "name": "muscles: male source scene is not accidentally enabled",
+      "pass": true
+    },
+    {
+      "name": "muscles: corresponding male catalog and source mesh totals match",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "loaded": true,
+        "loading": false,
+        "count": 683,
+        "visible": 573,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "muscles: complete female system remains after roundtrip",
+      "pass": true
+    },
+    {
+      "name": "nerves: actual complete female system is loaded",
+      "pass": true,
+      "detail": {
+        "system": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 550,
+          "visible": 550
+        }
+      }
+    },
+    {
+      "name": "nerves: male source scene is not accidentally enabled",
+      "pass": true
+    },
+    {
+      "name": "nerves: corresponding male catalog and source mesh totals match",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "loaded": true,
+        "loading": false,
+        "count": 550,
+        "visible": 550,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "nerves: complete female system remains after roundtrip",
+      "pass": true
+    },
+    {
+      "name": "Female ancillary structures are explicit rather than silently missing",
+      "pass": true
+    },
+    {
+      "name": "Female whole-body vessels load 649 actual parts with male-only vessels excluded",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "opacity": 1,
+        "loaded": true,
+        "loading": false,
+        "count": 649,
+        "visible": 649
+      }
+    },
+    {
+      "name": "Native female heart and uterine vessels remain beside the non-duplicated reference circulation",
+      "pass": true
+    },
+    {
+      "name": "Male-only vessel exclusions are explicit in the coverage record",
+      "pass": true,
+      "detail": [
+        {
+          "id": "vessels-127",
+          "name": "右睾丸动脉",
+          "en": "Right testicular artery"
+        },
+        {
+          "id": "vessels-141",
+          "name": "左阴茎深动脉",
+          "en": "Deep artery of penis"
+        },
+        {
+          "id": "vessels-142",
+          "name": "右阴茎背动脉",
+          "en": "Dorsal artery of penis"
+        },
+        {
+          "id": "vessels-143",
+          "name": "左阴茎背动脉",
+          "en": "Dorsal artery of penis"
+        },
+        {
+          "id": "vessels-549",
+          "name": "右睾丸静脉",
+          "en": "Right testicular vein"
+        },
+        {
+          "id": "vessels-554",
+          "name": "阴茎背深静脉",
+          "en": "Deep dorsal vein of penis"
+        },
+        {
+          "id": "vessels-573",
+          "name": "阴茎背浅静脉",
+          "en": "Superficial dorsal veins of penis"
+        },
+        {
+          "id": "vessels-648",
+          "name": "右阴茎深动脉",
+          "en": "Deep artery of penis"
+        },
+        {
+          "id": "vessels-651",
+          "name": "左睾丸动脉",
+          "en": "Left testicular artery"
+        },
+        {
+          "id": "vessels-653",
+          "name": "左睾丸静脉",
+          "en": "Left testicular vein"
+        }
+      ]
+    },
+    {
+      "name": "Male vascular source retains all 659 original vessel parts",
+      "pass": true
+    },
+    {
+      "name": "Whole-body female vessels remain complete after gender roundtrip",
+      "pass": true
+    },
+    {
+      "name": "Female ear teaching layer includes all 48 actual ear parts",
+      "pass": true,
+      "detail": {
+        "on": true,
+        "opacity": 1,
+        "loaded": true,
+        "loading": false,
+        "count": 48,
+        "visible": 48
+      }
+    },
+    {
+      "name": "Supplemented systems never turn the original male scene on",
+      "pass": true
+    },
+    {
+      "name": "chest: native female organs and current scene are retained",
+      "pass": true
+    },
+    {
+      "name": "chest: male organ scope restores after full female substitution",
+      "pass": true
+    },
+    {
+      "name": "heart: native female organs and current scene are retained",
+      "pass": true
+    },
+    {
+      "name": "Heart shortcut does not silently enable lungs",
+      "pass": true
+    },
+    {
+      "name": "heart: male organ scope restores after full female substitution",
+      "pass": true
+    },
+    {
+      "name": "abdomen: native female organs and current scene are retained",
+      "pass": true
+    },
+    {
+      "name": "abdomen: male organ scope restores after full female substitution",
+      "pass": true
+    },
+    {
+      "name": "pelvis: native female organs and current scene are retained",
+      "pass": true
+    },
+    {
+      "name": "pelvis: male organ scope restores after full female substitution",
+      "pass": true
+    },
+    {
+      "name": "organs: native female organs and current scene are retained",
+      "pass": true
+    },
+    {
+      "name": "organs: male organ scope restores after full female substitution",
+      "pass": true
+    },
+    {
+      "name": "male: skin pigment is actually visible with opaque skin and no xray",
+      "pass": true,
+      "detail": {
+        "linePixels": 6226,
+        "pointPixels": 1582
+      }
+    },
+    {
+      "name": "female: skin pigment is actually visible with opaque skin and no xray",
+      "pass": true,
+      "detail": {
+        "linePixels": 6074,
+        "pointPixels": 1548
+      }
+    },
+    {
+      "name": "male: custom meridian toggle honors requested value after asynchronous binding",
+      "pass": true
+    },
+    {
+      "name": "male: custom meridian toggle turns pigment off again",
+      "pass": true
+    },
+    {
+      "name": "male: detail toggle and actual internal-detail state agree",
+      "pass": true
+    },
+    {
+      "name": "female: custom meridian toggle honors requested value after asynchronous binding",
+      "pass": true
+    },
+    {
+      "name": "female: custom meridian toggle turns pigment off again",
+      "pass": true
+    },
+    {
+      "name": "female: detail toggle and actual internal-detail state agree",
+      "pass": true
+    },
+    {
+      "name": "Saved custom mixer restores actual meshes and individual opacity",
+      "pass": true
+    },
+    {
+      "name": "Mixed skin and skeleton survives gender roundtrip without losing opacity",
+      "pass": true
+    },
+    {
+      "name": "Rapid requests settle on final body and view",
+      "pass": true
+    },
+    {
+      "name": "No transition errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Teaching-source distinction and non-standard-bone-count note are visible",
+      "pass": true
+    },
+    {
+      "name": "1024: direct surface shortcuts remain accessible without disclosure",
+      "pass": true
+    },
+    {
+      "name": "1024: layer panel has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "390: direct surface shortcuts remain accessible without disclosure",
+      "pass": true
+    },
+    {
+      "name": "390: layer panel has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "pixelChecks": [
+    {
+      "sex": "male",
+      "linePixels": 6226,
+      "pointPixels": 1582
+    },
+    {
+      "sex": "female",
+      "linePixels": 6074,
+      "pointPixels": 1548
+    }
+  ],
+  "startedAt": "2026-09-28T23:32:39.749Z",
+  "clinicalCalibration": false,
+  "coverage": {
+    "source": "Z-Anatomy / BodyParts3D",
+    "nativeFemalePelvis": true,
+    "clinicalRegistration": false,
+    "excludedMaleOnlyVessels": [
+      {
+        "id": "vessels-127",
+        "name": "右睾丸动脉",
+        "en": "Right testicular artery"
+      },
+      {
+        "id": "vessels-141",
+        "name": "左阴茎深动脉",
+        "en": "Deep artery of penis"
+      },
+      {
+        "id": "vessels-142",
+        "name": "右阴茎背动脉",
+        "en": "Dorsal artery of penis"
+      },
+      {
+        "id": "vessels-143",
+        "name": "左阴茎背动脉",
+        "en": "Dorsal artery of penis"
+      },
+      {
+        "id": "vessels-549",
+        "name": "右睾丸静脉",
+        "en": "Right testicular vein"
+      },
+      {
+        "id": "vessels-554",
+        "name": "阴茎背深静脉",
+        "en": "Deep dorsal vein of penis"
+      },
+      {
+        "id": "vessels-573",
+        "name": "阴茎背浅静脉",
+        "en": "Superficial dorsal veins of penis"
+      },
+      {
+        "id": "vessels-648",
+        "name": "右阴茎深动脉",
+        "en": "Deep artery of penis"
+      },
+      {
+        "id": "vessels-651",
+        "name": "左睾丸动脉",
+        "en": "Left testicular artery"
+      },
+      {
+        "id": "vessels-653",
+        "name": "左睾丸静脉",
+        "en": "Left testicular vein"
+      }
+    ],
+    "primaryBoneParts": 210,
+    "note": "完整教学参考与女性原生细节分开计数；网格部件数不是人体标准骨数。",
+    "systems": {
+      "skeletal": 210,
+      "muscular": 683,
+      "nervous": 550,
+      "vessels": 649,
+      "ear": 48
+    },
+    "nativeDetails": 469
+  },
+  "success": true,
+  "finishedAt": "2026-09-28T23:35:59.000Z"
+}
