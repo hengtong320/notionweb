@@ -1,0 +1,118 @@
+name: Publish verified V23 structure selection
+on:
+  push:
+    paths: ['.github/workflows/atlas23-publish.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+concurrency:
+  group: atlas23-publish
+  cancel-in-progress: false
+env:
+  CANDIDATE_RUN: '36498219912'
+  CANDIDATE_SHA: '3dbac6cb7ff1c8b2d25fb96914be5e1a7bb0dece'
+jobs:
+  publish:
+    permissions: {contents: write, actions: read}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - name: Require the exact candidate to finish successfully
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          python - <<'PY'
+          import json,os,time,urllib.request
+          url='https://api.github.com/repos/hengtong320/notionweb/actions/runs/'+os.environ['CANDIDATE_RUN']
+          for i in range(90):
+              req=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              r=json.load(urllib.request.urlopen(req,timeout=20))
+              assert r['head_sha']==os.environ['CANDIDATE_SHA']
+              if r['status']=='completed':
+                  assert r['conclusion']=='success',r['conclusion']
+                  break
+              if i==89:raise RuntimeError('Candidate still not verified')
+              time.sleep(10)
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas23-chromium
+          run-id: ${{ env.CANDIDATE_RUN }}
+          github-token: ${{ github.token }}
+          path: /tmp/atlas23-chromium
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas23-webkit
+          run-id: ${{ env.CANDIDATE_RUN }}
+          github-token: ${{ github.token }}
+          path: /tmp/atlas23-webkit
+      - name: Validate and publish the exact tested versioned directory
+        run: |
+          python atlas23-publish/publish.py
+          mkdir -p atlas23-publish/verified-tests
+          cp /tmp/atlas23-webkit/atlas23-repair/{verify.cjs,prior-interactions.cjs,compatibility.cjs} atlas23-publish/verified-tests/
+          test -z "$(git diff -- fullbody-tcm-v22/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v23 atlas23-publish/verified-tests
+          git commit -m 'Publish tested V23 structure selection and reversible skin previews'
+          git push origin HEAD:main
+  public:
+    needs: publish
+    strategy:
+      fail-fast: false
+      matrix: {browser: [chromium, webkit]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/a23/node_modules
+      BROWSER: ${{ matrix.browser }}
+      TEST_URL: https://hengtong320.github.io/notionweb/anatomy/?v=23.0.0
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install pinned real browser
+        run: |
+          npm install --prefix /tmp/a23 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a23/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Verify activated entrance and exact public bundle
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,urllib.request,time,os
+          base='https://hengtong320.github.io/notionweb/'
+          expected=json.loads(Path('fullbody-tcm-v23/release.json').read_text())['bundleSHA256']
+          for i in range(72):
+              try:
+                  query='?verify='+str(time.time_ns())
+                  def get(p):return urllib.request.urlopen(urllib.request.Request(base+p+query,headers={'Cache-Control':'no-cache'}),timeout=20).read()
+                  assert '../fullbody-tcm-v23/' in get('anatomy/').decode(),'Fixed entrance not activated'
+                  assert json.loads(get('fullbody-tcm-v23/release.json'))['sourceCommit']==os.environ['CANDIDATE_SHA']
+                  assert hashlib.sha256(get('fullbody-tcm-v23/app.bundle.js')).hexdigest()==expected,'Public bundle mismatch'
+                  Path('fullbody-tcm-v23/checks/live-content-'+os.environ['BROWSER']+'.json').write_text(json.dumps({'success':True,'version':'23.0.0','bundleSHA256':expected,'checkedAt':time.time()},indent=2))
+                  break
+              except Exception as e:
+                  print('Waiting for verified public content:',str(e),flush=True)
+                  if i==71:raise
+                  time.sleep(10)
+          PY
+      - name: Public structure selection, side filtering and preview return
+        run: node atlas23-publish/verified-tests/verify.cjs
+      - name: Public prior save, switching and phone interaction checks
+        if: '!cancelled()'
+        run: node atlas23-publish/verified-tests/prior-interactions.cjs
+      - name: Public model, layer and opaque-skin regression checks
+        if: '!cancelled()'
+        run: node atlas23-publish/verified-tests/compatibility.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas23-public-${{ matrix.browser }}
+          path: |
+            fullbody-tcm-v23/checks/live-*
+            fullbody-tcm-v23/checks/prior-live-*
+            fullbody-tcm-v23/checks/compatibility-live-*
+          retention-days: 14
