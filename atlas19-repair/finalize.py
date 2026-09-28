@@ -39,7 +39,15 @@ s = s.replace(old, "else if(key==='pelvis'){await tissues.setProfile('bones');wi
 s = s.replace("female.setDisplayMode(v.display);", "female.setDisplayMode(v.display,{preserveOpacity:true});")
 f.write_text(s, encoding='utf-8')
 f = root/'learning-enhancements.js';f.write_text(f.read_text().replace("version:'18.0.0'", "version:'19.0.0'"))
-(root/'versions.html').write_text('''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>人体研习室 · V19</title><style>body{max-width:760px;margin:40px auto;padding:20px;font:16px/1.8 system-ui;background:#f4f7ee;color:#315945}a{color:#276d62}</style><h1>V19 皮肤绘线与图层切换</h1><p>在真实皮肤网格上绘制线路与落点，体表模式默认不透明。修正镜像三角形方向、掌侧投影、男女场景切换、女性标注按钮及保存图层透明度的恢复。</p><p>原始模型文件未变。女性骨骼与周围神经数据为部分覆盖；点位仍为学习示意，未逐穴临床校准。</p><p><a href="./">打开 V19</a> · <a href="../anatomy/">固定入口</a> · <a href="../fullbody-tcm-v18/">V18 历史版本</a> · <a href="../fullbody-tcm-v17/">V17 历史版本</a></p></html>''',encoding='utf-8')
+(root/'versions.html').write_text('''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>人体研习室 · V19</title><style>body{max-width:760px;margin:40px auto;padding:20px;font:16px/1.8 system-ui;background:#f4f7ee;color:#315945}a{color:#276d62}</style><h1>V19 皮肤绘线与图层切换</h1><p>在真实皮肤网格上绘制线路与落点，体表模式默认不透明。修正镜像三角形方向、掌侧投影、男女场景切换、骨骼标注文字及引线、保存图层透明度的恢复。</p><p>原始模型文件未变。女性骨骼与周围神经数据为部分覆盖；点位仍为学习示意，未逐穴临床校准。</p><p><a href="./">打开 V19</a> · <a href="../anatomy/">固定入口</a> · <a href="../fullbody-tcm-v18/">V18 历史版本</a> · <a href="../fullbody-tcm-v17/">V17 历史版本</a></p></html>''',encoding='utf-8')
+
+# A legacy CSS rule hides male label text while leaving its SVG leaders on
+# screen when meridian details are open. One visibility decision now owns both.
+f=root/'stability-v10.css';s=f.read_text()
+old='body[data-current-kind="point"] .bone-label,body[data-current-kind="point"] .label-line,body[data-current-kind="meridian"] .bone-label,body[data-current-kind="meridian"] .label-line{display:none!important}'
+assert old in s;s=s.replace(old,'/* Bone label text and leaders are controlled together by updateLabels(). */');f.write_text(s)
+f=root/'app.js';s=f.read_text();old="function updateLabels(){if(state.bodySex==='female'||document.body.classList.contains('organ-view-active'))"
+assert old in s;s=s.replace(old,"function updateLabels(){if(state.bodySex==='female'||document.body.classList.contains('organ-view-active')||(!state.labels&&['point','meridian'].includes(document.body.dataset.currentKind)))");f.write_text(s)
 
 # Extend the normal interaction journey. Explicit transparency here is only
 # a saved-settings regression; the opaque surface preset is restored below.
@@ -63,5 +71,9 @@ extra='''
  }
  await p.evaluate(()=>{__ATLAS_LEARNING__.setMeridians(['HT','PC']);});
 '''
+s=s.replace(needle,extra+needle)
+needle="await snap('male-bones-restored');"
+assert needle in s
+extra="""ck('Male label text is visible with meridian details open',await p.locator('#labels .bone-label:visible').count()>0);await p.locator('#labelsBtn').click();await settle();ck('Hiding male labels removes text and leaders together',await p.locator('#labels .bone-label:visible').count()===0&&await p.locator('#labels .leader-svg line:visible').count()===0);await p.locator('#labelsBtn').click();await settle();ck('Showing male labels restores text and leaders together',await p.locator('#labels .bone-label:visible').count()>0&&await p.locator('#labels .leader-svg line:visible').count()>0);"""
 s=s.replace(needle,extra+needle);f.write_text(s)
-print('Reflected surfaces, explicit presets, saved settings and expanded regressions ready.')
+print('Surface and label visibility repaired; expanded pixel and switch regressions ready.')
