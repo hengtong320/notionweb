@@ -1,0 +1,112 @@
+name: Finalize V20 source caption synchronization
+on:
+  push:
+    paths: ['.github/workflows/atlas20-final-caption.yml']
+  workflow_dispatch:
+permissions: {contents: write, actions: read}
+concurrency:
+  group: atlas20-final-caption
+  cancel-in-progress: false
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env: {NODE_PATH: /tmp/a20-caption/node_modules}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Correct the settled-body source label without changing scene logic
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('fullbody-tcm-v20');r=json.loads((p/'release.json').read_text())
+          assert r['version']=='20.0.0' and r['bundleSHA256']=='3b2cd8066fe22cf94af1fdb04664b527b53659b3a1da946d2d93dc9ddc55323e'
+          f=p/'female-v12.js';s=f.read_text()
+          old="window.addEventListener('atlas:transition-settled',()=>{if(active){update();urlState();}});"
+          new="window.addEventListener('atlas:transition-settled',()=>{if(active){update();urlState();}$('renderStatus').textContent=active?'女性 · HRA参考':'男性 · 解剖参考';});"
+          assert s.count(old)==1;s=s.replace(old,new);f.write_text(s)
+          for name in ['app.js','index.html','index.template.html','shared-v14.js','learning-enhancements.js']:
+              f=p/name;f.write_text(f.read_text().replace('20.0.0','20.0.1'))
+          f=p/'README.md';f.write_text(f.read_text()+'\n## 20.0.1 界面同步修订\n\n补上统一切换流程中遗漏的底部模型来源标签：切回男性后，文字与当前实际模型一致。核心95项检查对应20.0.0；本修订另外执行来源标签、实际网格归属、器官范围和体表绘线保留检查，检查文件为 local-final-* / live-final-*。不改变点位、网格或场景切换规则。\n')
+          PY
+      - name: Install pinned builder and browsers
+        run: |
+          npm install --prefix /tmp/a20-caption three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1
+          /tmp/a20-caption/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+          node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v20/app.js'],outfile:'fullbody-tcm-v20/app.bundle.js',nodePaths:['/tmp/a20-caption/node_modules'],bundle:true,format:'iife',loader:{'.txt':'text'},minify:true})"
+      - name: Chromium final caption and scene retention
+        run: node atlas20-publish/source-label-verify.cjs
+      - name: WebKit final caption and scene retention
+        env: {BROWSER: webkit}
+        run: node atlas20-publish/source-label-verify.cjs
+      - name: Require successful public verification of the core V20 repair
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          python - <<'PY'
+          import json,urllib.request,time,os
+          for i in range(60):
+              req=urllib.request.Request('https://api.github.com/repos/hengtong320/notionweb/actions/runs/36410227618',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN']})
+              d=json.load(urllib.request.urlopen(req,timeout=20))
+              if d['status']=='completed':
+                  assert d['conclusion']=='success',d['conclusion'];break
+              if i==59:raise RuntimeError('Core public verification incomplete')
+              time.sleep(10)
+          PY
+      - name: Publish final tested caption fix with separate validation provenance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os
+          p=Path('fullbody-tcm-v20');f=p/'release.json';r=json.loads(f.read_text());base=dict(r)
+          checks={}
+          for engine in ['chromium','webkit']:
+              c=json.loads((p/'checks'/('local-final-'+engine+'.json')).read_text());assert c['success'] and not c['errors'] and all(x['pass'] for x in c['checks'])
+              checks[engine]={'passed':len(c['checks']),'finishedAt':c['finishedAt']}
+          r.update(version='20.0.1',coreVersion='20.0.0',coreSourceCommit=base['sourceCommit'],sourceCommit=os.environ['GITHUB_SHA'],corePublishRun=base['publishRun'],publishRun=os.environ['GITHUB_RUN_ID'],coreBrowserChecks=base['browserChecks'],browserChecks=checks,browserCheckScope='source caption, actual body ownership, organ crop and skin pigment retention',bundleSHA256=hashlib.sha256((p/'app.bundle.js').read_bytes()).hexdigest())
+          f.write_text(json.dumps(r,ensure_ascii=False,indent=2))
+          hashes={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in p.iterdir() if f.is_file() and f.name!='build-info.json'}
+          (p/'build-info.json').write_text(json.dumps({'version':'20.0.1','sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID'],'sha256':hashes,'pointRegistrationUnchanged':True,'clinicalCalibration':False},indent=2))
+          PY
+          test -z "$(git diff -- fullbody-tcm-v19/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/ fullbody-tcm-v20/point-registration-v18.json fullbody-tcm-v20/body-frame-v18.js fullbody-tcm-v20/skin-v17.js fullbody-tcm-v20/skin-ink-v19.js)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v20
+          git commit -m 'Finalize V20.0.1 model source captions after body transitions'
+          git push origin HEAD:main
+      - name: Confirm activated final public bundle
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,urllib.request,time,hashlib
+          base='https://hengtong320.github.io/notionweb/';expected=json.loads(Path('fullbody-tcm-v20/release.json').read_text())['bundleSHA256']
+          for i in range(72):
+              try:
+                  def get(p):return urllib.request.urlopen(base+p+'?verify='+str(time.time_ns()),timeout=20).read()
+                  assert '20.0.1' in get('anatomy/').decode()
+                  assert json.loads(get('fullbody-tcm-v20/release.json'))['version']=='20.0.1'
+                  assert hashlib.sha256(get('fullbody-tcm-v20/app.bundle.js')).hexdigest()==expected
+                  Path('fullbody-tcm-v20/checks/live-final-content.json').write_text(json.dumps({'success':True,'version':'20.0.1','bundleSHA256':expected,'checkedAt':time.time()},indent=2));break
+              except Exception as e:
+                  print('Waiting for final deployment:',e,flush=True)
+                  if i==71:raise
+                  time.sleep(10)
+          PY
+      - name: Chromium final public source and scene checks
+        env: {TEST_URL: 'https://hengtong320.github.io/notionweb/anatomy/?v=20.0.1'}
+        run: node atlas20-publish/source-label-verify.cjs
+      - name: WebKit final public source and scene checks
+        env: {BROWSER: webkit, TEST_URL: 'https://hengtong320.github.io/notionweb/anatomy/?v=20.0.1'}
+        run: node atlas20-publish/source-label-verify.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas20-final-public-evidence
+          path: |
+            fullbody-tcm-v20/checks/*final*
+            fullbody-tcm-v20/release.json
+            fullbody-tcm-v20/build-info.json
+          retention-days: 14
