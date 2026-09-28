@@ -1,0 +1,114 @@
+{
+  "version": "22.0.0",
+  "sourceCommit": "a2d4110bdf074bd6841305dc05b3b618c8d95723",
+  "candidateRun": 36455216654,
+  "publishRun": "36455579452",
+  "bundleSHA256": "1ae0ba45fe84c7bcacb2a47279e1d285fef3cd4df549f2f0cfaf9e2896afdfd2",
+  "browserChecks": {
+    "chromium": {
+      "local": {
+        "passed": 20,
+        "finishedAt": "2026-09-28T17:07:15.701Z"
+      },
+      "compatibility-local": {
+        "passed": 63,
+        "finishedAt": "2026-09-28T17:13:11.201Z"
+      }
+    },
+    "webkit": {
+      "local": {
+        "passed": 20,
+        "finishedAt": "2026-09-28T17:04:19.223Z"
+      },
+      "compatibility-local": {
+        "passed": 63,
+        "finishedAt": "2026-09-28T17:07:05.445Z"
+      }
+    }
+  },
+  "reproducedV21Defects": [
+    {
+      "name": "Save pressed during queued view change records the finished skin view",
+      "pass": false,
+      "detail": {
+        "savedScene": "bones"
+      }
+    },
+    {
+      "name": "A later view request cannot cancel the view captured by Save",
+      "pass": false,
+      "detail": {
+        "savedScene": "bones"
+      }
+    },
+    {
+      "name": "Fine-detail preference transfers from male to female",
+      "pass": false,
+      "detail": {
+        "fineDetails": false,
+        "visible": 573
+      }
+    },
+    {
+      "name": "Fine-detail preference transfers back to male",
+      "pass": false,
+      "detail": {
+        "details": true,
+        "fascia": true
+      }
+    },
+    {
+      "name": "Female-only custom layers fall back to an actual visible male body",
+      "pass": false,
+      "detail": {
+        "scene": "custom",
+        "actualCount": 0
+      }
+    },
+    {
+      "name": "Mobile layer button closes an already open layer drawer",
+      "pass": false
+    },
+    {
+      "name": "Mobile quick view reveals the model after applying the preset",
+      "pass": false
+    },
+    {
+      "name": "male: exported image filename uses current release",
+      "pass": false,
+      "detail": {
+        "filename": "人体研习-男性 · 纯体表-skin-V16-2026-09-28.png"
+      }
+    },
+    {
+      "name": "female: exported image filename uses current release",
+      "pass": false,
+      "detail": {
+        "filename": "人体研习-女性-女性参考-V15.png"
+      }
+    }
+  ],
+  "anatomicalDataFilesVerifiedUnchanged": [
+    "voice-map.json",
+    "hegu-reference-v16.json",
+    "point-registration-v18.json",
+    "term-catalog.json",
+    "registration-template.json",
+    "evidence-data-v9.json",
+    "final-source-match.json",
+    "female-local-v18.json",
+    "region-membership.json",
+    "additional-groups.json",
+    "female-hand-route-v18.json",
+    "additions.json",
+    "meridian-reference-coverage.json",
+    "body-frame-v18.json",
+    "calibration-pilot.json"
+  ],
+  "originalModelsUnchanged": true,
+  "pointRegistrationUnchanged": true,
+  "clinicalCalibration": false,
+  "previousV21Preserved": true,
+  "savedV21CombinationsRetained": true,
+  "note": "Interaction repairs only. Clinical point registration and native-versus-shared teaching geometry provenance remain unchanged."
+}
