@@ -1,0 +1,63 @@
+{
+  "version": "22.0.0",
+  "published": true,
+  "fixedEntrance": "https://hengtong320.github.io/notionweb/anatomy/",
+  "versionUrl": "https://hengtong320.github.io/notionweb/fullbody-tcm-v22/",
+  "sourceCommit": "a2d4110bdf074bd6841305dc05b3b618c8d95723",
+  "entranceCommit": "a224c9394c5974b423d0cacdebf9acd8089d597b",
+  "candidateRun": 36455216654,
+  "publishRun": 36455579452,
+  "pagesDeploymentRun": 36456752452,
+  "bundleSHA256": "1ae0ba45fe84c7bcacb2a47279e1d285fef3cd4df549f2f0cfaf9e2896afdfd2",
+  "publicContentHashVerified": true,
+  "localBrowserChecks": {
+    "chromium": {
+      "newInteractions": {"passed": 20, "finishedAt": "2026-09-28T17:07:15.701Z"},
+      "existingFeatures": {"passed": 63, "finishedAt": "2026-09-28T17:13:11.201Z"}
+    },
+    "webkit": {
+      "newInteractions": {"passed": 20, "finishedAt": "2026-09-28T17:04:19.223Z"},
+      "existingFeatures": {"passed": 63, "finishedAt": "2026-09-28T17:07:05.445Z"}
+    }
+  },
+  "publicBrowserChecks": {
+    "chromium": {
+      "newInteractions": {"passed": 20, "finishedAt": "2026-09-28T17:20:05.383Z", "success": true, "errors": []},
+      "existingFeatures": {"passed": 63, "finishedAt": "2026-09-28T17:26:01.601Z", "success": true, "errors": []}
+    },
+    "webkit": {
+      "newInteractions": {"passed": 20, "finishedAt": "2026-09-28T17:18:49.393Z", "success": true, "errors": []},
+      "existingFeatures": {"passed": 63, "finishedAt": "2026-09-28T17:22:08.923Z", "success": true, "errors": []}
+    }
+  },
+  "publicArtifacts": {
+    "chromium": {"sha256": "c2181dad5acfc006593fadf890abe39c701905263f9b8e8e346751052c60c146", "id": 10986532004},
+    "webkit": {"sha256": "8bff2bc99e15d1cf376fbab3eda8579b41d70b559fcf13f0c6a9701e08a79c33", "id": 10986980546}
+  },
+  "testedViewports": [[1440,1000],[1024,768],[390,844]],
+  "fixes": [
+    "保存组合在先前请求完成后取快照，后续视图点击不会取消保存前的视图请求。",
+    "男女切换时传递内部细节开关，避免筋膜等附属部件被意外隐藏。",
+    "只开女性乳腺自定义图层后切换男性，不再出现空白人体；未另改视图时切回恢复原组合。",
+    "手机图层、目录按钮可再次点击收起，快速视图应用后自动收起面板。",
+    "触控区域和不透明度文案改进，截图导出的版本及来源说明更新。"
+  ],
+  "savedV21CombinationsRetained": true,
+  "originalModelsUnchanged": true,
+  "pointRegistrationUnchanged": true,
+  "anatomicalJSONFilesVerifiedUnchanged": 15,
+  "previousV21Preserved": true,
+  "clinicalCalibration": false,
+  "limitations": "本轮为交互与状态修复，未新增女性扫描或修改经穴定位；女性原生与共享教学参考的来源边界不变。",
+  "oldVersionReproductions": [
+    {"name":"Save pressed during queued view change records the finished skin view","pass":false,"detail":{"savedScene":"bones"}},
+    {"name":"A later view request cannot cancel the view captured by Save","pass":false,"detail":{"savedScene":"bones"}},
+    {"name":"Fine-detail preference transfers from male to female","pass":false,"detail":{"fineDetails":false,"visible":573}},
+    {"name":"Fine-detail preference transfers back to male","pass":false,"detail":{"details":true,"fascia":true}},
+    {"name":"Female-only custom layers fall back to an actual visible male body","pass":false,"detail":{"scene":"custom","actualCount":0}},
+    {"name":"Mobile layer button closes an already open layer drawer","pass":false},
+    {"name":"Mobile quick view reveals the model after applying the preset","pass":false},
+    {"name":"male: exported image filename uses current release","pass":false,"detail":{"filename":"人体研习-男性 · 纯体表-skin-V16-2026-09-28.png"}},
+    {"name":"female: exported image filename uses current release","pass":false,"detail":{"filename":"人体研习-女性-女性参考-V15.png"}}
+  ]
+}
