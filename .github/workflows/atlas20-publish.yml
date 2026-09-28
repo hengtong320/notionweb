@@ -1,0 +1,136 @@
+name: Publish verified V20 scene repair
+on:
+  push:
+    paths: ['.github/workflows/atlas20-publish.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: atlas20-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env: {NODE_PATH: /tmp/a20/node_modules}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install browsers for acceptance and public checks
+        run: |
+          npm install --prefix /tmp/a20 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a20/node_modules/.bin/playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Require the exact candidate to pass both browser engines
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          python - <<'PY'
+          import urllib.request,json,time,os
+          u='https://api.github.com/repos/hengtong320/notionweb/actions/runs/36408314236'
+          for i in range(60):
+              req=urllib.request.Request(u,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              d=json.load(urllib.request.urlopen(req,timeout=20))
+              assert d['head_sha']=='c18bb6653ee9e61c6664d289960f1451823bb65b'
+              if d['status']=='completed':
+                  assert d['conclusion']=='success',d['conclusion']
+                  break
+              if i==59:raise RuntimeError('Candidate verification not complete')
+              time.sleep(10)
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas20-candidate
+          run-id: 36408314236
+          github-token: ${{ github.token }}
+          path: /tmp/a20-verified
+      - name: Validate exact tested files and prepare extended journeys
+        run: |
+          python - <<'PY'
+          import json,hashlib,shutil
+          from pathlib import Path
+          source=Path('/tmp/a20-verified/fullbody-tcm-v20');dest=Path('fullbody-tcm-v20')
+          assert not dest.exists(),'Do not overwrite a published version'
+          b=json.loads((source/'build-info.json').read_text())
+          assert b['version']=='20.0.0' and b['sourceCommit']=='c18bb6653ee9e61c6664d289960f1451823bb65b'
+          assert b['pointRegistrationUnchanged'] and not b['clinicalCalibration']
+          for name,digest in b['sha256'].items():
+              assert '/' not in name and hashlib.sha256((source/name).read_bytes()).hexdigest()==digest,name
+          for engine in ['chromium','webkit']:
+              r=json.loads((source/'checks'/('local-'+engine+'.json')).read_text())
+              assert r['success'] and not r['errors'] and len(r['checks'])>70 and all(c['pass'] for c in r['checks'])
+          shutil.copytree(source,dest)
+          s=Path('/tmp/a20-verified/atlas20-repair/verify.cjs').read_text()
+          a=s.index("  for(const key of ['bones'");b=s.index("  ck('No uncaught browser errors'",a)
+          extra=Path('atlas20-publish/extra-scenarios.cjs').read_text()
+          targeted=s[:a]+'let r;\n'+extra+'\n'+s[b:]
+          targeted=targeted.replace("(live?'live-':'local-')+engine","(live?'live-selection-':'local-selection-')+engine")
+          Path('atlas20-publish/selection-verify.cjs').write_text(targeted)
+          # Public smoke covers the formerly failing organ scopes plus skin,
+          # labels, point selection, opacity, saved combination and races.
+          smoke=s.replace("['bones','chest','heart','abdomen','vascular','pelvis','nerves','muscles','compare','surface']","['chest','heart','abdomen']")
+          Path('atlas20-publish/public-verify.cjs').write_text(smoke)
+          PY
+      - name: Chromium selected organ and pose acceptance
+        run: node atlas20-publish/selection-verify.cjs
+      - name: WebKit selected organ and pose acceptance
+        env: {BROWSER: webkit}
+        run: node atlas20-publish/selection-verify.cjs
+      - name: Publish tested versioned files without altering V19 or original models
+        run: |
+          python - <<'PY'
+          import json,hashlib,os
+          from pathlib import Path
+          p=Path('fullbody-tcm-v20');b=json.loads((p/'build-info.json').read_text());checks={}
+          for engine in ['chromium','webkit']:
+              checks[engine]={}
+              for kind in ['local-','local-selection-']:
+                  r=json.loads((p/'checks'/(kind+engine+'.json')).read_text())
+                  assert r['success'] and not r['errors'] and all(c['pass'] for c in r['checks'])
+                  checks[engine][kind.strip('-')]={'passed':len(r['checks']),'finishedAt':r['finishedAt']}
+          release={'version':'20.0.0','sourceCommit':b['sourceCommit'],'candidateRun':36408314236,'publishRun':os.environ['GITHUB_RUN_ID'],'bundleSHA256':b['sha256']['app.bundle.js'],'browserChecks':checks,'clinicalCalibration':False,'pointRegistrationUnchanged':True,'originalModelsUnchanged':True,'previousV19Preserved':True,'note':'场景状态和渲染回归通过，不代表缺失女性结构已经补全或穴位完成临床配准。'}
+          (p/'release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          PY
+          test -z "$(git diff -- fullbody-tcm-v19/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v20
+          git commit -m 'Publish tested V20 atomic body scenes and full state restoration'
+          git push origin HEAD:main
+      - name: Wait for activated fixed entrance and verify public bundle hash
+        run: |
+          python - <<'PY'
+          import json,time,hashlib,urllib.request
+          from pathlib import Path
+          base='https://hengtong320.github.io/notionweb/';expect=json.loads(Path('fullbody-tcm-v20/release.json').read_text())['bundleSHA256']
+          for i in range(72):
+              try:
+                  bust='?verify='+str(time.time_ns())
+                  def get(p):return urllib.request.urlopen(urllib.request.Request(base+p+bust,headers={'Cache-Control':'no-cache'}),timeout=20).read()
+                  assert '../fullbody-tcm-v20/' in get('anatomy/').decode(),'Fixed entrance not activated'
+                  assert json.loads(get('fullbody-tcm-v20/release.json'))['bundleSHA256']==expect
+                  assert hashlib.sha256(get('fullbody-tcm-v20/app.bundle.js')).hexdigest()==expect
+                  Path('fullbody-tcm-v20/checks/live-content.json').write_text(json.dumps({'success':True,'bundleSHA256':expect,'checkedAt':time.time(),'version':'20.0.0'},indent=2))
+                  break
+              except Exception as e:
+                  print('Awaiting deployment:',str(e),flush=True)
+                  if i==71:raise
+                  time.sleep(10)
+          PY
+      - name: Chromium public organ scopes and skin switching
+        env: {TEST_URL: 'https://hengtong320.github.io/notionweb/anatomy/?v=20.0.0'}
+        run: node atlas20-publish/public-verify.cjs
+      - name: WebKit public organ scopes and skin switching
+        env: {BROWSER: webkit, TEST_URL: 'https://hengtong320.github.io/notionweb/anatomy/?v=20.0.0'}
+        run: node atlas20-publish/public-verify.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas20-release-evidence
+          path: |
+            fullbody-tcm-v20/checks/
+            fullbody-tcm-v20/release.json
+            atlas20-publish/
+          retention-days: 14
