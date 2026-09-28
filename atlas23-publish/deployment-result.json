@@ -1,0 +1,50 @@
+{
+  "version": "23.0.0",
+  "published": true,
+  "fixedEntrance": "https://hengtong320.github.io/notionweb/anatomy/",
+  "versionUrl": "https://hengtong320.github.io/notionweb/fullbody-tcm-v23/",
+  "sourceCommit": "3dbac6cb7ff1c8b2d25fb96914be5e1a7bb0dece",
+  "entranceCommit": "c899029764959daa7e1d9a0813cf7875521161fb",
+  "candidateRun": 36498219912,
+  "publishRun": 36498508725,
+  "pagesDeploymentRun": 36499577736,
+  "bundleSHA256": "7d7d397de682112ac10ce842b60ea705c30d398c15936e7204191fdafe23a75f",
+  "publicContentHashVerified": true,
+  "localBrowserChecks": {
+    "chromium": {"newSelectionChecks":25,"priorInteractionChecks":20,"modelLayerSkinChecks":63,"success":true},
+    "webkit": {"newSelectionChecks":25,"priorInteractionChecks":20,"modelLayerSkinChecks":63,"success":true}
+  },
+  "publicBrowserChecks": {
+    "chromium": {
+      "newSelectionChecks": {"passed":25,"success":true,"errors":[],"finishedAt":"2026-09-28T23:48:57.791Z"},
+      "priorInteractionChecks": {"passed":20,"success":true,"errors":[],"finishedAt":"2026-09-28T23:51:20.555Z"},
+      "modelLayerSkinChecks": {"passed":63,"success":true,"errors":[],"finishedAt":"2026-09-28T23:57:21.307Z"}
+    },
+    "webkit": {
+      "newSelectionChecks": {"passed":25,"success":true,"errors":[],"finishedAt":"2026-09-28T23:47:53.951Z"},
+      "priorInteractionChecks": {"passed":20,"success":true,"errors":[],"finishedAt":"2026-09-28T23:49:05.680Z"},
+      "modelLayerSkinChecks": {"passed":63,"success":true,"errors":[],"finishedAt":"2026-09-28T23:52:30.885Z"}
+    }
+  },
+  "publicArtifacts": {
+    "chromium": {"id":11004824579,"sha256":"af76c1012e736a18dd8f9addaeeac6f1e0e19faca455c858b5ef7a3fca63b3cd"},
+    "webkit": {"id":11005545249,"sha256":"5a66ddd7252736138d8abf6de46d22c43058d3f5cc093c14e2c1a8f31d0f51f7"}
+  },
+  "testedViewports": [[1440,1000],[1024,768],[390,844]],
+  "fixes": [
+    "不透明体表下的目录结构可临时单独查看，上方返回先前视图按钮恢复图层、经络选择与原相机位置；不降低皮肤不透明度。",
+    "相机快照保存和恢复缩放距离限制，避免内部结构特写之后恢复全身视角时被距离上限夹住。",
+    "骨骼搜索定位解除旧软组织隔离并启用骨层，指定筋膜结构可在附属细节总开关关闭时单独查看。",
+    "女性已选结构遵守后续左右筛选，同侧选择不重置为双侧。",
+    "隐藏单独查看的女性结构后立即刷新剩余结构，男女隐藏操作同步清除过期学习对象。",
+    "目录增加清空筛选，翻页后对准新结果；模型说明弹窗内部留白不会误关。"
+  ],
+  "previewReturnControl": "上方返回先前视图按钮",
+  "baselineV22ReproductionsRecorded": true,
+  "originalModelsUnchanged": true,
+  "pointRegistrationUnchanged": true,
+  "anatomicalJSONFilesVerifiedUnchanged": 15,
+  "previousV22Preserved": true,
+  "clinicalCalibration": false,
+  "limitations": "本轮为选择与交互修复，测试通过仅代表所测路径；未新增女性扫描、未修改穴位定位，也不代表全部解剖结构已临床校准。女性原生与统一比例教学补充来源边界不变。"
+}
