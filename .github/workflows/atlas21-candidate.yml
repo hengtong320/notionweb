@@ -27,6 +27,7 @@ jobs:
           python atlas21-repair/patch.py
           python atlas21-repair/finalize.py
           python atlas21-repair/interaction-review.py
+          python atlas21-repair/coverage-review.py
       - name: Install pinned renderer and browser
         run: |
           npm install --prefix /tmp/a21 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1 pngjs@7.0.0
@@ -41,7 +42,7 @@ jobs:
           from pathlib import Path
           p=Path('fullbody-tcm-v21')
           hashes={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in p.iterdir() if f.is_file()}
-          (p/'build-info.json').write_text(json.dumps({'version':'21.0.0','sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID'],'sha256':hashes,'clinicalCalibration':False,'femaleSupplement':'explicit shared teaching reference with native female pelvis'},indent=2))
+          (p/'build-info.json').write_text(json.dumps({'version':'21.0.0','sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID'],'sha256':hashes,'clinicalCalibration':False,'femaleSupplement':'explicit shared teaching reference with native female pelvis, heart and sex-specific exclusions'},indent=2))
           PY
           test -z "$(git diff -- fullbody-tcm-v20/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
       - name: Real UI, mesh-coverage, skin and gender-roundtrip tests
