@@ -20,9 +20,21 @@ base=json.loads((roots['chromium']/'checks/baseline-v21-chromium.json').read_tex
 assert base['baseline'] and not base.get('failure'),'Old-version reproduction must finish normally'
 reproduced=[x for x in base['checks'] if not x['pass']]
 assert len(reproduced)>0,'No old-version defects were reproduced'
+unchanged=[]
+for old in Path('fullbody-tcm-v21').glob('*.json'):
+ if old.name not in ['build-info.json','release.json']:
+  assert old.read_bytes()==(roots['chromium']/old.name).read_bytes(),old.name
+  unchanged.append(old.name)
 p=Path('fullbody-tcm-v22');assert not p.exists(),'Refuse to replace an existing published V22'
 shutil.copytree(roots['chromium'],p)
 for f in (roots['webkit']/'checks').iterdir():shutil.copy2(f,p/'checks'/f.name)
-release={'version':'22.0.0','sourceCommit':a['sourceCommit'],'candidateRun':int(os.environ['CANDIDATE_RUN']),'publishRun':os.environ['GITHUB_RUN_ID'],'bundleSHA256':a['sha256']['app.bundle.js'],'browserChecks':checks,'reproducedV21Defects':reproduced,'originalModelsUnchanged':True,'pointRegistrationUnchanged':True,'clinicalCalibration':False,'previousV21Preserved':True,'savedV21CombinationsRetained':True,'note':'Interaction repairs only. Clinical point registration and native-versus-shared teaching geometry provenance remain unchanged.'}
+# Keep the final executable tests in Git, not only a time-limited CI artifact.
+tests=Path('atlas22-publish/verified-tests');tests.mkdir(parents=True,exist_ok=False)
+for name in ['verify.cjs','compatibility.cjs']:
+ left=roots['chromium'].parent/'atlas22-repair'/name
+ right=roots['webkit'].parent/'atlas22-repair'/name
+ assert left.read_bytes()==right.read_bytes(),'Test mismatch: '+name
+ shutil.copy2(left,tests/name)
+release={'version':'22.0.0','sourceCommit':a['sourceCommit'],'candidateRun':int(os.environ['CANDIDATE_RUN']),'publishRun':os.environ['GITHUB_RUN_ID'],'bundleSHA256':a['sha256']['app.bundle.js'],'browserChecks':checks,'reproducedV21Defects':reproduced,'anatomicalDataFilesVerifiedUnchanged':unchanged,'originalModelsUnchanged':True,'pointRegistrationUnchanged':True,'clinicalCalibration':False,'previousV21Preserved':True,'savedV21CombinationsRetained':True,'note':'Interaction repairs only. Clinical point registration and native-versus-shared teaching geometry provenance remain unchanged.'}
 (p/'release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
 print(json.dumps(release,ensure_ascii=False,indent=2))
