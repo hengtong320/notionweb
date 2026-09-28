@@ -1,0 +1,120 @@
+name: Publish verified V21 layers and coverage
+on:
+  push:
+    paths: ['.github/workflows/atlas21-publish.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: atlas21-publish
+  cancel-in-progress: false
+env:
+  CANDIDATE_RUN: '36448173800'
+  CANDIDATE_SHA: '4765af757ab5a56c028cfc2f0351430c4a64ae30'
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - name: Require the reviewed candidate to pass both browser engines
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import urllib.request,json,os
+          u='https://api.github.com/repos/hengtong320/notionweb/actions/runs/'+os.environ['CANDIDATE_RUN']
+          req=urllib.request.Request(u,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+          r=json.load(urllib.request.urlopen(req,timeout=30))
+          assert r['head_sha']==os.environ['CANDIDATE_SHA']
+          assert r['status']=='completed' and r['conclusion']=='success'
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas21-chromium
+          run-id: 36448173800
+          github-token: ${{ github.token }}
+          path: /tmp/atlas21-chromium
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas21-webkit
+          run-id: 36448173800
+          github-token: ${{ github.token }}
+          path: /tmp/atlas21-webkit
+      - name: Validate and publish only the exact tested runtime
+        run: |
+          python atlas21-publish/publish.py
+          test -z "$(git diff -- fullbody-tcm-v20/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v21
+          git commit -m 'Publish V21 direct layer workspace and attributed complete teaching reference'
+          git push origin HEAD:main
+  public:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    env:
+      NODE_PATH: /tmp/a21-live/node_modules
+      BROWSER: ${{ matrix.browser }}
+      TEST_URL: https://hengtong320.github.io/notionweb/anatomy/?v=21.0.0
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas21-${{ matrix.browser }}
+          run-id: 36448173800
+          github-token: ${{ github.token }}
+          path: /tmp/a21-tested
+      - name: Install the same real browser version
+        run: |
+          npm install --prefix /tmp/a21-live playwright@1.56.1 pngjs@7.0.0
+          /tmp/a21-live/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Confirm activated entrance and exact public bundle
+        run: |
+          python - <<'PY'
+          import json,time,hashlib,urllib.request,os
+          from pathlib import Path
+          base='https://hengtong320.github.io/notionweb/'
+          expected=json.loads(Path('fullbody-tcm-v21/release.json').read_text())['bundleSHA256']
+          for i in range(72):
+              try:
+                  bust='?verify='+str(time.time_ns())
+                  def get(p):
+                      req=urllib.request.Request(base+p+bust,headers={'Cache-Control':'no-cache'})
+                      return urllib.request.urlopen(req,timeout=20).read()
+                  assert '../fullbody-tcm-v21/' in get('anatomy/').decode(),'Fixed entrance not yet activated'
+                  release=json.loads(get('fullbody-tcm-v21/release.json'))
+                  assert release['version']=='21.0.0' and release['sourceCommit']==os.environ['CANDIDATE_SHA']
+                  assert hashlib.sha256(get('fullbody-tcm-v21/app.bundle.js')).hexdigest()==expected
+                  out=Path('fullbody-tcm-v21/checks/live-content-'+os.environ['BROWSER']+'.json')
+                  out.write_text(json.dumps({'success':True,'version':'21.0.0','bundleSHA256':expected,'checkedAt':time.time()},indent=2))
+                  break
+              except Exception as e:
+                  print('Waiting for verified public deployment:',e,flush=True)
+                  if i==71:raise
+                  time.sleep(10)
+          PY
+      - name: Run the same full interaction and actual mesh checks on the public entrance
+        run: node /tmp/a21-tested/atlas21-repair/verify.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas21-public-${{ matrix.browser }}
+          path: |
+            fullbody-tcm-v21/checks/live-${{ matrix.browser }}*
+            fullbody-tcm-v21/checks/live-content-${{ matrix.browser }}.json
+          retention-days: 14
