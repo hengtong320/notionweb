@@ -8,8 +8,8 @@ concurrency:
   group: atlas24-publish
   cancel-in-progress: false
 env:
-  CANDIDATE_RUN: '36511871286'
-  CANDIDATE_SHA: 'a30d6e569792e810597151c511d9ea8483fffd5a'
+  CANDIDATE_RUN: '36512556790'
+  CANDIDATE_SHA: 'a869dbfe0a73299e7dd653da4d56d7a95d32809b'
 jobs:
   publish:
     permissions: {contents: write, actions: read}
