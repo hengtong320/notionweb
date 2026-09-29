@@ -1,0 +1,130 @@
+name: Publish verified V24 meridian repair
+on:
+  push:
+    paths: ['.github/workflows/atlas24-publish.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+concurrency:
+  group: atlas24-publish
+  cancel-in-progress: false
+env:
+  CANDIDATE_RUN: '36511871286'
+  CANDIDATE_SHA: 'a30d6e569792e810597151c511d9ea8483fffd5a'
+jobs:
+  publish:
+    permissions: {contents: write, actions: read}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - name: Require the exact candidate to finish successfully
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          python - <<'PY'
+          import json,os,time,urllib.request
+          url='https://api.github.com/repos/hengtong320/notionweb/actions/runs/'+os.environ['CANDIDATE_RUN']
+          for i in range(120):
+              req=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              r=json.load(urllib.request.urlopen(req,timeout=20))
+              assert r['head_sha']==os.environ['CANDIDATE_SHA']
+              if r['status']=='completed':
+                  assert r['conclusion']=='success',r['conclusion']
+                  break
+              if i==119:raise RuntimeError('Candidate still not verified')
+              time.sleep(10)
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas24-chromium
+          run-id: ${{ env.CANDIDATE_RUN }}
+          github-token: ${{ github.token }}
+          path: /tmp/atlas24-chromium
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas24-webkit
+          run-id: ${{ env.CANDIDATE_RUN }}
+          github-token: ${{ github.token }}
+          path: /tmp/atlas24-webkit
+      - name: Validate and publish the exact tested versioned directory
+        run: |
+          python atlas24-publish/publish.py
+          test -z "$(git diff -- fullbody-tcm-v23/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v24 atlas24-publish/verified-tests
+          git commit -m 'Publish V24 body-specific surface contacts and smooth single-pass skin strokes'
+          git push origin HEAD:main
+  public:
+    needs: publish
+    strategy:
+      fail-fast: false
+      matrix: {browser: [webkit, chromium]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/a24/node_modules
+      BROWSER: ${{ matrix.browser }}
+      TEST_URL: https://hengtong320.github.io/notionweb/anatomy/?v=24.0.0
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas24-current-meridian-inspection
+          run-id: 36508270055
+          github-token: ${{ github.token }}
+          path: /tmp/atlas24-baseline
+      - name: Install pinned real browser
+        run: |
+          npm install --prefix /tmp/a24 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a24/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Verify activated entrance and exact public bundle
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,urllib.request,time,os
+          base='https://hengtong320.github.io/notionweb/'
+          expected=json.loads(Path('fullbody-tcm-v24/release.json').read_text())['bundleSHA256']
+          for i in range(72):
+              try:
+                  query='?verify='+str(time.time_ns())
+                  def get(p):return urllib.request.urlopen(urllib.request.Request(base+p+query,headers={'Cache-Control':'no-cache'}),timeout=20).read()
+                  assert '../fullbody-tcm-v24/' in get('anatomy/').decode(),'Fixed entrance not activated'
+                  assert json.loads(get('fullbody-tcm-v24/release.json'))['sourceCommit']==os.environ['CANDIDATE_SHA']
+                  assert hashlib.sha256(get('fullbody-tcm-v24/app.bundle.js')).hexdigest()==expected,'Public bundle mismatch'
+                  Path('fullbody-tcm-v24/checks/live-content-'+os.environ['BROWSER']+'.json').write_text(json.dumps({'success':True,'version':'24.0.0','bundleSHA256':expected,'checkedAt':time.time()},indent=2))
+                  break
+              except Exception as e:
+                  print('Waiting for verified public content:',str(e),flush=True)
+                  if i==71:raise
+                  time.sleep(10)
+          PY
+      - name: Public meridian strokes, corrected contacts and skin-depth checks
+        run: node atlas24-publish/verified-tests/verify.cjs
+      - name: Public structure-selection and preview regressions
+        if: '!cancelled()'
+        run: node atlas24-publish/verified-tests/prior-verify.cjs
+      - name: Public saved-combination and switching regressions
+        if: '!cancelled()'
+        run: node atlas24-publish/verified-tests/prior-prior-interactions.cjs
+      - name: Public model coverage, layers and opaque skin
+        if: '!cancelled()'
+        run: node atlas24-publish/verified-tests/prior-compatibility.cjs
+      - name: Public whole-body and close-up screenshots
+        if: "!cancelled() && matrix.browser == 'webkit'"
+        run: node atlas24-publish/verified-tests/inspect.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas24-public-${{ matrix.browser }}
+          path: |
+            fullbody-tcm-v24/checks/live-*
+            fullbody-tcm-v24/checks/selection-live-*
+            fullbody-tcm-v24/checks/prior-live-*
+            fullbody-tcm-v24/checks/compatibility-live-*
+            atlas24-inspection-live/
+          retention-days: 14
