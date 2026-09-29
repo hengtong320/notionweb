@@ -34,9 +34,11 @@ jobs:
           python atlas24-repair/refine.py
           python - <<'PY'
           from pathlib import Path
+          f=Path('fullbody-tcm-v24/stability-v10.js')
+          f.write_text(f.read_text().replace('V23','V24'))
           for name in ['verify.cjs','prior-interactions.cjs','compatibility.cjs']:
               s=(Path('atlas23-publish/verified-tests')/name).read_text()
-              s=s.replace("version=baseline?'22':'23'", "version=baseline?'22':'24'").replace('fullbody-tcm-v23','fullbody-tcm-v24').replace('23.0.0','24.0.0').replace("version:'23.0.0'","version:'24.0.0'")
+              s=s.replace("version=baseline?'22':'23'", "version=baseline?'22':'24'").replace('fullbody-tcm-v23','fullbody-tcm-v24').replace('23.0.0','24.0.0').replace("'-V23'","'-V24'")
               s=s.replace("(baseline?'baseline-v22-':live?'live-':'local-')+engine", "(baseline?'baseline-v22-':live?'selection-live-':'selection-local-')+engine")
               (Path('atlas24-repair')/('prior-'+name)).write_text(s)
           PY
