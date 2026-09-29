@@ -1,0 +1,1339 @@
+{
+  "version": "25.0.0",
+  "engine": "webkit",
+  "live": false,
+  "checks": [
+    {
+      "name": "male opaque skin remains active without xray",
+      "pass": true
+    },
+    {
+      "name": "male 670 finite registered display anchors remain available",
+      "pass": true
+    },
+    {
+      "name": "male all anchors lie on their own route",
+      "pass": true,
+      "detail": {
+        "maxGap": 0
+      }
+    },
+    {
+      "name": "male no secondary marker relocation",
+      "pass": true
+    },
+    {
+      "name": "male no duplicate point centers introduced",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "male all pigments use normal depth testing and unique face unions",
+      "pass": true
+    },
+    {
+      "name": "male no stroke candidates truncated",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "male numbered anchors excluded from smoothing",
+      "pass": true
+    },
+    {
+      "name": "male LI1 projects locally to the hand, not the thigh",
+      "pass": true,
+      "detail": [
+        {
+          "side": "right",
+          "shift": 0.3499998522990417,
+          "position": [
+            -224.45374898643192,
+            664.2989649167251,
+            63.448581794514325
+          ]
+        },
+        {
+          "side": "left",
+          "shift": 0.3499942504352631,
+          "position": [
+            423.5580421993609,
+            664.2722065075359,
+            63.475742376648384
+          ]
+        }
+      ]
+    },
+    {
+      "name": "male CV route stays on the midline instead of drifting sideways",
+      "pass": true,
+      "detail": {
+        "maxLateralDeviation": 0.32043573171721107,
+        "allowedRenderingClearance": 0.35,
+        "seamProbe": 0.02
+      }
+    },
+    {
+      "name": "male GV route stays on the midline instead of drifting sideways",
+      "pass": true,
+      "detail": {
+        "maxLateralDeviation": 0.1998850518039319,
+        "allowedRenderingClearance": 0.35,
+        "seamProbe": 0.02
+      }
+    },
+    {
+      "name": "male flank, hip and thigh anchors stay near their intended body region",
+      "pass": true,
+      "detail": [
+        {
+          "code": "GB25",
+          "side": "right",
+          "shift": 46.43405110396857
+        },
+        {
+          "code": "GB29",
+          "side": "right",
+          "shift": 6.762209133442473
+        },
+        {
+          "code": "GB25",
+          "side": "left",
+          "shift": 46.43405003142906
+        },
+        {
+          "code": "GB29",
+          "side": "left",
+          "shift": 6.7622053767889065
+        },
+        {
+          "code": "LR11",
+          "side": "right",
+          "shift": 31.29954620257971
+        },
+        {
+          "code": "LR11",
+          "side": "left",
+          "shift": 31.299545839212858
+        }
+      ]
+    },
+    {
+      "name": "male anterior midline stroke never switches to the back of the trunk",
+      "pass": true,
+      "detail": {
+        "samples": 289,
+        "minZ": 59.24233874732748
+      }
+    },
+    {
+      "name": "male forearm and upper-arm stroke samples do not fall under the skin shell",
+      "pass": true,
+      "detail": {
+        "tested": 66,
+        "blocked": 0,
+        "maxOcclusion": 0
+      }
+    },
+    {
+      "name": "male strokes and exact point centers are actually rendered",
+      "pass": true,
+      "detail": {
+        "linePixels": 4957,
+        "pointPixels": 1917
+      }
+    },
+    {
+      "name": "male xray toggling does not move point locations",
+      "pass": true
+    },
+    {
+      "name": "male names-off is respected after selecting a point",
+      "pass": true
+    },
+    {
+      "name": "female opaque skin remains active without xray",
+      "pass": true
+    },
+    {
+      "name": "female 670 finite registered display anchors remain available",
+      "pass": true
+    },
+    {
+      "name": "female all anchors lie on their own route",
+      "pass": true,
+      "detail": {
+        "maxGap": 0
+      }
+    },
+    {
+      "name": "female no secondary marker relocation",
+      "pass": true
+    },
+    {
+      "name": "female no duplicate point centers introduced",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "female all pigments use normal depth testing and unique face unions",
+      "pass": true
+    },
+    {
+      "name": "female no stroke candidates truncated",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "female numbered anchors excluded from smoothing",
+      "pass": true
+    },
+    {
+      "name": "female LI1 projects locally to the hand, not the thigh",
+      "pass": true,
+      "detail": [
+        {
+          "side": "right",
+          "shift": 58.40675979910501,
+          "position": [
+            -238.7419748327197,
+            717.7513277578634,
+            45.30713552060903
+          ]
+        },
+        {
+          "side": "left",
+          "shift": 58.461282977855404,
+          "position": [
+            437.9464140311839,
+            717.9421784232306,
+            45.78689279289134
+          ]
+        }
+      ]
+    },
+    {
+      "name": "female CV route stays on the midline instead of drifting sideways",
+      "pass": true,
+      "detail": {
+        "maxLateralDeviation": 0.09539456077052932,
+        "allowedRenderingClearance": 0.35,
+        "seamProbe": 0.02
+      }
+    },
+    {
+      "name": "female GV route stays on the midline instead of drifting sideways",
+      "pass": true,
+      "detail": {
+        "maxLateralDeviation": 0.1308657698581186,
+        "allowedRenderingClearance": 0.35,
+        "seamProbe": 0.02
+      }
+    },
+    {
+      "name": "Female LU11 remains on its intended finger on both hands",
+      "pass": true,
+      "detail": [
+        {
+          "side": "right",
+          "position": [
+            -228.83166747197512,
+            781.9684579134866,
+            33.13020369432775
+          ]
+        },
+        {
+          "side": "left",
+          "position": [
+            424.6865623971232,
+            782.0071433495848,
+            36.097234852388624
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Female LI1 remains on its intended finger on both hands",
+      "pass": true,
+      "detail": [
+        {
+          "side": "right",
+          "position": [
+            -238.7419748327197,
+            717.7513277578634,
+            45.30713552060903
+          ]
+        },
+        {
+          "side": "left",
+          "position": [
+            437.9464140311839,
+            717.9421784232306,
+            45.78689279289134
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Female LI2 remains on its intended finger on both hands",
+      "pass": true,
+      "detail": [
+        {
+          "side": "right",
+          "position": [
+            -220.24599116761698,
+            741.5302676524582,
+            18.642178459594035
+          ]
+        },
+        {
+          "side": "left",
+          "position": [
+            419.30152754356527,
+            742.103267961064,
+            18.54128991262565
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Female LI3 remains on its intended finger on both hands",
+      "pass": true,
+      "detail": [
+        {
+          "side": "right",
+          "position": [
+            -211.31267179665454,
+            752.6686120553792,
+            8.828841271772106
+          ]
+        },
+        {
+          "side": "left",
+          "position": [
+            410.5414398896359,
+            752.065646412759,
+            8.367342932322108
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Female PC9 remains on its intended finger on both hands",
+      "pass": true,
+      "detail": [
+        {
+          "side": "right",
+          "position": [
+            -213.61682980234997,
+            666.1842605688206,
+            62.523804348704196
+          ]
+        },
+        {
+          "side": "left",
+          "position": [
+            412.7478198624327,
+            666.7698151892075,
+            62.50780509476653
+          ]
+        }
+      ]
+    },
+    {
+      "name": "female flank, hip and thigh anchors stay near their intended body region",
+      "pass": true,
+      "detail": [
+        {
+          "code": "GB25",
+          "side": "right",
+          "shift": 47.810255262240155
+        },
+        {
+          "code": "GB29",
+          "side": "right",
+          "shift": 4.259394220901189
+        },
+        {
+          "code": "GB25",
+          "side": "left",
+          "shift": 48.31332832184698
+        },
+        {
+          "code": "GB29",
+          "side": "left",
+          "shift": 4.39544204214797
+        },
+        {
+          "code": "LR11",
+          "side": "right",
+          "shift": 25.21768095489069
+        },
+        {
+          "code": "LR11",
+          "side": "left",
+          "shift": 25.458404497441013
+        }
+      ]
+    },
+    {
+      "name": "female anterior midline stroke never switches to the back of the trunk",
+      "pass": true,
+      "detail": {
+        "samples": 286,
+        "minZ": 59.146441381172636
+      }
+    },
+    {
+      "name": "female forearm and upper-arm stroke samples do not fall under the skin shell",
+      "pass": true,
+      "detail": {
+        "tested": 65,
+        "blocked": 0,
+        "maxOcclusion": 0
+      }
+    },
+    {
+      "name": "female strokes and exact point centers are actually rendered",
+      "pass": true,
+      "detail": {
+        "linePixels": 4610,
+        "pointPixels": 1929
+      }
+    },
+    {
+      "name": "female xray toggling does not move point locations",
+      "pass": true
+    },
+    {
+      "name": "female names-off is respected after selecting a point",
+      "pass": true
+    },
+    {
+      "name": "Roundtrip restores the correct body-specific pigment",
+      "pass": true
+    },
+    {
+      "name": "No shader compilation or browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "bodies": {
+    "male": {
+      "curvature": {
+        "severeSampleTurns": 188,
+        "totalTurningDegrees": 84140.52276093757,
+        "drawnLength": 41979.76495344634
+      },
+      "baselineCurvature": null,
+      "surfaceTriangles": 36669,
+      "disconnections": 44,
+      "pointChanges": [],
+      "ink": [
+        {
+          "meridian": "LU",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 872,
+          "sourceFaces": 872,
+          "drawnSegments": 473,
+          "points": 11,
+          "subdivided": 0,
+          "maxCandidates": 28,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "LU",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 869,
+          "sourceFaces": 869,
+          "drawnSegments": 473,
+          "points": 11,
+          "subdivided": 0,
+          "maxCandidates": 28,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "LI",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 1713,
+          "sourceFaces": 1713,
+          "drawnSegments": 731,
+          "points": 20,
+          "subdivided": 0,
+          "maxCandidates": 25,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 1718,
+          "sourceFaces": 1718,
+          "drawnSegments": 731,
+          "points": 20,
+          "subdivided": 0,
+          "maxCandidates": 25,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "ST",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 2171,
+          "sourceFaces": 2072,
+          "drawnSegments": 1449,
+          "points": 45,
+          "subdivided": 33,
+          "maxCandidates": 35,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "ST",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 2028,
+          "sourceFaces": 1929,
+          "drawnSegments": 1444,
+          "points": 45,
+          "subdivided": 33,
+          "maxCandidates": 35,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "SP",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 1020,
+          "sourceFaces": 1014,
+          "drawnSegments": 1047,
+          "points": 21,
+          "subdivided": 2,
+          "maxCandidates": 31,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "SP",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 1100,
+          "sourceFaces": 1094,
+          "drawnSegments": 1047,
+          "points": 21,
+          "subdivided": 2,
+          "maxCandidates": 31,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "HT",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 910,
+          "sourceFaces": 910,
+          "drawnSegments": 409,
+          "points": 9,
+          "subdivided": 0,
+          "maxCandidates": 25,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "HT",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 848,
+          "sourceFaces": 848,
+          "drawnSegments": 410,
+          "points": 9,
+          "subdivided": 0,
+          "maxCandidates": 25,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 1302,
+          "sourceFaces": 1302,
+          "drawnSegments": 781,
+          "points": 19,
+          "subdivided": 0,
+          "maxCandidates": 32,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 1296,
+          "sourceFaces": 1296,
+          "drawnSegments": 770,
+          "points": 19,
+          "subdivided": 0,
+          "maxCandidates": 32,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "BL",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 2093,
+          "sourceFaces": 2044,
+          "drawnSegments": 2187,
+          "points": 67,
+          "subdivided": 18,
+          "maxCandidates": 32,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "BL",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 2148,
+          "sourceFaces": 2099,
+          "drawnSegments": 2187,
+          "points": 67,
+          "subdivided": 18,
+          "maxCandidates": 32,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "KI",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 776,
+          "sourceFaces": 773,
+          "drawnSegments": 1081,
+          "points": 27,
+          "subdivided": 1,
+          "maxCandidates": 26,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "KI",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 788,
+          "sourceFaces": 785,
+          "drawnSegments": 1081,
+          "points": 27,
+          "subdivided": 1,
+          "maxCandidates": 26,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "PC",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 916,
+          "sourceFaces": 916,
+          "drawnSegments": 508,
+          "points": 9,
+          "subdivided": 0,
+          "maxCandidates": 28,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "PC",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 929,
+          "sourceFaces": 929,
+          "drawnSegments": 508,
+          "points": 9,
+          "subdivided": 0,
+          "maxCandidates": 28,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 1354,
+          "sourceFaces": 1354,
+          "drawnSegments": 788,
+          "points": 23,
+          "subdivided": 0,
+          "maxCandidates": 29,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 1355,
+          "sourceFaces": 1355,
+          "drawnSegments": 788,
+          "points": 23,
+          "subdivided": 0,
+          "maxCandidates": 29,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "GB",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 2795,
+          "sourceFaces": 2777,
+          "drawnSegments": 1924,
+          "points": 44,
+          "subdivided": 6,
+          "maxCandidates": 32,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "GB",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 2984,
+          "sourceFaces": 2966,
+          "drawnSegments": 1921,
+          "points": 44,
+          "subdivided": 6,
+          "maxCandidates": 32,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "LR",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 1295,
+          "sourceFaces": 1295,
+          "drawnSegments": 867,
+          "points": 14,
+          "subdivided": 0,
+          "maxCandidates": 23,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "LR",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 1303,
+          "sourceFaces": 1303,
+          "drawnSegments": 869,
+          "points": 14,
+          "subdivided": 0,
+          "maxCandidates": 23,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "GV",
+          "side": "midline",
+          "visible": true,
+          "surfaceTriangles": 1274,
+          "sourceFaces": 1274,
+          "drawnSegments": 785,
+          "points": 28,
+          "subdivided": 0,
+          "maxCandidates": 23,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "CV",
+          "side": "midline",
+          "visible": true,
+          "surfaceTriangles": 812,
+          "sourceFaces": 812,
+          "drawnSegments": 485,
+          "points": 24,
+          "subdivided": 0,
+          "maxCandidates": 28,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        }
+      ]
+    },
+    "female": {
+      "curvature": {
+        "severeSampleTurns": 23,
+        "totalTurningDegrees": 48950.331185457864,
+        "drawnLength": 41906.72974575816
+      },
+      "baselineCurvature": null,
+      "surfaceTriangles": 128956,
+      "disconnections": 10,
+      "pointChanges": [],
+      "ink": [
+        {
+          "meridian": "LU",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 2838,
+          "sourceFaces": 2838,
+          "drawnSegments": 451,
+          "points": 11,
+          "subdivided": 0,
+          "maxCandidates": 23,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "LU",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 3014,
+          "sourceFaces": 3014,
+          "drawnSegments": 451,
+          "points": 11,
+          "subdivided": 0,
+          "maxCandidates": 22,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "LI",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 4228,
+          "sourceFaces": 4228,
+          "drawnSegments": 717,
+          "points": 20,
+          "subdivided": 0,
+          "maxCandidates": 22,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 4236,
+          "sourceFaces": 4236,
+          "drawnSegments": 717,
+          "points": 20,
+          "subdivided": 0,
+          "maxCandidates": 23,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "ST",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 7791,
+          "sourceFaces": 7755,
+          "drawnSegments": 1494,
+          "points": 45,
+          "subdivided": 12,
+          "maxCandidates": 33,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "ST",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 7393,
+          "sourceFaces": 7363,
+          "drawnSegments": 1510,
+          "points": 45,
+          "subdivided": 10,
+          "maxCandidates": 33,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "SP",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 5679,
+          "sourceFaces": 5673,
+          "drawnSegments": 1096,
+          "points": 21,
+          "subdivided": 2,
+          "maxCandidates": 32,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "SP",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 5455,
+          "sourceFaces": 5446,
+          "drawnSegments": 1079,
+          "points": 21,
+          "subdivided": 3,
+          "maxCandidates": 32,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "HT",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 2654,
+          "sourceFaces": 2654,
+          "drawnSegments": 423,
+          "points": 9,
+          "subdivided": 0,
+          "maxCandidates": 19,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "HT",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 2745,
+          "sourceFaces": 2745,
+          "drawnSegments": 421,
+          "points": 9,
+          "subdivided": 0,
+          "maxCandidates": 20,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 4033,
+          "sourceFaces": 4033,
+          "drawnSegments": 761,
+          "points": 19,
+          "subdivided": 0,
+          "maxCandidates": 25,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 3834,
+          "sourceFaces": 3834,
+          "drawnSegments": 766,
+          "points": 19,
+          "subdivided": 0,
+          "maxCandidates": 24,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "BL",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 9022,
+          "sourceFaces": 9022,
+          "drawnSegments": 2172,
+          "points": 67,
+          "subdivided": 0,
+          "maxCandidates": 28,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "BL",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 8925,
+          "sourceFaces": 8916,
+          "drawnSegments": 2212,
+          "points": 67,
+          "subdivided": 3,
+          "maxCandidates": 32,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "KI",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 4868,
+          "sourceFaces": 4868,
+          "drawnSegments": 1066,
+          "points": 27,
+          "subdivided": 0,
+          "maxCandidates": 20,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "KI",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 4728,
+          "sourceFaces": 4728,
+          "drawnSegments": 1077,
+          "points": 27,
+          "subdivided": 0,
+          "maxCandidates": 21,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "PC",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 2952,
+          "sourceFaces": 2952,
+          "drawnSegments": 506,
+          "points": 9,
+          "subdivided": 0,
+          "maxCandidates": 15,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "PC",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 3135,
+          "sourceFaces": 3135,
+          "drawnSegments": 504,
+          "points": 9,
+          "subdivided": 0,
+          "maxCandidates": 14,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 4289,
+          "sourceFaces": 4289,
+          "drawnSegments": 783,
+          "points": 23,
+          "subdivided": 0,
+          "maxCandidates": 25,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 4051,
+          "sourceFaces": 4051,
+          "drawnSegments": 800,
+          "points": 23,
+          "subdivided": 0,
+          "maxCandidates": 25,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "GB",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 9265,
+          "sourceFaces": 9265,
+          "drawnSegments": 1876,
+          "points": 44,
+          "subdivided": 0,
+          "maxCandidates": 30,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "GB",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 8846,
+          "sourceFaces": 8846,
+          "drawnSegments": 1856,
+          "points": 44,
+          "subdivided": 0,
+          "maxCandidates": 29,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "LR",
+          "side": "right",
+          "visible": true,
+          "surfaceTriangles": 4545,
+          "sourceFaces": 4545,
+          "drawnSegments": 892,
+          "points": 14,
+          "subdivided": 0,
+          "maxCandidates": 22,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "LR",
+          "side": "left",
+          "visible": true,
+          "surfaceTriangles": 4325,
+          "sourceFaces": 4325,
+          "drawnSegments": 880,
+          "points": 14,
+          "subdivided": 0,
+          "maxCandidates": 22,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "GV",
+          "side": "midline",
+          "visible": true,
+          "surfaceTriangles": 3547,
+          "sourceFaces": 3547,
+          "drawnSegments": 774,
+          "points": 28,
+          "subdivided": 0,
+          "maxCandidates": 18,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        },
+        {
+          "meridian": "CV",
+          "side": "midline",
+          "visible": true,
+          "surfaceTriangles": 2558,
+          "sourceFaces": 2558,
+          "drawnSegments": 516,
+          "points": 24,
+          "subdivided": 0,
+          "maxCandidates": 17,
+          "candidateOverflow": 0,
+          "uniqueFacePainting": true,
+          "method": "single-pass surface ink with perpendicular-derivative antialiasing and round dash caps",
+          "highDpiAware": true,
+          "roundedDashes": true,
+          "clinicalCalibration": false
+        }
+      ]
+    }
+  },
+  "startedAt": "2026-09-29T12:35:18.818Z",
+  "clinicalCalibration": false,
+  "success": true,
+  "finishedAt": "2026-09-29T12:35:56.573Z"
+}

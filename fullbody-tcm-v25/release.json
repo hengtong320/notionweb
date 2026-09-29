@@ -1,0 +1,261 @@
+{
+  "version": "25.0.0",
+  "sourceCommit": "dddebdad6a80290baa14ba0789d80f3ac1d74609",
+  "candidateRun": 36568616867,
+  "publishRun": "36569501357",
+  "bundleSHA256": "a39891a91b6e0a504bbff82bd0379161e9315c955c8c5a7cb3b63e4bbee6dd85",
+  "browserChecks": {
+    "chromium": {
+      "quality-local": {
+        "passed": 21,
+        "finishedAt": "2026-09-29T12:35:44.842Z"
+      },
+      "geometry-local": {
+        "passed": 41,
+        "finishedAt": "2026-09-29T12:36:36.098Z"
+      },
+      "selection-local": {
+        "passed": 25,
+        "finishedAt": "2026-09-29T12:36:05.257Z"
+      },
+      "prior-local": {
+        "passed": 20,
+        "finishedAt": "2026-09-29T12:38:36.506Z"
+      },
+      "compatibility-local": {
+        "passed": 63,
+        "finishedAt": "2026-09-29T12:39:51.816Z"
+      }
+    },
+    "webkit": {
+      "quality-local": {
+        "passed": 21,
+        "finishedAt": "2026-09-29T12:35:18.427Z"
+      },
+      "geometry-local": {
+        "passed": 41,
+        "finishedAt": "2026-09-29T12:35:56.573Z"
+      },
+      "selection-local": {
+        "passed": 25,
+        "finishedAt": "2026-09-29T12:35:16.258Z"
+      },
+      "prior-local": {
+        "passed": 20,
+        "finishedAt": "2026-09-29T12:36:35.981Z"
+      },
+      "compatibility-local": {
+        "passed": 63,
+        "finishedAt": "2026-09-29T12:37:28.758Z"
+      }
+    }
+  },
+  "curveComparisons": {
+    "chromium": {
+      "male": {
+        "before": {
+          "severe": 194,
+          "totalTurningDegrees": 86683.86820379816,
+          "drawnLength": 42001.91905544006
+        },
+        "after": {
+          "severe": 188,
+          "totalTurningDegrees": 84140.52276093757,
+          "drawnLength": 41979.76495344634
+        },
+        "pointShift": 0,
+        "breaks": 44,
+        "oldBreaks": 46,
+        "repairs": [
+          {
+            "from": "SI1",
+            "to": "SI2",
+            "before": 59.87349081112051,
+            "after": 58.4710585515031,
+            "meridian": "SI",
+            "side": "right"
+          },
+          {
+            "from": "PC8",
+            "to": "PC9",
+            "before": 113.24918090277524,
+            "after": 99.45516539415351,
+            "meridian": "PC",
+            "side": "right"
+          },
+          {
+            "from": "PC8",
+            "to": "PC9",
+            "before": 113.36458316292023,
+            "after": 99.62590902617863,
+            "meridian": "PC",
+            "side": "left"
+          },
+          {
+            "from": "LR1",
+            "to": "LR2",
+            "before": 31.994494013015334,
+            "after": 30.059940782597753,
+            "meridian": "LR",
+            "side": "right"
+          },
+          {
+            "from": "LR1",
+            "to": "LR2",
+            "before": 32.004477531997104,
+            "after": 30.21275213497655,
+            "meridian": "LR",
+            "side": "left"
+          }
+        ]
+      },
+      "female": {
+        "before": {
+          "severe": 29,
+          "totalTurningDegrees": 50748.56042511372,
+          "drawnLength": 41957.2290279503
+        },
+        "after": {
+          "severe": 23,
+          "totalTurningDegrees": 48950.331185457864,
+          "drawnLength": 41906.72974575816
+        },
+        "pointShift": 0,
+        "breaks": 10,
+        "oldBreaks": 10,
+        "repairs": [
+          {
+            "from": "SP1",
+            "to": "SP2",
+            "before": 61.77313378047887,
+            "after": 58.822491227973785,
+            "meridian": "SP",
+            "side": "right"
+          },
+          {
+            "from": "PC8",
+            "to": "PC9",
+            "before": 109.35018936028635,
+            "after": 86.0546261821102,
+            "meridian": "PC",
+            "side": "right"
+          },
+          {
+            "from": "PC8",
+            "to": "PC9",
+            "before": 99.92247421453128,
+            "after": 86.13332866841274,
+            "meridian": "PC",
+            "side": "left"
+          }
+        ]
+      }
+    },
+    "webkit": {
+      "male": {
+        "before": {
+          "severe": 194,
+          "totalTurningDegrees": 86683.86820379816,
+          "drawnLength": 42001.91905544006
+        },
+        "after": {
+          "severe": 188,
+          "totalTurningDegrees": 84140.52276093757,
+          "drawnLength": 41979.76495344634
+        },
+        "pointShift": 0,
+        "breaks": 44,
+        "oldBreaks": 46,
+        "repairs": [
+          {
+            "from": "SI1",
+            "to": "SI2",
+            "before": 59.87349081112051,
+            "after": 58.4710585515031,
+            "meridian": "SI",
+            "side": "right"
+          },
+          {
+            "from": "PC8",
+            "to": "PC9",
+            "before": 113.24918090277524,
+            "after": 99.45516539415351,
+            "meridian": "PC",
+            "side": "right"
+          },
+          {
+            "from": "PC8",
+            "to": "PC9",
+            "before": 113.36458316292023,
+            "after": 99.62590902617863,
+            "meridian": "PC",
+            "side": "left"
+          },
+          {
+            "from": "LR1",
+            "to": "LR2",
+            "before": 31.994494013015334,
+            "after": 30.059940782597753,
+            "meridian": "LR",
+            "side": "right"
+          },
+          {
+            "from": "LR1",
+            "to": "LR2",
+            "before": 32.004477531997104,
+            "after": 30.21275213497655,
+            "meridian": "LR",
+            "side": "left"
+          }
+        ]
+      },
+      "female": {
+        "before": {
+          "severe": 29,
+          "totalTurningDegrees": 50748.56042511372,
+          "drawnLength": 41957.2290279503
+        },
+        "after": {
+          "severe": 23,
+          "totalTurningDegrees": 48950.331185457864,
+          "drawnLength": 41906.72974575816
+        },
+        "pointShift": 0,
+        "breaks": 10,
+        "oldBreaks": 10,
+        "repairs": [
+          {
+            "from": "SP1",
+            "to": "SP2",
+            "before": 61.77313378047887,
+            "after": 58.822491227973785,
+            "meridian": "SP",
+            "side": "right"
+          },
+          {
+            "from": "PC8",
+            "to": "PC9",
+            "before": 109.35018936028635,
+            "after": 86.0546261821102,
+            "meridian": "PC",
+            "side": "right"
+          },
+          {
+            "from": "PC8",
+            "to": "PC9",
+            "before": 99.92247421453128,
+            "after": 86.13332866841274,
+            "meridian": "PC",
+            "side": "left"
+          }
+        ]
+      }
+    }
+  },
+  "clinicalCalibration": false,
+  "numberedAnchorDataUnchanged": true,
+  "numberedDisplayAnchorPositionsUnchanged": true,
+  "originalModelFilesUnchanged": true,
+  "previousV24Preserved": true,
+  "note": "Local route-loop, bounded fairing and skin-pigment rendering repairs. Tests measure display geometry, not anatomical or clinical point registration. Existing female-native and shared-teaching provenance remains unchanged."
+}

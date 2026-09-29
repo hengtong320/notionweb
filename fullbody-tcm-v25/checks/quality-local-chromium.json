@@ -1,0 +1,398 @@
+{
+  "version": "25.0.0",
+  "engine": "chromium",
+  "live": false,
+  "checks": [
+    {
+      "name": "male all 670 numbered display anchors match V24 exactly",
+      "pass": true,
+      "detail": {
+        "count": 670,
+        "pointShift": 0
+      }
+    },
+    {
+      "name": "male total turning decreases without increasing severe sample turns",
+      "pass": true,
+      "detail": {
+        "before": {
+          "severe": 194,
+          "totalTurningDegrees": 86683.86820379816,
+          "drawnLength": 42001.91905544006
+        },
+        "after": {
+          "severe": 188,
+          "totalTurningDegrees": 84140.52276093757,
+          "drawnLength": 41979.76495344634
+        }
+      }
+    },
+    {
+      "name": "male fixed-endpoint local skin repairs actually ran",
+      "pass": true,
+      "detail": [
+        {
+          "from": "SI1",
+          "to": "SI2",
+          "before": 59.87349081112051,
+          "after": 58.4710585515031,
+          "meridian": "SI",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 113.24918090277524,
+          "after": 99.45516539415351,
+          "meridian": "PC",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 113.36458316292023,
+          "after": 99.62590902617863,
+          "meridian": "PC",
+          "side": "left"
+        },
+        {
+          "from": "LR1",
+          "to": "LR2",
+          "before": 31.994494013015334,
+          "after": 30.059940782597753,
+          "meridian": "LR",
+          "side": "right"
+        },
+        {
+          "from": "LR1",
+          "to": "LR2",
+          "before": 32.004477531997104,
+          "after": 30.21275213497655,
+          "meridian": "LR",
+          "side": "left"
+        }
+      ]
+    },
+    {
+      "name": "male both palm-to-middle-finger loops improved",
+      "pass": true,
+      "detail": [
+        {
+          "from": "SI1",
+          "to": "SI2",
+          "before": 59.87349081112051,
+          "after": 58.4710585515031,
+          "meridian": "SI",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 113.24918090277524,
+          "after": 99.45516539415351,
+          "meridian": "PC",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 113.36458316292023,
+          "after": 99.62590902617863,
+          "meridian": "PC",
+          "side": "left"
+        },
+        {
+          "from": "LR1",
+          "to": "LR2",
+          "before": 31.994494013015334,
+          "after": 30.059940782597753,
+          "meridian": "LR",
+          "side": "right"
+        },
+        {
+          "from": "LR1",
+          "to": "LR2",
+          "before": 32.004477531997104,
+          "after": 30.21275213497655,
+          "meridian": "LR",
+          "side": "left"
+        }
+      ]
+    },
+    {
+      "name": "male no new route disconnections",
+      "pass": true,
+      "detail": {
+        "breaks": 44,
+        "oldBreaks": 46
+      }
+    },
+    {
+      "name": "male accepted segments remain near real skin",
+      "pass": true,
+      "detail": {
+        "maxGap": 2.622410269743315
+      }
+    },
+    {
+      "name": "male skin ink keeps normal depth and all face candidates",
+      "pass": true
+    },
+    {
+      "name": "male palm lines and point centers are visible in the actual canvas",
+      "pass": true,
+      "detail": {
+        "linePixels": 2258,
+        "pointPixels": 1500
+      }
+    },
+    {
+      "name": "male dashed mode changes actual line pixels without moving points",
+      "pass": true
+    },
+    {
+      "name": "female all 670 numbered display anchors match V24 exactly",
+      "pass": true,
+      "detail": {
+        "count": 670,
+        "pointShift": 0
+      }
+    },
+    {
+      "name": "female total turning decreases without increasing severe sample turns",
+      "pass": true,
+      "detail": {
+        "before": {
+          "severe": 29,
+          "totalTurningDegrees": 50748.56042511372,
+          "drawnLength": 41957.2290279503
+        },
+        "after": {
+          "severe": 23,
+          "totalTurningDegrees": 48950.331185457864,
+          "drawnLength": 41906.72974575816
+        }
+      }
+    },
+    {
+      "name": "female fixed-endpoint local skin repairs actually ran",
+      "pass": true,
+      "detail": [
+        {
+          "from": "SP1",
+          "to": "SP2",
+          "before": 61.77313378047887,
+          "after": 58.822491227973785,
+          "meridian": "SP",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 109.35018936028635,
+          "after": 86.0546261821102,
+          "meridian": "PC",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 99.92247421453128,
+          "after": 86.13332866841274,
+          "meridian": "PC",
+          "side": "left"
+        }
+      ]
+    },
+    {
+      "name": "female both palm-to-middle-finger loops improved",
+      "pass": true,
+      "detail": [
+        {
+          "from": "SP1",
+          "to": "SP2",
+          "before": 61.77313378047887,
+          "after": 58.822491227973785,
+          "meridian": "SP",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 109.35018936028635,
+          "after": 86.0546261821102,
+          "meridian": "PC",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 99.92247421453128,
+          "after": 86.13332866841274,
+          "meridian": "PC",
+          "side": "left"
+        }
+      ]
+    },
+    {
+      "name": "female no new route disconnections",
+      "pass": true,
+      "detail": {
+        "breaks": 10,
+        "oldBreaks": 10
+      }
+    },
+    {
+      "name": "female accepted segments remain near real skin",
+      "pass": true,
+      "detail": {
+        "maxGap": 1.0604819905236185
+      }
+    },
+    {
+      "name": "female skin ink keeps normal depth and all face candidates",
+      "pass": true
+    },
+    {
+      "name": "female palm lines and point centers are visible in the actual canvas",
+      "pass": true,
+      "detail": {
+        "linePixels": 2296,
+        "pointPixels": 1528
+      }
+    },
+    {
+      "name": "female dashed mode changes actual line pixels without moving points",
+      "pass": true
+    },
+    {
+      "name": "High-DPI ink uses the active renderer pixel ratio",
+      "pass": true,
+      "detail": {
+        "device": 2,
+        "renderer": 2,
+        "values": [
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "name": "High-DPI lines remain actually visible",
+      "pass": true,
+      "detail": {
+        "pixels": 8815
+      }
+    },
+    {
+      "name": "No shader compilation or uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "comparison": {
+    "male": {
+      "before": {
+        "severe": 194,
+        "totalTurningDegrees": 86683.86820379816,
+        "drawnLength": 42001.91905544006
+      },
+      "after": {
+        "severe": 188,
+        "totalTurningDegrees": 84140.52276093757,
+        "drawnLength": 41979.76495344634
+      },
+      "pointShift": 0,
+      "breaks": 44,
+      "oldBreaks": 46,
+      "repairs": [
+        {
+          "from": "SI1",
+          "to": "SI2",
+          "before": 59.87349081112051,
+          "after": 58.4710585515031,
+          "meridian": "SI",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 113.24918090277524,
+          "after": 99.45516539415351,
+          "meridian": "PC",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 113.36458316292023,
+          "after": 99.62590902617863,
+          "meridian": "PC",
+          "side": "left"
+        },
+        {
+          "from": "LR1",
+          "to": "LR2",
+          "before": 31.994494013015334,
+          "after": 30.059940782597753,
+          "meridian": "LR",
+          "side": "right"
+        },
+        {
+          "from": "LR1",
+          "to": "LR2",
+          "before": 32.004477531997104,
+          "after": 30.21275213497655,
+          "meridian": "LR",
+          "side": "left"
+        }
+      ]
+    },
+    "female": {
+      "before": {
+        "severe": 29,
+        "totalTurningDegrees": 50748.56042511372,
+        "drawnLength": 41957.2290279503
+      },
+      "after": {
+        "severe": 23,
+        "totalTurningDegrees": 48950.331185457864,
+        "drawnLength": 41906.72974575816
+      },
+      "pointShift": 0,
+      "breaks": 10,
+      "oldBreaks": 10,
+      "repairs": [
+        {
+          "from": "SP1",
+          "to": "SP2",
+          "before": 61.77313378047887,
+          "after": 58.822491227973785,
+          "meridian": "SP",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 109.35018936028635,
+          "after": 86.0546261821102,
+          "meridian": "PC",
+          "side": "right"
+        },
+        {
+          "from": "PC8",
+          "to": "PC9",
+          "before": 99.92247421453128,
+          "after": 86.13332866841274,
+          "meridian": "PC",
+          "side": "left"
+        }
+      ]
+    }
+  },
+  "startedAt": "2026-09-29T12:33:46.828Z",
+  "clinicalCalibration": false,
+  "success": true,
+  "finishedAt": "2026-09-29T12:35:44.842Z"
+}
