@@ -1,0 +1,517 @@
+{
+  "version": "24.0.0",
+  "sourceCommit": "a869dbfe0a73299e7dd653da4d56d7a95d32809b",
+  "candidateRun": 36512556790,
+  "publishRun": "36512715681",
+  "bundleSHA256": "de3081d6516297126ca52734f1d800ab2ee21281389cea95642b138a7db35ad1",
+  "browserChecks": {
+    "chromium": {
+      "local": {
+        "passed": 43,
+        "finishedAt": "2026-09-29T02:27:41.491Z"
+      },
+      "selection-local": {
+        "passed": 25,
+        "finishedAt": "2026-09-29T02:29:44.797Z"
+      },
+      "prior-local": {
+        "passed": 20,
+        "finishedAt": "2026-09-29T02:32:02.166Z"
+      },
+      "compatibility-local": {
+        "passed": 63,
+        "finishedAt": "2026-09-29T02:37:34.833Z"
+      }
+    },
+    "webkit": {
+      "local": {
+        "passed": 43,
+        "finishedAt": "2026-09-29T02:27:48.343Z"
+      },
+      "selection-local": {
+        "passed": 25,
+        "finishedAt": "2026-09-29T02:29:16.939Z"
+      },
+      "prior-local": {
+        "passed": 20,
+        "finishedAt": "2026-09-29T02:30:27.585Z"
+      },
+      "compatibility-local": {
+        "passed": 63,
+        "finishedAt": "2026-09-29T02:33:43.083Z"
+      }
+    }
+  },
+  "geometryComparisons": {
+    "chromium": {
+      "male": {
+        "curvature": {
+          "severeSampleTurns": 194,
+          "totalTurningDegrees": 86683.86820379816,
+          "drawnLength": 42001.91905544006
+        },
+        "baselineCurvature": {
+          "severeSampleTurns": 393,
+          "totalTurningDegrees": 128179.37974346368,
+          "drawnLength": 43797.62810423812
+        },
+        "surfaceTriangles": 30769,
+        "baselineTriangles": 370372,
+        "disconnections": 46,
+        "pointChanges": [
+          {
+            "code": "GB29",
+            "side": "right",
+            "change": 125.37055043518671
+          },
+          {
+            "code": "GB31",
+            "side": "right",
+            "change": 84.70852520487574
+          },
+          {
+            "code": "GB32",
+            "side": "right",
+            "change": 80.52236167055436
+          },
+          {
+            "code": "GB29",
+            "side": "left",
+            "change": 125.37056258364294
+          },
+          {
+            "code": "GB31",
+            "side": "left",
+            "change": 84.70850560166475
+          },
+          {
+            "code": "GB32",
+            "side": "left",
+            "change": 80.52231217005297
+          },
+          {
+            "code": "LR10",
+            "side": "right",
+            "change": 5.087386338379351
+          },
+          {
+            "code": "LR10",
+            "side": "left",
+            "change": 5.087385489295914
+          },
+          {
+            "code": "GV3",
+            "side": "midline",
+            "change": 216.46110573532943
+          },
+          {
+            "code": "GV4",
+            "side": "midline",
+            "change": 205.45531201146946
+          },
+          {
+            "code": "GV5",
+            "side": "midline",
+            "change": 208.96536797688773
+          },
+          {
+            "code": "GV6",
+            "side": "midline",
+            "change": 13.116566936816044
+          },
+          {
+            "code": "GV10",
+            "side": "midline",
+            "change": 12.551942197716958
+          },
+          {
+            "code": "GV11",
+            "side": "midline",
+            "change": 13.442656741278428
+          },
+          {
+            "code": "GV12",
+            "side": "midline",
+            "change": 188.4776659470045
+          },
+          {
+            "code": "GV13",
+            "side": "midline",
+            "change": 147.20265711937415
+          },
+          {
+            "code": "GV26",
+            "side": "midline",
+            "change": 161.54825706061297
+          },
+          {
+            "code": "CV1",
+            "side": "midline",
+            "change": 212.40412594987723
+          },
+          {
+            "code": "CV8",
+            "side": "midline",
+            "change": 20.51580647855369
+          }
+        ]
+      },
+      "female": {
+        "curvature": {
+          "severeSampleTurns": 29,
+          "totalTurningDegrees": 50748.56042511372,
+          "drawnLength": 41957.2290279503
+        },
+        "baselineCurvature": {
+          "severeSampleTurns": 249,
+          "totalTurningDegrees": 88917.9192724256,
+          "drawnLength": 44404.53734352785
+        },
+        "surfaceTriangles": 105283,
+        "baselineTriangles": 1540426,
+        "disconnections": 10,
+        "pointChanges": [
+          {
+            "code": "LU11",
+            "side": "right",
+            "change": 57.45390027840286
+          },
+          {
+            "code": "LU11",
+            "side": "left",
+            "change": 57.38547924937889
+          },
+          {
+            "code": "LI1",
+            "side": "right",
+            "change": 166.23239863290198
+          },
+          {
+            "code": "LI2",
+            "side": "right",
+            "change": 32.94452174568959
+          },
+          {
+            "code": "LI3",
+            "side": "right",
+            "change": 27.839797881921523
+          },
+          {
+            "code": "LI1",
+            "side": "left",
+            "change": 172.43769666469706
+          },
+          {
+            "code": "LI2",
+            "side": "left",
+            "change": 33.79268708096346
+          },
+          {
+            "code": "LI3",
+            "side": "left",
+            "change": 28.18952306265039
+          },
+          {
+            "code": "BL63",
+            "side": "left",
+            "change": 91.95109726986165
+          },
+          {
+            "code": "PC9",
+            "side": "right",
+            "change": 34.58600587833108
+          },
+          {
+            "code": "PC9",
+            "side": "left",
+            "change": 37.685740723051104
+          },
+          {
+            "code": "TE1",
+            "side": "left",
+            "change": 157.048947243483
+          },
+          {
+            "code": "GB25",
+            "side": "right",
+            "change": 86.54116848856101
+          },
+          {
+            "code": "GB29",
+            "side": "right",
+            "change": 121.59250531144325
+          },
+          {
+            "code": "GB25",
+            "side": "left",
+            "change": 86.25737219608968
+          },
+          {
+            "code": "GB29",
+            "side": "left",
+            "change": 121.17074457206688
+          },
+          {
+            "code": "LR11",
+            "side": "right",
+            "change": 150.42478224460277
+          },
+          {
+            "code": "LR11",
+            "side": "left",
+            "change": 148.51235862352868
+          }
+        ]
+      }
+    },
+    "webkit": {
+      "male": {
+        "curvature": {
+          "severeSampleTurns": 194,
+          "totalTurningDegrees": 86683.86820379816,
+          "drawnLength": 42001.91905544006
+        },
+        "baselineCurvature": {
+          "severeSampleTurns": 393,
+          "totalTurningDegrees": 128179.37974346368,
+          "drawnLength": 43797.62810423812
+        },
+        "surfaceTriangles": 30769,
+        "baselineTriangles": 370372,
+        "disconnections": 46,
+        "pointChanges": [
+          {
+            "code": "GB29",
+            "side": "right",
+            "change": 125.37055043518671
+          },
+          {
+            "code": "GB31",
+            "side": "right",
+            "change": 84.70852520487574
+          },
+          {
+            "code": "GB32",
+            "side": "right",
+            "change": 80.52236167055436
+          },
+          {
+            "code": "GB29",
+            "side": "left",
+            "change": 125.37056258364294
+          },
+          {
+            "code": "GB31",
+            "side": "left",
+            "change": 84.70850560166475
+          },
+          {
+            "code": "GB32",
+            "side": "left",
+            "change": 80.52231217005297
+          },
+          {
+            "code": "LR10",
+            "side": "right",
+            "change": 5.087386338379351
+          },
+          {
+            "code": "LR10",
+            "side": "left",
+            "change": 5.087385489295914
+          },
+          {
+            "code": "GV3",
+            "side": "midline",
+            "change": 216.46110573532943
+          },
+          {
+            "code": "GV4",
+            "side": "midline",
+            "change": 205.45531201146946
+          },
+          {
+            "code": "GV5",
+            "side": "midline",
+            "change": 208.96536797688773
+          },
+          {
+            "code": "GV6",
+            "side": "midline",
+            "change": 13.116566936816044
+          },
+          {
+            "code": "GV10",
+            "side": "midline",
+            "change": 12.551942197716958
+          },
+          {
+            "code": "GV11",
+            "side": "midline",
+            "change": 13.442656741278428
+          },
+          {
+            "code": "GV12",
+            "side": "midline",
+            "change": 188.4776659470045
+          },
+          {
+            "code": "GV13",
+            "side": "midline",
+            "change": 147.20265711937415
+          },
+          {
+            "code": "GV26",
+            "side": "midline",
+            "change": 161.54825706061297
+          },
+          {
+            "code": "CV1",
+            "side": "midline",
+            "change": 212.40412594987723
+          },
+          {
+            "code": "CV8",
+            "side": "midline",
+            "change": 20.51580647855369
+          }
+        ]
+      },
+      "female": {
+        "curvature": {
+          "severeSampleTurns": 29,
+          "totalTurningDegrees": 50748.56042511372,
+          "drawnLength": 41957.2290279503
+        },
+        "baselineCurvature": {
+          "severeSampleTurns": 249,
+          "totalTurningDegrees": 88917.9192724256,
+          "drawnLength": 44404.53734352785
+        },
+        "surfaceTriangles": 105283,
+        "baselineTriangles": 1540426,
+        "disconnections": 10,
+        "pointChanges": [
+          {
+            "code": "LU11",
+            "side": "right",
+            "change": 57.45390027840286
+          },
+          {
+            "code": "LU11",
+            "side": "left",
+            "change": 57.38547924937889
+          },
+          {
+            "code": "LI1",
+            "side": "right",
+            "change": 166.23239863290198
+          },
+          {
+            "code": "LI2",
+            "side": "right",
+            "change": 32.94452174568959
+          },
+          {
+            "code": "LI3",
+            "side": "right",
+            "change": 27.839797881921523
+          },
+          {
+            "code": "LI1",
+            "side": "left",
+            "change": 172.43769666469706
+          },
+          {
+            "code": "LI2",
+            "side": "left",
+            "change": 33.79268708096346
+          },
+          {
+            "code": "LI3",
+            "side": "left",
+            "change": 28.18952306265039
+          },
+          {
+            "code": "BL63",
+            "side": "left",
+            "change": 91.95109726986165
+          },
+          {
+            "code": "PC9",
+            "side": "right",
+            "change": 34.58600587833108
+          },
+          {
+            "code": "PC9",
+            "side": "left",
+            "change": 37.685740723051104
+          },
+          {
+            "code": "TE1",
+            "side": "left",
+            "change": 157.048947243483
+          },
+          {
+            "code": "GB25",
+            "side": "right",
+            "change": 86.54116848856101
+          },
+          {
+            "code": "GB29",
+            "side": "right",
+            "change": 121.59250531144325
+          },
+          {
+            "code": "GB25",
+            "side": "left",
+            "change": 86.25737219608968
+          },
+          {
+            "code": "GB29",
+            "side": "left",
+            "change": 121.17074457206688
+          },
+          {
+            "code": "LR11",
+            "side": "right",
+            "change": 150.42478224460277
+          },
+          {
+            "code": "LR11",
+            "side": "left",
+            "change": 148.51235862352868
+          }
+        ]
+      }
+    }
+  },
+  "originalAnatomicalJSONUnchanged": [
+    "voice-map.json",
+    "hegu-reference-v16.json",
+    "point-registration-v18.json",
+    "term-catalog.json",
+    "registration-template.json",
+    "evidence-data-v9.json",
+    "final-source-match.json",
+    "female-local-v18.json",
+    "region-membership.json",
+    "additional-groups.json",
+    "female-hand-route-v18.json",
+    "additions.json",
+    "meridian-reference-coverage.json",
+    "body-frame-v18.json",
+    "calibration-pilot.json"
+  ],
+  "originalModelsUnchanged": true,
+  "pointRegistrationUnchanged": true,
+  "bodySpecificDisplayCorrections": [
+    "female LU11, LI1, LI2, LI3, PC9 finger correspondence",
+    "local hand and foot projection",
+    "nearby flank, pelvis and thigh ray-hit clusters"
+  ],
+  "renderer": "single-pass skin distance-field union, local outer-envelope smoothing",
+  "clinicalCalibration": false,
+  "previousV23Preserved": true,
+  "note": "Original point coordinates are preserved. Body-specific display contacts and intermediate route geometry are corrected. Smoothness and visibility checks are not clinical validation of every acupoint."
+}

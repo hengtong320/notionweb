@@ -1,0 +1,79 @@
+[
+  {
+    "id": "cranial",
+    "name": "脑颅骨",
+    "pinyin": "",
+    "count": 8,
+    "color": "#a99e84"
+  },
+  {
+    "id": "facial",
+    "name": "面颅骨",
+    "pinyin": "",
+    "count": 14,
+    "color": "#bda78c"
+  },
+  {
+    "id": "head-other",
+    "name": "舌骨与听小骨",
+    "pinyin": "",
+    "count": 7,
+    "color": "#b6a9bc"
+  },
+  {
+    "id": "cervical",
+    "name": "颈椎",
+    "pinyin": "",
+    "count": 7,
+    "color": "#9baeba"
+  },
+  {
+    "id": "thoracic",
+    "name": "胸椎",
+    "pinyin": "",
+    "count": 12,
+    "color": "#abb293"
+  },
+  {
+    "id": "thorax",
+    "name": "肋骨与胸骨",
+    "pinyin": "",
+    "count": 25,
+    "color": "#bdac88"
+  },
+  {
+    "id": "shoulder",
+    "name": "肩带骨",
+    "pinyin": "",
+    "count": 4,
+    "color": "#a3b8a4"
+  },
+  {
+    "id": "arm",
+    "name": "上臂与前臂",
+    "pinyin": "",
+    "count": 6,
+    "color": "#a4b4b3"
+  },
+  {
+    "id": "carpal",
+    "name": "腕骨",
+    "pinyin": "",
+    "count": 16,
+    "color": "#baa997"
+  },
+  {
+    "id": "metacarpal",
+    "name": "掌骨",
+    "pinyin": "",
+    "count": 10,
+    "color": "#99b1b3"
+  },
+  {
+    "id": "hand-phalanges",
+    "name": "指骨",
+    "pinyin": "",
+    "count": 28,
+    "color": "#b6a2ad"
+  }
+]
