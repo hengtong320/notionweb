@@ -32,6 +32,7 @@ jobs:
           python atlas24-repair/patch.py
           python atlas24-repair/finalize.py
           python atlas24-repair/refine.py
+          python atlas24-repair/sagittal.py
           python - <<'PY'
           from pathlib import Path
           f=Path('fullbody-tcm-v24/stability-v10.js')
