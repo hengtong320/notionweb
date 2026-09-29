@@ -31,6 +31,7 @@ jobs:
         run: |
           python atlas24-repair/patch.py
           python atlas24-repair/finalize.py
+          python atlas24-repair/refine.py
           python - <<'PY'
           from pathlib import Path
           for name in ['verify.cjs','prior-interactions.cjs','compatibility.cjs']:
