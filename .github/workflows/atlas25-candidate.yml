@@ -18,6 +18,7 @@ jobs:
       - name: Build only the new version and immutable-data checks
         run: |
           python atlas25-repair/patch.py
+          python atlas25-repair/finish.py
           npm install --prefix /tmp/a25 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10
           NODE_PATH=/tmp/a25/node_modules node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v25/app.js'],outfile:'fullbody-tcm-v25/app.bundle.js',bundle:true,format:'iife',nodePaths:[process.env.NODE_PATH],loader:{'.txt':'text'},minify:true})"
           for f in atlas25-repair/*.cjs; do node --check "$f"; done
