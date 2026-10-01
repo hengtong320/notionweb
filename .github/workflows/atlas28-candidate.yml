@@ -1,0 +1,61 @@
+name: Verify V28 body surface consistency
+on:
+  push:
+    paths: ['atlas28-repair/**', '.github/workflows/atlas28-candidate.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+concurrency:
+  group: atlas28-candidate
+  cancel-in-progress: true
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix: {browser: [chromium, webkit]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    env:
+      NODE_PATH: /tmp/a28/node_modules
+      BROWSER: ${{ matrix.browser }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build isolated V28 sources and preserve original data
+        run: |
+          python atlas28-repair/patch.py
+          python atlas28-repair/finish.py
+          python atlas28-repair/prepare-tests.py
+      - name: Install pinned graphics and browsers
+        run: |
+          npm install --prefix /tmp/a28 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a28/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Compile and hash exact candidate
+        run: |
+          node --check atlas28-repair/verify.cjs
+          node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v28/app.js'],outfile:'fullbody-tcm-v28/app.bundle.js',bundle:true,format:'iife',nodePaths:[process.env.NODE_PATH],loader:{'.txt':'text'},minify:true})"
+          python - <<'PY'
+          import os,json,hashlib
+          from pathlib import Path
+          p=Path('fullbody-tcm-v28')
+          d={'version':'28.0.0','sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID'],'files':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in p.iterdir() if f.is_file()},'tests':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in Path('atlas28-repair').glob('*.cjs')},'clinicalCalibration':False,'rawAnatomyUnchanged':True,'displayContactsIntentionallyCorrected':True}
+          (p/'build-info.json').write_text(json.dumps(d,indent=2))
+          PY
+          test -z "$(git diff -- fullbody-tcm-v27/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+      - name: Actual opaque skin, state restoration, point and line switching
+        run: node atlas28-repair/verify.cjs
+      - name: Retained direction, complete labels and high-density phone journey
+        if: '!cancelled()'
+        run: node atlas28-repair/observation.cjs
+      - name: Retained skin strokes, structures and phone reading journey
+        if: '!cancelled()'
+        run: node atlas28-repair/prior.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas28-${{ matrix.browser }}
+          path: |
+            fullbody-tcm-v28/
+            atlas28-repair/
+          retention-days: 14
