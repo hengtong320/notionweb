@@ -1,0 +1,54 @@
+{
+  "version": "26.0.0",
+  "published": true,
+  "fixedEntrance": "https://hengtong320.github.io/notionweb/anatomy/",
+  "versionUrl": "https://hengtong320.github.io/notionweb/fullbody-tcm-v26/",
+  "jsSourceCommit": "2c71e08de4a722b796048caa75c670adbf5de616",
+  "finalPhoneSourceCommit": "20473b6f9b62da3b531c5dbbb7539c1d41ee304c",
+  "initialCandidateRun": 36844476572,
+  "initialVersionPublishRun": 36844997823,
+  "phoneDiagnosisRun": 36846148792,
+  "finalVerificationAndPublishRun": 36846820762,
+  "entranceCommit": "7e4093bae7304de9bcce19825625cffd28af2bbc",
+  "pagesDeploymentRun": 36847378007,
+  "publicFilesVerified": {
+    "app.bundle.js": "cc825ab442b39c0f5f4d72c829ed6ceb1cc9d7c5517fb29229375d9c02f2ed73",
+    "reading-v26.css": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40"
+  },
+  "finalLocalBrowserChecks": {
+    "chromium": {"passed": 35, "success": true, "finishedAt": "2026-10-01T10:07:40.350Z"},
+    "webkit": {"passed": 35, "success": true, "finishedAt": "2026-10-01T10:07:14.945Z"}
+  },
+  "finalPublicBrowserChecks": {
+    "chromium": {"passed": 35, "success": true, "errors": [], "finishedAt": "2026-10-01T10:13:51.576Z"},
+    "webkit": {"passed": 35, "success": true, "errors": [], "finishedAt": "2026-10-01T10:13:22.636Z"}
+  },
+  "publicArtifacts": {
+    "chromium": {"id": 11154106835, "sha256": "9fdc28d3ba96ba13c84acd3e09fec052f539c1fa5705cb479346611acef74f7e"},
+    "webkit": {"id": 11153569443, "sha256": "49e651fc59e486719e5c1d5ddeda3944446352c97b4f0ad6b76d874a34b30adf"}
+  },
+  "testedViewports": [[1440,1000],[390,844]],
+  "acceptedPublicScreenshots": ["live-chromium-phone-point-details.png", "live-webkit-v26-male-forearm.png"],
+  "fixes": [
+    "皮肤面约束的屏幕笔触，改善近景实线细碎和宽度不稳定，保留不透明皮肤及正常深度遮挡。",
+    "统一线路开关，局部裁切改为显式选项且默认关闭；看全线不擅自打开穴名。",
+    "穴名分散布局、边界与界面避让、引线对应实点，当前点优先。",
+    "穴位说明先展示定位文字，去除重复穴名和聚焦朗读入口，保留模型依据、来源与未校准状态。",
+    "手机点选先保留三维画面，主动打开详情后采用有限高度底部面板；定位不再关闭详情，镜头避开界面。",
+    "取消手机穴位卡片标题的吸顶，消除在所测Chromium路径中遮住实点的异常横条。"
+  ],
+  "displayAnchorsComparedPerBody": 670,
+  "displayAnchorMaxShift": 0,
+  "originalModelsUnchanged": true,
+  "anatomicalJSONFilesUnchanged": 15,
+  "previousV25Preserved": true,
+  "clinicalCalibration": false,
+  "preActivationPublicAttempt": "Initial public jobs in run 36844997823 were intentionally left waiting for activation and timed out while the phone painting defect was investigated. The final public results above are from run 36846820762 after the verified CSS repair and entry activation.",
+  "limitations": [
+    "Targeted 35-case regression, not a rerun or blanket pass claim for every historical test suite.",
+    "Viewport tests are not physical phone, full touch-inertia, high-DPI or frame-rate verification.",
+    "Forearm centerline sampling reports full local coverage for both V25 and V26; it is not proof of increased anatomical accuracy or zero gaps everywhere.",
+    "Original route gaps and numbered coordinates are retained; local turns and clinical location correspondence still require review.",
+    "Native female and shared teaching-model provenance remains unchanged."
+  ]
+}
