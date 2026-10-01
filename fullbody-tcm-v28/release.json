@@ -1,0 +1,46 @@
+{
+  "version": "28.0.0",
+  "sourceCommit": "3dd428deab3d71167d978f1fb9f1c5add87b1e6c",
+  "candidateRun": "36904440877",
+  "publishRun": "36904656930",
+  "bundleSHA256": "e1ff086300771374f79b6ec838a8cb80e46ec9a4e9848409e48b3d89e2776efc",
+  "localBrowserChecks": {
+    "chromium": {
+      "surface": {
+        "passed": 44,
+        "finishedAt": "2026-10-01T18:10:54.077Z"
+      },
+      "observation": {
+        "passed": 28,
+        "finishedAt": "2026-10-01T18:11:58.269Z"
+      },
+      "reading": {
+        "passed": 33,
+        "finishedAt": "2026-10-01T18:13:21.236Z"
+      }
+    },
+    "webkit": {
+      "surface": {
+        "passed": 44,
+        "finishedAt": "2026-10-01T18:10:03.342Z"
+      },
+      "observation": {
+        "passed": 28,
+        "finishedAt": "2026-10-01T18:11:07.032Z"
+      },
+      "reading": {
+        "passed": 33,
+        "finishedAt": "2026-10-01T18:12:28.962Z"
+      }
+    }
+  },
+  "clinicalCalibration": false,
+  "originalModelsUnchanged": true,
+  "rawPointReferencesUnchanged": true,
+  "previousV27Preserved": true,
+  "displayContactsChanged": {
+    "male": 32,
+    "female": 16
+  },
+  "note": "Opaque skin projection and male/female state consistency. Display contacts on wrong skin faces intentionally change; raw point references are not clinically recalibrated. Local and public checks remain separate."
+}
