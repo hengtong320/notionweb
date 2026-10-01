@@ -1,0 +1,23 @@
+name: V28 browser workspace
+on:
+  push:
+    paths: ['.github/workflows/atlas28-browser-workspace.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Download pinned headless browser
+        run: |
+          npm install --prefix /tmp/a28 playwright@1.56.1 pngjs@7.0.0
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/browser node /tmp/a28/node_modules/playwright/cli.js install chromium --only-shell
+          tar czf /tmp/atlas28-browser.tar.gz -C /tmp browser a28
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atlas28-browser-runtime
+          path: /tmp/atlas28-browser.tar.gz
+          retention-days: 3
