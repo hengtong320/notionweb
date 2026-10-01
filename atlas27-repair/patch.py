@@ -15,6 +15,10 @@ for f in p.iterdir():
 shutil.copy2(tools/'label-layout.js',p/'meridian-layout-v26.js');shutil.copy2(tools/'observation.js',p/'observation-v27.js')
 edit('app.js',"import {initMeridianExperience}","import {initObservationV27} from './observation-v27.js';\nimport {initMeridianExperience}")
 edit('app.js',' initMeridianExperience({learning:learningEnhancements,invalidate});',' initMeridianExperience({learning:learningEnhancements,invalidate});\n initObservationV27({THREE,camera,controls,state,learning:learningEnhancements,captureCamera,syncCameraUp,invalidate});')
+# Female document capture runs before the toolbar handler. Delegate only user
+# view commands; programmatic preset fitting must keep its existing behavior.
+edit('female-v12.js',"if(v){e.preventDefault();e.stopImmediatePropagation();view(v);return;}","if(v){e.preventDefault();e.stopImmediatePropagation();const o=window.__ATLAS_OBSERVATION_V27__;if(!o?.getState().active||!o.orient(v))view(v);return;}")
+edit('female-v12.js',"view(keyViews[e.key]);return;", "const o=window.__ATLAS_OBSERVATION_V27__;if(!o?.getState().active||!o.orient(keyViews[e.key]))view(keyViews[e.key]);return;")
 edit('learning-enhancements.js',"import {placeLabels}","import {placeLabels,labelSlots,placeCompleteLabels}")
 edit('learning-enhancements.js',"  studyContext=null;\n  prepareNavigation();toggleTCM(true);labelPage=0;", "  const previousDirection=camera.position.clone().sub(controls.target).normalize().toArray(),previousUp=camera.up.toArray();\n  studyContext=null;\n  if($('localStudyToggle')){$('localStudyToggle').checked=false;$('localStudyToggle').dispatchEvent(new Event('change',{bubbles:true}));}\n  prepareNavigation();toggleTCM(true);labelPage=0;")
 edit('learning-enhancements.js',"requestedDirection||dir,[0,1,0],ids.map(id=>meridianMap[id].short).join('＋')", "requestedDirection||previousDirection,requestedDirection?(Math.abs(requestedDirection[1])>.9?[0,0,1]:[0,1,0]):previousUp,ids.map(id=>meridianMap[id].short).join('＋')")
@@ -47,8 +51,9 @@ for n in unchanged:assert (p/n).read_bytes()==(src/n).read_bytes(),n
 
 - 顶部与经络面板的方向按钮共同读取实际镜头方向。拖动后如不再对准标准面，标记自由视角；切换男女及点选聚焦后不再残留错误方向高亮。
 - 经络显示时方向按钮只旋转当前观察范围，不会突然跳回全身；“看全线”保持观察方向并关闭局部裁切，明确恢复全部线路。
+- 首轮实测发现女性在document捕获阶段仍走旧的全身适配；本轮把该用户操作分支也接入共用观察方法，不改变器官预设的程序化适配。
 - 完整穴名依据真实可用空间排版分页，避开顶部、侧边及手机详情面板；附近与完整穴名均避让屏幕上的点中心。引线从名称边界连向落点，中文左右侧取代 R/L。
-- 镜头、选点和界面没有变化时复用标签结果，不重复执行全部遮挡射线与布局计算；这不是实体手机帧率保证。
+- 转动时先更新相机的投影所需矩阵再计算屏幕落点，避免沿用旧相机状态。镜头、选点和界面没有变化时复用标签结果，不重复执行全部遮挡射线与布局计算；这不是实体手机帧率保证。
 
 ## 边界
 
@@ -56,4 +61,9 @@ for n in unchanged:assert (p/n).read_bytes()==(src/n).read_bytes(),n
 ''',encoding='utf-8')
 (p/'versions.html').write_text('''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>人体研习室 V27</title><style>body{font:16px/1.8 system-ui;max-width:740px;padding:30px;margin:auto;background:#f3f6ed;color:#315842}a{color:#246a50}</style><h1>V27 · 观察与标注同步</h1><p>标准方向高亮随镜头同步；转向保留局部放大程度，看全线保留方向；穴名避让实点及界面，完整穴名根据可用空间分页。</p><p>仅显示与交互修复，穴位未逐穴临床校准。</p><p><a href="./">进入当前版本</a> · <a href="../anatomy/">固定入口</a> · <a href="../fullbody-tcm-v26/">V26 回退</a></p></html>''')
 (p/'invariants.json').write_text(json.dumps({'unchangedJSON':unchanged,'clinicalCalibration':False},indent=2))
+# Add a same-JavaScript-turn assertion: waiting for the next render would hide
+# the stale projection bug that the change listener is meant to prevent.
+f=tools/'verify.cjs';s=f.read_text();needle="ck('No shader or page exceptions',!report.errors.length,report.errors);"
+extra="""const projectionError=await p.evaluate(()=>{const {THREE,camera,controls}=__ATLAS_RENDER_AUDIT__;__FOOT_ATLAS__.captureCamera();const q=__ATLAS_LEARNING__.getNavigationCatalog().find(p=>p.code==='PC6'&&p.side==='right'),point=new THREE.Vector3(...q.position),distance=camera.position.distanceTo(controls.target);camera.position.copy(controls.target).add(new THREE.Vector3(.35,.18,1).normalize().multiplyScalar(distance));controls.update();const immediate=point.clone().project(camera),reference=camera.clone();reference.updateMatrixWorld(true);return immediate.distanceTo(point.clone().project(reference));});ck('Point projection is current in the same turn as camera rotation',projectionError<1e-9,{normalizedDeviceError:projectionError});\n"""
+assert needle in s;f.write_text(s.replace(needle,extra+needle,1))
 print('Prepared V27; immutable JSON',len(unchanged))
