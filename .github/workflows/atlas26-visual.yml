@@ -18,23 +18,15 @@ jobs:
           npm install --prefix /tmp/a26 playwright@1.56.1 pngjs@7.0.0
           /tmp/a26/node_modules/.bin/playwright install --with-deps chromium
           sudo apt-get install -y fonts-noto-cjk
-      - name: Capture phone paint before and after compositor settlement
+      - name: Isolate phone painting layers while preserving the source
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          s=Path('atlas26-publish/verified-tests/verify.cjs').read_text()
-          s=s.replace("(live?'live-':'local-')+engine","'visual-'+engine")
-          extra="""await shot('phone-point-details');report.phonePaintElements=await p.evaluate(()=>[...document.querySelectorAll('body *')].map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {tag:e.tagName,id:e.id,cls:typeof e.className==='string'?e.className:'svg',rect:[r.x,r.y,r.width,r.height],background:s.backgroundColor,display:s.display,opacity:s.opacity,position:s.position};}).filter(e=>e.display!=='none'&&e.rect[0]<=30&&e.rect[0]+e.rect[2]>300&&e.rect[1]<370&&e.rect[1]+e.rect[3]>318));await p.waitForTimeout(900);await shot('phone-details-after-900ms');await p.waitForTimeout(1200);await shot('phone-details-after-2100ms');await p.screenshot({path:path.join(out,prefix+'-phone-details-no-animations.png'),animations:'disabled'});"""
-          assert "await shot('phone-point-details');" in s
-          s=s.replace("await shot('phone-point-details');",extra,1)
-          Path('atlas26-publish/visual-inspection.cjs').write_text(s)
-          PY
+          python atlas26-publish/diagnose-phone.py
           node atlas26-publish/visual-inspection.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: atlas26-phone-visual
+          name: atlas26-phone-paint
           path: |
-            fullbody-tcm-v26/checks/visual-*
+            fullbody-tcm-v26/checks/paint-*
             atlas26-publish/visual-inspection.cjs
           retention-days: 14
