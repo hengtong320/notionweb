@@ -1,0 +1,107 @@
+name: Finalize V26 phone painting
+on:
+  push:
+    paths: ['.github/workflows/atlas26-phone-final.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix: {browser: [chromium, webkit]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env: {NODE_PATH: /tmp/a26/node_modules, BROWSER: '${{ matrix.browser }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Prepare only the confirmed CSS fix and point-pixel check
+        run: |
+          mv fullbody-tcm-v26/checks /tmp/v26-previous-checks
+          mkdir fullbody-tcm-v26/checks
+          python atlas26-publish/finish-phone.py prepare
+      - name: Install identical test engines
+        run: |
+          npm install --prefix /tmp/a26 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a26/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Full targeted journey including actual phone point visibility
+        run: node atlas26-publish/verified-tests/verify.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas26-final-${{ matrix.browser }}
+          path: |
+            fullbody-tcm-v26/
+            atlas26-publish/verified-tests/verify.cjs
+          retention-days: 14
+  publish:
+    needs: verify
+    permissions: {contents: write, actions: read}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/download-artifact@v4
+        with: {name: atlas26-final-chromium, path: /tmp/atlas26-final-chromium}
+      - uses: actions/download-artifact@v4
+        with: {name: atlas26-final-webkit, path: /tmp/atlas26-final-webkit}
+      - name: Publish only exact verified CSS, notes and reports
+        run: |
+          python atlas26-publish/finish-phone.py publish
+          test -z "$(git diff -- fullbody-tcm-v26/app.bundle.js fullbody-tcm-v25/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v26/reading-v26.css fullbody-tcm-v26/README.md fullbody-tcm-v26/phone-final-build.json fullbody-tcm-v26/build-info.json fullbody-tcm-v26/release.json fullbody-tcm-v26/checks/final-* atlas26-publish/verified-tests/verify.cjs
+          git commit -m 'Finalize verified V26 phone point visibility without sticky-header paint artifacts'
+          git push origin HEAD:main
+  public:
+    needs: publish
+    strategy:
+      fail-fast: false
+      matrix: {browser: [chromium, webkit]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      NODE_PATH: /tmp/a26/node_modules
+      BROWSER: ${{ matrix.browser }}
+      TEST_URL: https://hengtong320.github.io/notionweb/anatomy/?v=26.0.0
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install tested browser
+        run: |
+          npm install --prefix /tmp/a26 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a26/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Confirm fixed entry and both public JS and CSS hashes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,urllib.request,time,os
+          base='https://hengtong320.github.io/notionweb/'
+          release=json.loads(Path('fullbody-tcm-v26/release.json').read_text())
+          expected={'app.bundle.js':release['bundleSHA256'],'reading-v26.css':release['phonePaintRepair']['cssSHA256']}
+          for i in range(60):
+              try:
+                  def get(p):return urllib.request.urlopen(urllib.request.Request(base+p+'?verify='+str(time.time_ns()),headers={'Cache-Control':'no-cache'}),timeout=20).read()
+                  assert '../fullbody-tcm-v26/' in get('anatomy/').decode(),'Fixed entry not activated'
+                  for name,digest in expected.items():assert hashlib.sha256(get('fullbody-tcm-v26/'+name)).hexdigest()==digest,name
+                  Path('fullbody-tcm-v26/checks/live-content-'+os.environ['BROWSER']+'.json').write_text(json.dumps({'success':True,'version':'26.0.0','files':expected,'checkedAt':time.time()},indent=2))
+                  break
+              except Exception as e:
+                  print('Waiting for final public version:',e,flush=True)
+                  if i==59:raise
+                  time.sleep(10)
+          PY
+      - name: Final public opaque skin, point reading and phone paint checks
+        run: node atlas26-publish/verified-tests/verify.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas26-final-public-${{ matrix.browser }}
+          path: fullbody-tcm-v26/checks/live-*
+          retention-days: 14
