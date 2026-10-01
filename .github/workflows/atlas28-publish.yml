@@ -8,14 +8,14 @@ permissions:
   actions: read
 concurrency:
   group: atlas28-publish
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   publish:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      CANDIDATE_RUN: '36902022010'
-      CANDIDATE_SHA: 49d18f4b466734ab0cba6df3b8e011ddda7f773d
+      CANDIDATE_RUN: '36903496589'
+      CANDIDATE_SHA: a73a54c21ceaf96caa8057aacf43d3586ed970c3
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
@@ -38,17 +38,18 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: atlas28-chromium
-          run-id: 36902022010
+          run-id: 36903496589
           github-token: ${{ github.token }}
           path: /tmp/atlas28-chromium
       - uses: actions/download-artifact@v4
         with:
           name: atlas28-webkit
-          run-id: 36902022010
+          run-id: 36903496589
           github-token: ${{ github.token }}
           path: /tmp/atlas28-webkit
       - name: Publish only identical verified source, runtime and reports
         run: |
+          git pull --ff-only origin main
           python atlas28-publish/publish.py
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -71,10 +72,19 @@ jobs:
         with: {ref: main}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
-      - name: Install identical verification engines
+      - name: Install identical test tools without audit requests
+        timeout-minutes: 3
+        run: npm install --prefix /tmp/a28 --no-audit --no-fund --fetch-retries=1 --fetch-timeout=45000 playwright@1.56.1 pngjs@7.0.0
+      - name: Prepare native browser libraries with bounded network waits
+        timeout-minutes: 4
         run: |
-          npm install --prefix /tmp/a28 playwright@1.56.1 pngjs@7.0.0
-          /tmp/a28/node_modules/.bin/playwright install --with-deps $BROWSER
+          printf 'Acquire::Retries "1";\nAcquire::http::Timeout "30";\nAcquire::https::Timeout "30";\n' | sudo tee /etc/apt/apt.conf.d/99-atlas-network-timeouts >/dev/null
+          /tmp/a28/node_modules/.bin/playwright install-deps $BROWSER
+      - name: Download the exact browser and prepare Chinese text
+        timeout-minutes: 4
+        env: {PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT: '45000'}
+        run: |
+          /tmp/a28/node_modules/.bin/playwright install $BROWSER
           sudo apt-get install -y fonts-noto-cjk
       - name: Verify activated entrance and public code matches the tested bytes
         run: |
