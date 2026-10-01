@@ -1,0 +1,68 @@
+name: V28 bounded verification
+on:
+  push:
+    paths: ['.github/workflows/atlas28-bounded-verification.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix: {browser: [chromium, webkit]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_PATH: /tmp/a28/node_modules
+      BROWSER: ${{ matrix.browser }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Prepare the unchanged V28 repair and current test targets
+        run: |
+          python atlas28-repair/patch.py
+          python atlas28-repair/finish.py
+          python atlas28-repair/prepare-tests.py
+      - name: Install pinned JavaScript dependencies without registry audit requests
+        timeout-minutes: 3
+        run: npm install --prefix /tmp/a28 --no-audit --no-fund --fetch-retries=1 --fetch-timeout=45000 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1 pngjs@7.0.0
+      - name: Install native browser dependencies with bounded network retries
+        timeout-minutes: 4
+        run: |
+          printf 'Acquire::Retries "1";\nAcquire::http::Timeout "30";\nAcquire::https::Timeout "30";\n' | sudo tee /etc/apt/apt.conf.d/99-atlas-network-timeouts >/dev/null
+          /tmp/a28/node_modules/.bin/playwright install-deps $BROWSER
+      - name: Download pinned browser engine
+        timeout-minutes: 3
+        env: {PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT: '45000'}
+        run: /tmp/a28/node_modules/.bin/playwright install $BROWSER
+      - name: Install Chinese text font for actual screenshots
+        timeout-minutes: 2
+        run: sudo apt-get install -y fonts-noto-cjk
+      - name: Compile and hash the unchanged repaired runtime
+        run: |
+          node --check atlas28-repair/verify.cjs
+          node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v28/app.js'],outfile:'fullbody-tcm-v28/app.bundle.js',bundle:true,format:'iife',nodePaths:[process.env.NODE_PATH],loader:{'.txt':'text'},minify:true})"
+          python - <<'PY'
+          import os,json,hashlib
+          from pathlib import Path
+          p=Path('fullbody-tcm-v28')
+          files={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in p.iterdir() if f.is_file()}
+          assert files['app.bundle.js']=='e1ff086300771374f79b6ec838a8cb80e46ec9a4e9848409e48b3d89e2776efc','Runtime differs from reviewed repair'
+          d={'version':'28.0.0','sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID'],'files':files,'tests':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in Path('atlas28-repair').glob('*.cjs')},'clinicalCalibration':False,'rawAnatomyUnchanged':True,'displayContactsIntentionallyCorrected':True}
+          (p/'build-info.json').write_text(json.dumps(d,indent=2))
+          PY
+          test -z "$(git diff -- fullbody-tcm-v27/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+      - name: Opaque skin, selected point, route and state switching
+        run: node atlas28-repair/verify.cjs
+      - name: Retained observation and high-density phone checks
+        run: node atlas28-repair/observation.cjs
+      - name: Retained skin strokes and reading checks
+        run: node atlas28-repair/prior.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas28-${{ matrix.browser }}
+          path: |
+            fullbody-tcm-v28/
+            atlas28-repair/
+          retention-days: 14
