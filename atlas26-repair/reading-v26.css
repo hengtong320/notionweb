@@ -1,0 +1,32 @@
+/* Reading improvements, no duplicate controls or hidden calibration changes. */
+body.reading-v26 #currentStudyName{font-size:18px!important;line-height:1.45;overflow-wrap:anywhere}
+body.reading-v26[data-current-kind=point] .detail-scroll>#currentStudy{margin:0 0 10px;padding:8px 10px;background:transparent;border:0;border-bottom:1px solid #dae5d7;border-radius:0}
+body.reading-v26[data-current-kind=point] #currentStudy>small,
+body.reading-v26[data-current-kind=point] #currentStudyName,
+body.reading-v26[data-current-kind=point] #currentStudyMode,
+body.reading-v26[data-current-kind=point] #focusCurrent,
+body.reading-v26[data-current-kind=point] #speakCurrent,
+body.reading-v26[data-current-kind=point] #evidenceCurrent{display:none!important}
+body.reading-v26[data-current-kind=point] .v10-current-actions{grid-template-columns:1fr 1fr;margin:0}
+body.reading-v26[data-current-kind=point] .v10-current-links{margin-top:4px}
+body.reading-v26 .tcm-point-card .v10-point-summary{padding:11px 12px;margin:10px 0;background:#eef4e8;border-left:3px solid #709d80;border-radius:6px;font-size:14px!important;line-height:1.7}
+body.reading-v26 .v26-point-notice{font-size:12px!important;line-height:1.5!important;margin:8px 0;color:#786a45!important}
+body.reading-v26 .v26-point-basis{border-top:1px solid #dae5d7;margin-top:12px;padding-top:8px}
+body.reading-v26 .v26-point-basis>summary{min-height:40px;display:flex;align-items:center;cursor:pointer;color:#3c654b;font-size:13px}
+body.reading-v26 .v26-point-basis>summary::before{content:'▸';margin-right:7px}body.reading-v26 .v26-point-basis[open]>summary::before{content:'▾'}
+body.reading-v26 .tcm-card-head button{min-width:44px;min-height:40px;font-size:13px}
+body.reading-v26 #tcmStatus #tcmStatusSettings,body.reading-v26 #tcmStatus #tcmStatusHide{display:none}
+body.reading-v26 .acu-name.selected{z-index:9;border-width:2px;min-height:26px;font-weight:600}
+body.reading-v26 .acupoint-label-wires .active{stroke:#c57b20;stroke-width:1.3}
+@media(max-width:650px){
+ body.reading-v26[data-current-kind=point].detail-open:not(.atlas-expanded) .detail-panel{display:flex!important;position:fixed!important;top:auto!important;bottom:28px!important;left:0!important;right:0!important;width:100%!important;height:38dvh!important;max-height:330px!important;min-height:0!important;transform:none!important;z-index:90;border-radius:16px 16px 0 0;border:1px solid #ceddca;box-shadow:0 -4px 20px #253f371c;overflow:hidden!important;background:#fbfdf8}
+ body.reading-v26[data-current-kind=point].detail-open:not(.atlas-expanded) .detail-panel>.detail-scroll{height:100%!important;max-height:100%!important;overflow-y:auto!important;overscroll-behavior:contain;padding:8px 12px 18px!important;min-height:0}
+ body.reading-v26[data-current-kind=point] .detail-scroll>#currentStudy{display:none!important}
+ body.reading-v26[data-current-kind=point] #tcmPointCard{margin:0!important;padding:0 2px 10px;border:none;background:transparent}
+ body.reading-v26[data-current-kind=point] .tcm-card-head{position:sticky;top:-8px;padding:6px 0;background:#fbfdf8;z-index:3}
+ body.reading-v26[data-current-kind=point] #tcmPointCard h3{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0}
+ body.reading-v26[data-current-kind=point] #tcmPointCard h3 small{font-size:12px;margin:0}
+ body.reading-v26[data-current-kind=point] #tcmPointCard .v10-point-summary{font-size:13px!important;margin:8px 0;padding:8px 10px}
+ body.reading-v26[data-current-kind=point].detail-open #labelNav{display:none!important}
+ body.reading-v26 #tcmStatus{max-width:calc(100% - 82px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
