@@ -1,0 +1,55 @@
+ let labelOffsets=new Map(),labelPlacementAudit=[];
+ function updatePointLabels(){
+  lastLabelsAt=performance.now();
+  const ready=enabled&&!suspended&&!surfaceBusy&&referenceBody===(state.bodySex||'male')&&pointsOn&&namesOn&&precisionMode==='illustrative';
+  labelNav.hidden=!ready;labels.hidden=!ready;
+  if(!ready){wires.innerHTML='';labelPlacementAudit=[];return;}
+  const rect=viewport.getBoundingClientRect(),w=rect.width,h=rect.height,phone=w<540;
+  const obstacles=[];
+  for(const selector of ['.study-toolbar','#tcmStatus','.view-badge','.view-controls','.control-dock','#selectionChip','#acupointLabelNav','#v26PointSummary','#directoryPreview']){
+   for(const node of document.querySelectorAll(selector)){
+    const style=getComputedStyle(node),r=node.getBoundingClientRect();
+    if(node.hidden||style.display==='none'||style.visibility==='hidden'||!r.width||!r.height)continue;
+    const x=Math.max(0,r.left-rect.left),y=Math.max(0,r.top-rect.top),right=Math.min(w,r.right-rect.left),bottom=Math.min(h,r.bottom-rect.top);
+    if(right>x&&bottom>y)obstacles.push({x,y,w:right-x,h:bottom-y});
+   }
+  }
+  const all=getVisiblePoints(),inView=v=>v.z>-1&&v.z<1&&v.x>=rect.left&&v.x<=rect.right&&v.y>=rect.top&&v.y<=rect.bottom;
+  let candidates=all.map(p=>({p,v:project(p)})).filter(x=>inView(x.v)&&pointUnoccluded(x.p));
+  candidates.sort((a,b)=>a.v.y-b.v.y||a.v.x-b.v.x||a.p.ordinal-b.p.ordinal);
+  const pin=candidates.find(x=>x.p.code===selectedPoint?.code&&x.p.side===selectedPoint?.side),pool=candidates.filter(x=>x!==pin);
+  const item=x=>({key:x.p.code+'|'+x.p.side,p:x.p,x:x.v.x-rect.left,y:x.v.y-rect.top,w:phone?126:140,h:phone?32:28});
+  const top=Math.max(75,...obstacles.filter(b=>b.y<100).map(b=>b.y+b.h+8)),bottom=h-(document.body.classList.contains('dock-collapsed')?130:210),step=phone?38:34,columns=phone?1:2;
+  const perColumn=Math.max(1,Math.floor((bottom-top)/step)),capacity=perColumn*columns,slots=Math.max(1,capacity-(pin?1:0)),pages=Math.max(1,Math.ceil(pool.length/slots));
+  labelPage=Math.max(0,Math.min(labelPage,pages-1));let placements;
+  if(labelMode==='complete'){
+   const items=[...(pin?[pin]:[]),...pool.slice(labelPage*slots,(labelPage+1)*slots)];
+   placements=items.map((v,i)=>{const a=item(v),x=i%columns===0?8:w-a.w-64,y=top+Math.floor(i/columns)*step;return {...a,x,y,tx:a.x,ty:a.y,sx:x+w/2<a.x?x+a.w:x,sy:y+a.h/2};});
+  }else{
+   let ordered=[];
+   if(pin){ordered=[pin,...pool.sort((a,b)=>Math.hypot(a.v.x-pin.v.x,a.v.y-pin.v.y)-Math.hypot(b.v.x-pin.v.x,b.v.y-pin.v.y))];}
+   else{
+    const remaining=[...pool],seeds=[];
+    while(remaining.length){let best=0,score=-Infinity;
+     for(let i=0;i<remaining.length;i++){const v=remaining[i].v,s=seeds.length?Math.min(...seeds.map(q=>Math.hypot((v.x-q.x)/w,(v.y-q.y)/h))):-Math.hypot((v.x-rect.left-w/2)/w,(v.y-rect.top-h*.48)/h);if(s>score){score=s;best=i;}}
+     const x=remaining.splice(best,1)[0];ordered.push(x);seeds.push(x.v);
+     if(seeds.length>=32){ordered.push(...remaining);break;}
+    }
+   }
+   placements=placeLabels(ordered.map(item),{width:w,height:h,obstacles,limit:phone?(pin?4:6):(pin?6:10),previous:labelOffsets});
+   labelOffsets=new Map(placements.map(a=>[a.key,{dx:a.x-a.tx,dy:a.y-a.ty}]));
+  }
+  const currentKey=selectedPoint?.code+'|'+selectedPoint?.side,key=placements.map(a=>a.key).join(',')+':'+currentKey+':'+labelMode;
+  if(key!==lastLabelRebuild){lastLabelRebuild=key;for(const x of labelNodes)x.el.remove();labelNodes.length=0;
+   for(const x of placements){const el=document.createElement('button');el.type='button';el.className='acu-name v6-label'+(x.key===currentKey?' selected':'');el.textContent=x.p.name+' '+x.p.code+(x.p.side==='midline'?'':x.p.side==='right'?' R':' L');el.title=x.p.name+' · '+x.p.pinyin+' · 点击查看';el.dataset.labelPoint=x.p.code;el.dataset.labelSide=x.p.side;el.addEventListener('pointerdown',e=>e.stopPropagation());el.onclick=e=>{e.stopPropagation();selectPoint(x.p,autoFocus);};labels.append(el);labelNodes.push({p:x.p,el});}
+  }
+  wires.setAttribute('viewBox',`0 0 ${w} ${h}`);let paths='';
+  placements.forEach((a,i)=>{const el=labelNodes[i].el;el.hidden=false;el.style.width=a.w+'px';el.style.height=a.h+'px';el.style.transform=`translate(${a.x}px,${a.y}px)`;
+   paths+=`<path data-point="${a.p.code}" data-side="${a.p.side}" d="M${a.sx.toFixed(2)},${a.sy.toFixed(2)} L${a.tx.toFixed(2)},${a.ty.toFixed(2)}" class="${a.key===currentKey?'active':''}"/>`;
+  });
+  wires.innerHTML=paths;labelPlacementAudit=placements.map(a=>({code:a.p.code,side:a.p.side,anchor:[a.tx,a.ty],box:[a.x,a.y,a.w,a.h],leaderStart:[a.sx,a.sy]}));
+  labelStats={total:all.length,inView:candidates.length,shown:placements.length,page:labelMode==='complete'?labelPage+1:1,pages:labelMode==='complete'?pages:1,capacity};
+  if(selectedPoint?.navigationArea&&!candidates.length)labelNav.hidden=true;
+  $('labelPageInfo').textContent=labelMode==='complete'?`${placements.length}/${candidates.length} 视野内 · ${labelPage+1}/${pages}页`:`${placements.length}个穴名 · 点击查看`;
+  $('labelPrevious').disabled=labelMode!=='complete'||!labelPage;$('labelNext').disabled=labelMode!=='complete'||labelPage>=pages-1;
+ }
