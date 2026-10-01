@@ -1,0 +1,72 @@
+{
+  "version": "27.0.0",
+  "published": true,
+  "fixedEntrance": "https://hengtong320.github.io/notionweb/anatomy/",
+  "versionUrl": "https://hengtong320.github.io/notionweb/fullbody-tcm-v27/",
+  "sourceCommit": "a9b5a6156d649bb281d77fabfd3439117f092ea4",
+  "verificationAndPublishRun": 36887442132,
+  "entranceCommit": "e6fa9e8c0f1013aa8894f4495a310f2ea95e1a15",
+  "pagesDeploymentRun": 36888942332,
+  "publicContentHashesVerifiedInBothEngines": true,
+  "publicFiles": {
+    "app.bundle.js": "428611725afdc06d60bb2cd1b4f96efa7f39dec15657ac2aceeddd5ad09f3f39",
+    "meridian-ux-v26.css": "a8d76ff6914102877dd6c62bb87203853d8c41ba67b4f964bd2e434579f7cc89",
+    "reading-v26.css": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40"
+  },
+  "localBrowserChecks": {
+    "chromium": {
+      "observation": {"passed": 28, "success": true, "finishedAt": "2026-10-01T15:57:00.932Z"},
+      "prior": {"passed": 35, "success": true, "finishedAt": "2026-10-01T15:58:54.773Z"}
+    },
+    "webkit": {
+      "observation": {"passed": 28, "success": true, "finishedAt": "2026-10-01T15:59:28.664Z"},
+      "prior": {"passed": 35, "success": true, "finishedAt": "2026-10-01T16:00:50.730Z"}
+    }
+  },
+  "publicBrowserChecks": {
+    "chromium": {
+      "observation": {"passed": 28, "success": true, "errors": [], "finishedAt": "2026-10-01T16:13:29.042Z"},
+      "prior": {"passed": 35, "success": true, "errors": [], "finishedAt": "2026-10-01T16:15:30.824Z"}
+    },
+    "webkit": {
+      "observation": {"passed": 28, "success": true, "errors": [], "finishedAt": "2026-10-01T16:08:58.275Z"},
+      "prior": {"passed": 35, "success": true, "errors": [], "finishedAt": "2026-10-01T16:10:21.961Z"}
+    }
+  },
+  "publicArtifacts": {
+    "chromium": {"id": 11175953212, "sha256": "d5573f14ad65aad72dd38e01d1425e7454b32d5fedd65ee5fc339a8096ea0fa5"},
+    "webkit": {"id": 11176426569, "sha256": "005d84ca6d5b0d1640c113c966891a7734c012c7d6286da17214e9973cba40e6"}
+  },
+  "testedViewports": [
+    {"width": 1440, "height": 1000, "deviceScaleFactor": 1},
+    {"width": 390, "height": 700, "deviceScaleFactor": 1},
+    {"width": 390, "height": 844, "deviceScaleFactor": 2, "touch": "browser simulation"}
+  ],
+  "fixes": [
+    "顶部和经络面板方向高亮跟随实际镜头；斜向观察标为自由视角。",
+    "方向按钮保留当前观察中心与放大程度；看全线保留朝向并关闭局部裁切。",
+    "修复女性捕获阶段仍调用旧全身适配的分支，男女局部转向使用相同方法。",
+    "附近及完整穴名框避让控件与可见穴位中心，完整穴名按实际可用空间分页，并使用中文左右侧。",
+    "相机转动后同步更新投影矩阵所依赖的世界矩阵，避免标注先使用旧位置；未变化的皮肤视图复用标注布局。"
+  ],
+  "femaleAndMaleLocalTurningDistanceVerifiedUnchanged": true,
+  "sameTurnProjectionNormalizedDeviceError": 0,
+  "originalModelsUnchanged": true,
+  "anatomicalJSONFilesUnchanged": 15,
+  "numberedPointsAndRouteGeometryUnchanged": true,
+  "priorV26SkinStrokesAndPhonePaintRepairPreserved": true,
+  "previousV26Preserved": true,
+  "clinicalCalibration": false,
+  "reviewedPublicScreenshots": [
+    "live-webkit-female-local-labels.png",
+    "live-webkit-dpr2-phone-details.png",
+    "live-chromium-dpr2-phone-details.png"
+  ],
+  "limitations": [
+    "本轮为观察和标注交互优化；没有把原始经穴位置或线路转折升级为临床准确。",
+    "密集总览的标注引线仍可能较长，原皮肤缺口及部分几何转折保留。",
+    "63项是本轮每个浏览器每个阶段的针对性检查，不是所有历史测试或所有使用场景的总体验保证。",
+    "模拟触控及2倍像素密度不等于实体手机、完整触控惯性或长期帧率验收。",
+    "女性原生与统一比例教学补充来源保持不变。"
+  ]
+}
