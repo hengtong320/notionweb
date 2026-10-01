@@ -1,0 +1,158 @@
+name: Verify and publish V27 observation
+on:
+  push:
+    paths: ['atlas27-repair/**', '.github/workflows/atlas27-release.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+concurrency:
+  group: atlas27-release
+  cancel-in-progress: true
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix: {browser: [chromium, webkit]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env: {NODE_PATH: /tmp/a27/node_modules, BROWSER: '${{ matrix.browser }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build bounded V27 and preserve original data
+        run: |
+          python atlas27-repair/patch.py
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('atlas26-publish/verified-tests/verify.cjs').read_text()
+          s=s.replace('fullbody-tcm-v26','fullbody-tcm-v27').replace("v==='26'","v==='27'").replace("start('26')","start('27')").replace("version:'26.0.0'","version:'27.0.0'")
+          s=s.replace("prefix=(live?'live-':'local-')+engine", "prefix='prior-'+(live?'live-':'local-')+engine")
+          Path('atlas27-repair/prior.cjs').write_text(s)
+          PY
+          npm install --prefix /tmp/a27 three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a27/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+          node --check atlas27-repair/verify.cjs
+          node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v27/app.js'],outfile:'fullbody-tcm-v27/app.bundle.js',bundle:true,format:'iife',nodePaths:[process.env.NODE_PATH],loader:{'.txt':'text'},minify:true})"
+          python - <<'PY'
+          import os,json,hashlib
+          from pathlib import Path
+          p=Path('fullbody-tcm-v27')
+          sha=lambda f:hashlib.sha256(f.read_bytes()).hexdigest()
+          d={'version':'27.0.0','sourceCommit':os.environ['GITHUB_SHA'],'run':os.environ['GITHUB_RUN_ID'],'files':{f.name:sha(f) for f in p.iterdir() if f.is_file()},'tests':{n:sha(Path('atlas27-repair')/n) for n in ['verify.cjs','prior.cjs']}}
+          (p/'build-info.json').write_text(json.dumps(d,indent=2))
+          PY
+          test -z "$(git diff -- fullbody-tcm-v26/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+      - name: V26 reproductions and V27 direction, full labels and DPR2 touch
+        run: node atlas27-repair/verify.cjs
+      - name: Prior 35 point, stroke, sex and phone painting regressions
+        if: '!cancelled()'
+        run: node atlas27-repair/prior.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas27-${{ matrix.browser }}
+          path: |
+            fullbody-tcm-v27/
+            atlas27-repair/
+          retention-days: 14
+  publish:
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions: {contents: write}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/download-artifact@v4
+        with: {name: atlas27-chromium, path: /tmp/a27-chromium}
+      - uses: actions/download-artifact@v4
+        with: {name: atlas27-webkit, path: /tmp/a27-webkit}
+      - name: Publish only identical validated sources and their reports
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,shutil,os
+          sha=lambda f:hashlib.sha256(f.read_bytes()).hexdigest()
+          roots={e:Path('/tmp/a27-'+e) for e in ['chromium','webkit']}
+          builds={e:json.loads((r/'fullbody-tcm-v27/build-info.json').read_text()) for e,r in roots.items()}
+          b=builds['chromium'];assert b==builds['webkit']
+          reports={}
+          for e,r in roots.items():
+              p=r/'fullbody-tcm-v27'
+              for name,digest in b['files'].items():assert sha(p/name)==digest,name
+              for name,digest in b['tests'].items():assert sha(r/'atlas27-repair'/name)==digest,name
+              reports[e]={}
+              for prefix,minimum in [('local-',26),('prior-local-',35)]:
+                  suffix='-observation' if prefix=='local-' else ''
+                  d=json.loads((p/'checks'/(prefix+e+suffix+'.json')).read_text())
+                  assert d['success'] and not d.get('failure') and not d['errors'] and len(d['checks'])>=minimum and all(c['pass'] for c in d['checks'])
+                  reports[e][prefix]={'passed':len(d['checks']),'finishedAt':d['finishedAt']}
+          dest=Path('fullbody-tcm-v27');assert not dest.exists(),'Do not overwrite an existing V27'
+          shutil.copytree(roots['chromium']/'fullbody-tcm-v27',dest)
+          for f in (roots['webkit']/'fullbody-tcm-v27/checks').iterdir():shutil.copy2(f,dest/'checks'/f.name)
+          for n in json.loads((dest/'invariants.json').read_text())['unchangedJSON']:assert (dest/n).read_bytes()==(Path('fullbody-tcm-v26')/n).read_bytes(),n
+          tests=Path('atlas27-publish/verified-tests');tests.mkdir(parents=True)
+          for n in ['verify.cjs','prior.cjs']:shutil.copy2(roots['chromium']/'atlas27-repair'/n,tests/n)
+          release={'version':'27.0.0','sourceCommit':b['sourceCommit'],'verificationRun':b['run'],'bundleSHA256':b['files']['app.bundle.js'],'files':b['files'],'browserChecks':reports,'originalModelsUnchanged':True,'numberedPointsAndRouteGeometryUnchanged':True,'clinicalCalibration':False,'previousV26Preserved':True,'note':'Only measured display and interaction paths. Public results are recorded separately; no claim of full anatomical or physical-device validation.'}
+          (dest/'release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v27 atlas27-publish/verified-tests
+          git commit -m 'Publish tested V27 camera synchronization and obstacle-safe meridian labels'
+          git push origin HEAD:main
+  public:
+    needs: publish
+    strategy:
+      fail-fast: false
+      matrix: {browser: [chromium, webkit]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_PATH: /tmp/a27/node_modules
+      BROWSER: ${{ matrix.browser }}
+      TEST_URL: https://hengtong320.github.io/notionweb/anatomy/?v=27.0.0
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install identical browsers
+        run: |
+          npm install --prefix /tmp/a27 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a27/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Wait for entry activation and verify exact public JS and label CSS
+        run: |
+          python - <<'PY'
+          import urllib.request,time,json,hashlib,os
+          from pathlib import Path
+          base='https://hengtong320.github.io/notionweb/'
+          b=json.loads(Path('fullbody-tcm-v27/build-info.json').read_text())
+          for i in range(72):
+              try:
+                  query='?verify='+str(time.time_ns())
+                  def get(p):return urllib.request.urlopen(urllib.request.Request(base+p+query,headers={'Cache-Control':'no-cache'}),timeout=20).read()
+                  assert '../fullbody-tcm-v27/' in get('anatomy/').decode(),'Waiting for verified entrance activation'
+                  for n in ['app.bundle.js','meridian-ux-v26.css','reading-v26.css']:
+                      assert hashlib.sha256(get('fullbody-tcm-v27/'+n)).hexdigest()==b['files'][n],n
+                  Path('fullbody-tcm-v27/checks/live-content-'+os.environ['BROWSER']+'.json').write_text(json.dumps({'success':True,'version':'27.0.0','sourceCommit':b['sourceCommit'],'checkedAt':time.time()},indent=2))
+                  break
+              except Exception as e:
+                  print(e,flush=True)
+                  if i==71:raise
+                  time.sleep(10)
+          PY
+      - name: Public direction, label and high-density touch checks
+        run: node atlas27-publish/verified-tests/verify.cjs
+      - name: Public prior point and opaque skin regressions
+        if: '!cancelled()'
+        run: node atlas27-publish/verified-tests/prior.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas27-public-${{ matrix.browser }}
+          path: |
+            fullbody-tcm-v27/checks/live-*
+            fullbody-tcm-v27/checks/prior-live-*
+          retention-days: 14
