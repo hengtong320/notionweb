@@ -1,0 +1,686 @@
+{
+  "version": "26.0.0",
+  "engine": "chromium",
+  "live": false,
+  "checks": [
+    {
+      "name": "New reading and meridian modules are mounted",
+      "pass": true
+    },
+    {
+      "name": "Local crop is off by default",
+      "pass": true
+    },
+    {
+      "name": "male all 670 display anchors preserved",
+      "pass": true,
+      "detail": {
+        "count": 670,
+        "maxShift": 0
+      }
+    },
+    {
+      "name": "male opaque skin ink uses normal depth",
+      "pass": true
+    },
+    {
+      "name": "male forearm solid stroke covers sampled centerline",
+      "pass": true,
+      "detail": {
+        "sampleCount": 68,
+        "coverage": 1,
+        "longestMissingSamples": 0,
+        "changedPixels": 4642
+      }
+    },
+    {
+      "name": "male centerline coverage does not regress",
+      "pass": true,
+      "detail": {
+        "before": {
+          "sampleCount": 68,
+          "coverage": 1,
+          "longestMissingSamples": 0,
+          "changedPixels": 2455
+        },
+        "after": {
+          "sampleCount": 68,
+          "coverage": 1,
+          "longestMissingSamples": 0,
+          "changedPixels": 4642
+        }
+      }
+    },
+    {
+      "name": "male line switch controls actual guide",
+      "pass": true
+    },
+    {
+      "name": "male fitting does not force names back on",
+      "pass": true
+    },
+    {
+      "name": "male selected point has a named leader",
+      "pass": true,
+      "detail": [
+        {
+          "code": "PC6",
+          "side": "right",
+          "anchor": [
+            411,
+            514.5000000000002
+          ],
+          "box": [
+            425,
+            500.5000000000002,
+            140,
+            28
+          ],
+          "leaderStart": [
+            425,
+            514.5000000000002
+          ]
+        },
+        {
+          "code": "HT4",
+          "side": "right",
+          "anchor": [
+            426.2023160147803,
+            559.4707025120249
+          ],
+          "box": [
+            440.2023160147803,
+            545.4707025120249,
+            140,
+            28
+          ],
+          "leaderStart": [
+            440.2023160147803,
+            559.4707025120249
+          ]
+        },
+        {
+          "code": "PC5",
+          "side": "right",
+          "anchor": [
+            425.6609038796357,
+            454.5193310990934
+          ],
+          "box": [
+            439.6609038796357,
+            440.5193310990934,
+            140,
+            28
+          ],
+          "leaderStart": [
+            439.6609038796357,
+            454.5193310990934
+          ]
+        },
+        {
+          "code": "HT5",
+          "side": "right",
+          "anchor": [
+            422.2109765682645,
+            589.6407315803582
+          ],
+          "box": [
+            268.2109765682645,
+            575.6407315803582,
+            140,
+            28
+          ],
+          "leaderStart": [
+            408.2109765682645,
+            589.6407315803582
+          ]
+        },
+        {
+          "code": "HT6",
+          "side": "right",
+          "anchor": [
+            418.52549317620037,
+            620.2245220684572
+          ],
+          "box": [
+            432.52549317620037,
+            606.2245220684572,
+            140,
+            28
+          ],
+          "leaderStart": [
+            432.52549317620037,
+            620.2245220684572
+          ]
+        },
+        {
+          "code": "PC7",
+          "side": "right",
+          "anchor": [
+            371.9972368063933,
+            637.479081372377
+          ],
+          "box": [
+            217.9972368063933,
+            623.479081372377,
+            140,
+            28
+          ],
+          "leaderStart": [
+            357.9972368063933,
+            637.479081372377
+          ]
+        }
+      ]
+    },
+    {
+      "name": "male labels remain within viewport",
+      "pass": true,
+      "detail": [
+        {
+          "code": "PC6",
+          "side": "right",
+          "anchor": [
+            411,
+            514.5000000000002
+          ],
+          "box": [
+            425,
+            500.5000000000002,
+            140,
+            28
+          ],
+          "leaderStart": [
+            425,
+            514.5000000000002
+          ]
+        },
+        {
+          "code": "HT4",
+          "side": "right",
+          "anchor": [
+            426.2023160147803,
+            559.4707025120249
+          ],
+          "box": [
+            440.2023160147803,
+            545.4707025120249,
+            140,
+            28
+          ],
+          "leaderStart": [
+            440.2023160147803,
+            559.4707025120249
+          ]
+        },
+        {
+          "code": "PC5",
+          "side": "right",
+          "anchor": [
+            425.6609038796357,
+            454.5193310990934
+          ],
+          "box": [
+            439.6609038796357,
+            440.5193310990934,
+            140,
+            28
+          ],
+          "leaderStart": [
+            439.6609038796357,
+            454.5193310990934
+          ]
+        },
+        {
+          "code": "HT5",
+          "side": "right",
+          "anchor": [
+            422.2109765682645,
+            589.6407315803582
+          ],
+          "box": [
+            268.2109765682645,
+            575.6407315803582,
+            140,
+            28
+          ],
+          "leaderStart": [
+            408.2109765682645,
+            589.6407315803582
+          ]
+        },
+        {
+          "code": "HT6",
+          "side": "right",
+          "anchor": [
+            418.52549317620037,
+            620.2245220684572
+          ],
+          "box": [
+            432.52549317620037,
+            606.2245220684572,
+            140,
+            28
+          ],
+          "leaderStart": [
+            432.52549317620037,
+            620.2245220684572
+          ]
+        },
+        {
+          "code": "PC7",
+          "side": "right",
+          "anchor": [
+            371.9972368063933,
+            637.479081372377
+          ],
+          "box": [
+            217.9972368063933,
+            623.479081372377,
+            140,
+            28
+          ],
+          "leaderStart": [
+            357.9972368063933,
+            637.479081372377
+          ]
+        }
+      ]
+    },
+    {
+      "name": "male point card has one compact location and retained review notice",
+      "pass": true
+    },
+    {
+      "name": "male all-meridian title is compact",
+      "pass": true
+    },
+    {
+      "name": "male skeleton remains available after meridian study",
+      "pass": true
+    },
+    {
+      "name": "male chest selection does not leave stale meridian skin",
+      "pass": true
+    },
+    {
+      "name": "female all 670 display anchors preserved",
+      "pass": true,
+      "detail": {
+        "count": 670,
+        "maxShift": 0
+      }
+    },
+    {
+      "name": "female opaque skin ink uses normal depth",
+      "pass": true
+    },
+    {
+      "name": "female forearm solid stroke covers sampled centerline",
+      "pass": true,
+      "detail": {
+        "sampleCount": 69,
+        "coverage": 1,
+        "longestMissingSamples": 0,
+        "changedPixels": 4658
+      }
+    },
+    {
+      "name": "female centerline coverage does not regress",
+      "pass": true,
+      "detail": {
+        "before": {
+          "sampleCount": 69,
+          "coverage": 1,
+          "longestMissingSamples": 0,
+          "changedPixels": 2458
+        },
+        "after": {
+          "sampleCount": 69,
+          "coverage": 1,
+          "longestMissingSamples": 0,
+          "changedPixels": 4658
+        }
+      }
+    },
+    {
+      "name": "female line switch controls actual guide",
+      "pass": true
+    },
+    {
+      "name": "female fitting does not force names back on",
+      "pass": true
+    },
+    {
+      "name": "female selected point has a named leader",
+      "pass": true,
+      "detail": [
+        {
+          "code": "PC6",
+          "side": "right",
+          "anchor": [
+            411,
+            514.5000000000002
+          ],
+          "box": [
+            425,
+            500.5000000000002,
+            140,
+            28
+          ],
+          "leaderStart": [
+            425,
+            514.5000000000002
+          ]
+        },
+        {
+          "code": "HT4",
+          "side": "right",
+          "anchor": [
+            426.37592246688996,
+            559.2505874398083
+          ],
+          "box": [
+            440.37592246688996,
+            545.2505874398083,
+            140,
+            28
+          ],
+          "leaderStart": [
+            440.37592246688996,
+            559.2505874398083
+          ]
+        },
+        {
+          "code": "PC5",
+          "side": "right",
+          "anchor": [
+            425.8247107461043,
+            454.47736428835606
+          ],
+          "box": [
+            439.8247107461043,
+            440.47736428835606,
+            140,
+            28
+          ],
+          "leaderStart": [
+            439.8247107461043,
+            454.47736428835606
+          ]
+        },
+        {
+          "code": "HT5",
+          "side": "right",
+          "anchor": [
+            422.37880293962587,
+            589.2119247423508
+          ],
+          "box": [
+            268.37880293962587,
+            575.2119247423508,
+            140,
+            28
+          ],
+          "leaderStart": [
+            408.37880293962587,
+            589.2119247423508
+          ]
+        },
+        {
+          "code": "HT6",
+          "side": "right",
+          "anchor": [
+            418.7529401222479,
+            619.1985805781394
+          ],
+          "box": [
+            432.7529401222479,
+            605.1985805781394,
+            140,
+            28
+          ],
+          "leaderStart": [
+            432.7529401222479,
+            619.1985805781394
+          ]
+        },
+        {
+          "code": "PC7",
+          "side": "right",
+          "anchor": [
+            372.6250812186754,
+            635.19225915318
+          ],
+          "box": [
+            218.6250812186754,
+            621.19225915318,
+            140,
+            28
+          ],
+          "leaderStart": [
+            358.6250812186754,
+            635.19225915318
+          ]
+        }
+      ]
+    },
+    {
+      "name": "female labels remain within viewport",
+      "pass": true,
+      "detail": [
+        {
+          "code": "PC6",
+          "side": "right",
+          "anchor": [
+            411,
+            514.5000000000002
+          ],
+          "box": [
+            425,
+            500.5000000000002,
+            140,
+            28
+          ],
+          "leaderStart": [
+            425,
+            514.5000000000002
+          ]
+        },
+        {
+          "code": "HT4",
+          "side": "right",
+          "anchor": [
+            426.37592246688996,
+            559.2505874398083
+          ],
+          "box": [
+            440.37592246688996,
+            545.2505874398083,
+            140,
+            28
+          ],
+          "leaderStart": [
+            440.37592246688996,
+            559.2505874398083
+          ]
+        },
+        {
+          "code": "PC5",
+          "side": "right",
+          "anchor": [
+            425.8247107461043,
+            454.47736428835606
+          ],
+          "box": [
+            439.8247107461043,
+            440.47736428835606,
+            140,
+            28
+          ],
+          "leaderStart": [
+            439.8247107461043,
+            454.47736428835606
+          ]
+        },
+        {
+          "code": "HT5",
+          "side": "right",
+          "anchor": [
+            422.37880293962587,
+            589.2119247423508
+          ],
+          "box": [
+            268.37880293962587,
+            575.2119247423508,
+            140,
+            28
+          ],
+          "leaderStart": [
+            408.37880293962587,
+            589.2119247423508
+          ]
+        },
+        {
+          "code": "HT6",
+          "side": "right",
+          "anchor": [
+            418.7529401222479,
+            619.1985805781394
+          ],
+          "box": [
+            432.7529401222479,
+            605.1985805781394,
+            140,
+            28
+          ],
+          "leaderStart": [
+            432.7529401222479,
+            619.1985805781394
+          ]
+        },
+        {
+          "code": "PC7",
+          "side": "right",
+          "anchor": [
+            372.6250812186754,
+            635.19225915318
+          ],
+          "box": [
+            218.6250812186754,
+            621.19225915318,
+            140,
+            28
+          ],
+          "leaderStart": [
+            358.6250812186754,
+            635.19225915318
+          ]
+        }
+      ]
+    },
+    {
+      "name": "female point card has one compact location and retained review notice",
+      "pass": true
+    },
+    {
+      "name": "female all-meridian title is compact",
+      "pass": true
+    },
+    {
+      "name": "female skeleton remains available after meridian study",
+      "pass": true
+    },
+    {
+      "name": "female chest selection does not leave stale meridian skin",
+      "pass": true
+    },
+    {
+      "name": "Phone point selection leaves model visible",
+      "pass": true
+    },
+    {
+      "name": "Phone details open on request",
+      "pass": true
+    },
+    {
+      "name": "Phone details use a limited-height bottom sheet",
+      "pass": true,
+      "detail": {
+        "x": 0,
+        "y": 495.28125,
+        "width": 390,
+        "height": 320.71875
+      }
+    },
+    {
+      "name": "Focusing from phone details keeps the details open",
+      "pass": true
+    },
+    {
+      "name": "Focused point stays above phone details and below toolbar",
+      "pass": true,
+      "detail": {
+        "point": {
+          "x": 172,
+          "y": 360.64062499999983,
+          "z": 0.9990609869490977
+        },
+        "sheet": {
+          "x": 0,
+          "y": 495.28125,
+          "width": 390,
+          "height": 320.71875
+        }
+      }
+    },
+    {
+      "name": "Phone controls do not overflow horizontally",
+      "pass": true
+    },
+    {
+      "name": "Male return restores current-body skin reference",
+      "pass": true
+    },
+    {
+      "name": "No shader compilation or uncaught errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "comparison": {
+    "male": {
+      "before": {
+        "sampleCount": 68,
+        "coverage": 1,
+        "longestMissingSamples": 0,
+        "changedPixels": 2455
+      },
+      "after": {
+        "sampleCount": 68,
+        "coverage": 1,
+        "longestMissingSamples": 0,
+        "changedPixels": 4642
+      }
+    },
+    "female": {
+      "before": {
+        "sampleCount": 69,
+        "coverage": 1,
+        "longestMissingSamples": 0,
+        "changedPixels": 2458
+      },
+      "after": {
+        "sampleCount": 69,
+        "coverage": 1,
+        "longestMissingSamples": 0,
+        "changedPixels": 4658
+      }
+    }
+  },
+  "startedAt": "2026-10-01T09:44:26.654Z",
+  "clinicalCalibration": false,
+  "success": true,
+  "finishedAt": "2026-10-01T09:46:30.307Z"
+}

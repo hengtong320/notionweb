@@ -1,0 +1,99 @@
+{
+  "version": "26.0.0",
+  "sourceCommit": "2c71e08de4a722b796048caa75c670adbf5de616",
+  "candidateRun": 36844476572,
+  "publishRun": "36844997823",
+  "bundleSHA256": "cc825ab442b39c0f5f4d72c829ed6ceb1cc9d7c5517fb29229375d9c02f2ed73",
+  "browserChecks": {
+    "chromium": {
+      "passed": 34,
+      "finishedAt": "2026-10-01T09:46:30.307Z",
+      "strokeComparison": {
+        "male": {
+          "before": {
+            "sampleCount": 68,
+            "coverage": 1,
+            "longestMissingSamples": 0,
+            "changedPixels": 2455
+          },
+          "after": {
+            "sampleCount": 68,
+            "coverage": 1,
+            "longestMissingSamples": 0,
+            "changedPixels": 4642
+          }
+        },
+        "female": {
+          "before": {
+            "sampleCount": 69,
+            "coverage": 1,
+            "longestMissingSamples": 0,
+            "changedPixels": 2458
+          },
+          "after": {
+            "sampleCount": 69,
+            "coverage": 1,
+            "longestMissingSamples": 0,
+            "changedPixels": 4658
+          }
+        }
+      }
+    },
+    "webkit": {
+      "passed": 34,
+      "finishedAt": "2026-10-01T09:46:11.529Z",
+      "strokeComparison": {
+        "male": {
+          "before": {
+            "sampleCount": 68,
+            "coverage": 1,
+            "longestMissingSamples": 0,
+            "changedPixels": 2539
+          },
+          "after": {
+            "sampleCount": 68,
+            "coverage": 1,
+            "longestMissingSamples": 0,
+            "changedPixels": 4683
+          }
+        },
+        "female": {
+          "before": {
+            "sampleCount": 69,
+            "coverage": 1,
+            "longestMissingSamples": 0,
+            "changedPixels": 2524
+          },
+          "after": {
+            "sampleCount": 69,
+            "coverage": 1,
+            "longestMissingSamples": 0,
+            "changedPixels": 4655
+          }
+        }
+      }
+    }
+  },
+  "clinicalCalibration": false,
+  "numberedCoordinatesUnchanged": true,
+  "originalModelsUnchanged": true,
+  "previousV25Preserved": true,
+  "anatomicalJSONUnchanged": [
+    "voice-map.json",
+    "hegu-reference-v16.json",
+    "point-registration-v18.json",
+    "term-catalog.json",
+    "registration-template.json",
+    "evidence-data-v9.json",
+    "final-source-match.json",
+    "female-local-v18.json",
+    "region-membership.json",
+    "additional-groups.json",
+    "female-hand-route-v18.json",
+    "additions.json",
+    "meridian-reference-coverage.json",
+    "body-frame-v18.json",
+    "calibration-pilot.json"
+  ],
+  "note": "Targeted display and reading fixes. Screenshots and pixel tests cover recorded views only; they are not a claim of anatomical registration or complete absence of defects."
+}
