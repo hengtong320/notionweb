@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      CANDIDATE_RUN: '36901202533'
-      CANDIDATE_SHA: 93dcd89bfe65da542740b67c8d6b3f3d180096e6
+      CANDIDATE_RUN: '36902022010'
+      CANDIDATE_SHA: 49d18f4b466734ab0cba6df3b8e011ddda7f773d
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
@@ -38,13 +38,13 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: atlas28-chromium
-          run-id: 36901202533
+          run-id: 36902022010
           github-token: ${{ github.token }}
           path: /tmp/atlas28-chromium
       - uses: actions/download-artifact@v4
         with:
           name: atlas28-webkit
-          run-id: 36901202533
+          run-id: 36902022010
           github-token: ${{ github.token }}
           path: /tmp/atlas28-webkit
       - name: Publish only identical verified source, runtime and reports
