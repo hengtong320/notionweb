@@ -27,7 +27,7 @@
     "evidence-data-v9.json": "c8bdd4acabd07738e70f2dc113e5ce911faf63c5c6da6537191025cfd0a9c9e3",
     "final-source-match.json": "7a00c93f4cee468dec0dcc00ca1b6d716f939415bafc183b1d6ad7966d54e51d",
     "view-v16.js": "7900c62521ca19850f8f38271be847795dde473134c1cf6fa4c467f629ed88f9",
-    "reading-v26.css": "f0a0267661f646d05ef90254392277359d0552ebab562cebf865505a760817d9",
+    "reading-v26.css": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40",
     "catalog-v10.js": "98467b5e1f24e6fca2b8316187214943d0a70d455fe8cde473b9d10faad15a4f",
     "refinement-v12.css": "4b6bd341b4c74e02521619d63e39279d83d63f72caa4e05b7ff03aca20199f43",
     "styles.css": "6e6f8ad06751c7a3cce006fb342d3912fbaf408f5cc9f5b39a6479ee437da209",
@@ -69,7 +69,7 @@
     "versions.html": "35ef00ff24e67b26d39c636c7b11b12d7e2e896e28a1573588cb55e0314a71e4",
     "evidence.html": "e274d7b9f0cf2f63b2eba821803990948ed2c3c53b05a40977eecf9f4b46339c",
     "selection-rules-v10.js": "d71885e2df398c77bfd95af4ab2947e2b34bf9612c6883fd37c537d8f79444f9",
-    "README.md": "28c691dda540030addb5deeffcdd8e9fb86b75641fadab0fbe13cd469fd18172",
+    "README.md": "fc0e0395c5e1b3f489d8f03f6762492c4ff72dbac25919e2f93cc2a179d9095a",
     "shared-v14.js": "d38b249ec060e98e43a1db91e4903a990303c84270429d1665120d9ef454c0dd",
     "evidence-page-v10.js": "b560dec1c50eade57bfef2ef578303d2ea614ee9960381085f2d67d7d776137b",
     "index.template.html": "491356837a01f502c1eec5590daa3172929d2c55f35055afd4ef1192d7c06e05",
@@ -87,5 +87,17 @@
     "MODEL-LICENSES.txt": "8b00b6cd78c98c721622359d7d7265e57d76fb1d9be089229698f0eebb69f376",
     "invariants.json": "d9c003953377e6808fdaf3e874e1c01edeb9e2b7e215e5979a4798041d0942e3"
   },
-  "clinicalCalibration": false
+  "clinicalCalibration": false,
+  "phoneVisualRepair": {
+    "sourceCommit": "20473b6f9b62da3b531c5dbbb7539c1d41ee304c",
+    "run": "36846820762",
+    "baseCSS": "f0a0267661f646d05ef90254392277359d0552ebab562cebf865505a760817d9",
+    "files": {
+      "reading-v26.css": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40",
+      "README.md": "fc0e0395c5e1b3f489d8f03f6762492c4ff72dbac25919e2f93cc2a179d9095a",
+      "app.bundle.js": "cc825ab442b39c0f5f4d72c829ed6ceb1cc9d7c5517fb29229375d9c02f2ed73"
+    },
+    "testSHA256": "148550891a762fdcceb2cc7bc369328584fbf280ef0f320cce47ce7a54f97af0",
+    "clinicalCalibration": false
+  }
 }

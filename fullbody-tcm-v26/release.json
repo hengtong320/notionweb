@@ -95,5 +95,42 @@
     "body-frame-v18.json",
     "calibration-pilot.json"
   ],
-  "note": "Targeted display and reading fixes. Screenshots and pixel tests cover recorded views only; they are not a claim of anatomical registration or complete absence of defects."
+  "note": "Targeted display and reading fixes. Screenshots and pixel tests cover recorded views only; they are not a claim of anatomical registration or complete absence of defects.",
+  "phonePaintRepair": {
+    "sourceCommit": "20473b6f9b62da3b531c5dbbb7539c1d41ee304c",
+    "verificationRun": "36846820762",
+    "cssSHA256": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40",
+    "browserChecks": {
+      "chromium": {
+        "passed": 35,
+        "finishedAt": "2026-10-01T10:07:39.767Z",
+        "pointPaint": {
+          "skinPixels": 98,
+          "totalPointPixels": 169,
+          "ratio": 0.5798816568047337,
+          "point": {
+            "x": 172,
+            "y": 360.64062499999983,
+            "z": 0.9990609869490977
+          }
+        }
+      },
+      "webkit": {
+        "passed": 35,
+        "finishedAt": "2026-10-01T10:07:14.945Z",
+        "pointPaint": {
+          "skinPixels": 98,
+          "totalPointPixels": 169,
+          "ratio": 0.5798816568047337,
+          "point": {
+            "x": 172.00000000000003,
+            "y": 360.6421988696096,
+            "z": 0.9990609312167757
+          }
+        }
+      }
+    },
+    "diagnosisRun": 36846148792,
+    "jsBundleUnchanged": true
+  }
 }

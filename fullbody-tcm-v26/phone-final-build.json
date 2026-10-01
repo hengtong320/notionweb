@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "20473b6f9b62da3b531c5dbbb7539c1d41ee304c",
+  "run": "36846820762",
+  "baseCSS": "f0a0267661f646d05ef90254392277359d0552ebab562cebf865505a760817d9",
+  "files": {
+    "reading-v26.css": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40",
+    "README.md": "fc0e0395c5e1b3f489d8f03f6762492c4ff72dbac25919e2f93cc2a179d9095a",
+    "app.bundle.js": "cc825ab442b39c0f5f4d72c829ed6ceb1cc9d7c5517fb29229375d9c02f2ed73"
+  },
+  "testSHA256": "148550891a762fdcceb2cc7bc369328584fbf280ef0f320cce47ce7a54f97af0",
+  "clinicalCalibration": false
+}
