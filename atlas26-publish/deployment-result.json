@@ -16,7 +16,7 @@
     "reading-v26.css": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40"
   },
   "finalLocalBrowserChecks": {
-    "chromium": {"passed": 35, "success": true, "finishedAt": "2026-10-01T10:07:40.350Z"},
+    "chromium": {"passed": 35, "success": true, "finishedAt": "2026-10-01T10:07:39.767Z"},
     "webkit": {"passed": 35, "success": true, "finishedAt": "2026-10-01T10:07:14.945Z"}
   },
   "finalPublicBrowserChecks": {
