@@ -25,7 +25,9 @@ export function initObservationV27({THREE,camera,controls,state,learning,capture
  }
  document.querySelector('.view-switcher')?.addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b&&active()){e.preventDefault();e.stopImmediatePropagation();orient(b.dataset.view);}},true);
  for(const b of document.querySelectorAll('[data-meridian-view]'))b.onclick=()=>orient(quick[b.dataset.meridianView]);
- controls.addEventListener('change',schedule);
+ // OrbitControls changes position and lookAt before the render loop computes labels.
+ // Refresh the inverse world matrix now, not one frame later in renderer.render().
+ controls.addEventListener('change',()=>{camera.updateMatrixWorld(true);schedule();});
  for(const ev of ['atlas:selection','atlas:sex-changed','atlas:tcm-visibility','atlas:transition-settled','atlas:region-changed'])window.addEventListener(ev,()=>{lastKey='';schedule();});
  document.addEventListener('pointerup',schedule,{passive:true});
  window.__ATLAS_OBSERVATION_V27__={refresh,orient,getState:()=>({active:active(),orientation:document.body.dataset.meridianOrientation||null,updates})};
