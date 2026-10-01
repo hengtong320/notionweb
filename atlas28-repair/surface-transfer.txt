@@ -1,0 +1,32 @@
+ let lastSurfaceTransfer=null;
+ function captureSurfaceObservation(){
+  if(!enabled||!pointsOn||!selectedPoint?.position||!paintedSkinVisible())return null;
+  const p=selectedPoint,dist=camera.position.distanceTo(controls.target),radius=p.focusRadius||70;
+  return {body:referenceBody,code:p.code,side:p.side,position:p.position.toArray(),focused:!!studyContext&&dist<radius*16&&controls.target.distanceTo(p.position)<radius*2.5,visible:surfaceProjector.isVisible(p.position,camera.position)};
+ }
+ function transferSurfaceObservation(old,view){
+  lastSurfaceTransfer={applied:false,reason:'whole-view-or-no-point'};
+  if(!old?.focused||!view||!enabled||!pointsOn||!paintedSkinVisible())return view;
+  const p=pointIndex.get(old.code+'|'+old.side);if(!p?.position||selectedPoint?.code!==old.code||selectedPoint?.side!==old.side)return view;
+  const cameraPos=new THREE.Vector3(...view.position),target=new THREE.Vector3(...view.target),original=new THREE.Vector3(...old.position),delta=p.position.clone().sub(original),distance=cameraPos.distanceTo(target);
+  cameraPos.add(delta);target.add(delta);let changedDirection=false;
+  // Visibility is evaluated from the final camera location, including the
+  // off-centre point framing, rather than only from a nominal axis.
+  if(!surfaceProjector.isVisible(p.position,cameraPos)){
+   const oldDir=new THREE.Vector3(...view.position).sub(new THREE.Vector3(...view.target)).normalize();
+   const visible=surfaceProjector.visibleDirection(p.position,oldDir.toArray()),nextDir=new THREE.Vector3(...visible).normalize();
+   const turn=new THREE.Quaternion().setFromUnitVectors(oldDir,nextDir),offset=target.clone().sub(p.position).applyQuaternion(turn);
+   const nextTarget=p.position.clone().add(offset),nextCamera=nextTarget.clone().addScaledVector(nextDir,distance);
+   if(surfaceProjector.isVisible(p.position,nextCamera)){target.copy(nextTarget);cameraPos.copy(nextCamera);changedDirection=nextDir.distanceTo(oldDir)>1e-6;}
+   else {target.copy(p.position);cameraPos.copy(p.position).addScaledVector(nextDir,distance);changedDirection=true;}
+  }
+  lastSurfaceTransfer={applied:true,body:referenceBody,code:old.code,side:old.side,delta:delta.toArray(),distance,changedDirection,visible:surfaceProjector.isVisible(p.position,cameraPos)};
+  return {...view,position:cameraPos.toArray(),target:target.toArray(),up:changedDirection?(Math.abs(cameraPos.clone().sub(target).normalize().y)>.95?[0,0,1]:[0,1,0]):view.up};
+ }
+ function getSurfaceConsistencyAudit(){
+  scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);
+  const effective=o=>{for(let n=o;n;n=n.parent)if(!n.visible)return false;return true;};
+  const points=routeRecords.flatMap(r=>r.data.map(p=>({code:p.code,side:p.side,position:p.position.toArray(),sourcePosition:p.sourcePosition.toArray(),visibleFromCamera:!!surfaceProjector?.isVisible(p.position,camera.position)})));
+  const ink=routeRecords.filter(routeMatches).map(r=>({meridian:r.meridian,side:r.side,body:r.ink?.mesh.userData.referenceBody||referenceBody,projectorKey:r.ink?.mesh.userData.projectorKey||null,visible:!!r.ink&&effective(r.ink.mesh),lines:!!r.ink&&r.ink.mesh.material.uniforms.linesOn.value>0,points:!!r.ink&&r.ink.mesh.material.uniforms.pointsOn.value>0,cloud:effective(r.cloud),centers:r.ink?.centers}));
+  return {body:state.bodySex||'male',referenceBody,desiredBody,surfaceAttached,surfaceBusy,transition:!!state.bodyTransition,routeRootVisible:effective(routeRoot),skinVisible:paintedSkinVisible(),points,ink,selected:selectedPoint?.position?{code:selectedPoint.code,side:selectedPoint.side,position:selectedPoint.position.toArray(),visibleFromCamera:surfaceProjector?.isVisible(selectedPoint.position,camera.position),markerVisible:!!selectedMarker&&effective(selectedMarker),markerPosition:selectedMarker?.geometry?.attributes.position?Array.from(selectedMarker.geometry.attributes.position.array).slice(0,3):null}:null,localWindow:referenceWindow()&&[referenceWindow().min.toArray(),referenceWindow().max.toArray()],transfer:lastSurfaceTransfer,clinicalCalibration:false};
+ }
