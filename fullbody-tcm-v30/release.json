@@ -1,9 +1,9 @@
 {
-  "version": "30.0.0",
+  "version": "30.0.1",
   "sourceCommit": "498438a151264343b1835d16c674aeaa90eaf5db",
   "candidateRun": "36979299044",
   "publishRun": "36979693352",
-  "bundleSHA256": "fadf2269c595712a004c6296479fb96aabd4101959bd7b82f44ff86633cd3e7b",
+  "bundleSHA256": "32029acc4f9951fc5bd57473494e18e5749bd9a4a72fb4e9fe609d46572e26f5",
   "localBrowserChecks": {
     "chromium": {
       "contact": {
@@ -46,5 +46,33 @@
   "skinContactPositionsUsedForLabelsPickingAndSelection": true,
   "clinicalCalibration": false,
   "previousV29Preserved": true,
-  "publicVerification": "Recorded separately after entry activation"
+  "publicVerification": "Recorded separately after entry activation",
+  "previousBundleSHA256": "fadf2269c595712a004c6296479fb96aabd4101959bd7b82f44ff86633cd3e7b",
+  "captionRepair": {
+    "sourceCommit": "cf62241af5ff382a65d0fe12d85b6f37f1c92017",
+    "verificationRun": "36982450841",
+    "localBrowserChecks": {
+      "chromium": {
+        "caption": {
+          "passed": 8,
+          "finishedAt": "2026-10-02T08:11:41.968Z"
+        },
+        "contact": {
+          "passed": 19,
+          "finishedAt": "2026-10-02T08:12:51.129Z"
+        }
+      },
+      "webkit": {
+        "caption": {
+          "passed": 8,
+          "finishedAt": "2026-10-02T08:11:25.691Z"
+        },
+        "contact": {
+          "passed": 19,
+          "finishedAt": "2026-10-02T08:11:58.175Z"
+        }
+      }
+    },
+    "scope": "Scene caption and version metadata only; skin and geometry code unchanged"
+  }
 }

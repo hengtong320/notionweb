@@ -1,0 +1,93 @@
+{
+  "version": "30.0.1",
+  "engine": "chromium",
+  "live": false,
+  "checks": [
+    {
+      "name": "Male selected surface point is not described as a skeleton",
+      "pass": true,
+      "detail": {
+        "body": "male",
+        "title": "男性 · 体表经络",
+        "count": "体表 · 不透明度 100%",
+        "scene": "surface",
+        "enabled": true
+      }
+    },
+    {
+      "name": "Female selected surface uses the same scene terminology",
+      "pass": true,
+      "detail": {
+        "body": "female",
+        "title": "女性 · 体表经络",
+        "count": "体表 · 不透明度 100%",
+        "scene": "surface",
+        "enabled": true
+      }
+    },
+    {
+      "name": "Male return never reports zero visible bones over opaque skin",
+      "pass": true,
+      "detail": {
+        "body": "male",
+        "title": "男性 · 体表经络",
+        "count": "体表 · 不透明度 100%",
+        "scene": "surface",
+        "enabled": true
+      }
+    },
+    {
+      "name": "Hidden meridians show pure-skin status without a skeleton count",
+      "pass": true,
+      "detail": {
+        "body": "male",
+        "title": "男性 · 纯体表",
+        "count": "体表 · 不透明度 100%",
+        "scene": "surface",
+        "enabled": false
+      }
+    },
+    {
+      "name": "Hidden master remains hidden with matching female caption",
+      "pass": true,
+      "detail": {
+        "body": "female",
+        "title": "女性 · 纯体表",
+        "count": "体表 · 不透明度 100%",
+        "scene": "surface",
+        "enabled": false
+      }
+    },
+    {
+      "name": "Female bones retain the anatomical caption instead of skin status",
+      "pass": true,
+      "detail": {
+        "body": "female",
+        "title": "女性 · 骨骼与关节",
+        "count": "210 个已启用部件",
+        "scene": "bones",
+        "enabled": false
+      }
+    },
+    {
+      "name": "Male bones retain the anatomical caption instead of skin status",
+      "pass": true,
+      "detail": {
+        "body": "male",
+        "title": "全身骨骼 Complete skeleton",
+        "count": "210 / 210 可见",
+        "scene": "bones",
+        "enabled": false
+      }
+    },
+    {
+      "name": "No runtime errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "startedAt": "2026-10-02T08:11:12.303Z",
+  "success": true,
+  "finishedAt": "2026-10-02T08:11:41.968Z"
+}
