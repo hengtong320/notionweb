@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-24",
+  "sourceRef": "322ba39e96ea91ce08601caad2c0aaade1dc99f0",
+  "surfaceZipBlob": "f43cabc6f366b2a6058dd2ed4a2b3c7b9b2492cb",
+  "alignment": [
+    [
+      1000.0,
+      0.0,
+      0.0,
+      99.55318155698478
+    ],
+    [
+      0.0,
+      1000.0,
+      0.0,
+      -47.33916081022471
+    ],
+    [
+      0.0,
+      0.0,
+      1000.0,
+      -22.87590131163597
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "method": "retain mesh vertices, faces and source world transforms; apply existing atlas frame; remove helper graphics; regional surface not full histological skin",
+  "clinicalCalibration": false,
+  "models": [
+    {
+      "file": "visceral.glb",
+      "sha256": "5e90326b1bc4633ee8c271fb67f5a6b117de628d636790d0bbb24b255e34e317",
+      "bytes": 2075520,
+      "structures": 119
+    },
+    {
+      "file": "heart.glb",
+      "sha256": "d73371077553ca33a574cc083b335c862f26f70c605a7c89b6e197942758ebba",
+      "bytes": 330020,
+      "structures": 17
+    },
+    {
+      "file": "vessels.glb",
+      "sha256": "5931cd9752ec308fb52713169e50623e9af102ae8c9ed002cc4341fe0619c6b0",
+      "bytes": 9689328,
+      "structures": 659
+    },
+    {
+      "file": "surface.glb",
+      "sha256": "dad76aed1a0df0b6842ac1a9f554db9884d3c593f0224967d4450296cc6de8fc",
+      "bytes": 3217360,
+      "structures": 250
+    },
+    {
+      "file": "ear.glb",
+      "sha256": "4dee5d9c29adcd7717eee66966ac55d1491d9d5bf18d667a6fe6240a8e78d229",
+      "bytes": 246320,
+      "structures": 48
+    }
+  ]
+}

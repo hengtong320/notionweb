@@ -1,0 +1,51 @@
+{
+  "version": "29.0.0",
+  "sourceCommit": "cee364c11f10203ee87b084e06d7fa8f9fa7b2bd",
+  "candidateRun": "36958715022",
+  "publishRun": "36959378879",
+  "bundleSHA256": "d0b37d4f9e3c91b02a1bb40ff201df3266bb48031104442c5e0617606c75122d",
+  "localBrowserChecks": {
+    "chromium": {
+      "new": {
+        "passed": 14,
+        "finishedAt": "2026-10-02T03:10:17.052Z"
+      },
+      "surface": {
+        "passed": 44,
+        "finishedAt": "2026-10-02T03:12:57.910Z"
+      },
+      "observation": {
+        "passed": 28,
+        "finishedAt": "2026-10-02T03:14:35.652Z"
+      }
+    },
+    "webkit": {
+      "new": {
+        "passed": 14,
+        "finishedAt": "2026-10-02T03:09:49.760Z"
+      },
+      "surface": {
+        "passed": 44,
+        "finishedAt": "2026-10-02T03:11:25.261Z"
+      },
+      "observation": {
+        "passed": 28,
+        "finishedAt": "2026-10-02T03:12:28.486Z"
+      }
+    }
+  },
+  "syntheticPickingBoundaryChecks": 12,
+  "publicBrowserChecks": "Recorded separately after public entrance activation",
+  "clinicalCalibration": false,
+  "rawAnatomyUnchanged": true,
+  "v28DisplayPointsRoutesAndPigmentGeometryUnchanged": true,
+  "previousV28Preserved": true,
+  "fixes": [
+    "Retain hidden meridian master state through sex switching",
+    "Preserve continuous opaque skin while locally cropping meridians",
+    "Exit incompatible internal-structure isolation when enabling skin",
+    "Reset stale nerve xray when explicitly adding skin",
+    "Block behind-skin click-through while permitting visible foreground structures"
+  ],
+  "note": "86 current browser assertions per engine, plus 12 synthetic picking boundaries recorded separately. Geometry and visibility tests are not clinical calibration or an all-device guarantee."
+}

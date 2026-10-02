@@ -1,0 +1,164 @@
+{
+  "version": "29",
+  "engine": "webkit",
+  "live": false,
+  "checks": [
+    {
+      "name": "female preserves the hidden meridian master switch",
+      "pass": true,
+      "detail": {
+        "enabled": false,
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true,
+        "selected": {
+          "code": "PC6",
+          "name": "内关",
+          "side": "right",
+          "areaOnly": false
+        },
+        "side": "both",
+        "local": false,
+        "body": "female"
+      }
+    },
+    {
+      "name": "male preserves the hidden meridian master switch",
+      "pass": true,
+      "detail": {
+        "enabled": false,
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true,
+        "selected": {
+          "code": "PC6",
+          "name": "内关",
+          "side": "right",
+          "areaOnly": false
+        },
+        "side": "both",
+        "local": false,
+        "body": "male"
+      }
+    },
+    {
+      "name": "male local meridian crop does not remove opaque skin fragments",
+      "pass": true,
+      "detail": {
+        "full": 250,
+        "local": 250
+      }
+    },
+    {
+      "name": "female local meridian crop does not remove opaque skin fragments",
+      "pass": true,
+      "detail": {
+        "full": 1,
+        "local": 1
+      }
+    },
+    {
+      "name": "male local meridian crop does not remove opaque skin fragments",
+      "pass": true,
+      "detail": {
+        "full": 250,
+        "local": 250
+      }
+    },
+    {
+      "name": "Adding opaque skin exits an incompatible isolated-bone view",
+      "pass": true,
+      "detail": {
+        "skin": 250,
+        "bones": {
+          "isolated": false,
+          "region": "body"
+        }
+      }
+    },
+    {
+      "name": "Adding opaque skin disables stale nerve xray from the preceding preset",
+      "pass": true,
+      "detail": {
+        "skin": 250,
+        "nerves": 550,
+        "xray": 0
+      }
+    },
+    {
+      "name": "female preserves depth-tested nerves beneath opaque skin",
+      "pass": true,
+      "detail": {
+        "skin": 1,
+        "nerves": 550,
+        "xray": 0
+      }
+    },
+    {
+      "name": "male preserves depth-tested nerves beneath opaque skin",
+      "pass": true,
+      "detail": {
+        "skin": 250,
+        "nerves": 550,
+        "xray": 0
+      }
+    },
+    {
+      "name": "male test found a real skin-covered internal structure",
+      "pass": true,
+      "detail": {
+        "x": 566,
+        "y": 272,
+        "skin": "surface-137",
+        "inner": "scapula-right"
+      }
+    },
+    {
+      "name": "male clicking bare opaque skin cannot select a hidden bone or organ",
+      "pass": true,
+      "detail": {
+        "before": "{\"kind\":\"meridian\",\"id\":\"PC\",\"name\":\"手厥阴心包经\",\"side\":\"both\"}",
+        "after": "{\"kind\":\"meridian\",\"id\":\"PC\",\"name\":\"手厥阴心包经\",\"side\":\"both\"}",
+        "hit": {
+          "x": 566,
+          "y": 272,
+          "skin": "surface-137",
+          "inner": "scapula-right"
+        }
+      }
+    },
+    {
+      "name": "female test found a real skin-covered internal structure",
+      "pass": true,
+      "detail": {
+        "x": 566,
+        "y": 272,
+        "skin": "hraf-2",
+        "inner": "shared21-humerus-right"
+      }
+    },
+    {
+      "name": "female clicking bare opaque skin cannot select a hidden bone or organ",
+      "pass": true,
+      "detail": {
+        "before": "{\"kind\":\"meridian\",\"id\":\"PC\",\"name\":\"手厥阴心包经\",\"side\":\"both\"}",
+        "after": "{\"kind\":\"meridian\",\"id\":\"PC\",\"name\":\"手厥阴心包经\",\"side\":\"both\"}",
+        "hit": {
+          "x": 566,
+          "y": 272,
+          "skin": "hraf-2",
+          "inner": "shared21-humerus-right"
+        }
+      }
+    },
+    {
+      "name": "No page exceptions",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "startedAt": "2026-10-02T03:08:42.622Z",
+  "success": true,
+  "finishedAt": "2026-10-02T03:09:49.760Z"
+}

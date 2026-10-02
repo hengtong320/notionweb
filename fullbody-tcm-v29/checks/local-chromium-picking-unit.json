@@ -1,0 +1,54 @@
+{
+  "success": true,
+  "checks": [
+    {
+      "name": "Opaque male skin blocks rear anatomy",
+      "pass": true
+    },
+    {
+      "name": "Opaque female skin blocks rear anatomy",
+      "pass": true
+    },
+    {
+      "name": "A foreground moved bone is not blocked by skin behind it",
+      "pass": true
+    },
+    {
+      "name": "Transparent skin permits ordinary anatomy picking",
+      "pass": true
+    },
+    {
+      "name": "Invisible skin does not block picking",
+      "pass": true
+    },
+    {
+      "name": "Hidden parent is respected",
+      "pass": true
+    },
+    {
+      "name": "Invisible material is respected",
+      "pass": true
+    },
+    {
+      "name": "Non-color-writing material is not visible skin",
+      "pass": true
+    },
+    {
+      "name": "Clipped-away skin is not a blocker",
+      "pass": true
+    },
+    {
+      "name": "A clipped foreground bone does not bypass opaque skin",
+      "pass": true
+    },
+    {
+      "name": "Pigment helper geometry is not an internal structure",
+      "pass": true
+    },
+    {
+      "name": "Zero-sized viewport is safe",
+      "pass": true
+    }
+  ],
+  "geometry": "Synthetic planes and spheres; distinct from browser/model checks"
+}

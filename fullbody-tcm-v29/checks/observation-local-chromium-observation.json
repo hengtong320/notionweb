@@ -1,0 +1,444 @@
+{
+  "version": "29.0.0",
+  "engine": "chromium",
+  "live": false,
+  "checks": [
+    {
+      "name": "Observation state module mounted",
+      "pass": true
+    },
+    {
+      "name": "male actual back view has synchronized back highlight",
+      "pass": true,
+      "detail": {
+        "active": [
+          "back"
+        ],
+        "badge": "背面 · 经络观察",
+        "quick": [
+          "背面"
+        ]
+      }
+    },
+    {
+      "name": "male fit-all preserves the back orientation",
+      "pass": true,
+      "detail": [
+        1.2317168514808648e-16,
+        7.038382008462084e-17,
+        -1
+      ]
+    },
+    {
+      "name": "male fit-all clears explicit local crop",
+      "pass": true
+    },
+    {
+      "name": "male turning the local study does not jump to a whole body zoom",
+      "pass": true,
+      "detail": {
+        "before": 545.0180097038298,
+        "after": 545.0180097038298
+      }
+    },
+    {
+      "name": "male toolbar back command really faces back",
+      "pass": true
+    },
+    {
+      "name": "male nearby labels avoid controls and labeled point centers",
+      "pass": true,
+      "detail": {
+        "shown": 6,
+        "collisions": [],
+        "covered": []
+      }
+    },
+    {
+      "name": "male selected point is readable with Chinese side text",
+      "pass": true
+    },
+    {
+      "name": "male oblique camera does not claim a standard front or back view",
+      "pass": true,
+      "detail": {
+        "active": [
+          "overview"
+        ],
+        "badge": "自由视角 · 经络观察",
+        "quick": []
+      }
+    },
+    {
+      "name": "female actual back view has synchronized back highlight",
+      "pass": true,
+      "detail": {
+        "active": [
+          "back"
+        ],
+        "badge": "背面 · 经络观察",
+        "quick": [
+          "背面"
+        ]
+      }
+    },
+    {
+      "name": "female fit-all preserves the back orientation",
+      "pass": true,
+      "detail": [
+        1.229527087421581e-16,
+        7.025869070980463e-17,
+        -1
+      ]
+    },
+    {
+      "name": "female fit-all clears explicit local crop",
+      "pass": true
+    },
+    {
+      "name": "female turning the local study does not jump to a whole body zoom",
+      "pass": true,
+      "detail": {
+        "before": 545.0180097038298,
+        "after": 545.0180097038298
+      }
+    },
+    {
+      "name": "female toolbar back command really faces back",
+      "pass": true
+    },
+    {
+      "name": "female nearby labels avoid controls and labeled point centers",
+      "pass": true,
+      "detail": {
+        "shown": 6,
+        "collisions": [],
+        "covered": []
+      }
+    },
+    {
+      "name": "female selected point is readable with Chinese side text",
+      "pass": true
+    },
+    {
+      "name": "female oblique camera does not claim a standard front or back view",
+      "pass": true,
+      "detail": {
+        "active": [
+          "overview"
+        ],
+        "badge": "自由视角 · 经络观察",
+        "quick": []
+      }
+    },
+    {
+      "name": "Short phone full-label mode has real available slots",
+      "pass": true,
+      "detail": {
+        "shown": 6,
+        "capacity": 6
+      }
+    },
+    {
+      "name": "Short phone complete labels do not cover toolbar or side tools",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Short phone complete labels do not cover their point centers",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Short phone labels are entirely inside the viewport",
+      "pass": true
+    },
+    {
+      "name": "Complete-label next page changes results while camera is idle",
+      "pass": true,
+      "detail": {
+        "total": 670,
+        "inView": 410,
+        "shown": 6,
+        "page": 2,
+        "pages": 69,
+        "capacity": 6
+      }
+    },
+    {
+      "name": "Unchanged skin view reuses its label layout",
+      "pass": true,
+      "detail": {
+        "before": {
+          "computed": 42,
+          "skipped": 2
+        },
+        "after": {
+          "computed": 42,
+          "skipped": 6
+        }
+      }
+    },
+    {
+      "name": "DPR2 phone labels fit CSS-pixel viewport",
+      "pass": true
+    },
+    {
+      "name": "Touch details and refocus keep the point above the bottom panel",
+      "pass": true,
+      "detail": {
+        "point": {
+          "x": 172,
+          "y": 360.6406250000001,
+          "z": 0.9990609869490978
+        },
+        "sheet": {
+          "x": 0,
+          "y": 495.28125,
+          "width": 390,
+          "height": 320.71875
+        }
+      }
+    },
+    {
+      "name": "Complete labels avoid the expanded phone details",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Point projection is current in the same turn as camera rotation",
+      "pass": true,
+      "detail": {
+        "normalizedDeviceError": 0
+      }
+    },
+    {
+      "name": "No shader or page exceptions",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "baseline": {
+    "back": {
+      "active": [
+        "overview"
+      ],
+      "badge": "肺经＋大肠经＋胃经＋脾经＋心经＋小肠经＋膀胱经＋肾经＋心包经＋三焦经＋胆经＋肝经＋督脉＋任脉 · 全段导航",
+      "quick": []
+    },
+    "afterFitDirection": [
+      0,
+      0.04993761694389224,
+      0.9987523388778446
+    ],
+    "cropChecked": true,
+    "completePhone": {
+      "layout": [
+        {
+          "code": "GV21",
+          "side": "midline",
+          "anchor": [
+            182.50052339370987,
+            197.04959745722178
+          ],
+          "box": [
+            8,
+            135,
+            126,
+            32
+          ],
+          "leaderStart": [
+            8,
+            151
+          ]
+        },
+        {
+          "code": "GV22",
+          "side": "midline",
+          "anchor": [
+            182.49707674134277,
+            198.66174933411185
+          ],
+          "box": [
+            8,
+            173,
+            126,
+            32
+          ],
+          "leaderStart": [
+            8,
+            189
+          ]
+        },
+        {
+          "code": "GB17",
+          "side": "right",
+          "anchor": [
+            176.46741263537348,
+            198.88393698174946
+          ],
+          "box": [
+            8,
+            211,
+            126,
+            32
+          ],
+          "leaderStart": [
+            8,
+            227
+          ]
+        },
+        {
+          "code": "GB17",
+          "side": "left",
+          "anchor": [
+            188.5337547700065,
+            198.883940519884
+          ],
+          "box": [
+            8,
+            249,
+            126,
+            32
+          ],
+          "leaderStart": [
+            8,
+            265
+          ]
+        },
+        {
+          "code": "BL6",
+          "side": "right",
+          "anchor": [
+            176.46455650376186,
+            199.07193447706857
+          ],
+          "box": [
+            8,
+            287,
+            126,
+            32
+          ],
+          "leaderStart": [
+            8,
+            303
+          ]
+        },
+        {
+          "code": "BL6",
+          "side": "left",
+          "anchor": [
+            188.53661165282253,
+            199.07193681833098
+          ],
+          "box": [
+            8,
+            325,
+            126,
+            32
+          ],
+          "leaderStart": [
+            8,
+            341
+          ]
+        },
+        {
+          "code": "GB16",
+          "side": "right",
+          "anchor": [
+            176.77730145600694,
+            200.4241340334272
+          ],
+          "box": [
+            8,
+            363,
+            126,
+            32
+          ],
+          "leaderStart": [
+            8,
+            379
+          ]
+        },
+        {
+          "code": "GB16",
+          "side": "left",
+          "anchor": [
+            188.2238717832646,
+            200.42413585198244
+          ],
+          "box": [
+            8,
+            401,
+            126,
+            32
+          ],
+          "leaderStart": [
+            8,
+            417
+          ]
+        },
+        {
+          "code": "GV23",
+          "side": "midline",
+          "anchor": [
+            182.49730936240735,
+            200.89012314095487
+          ],
+          "box": [
+            8,
+            439,
+            126,
+            32
+          ],
+          "leaderStart": [
+            8,
+            455
+          ]
+        }
+      ],
+      "collisions": [
+        {
+          "code": "GV21",
+          "obstacle": "tcmStatus"
+        }
+      ],
+      "covered": [],
+      "width": 390,
+      "height": 614,
+      "stats": {
+        "total": 670,
+        "inView": 372,
+        "shown": 9,
+        "page": 1,
+        "pages": 42,
+        "capacity": 9
+      }
+    }
+  },
+  "errors": [],
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "dpr": 1,
+      "version": "26"
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "dpr": 1,
+      "version": "29"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "dpr": 2,
+      "version": "29"
+    }
+  ],
+  "startedAt": "2026-10-02T03:12:58.268Z",
+  "clinicalCalibration": false,
+  "success": true,
+  "finishedAt": "2026-10-02T03:14:35.652Z"
+}
