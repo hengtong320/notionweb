@@ -1,0 +1,82 @@
+name: Publish reviewed V29 surface consistency
+on:
+  push:
+    paths: ['.github/workflows/atlas29-publish.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+concurrency:
+  group: atlas29-publish
+  cancel-in-progress: false
+env:
+  SOURCE_RUN: '36958715022'
+  SOURCE_COMMIT: cee364c11f10203ee87b084e06d7fa8f9fa7b2bd
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions: {contents: write, actions: read}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas29-chromium
+          run-id: ${{ env.SOURCE_RUN }}
+          github-token: ${{ github.token }}
+          path: /tmp/atlas29-chromium
+      - uses: actions/download-artifact@v4
+        with:
+          name: atlas29-webkit
+          run-id: ${{ env.SOURCE_RUN }}
+          github-token: ${{ github.token }}
+          path: /tmp/atlas29-webkit
+      - name: Validate both engines and publish exact checked bytes
+        run: |
+          python atlas29-publish/publish.py
+          test -z "$(git diff -- fullbody-tcm-v28/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v29 atlas29-publish/verified-tests
+          git commit -m "Publish reviewed V29 opaque skin and male female state repairs"
+          git push origin HEAD:main
+  public:
+    needs: publish
+    strategy:
+      fail-fast: false
+      matrix: {browser: [chromium, webkit]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      NODE_PATH: /tmp/a29/node_modules
+      ATLAS_VERSION: '29'
+      BROWSER: ${{ matrix.browser }}
+      TEST_URL: https://hengtong320.github.io/notionweb/anatomy/?v=29.0.0
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install the same browser and image checker
+        run: |
+          npm install --prefix /tmp/a29 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a29/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Confirm public entrance and actual runtime hashes
+        run: python atlas29-publish/verify-public.py
+      - name: Public new opaque-skin interaction paths
+        run: node atlas29-publish/verified-tests/probe.cjs
+      - name: Public point, line, skin and rapid switching paths
+        if: '!cancelled()'
+        run: node atlas29-publish/verified-tests/surface-regression.cjs
+      - name: Public camera, labels and DPR2 touch paths
+        if: '!cancelled()'
+        run: node atlas29-publish/verified-tests/observation-regression.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas29-public-${{ matrix.browser }}
+          path: |
+            atlas29-evidence/live-*
+            fullbody-tcm-v29/checks/live-*
+            fullbody-tcm-v29/checks/observation-live-*
+          retention-days: 14
