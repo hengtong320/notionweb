@@ -1,0 +1,736 @@
+{
+  "version": "31.0.0",
+  "sourceCommit": "55e515814792204896da59349993701a6cee84a3",
+  "verificationRun": "36991720390",
+  "publishRun": "36992631410",
+  "bundleSHA256": "2a43b1a2df690cc4e8f001d40084b54a56a54c2a2095f1a2faf0bc2740fd0f57",
+  "localBrowserChecks": {
+    "chromium": {
+      "passed": 42,
+      "finishedAt": "2026-10-02T09:58:58.890Z",
+      "pointPaint": [
+        {
+          "sex": "male",
+          "code": "PC6",
+          "contact": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ],
+          "visible": true,
+          "pixelDifference": 75,
+          "near": 121,
+          "q": {
+            "x": 680.7208865450317,
+            "y": 586.528701386348,
+            "z": 0.9982079433030024
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "HT7",
+          "contact": [
+            -149.301361,
+            804.528503,
+            17.17447905811981
+          ],
+          "visible": true,
+          "pixelDifference": 69,
+          "near": 121,
+          "q": {
+            "x": 680.5026146295659,
+            "y": 587.132664163667,
+            "z": 0.9967117139082508
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "LI4",
+          "contact": [
+            -201.1117596135928,
+            756.207354213439,
+            -3.584910262707318
+          ],
+          "visible": true,
+          "pixelDifference": 69,
+          "near": 121,
+          "q": {
+            "x": 681.4151056282341,
+            "y": 586.2046224642168,
+            "z": 0.997750411551077
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "ST36",
+          "contact": [
+            -5.411289495613995,
+            306.09021699999994,
+            -8.578994017543993
+          ],
+          "visible": true,
+          "pixelDifference": 79,
+          "near": 121,
+          "q": {
+            "x": 680.9889859207788,
+            "y": 586.3768541642739,
+            "z": 0.9982701748736419
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "SP6",
+          "contact": [
+            45.94850163904826,
+            112.13974500000002,
+            -62.62389216804758
+          ],
+          "visible": true,
+          "pixelDifference": 67,
+          "near": 121,
+          "q": {
+            "x": 681.1681774864287,
+            "y": 586.4340169290432,
+            "z": 0.9983232208282147
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "KI3",
+          "contact": [
+            50.13674508127353,
+            8.282047048764124,
+            -102.86325491872645
+          ],
+          "visible": true,
+          "pixelDifference": 74,
+          "near": 121,
+          "q": {
+            "x": 680.0521444381918,
+            "y": 586.4208415522216,
+            "z": 0.997785127509436
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "BL40",
+          "contact": [
+            23.000000000000007,
+            391,
+            -113.84594874154207
+          ],
+          "visible": true,
+          "pixelDifference": 73,
+          "near": 121,
+          "q": {
+            "x": 681.2039712823203,
+            "y": 586.8187923610919,
+            "z": 0.9982078908033866
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "GV14",
+          "contact": [
+            99.553182,
+            1392.096436,
+            -119.76954075396328
+          ],
+          "visible": true,
+          "pixelDifference": 75,
+          "near": 121,
+          "q": {
+            "x": 680.939070578333,
+            "y": 586.6770212313961,
+            "z": 0.9982079692196898
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "CV12",
+          "contact": [
+            99.53318200000001,
+            1081.397766,
+            105.77894843815945
+          ],
+          "visible": true,
+          "pixelDifference": 75,
+          "near": 121,
+          "q": {
+            "x": 681.006309976246,
+            "y": 586.3782733631679,
+            "z": 0.9982080008451386
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "PC6",
+          "contact": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ],
+          "visible": true,
+          "pixelDifference": 76,
+          "near": 121,
+          "q": {
+            "x": 680.6801062498528,
+            "y": 586.5225369107228,
+            "z": 0.9982079259797765
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "HT7",
+          "contact": [
+            -149.301361,
+            804.5285029999999,
+            7.5936403153871925
+          ],
+          "visible": true,
+          "pixelDifference": 74,
+          "near": 121,
+          "q": {
+            "x": 680.3942683874199,
+            "y": 586.284752305195,
+            "z": 0.9967119672656751
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "LI4",
+          "contact": [
+            -197.3005366091176,
+            756.0880416442927,
+            0.44297453078680404
+          ],
+          "visible": true,
+          "pixelDifference": 75,
+          "near": 121,
+          "q": {
+            "x": 681.4397635391812,
+            "y": 585.8084921979213,
+            "z": 0.9977501035516231
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "ST36",
+          "contact": [
+            -4.237506311227714,
+            306.090217,
+            -13.274126755089114
+          ],
+          "visible": true,
+          "pixelDifference": 79,
+          "near": 121,
+          "q": {
+            "x": 680.9185157121418,
+            "y": 586.3608574267739,
+            "z": 0.9982701672123153
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "SP6",
+          "contact": [
+            41.27875203809158,
+            112.13974499999999,
+            -62.85737964809542
+          ],
+          "visible": true,
+          "pixelDifference": 61,
+          "near": 121,
+          "q": {
+            "x": 681.2227570519742,
+            "y": 586.4286843096703,
+            "z": 0.9983534321110914
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "KI3",
+          "contact": [
+            51.12859882416874,
+            8.87715929450125,
+            -101.87140117583122
+          ],
+          "visible": true,
+          "pixelDifference": 73,
+          "near": 121,
+          "q": {
+            "x": 680.1158849612839,
+            "y": 586.3788560418201,
+            "z": 0.9977852506592395
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "BL40",
+          "contact": [
+            23,
+            391,
+            -111.9590471626735
+          ],
+          "visible": true,
+          "pixelDifference": 72,
+          "near": 121,
+          "q": {
+            "x": 681.2436436423604,
+            "y": 586.6734023624989,
+            "z": 0.9982079379354023
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "GV14",
+          "contact": [
+            99.573182,
+            1392.096436,
+            -113.7804080147457
+          ],
+          "visible": true,
+          "pixelDifference": 78,
+          "near": 121,
+          "q": {
+            "x": 681.0035638475002,
+            "y": 586.8683369643225,
+            "z": 0.9982078896632132
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "CV12",
+          "contact": [
+            99.573182,
+            1081.397766,
+            101.71261080824677
+          ],
+          "visible": true,
+          "pixelDifference": 75,
+          "near": 121,
+          "q": {
+            "x": 681.0169175653843,
+            "y": 586.3627614336523,
+            "z": 0.9982079990753905
+          },
+          "skinOpacity": 1
+        }
+      ],
+      "lineAndDepth": [
+        {
+          "sex": "male",
+          "line": {
+            "changed": 251,
+            "checked": 6561
+          },
+          "back": {
+            "changed": 0,
+            "checked": 121
+          }
+        },
+        {
+          "sex": "female",
+          "line": {
+            "changed": 258,
+            "checked": 6561
+          },
+          "back": {
+            "changed": 0,
+            "checked": 121
+          }
+        }
+      ]
+    },
+    "webkit": {
+      "passed": 42,
+      "finishedAt": "2026-10-02T09:51:15.955Z",
+      "pointPaint": [
+        {
+          "sex": "male",
+          "code": "PC6",
+          "contact": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ],
+          "visible": true,
+          "pixelDifference": 75,
+          "near": 121,
+          "q": {
+            "x": 680.7208865450317,
+            "y": 586.528701386348,
+            "z": 0.9982079433030024
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "HT7",
+          "contact": [
+            -149.301361,
+            804.528503,
+            17.17447905811981
+          ],
+          "visible": true,
+          "pixelDifference": 68,
+          "near": 121,
+          "q": {
+            "x": 680.5026146295659,
+            "y": 587.132664163667,
+            "z": 0.9967117139082508
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "LI4",
+          "contact": [
+            -201.1117596135928,
+            756.207354213439,
+            -3.584910262707318
+          ],
+          "visible": true,
+          "pixelDifference": 67,
+          "near": 121,
+          "q": {
+            "x": 681.4151056282341,
+            "y": 586.2046224642168,
+            "z": 0.997750411551077
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "ST36",
+          "contact": [
+            -5.411289495613995,
+            306.09021699999994,
+            -8.578994017543993
+          ],
+          "visible": true,
+          "pixelDifference": 79,
+          "near": 121,
+          "q": {
+            "x": 680.9889859207788,
+            "y": 586.3768541642739,
+            "z": 0.9982701748736419
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "SP6",
+          "contact": [
+            45.94850163904826,
+            112.13974500000002,
+            -62.62389216804758
+          ],
+          "visible": true,
+          "pixelDifference": 68,
+          "near": 121,
+          "q": {
+            "x": 681.1681774864287,
+            "y": 586.4340169290432,
+            "z": 0.9983232208282147
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "KI3",
+          "contact": [
+            50.13674508127353,
+            8.282047048764124,
+            -102.86325491872645
+          ],
+          "visible": true,
+          "pixelDifference": 74,
+          "near": 121,
+          "q": {
+            "x": 680.0521444381918,
+            "y": 586.4208415522216,
+            "z": 0.997785127509436
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "BL40",
+          "contact": [
+            23.000000000000007,
+            391,
+            -113.84594874154207
+          ],
+          "visible": true,
+          "pixelDifference": 74,
+          "near": 121,
+          "q": {
+            "x": 681.2039712823203,
+            "y": 586.8187923610919,
+            "z": 0.9982078908033866
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "GV14",
+          "contact": [
+            99.553182,
+            1392.096436,
+            -119.76954075396328
+          ],
+          "visible": true,
+          "pixelDifference": 75,
+          "near": 121,
+          "q": {
+            "x": 680.939070578333,
+            "y": 586.6770212313961,
+            "z": 0.9982079692196898
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "male",
+          "code": "CV12",
+          "contact": [
+            99.53318200000001,
+            1081.397766,
+            105.77894843815945
+          ],
+          "visible": true,
+          "pixelDifference": 75,
+          "near": 121,
+          "q": {
+            "x": 681.006309976246,
+            "y": 586.3782733631679,
+            "z": 0.9982080008451386
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "PC6",
+          "contact": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ],
+          "visible": true,
+          "pixelDifference": 76,
+          "near": 121,
+          "q": {
+            "x": 680.6801062498528,
+            "y": 586.5225369107228,
+            "z": 0.9982079259797765
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "HT7",
+          "contact": [
+            -149.301361,
+            804.5285029999999,
+            7.5936403153871925
+          ],
+          "visible": true,
+          "pixelDifference": 75,
+          "near": 121,
+          "q": {
+            "x": 680.3942683874199,
+            "y": 586.284752305195,
+            "z": 0.9967119672656751
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "LI4",
+          "contact": [
+            -197.3005366091176,
+            756.0880416442927,
+            0.44297453078680404
+          ],
+          "visible": true,
+          "pixelDifference": 77,
+          "near": 121,
+          "q": {
+            "x": 681.4397635391812,
+            "y": 585.8084921979213,
+            "z": 0.9977501035516231
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "ST36",
+          "contact": [
+            -4.237506311227714,
+            306.090217,
+            -13.274126755089114
+          ],
+          "visible": true,
+          "pixelDifference": 79,
+          "near": 121,
+          "q": {
+            "x": 680.9185157121418,
+            "y": 586.3608574267739,
+            "z": 0.9982701672123153
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "SP6",
+          "contact": [
+            41.27875203809158,
+            112.13974499999999,
+            -62.85737964809542
+          ],
+          "visible": true,
+          "pixelDifference": 61,
+          "near": 121,
+          "q": {
+            "x": 681.2227570519742,
+            "y": 586.4286843096703,
+            "z": 0.9983534321110914
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "KI3",
+          "contact": [
+            51.12859882416874,
+            8.87715929450125,
+            -101.87140117583122
+          ],
+          "visible": true,
+          "pixelDifference": 73,
+          "near": 121,
+          "q": {
+            "x": 680.1158849612839,
+            "y": 586.3788560418201,
+            "z": 0.9977852506592395
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "BL40",
+          "contact": [
+            23,
+            391,
+            -111.9590471626735
+          ],
+          "visible": true,
+          "pixelDifference": 72,
+          "near": 121,
+          "q": {
+            "x": 681.2436436423604,
+            "y": 586.6734023624989,
+            "z": 0.9982079379354023
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "GV14",
+          "contact": [
+            99.573182,
+            1392.096436,
+            -113.7804080147457
+          ],
+          "visible": true,
+          "pixelDifference": 78,
+          "near": 121,
+          "q": {
+            "x": 681.0035638475002,
+            "y": 586.8683369643225,
+            "z": 0.9982078896632132
+          },
+          "skinOpacity": 1
+        },
+        {
+          "sex": "female",
+          "code": "CV12",
+          "contact": [
+            99.573182,
+            1081.397766,
+            101.71261080824677
+          ],
+          "visible": true,
+          "pixelDifference": 75,
+          "near": 121,
+          "q": {
+            "x": 681.0169175653843,
+            "y": 586.3627614336523,
+            "z": 0.9982079990753905
+          },
+          "skinOpacity": 1
+        }
+      ],
+      "lineAndDepth": [
+        {
+          "sex": "male",
+          "line": {
+            "changed": 251,
+            "checked": 6561
+          },
+          "back": {
+            "changed": 0,
+            "checked": 121
+          }
+        },
+        {
+          "sex": "female",
+          "line": {
+            "changed": 258,
+            "checked": 6561
+          },
+          "back": {
+            "changed": 0,
+            "checked": 121
+          }
+        }
+      ]
+    }
+  },
+  "baselineReproductions": {
+    "chromium": [
+      "Physical left and meridian right cannot leave an empty surface overlay",
+      "Female switch preserves the reconciled visible side",
+      "Return to male keeps enabled surface points visible",
+      "Enabling custom skin after exploded bones restores the skin pose"
+    ],
+    "webkit": [
+      "Physical left and meridian right cannot leave an empty surface overlay",
+      "Female switch preserves the reconciled visible side",
+      "Return to male keeps enabled surface points visible",
+      "Enabling custom skin after exploded bones restores the skin pose"
+    ]
+  },
+  "originalModelsAndNumberedRoutesUnchanged": true,
+  "clinicalCalibration": false,
+  "previousV30Preserved": true,
+  "publicVerification": "Recorded separately after fixed entry activation",
+  "testScope": "42 targeted surface-state, per-frame transition and real-pixel checks per browser; not all historical suites or clinical registration."
+}

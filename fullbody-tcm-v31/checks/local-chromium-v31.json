@@ -1,0 +1,3955 @@
+{
+  "version": "31",
+  "engine": "chromium",
+  "live": false,
+  "checks": [
+    {
+      "name": "Physical left and meridian right cannot leave an empty surface overlay",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "reference": "male",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "left",
+        "physical": "left",
+        "points": 18,
+        "selected": {
+          "code": "PC6",
+          "side": "left",
+          "position": [
+            348.82960982050093,
+            854.5379695692806,
+            8.465231320666398
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            348.9385701139696,
+            854.51238,
+            8.13360980690222
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            348.9385701139696,
+            854.51238,
+            8.13360980690222
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "HT",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            357.3746727699366,
+            879.0585849894002,
+            553.4832410244962
+          ],
+          "target": [
+            357.3746727699366,
+            879.0585849894002,
+            8.465231320666392
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "Female switch preserves the reconciled visible side",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "reference": "female",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "left",
+        "physical": "left",
+        "points": 18,
+        "selected": {
+          "code": "PC6",
+          "side": "left",
+          "position": [
+            348.8116532429268,
+            854.5368303226076,
+            8.096676939972124
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            348.9385701139696,
+            854.51238,
+            7.771416598754374
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            348.9385701139696,
+            854.51238,
+            7.771416598754374
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "HT",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            357.35671619236246,
+            879.0574457427272,
+            553.114686643802
+          ],
+          "target": [
+            357.35671619236246,
+            879.0574457427272,
+            8.096676939972118
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "Return to male keeps enabled surface points visible",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "reference": "male",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "left",
+        "physical": "left",
+        "points": 18,
+        "selected": {
+          "code": "PC6",
+          "side": "left",
+          "position": [
+            348.82960982050093,
+            854.5379695692806,
+            8.465231320666398
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            348.9385701139696,
+            854.51238,
+            8.13360980690222
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            348.9385701139696,
+            854.51238,
+            8.13360980690222
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "HT",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            357.3746727699366,
+            879.0585849894002,
+            553.4832410244962
+          ],
+          "target": [
+            357.3746727699366,
+            879.0585849894002,
+            8.465231320666392
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "male PC6 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "code": "PC6",
+        "contact": [
+          -149.832207,
+          854.5123799999999,
+          8.133617112401174
+        ],
+        "visible": true,
+        "pixelDifference": 75,
+        "near": 121,
+        "q": {
+          "x": 680.7208865450317,
+          "y": 586.528701386348,
+          "z": 0.9982079433030024
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "male HT7 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "code": "HT7",
+        "contact": [
+          -149.301361,
+          804.528503,
+          17.17447905811981
+        ],
+        "visible": true,
+        "pixelDifference": 69,
+        "near": 121,
+        "q": {
+          "x": 680.5026146295659,
+          "y": 587.132664163667,
+          "z": 0.9967117139082508
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "male LI4 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "code": "LI4",
+        "contact": [
+          -201.1117596135928,
+          756.207354213439,
+          -3.584910262707318
+        ],
+        "visible": true,
+        "pixelDifference": 69,
+        "near": 121,
+        "q": {
+          "x": 681.4151056282341,
+          "y": 586.2046224642168,
+          "z": 0.997750411551077
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "male ST36 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "code": "ST36",
+        "contact": [
+          -5.411289495613995,
+          306.09021699999994,
+          -8.578994017543993
+        ],
+        "visible": true,
+        "pixelDifference": 79,
+        "near": 121,
+        "q": {
+          "x": 680.9889859207788,
+          "y": 586.3768541642739,
+          "z": 0.9982701748736419
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "male SP6 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "code": "SP6",
+        "contact": [
+          45.94850163904826,
+          112.13974500000002,
+          -62.62389216804758
+        ],
+        "visible": true,
+        "pixelDifference": 67,
+        "near": 121,
+        "q": {
+          "x": 681.1681774864287,
+          "y": 586.4340169290432,
+          "z": 0.9983232208282147
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "male KI3 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "code": "KI3",
+        "contact": [
+          50.13674508127353,
+          8.282047048764124,
+          -102.86325491872645
+        ],
+        "visible": true,
+        "pixelDifference": 74,
+        "near": 121,
+        "q": {
+          "x": 680.0521444381918,
+          "y": 586.4208415522216,
+          "z": 0.997785127509436
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "male BL40 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "code": "BL40",
+        "contact": [
+          23.000000000000007,
+          391,
+          -113.84594874154207
+        ],
+        "visible": true,
+        "pixelDifference": 73,
+        "near": 121,
+        "q": {
+          "x": 681.2039712823203,
+          "y": 586.8187923610919,
+          "z": 0.9982078908033866
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "male GV14 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "code": "GV14",
+        "contact": [
+          99.553182,
+          1392.096436,
+          -119.76954075396328
+        ],
+        "visible": true,
+        "pixelDifference": 75,
+        "near": 121,
+        "q": {
+          "x": 680.939070578333,
+          "y": 586.6770212313961,
+          "z": 0.9982079692196898
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "male CV12 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "code": "CV12",
+        "contact": [
+          99.53318200000001,
+          1081.397766,
+          105.77894843815945
+        ],
+        "visible": true,
+        "pixelDifference": 75,
+        "near": 121,
+        "q": {
+          "x": 681.006309976246,
+          "y": 586.3782733631679,
+          "z": 0.9982080008451386
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "female PC6 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "code": "PC6",
+        "contact": [
+          -149.832207,
+          854.51238,
+          7.715389163915807
+        ],
+        "visible": true,
+        "pixelDifference": 76,
+        "near": 121,
+        "q": {
+          "x": 680.6801062498528,
+          "y": 586.5225369107228,
+          "z": 0.9982079259797765
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "female HT7 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "code": "HT7",
+        "contact": [
+          -149.301361,
+          804.5285029999999,
+          7.5936403153871925
+        ],
+        "visible": true,
+        "pixelDifference": 74,
+        "near": 121,
+        "q": {
+          "x": 680.3942683874199,
+          "y": 586.284752305195,
+          "z": 0.9967119672656751
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "female LI4 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "code": "LI4",
+        "contact": [
+          -197.3005366091176,
+          756.0880416442927,
+          0.44297453078680404
+        ],
+        "visible": true,
+        "pixelDifference": 75,
+        "near": 121,
+        "q": {
+          "x": 681.4397635391812,
+          "y": 585.8084921979213,
+          "z": 0.9977501035516231
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "female ST36 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "code": "ST36",
+        "contact": [
+          -4.237506311227714,
+          306.090217,
+          -13.274126755089114
+        ],
+        "visible": true,
+        "pixelDifference": 79,
+        "near": 121,
+        "q": {
+          "x": 680.9185157121418,
+          "y": 586.3608574267739,
+          "z": 0.9982701672123153
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "female SP6 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "code": "SP6",
+        "contact": [
+          41.27875203809158,
+          112.13974499999999,
+          -62.85737964809542
+        ],
+        "visible": true,
+        "pixelDifference": 61,
+        "near": 121,
+        "q": {
+          "x": 681.2227570519742,
+          "y": 586.4286843096703,
+          "z": 0.9983534321110914
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "female KI3 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "code": "KI3",
+        "contact": [
+          51.12859882416874,
+          8.87715929450125,
+          -101.87140117583122
+        ],
+        "visible": true,
+        "pixelDifference": 73,
+        "near": 121,
+        "q": {
+          "x": 680.1158849612839,
+          "y": 586.3788560418201,
+          "z": 0.9977852506592395
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "female BL40 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "code": "BL40",
+        "contact": [
+          23,
+          391,
+          -111.9590471626735
+        ],
+        "visible": true,
+        "pixelDifference": 72,
+        "near": 121,
+        "q": {
+          "x": 681.2436436423604,
+          "y": 586.6734023624989,
+          "z": 0.9982079379354023
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "female GV14 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "code": "GV14",
+        "contact": [
+          99.573182,
+          1392.096436,
+          -113.7804080147457
+        ],
+        "visible": true,
+        "pixelDifference": 78,
+        "near": 121,
+        "q": {
+          "x": 681.0035638475002,
+          "y": 586.8683369643225,
+          "z": 0.9982078896632132
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "female CV12 opaque skin point has real visible pixels",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "code": "CV12",
+        "contact": [
+          99.573182,
+          1081.397766,
+          101.71261080824677
+        ],
+        "visible": true,
+        "pixelDifference": 75,
+        "near": 121,
+        "q": {
+          "x": 681.0169175653843,
+          "y": 586.3627614336523,
+          "z": 0.9982079990753905
+        },
+        "skinOpacity": 1
+      }
+    },
+    {
+      "name": "male all effective paint belongs to its current body",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "reference": "male",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "both",
+        "physical": "both",
+        "points": 670,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.72324709537352,
+            854.5379695686078,
+            8.465238753978246
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "LU",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LU",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LI",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LI",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "ST",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "ST",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SP",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SP",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "HT",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "HT",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SI",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SI",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "BL",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "BL",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "KI",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "KI",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "TE",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "TE",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GB",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GB",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LR",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LR",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GV",
+            "side": "midline",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "CV",
+            "side": "midline",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            -141.1781841459379,
+            879.0585849887274,
+            553.4832484578079
+          ],
+          "target": [
+            -141.1781841459379,
+            879.0585849887274,
+            8.465238753978248
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "female all effective paint belongs to its current body",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "reference": "female",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "both",
+        "physical": "both",
+        "points": 670,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.70816889602503,
+            854.5354460569013,
+            8.041858926346137
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "LU",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LU",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LI",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LI",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "ST",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "ST",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SP",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SP",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "HT",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "HT",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SI",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SI",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "BL",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "BL",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "KI",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "KI",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "TE",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "TE",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GB",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GB",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LR",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LR",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GV",
+            "side": "midline",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "CV",
+            "side": "midline",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            -141.1631059465894,
+            879.056061477021,
+            553.0598686301759
+          ],
+          "target": [
+            -141.1631059465894,
+            879.056061477021,
+            8.04185892634614
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "male all effective paint belongs to its current body",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "reference": "male",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "both",
+        "physical": "both",
+        "points": 670,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.72324709537352,
+            854.5379695686078,
+            8.465238753978246
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "LU",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LU",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LI",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LI",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "ST",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "ST",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SP",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SP",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "HT",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "HT",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SI",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SI",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "BL",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "BL",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "KI",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "KI",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "TE",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "TE",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GB",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GB",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LR",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LR",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GV",
+            "side": "midline",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "CV",
+            "side": "midline",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            -141.1781841459379,
+            879.0585849887274,
+            553.4832484578079
+          ],
+          "target": [
+            -141.1781841459379,
+            879.0585849887274,
+            8.46523875397825
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "female all effective paint belongs to its current body",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "reference": "female",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "both",
+        "physical": "both",
+        "points": 670,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.70816889602503,
+            854.5354460569013,
+            8.041858926346137
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "LU",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LU",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LI",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LI",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "ST",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "ST",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SP",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SP",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "HT",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "HT",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SI",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SI",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "BL",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "BL",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "KI",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "KI",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "TE",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "TE",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GB",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GB",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LR",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LR",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GV",
+            "side": "midline",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "CV",
+            "side": "midline",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            -141.1631059465894,
+            879.056061477021,
+            553.0598686301759
+          ],
+          "target": [
+            -141.1631059465894,
+            879.056061477021,
+            8.04185892634614
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "Round trips preserve all same-body contact coordinates exactly",
+      "pass": true
+    },
+    {
+      "name": "Round trips preserve line point name and depth choices",
+      "pass": true
+    },
+    {
+      "name": "Side and sex restore do not reopen hidden point and name toggles",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "reference": "male",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "left",
+        "physical": "left",
+        "points": 0,
+        "selected": {
+          "code": "PC6",
+          "side": "left",
+          "position": [
+            348.82960982050093,
+            854.5379695692806,
+            8.465231320666398
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            348.9385701139696,
+            854.51238,
+            8.13360980690222
+          ],
+          "markerVisible": false,
+          "spriteVisible": false,
+          "paintedSelection": false,
+          "markerPosition": [
+            348.8296203613281,
+            854.5379638671875,
+            8.465230941772461
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "LU",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LI",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "ST",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SP",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "HT",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SI",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "BL",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "KI",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "TE",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GB",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LR",
+            "side": "left",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GV",
+            "side": "midline",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "CV",
+            "side": "midline",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": false,
+            "selected": false,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            357.3746727699366,
+            879.0585849894002,
+            553.4832410244961
+          ],
+          "target": [
+            357.3746727699366,
+            879.0585849894002,
+            8.465231320666401
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "Phone female surface selection remains visible",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "reference": "female",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "left",
+        "physical": "both",
+        "points": 361,
+        "selected": {
+          "code": "PC6",
+          "side": "left",
+          "position": [
+            348.8116532429268,
+            854.5368303226076,
+            8.096676939972124
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            348.9385701139696,
+            854.51238,
+            7.771416598754374
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            348.9385701139696,
+            854.51238,
+            7.771416598754374
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "LU",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LI",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "ST",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SP",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "HT",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "SI",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "BL",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "KI",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          },
+          {
+            "meridian": "TE",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GB",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "LR",
+            "side": "left",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "GV",
+            "side": "midline",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "CV",
+            "side": "midline",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            364.2941051517423,
+            890.8869348041744,
+            842.5692926314916
+          ],
+          "target": [
+            364.2941051517423,
+            890.8869348041744,
+            8.096676939972111
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 390,
+            "fullHeight": 758,
+            "offsetX": 12.5,
+            "offsetY": -33,
+            "width": 390,
+            "height": 758
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "Enabling custom skin after exploded bones restores the skin pose",
+      "pass": true,
+      "detail": {
+        "s": {
+          "sex": "male",
+          "reference": "male",
+          "transition": false,
+          "attached": true,
+          "skin": true,
+          "root": true,
+          "side": "left",
+          "physical": "both",
+          "points": 361,
+          "selected": null,
+          "flags": [
+            true,
+            true,
+            true,
+            true,
+            false,
+            false
+          ],
+          "routes": [
+            {
+              "meridian": "LU",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "LI",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "ST",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "SP",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "HT",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "SI",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "BL",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "KI",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "PC",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "TE",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "GB",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "LR",
+              "side": "left",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "GV",
+              "side": "midline",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            },
+            {
+              "meridian": "CV",
+              "side": "midline",
+              "body": "male",
+              "visible": true,
+              "lines": true,
+              "points": true,
+              "selected": false,
+              "cloud": false
+            }
+          ],
+          "skinOpacity": 1,
+          "camera": {
+            "position": [
+              99.55318155698481,
+              892.1855464529173,
+              5469.160525253093
+            ],
+            "target": [
+              99.55318155698481,
+              809.9887546794489,
+              -10.625592978104962
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "zoom": 1,
+            "near": 0.5,
+            "far": 24000,
+            "view": {
+              "enabled": false,
+              "fullWidth": 390,
+              "fullHeight": 758,
+              "offsetX": 12.5,
+              "offsetY": -33,
+              "width": 390,
+              "height": 758
+            },
+            "viewName": "front",
+            "controlLimits": {
+              "minDistance": 147.32550320921678,
+              "maxDistance": 16204.636335484367
+            }
+          }
+        },
+        "bone": {
+          "explode": 0,
+          "moved": 0
+        }
+      }
+    },
+    {
+      "name": "Custom skin after pose repair survives female switching",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "reference": "female",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "right",
+        "physical": "both",
+        "points": 18,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.70816889602503,
+            854.5354460569013,
+            8.041858926346137
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "HT",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            -141.1631059465894,
+            879.056061477021,
+            553.059868630176
+          ],
+          "target": [
+            -141.1631059465894,
+            879.056061477021,
+            8.041858926346132
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 390,
+            "fullHeight": 758,
+            "offsetX": 12.5,
+            "offsetY": -33,
+            "width": 390,
+            "height": 758
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "Returning to cached male skin does not restore invisible exploded state",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "reference": "male",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "right",
+        "physical": "both",
+        "points": 18,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.72324709537352,
+            854.5379695686078,
+            8.465238753978246
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "HT",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            -141.1781841459379,
+            879.0585849887274,
+            553.483248457808
+          ],
+          "target": [
+            -141.1781841459379,
+            879.0585849887274,
+            8.465238753978241
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 390,
+            "fullHeight": 758,
+            "offsetX": 12.5,
+            "offsetY": -33,
+            "width": 390,
+            "height": 758
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "Transition frames never show a previous-body meridian overlay",
+      "pass": true,
+      "detail": [
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        },
+        {
+          "body": "female",
+          "ref": "male",
+          "root": false,
+          "paint": []
+        }
+      ]
+    },
+    {
+      "name": "Global shortcuts cannot replace the selected point during switching",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "reference": "female",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "right",
+        "physical": "both",
+        "points": 18,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.70816889602503,
+            854.5354460569013,
+            8.041858926346137
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "HT",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            -141.1631059465894,
+            879.056061477021,
+            553.059868630176
+          ],
+          "target": [
+            -141.1631059465894,
+            879.056061477021,
+            8.041858926346132
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 390,
+            "fullHeight": 758,
+            "offsetX": 12.5,
+            "offsetY": -33,
+            "width": 390,
+            "height": 758
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "Rapid switching resolves to the final body with a matching skin binding",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "reference": "male",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "right",
+        "physical": "both",
+        "points": 18,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.72324709537352,
+            854.5379695686078,
+            8.465238753978246
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "routes": [
+          {
+            "meridian": "HT",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            -141.1781841459379,
+            879.0585849887274,
+            553.483248457808
+          ],
+          "target": [
+            -141.1781841459379,
+            879.0585849887274,
+            8.465238753978241
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 390,
+            "fullHeight": 758,
+            "offsetX": 12.5,
+            "offsetY": -33,
+            "width": 390,
+            "height": 758
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        }
+      }
+    },
+    {
+      "name": "Saved local opaque-skin combination restores without reopening hidden names",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "reference": "male",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "right",
+        "physical": "both",
+        "points": 10,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.72324709537352,
+            854.5379695686078,
+            8.465238753978246
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            -149.832207,
+            854.5123799999999,
+            8.133617112401174
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          false,
+          false,
+          true
+        ],
+        "routes": [
+          {
+            "meridian": "HT",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "right",
+            "body": "male",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            99.55318155698481,
+            892.1855464529173,
+            5469.160525253093
+          ],
+          "target": [
+            99.55318155698481,
+            809.9887546794489,
+            -10.625592978104962
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 390,
+            "fullHeight": 758,
+            "offsetX": 12.5,
+            "offsetY": -33,
+            "width": 390,
+            "height": 758
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 147.24594065097182,
+            "maxDistance": 16198.234165999882
+          }
+        }
+      }
+    },
+    {
+      "name": "Saved local observation stays on the same named point after female switch",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "reference": "female",
+        "transition": false,
+        "attached": true,
+        "skin": true,
+        "root": true,
+        "side": "right",
+        "physical": "both",
+        "points": 10,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.70816889602503,
+            854.5354460569013,
+            8.041858926346137
+          ],
+          "visibleFromCamera": true,
+          "skinContact": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ],
+          "markerVisible": true,
+          "spriteVisible": false,
+          "paintedSelection": true,
+          "markerPosition": [
+            -149.832207,
+            854.51238,
+            7.715389163915807
+          ]
+        },
+        "flags": [
+          true,
+          true,
+          true,
+          false,
+          false,
+          true
+        ],
+        "routes": [
+          {
+            "meridian": "HT",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": false,
+            "cloud": false
+          },
+          {
+            "meridian": "PC",
+            "side": "right",
+            "body": "female",
+            "visible": true,
+            "lines": true,
+            "points": true,
+            "selected": true,
+            "cloud": false
+          }
+        ],
+        "skinOpacity": 1,
+        "camera": {
+          "position": [
+            99.55318155698481,
+            892.1855464529173,
+            5469.160525253093
+          ],
+          "target": [
+            99.55318155698481,
+            809.9887546794489,
+            -10.625592978104962
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 390,
+            "fullHeight": 758,
+            "offsetX": 12.5,
+            "offsetY": -33,
+            "width": 390,
+            "height": 758
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 147.24594065097182,
+            "maxDistance": 16198.234165999882
+          }
+        }
+      }
+    },
+    {
+      "name": "male skin line alone paints visible pixels at the actual contact",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "line": {
+          "changed": 251,
+          "checked": 6561
+        },
+        "q": {
+          "x": 680.7208865450317,
+          "y": 586.528701386348,
+          "z": 0.9982079433030024
+        }
+      }
+    },
+    {
+      "name": "male far-side point stays occluded by opaque skin",
+      "pass": true,
+      "detail": {
+        "sex": "male",
+        "visible": false,
+        "back": {
+          "changed": 0,
+          "checked": 121
+        }
+      }
+    },
+    {
+      "name": "female skin line alone paints visible pixels at the actual contact",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "line": {
+          "changed": 258,
+          "checked": 6561
+        },
+        "q": {
+          "x": 680.6801062498528,
+          "y": 586.5225369107228,
+          "z": 0.9982079259797765
+        }
+      }
+    },
+    {
+      "name": "female far-side point stays occluded by opaque skin",
+      "pass": true,
+      "detail": {
+        "sex": "female",
+        "visible": false,
+        "back": {
+          "changed": 0,
+          "checked": 121
+        }
+      }
+    },
+    {
+      "name": "No uncaught runtime or shader errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "startedAt": "2026-10-02T09:53:59.939Z",
+  "sideConflict": {
+    "sex": "male",
+    "reference": "male",
+    "transition": false,
+    "attached": true,
+    "skin": true,
+    "root": true,
+    "side": "left",
+    "physical": "left",
+    "points": 18,
+    "selected": {
+      "code": "PC6",
+      "side": "left",
+      "position": [
+        348.82960982050093,
+        854.5379695692806,
+        8.465231320666398
+      ],
+      "visibleFromCamera": true,
+      "skinContact": [
+        348.9385701139696,
+        854.51238,
+        8.13360980690222
+      ],
+      "markerVisible": true,
+      "spriteVisible": false,
+      "paintedSelection": true,
+      "markerPosition": [
+        348.9385701139696,
+        854.51238,
+        8.13360980690222
+      ]
+    },
+    "flags": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false
+    ],
+    "routes": [
+      {
+        "meridian": "HT",
+        "side": "left",
+        "body": "male",
+        "visible": true,
+        "lines": true,
+        "points": true,
+        "selected": false,
+        "cloud": false
+      },
+      {
+        "meridian": "PC",
+        "side": "left",
+        "body": "male",
+        "visible": true,
+        "lines": true,
+        "points": true,
+        "selected": true,
+        "cloud": false
+      }
+    ],
+    "skinOpacity": 1,
+    "camera": {
+      "position": [
+        357.3746727699366,
+        879.0585849894002,
+        553.4832410244962
+      ],
+      "target": [
+        357.3746727699366,
+        879.0585849894002,
+        8.465231320666392
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "zoom": 1,
+      "near": 0.5,
+      "far": 24000,
+      "view": {
+        "enabled": false,
+        "fullWidth": 868,
+        "fullHeight": 897,
+        "offsetX": 12.5,
+        "offsetY": -48.5,
+        "width": 868,
+        "height": 897
+      },
+      "viewName": "front",
+      "controlLimits": {
+        "minDistance": 5,
+        "maxDistance": 5000
+      }
+    }
+  },
+  "pointPaint": [
+    {
+      "sex": "male",
+      "code": "PC6",
+      "contact": [
+        -149.832207,
+        854.5123799999999,
+        8.133617112401174
+      ],
+      "visible": true,
+      "pixelDifference": 75,
+      "near": 121,
+      "q": {
+        "x": 680.7208865450317,
+        "y": 586.528701386348,
+        "z": 0.9982079433030024
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "male",
+      "code": "HT7",
+      "contact": [
+        -149.301361,
+        804.528503,
+        17.17447905811981
+      ],
+      "visible": true,
+      "pixelDifference": 69,
+      "near": 121,
+      "q": {
+        "x": 680.5026146295659,
+        "y": 587.132664163667,
+        "z": 0.9967117139082508
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "male",
+      "code": "LI4",
+      "contact": [
+        -201.1117596135928,
+        756.207354213439,
+        -3.584910262707318
+      ],
+      "visible": true,
+      "pixelDifference": 69,
+      "near": 121,
+      "q": {
+        "x": 681.4151056282341,
+        "y": 586.2046224642168,
+        "z": 0.997750411551077
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "male",
+      "code": "ST36",
+      "contact": [
+        -5.411289495613995,
+        306.09021699999994,
+        -8.578994017543993
+      ],
+      "visible": true,
+      "pixelDifference": 79,
+      "near": 121,
+      "q": {
+        "x": 680.9889859207788,
+        "y": 586.3768541642739,
+        "z": 0.9982701748736419
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "male",
+      "code": "SP6",
+      "contact": [
+        45.94850163904826,
+        112.13974500000002,
+        -62.62389216804758
+      ],
+      "visible": true,
+      "pixelDifference": 67,
+      "near": 121,
+      "q": {
+        "x": 681.1681774864287,
+        "y": 586.4340169290432,
+        "z": 0.9983232208282147
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "male",
+      "code": "KI3",
+      "contact": [
+        50.13674508127353,
+        8.282047048764124,
+        -102.86325491872645
+      ],
+      "visible": true,
+      "pixelDifference": 74,
+      "near": 121,
+      "q": {
+        "x": 680.0521444381918,
+        "y": 586.4208415522216,
+        "z": 0.997785127509436
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "male",
+      "code": "BL40",
+      "contact": [
+        23.000000000000007,
+        391,
+        -113.84594874154207
+      ],
+      "visible": true,
+      "pixelDifference": 73,
+      "near": 121,
+      "q": {
+        "x": 681.2039712823203,
+        "y": 586.8187923610919,
+        "z": 0.9982078908033866
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "male",
+      "code": "GV14",
+      "contact": [
+        99.553182,
+        1392.096436,
+        -119.76954075396328
+      ],
+      "visible": true,
+      "pixelDifference": 75,
+      "near": 121,
+      "q": {
+        "x": 680.939070578333,
+        "y": 586.6770212313961,
+        "z": 0.9982079692196898
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "male",
+      "code": "CV12",
+      "contact": [
+        99.53318200000001,
+        1081.397766,
+        105.77894843815945
+      ],
+      "visible": true,
+      "pixelDifference": 75,
+      "near": 121,
+      "q": {
+        "x": 681.006309976246,
+        "y": 586.3782733631679,
+        "z": 0.9982080008451386
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "female",
+      "code": "PC6",
+      "contact": [
+        -149.832207,
+        854.51238,
+        7.715389163915807
+      ],
+      "visible": true,
+      "pixelDifference": 76,
+      "near": 121,
+      "q": {
+        "x": 680.6801062498528,
+        "y": 586.5225369107228,
+        "z": 0.9982079259797765
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "female",
+      "code": "HT7",
+      "contact": [
+        -149.301361,
+        804.5285029999999,
+        7.5936403153871925
+      ],
+      "visible": true,
+      "pixelDifference": 74,
+      "near": 121,
+      "q": {
+        "x": 680.3942683874199,
+        "y": 586.284752305195,
+        "z": 0.9967119672656751
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "female",
+      "code": "LI4",
+      "contact": [
+        -197.3005366091176,
+        756.0880416442927,
+        0.44297453078680404
+      ],
+      "visible": true,
+      "pixelDifference": 75,
+      "near": 121,
+      "q": {
+        "x": 681.4397635391812,
+        "y": 585.8084921979213,
+        "z": 0.9977501035516231
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "female",
+      "code": "ST36",
+      "contact": [
+        -4.237506311227714,
+        306.090217,
+        -13.274126755089114
+      ],
+      "visible": true,
+      "pixelDifference": 79,
+      "near": 121,
+      "q": {
+        "x": 680.9185157121418,
+        "y": 586.3608574267739,
+        "z": 0.9982701672123153
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "female",
+      "code": "SP6",
+      "contact": [
+        41.27875203809158,
+        112.13974499999999,
+        -62.85737964809542
+      ],
+      "visible": true,
+      "pixelDifference": 61,
+      "near": 121,
+      "q": {
+        "x": 681.2227570519742,
+        "y": 586.4286843096703,
+        "z": 0.9983534321110914
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "female",
+      "code": "KI3",
+      "contact": [
+        51.12859882416874,
+        8.87715929450125,
+        -101.87140117583122
+      ],
+      "visible": true,
+      "pixelDifference": 73,
+      "near": 121,
+      "q": {
+        "x": 680.1158849612839,
+        "y": 586.3788560418201,
+        "z": 0.9977852506592395
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "female",
+      "code": "BL40",
+      "contact": [
+        23,
+        391,
+        -111.9590471626735
+      ],
+      "visible": true,
+      "pixelDifference": 72,
+      "near": 121,
+      "q": {
+        "x": 681.2436436423604,
+        "y": 586.6734023624989,
+        "z": 0.9982079379354023
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "female",
+      "code": "GV14",
+      "contact": [
+        99.573182,
+        1392.096436,
+        -113.7804080147457
+      ],
+      "visible": true,
+      "pixelDifference": 78,
+      "near": 121,
+      "q": {
+        "x": 681.0035638475002,
+        "y": 586.8683369643225,
+        "z": 0.9982078896632132
+      },
+      "skinOpacity": 1
+    },
+    {
+      "sex": "female",
+      "code": "CV12",
+      "contact": [
+        99.573182,
+        1081.397766,
+        101.71261080824677
+      ],
+      "visible": true,
+      "pixelDifference": 75,
+      "near": 121,
+      "q": {
+        "x": 681.0169175653843,
+        "y": 586.3627614336523,
+        "z": 0.9982079990753905
+      },
+      "skinOpacity": 1
+    }
+  ],
+  "lineAndDepth": [
+    {
+      "sex": "male",
+      "line": {
+        "changed": 251,
+        "checked": 6561
+      },
+      "back": {
+        "changed": 0,
+        "checked": 121
+      }
+    },
+    {
+      "sex": "female",
+      "line": {
+        "changed": 258,
+        "checked": 6561
+      },
+      "back": {
+        "changed": 0,
+        "checked": 121
+      }
+    }
+  ],
+  "success": true,
+  "finishedAt": "2026-10-02T09:58:58.890Z"
+}
