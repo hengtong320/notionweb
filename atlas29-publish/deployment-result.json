@@ -1,0 +1,66 @@
+{
+  "version": "29.0.0",
+  "publishedAndPublicVerified": true,
+  "sourceCommit": "cee364c11f10203ee87b084e06d7fa8f9fa7b2bd",
+  "candidateRun": 36958715022,
+  "publishAndPublicRun": 36959378879,
+  "entranceCommit": "ebb83a9086763e4acf96a70c8955879d649a8e86",
+  "pagesRun": 36959479583,
+  "fixedEntrance": "https://hengtong320.github.io/notionweb/anatomy/",
+  "versionURL": "https://hengtong320.github.io/notionweb/fullbody-tcm-v29/",
+  "publicContentHashesVerifiedInBothEngines": {
+    "index.html": "3c3faad0e72390152de6ba60343358f8eca7a7b1e3e54c3112dc2cca2a25bcb9",
+    "app.bundle.js": "d0b37d4f9e3c91b02a1bb40ff201df3266bb48031104442c5e0617606c75122d",
+    "reading-v26.css": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40",
+    "meridian-ux-v26.css": "a8d76ff6914102877dd6c62bb87203853d8c41ba67b4f964bd2e434579f7cc89"
+  },
+  "publicChecks": {
+    "chromium": {
+      "new": {"passed":14,"success":true,"finishedAt":"2026-10-02T03:20:35.950Z"},
+      "surface": {"passed":44,"success":true,"finishedAt":"2026-10-02T03:22:42.144Z"},
+      "observation": {"passed":28,"success":true,"finishedAt":"2026-10-02T03:24:01.183Z"},
+      "errors":[]
+    },
+    "webkit": {
+      "new": {"passed":14,"success":true,"finishedAt":"2026-10-02T03:20:00.905Z"},
+      "surface": {"passed":44,"success":true,"finishedAt":"2026-10-02T03:21:19.946Z"},
+      "observation": {"passed":28,"success":true,"finishedAt":"2026-10-02T03:22:11.563Z"},
+      "errors":[]
+    }
+  },
+  "localChecksPerEngine": {"new":14,"surface":44,"observation":28},
+  "syntheticPickingBoundaryChecks":12,
+  "baselineRun":36957825625,
+  "baselineFailedAssertions":9,
+  "baselineTotalAssertions":14,
+  "confirmedRepairs": {
+    "meridianMasterHiddenAfterEitherSexSwitch":true,
+    "maleLocalSkinMeshes":{"before":20,"after":250,"full":250},
+    "femaleLocalSkinMeshes":{"before":1,"after":1,"full":1},
+    "skinEnabledAfterBoneIsolation":{"before":0,"after":250},
+    "maleNerveXrayMeshesWhenAddingOpaqueSkin":{"before":550,"after":0},
+    "bareOpaqueSkinNoLongerSelectsHiddenMaleOrFemaleAnatomy":true,
+    "foregroundStructurePickingPermitted":true
+  },
+  "publicGeometryChecksInBothEngines": {
+    "male":{"displayPoints":670,"finite":true,"maxPointToDrawnRouteGap":0,"maxSecondaryShift":0},
+    "female":{"displayPoints":670,"finite":true,"maxPointToDrawnRouteGap":0,"maxSecondaryShift":0},
+    "sameBodyPointsRoutesAndPigmentEqualBeforeAfterRoundtrip":true,
+    "sampledTransitionsContainNoWrongBodyPigment":true,
+    "selectedPointRaycastsAgainstActualOpaqueBodies":["TE3 right","TE2 left","LI4 right","PC6 left","KI1 right","CV17 midline","BL23 left","BL66 right","LR2 left","ST44 left"]
+  },
+  "publicArtifacts": {
+    "chromium":{"id":11207587530,"sha256":"848ae83b1584bae77d1114cde3f55b87fadd500669d5e777f0acf23e133764e7"},
+    "webkit":{"id":11207302700,"sha256":"d1e98185d88121e6117efef1925a09342545076195aad8ef1529d60fd16abc84"}
+  },
+  "reviewedPublicScreenshots":["live-chromium-male-hand-returned.png","live-chromium-female-hand-after-switch.png","live-chromium-phone-female-hand-details.png","live-webkit-v29-skin-after-nerves.png"],
+  "originalModelsAndV28PointLineGeometryUnchanged":true,
+  "clinicalCalibration":false,
+  "limitations":[
+    "86 targeted browser assertions per engine and phase, not all historical cases or all devices. Synthetic picking boundaries are counted separately.",
+    "DPR2 phone tests simulate touch and viewport, not physical device certification.",
+    "Clinical landmark registration and pre-existing local route turns or mesh gaps are not resolved by state repairs.",
+    "Some inherited male surface scene headings and previously selected structure descriptions still need presentation cleanup; this release does not claim every UI detail is corrected.",
+    "Mesh counts describe graphical components, not standard anatomical bone or acupoint counts."
+  ]
+}
