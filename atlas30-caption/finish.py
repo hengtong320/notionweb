@@ -14,10 +14,14 @@ if sys.argv[1]=='prepare':
    $('visibleCount').textContent='体表 · 不透明度 '+Math.round((ss.surface.opacity??1)*100)+'%';
   }
   """
- f.write_text(s.replace(needle,code+needle))
+ s=s.replace(needle,code+needle)
+ event="window.addEventListener('atlas:tcm-visibility',()=>{if(learning.getState().enabled"
+ assert s.count(event)==1
+ s=s.replace(event,"window.addEventListener('atlas:tcm-visibility',()=>{schedule();if(learning.getState().enabled")
+ f.write_text(s)
  for n in ['shared-v14.js','learning-enhancements.js','index.html','index.template.html']:
   f=p/n;f.write_text(f.read_text().replace('30.0.0','30.0.1'))
- f=p/'README.md';f.write_text(f.read_text()+'\n## V30.0.1 体表标题与计数\n\n线上截图复查发现：切回男性、保留穴位选中状态时，骨骼恢复函数先写入“全身骨骼／0/210”，共用界面因存在经络参照而跳过标题更新。现在体表场景标题按当前人体和实际经络开关显示，数量位置改为体表不透明度，不再拿被皮肤遮住的骨头数量代表当前画面。纯体表、自定义体表、女性及骨骼预设分别检查。此修正不修改皮肤绘制、点线几何和切换恢复逻辑。\n')
+ f=p/'README.md';f.write_text(f.read_text()+'\n## V30.0.1 体表标题与计数\n\n线上截图复查发现：切回男性、保留穴位选中状态时，骨骼恢复函数先写入“全身骨骼／0/210”，共用界面因存在经络参照而跳过标题更新。现在体表场景标题按当前人体和实际经络开关显示，数量位置改为体表不透明度，不再拿被皮肤遮住的骨头数量代表当前画面。关闭经络总开关也立即刷新标题。纯体表、自定义体表、女性及骨骼预设分别处理。此修正不修改皮肤绘制、点线几何和切换恢复逻辑。\n')
  (p/'caption-base.json').write_text(json.dumps({'baseFiles':original,'sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID']},indent=2))
 elif sys.argv[1]=='record':
  d=json.loads((p/'caption-base.json').read_text());d['files']={n:sha(p/n) for n in files};d['tests']={n:sha(Path(n)) for n in ['atlas30-caption/verify.cjs','atlas30-publish/verified-tests/probe.cjs']};(p/'caption-build.json').write_text(json.dumps(d,indent=2))
