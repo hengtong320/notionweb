@@ -28,16 +28,22 @@ jobs:
           sudo apt-get install -y fonts-noto-cjk
       - name: Capture unchanged V30 baseline
         env: {ATLAS_VERSION: '30', OUT_DIR: atlas31-baseline}
-        run: node atlas31-repair/verify.cjs
-      - name: Build bounded V31 repair when present
+        run: node atlas31-repair/driver.cjs
+      - name: Build bounded V31 and verify immutable originals
         run: |
-          if test -f atlas31-repair/patch.py; then
-            python atlas31-repair/patch.py
-            node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v31/app.js'],outfile:'fullbody-tcm-v31/app.bundle.js',bundle:true,format:'iife',nodePaths:[process.env.NODE_PATH],loader:{'.txt':'text'},minify:true})"
-          fi
-      - name: Verify new runtime
-        run: |
-          if test -d fullbody-tcm-v31; then ATLAS_VERSION=31 OUT_DIR=atlas31-evidence node atlas31-repair/verify.cjs; fi
+          python atlas31-repair/patch.py
+          node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v31/app.js'],outfile:'fullbody-tcm-v31/app.bundle.js',bundle:true,format:'iife',nodePaths:[process.env.NODE_PATH],loader:{'.txt':'text'},minify:true})"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os
+          p=Path('fullbody-tcm-v31')
+          d={'version':'31.0.0','sourceCommit':os.environ['GITHUB_SHA'],'verificationRun':os.environ['GITHUB_RUN_ID'],'files':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in p.iterdir() if f.is_file()},'clinicalCalibration':False}
+          (p/'build-info.json').write_text(json.dumps(d,indent=2))
+          PY
+          test -z "$(git diff -- fullbody-tcm-v30/ anatomy/ fullbody-tcm-v9/assets/ fullbody-tcm-v11/assets/ fullbody-tcm-v12/assets/)"
+      - name: Actual V31 surface and switching journeys
+        env: {ATLAS_VERSION: '31', OUT_DIR: atlas31-evidence}
+        run: node atlas31-repair/driver.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
