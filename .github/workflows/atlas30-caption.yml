@@ -1,9 +1,12 @@
 name: Finalize V30 surface captions
 on:
   push:
-    paths: ['.github/workflows/atlas30-caption.yml']
+    paths: ['.github/workflows/atlas30-caption.yml','atlas30-caption/finish.py','atlas30-caption/verify.cjs']
   workflow_dispatch:
 permissions: {contents: read, actions: read}
+concurrency:
+  group: atlas30-caption
+  cancel-in-progress: true
 jobs:
   verify:
     strategy:
