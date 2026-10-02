@@ -1,0 +1,48 @@
+name: V31 public skin interaction
+on:
+  push:
+    paths: ['.github/workflows/atlas31-pointer.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix: {browser: [chromium, webkit]}
+    env:
+      NODE_PATH: /tmp/a31/node_modules
+      BROWSER: ${{ matrix.browser }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install actual browser and image reader
+        run: |
+          npm install --prefix /tmp/a31 playwright@1.56.1 pngjs@7.0.0
+          /tmp/a31/node_modules/.bin/playwright install --with-deps $BROWSER
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Require the exact public runtime
+        run: |
+          python - <<'PY'
+          import urllib.request,time,hashlib,json
+          from pathlib import Path
+          expected=json.loads(Path('fullbody-tcm-v31/build-info.json').read_text())['files']['app.bundle.js']
+          for i in range(30):
+              try:
+                  data=urllib.request.urlopen('https://hengtong320.github.io/notionweb/fullbody-tcm-v31/app.bundle.js?check='+str(time.time_ns()),timeout=25).read()
+                  assert hashlib.sha256(data).hexdigest()==expected
+                  break
+              except Exception:
+                  if i==29:raise
+                  time.sleep(10)
+          PY
+      - name: Click displayed points and check both sides in actual pixels
+        run: node atlas31-publish/pointer-check.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas31-pointer-${{ matrix.browser }}
+          path: atlas31-pointer/
+          retention-days: 14
