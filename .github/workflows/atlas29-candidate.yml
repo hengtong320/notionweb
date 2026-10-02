@@ -38,6 +38,7 @@ jobs:
       - name: Build and hash runtime
         run: |
           node --check atlas29-repair/probe.cjs
+          node atlas29-repair/opaque-picking.test.cjs
           node -e "require('esbuild').buildSync({entryPoints:['fullbody-tcm-v29/app.js'],outfile:'fullbody-tcm-v29/app.bundle.js',bundle:true,format:'iife',nodePaths:[process.env.NODE_PATH],loader:{'.txt':'text'},minify:true})"
           python - <<'PY'
           import os,json,hashlib
