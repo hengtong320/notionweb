@@ -17,10 +17,12 @@ for engine,root in roots.items():
  for name,digest in b['tests'].items():assert sha(root/'atlas29-repair'/name)==digest,name
  inv=json.loads((p/'v29-invariants.json').read_text())
  for name,digest in inv['unchangedFiles'].items():assert sha(base/name)==digest==sha(p/name),name
+ unit=json.loads((p/f'checks/local-{engine}-picking-unit.json').read_text())
+ assert unit['success'] and len(unit['checks'])==12 and all(c['pass'] for c in unit['checks'])
  cases={
   'new':(root/f'atlas29-evidence/local-{engine}-v29.json',14),
   'surface':(p/f'checks/local-{engine}-surface-switch.json',44),
-  'observation':(p/f'checks/observation-local-{engine}.json',28)
+  'observation':(p/f'checks/observation-local-{engine}-observation.json',28)
  }
  reports[engine]={}
  for group,(f,count) in cases.items():
@@ -39,6 +41,6 @@ for engine,root in roots.items():
 tests=Path('atlas29-publish/verified-tests');tests.mkdir(parents=True,exist_ok=True)
 for f in (roots['chromium']/'atlas29-repair').glob('*.cjs'):shutil.copy2(f,tests/f.name)
 b=manifests['chromium']
-release={'version':'29.0.0','sourceCommit':b['sourceCommit'],'candidateRun':b['verificationRun'],'publishRun':os.environ['GITHUB_RUN_ID'],'bundleSHA256':b['files']['app.bundle.js'],'localBrowserChecks':reports,'publicBrowserChecks':'Recorded separately after public entrance activation','clinicalCalibration':False,'rawAnatomyUnchanged':True,'v28DisplayPointsRoutesAndPigmentGeometryUnchanged':True,'previousV28Preserved':True,'fixes':['Retain hidden meridian master state through sex switching','Preserve continuous opaque skin while locally cropping meridians','Exit incompatible internal-structure isolation when enabling skin','Reset stale nerve xray when explicitly adding skin','Block opaque-skin click-through after visible meridian picking'],'note':'86 current assertions per engine. Geometry and visibility tests are not clinical calibration or an all-device guarantee.'}
+release={'version':'29.0.0','sourceCommit':b['sourceCommit'],'candidateRun':b['verificationRun'],'publishRun':os.environ['GITHUB_RUN_ID'],'bundleSHA256':b['files']['app.bundle.js'],'localBrowserChecks':reports,'syntheticPickingBoundaryChecks':12,'publicBrowserChecks':'Recorded separately after public entrance activation','clinicalCalibration':False,'rawAnatomyUnchanged':True,'v28DisplayPointsRoutesAndPigmentGeometryUnchanged':True,'previousV28Preserved':True,'fixes':['Retain hidden meridian master state through sex switching','Preserve continuous opaque skin while locally cropping meridians','Exit incompatible internal-structure isolation when enabling skin','Reset stale nerve xray when explicitly adding skin','Block behind-skin click-through while permitting visible foreground structures'],'note':'86 current browser assertions per engine, plus 12 synthetic picking boundaries recorded separately. Geometry and visibility tests are not clinical calibration or an all-device guarantee.'}
 (dest/'release.json').write_text(json.dumps(release,ensure_ascii=False,indent=2))
 print(json.dumps(release,ensure_ascii=False,indent=2))
