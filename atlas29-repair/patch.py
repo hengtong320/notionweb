@@ -30,11 +30,12 @@ f.write_text(s);shutil.copy2('atlas29-repair/opaque-skin.js',dst/'opaque-skin-v2
 for n in ['shared-v14.js','learning-enhancements.js','index.html','index.template.html','versions.html']:
  f=dst/n
  if f.exists():f.write_text(f.read_text().replace('V28 · 男女体表一致性','V29 · 体表状态与可见性').replace('28.0.0','29.0.0').replace('fullbody-tcm-v28/','fullbody-tcm-v29/'))
-# Copy tested baseline scripts from their exact, pinned Actions artifact.
+# Retain V26 baseline comparisons, but run every candidate journey against V29.
 prior=Path('/tmp/atlas28-tested/atlas28-repair')
 if prior.is_dir():
  for old,new in [('verify.cjs','surface-regression.cjs'),('observation.cjs','observation-regression.cjs')]:
-  s=(prior/old).read_text().replace('fullbody-tcm-v28','fullbody-tcm-v29').replace("||'28'","||'29'").replace("version:'28.0.0'","version:'29.0.0'")
+  s=(prior/old).read_text().replace('fullbody-tcm-v28','fullbody-tcm-v29').replace("'28'","'29'").replace("version:'28.0.0'","version:'29.0.0'")
+  assert "start('28'" not in s and "v==='28'" not in s
   Path('atlas29-repair',new).write_text(s)
 immutable=[f.name for f in src.iterdir() if f.is_file() and (f.suffix=='.json' and f.name not in ['release.json','build-info.json'] or f.name in ['skin-v17.js','skin-ink-v24.js','skin-route-v24.js','point-rules-v18.js','reference-data.js','acupoints-data.js','female-fingers-v24.js','surface-path-v25.js'])]
 for n in immutable:assert sha(src/n)==sha(dst/n),n
