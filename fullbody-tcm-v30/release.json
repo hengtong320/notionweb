@@ -1,0 +1,50 @@
+{
+  "version": "30.0.0",
+  "sourceCommit": "498438a151264343b1835d16c674aeaa90eaf5db",
+  "candidateRun": "36979299044",
+  "publishRun": "36979693352",
+  "bundleSHA256": "fadf2269c595712a004c6296479fb96aabd4101959bd7b82f44ff86633cd3e7b",
+  "localBrowserChecks": {
+    "chromium": {
+      "contact": {
+        "passed": 19,
+        "finishedAt": "2026-10-02T07:36:53.210Z"
+      },
+      "surface": {
+        "passed": 44,
+        "finishedAt": "2026-10-02T07:38:20.327Z"
+      },
+      "observation": {
+        "passed": 28,
+        "finishedAt": "2026-10-02T07:39:14.633Z"
+      },
+      "opaque": {
+        "passed": 14,
+        "finishedAt": "2026-10-02T07:40:14.004Z"
+      }
+    },
+    "webkit": {
+      "contact": {
+        "passed": 19,
+        "finishedAt": "2026-10-02T07:37:16.509Z"
+      },
+      "surface": {
+        "passed": 44,
+        "finishedAt": "2026-10-02T07:38:50.683Z"
+      },
+      "observation": {
+        "passed": 28,
+        "finishedAt": "2026-10-02T07:39:53.873Z"
+      },
+      "opaque": {
+        "passed": 14,
+        "finishedAt": "2026-10-02T07:40:48.136Z"
+      }
+    }
+  },
+  "originalModelsAndNumberedRoutesUnchanged": true,
+  "skinContactPositionsUsedForLabelsPickingAndSelection": true,
+  "clinicalCalibration": false,
+  "previousV29Preserved": true,
+  "publicVerification": "Recorded separately after entry activation"
+}

@@ -1,0 +1,1694 @@
+{
+  "chromium": [
+    {
+      "name": "Line-only local observation follows the female counterpart without revealing points",
+      "detail": {
+        "before": {
+          "body": "male",
+          "reference": "male",
+          "enabled": true,
+          "points": false,
+          "lines": true,
+          "names": true,
+          "side": "both",
+          "physical": "both",
+          "point": {
+            "code": "TE3",
+            "name": "中渚",
+            "side": "right",
+            "areaOnly": false
+          },
+          "position": [
+            -148.18013463852665,
+            739.622341872244,
+            0.18322926481635465
+          ],
+          "camera": {
+            "position": [
+              -152.8838341787528,
+              753.1199144659366,
+              -299.82637591055953
+            ],
+            "target": [
+              -152.88383417875283,
+              753.1199144659366,
+              0.1832292648163545
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "zoom": 1,
+            "near": 0.5,
+            "far": 24000,
+            "view": {
+              "enabled": false,
+              "fullWidth": 868,
+              "fullHeight": 897,
+              "offsetX": 12.5,
+              "offsetY": -48.5,
+              "width": 868,
+              "height": 897
+            },
+            "viewName": "back",
+            "controlLimits": {
+              "minDistance": 5,
+              "maxDistance": 5000
+            }
+          },
+          "visible": 0,
+          "inks": [
+            {
+              "side": "right",
+              "visible": true,
+              "lines": true,
+              "points": false
+            },
+            {
+              "side": "left",
+              "visible": true,
+              "lines": true,
+              "points": false
+            }
+          ],
+          "transfer": null
+        },
+        "after": {
+          "body": "female",
+          "reference": "female",
+          "enabled": true,
+          "points": false,
+          "lines": true,
+          "names": true,
+          "side": "both",
+          "physical": "both",
+          "point": {
+            "code": "TE3",
+            "name": "中渚",
+            "side": "right",
+            "areaOnly": false
+          },
+          "position": [
+            -148.26085300089844,
+            739.5883965038073,
+            -1.6335540497529943
+          ],
+          "camera": {
+            "position": [
+              -152.8838341787528,
+              753.1199144659366,
+              -299.82637591055953
+            ],
+            "target": [
+              -152.88383417875283,
+              753.1199144659366,
+              0.1832292648163545
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "zoom": 1,
+            "near": 0.5,
+            "far": 24000,
+            "view": {
+              "enabled": false,
+              "fullWidth": 868,
+              "fullHeight": 897,
+              "offsetX": 12.5,
+              "offsetY": -48.5,
+              "width": 868,
+              "height": 897
+            },
+            "viewName": "back",
+            "controlLimits": {
+              "minDistance": 5,
+              "maxDistance": 5000
+            }
+          },
+          "visible": 0,
+          "inks": [
+            {
+              "side": "right",
+              "visible": true,
+              "lines": true,
+              "points": false
+            },
+            {
+              "side": "left",
+              "visible": true,
+              "lines": true,
+              "points": false
+            }
+          ],
+          "transfer": {
+            "applied": false,
+            "reason": "whole-view-or-no-point"
+          }
+        },
+        "expected": [
+          -152.96455254112462,
+          753.0859690975,
+          -1.6335540497529946
+        ]
+      }
+    },
+    {
+      "name": "male changing point side preserves hidden point and name switches",
+      "detail": {
+        "body": "male",
+        "reference": "male",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "left",
+        "physical": "both",
+        "point": {
+          "code": "PC6",
+          "name": "内关",
+          "side": "left",
+          "areaOnly": false
+        },
+        "position": [
+          348.82960982050093,
+          854.5379695692806,
+          8.465231320666398
+        ],
+        "camera": {
+          "position": [
+            -141.1781841459379,
+            879.0585849887274,
+            553.483248457808
+          ],
+          "target": [
+            -141.1781841459379,
+            879.0585849887274,
+            8.465238753978241
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 9,
+        "inks": [
+          {
+            "side": "left",
+            "visible": true,
+            "lines": true,
+            "points": true
+          }
+        ],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "female changing point side preserves hidden point and name switches",
+      "detail": {
+        "body": "female",
+        "reference": "female",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "left",
+        "physical": "both",
+        "point": {
+          "code": "PC6",
+          "name": "内关",
+          "side": "left",
+          "areaOnly": false
+        },
+        "position": [
+          348.8116532429268,
+          854.5368303226076,
+          8.096676939972124
+        ],
+        "camera": {
+          "position": [
+            -141.1631059465894,
+            879.056061477021,
+            553.0598686301759
+          ],
+          "target": [
+            -141.1631059465894,
+            879.056061477021,
+            8.041858926346137
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 9,
+        "inks": [
+          {
+            "side": "left",
+            "visible": true,
+            "lines": true,
+            "points": true
+          }
+        ],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "male explicit opposite meridian side is not silently filtered to zero",
+      "detail": {
+        "body": "male",
+        "reference": "male",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "right",
+        "physical": "left",
+        "point": null,
+        "camera": {
+          "position": [
+            -152.8838341787528,
+            753.1199144659366,
+            -299.82637591055953
+          ],
+          "target": [
+            -152.88383417875283,
+            753.1199144659366,
+            0.1832292648163545
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "back",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 0,
+        "inks": [],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "male explicit bilateral surface view contains both physical sides",
+      "detail": {
+        "body": "male",
+        "reference": "male",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "both",
+        "physical": "left",
+        "point": null,
+        "camera": {
+          "position": [
+            -152.8838341787528,
+            753.1199144659366,
+            -299.82637591055953
+          ],
+          "target": [
+            -152.88383417875283,
+            753.1199144659366,
+            0.1832292648163545
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "back",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 23,
+        "inks": [
+          {
+            "side": "left",
+            "visible": true,
+            "lines": true,
+            "points": true
+          }
+        ],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "female explicit opposite meridian side is not silently filtered to zero",
+      "detail": {
+        "body": "female",
+        "reference": "female",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "right",
+        "physical": "left",
+        "point": null,
+        "camera": {
+          "position": [
+            -152.96455254112465,
+            753.0859690975,
+            -301.6431592251289
+          ],
+          "target": [
+            -152.96455254112468,
+            753.0859690975,
+            -1.6335540497529948
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "back",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 0,
+        "inks": [],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "female explicit bilateral surface view contains both physical sides",
+      "detail": {
+        "body": "female",
+        "reference": "female",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "both",
+        "physical": "left",
+        "point": null,
+        "camera": {
+          "position": [
+            -152.96455254112465,
+            753.0859690975,
+            -301.6431592251289
+          ],
+          "target": [
+            -152.96455254112468,
+            753.0859690975,
+            -1.6335540497529948
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "back",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 23,
+        "inks": [
+          {
+            "side": "left",
+            "visible": true,
+            "lines": true,
+            "points": true
+          }
+        ],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "male TE3 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          -148.25044100000002,
+          739.721183,
+          0.5115392509579482
+        ],
+        "paint": {
+          "x": 681.3685481166658,
+          "y": 585.9450711974077
+        },
+        "hit": {
+          "x": 681.0000000000002,
+          "y": 586.5000000000001,
+          "z": 0.996708371478493
+        },
+        "pixelError": 0.6661634110669458,
+        "selected": {
+          "code": "TE3",
+          "side": "right",
+          "position": [
+            -148.18013463852665,
+            739.622341872244,
+            0.18322926481635465
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -148.1801300048828,
+            739.622314453125,
+            0.1832292675971985
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "male selection is really painted at its skin center, not a lifted sprite",
+      "detail": {
+        "changed": 83,
+        "samples": 88,
+        "selected": {
+          "code": "TE3",
+          "side": "right",
+          "position": [
+            -148.18013463852665,
+            739.622341872244,
+            0.18322926481635465
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -148.1801300048828,
+            739.622314453125,
+            0.1832292675971985
+          ]
+        }
+      }
+    },
+    {
+      "name": "male PC6 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          -149.832207,
+          854.5123799999999,
+          8.133617112401174
+        ],
+        "paint": {
+          "x": 680.7208865450317,
+          "y": 586.528701386348
+        },
+        "hit": {
+          "x": 681,
+          "y": 586.5000000000002,
+          "z": 0.9982068275552123
+        },
+        "pixelError": 0.28058526390853317,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.72324709537352,
+            854.5379695686078,
+            8.465238753978246
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -149.72325134277344,
+            854.5379638671875,
+            8.465238571166992
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "male LR2 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          27.790394184571472,
+          -24.325763489257124,
+          92.79039418457147
+        ],
+        "paint": {
+          "x": 680.6688097264584,
+          "y": 586.9069725140248
+        },
+        "hit": {
+          "x": 681,
+          "y": 586.5,
+          "z": 0.9977841278486419
+        },
+        "pixelError": 0.524703368066372,
+        "selected": {
+          "code": "LR2",
+          "side": "right",
+          "position": [
+            28.025111822241872,
+            -24.08094376737512,
+            92.87682875140706
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            28.02511215209961,
+            -24.080944061279297,
+            92.8768310546875
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "female TE3 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          -148.250441,
+          739.721183,
+          -1.3098885794504982
+        ],
+        "paint": {
+          "x": 680.9739294145911,
+          "y": 585.7802771753056
+        },
+        "hit": {
+          "x": 681,
+          "y": 586.5000000000001,
+          "z": 0.996708371478493
+        },
+        "pixelError": 0.7201948485026619,
+        "selected": {
+          "code": "TE3",
+          "side": "right",
+          "position": [
+            -148.26085300089844,
+            739.5883965038073,
+            -1.6335540497529943
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -148.26084899902344,
+            739.58837890625,
+            -1.6335541009902954
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "female selection is really painted at its skin center, not a lifted sprite",
+      "detail": {
+        "changed": 83,
+        "samples": 88,
+        "selected": {
+          "code": "TE3",
+          "side": "right",
+          "position": [
+            -148.26085300089844,
+            739.5883965038073,
+            -1.6335540497529943
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -148.26084899902344,
+            739.58837890625,
+            -1.6335541009902954
+          ]
+        }
+      }
+    },
+    {
+      "name": "female PC6 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          -149.832207,
+          854.51238,
+          7.715389163915807
+        ],
+        "paint": {
+          "x": 680.6801062498528,
+          "y": 586.5225369107228
+        },
+        "hit": {
+          "x": 681,
+          "y": 586.5000000000002,
+          "z": 0.9982068275552123
+        },
+        "pixelError": 0.32068664413750686,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.70816889602503,
+            854.5354460569013,
+            8.041858926346137
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -149.7081756591797,
+            854.5354614257812,
+            8.041858673095703
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "female LR2 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          34.16800589745761,
+          -20.499196461525447,
+          99.16800589745762
+        ],
+        "paint": {
+          "x": 680.5097731355427,
+          "y": 586.3214326878123
+        },
+        "hit": {
+          "x": 680.9999999999998,
+          "y": 586.5000000000001,
+          "z": 0.997784127848642
+        },
+        "pixelError": 0.5217362011758749,
+        "selected": {
+          "code": "LR2",
+          "side": "right",
+          "position": [
+            34.4904821174102,
+            -20.41398959790449,
+            99.27406662514215
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            34.490482330322266,
+            -20.413990020751953,
+            99.27406311035156
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "Old-body view and side controls cannot mutate a pending skin switch",
+      "detail": {
+        "controls": [
+          {
+            "class": "side-picker",
+            "inert": false
+          },
+          {
+            "class": "view-switcher",
+            "inert": false
+          },
+          {
+            "class": "control-dock",
+            "inert": false
+          }
+        ],
+        "transition": true,
+        "pigment": false
+      }
+    },
+    {
+      "name": "Settled body contains only matching opaque skin and matching selected pigment",
+      "detail": {
+        "unlocked": true,
+        "skin": [
+          {
+            "opacity": 1,
+            "body": "female"
+          }
+        ],
+        "selected": {
+          "code": "TE3",
+          "side": "right",
+          "position": [
+            -148.26085300089844,
+            739.5883965038073,
+            -1.6335540497529943
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -148.26084899902344,
+            739.58837890625,
+            -1.6335541009902954
+          ]
+        }
+      }
+    }
+  ],
+  "webkit": [
+    {
+      "name": "Line-only local observation follows the female counterpart without revealing points",
+      "detail": {
+        "before": {
+          "body": "male",
+          "reference": "male",
+          "enabled": true,
+          "points": false,
+          "lines": true,
+          "names": true,
+          "side": "both",
+          "physical": "both",
+          "point": {
+            "code": "TE3",
+            "name": "中渚",
+            "side": "right",
+            "areaOnly": false
+          },
+          "position": [
+            -148.18013463852665,
+            739.622341872244,
+            0.18322926481635465
+          ],
+          "camera": {
+            "position": [
+              -152.8838341787528,
+              753.1199144659366,
+              -299.82637591055953
+            ],
+            "target": [
+              -152.88383417875283,
+              753.1199144659366,
+              0.1832292648163545
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "zoom": 1,
+            "near": 0.5,
+            "far": 24000,
+            "view": {
+              "enabled": false,
+              "fullWidth": 868,
+              "fullHeight": 897,
+              "offsetX": 12.5,
+              "offsetY": -48.5,
+              "width": 868,
+              "height": 897
+            },
+            "viewName": "back",
+            "controlLimits": {
+              "minDistance": 5,
+              "maxDistance": 5000
+            }
+          },
+          "visible": 0,
+          "inks": [
+            {
+              "side": "right",
+              "visible": true,
+              "lines": true,
+              "points": false
+            },
+            {
+              "side": "left",
+              "visible": true,
+              "lines": true,
+              "points": false
+            }
+          ],
+          "transfer": null
+        },
+        "after": {
+          "body": "female",
+          "reference": "female",
+          "enabled": true,
+          "points": false,
+          "lines": true,
+          "names": true,
+          "side": "both",
+          "physical": "both",
+          "point": {
+            "code": "TE3",
+            "name": "中渚",
+            "side": "right",
+            "areaOnly": false
+          },
+          "position": [
+            -148.26085300089844,
+            739.5883965038073,
+            -1.6335540497529943
+          ],
+          "camera": {
+            "position": [
+              -152.8838341787528,
+              753.1199144659366,
+              -299.82637591055953
+            ],
+            "target": [
+              -152.88383417875283,
+              753.1199144659366,
+              0.1832292648163545
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "zoom": 1,
+            "near": 0.5,
+            "far": 24000,
+            "view": {
+              "enabled": false,
+              "fullWidth": 868,
+              "fullHeight": 897,
+              "offsetX": 12.5,
+              "offsetY": -48.5,
+              "width": 868,
+              "height": 897
+            },
+            "viewName": "back",
+            "controlLimits": {
+              "minDistance": 5,
+              "maxDistance": 5000
+            }
+          },
+          "visible": 0,
+          "inks": [
+            {
+              "side": "right",
+              "visible": true,
+              "lines": true,
+              "points": false
+            },
+            {
+              "side": "left",
+              "visible": true,
+              "lines": true,
+              "points": false
+            }
+          ],
+          "transfer": {
+            "applied": false,
+            "reason": "whole-view-or-no-point"
+          }
+        },
+        "expected": [
+          -152.96455254112462,
+          753.0859690975,
+          -1.6335540497529946
+        ]
+      }
+    },
+    {
+      "name": "male changing point side preserves hidden point and name switches",
+      "detail": {
+        "body": "male",
+        "reference": "male",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "left",
+        "physical": "both",
+        "point": {
+          "code": "PC6",
+          "name": "内关",
+          "side": "left",
+          "areaOnly": false
+        },
+        "position": [
+          348.82960982050093,
+          854.5379695692806,
+          8.465231320666398
+        ],
+        "camera": {
+          "position": [
+            -141.1781841459379,
+            879.0585849887275,
+            553.483248457808
+          ],
+          "target": [
+            -141.1781841459379,
+            879.0585849887275,
+            8.465238753978241
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 9,
+        "inks": [
+          {
+            "side": "left",
+            "visible": true,
+            "lines": true,
+            "points": true
+          }
+        ],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "female changing point side preserves hidden point and name switches",
+      "detail": {
+        "body": "female",
+        "reference": "female",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "left",
+        "physical": "both",
+        "point": {
+          "code": "PC6",
+          "name": "内关",
+          "side": "left",
+          "areaOnly": false
+        },
+        "position": [
+          348.8116532429268,
+          854.5368303226076,
+          8.096676939972124
+        ],
+        "camera": {
+          "position": [
+            -141.1631059465894,
+            879.056061477021,
+            553.0598686301759
+          ],
+          "target": [
+            -141.1631059465894,
+            879.056061477021,
+            8.041858926346137
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "front",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 9,
+        "inks": [
+          {
+            "side": "left",
+            "visible": true,
+            "lines": true,
+            "points": true
+          }
+        ],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "male explicit opposite meridian side is not silently filtered to zero",
+      "detail": {
+        "body": "male",
+        "reference": "male",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "right",
+        "physical": "left",
+        "point": null,
+        "camera": {
+          "position": [
+            -152.8838341787528,
+            753.1199144659366,
+            -299.82637591055953
+          ],
+          "target": [
+            -152.88383417875283,
+            753.1199144659366,
+            0.1832292648163545
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "back",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 0,
+        "inks": [],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "male explicit bilateral surface view contains both physical sides",
+      "detail": {
+        "body": "male",
+        "reference": "male",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "both",
+        "physical": "left",
+        "point": null,
+        "camera": {
+          "position": [
+            -152.8838341787528,
+            753.1199144659366,
+            -299.82637591055953
+          ],
+          "target": [
+            -152.88383417875283,
+            753.1199144659366,
+            0.1832292648163545
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "back",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 23,
+        "inks": [
+          {
+            "side": "left",
+            "visible": true,
+            "lines": true,
+            "points": true
+          }
+        ],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "female explicit opposite meridian side is not silently filtered to zero",
+      "detail": {
+        "body": "female",
+        "reference": "female",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "right",
+        "physical": "left",
+        "point": null,
+        "camera": {
+          "position": [
+            -152.96455254112465,
+            753.0859690975,
+            -301.6431592251289
+          ],
+          "target": [
+            -152.96455254112468,
+            753.0859690975,
+            -1.6335540497529948
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "back",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 0,
+        "inks": [],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "female explicit bilateral surface view contains both physical sides",
+      "detail": {
+        "body": "female",
+        "reference": "female",
+        "enabled": true,
+        "points": true,
+        "lines": true,
+        "names": false,
+        "side": "both",
+        "physical": "left",
+        "point": null,
+        "camera": {
+          "position": [
+            -152.96455254112465,
+            753.0859690975,
+            -301.6431592251289
+          ],
+          "target": [
+            -152.96455254112468,
+            753.0859690975,
+            -1.6335540497529948
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "near": 0.5,
+          "far": 24000,
+          "view": {
+            "enabled": false,
+            "fullWidth": 868,
+            "fullHeight": 897,
+            "offsetX": 12.5,
+            "offsetY": -48.5,
+            "width": 868,
+            "height": 897
+          },
+          "viewName": "back",
+          "controlLimits": {
+            "minDistance": 5,
+            "maxDistance": 5000
+          }
+        },
+        "visible": 23,
+        "inks": [
+          {
+            "side": "left",
+            "visible": true,
+            "lines": true,
+            "points": true
+          }
+        ],
+        "transfer": {
+          "applied": false,
+          "reason": "whole-view-or-no-point"
+        }
+      }
+    },
+    {
+      "name": "male TE3 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          -148.25044100000002,
+          739.721183,
+          0.5115392509579482
+        ],
+        "paint": {
+          "x": 681.3685481166658,
+          "y": 585.9450711974077
+        },
+        "hit": {
+          "x": 681.0000000000002,
+          "y": 586.5000000000001,
+          "z": 0.996708371478493
+        },
+        "pixelError": 0.6661634110669458,
+        "selected": {
+          "code": "TE3",
+          "side": "right",
+          "position": [
+            -148.18013463852665,
+            739.622341872244,
+            0.18322926481635465
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -148.1801300048828,
+            739.622314453125,
+            0.1832292675971985
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "male selection is really painted at its skin center, not a lifted sprite",
+      "detail": {
+        "changed": 83,
+        "samples": 88,
+        "selected": {
+          "code": "TE3",
+          "side": "right",
+          "position": [
+            -148.18013463852665,
+            739.622341872244,
+            0.18322926481635465
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -148.1801300048828,
+            739.622314453125,
+            0.1832292675971985
+          ]
+        }
+      }
+    },
+    {
+      "name": "male PC6 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          -149.832207,
+          854.5123799999999,
+          8.133617112401174
+        ],
+        "paint": {
+          "x": 680.7208865450317,
+          "y": 586.528701386348
+        },
+        "hit": {
+          "x": 681,
+          "y": 586.5000000000002,
+          "z": 0.9982068275552123
+        },
+        "pixelError": 0.28058526390853317,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.72324709537352,
+            854.5379695686078,
+            8.465238753978246
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -149.72325134277344,
+            854.5379638671875,
+            8.465238571166992
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "male LR2 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          27.790394184571472,
+          -24.325763489257124,
+          92.79039418457147
+        ],
+        "paint": {
+          "x": 680.6688097264584,
+          "y": 586.9069725140248
+        },
+        "hit": {
+          "x": 681,
+          "y": 586.5,
+          "z": 0.9977841278486419
+        },
+        "pixelError": 0.524703368066372,
+        "selected": {
+          "code": "LR2",
+          "side": "right",
+          "position": [
+            28.025111822241872,
+            -24.08094376737512,
+            92.87682875140706
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            28.02511215209961,
+            -24.080944061279297,
+            92.8768310546875
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "female TE3 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          -148.250441,
+          739.721183,
+          -1.3098885794504982
+        ],
+        "paint": {
+          "x": 680.9739294145911,
+          "y": 585.7802771753056
+        },
+        "hit": {
+          "x": 681,
+          "y": 586.5000000000001,
+          "z": 0.996708371478493
+        },
+        "pixelError": 0.7201948485026618,
+        "selected": {
+          "code": "TE3",
+          "side": "right",
+          "position": [
+            -148.26085300089844,
+            739.5883965038073,
+            -1.6335540497529943
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -148.26084899902344,
+            739.58837890625,
+            -1.6335541009902954
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "female selection is really painted at its skin center, not a lifted sprite",
+      "detail": {
+        "changed": 81,
+        "samples": 88,
+        "selected": {
+          "code": "TE3",
+          "side": "right",
+          "position": [
+            -148.26085300089844,
+            739.5883965038073,
+            -1.6335540497529943
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -148.26084899902344,
+            739.58837890625,
+            -1.6335541009902954
+          ]
+        }
+      }
+    },
+    {
+      "name": "female PC6 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          -149.832207,
+          854.51238,
+          7.715389163915807
+        ],
+        "paint": {
+          "x": 680.6801062498528,
+          "y": 586.5225369107228
+        },
+        "hit": {
+          "x": 681,
+          "y": 586.5000000000002,
+          "z": 0.9982068275552123
+        },
+        "pixelError": 0.32068664413750686,
+        "selected": {
+          "code": "PC6",
+          "side": "right",
+          "position": [
+            -149.70816889602503,
+            854.5354460569013,
+            8.041858926346137
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -149.7081756591797,
+            854.5354614257812,
+            8.041858673095703
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "female LR2 label/click center agrees with the skin pigment center",
+      "detail": {
+        "center": [
+          34.16800589745761,
+          -20.499196461525447,
+          99.16800589745762
+        ],
+        "paint": {
+          "x": 680.5097731355427,
+          "y": 586.3214326878123
+        },
+        "hit": {
+          "x": 680.9999999999998,
+          "y": 586.5000000000001,
+          "z": 0.997784127848642
+        },
+        "pixelError": 0.521736201175875,
+        "selected": {
+          "code": "LR2",
+          "side": "right",
+          "position": [
+            34.4904821174102,
+            -20.41398959790449,
+            99.27406662514215
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            34.490482330322266,
+            -20.413990020751953,
+            99.27406311035156
+          ]
+        },
+        "selectedInInk": false
+      }
+    },
+    {
+      "name": "Old-body view and side controls cannot mutate a pending skin switch",
+      "detail": {
+        "controls": [
+          {
+            "class": "side-picker",
+            "inert": false
+          },
+          {
+            "class": "view-switcher",
+            "inert": false
+          },
+          {
+            "class": "control-dock",
+            "inert": false
+          }
+        ],
+        "transition": true,
+        "pigment": false
+      }
+    },
+    {
+      "name": "Settled body contains only matching opaque skin and matching selected pigment",
+      "detail": {
+        "unlocked": true,
+        "skin": [
+          {
+            "opacity": 1,
+            "body": "female"
+          }
+        ],
+        "selected": {
+          "code": "TE3",
+          "side": "right",
+          "position": [
+            -148.26085300089844,
+            739.5883965038073,
+            -1.6335540497529943
+          ],
+          "visibleFromCamera": true,
+          "markerVisible": true,
+          "markerPosition": [
+            -148.26084899902344,
+            739.58837890625,
+            -1.6335541009902954
+          ]
+        }
+      }
+    }
+  ]
+}
