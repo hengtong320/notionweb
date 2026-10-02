@@ -1,0 +1,31 @@
+name: V29 opaque-skin baseline
+on:
+  push:
+    paths: ['.github/workflows/atlas29-baseline.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NODE_PATH: /tmp/a29/node_modules
+      ATLAS_VERSION: '28'
+      ALLOW_BASELINE_FAILURE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Pinned browser and fonts
+        run: |
+          npm install --prefix /tmp/a29 playwright@1.56.1
+          /tmp/a29/node_modules/.bin/playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Actual reproduction against the published source
+        run: node atlas29-repair/probe.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas29-baseline
+          path: atlas29-evidence/
+          retention-days: 14
