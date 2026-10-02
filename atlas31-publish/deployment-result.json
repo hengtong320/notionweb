@@ -1,0 +1,67 @@
+{
+  "version": "31.0.0",
+  "published": true,
+  "fixedEntrance": "https://hengtong320.github.io/notionweb/anatomy/",
+  "versionUrl": "https://hengtong320.github.io/notionweb/fullbody-tcm-v31/",
+  "sourceCommit": "55e515814792204896da59349993701a6cee84a3",
+  "candidateRun": 36991720390,
+  "publishAndPublicVerificationRun": 36992631410,
+  "entranceCommit": "72a85fb6c36b3681fc53fafb3357550cbac4da22",
+  "additionalPublicPointerRun": 36993414888,
+  "publicContentHashesVerifiedInBothEngines": true,
+  "publicFiles": {
+    "app.bundle.js": "2a43b1a2df690cc4e8f001d40084b54a56a54c2a2095f1a2faf0bc2740fd0f57",
+    "meridian-ux-v26.css": "a8d76ff6914102877dd6c62bb87203853d8c41ba67b4f964bd2e434579f7cc89",
+    "reading-v26.css": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40"
+  },
+  "localBrowserChecks": {
+    "chromium": {"passed": 42, "success": true, "finishedAt": "2026-10-02T09:58:58.890Z"},
+    "webkit": {"passed": 42, "success": true, "finishedAt": "2026-10-02T09:51:15.955Z"}
+  },
+  "publicBrowserChecks": {
+    "chromium": {
+      "surface": {"passed": 42, "success": true, "errors": [], "finishedAt": "2026-10-02T10:06:05.283Z"},
+      "pointer": {"passed": 9, "success": true, "errors": [], "finishedAt": "2026-10-02T10:06:39.527Z"}
+    },
+    "webkit": {
+      "surface": {"passed": 42, "success": true, "errors": [], "finishedAt": "2026-10-02T10:04:32.526Z"},
+      "pointer": {"passed": 9, "success": true, "errors": [], "finishedAt": "2026-10-02T10:06:19.510Z"}
+    }
+  },
+  "publicArtifacts": {
+    "surfaceChromium": {"id": 11220253421, "sha256": "2272cb4d9866e3b5b3b756a2ab807ded98b87a5515a32693614d8d3da7aa1c98"},
+    "surfaceWebkit": {"id": 11220981168, "sha256": "3f971438d9ee94f4c854892aaa85dee368c3b53f5b1ee776b9d5c0161453f3b5"},
+    "pointerChromium": {"id": 11220413241, "sha256": "b93e9093be546f0cdb3766d207a89c0e3de5adecff60ab1362b284dfbea36b3b"},
+    "pointerWebkit": {"id": 11221175133, "sha256": "0c490dc7a8d893f1efa4ee1a60595329fad2ab1d7590729972c5977b4a7358a8"}
+  },
+  "baselineV30FailedAssertionsPerEngine": 4,
+  "baselineRootCauses": [
+    "结构侧别与经络侧别冲突，点的过滤结果为0，选中状态仍停留旧侧；该冲突在男女往返后保留。",
+    "拆开的男性骨架导致已勾选的不透明皮肤和经络所在组仍被隐藏。"
+  ],
+  "fixes": [
+    "体表下结构侧别请求同步经络侧别和同名对应点，局部镜头迁移保留放大程度。",
+    "恢复旧组合时归一相反侧别，不重新打开用户隐藏的点或名称。",
+    "显式开启体表时归位显示骨架，避免拆骨或旋转状态使男性皮肤隐藏。",
+    "重绑定一并更新已选点的皮肤接触位置，聚焦与可见性判断使用皮肤实点位置。",
+    "过渡中锁定旋转与非输入框快捷键、拒绝旧模型拾取、隐藏旧浮动标注，完成后恢复控制。"
+  ],
+  "pixelPointSamplesPerBody": 9,
+  "pixelPointSampleCodes": ["PC6", "HT7", "LI4", "ST36", "SP6", "KI3", "BL40", "GV14", "CV12"],
+  "surfacePointCoordinatesRoundTrip": {"body": "female", "count": 670, "exactMatch": true},
+  "actualPointerSelectedPoint": "PC6",
+  "publicWrongSideGhostPixelCount": {"male": 0, "female": 0},
+  "wrongSideComparedWhileBothPointsInViewport": true,
+  "opaqueSkinAndNormalDepthPreserved": true,
+  "originalModelsAndNumberedRoutesUnchanged": true,
+  "previousV30Preserved": true,
+  "clinicalCalibration": false,
+  "testedViewports": [[1440,1000],[390,844]],
+  "limitations": [
+    "本轮解决体表绑定与状态一致性，不代表全身每个穴位已通过临床定位审核。",
+    "42项候选与公网检查，加9项仅在公网补充的真实点击和反侧残影检查；不是所有历史测试集。",
+    "每性别9处像素抽查、内关实际点击和反侧检查不等于每点每角度穷尽验证。",
+    "浏览器视口检查不等于全部实体手机或高像素密度设备验收。",
+    "侧别冲突的旧截图可能保留先前绘线，过滤结果为0不应被表述为所有画面完全空白。"
+  ]
+}
