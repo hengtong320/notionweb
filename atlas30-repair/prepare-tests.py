@@ -1,5 +1,6 @@
 from pathlib import Path
 p=Path('atlas30-repair/probe.cjs');s=p.read_text()
+s=s.replace("p.locator('[data-body-sex=", "p.locator('button[data-body-sex=")
 a="__ATLAS_LEARNING__.setMeridian(m);__ATLAS_LEARNING__.selectPoint(code,side,true);"
 assert s.count(a)==1
 s=s.replace(a,"__ATLAS_SHARED__.showSection('meridians');"+a)
@@ -12,10 +13,8 @@ b="""if(code==='TE3'){
  await p.evaluate(()=>__ATLAS_LEARNING__.clearPointSelection());await settle();const off=PNG.sync.read(await p.screenshot());let changed=0,samples=0;
  for(let dy=-6;dy<=6;dy++)for(let dx=-6;dx<=6;dx++){const radius=Math.hypot(dx,dy);if(radius<3||radius>6)continue;const x=Math.round(q.paint.x)+dx,y=Math.round(q.paint.y)+dy;if(x<0||y<0||x>=on.width||y>=on.height)continue;const i=(y*on.width+x)*4;samples++;if(Math.abs(on.data[i]-off.data[i])+Math.abs(on.data[i+1]-off.data[i+1])+Math.abs(on.data[i+2]-off.data[i+2])>30)changed++;}
  ck(body+' selection is really painted at its skin center, not a lifted sprite',q.selectedInInk&&q.selected?.paintedSelection&&!q.selected?.spriteVisible&&changed>4,{changed,samples,selected:q.selected});
-}"
+}
 """
-# Remove the quote separating the Python multiline terminator from JS.
-b=b.rstrip().removesuffix('"')
 assert s.count(a)==1;s=s.replace(a,b)
 a="ck('No runtime exceptions',report.errors.length===0,report.errors);"
 b="""await sex('male');await choose();await focus('TE3');
@@ -32,7 +31,7 @@ assert s.count(a)==1;s=s.replace(a,b+a);p.write_text(s)
 prior=Path('/tmp/atlas29-tested/atlas29-repair')
 for name in ['surface-regression.cjs','observation-regression.cjs','probe.cjs']:
  source=prior/name
- if source.exists():
-  text=source.read_text().replace('fullbody-tcm-v29','fullbody-tcm-v30').replace("version:'29.0.0'","version:'30.0.0'")
-  Path('atlas30-repair','prior-'+name).write_text(text)
+ assert source.exists(),source
+ text=source.read_text().replace('fullbody-tcm-v29','fullbody-tcm-v30').replace("version:'29.0.0'","version:'30.0.0'")
+ Path('atlas30-repair','prior-'+name).write_text(text)
 print('Prepared consistent baseline/candidate test and unmodified prior assertions')
