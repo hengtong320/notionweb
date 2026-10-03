@@ -1,0 +1,20 @@
+{
+  "unchangedJSON": [
+    "voice-map.json",
+    "hegu-reference-v16.json",
+    "point-registration-v18.json",
+    "term-catalog.json",
+    "registration-template.json",
+    "evidence-data-v9.json",
+    "final-source-match.json",
+    "female-local-v18.json",
+    "region-membership.json",
+    "additional-groups.json",
+    "female-hand-route-v18.json",
+    "additions.json",
+    "meridian-reference-coverage.json",
+    "body-frame-v18.json",
+    "calibration-pilot.json"
+  ],
+  "clinicalCalibration": false
+}
