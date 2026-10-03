@@ -1,0 +1,354 @@
+--- a/README.md
++++ b/README.md
+@@ -1,7 +1,7 @@
+-# V34：点线与图层一致
++# V34：清晰学习
+ 
+-基于 V32，保留模型与原定位参照数据。修复透明皮肤反侧墨迹、局部穴名空间筛选、图层切换保留穴位与镜头、隐藏皮肤时男女和侧别观察转移、内脏链接恢复、标题与实际图层同步、神经默认深度规则和拼音格式。
++基于 V33，合并重复入口，提供按需展开的叠加设置和经络进阶工具，统一男女血管类型筛选、目录、链接与组合恢复。保留骨骼、肌肉、神经、内脏、经络和穴位资料。
+ 
+-详细操作验收与边界见 ../atlas33-tools/REVIEW.md。医学定位尚未全部校准。
++详细操作验收与边界见 ../atlas34-tools/REVIEW.md。医学定位尚未全部校准。
+ 
+ 从仓库根目录以 HTTP 静态服务器运行；不要单独移动此文件夹，它仍使用 V9、V11、V12 的模型资源。
+--- a/app.js
++++ b/app.js
+@@ -1,3 +1,4 @@
++import {initSimpleStudy} from './simple-study-v34.js';
+ import {findOpaqueSkinHit} from './opaque-skin-v29.js';
+ import {initObservationV27} from './observation-v27.js';
+ import {initMeridianExperience} from './meridian-ux-v26.js';
+@@ -361,6 +362,7 @@
+  initLayersV21({learning:learningEnhancements,tissues:tissueLayer,female:femaleViewer,toast});
+  initViewportExperience({THREE,scene,camera,controls,viewport,focusBounds,resize,invalidate,captureCamera,restoreCamera,state,bones,female:femaleViewer,tissues:tissueLayer,learning:learningEnhancements,toast});
+  initMeridianExperience({learning:learningEnhancements,invalidate});
++ initSimpleStudy({learning:learningEnhancements,tissues:tissueLayer,female:femaleViewer,toast});
+  initObservationV27({THREE,camera,controls,state,learning:learningEnhancements,captureCamera,syncCameraUp,invalidate});
+  for(const event of ['pointerdown','pointermove','pointerup','wheel','click','input','change','keydown','scroll'])document.addEventListener(event,()=>{invalidate();},{capture:true,passive:event!=='keydown'});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)invalidate();});
+--- a/display-audit-v33.js
++++ b/display-audit-v33.js
+@@ -1,3 +1,4 @@
++import {vesselKind} from './vessel-kind-v34.js';
+ // Local acceptance tools only; never expose a debug control on the public site.
+ if (location.hostname === '127.0.0.1' && new URLSearchParams(location.search).has('audit')) {
+  const button=document.createElement('button');button.textContent='检查显示状态';button.style.cssText='position:fixed;bottom:5px;left:5px;z-index:9999';document.body.append(button);
+@@ -8,8 +9,8 @@
+   const valid=a.points.every(p=>p.position.every(Number.isFinite)&&(!p.skinContact||p.skinContact.every(Number.isFinite)));
+   const labelButtons=[...document.querySelectorAll('#acupointLabels button')].filter(b=>b.getBoundingClientRect().width).map(b=>({name:b.getAttribute('aria-label'),rect:b.getBoundingClientRect().toJSON()}));
+   const engine=window.__FOOT_ATLAS__.getState();
+-  let visibleDepthMasks=0,ignoredNerveDepth=0;window.__ATLAS_RENDER_AUDIT__.scene.traverse(n=>{if(!n.isMesh)return;for(let q=n;q;q=q.parent)if(!q.visible)return;if(n.userData.skinInkDepth)visibleDepthMasks++;if((n.userData.atlas?.system||n.userData.female?.system)==='nervous'&&n.material.depthTest===false)ignoredNerveDepth++;});
+-  const result={visibleDepthMasks,ignoredNerveDepth,camera:engine.camera,target:engine.target,scene:window.__ATLAS_SHARED__.getState().scene,version:s.version,body:a.body,referenceBody:a.referenceBody,skinVisible:a.skinVisible,attached:a.surfaceAttached,busy:a.surfaceBusy,transition:a.transition,enabled:s.enabled,side:s.tcmSide,xray:s.xray,lines:s.linesOn,points:s.pointsOn,names:s.namesOn,selected:a.selected,count:g.count,valid,finite:g.geometryFinite,collisions:g.collisions,maxSecondaryShift:g.maxSecondaryShift,maxLineGap:g.maxLineGap,missingContacts:a.points.filter(p=>!p.skinContact).map(p=>p.code+'|'+p.side),largestGaps:g.points.filter(p=>p.lineGap>15).map(p=>({code:p.code,side:p.side,gap:p.lineGap,skinDistance:p.skinDistance})),ink:a.ink.map(({centers,...rest})=>rest),labels,labelButtons,pointsData:a.points};
++  const visibleBlood={artery:0,vein:0,other:0};let visibleDepthMasks=0,ignoredNerveDepth=0;window.__ATLAS_RENDER_AUDIT__.scene.traverse(n=>{if(!n.isMesh)return;for(let q=n;q;q=q.parent)if(!q.visible)return;const row=n.userData.atlas||n.userData.female;if(['vessels','vascular','heart'].includes(row?.system))visibleBlood[vesselKind(row)]++;if(n.userData.skinInkDepth)visibleDepthMasks++;if((n.userData.atlas?.system||n.userData.female?.system)==='nervous'&&n.material.depthTest===false)ignoredNerveDepth++;});
++  const result={visibleBlood,vesselFilter:window.__ATLAS_SHARED__.getState().vesselFilter,visibleDepthMasks,ignoredNerveDepth,camera:engine.camera,target:engine.target,scene:window.__ATLAS_SHARED__.getState().scene,version:s.version,body:a.body,referenceBody:a.referenceBody,skinVisible:a.skinVisible,attached:a.surfaceAttached,busy:a.surfaceBusy,transition:a.transition,enabled:s.enabled,side:s.tcmSide,xray:s.xray,lines:s.linesOn,points:s.pointsOn,names:s.namesOn,selected:a.selected,count:g.count,valid,finite:g.geometryFinite,collisions:g.collisions,maxSecondaryShift:g.maxSecondaryShift,maxLineGap:g.maxLineGap,missingContacts:a.points.filter(p=>!p.skinContact).map(p=>p.code+'|'+p.side),largestGaps:g.points.filter(p=>p.lineGap>15).map(p=>({code:p.code,side:p.side,gap:p.lineGap,skinDistance:p.skinDistance})),ink:a.ink.map(({centers,...rest})=>rest),labels,labelButtons,pointsData:a.points};
+   out.textContent=JSON.stringify(result,null,2);out.hidden=false;
+  };
+ }
+--- a/female-v12.js
++++ b/female-v12.js
+@@ -1,3 +1,4 @@
++import {vesselMatches,validVesselFilter} from './vessel-kind-v34.js';
+ import {createFemaleCompletion} from './female-complete-v21.js';
+ import {normalizeFemaleMesh,bodyFrameInfo} from './body-frame-v18.js';
+ import {createSkinProjector} from './skin-v17.js';
+@@ -12,7 +13,7 @@
+  groupNames.vessels='全身血管参考';groupNames.ear='耳部参考';
+  const colors={surface:'#a9826c',breast:'#b87678',respiratory:'#a56871',vascular:'#a5444e',digestive:'#ad8164',urinary:'#a86466',reproductive:'#a55876',skeletal:'#c3b79d',nervous:'#896126',muscular:'#98575a',lymphatic:'#638368'};
+  const root=new THREE.Group();root.name='Female teaching body (native HRA plus attributed shared reference)';root.visible=false;scene.add(root);
+- const maps=new Map(),systems=new Map(),hidden=new Set();let catalog=null,loadCatalog=null,active=false,serial=0,preset='surface',selected=null,isolated=false,mode='solid',labelsOn=false,fineDetails=false,side='both',saved=null,viewName='front';
++ const maps=new Map(),systems=new Map(),hidden=new Set();let catalog=null,loadCatalog=null,active=false,serial=0,preset='surface',selected=null,isolated=false,mode='solid',labelsOn=false,fineDetails=false,side='both',vesselFilter='all',saved=null,viewName='front';
+  const draco=new DRACOLoader().setDecoderConfig({type:'js'}).setWorkerLimit(2);draco._loadLibrary=()=>Promise.resolve(decoderSource);const loader=new GLTFLoader().setDRACOLoader(draco);
+  const completion=createFemaleCompletion({THREE,bones,loader});
+  const pane=document.createElement('section');pane.id='femaleLibrary';pane.hidden=true;
+@@ -25,7 +26,7 @@
+  pane.querySelectorAll('[data-female-preset]').forEach(b=>b.onclick=()=>setPreset(b.dataset.femalePreset).catch(e=>toast(e.message)));
+  pane.querySelectorAll('[data-female-layer]').forEach(b=>b.onchange=()=>enable(b.dataset.femaleLayer,b.checked).then(()=>{preset='custom';isolated=false;update();}).catch(e=>toast(e.message)));
+  $('femaleMode').onchange=e=>{mode=e.target.value;update();};$('femaleSide').onchange=e=>{side=e.target.value;update();};$('femaleSearch').oninput=renderList;
+- function urlState(){if(state.bodyTransition)return;if(document.body.classList.contains('reference-detail'))return;if(!active||restoringFemaleHash)return;const h=new URLSearchParams({sex:'female',preset,mode,side});if(selected)h.set('id',selected);try{history.replaceState(null,'','#'+h);}catch{}}
++ function urlState(){if(state.bodyTransition)return;if(document.body.classList.contains('reference-detail'))return;if(!active||restoringFemaleHash)return;const h=new URLSearchParams({sex:'female',preset,mode,side,blood:vesselFilter});if(selected)h.set('id',selected);try{history.replaceState(null,'','#'+h);}catch{}}
+  async function getCatalog(){if(catalog)return catalog;if(!loadCatalog)loadCatalog=fetch('../fullbody-tcm-v12/assets/female/catalog.json').then(r=>{if(!r.ok)throw Error('女性目录加载失败');return r.json();}).then(async d=>catalog=await completion.getCatalog(d)).catch(e=>{loadCatalog=null;throw e;});return loadCatalog;}
+  function color(r){if(r.system==='ear')return '#bc9d86';if(r.system==='vessels')return /vein|vena/i.test(r.sourceName)?'#3b6190':'#98434a';if(r.system==='vascular'&&/vein|vena/i.test(r.sourceName))return '#4c78a6';if(/liver/i.test(r.sourceName))return '#805054';if(/gallbladder/i.test(r.sourceName))return '#6b865d';if(r.system==='breast'&&/fat/.test(r.sourceName))return '#c4af74';return colors[r.nativeSystem||r.system]||'#c8b38e';}
+  function systemStatus(id,text){const node=$('femaleStatus-'+id);if(node)node.textContent=text;}
+@@ -52,7 +53,7 @@
+  const nativeVascularCore=r=>/uterine_(artery|vein)$/.test(r.sourceName)||/^VH_F_(interventricular_septum|(left|right)_(cardiac_atrium|ventricle)|papillary_muscle_of_heart_.+|aortic_valve|pulmonary_valve|mitral_valve|tricuspid_valve)$/.test(r.sourceName);
+  function contextMatch(r){if(systems.get('vessels')?.on&&r.system==='vascular'&&!nativeVascularCore(r))return false;if(r.nativeDetail)return r.id===selected;if(['chest','abdomen','pelvis','vessels'].includes(preset)&&['surface','skeletal'].includes(r.system))return true;if(preset==='heart')return r.system==='skeletal'||r.system==='vascular'&&r.ancestry.some(n=>/heart|aorta|vena_cava|pulmonary|cardiac/.test(n));if(preset==='chest')return r.system==='respiratory'||r.system==='vascular'&&r.ancestry.some(n=>/heart|aorta|vena_cava|pulmonary/.test(n));if(preset==='pelvis')return r.system==='reproductive'||r.system==='skeletal'&&r.ancestry.includes('VH_F_pelvis')||r.system==='urinary'&&/bladder|urethra|ureter/.test(r.sourceName);return true;}
+  function coarse(r){if(r.nativeDetail)return r.id===selected;if(fineDetails)return true;if(r.origin==='shared-teaching')return r.category!=='fascia';if(r.system==='respiratory')return true;if(r.system==='skeletal')return !/spongy|enthesis|most_point|condyle_|perichondular|trochlear|fossa/.test(r.sourceName);if(r.system==='urinary')return !/papilla|pyramid|medulla|calyx/.test(r.sourceName);if(r.system==='digestive')return !/couinaud|capsule|ligament/.test(r.sourceName);return true;}
+- function update(){root.visible=active;for(const [id,s] of systems){for(const n of s.meshes){const r=n.userData.female;n.visible=s.on&&!hidden.has(r.id)&&(side==='both'||r.side==='midline'||r.side==='bilateral'||r.side===side)&&contextMatch(r)&&coarse(r)&&(!isolated||r.id===selected);if(r.id===selected)n.visible=s.on&&!hidden.has(r.id)&&(side==='both'||r.side==='midline'||r.side==='bilateral'||r.side===side);const focus=mode==='focus'&&selected&&r.id!==selected;let opacity=(s.opacity??1)*(focus?.18:1);n.material.transparent=opacity<1;n.material.opacity=opacity;n.material.depthWrite=opacity>.9;n.material.emissive.set(r.id===selected?'#946324':'#000000');n.material.emissiveIntensity=r.id===selected?(r.system==='surface'?.025:.2):0;}}
++ function update(){root.visible=active;for(const [id,s] of systems){for(const n of s.meshes){const r=n.userData.female;n.visible=s.on&&!hidden.has(r.id)&&(side==='both'||r.side==='midline'||r.side==='bilateral'||r.side===side)&&contextMatch(r)&&coarse(r)&&(!isolated||r.id===selected);if(r.id===selected)n.visible=s.on&&!hidden.has(r.id)&&(side==='both'||r.side==='midline'||r.side==='bilateral'||r.side===side);const focus=mode==='focus'&&selected&&r.id!==selected;let opacity=(s.opacity??1)*(focus?.18:1);n.material.transparent=opacity<1;n.material.opacity=opacity;n.material.depthWrite=opacity>.9;n.material.emissive.set(r.id===selected?'#946324':'#000000');n.visible=n.visible&&vesselMatches(r,vesselFilter);n.material.emissiveIntensity=r.id===selected?(r.system==='surface'?.025:.2):0;}}
+   if(active){state.bonesOn=false;modelRoot.visible=false;$('regionHeading').textContent='女性 · '+({organs:'胸腹内脏',surface:'体表外形',heart:'心脏与邻近血管',chest:'胸腔心肺',abdomen:'腹部器官',pelvis:'盆腔与生殖',breast:'乳腺结构',muscles:'全身肌肉',compare:'分层对照',nerves:'全身神经',vessels:'心血管',bones:'骨骼与关节',custom:'自定义观察'}[preset]||'参考模型');$('visibleCount').textContent=[...maps.values()].filter(n=>n.visible).length+' 个已启用部件';}
+   pane.querySelectorAll('[data-female-preset]').forEach(b=>b.classList.toggle('active',b.dataset.femalePreset===preset));urlState();updateLabel();invalidate();
+  }
+@@ -130,16 +131,16 @@
+  document.addEventListener('click',e=>{if(!active)return;const t=e.target.closest('button');if(!t)return;if(document.body.classList.contains('reference-detail')&&['focusBtn','focusCurrent'].includes(t.id)){e.preventDefault();e.stopImmediatePropagation();learning.focusSelectedPoint();return;}const v=t.dataset.view;if(v){e.preventDefault();e.stopImmediatePropagation();const o=window.__ATLAS_OBSERVATION_V27__;if(!o?.getState().active||!o.orient(v))view(v);return;}if(['homeBtn','focusBtn','captureBtn','focusCurrent','overallCurrent'].includes(t.id)){e.preventDefault();e.stopImmediatePropagation();if(t.id==='captureBtn')capture();else if(t.id==='focusBtn'||t.id==='focusCurrent')focus();else ctx.returnToOverview();}},true);
+  document.addEventListener('keydown',e=>{if(!active||e.target.closest?.('input,textarea,select')||e.ctrlKey||e.metaKey||document.querySelector('dialog[open]'))return;const keyViews={'1':'overview','2':'dorsal','3':'plantar','4':'medial','5':'lateral','6':'front','7':'back'};if(keyViews[e.key]){e.preventDefault();e.stopImmediatePropagation();const o=window.__ATLAS_OBSERVATION_V27__;if(!o?.getState().active||!o.orient(keyViews[e.key]))view(keyViews[e.key]);return;}if(['f','h','g','t','l'].includes(e.key.toLowerCase())){e.preventDefault();e.stopImmediatePropagation();if(e.key.toLowerCase()==='f'){if(document.body.classList.contains('reference-detail'))learning.focusSelectedPoint();else focus();}if(e.key.toLowerCase()==='l')$('labelsBtn').click();if(e.key.toLowerCase()==='h'){isolated=false;selected=null;update();fit();showIntro();}}},true);
+ 
+- function captureState(){return {preset,selected,isolated,mode,side,labelsOn,fineDetails,hidden:[...hidden],systems:Object.fromEntries([...systems].map(([id,s])=>[id,{on:s.on,opacity:s.opacity}]))};}
++ function captureState(){return {preset,selected,isolated,mode,side,labelsOn,fineDetails,vesselFilter,hidden:[...hidden],systems:Object.fromEntries([...systems].map(([id,s])=>[id,{on:s.on,opacity:s.opacity}]))};}
+  async function restoreState(v){
+   serial++;for(const [id,s]of systems)s.on=!!v.systems?.[id]?.on;
+   for(const [id,s]of Object.entries(v.systems||{})){await enable(id,s.on);systems.get(id).opacity=s.opacity??1;}
+-  preset=v.preset||'custom';selected=v.selected&&maps.has(v.selected)?v.selected:null;isolated=!!v.isolated&&!!selected;mode=v.mode||'solid';side=v.side||'both';labelsOn=!!v.labelsOn;fineDetails=!!v.fineDetails;
++  vesselFilter=validVesselFilter(v.vesselFilter);preset=v.preset||'custom';selected=v.selected&&maps.has(v.selected)?v.selected:null;isolated=!!v.isolated&&!!selected;mode=v.mode||'solid';side=v.side||'both';labelsOn=!!v.labelsOn;fineDetails=!!v.fineDetails;
+   hidden.clear();for(const id of v.hidden||[])hidden.add(id);$('femaleMode').value=mode;$('femaleSide').value=side;update();renderList();if(selected)showSelected();else showIntro();return true;
+  }
+ 
+  window.addEventListener('atlas:transition-settled',()=>{if(active){update();urlState();}$('renderStatus').textContent=active?'女性 · 原生＋教学补充':'男性 · 解剖参考';});
+- const api={getCompletionAudit:()=>completion.audit(),setFineDetails:v=>{fineDetails=!!v;update();},setIsolated:v=>{isolated=!!v&&!!selected;update();showSelected();},restoreHidden:()=>{hidden.clear();isolated=false;update();renderList();if(selected)showSelected();else showIntro();},captureState,restoreState,setLabels:v=>{labelsOn=!!v;updateStructureLabels();invalidate();},getLabels:()=>labelsOn,ensureMeridianSurface,ensureBodyContext,setDisplayMode:(v,options={})=>{if(['solid','context','focus'].includes(v)){mode=v;$('femaleMode').value=v;if(!options.preserveOpacity)for(const s of systems.values())if(s.on)s.opacity=v==='context'?.28:1;update();}},setSide:v=>{if(['both','left','right'].includes(v)){side=v;$('femaleSide').value=v;const r=maps.get(selected)?.userData.female;if(r&&v!=='both'&&!['midline','bilateral',v].includes(r.side)){selected=null;isolated=false;showIntro();announceRegion();}update();renderList();}},setOpacity:(id,v)=>{const s=systems.get(id);if(s){s.opacity=Math.max(.08,Math.min(1,Number(v)||1));update();}},getVisibleCatalog:()=>visible().map(n=>n.userData.female),clearSelection:()=>{selected=null;isolated=false;update();showIntro();},setCustom:()=>{preset='custom';isolated=false;update();},getViewCoverage:()=>({...viewCoverage}),get active(){return active;},setSex,setPreset,select,enable,focus,fit,view,click,capture,updateFrame:updateLabel,getPickPoint,getCatalog:()=>catalog?.entries||[],getState:()=>({sexBusy,active,preset,mode,side,fineDetails,view:viewName,selected,isolated,source:'HRA female + Z-Anatomy shared teaching',bodyFrame:bodyFrameInfo(),mixedReferenceSources:true,originalMaleSceneVisible:false,visible:visible().length,hidden:[...hidden],loaded:maps.size,systems:Object.fromEntries([...systems].map(([k,s])=>[k,{on:s.on,opacity:s.opacity??1,loaded:s.loaded,loading:!!s.promise&&!s.loaded,count:s.meshes.length,visible:s.meshes.filter(n=>n.visible&&active).length}]))})};window.__ATLAS_FEMALE__=api;
++ const api={setVesselFilter:value=>{vesselFilter=validVesselFilter(value);update();renderList();},getCompletionAudit:()=>completion.audit(),setFineDetails:v=>{fineDetails=!!v;update();},setIsolated:v=>{isolated=!!v&&!!selected;update();showSelected();},restoreHidden:()=>{hidden.clear();isolated=false;update();renderList();if(selected)showSelected();else showIntro();},captureState,restoreState,setLabels:v=>{labelsOn=!!v;updateStructureLabels();invalidate();},getLabels:()=>labelsOn,ensureMeridianSurface,ensureBodyContext,setDisplayMode:(v,options={})=>{if(['solid','context','focus'].includes(v)){mode=v;$('femaleMode').value=v;if(!options.preserveOpacity)for(const s of systems.values())if(s.on)s.opacity=v==='context'?.28:1;update();}},setSide:v=>{if(['both','left','right'].includes(v)){side=v;$('femaleSide').value=v;const r=maps.get(selected)?.userData.female;if(r&&v!=='both'&&!['midline','bilateral',v].includes(r.side)){selected=null;isolated=false;showIntro();announceRegion();}update();renderList();}},setOpacity:(id,v)=>{const s=systems.get(id);if(s){s.opacity=Math.max(.08,Math.min(1,Number(v)||1));update();}},getVisibleCatalog:()=>visible().map(n=>n.userData.female),clearSelection:()=>{selected=null;isolated=false;update();showIntro();},setCustom:()=>{preset='custom';isolated=false;update();},getViewCoverage:()=>({...viewCoverage}),get active(){return active;},setSex,setPreset,select,enable,focus,fit,view,click,capture,updateFrame:updateLabel,getPickPoint,getCatalog:()=>catalog?.entries||[],getState:()=>({sexBusy,active,preset,mode,side,fineDetails,vesselFilter,view:viewName,selected,isolated,source:'HRA female + Z-Anatomy shared teaching',bodyFrame:bodyFrameInfo(),mixedReferenceSources:true,originalMaleSceneVisible:false,visible:visible().length,hidden:[...hidden],loaded:maps.size,systems:Object.fromEntries([...systems].map(([k,s])=>[k,{on:s.on,opacity:s.opacity??1,loaded:s.loaded,loading:!!s.promise&&!s.loaded,count:s.meshes.length,visible:s.meshes.filter(n=>n.visible&&active).length}]))})};window.__ATLAS_FEMALE__=api;
+  let restoringFemaleHash=false,pendingFemaleHash=null;
+  async function restoreFemaleLink(raw){
+   pendingFemaleHash=raw;if(restoringFemaleHash)return;restoringFemaleHash=true;
+@@ -148,7 +149,7 @@
+    const h=new URLSearchParams(text.replace(/^#/,''));
+    if(h.get('sex')!=='female')continue;
+    await setSex('female');
+-   await setPreset(h.get('preset')||'surface');
++   await setPreset(h.get('preset')||'surface');vesselFilter=validVesselFilter(h.get('blood'));update();
+    if(['point','meridian'].includes(h.get('kind'))){window.__ATLAS_SHARED__?.showSection('meridians');if(h.get('kind')==='point')learning.selectPoint(h.get('id'),h.get('side')||'right',true);else{learning.setMeridians((h.get('id')||'HT').split(','));window.__ATLAS_EVIDENCE__.showChannel((h.get('id')||'HT').split(','));}continue;}
+    if(h.get('id'))await select(h.get('id'),true);
+    mode=['solid','context','focus'].includes(h.get('display')||h.get('mode'))?(h.get('display')||h.get('mode')):'solid';
+--- a/index.html
++++ b/index.html
+@@ -3,12 +3,13 @@
+ <head>
+ <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ <meta name="color-scheme" content="light"><meta name="description" content="男性与独立女性参考模型。旋转、点选、骨骼拆解和结构分层学习。">
+-<title>全身骨骼研习室 V34 · 点线与图层一致</title>
++<title>人体研习室 V34 · 清晰学习</title>
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23276865'/%3E%3Cpath d='M12 29 20 9l8 20M15 22h10' stroke='%23fff' stroke-width='2.5' fill='none'/%3E%3C/svg%3E">
+ <link rel="stylesheet" href="styles.css?v=34.0.0">
+ 
+ <link rel="stylesheet" href="stability-v10.css?v=34.0.0"><link rel="stylesheet" href="refinement-v12.css?v=34.0.0"><script>window.ATLAS_RESOURCE_BASE="../fullbody-tcm-v9/";</script><link rel="stylesheet" href="shared-v14.css?v=34.0.0"><link rel="stylesheet" href="view-v16.css?v=34.0.0">
+-<link rel="stylesheet" href="./layers-ui-v21.css?v=34.0.0"><link rel="stylesheet" href="./meridian-ux-v26.css?v=34.0.0"><link rel="stylesheet" href="reading-v26.css?v=34.0.0"><style>body[data-body-switching="true"] #acupointHover,body[data-body-switching="true"] #femalePointLabel,body[data-body-switching="true"] #femaleStructureLabels,body[data-body-switching="true"] #acupointLabels{visibility:hidden!important}</style><link rel="stylesheet" href="experience-v32.css?v=34.0.0"></head>
++<link rel="stylesheet" href="./layers-ui-v21.css?v=34.0.0"><link rel="stylesheet" href="./meridian-ux-v26.css?v=34.0.0"><link rel="stylesheet" href="reading-v26.css?v=34.0.0"><style>body[data-body-switching="true"] #acupointHover,body[data-body-switching="true"] #femalePointLabel,body[data-body-switching="true"] #femaleStructureLabels,body[data-body-switching="true"] #acupointLabels{visibility:hidden!important}</style><link rel="stylesheet" href="experience-v32.css?v=34.0.0"><link rel="stylesheet" href="simple-study-v34.css?v=34.0.0">
++</head>
+ <body>
+ <svg class="icon-library" aria-hidden="true"><defs>
+ <symbol id="i-orbit" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="5" transform="rotate(-30 12 12)"/><ellipse cx="12" cy="12" rx="5" ry="10" transform="rotate(-30 12 12)"/><circle cx="12" cy="12" r="1.5"/></symbol>
+--- a/refinement-v12.js
++++ b/refinement-v12.js
+@@ -2,7 +2,7 @@
+  const $=s=>document.getElementById(s),panel=$('tissuePanel');
+  const title=panel.querySelector('h2');title.textContent='结构图层';const subtitle=title.nextElementSibling;if(subtitle?.tagName==='P')subtitle.textContent='选一个场景，再按需要调整。';panel.prepend(title,subtitle);
+  const task=document.createElement('section');task.className='v12-tasks';task.innerHTML='<h3>快捷观察</h3>';const presets=[...panel.querySelectorAll('.layer-presets')];for(const p of presets){const grid=p.querySelector('.profile-grid');if(grid)task.append(grid);}subtitle.after(task);
+- const custom=document.createElement('section');custom.open=true;custom.id='customLayers';custom.className='v12-disclosure';custom.innerHTML='<h3>自定义图层</h3><div class="v12-custom-body"></div>';const body=custom.lastElementChild;body.append($('bonesOn').closest('label'));body.append($('boneOpacity').closest('label'));panel.querySelectorAll('.layer-block').forEach(e=>body.append(e));task.after(custom);
++ const custom=document.createElement('details');custom.open=true;custom.id='customLayers';custom.className='v12-disclosure';custom.innerHTML='<h3>自定义图层</h3><div class="v12-custom-body"></div>';const body=custom.lastElementChild;body.append($('bonesOn').closest('label'));body.append($('boneOpacity').closest('label'));panel.querySelectorAll('.layer-block').forEach(e=>body.append(e));task.after(custom);
+  const advanced=document.createElement('details');advanced.id='advancedLayers';advanced.className='v12-disclosure';advanced.innerHTML='<summary>细分结构与显示选项</summary><div></div>';const extras=advanced.lastElementChild;
+  for(const id of ['localStudyToggle','internalDetails','vesselFilter','earFilter','surfaceAttach','nerveXray','fasciaOn','tissueClip']){const input=$(id);if(input)extras.append(input.closest('label'));}
+  extras.append($('restoreHiddenStructures'));custom.after(advanced);
+--- a/shared-v14.js
++++ b/shared-v14.js
+@@ -1,3 +1,4 @@
++import {vesselKind,vesselMatches,validVesselFilter} from './vessel-kind-v34.js';
+ // Persistent controls, independent scene adapters, explicit shared-teaching provenance.
+ export function initSharedControls(ctx){
+  const {learning,tissues,female,state,toast,invalidate,captureCamera,restoreCamera}=ctx;
+@@ -16,7 +17,7 @@
+   {id:'breast',name:'乳腺',male:[],female:['breast']},
+   {id:'lymphatic',name:'淋巴与免疫',male:[],female:['lymphatic']}
+  ];
+- const sceneNames={skin:'纯体表',organs:'胸腹内脏',bones:'骨骼结构',muscles:'肌肉外形',nerves:'神经走行',compare:'分层对照',chest:'胸腔器官',heart:'心脏特写',abdomen:'腹部器官',vascular:'心血管',surface:'体表经络',pelvis:'盆腔结构',breast:'乳腺结构','ear-right':'右耳','ear-left':'左耳'};
++ const sceneNames={skin:'纯体表',organs:'胸腹内脏',bones:'骨骼结构',muscles:'肌肉外形',nerves:'神经走行',compare:'分层对照',chest:'胸腔器官',heart:'心脏特写',abdomen:'腹部器官',vascular:'全身血管',surface:'体表经络',pelvis:'盆腔结构',breast:'乳腺结构','ear-right':'右耳','ear-left':'左耳'};
+  let section='directory',scene='bones',libraryPage=0,selectionTicket=0,viewTicket=0,catalogPromise=null,maleCatalog=[],queued=false,sexSwitching=false;
+  const cache={male:null,female:null};let currentPoint=null,currentReference=false,meridianOpened=false;const historyUI={};let directoryReturn=null;
+  const preview=document.createElement('div');preview.id='directoryPreview';preview.hidden=true;preview.setAttribute('role','status');preview.innerHTML='<span id=directoryPreviewText></span><button id=directoryPreviewReturn type=button>返回先前视图</button>';document.querySelector('.stage').append(preview);
+@@ -24,7 +25,7 @@
+  $('directoryPreviewReturn').onclick=()=>enqueueAction('directory-return',async()=>{const held=directoryReturn;if(!held)return;clearDirectoryPreview();await rollbackWorkspace(held);if(held.selection&&!held.reference)window.dispatchEvent(new CustomEvent('atlas:selection',{detail:held.selection}));}).catch(fail);
+  document.body.dataset.sharedUi='14';document.body.dataset.bodySex=female.active?'female':'male';
+  $('boneTab').textContent='结构目录';$('layersTab').textContent='结构图层';$('tcmTab').textContent='经络穴位';
+- $('releaseBadge').textContent='V34 · 点线与图层一致';$('tissueSearch').hidden=true;$('tissueList').hidden=true;
++ $('releaseBadge').textContent='V34 · 清晰学习';$('tissueSearch').hidden=true;$('tissueList').hidden=true;
+  $('organQuickBar')?.remove();$('femaleLibrary').hidden=true;
+  const directory=el('section','shared-directory');directory.id='structureLibrary';
+  directory.innerHTML='<h2>结构目录</h2><p class="shared-intro">搜索、筛选，点击查看同一结构。</p><label class="search-box"><input id="structureSearch" type="search" placeholder="名称 / 拼音 / English" aria-label="搜索结构" autocomplete="off"></label><div class="shared-filters"><select id="structureSystem" aria-label="结构系统"><option value="all">全部系统</option>'+layers.map(x=>`<option value="${x.id}">${x.name}</option>`).join('')+'</select><select id="structureScope" aria-label="结构范围"><option value="all">全部目录</option><option value="visible">已启用结构</option></select></div><p id="structureSummary" class="shared-summary" role="status"></p><div id="structureResults" class="shared-results"></div><div class="shared-pager"><button id="structurePrevious">上一页</button><span id="structurePage"></span><button id="structureNext">下一页</button></div>';
+@@ -108,7 +109,8 @@
+  function renderDirectory(){
+   const query=norm($('structureSearch').value),sys=$('structureSystem').value,scope=$('structureScope').value,rows=activeCatalog();
+   const visible=new Set(female.active?female.getVisibleCatalog().map(r=>r.id):[...tissues.getVisibleCatalog().map(r=>r.id),...window.__FOOT_ATLAS__.getState().bones.filter(r=>r.visible).map(r=>r.id)]);
+-  const arr=rows.filter(r=>(scope==='native-details'?r.nativeDetail:!r.nativeDetail)&&(sys==='all'||groupFor(r)===sys)&&matchesSide(r)&&(scope!=='visible'||visible.has(r.id))&&(!query||norm([r.name,r.pinyin,r.en,r.english,r.id,r.sourceName].join(' ')).includes(query)));
++  const bloodFilter=(female.active?female.getState():tissues.getState()).vesselFilter||'all';
++  const arr=rows.filter(r=>(sys!=='vascular'||vesselMatches(r,bloodFilter))&&(scope==='native-details'?r.nativeDetail:!r.nativeDetail)&&(sys==='all'||groupFor(r)===sys)&&matchesSide(r)&&(scope!=='visible'||visible.has(r.id))&&(!query||norm([r.name,r.pinyin,r.en,r.english,r.id,r.sourceName].join(' ')).includes(query)));
+   const pages=Math.max(1,Math.ceil(arr.length/60));libraryPage=Math.max(0,Math.min(libraryPage,pages-1));const id=currentId();
+   const summary=(female.active?'女性':'男性')+' · '+arr.length+' 个结构'+(scope==='visible'?' · 已启用':' · 点击时按需加载');$('structureSummary').textContent=summary;
+   $('structureReset').hidden=!query&&sys==='all'&&scope==='all';
+@@ -119,7 +121,7 @@
+   const shell=snapshots().surface,covered=row.system!=='surface'&&shell?.on&&(shell.opacity??1)>=.9;
+   if(covered&&!directoryReturn)directoryReturn=captureWorkspace();const solo=!!directoryReturn&&row.system!=='surface';
+   document.body.classList.remove('reference-detail','point-detail-active');currentReference=false;currentPoint=null;learning.clearStudyContext(true);if(solo)learning.toggleTCM(false);
+-  layoutRevision++;scene='custom';
++  layoutRevision++;scene='custom';if(['vessels','vascular','heart'].includes(row.system)){const filter=(female.active?female.getState():tissues.getState()).vesselFilter||'all';if(!vesselMatches(row,filter)){tissues.setVesselFilter('all');female.setVesselFilter('all');}}
+   if(female.active){female.setCustom();await female.select(id,true);if(solo){female.setIsolated(true);female.focus();}}
+   else if(row.kind==='bone'){tissues.clearSelection();window.__FOOT_ATLAS__.restoreBoneState({bonesOn:true,isolated:false,neighbors:false});window.__FOOT_ATLAS__.selectBone(id,true,true);if(solo)window.__FOOT_ATLAS__.restoreBoneState({isolated:true});$('focusBtn').click();}
+   else{window.__FOOT_ATLAS__.restoreBoneState({isolated:false,neighbors:false});tissues.clearOrganScope();await tissues.enable(row.system,true);if(token!==selectionTicket||currentSex!==sex())return false;tissues.revealStructure(id);tissues.choose(id,false);if(solo)tissues.setIsolated(true);tissues.choose(id,true);}
+@@ -169,7 +171,7 @@
+   if(!f&&!currentReference&&scene!=='bones'){$('regionHeading').textContent='男性 · '+(sceneNames[scene]||'自定义图层');$('visibleCount').textContent=(tissues.getVisibleCatalog().length+(state.bonesOn&&!state.tissueIsolated?[...ctx.bones.values()].filter(b=>b.visible).length:0))+' 个结构';}
+   refreshSurfaceCaption();if(!['point','meridian'].includes(window.__ATLAS_STUDY__.getState().current.kind))$('evidenceCurrent').textContent='来源与说明';renderDirectory();invalidate();
+  }
+- function showSection(s){const held=captureCamera();section=s;if(s==='meridians'){learning.setPanel(true);if(!meridianOpened){learning.toggleTCM(true);meridianOpened=true;}}else learning.setPanel(false);redraw();if(innerWidth<=1100){document.body.classList.add('nav-open');document.body.classList.remove('detail-open');}restoreCamera(held);ensureCatalog();}
++ function showSection(s){const held=captureCamera();section=s;if(s==='meridians'){learning.setPanel(true);if(!meridianOpened){learning.toggleTCM(true);meridianOpened=true;}}else learning.setPanel(false);redraw();if(innerWidth<=1100){document.body.classList.add('nav-open');document.body.classList.remove('detail-open');}restoreCamera(held);ensureCatalog();window.dispatchEvent(new Event('atlas:section-changed'));}
+  function prepareSkinPose(){
+   if(female.active)return false;
+   const displaced=state.explode>0||[...ctx.bones.values()].some(b=>b.userData.offset.lengthSq()>.1||b.quaternion.angleTo(new ctx.THREE.Quaternion())>.015);
+@@ -184,6 +186,7 @@
+  async function chooseNow(key,preserve=true,options={}){
+   if(!sceneNames[key]&&key!=='custom')return false;
+   if(female.active&&key.startsWith('ear-')||!female.active&&key==='breast'){toast('当前模型没有提供该结构；保留当前画面。');return false;}
++  const heldVesselFilter=(female.active?female.getState():tissues.getState()).vesselFilter||'all';
+   const initialSection=section,prior=learning.getState(),held=preserve?captureCamera():null,keepPoint=!!prior.selectedPoint&&prior.enabled&&key!=='skin'&&!options.internalSwitch;
+   currentReference=false;currentPoint=null;learning.clearStudyContext(true);tissues.clearSelection();if(female.active)female.clearSelection();
+   window.__FOOT_ATLAS__.prepareBodyScene(key==='pelvis'?'pelvis':'body');
+@@ -192,7 +195,7 @@
+   else if(['bones','muscles','nerves','compare'].includes(key))await tissues.setProfile(key);
+   else if(key==='pelvis'){await tissues.setAnatomyView('abdomen');tissues.setOrganScope([[-130,650,-200],[340,990,200]],'pelvis');}
+   else if(key==='custom')tissues.clearOrganScope();else await tissues.setAnatomyView(key==='skin'?'surface':key);
+-  scene=key;
++  scene=key;tissues.setVesselFilter(heldVesselFilter);female.setVesselFilter(heldVesselFilter);
+   if(key==='surface'){if(female.active)female.setOpacity('surface',1);else tissues.setOpacity('surface',1);}
+   await bindReference(key==='surface'||prior.enabled);
+   learning.restoreDisplayState({...prior,enabled:key==='surface'||prior.enabled,selectedPoint:keepPoint?prior.selectedPoint:null,studyContext:keepPoint?prior.studyContext:null,cardOpen:keepPoint&&prior.cardOpen},{selection:keepPoint});
+@@ -229,6 +232,7 @@
+    }
+    if(female.active){female.setFineDetails(savedDetails);female.setSide(savedSide);female.setLabels(savedLabels);female.setDisplayMode(was.display,{preserveOpacity:true});}
+    else{window.__FOOT_ATLAS__.restoreBoneState({side:savedSide,labels:savedLabels});for(const id of ['internalDetails','fasciaOn']){const e=$(id);if(e.checked!==savedDetails){e.checked=savedDetails;e.dispatchEvent(new Event('change',{bubbles:true}));}}}
++   const heldVesselFilter=was.native.vesselFilter||'all';tissues.setVesselFilter(heldVesselFilter);female.setVesselFilter(heldVesselFilter);
+    await bindReference(was.learning.enabled||next==='surface');
+    learning.restoreDisplayState({...was.learning,enabled:unavailableFallback?false:was.learning.enabled});
+    currentReference=was.reference||!!was.learning.selectedPoint;currentPoint=learning.getState().selectedPoint;
+@@ -254,5 +258,5 @@
+  // Reference focus and reading never invoke the last selected female organ accidentally.
+  for(const id of ['focusBtn','focusCurrent'])$(id).addEventListener('click',e=>{if(female.active&&currentReference){e.preventDefault();e.stopImmediatePropagation();learning.focusSelectedPoint();}},true);
+  $('speakCurrent').onclick=()=>window.__ATLAS_SPEECH__.speak(currentPoint?.name||(female.active?female.getCatalog().find(r=>r.id===female.getState().selected)?.name:window.__ATLAS_STUDY__.getState().current?.name)||'');
+- const api={refreshSurfaceCaption,getModelCounts:()=>Object.fromEntries(['bones','muscular','nervous','vessels','ear'].map(id=>[id,maleCatalog.filter(r=>r.system===id).length])),runMutation:(key,fn)=>enqueueAction(key,()=>{layoutRevision++;return fn();}),showSection,choose,switchSex,pickStructure,ready:ensureCatalog(),getState:()=>({version:'34.0.0',section,scene,sex:sex(),directoryQuery:$('structureSearch').value,systemFilter:$('structureSystem').value,scope:$('structureScope').value,directoryElement:directory.id,layersElement:layerRows.id,meridianElement:'tcmControls',femalePointRegistration:false,selectedPoint:currentPoint,sameTabs:tabs.map(([id])=>$(id).textContent),layerRows:layers.map(l=>l.id),busy:sexSwitching||queuedActions>0,layoutRevision,transition:state.bodyTransition||false,transitionErrors:[...transitionErrors]})};window.__ATLAS_SHARED__=api;redraw();return api;
++ const api={setVesselFilter:value=>enqueueAction('vessel-filter',()=>{layoutRevision++;value=validVesselFilter(value);tissues.setVesselFilter(value);female.setVesselFilter(value);renderDirectory();window.dispatchEvent(new Event('atlas:vessel-filter'));}),refreshSurfaceCaption,getModelCounts:()=>Object.fromEntries(['bones','muscular','nervous','vessels','ear'].map(id=>[id,maleCatalog.filter(r=>r.system===id).length])),runMutation:(key,fn)=>enqueueAction(key,()=>{layoutRevision++;return fn();}),showSection,choose,switchSex,pickStructure,ready:ensureCatalog(),getState:()=>({version:'34.0.0',section,scene,sex:sex(),vesselFilter:(female.active?female.getState():tissues.getState()).vesselFilter||'all',directoryQuery:$('structureSearch').value,systemFilter:$('structureSystem').value,scope:$('structureScope').value,directoryElement:directory.id,layersElement:layerRows.id,meridianElement:'tcmControls',femalePointRegistration:false,selectedPoint:currentPoint,sameTabs:tabs.map(([id])=>$(id).textContent),layerRows:layers.map(l=>l.id),busy:sexSwitching||queuedActions>0,layoutRevision,transition:state.bodyTransition||false,transitionErrors:[...transitionErrors]})};window.__ATLAS_SHARED__=api;redraw();return api;
+ }
+--- /dev/null
++++ b/simple-study-v34.css
+@@ -0,0 +1,21 @@
++/* Keep one primary control for each action. */
++.simple-v34 [hidden]{display:none!important}
++.simple-v34 #tcmControls .tcm-head,.simple-v34 #tcmControls .tcm-master-row{display:none!important}
++.simple-v34 .v26-orientation,.simple-v34 #labelFitAll{display:none!important}
++.simple-v34 #customLayers{margin-top:16px;border:1px solid #dae5dc;border-radius:10px;background:#fbfcf9;padding:12px}
++.simple-v34 #customLayers>summary{cursor:pointer;font-size:13px;font-weight:600;min-height:32px;line-height:32px;color:#36584a}
++.simple-v34 #customLayers:not([open])>*:not(summary){display:none!important}
++.simple-v34 #structureLibrary>h2,.simple-v34 .v21-panel-heading>span{display:none}
++.simple-v34 .v21-panel-heading{justify-content:flex-end;margin-bottom:6px}
++.simple-v34 #tcmControls .v9-reference-actions{margin-bottom:10px}
++.simple-v34 #v34VesselPanel,.simple-v34 #v34DirectoryVessels{margin:12px 0;padding:10px;border-radius:8px;background:#eff5ee}
++.simple-v34 #v34VesselPanel label,.simple-v34 #v34DirectoryVessels{display:grid;gap:7px;font-size:12px;color:#3d5d50}
++.simple-v34 #v34VesselPanel select,.simple-v34 #v34DirectoryVessels select{width:100%;min-height:40px;border:1px solid #d1ded4;border-radius:6px;background:white;color:#294f40;padding:7px}
++.simple-v34 #v34VesselPanel p{font-size:11px;line-height:1.6;margin:8px 0 0;color:#63776c}
++.simple-v34 #v34VesselLegend{position:absolute;bottom:16px;left:16px;padding:7px 10px;border-radius:8px;background:#fffffff0;border:1px solid #dce6db;color:#436050;font-size:11px;pointer-events:none}
++.simple-v34 .v34-pairs{margin:10px 0}.simple-v34 .v34-pairs summary{font-size:12px;color:#526b5c;cursor:pointer;min-height:36px;line-height:36px}
++@media(min-width:1101px){.simple-v34[data-atlas-tab=meridians] #meridianQuick,.simple-v34[data-atlas-tab=meridians] #tcmBtn{display:none!important}}
++@media(max-width:600px){.simple-v34 #v34VesselLegend{bottom:12px;left:12px;font-size:10px;max-width:55%;line-height:1.4}}
++
++.simple-v34 #focusCurrent,.simple-v34 #speakCurrent{display:none!important}
++@media(max-width:1100px){.simple-v34 [data-action="details"]{display:none!important}}
+--- /dev/null
++++ b/simple-study-v34.js
+@@ -0,0 +1,36 @@
++// A smaller default workspace; detailed tools remain available on demand.
++export function initSimpleStudy({learning,tissues,female,toast}){
++ const $=id=>document.getElementById(id),api=window.__ATLAS_SHARED__;
++ document.body.classList.add('simple-v34');
++ $('boneTab').textContent='人体结构';$('layersTab').textContent='查看图层';
++ $('tcmBtn').textContent='选择经络';$('tcmQuickFit').textContent='看全线';
++ for(const id of ['tcmMasterToggle','tcmFitMeridian','labelFitAll'])$(id).hidden=true;
++ document.querySelector('.v26-orientation').hidden=true;
++ const custom=$('customLayers'),heading=custom.querySelector('h3'),summary=document.createElement('summary');
++ summary.textContent='叠加与显示设置';heading.replaceWith(summary);custom.open=false;
++ const quick=$('v21Quick'),vascular=quick.querySelector('[data-v21-view="vascular"]');
++ vascular.textContent='全身血管';quick.querySelector('.v21-quick-grid').append(vascular);
++ const vesselPanel=document.createElement('section');vesselPanel.id='v34VesselPanel';vesselPanel.innerHTML='<label>血管类型<select id="v34VesselFilter" aria-label="画面血管类型"><option value="all">动脉与静脉</option><option value="artery">只看动脉</option><option value="vein">只看静脉</option></select></label><p>红色：动脉 · 蓝色：静脉<br>颜色用于辨认结构，不表示含氧量。</p>';
++ quick.querySelector('.v21-quick-grid').after(vesselPanel);
++ const directoryFilter=document.createElement('label');directoryFilter.id='v34DirectoryVessels';directoryFilter.innerHTML='血管类型<select id="v34DirectoryFilter" aria-label="目录血管类型"><option value="all">动脉与静脉</option><option value="artery">只看动脉</option><option value="vein">只看静脉</option></select>';
++ $('structureLibrary').querySelector('.shared-filters').after(directoryFilter);
++ for(const id of ['v34VesselFilter','v34DirectoryFilter'])$(id).onchange=e=>api.setVesselFilter(e.target.value).catch(e=>toast('筛选未完成：'+e.message));
++ const more=$('sharedMeridianOptions');more.querySelector('summary').textContent='线型、透视与局部观察';more.lastElementChild.prepend($('localStudyToggle').closest('label'));
++ const pairs=$('pairHeart').parentElement,pairDetails=document.createElement('details');pairDetails.className='v34-pairs';pairDetails.innerHTML='<summary>经脉对照组合</summary>';pairs.before(pairDetails);pairDetails.append(pairs);
++ const legend=document.createElement('div');legend.id='v34VesselLegend';legend.setAttribute('role','status');document.querySelector('.stage').append(legend);
++ const help=$('helpDialog');help.querySelector('h2').textContent='三步开始学习';
++ const articles=help.querySelectorAll('.guide-cards article');
++ [['选择内容','在“查看图层”选择经络、骨骼、肌肉、神经、内脏或血管；男女使用同一套入口。'],['找到结构','在“人体结构”搜索名称；在“经络穴位”搜索穴名或编码。点击后看位置和资料。'],['观察关系','拖动旋转、滚轮缩放。需要叠加或透明度时展开“叠加与显示设置”；点“返回全身”结束局部观察。']].forEach(([h,p],i)=>{articles[i].querySelector('h3').textContent=h;articles[i].querySelector('p').textContent=p;});
++ let queued=false;
++ function refresh(){queued=false;const s=api.getState(),native=female.active?female.getState():tissues.getState(),vascularOn=female.active?native.systems.vessels?.on||native.systems.vascular?.on:native.systems.vessels?.on;
++  vesselPanel.hidden=!vascularOn;directoryFilter.hidden=$('structureSystem').value!=='vascular';
++  for(const id of ['v34VesselFilter','v34DirectoryFilter'])$(id).value=s.vesselFilter;
++  legend.hidden=!vascularOn;legend.textContent=(s.vesselFilter==='vein'?'静脉 · 蓝色':s.vesselFilter==='artery'?'动脉 · 红色':'动脉红色 · 静脉蓝色')+' · 结构学习配色';
++  $('tcmBtn').hidden=s.section==='meridians'&&innerWidth>1100;
++  $('v21Coverage').textContent='来源与模型';
++ }
++ function schedule(){if(!queued){queued=true;queueMicrotask(refresh);}}
++ for(const event of ['atlas:section-changed','atlas:transition-settled','atlas:sex-changed','atlas:profile-changed','atlas:vessel-filter','atlas:selection'])window.addEventListener(event,schedule);
++ $('structureSystem').addEventListener('change',schedule);$('structureReset').addEventListener('click',schedule);window.addEventListener('resize',schedule);
++ refresh();
++}
+--- a/stability-v10.js
++++ b/stability-v10.js
+@@ -12,6 +12,7 @@
+  function currentLayer(){const scene=window.__ATLAS_SHARED__?.getState().scene;return profiles.has(scene)?scene:tissues.getState().profile;}
+  function linkFor(target=current,base='./'){
+   const u=new URL(base,location.href),hash=new URLSearchParams({kind:target.kind,id:target.id,side:target.side||'both',mode:learning.getState().precisionMode,layer:currentLayer()});
++  hash.set('blood',window.__ATLAS_SHARED__?.getState().vesselFilter||'all');
+   if(window.__ATLAS_FEMALE__?.active){const f=window.__ATLAS_FEMALE__.getState();hash.set('sex','female');hash.set('preset',f.preset);hash.set('display',f.mode);}u.hash=hash.toString();return u.href;
+  }
+  function update(){
+@@ -37,7 +38,7 @@
+  window.addEventListener('atlas:selection',e=>adopt(e.detail));
+  window.addEventListener('atlas:bone-selected',e=>{if(e.detail?.user){const b=ctx.boneInfo(e.detail.id);adopt({kind:'bone',id:b.id,name:b.name,side:b.side});}});
+  window.addEventListener('atlas:region-changed',e=>adopt({kind:'region',id:e.detail.region,name:e.detail.name,side:e.detail.side}));
+- window.addEventListener('atlas:precision-changed',update);window.addEventListener('atlas:profile-changed',update);
++ window.addEventListener('atlas:vessel-filter',update);window.addEventListener('atlas:precision-changed',update);window.addEventListener('atlas:profile-changed',update);
+  async function restoreProfile(layer){if(window.__ATLAS_SHARED__&&!layer.startsWith('ear-'))return window.__ATLAS_SHARED__.choose(layer,true,{keepSection:true});return tissues.setProfile(layer); }
+  async function navigate(target){
+   const serial=++restoreSerial;restoring=true;
+@@ -46,6 +47,7 @@
+    if(target.kind==='bone'&&!ctx.boneInfo(target.id))throw Error('没有这个骨名，请从目录重新选择');
+    target={...target};if(['point','meridian'].includes(target.kind)&&profiles.has(target.layer)){await restoreProfile(target.layer);if(serial!==restoreSerial)return;target.layer=null;}
+    if(['point','meridian'].includes(target.kind)){await tissues.ensureMeridianReference();if(serial!==restoreSerial)return;}
++   if(target.blood)await window.__ATLAS_SHARED__?.setVesselFilter(target.blood);
+    if(target.mode)learning.setPrecisionMode(target.mode==='illustrative'?'illustrative':'strict');
+    if(target.kind==='point')learning.selectPoint(target.id,target.side||'right',true);
+    else if(target.kind==='meridian'){learning.clearStudyContext(true);learning.setMeridians(target.id.split(',').filter(id=>/^(LU|LI|ST|SP|HT|SI|BL|KI|PC|TE|GB|LR|GV|CV|EX)$/.test(id)));learning.setTCMSide(target.side||'both');learning.toggleTCM(true);learning.fitMeridian();}
+@@ -77,7 +79,7 @@
+  $('speakCurrent').onclick=()=>speech.speak(current.name);
+  $('shareCurrent').onclick=async()=>{const url=linkFor();try{await navigator.clipboard.writeText(url);toast('已复制当前条目、左右侧与观察模式');}catch{const t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.top='0';box.append(t);t.select();try{document.execCommand('copy');toast('已复制当前链接');}catch{toast('可复制地址栏中的当前链接');}t.remove();}};
+  document.addEventListener('keydown',e=>{if(e.target.closest?.('input,textarea,select,[contenteditable]')||e.ctrlKey||e.altKey||e.metaKey||document.querySelector('dialog[open]'))return;if(['g','t'].includes(e.key.toLowerCase())&&current.kind!=='bone'){e.preventDefault();e.stopImmediatePropagation();toast('先选中一块骨骼，再使用拆骨或转骨');}},true);
+- function parseHash(){const h=new URLSearchParams(location.hash.slice(1));if(h.get('sex')==='female')return null;const kind=h.get('kind'),id=h.get('id');if(!safeKinds.has(kind)||!id||id.length>240)return null;return{kind,id,side:['right','left','both','midline'].includes(h.get('side'))?h.get('side'):'right',mode:h.get('mode')==='illustrative'?'illustrative':'strict',layer:profiles.has(h.get('layer'))?h.get('layer'):'bones'};}
++ function parseHash(){const h=new URLSearchParams(location.hash.slice(1));if(h.get('sex')==='female')return null;const kind=h.get('kind'),id=h.get('id');if(!safeKinds.has(kind)||!id||id.length>240)return null;return{kind,id,blood:['artery','vein'].includes(h.get('blood'))?h.get('blood'):'all',side:['right','left','both','midline'].includes(h.get('side'))?h.get('side'):'right',mode:h.get('mode')==='illustrative'?'illustrative':'strict',layer:profiles.has(h.get('layer'))?h.get('layer'):'bones'};}
+  async function restoreHash(){const p=parseHash();if(p)await navigate(p);}
+  const initial=parseHash();
+  window.addEventListener('hashchange',()=>restoreHash().catch(e=>toast('链接恢复失败：'+e.message)));
+--- a/tissues-v4.js
++++ b/tissues-v4.js
+@@ -49,7 +49,7 @@
+  $('chestCompare').onclick=async()=>{await enable('muscular',true);setRegion('thorax');setView('front');showPanel(false);document.querySelector('.bone-pane').hidden=false;document.body.classList.remove('nav-open');toast('原胸廓坐标未改变；肌肉叠加用于比较外形');};
+  function regionBox(){if(organBox)return organBox.clone();const c=ctx.learning.getStudyContext?.();if(c&&localStudy){const v=new THREE.Vector3(...c.center);return new THREE.Box3(v.clone().addScalar(-c.radius*1.6),v.clone().addScalar(c.radius*1.6));}if(state.region==='body')return null;let box=new THREE.Box3();for(const b of bones.values())if(ctx.regionContains(b.name))box.expandByObject(b);if(box.isEmpty())return null;const ranges={head:[1440,1710],auditory:[1470,1600],cervical:[1380,1520],thoracic:[1100,1440],thorax:[1060,1410],shoulder:[1190,1430],upper:[620,1440],elbow:[970,1110],wrist:[765,860],hand:[630,825],foot:[-80,85],ankle:[-80,170],knee:[300,515],lumbar:[880,1110],hip:[735,985],pelvis:[740,985]};if(ranges[state.region]){box.min.y=ranges[state.region][0];box.max.y=ranges[state.region][1];}box.expandByScalar(25);return box;}
+  function clipPlanes(b){return b?[new THREE.Plane(new THREE.Vector3(1,0,0),-b.min.x),new THREE.Plane(new THREE.Vector3(-1,0,0),b.max.x),new THREE.Plane(new THREE.Vector3(0,1,0),-b.min.y),new THREE.Plane(new THREE.Vector3(0,-1,0),b.max.y),new THREE.Plane(new THREE.Vector3(0,0,1),-b.min.z),new THREE.Plane(new THREE.Vector3(0,0,-1),b.max.z)]:[];}
+- function updateFrame(){const displaced=state.explode>0||[...bones.values()].some(b=>b.userData.offset.lengthSq()>.1||b.quaternion.angleTo(new THREE.Quaternion())>.015);const study=ctx.learning.getStudyContext?.();const key=[state.bodyTransition,state.bodySex,organBox?.min.toArray().join(','),organBox?.max.toArray().join(','),details,vesselFilter,earFilter,[...hiddenStructures].join(','),study?.code,study?.side,localStudy,state.region,state.side,state.isolated,state.selected,displaced,isolated,selected?.id,fascia,nerveXray,clipOn,state.boneOpacity,...Object.values(systems).flatMap(s=>[s.on,s.loaded,s.opacity])].join('|');if(key===lastKey)return;lastKey=key;ctx.invalidate();$('tissueStudyTitle').textContent=study?'当前：'+study.name+' · '+study.regionLabel:'未选穴位：全区域观察';ctx.setPerformance(Object.values(systems).some(s=>s.on));clipBox=regionBox();const planes=clipPlanes(clipBox),localSkinContext=!!study&&localStudy&&!organBox&&state.region==='body';warning.hidden=!(displaced&&Object.values(systems).some(s=>s.on));root.visible=!displaced&&!state.isolated&&state.bodySex!=='female';for(const [system,s]of Object.entries(systems))for(const n of s.meshes){const m=n.userData.atlas,bb=new THREE.Box3(new THREE.Vector3(...m.bounds[0]),new THREE.Vector3(...m.bounds[1]));n.visible=s.on&&(profile!=='chest'||system!=='visceral'||['lung','airway'].includes(m.category)||/oesoph|esoph/.test(m.en.toLowerCase()))&&(profile!=='abdomen'||system!=='visceral'||m.category==='organ')&&(profile!=='heart'||system!=='vessels'||/aorta|vena cava|coronary|cardiac|pulmonary/i.test(m.en))&&(!hiddenStructures.has(m.id)||isolated)&&(details||!m.detailOnly||m.id===selected?.id)&&(system!=='vessels'||vesselFilter==='all'||m.category===vesselFilter)&&(system!=='ear'||earFilter==='all'||m.category===earFilter)&&(!isolated||m.id===selected?.id)&&(m.category!=='fascia'||fascia||m.id===selected?.id)&&(state.side==='both'||m.side==='midline'||m.side===state.side)&&(system==='surface'&&localSkinContext||isolated||!clipBox||bb.intersectsBox(clipBox));n.material.opacity=s.opacity;n.material.transparent=s.opacity<.98;n.material.depthWrite=s.opacity>=.98;n.material.depthTest=!(system==='nervous'&&nerveXray);n.renderOrder=system==='nervous'&&nerveXray?18:system==='nervous'?3:2;n.material.clippingPlanes=isolated||!clipOn||system==='surface'&&localSkinContext?[]:planes;n.material.emissive.set(m.id===selected?.id?'#12534e':system==='nervous'?'#301200':'#000000');n.material.emissiveIntensity=m.id===selected?.id?.25:system==='nervous'?.14:0;n.material.needsUpdate=true;}ctx.learning.suspend(!!state.bodyTransition||displaced&&state.bodySex!=='female');renderList();}
++ function updateFrame(){const displaced=state.explode>0||[...bones.values()].some(b=>b.userData.offset.lengthSq()>.1||b.quaternion.angleTo(new THREE.Quaternion())>.015);const study=ctx.learning.getStudyContext?.();const key=[state.bodyTransition,state.bodySex,organBox?.min.toArray().join(','),organBox?.max.toArray().join(','),details,vesselFilter,earFilter,[...hiddenStructures].join(','),study?.code,study?.side,localStudy,state.region,state.side,state.isolated,state.selected,displaced,isolated,selected?.id,fascia,nerveXray,clipOn,state.boneOpacity,...Object.values(systems).flatMap(s=>[s.on,s.loaded,s.opacity])].join('|');if(key===lastKey)return;lastKey=key;ctx.invalidate();$('tissueStudyTitle').textContent=study?'当前：'+study.name+' · '+study.regionLabel:'未选穴位：全区域观察';ctx.setPerformance(Object.values(systems).some(s=>s.on));clipBox=regionBox();const planes=clipPlanes(clipBox),localSkinContext=!!study&&localStudy&&!organBox&&state.region==='body';warning.hidden=!(displaced&&Object.values(systems).some(s=>s.on));root.visible=!displaced&&!state.isolated&&state.bodySex!=='female';for(const [system,s]of Object.entries(systems))for(const n of s.meshes){const m=n.userData.atlas,bb=new THREE.Box3(new THREE.Vector3(...m.bounds[0]),new THREE.Vector3(...m.bounds[1]));n.visible=s.on&&(profile!=='chest'||system!=='visceral'||['lung','airway'].includes(m.category)||/oesoph|esoph/.test(m.en.toLowerCase()))&&(profile!=='abdomen'||system!=='visceral'||m.category==='organ')&&(profile!=='heart'||system!=='vessels'||/aorta|vena cava|coronary|cardiac|pulmonary/i.test(m.en))&&(!hiddenStructures.has(m.id)||isolated)&&(details||!m.detailOnly||m.id===selected?.id)&&(system!=='vessels'||vesselFilter==='all'||m.category===vesselFilter)&&(system!=='heart'||vesselFilter==='all')&&(system!=='ear'||earFilter==='all'||m.category===earFilter)&&(!isolated||m.id===selected?.id)&&(m.category!=='fascia'||fascia||m.id===selected?.id)&&(state.side==='both'||m.side==='midline'||m.side===state.side)&&(system==='surface'&&localSkinContext||isolated||!clipBox||bb.intersectsBox(clipBox));n.material.opacity=s.opacity;n.material.transparent=s.opacity<.98;n.material.depthWrite=s.opacity>=.98;n.material.depthTest=!(system==='nervous'&&nerveXray);n.renderOrder=system==='nervous'&&nerveXray?18:system==='nervous'?3:2;n.material.clippingPlanes=isolated||!clipOn||system==='surface'&&localSkinContext?[]:planes;n.material.emissive.set(m.id===selected?.id?'#12534e':system==='nervous'?'#301200':'#000000');n.material.emissiveIntensity=m.id===selected?.id?.25:system==='nervous'?.14:0;n.material.needsUpdate=true;}ctx.learning.suspend(!!state.bodyTransition||displaced&&state.bodySex!=='female');renderList();}
+  function renderList(){const q=$('tissueSearch').value.trim().toLowerCase();const all=[...entries.values()].filter(n=>systems[n.userData.atlas.system].on&&(q||n.visible)&&(state.side==='both'||n.userData.atlas.side==='midline'||n.userData.atlas.side===state.side)&&(!clipBox||new THREE.Box3(new THREE.Vector3(...n.userData.atlas.bounds[0]),new THREE.Vector3(...n.userData.atlas.bounds[1])).intersectsBox(clipBox))&&(!q||[n.userData.atlas.name,n.userData.atlas.en].join(' ').toLowerCase().includes(q)));$('tissueList').replaceChildren();for(const n of all){const m=n.userData.atlas,b=document.createElement('button');b.dataset.tissue=m.id;b.innerHTML='<b>'+esc(m.name)+'</b><small>'+esc(m.en)+'</small>';b.onclick=()=>choose(m.id,true);$('tissueList').append(b);}if(!all.length)$('tissueList').textContent=entries.size?'未找到该结构':'开启一个图层后可按名称查找和单独查看。';}
+  function ensureBodyContext(){
+   if(state.bodySex==='female')return false;isolated=false;state.tissueIsolated=false;state.isolated=false;state.bonesOn=true;$('bonesOn').checked=true;
+@@ -132,5 +132,5 @@
+   await ctx.learning.setReferenceBody('male',surfaceProjector,true);return true;
+  }
+ 
+- const api={setIsolated:v=>{isolated=!!v&&!!selected;state.tissueIsolated=isolated;ctx.applyVisibility();lastKey='';updateFrame();if(selected)choose(selected.id,false);},setOrganScope:(bounds,name)=>{profile=name;organBox=new THREE.Box3(new THREE.Vector3(...bounds[0]),new THREE.Vector3(...bounds[1]));lastKey="";updateFrame();},captureState,restoreState,ensureMeridianReference,getSurfaceReferenceMeshes:async()=>{const prior=systems.surface.on;if(!systems.surface.loaded)await enable('surface',true);if(!prior){systems.surface.on=false;$('surfaceOn').checked=false;lastKey='';updateFrame();}root.updateWorldMatrix(true,true);return systems.surface.meshes;},ensureBodyContext,setAnatomyView,attachSurface,getSurfaceStats:()=>surfaceProjector?.stats(),getPickPoint,clearOrganScope:()=>{profile='custom';organBox=null;lastKey='';updateFrame();},setProfile,setBoneOpacity,setOpacity,enable,showPanel,updateFrame,click,hit,choose,clearSelection,getVisibleCatalog:()=>[...entries.values()].filter(n=>root.visible&&n.visible).map(n=>n.userData.atlas),getCatalog:()=>[...entries.values()].map(n=>n.userData.atlas),revealStructure:id=>{hiddenStructures.delete(id);organBox=null;isolated=false;state.tissueIsolated=false;lastKey='';updateFrame();},project:id=>{const n=entries.get(id);if(!n)return null;const v=new THREE.Box3().setFromObject(n).getCenter(new THREE.Vector3()).project(camera),r=viewport.getBoundingClientRect();return{x:r.left+(v.x*.5+.5)*r.width,y:r.top+(-v.y*.5+.5)*r.height};},getState:()=>({details,fascia,localStudy,studyContext:ctx.learning.getStudyContext?.(),profile,nerveXray,clipOn,boneOpacity:state.boneOpacity,selected,isolated,displaced:!root.visible,skinLoaded:false,surfaceReferenceLoaded:systems.surface.loaded,organView:organBox&&[organBox.min.toArray(),organBox.max.toArray()],systems:Object.fromEntries(Object.entries(systems).map(([k,s])=>[k,{on:s.on,loaded:s.loaded,loading:s.loading,count:s.meshes.length,visible:s.meshes.filter(n=>n.visible&&root.visible).length,opacity:s.opacity}]))})};window.__ATLAS_TISSUES__=api;return api;
++ const api={setVesselFilter:value=>{vesselFilter=['all','artery','vein'].includes(value)?value:'all';$('vesselFilter').value=vesselFilter;lastKey='';updateFrame();},setIsolated:v=>{isolated=!!v&&!!selected;state.tissueIsolated=isolated;ctx.applyVisibility();lastKey='';updateFrame();if(selected)choose(selected.id,false);},setOrganScope:(bounds,name)=>{profile=name;organBox=new THREE.Box3(new THREE.Vector3(...bounds[0]),new THREE.Vector3(...bounds[1]));lastKey="";updateFrame();},captureState,restoreState,ensureMeridianReference,getSurfaceReferenceMeshes:async()=>{const prior=systems.surface.on;if(!systems.surface.loaded)await enable('surface',true);if(!prior){systems.surface.on=false;$('surfaceOn').checked=false;lastKey='';updateFrame();}root.updateWorldMatrix(true,true);return systems.surface.meshes;},ensureBodyContext,setAnatomyView,attachSurface,getSurfaceStats:()=>surfaceProjector?.stats(),getPickPoint,clearOrganScope:()=>{profile='custom';organBox=null;lastKey='';updateFrame();},setProfile,setBoneOpacity,setOpacity,enable,showPanel,updateFrame,click,hit,choose,clearSelection,getVisibleCatalog:()=>[...entries.values()].filter(n=>root.visible&&n.visible).map(n=>n.userData.atlas),getCatalog:()=>[...entries.values()].map(n=>n.userData.atlas),revealStructure:id=>{hiddenStructures.delete(id);organBox=null;isolated=false;state.tissueIsolated=false;lastKey='';updateFrame();},project:id=>{const n=entries.get(id);if(!n)return null;const v=new THREE.Box3().setFromObject(n).getCenter(new THREE.Vector3()).project(camera),r=viewport.getBoundingClientRect();return{x:r.left+(v.x*.5+.5)*r.width,y:r.top+(-v.y*.5+.5)*r.height};},getState:()=>({vesselFilter,details,fascia,localStudy,studyContext:ctx.learning.getStudyContext?.(),profile,nerveXray,clipOn,boneOpacity:state.boneOpacity,selected,isolated,displaced:!root.visible,skinLoaded:false,surfaceReferenceLoaded:systems.surface.loaded,organView:organBox&&[organBox.min.toArray(),organBox.max.toArray()],systems:Object.fromEntries(Object.entries(systems).map(([k,s])=>[k,{on:s.on,loaded:s.loaded,loading:s.loading,count:s.meshes.length,visible:s.meshes.filter(n=>n.visible&&root.visible).length,opacity:s.opacity}]))})};window.__ATLAS_TISSUES__=api;return api;
+ }
+--- /dev/null
++++ b/vessel-kind-v34.js
+@@ -0,0 +1,11 @@
++// Classify model metadata, never infer physiological oxygen content from color.
++export function vesselKind(row){
++ if(['artery','vein'].includes(row.category))return row.category;
++ const text=[row.name,row.en,row.english,row.sourceName,row.sourceNode].join(' ').replace(/_/g,' ').toLowerCase();
++ if(/valve|瓣/.test(text))return 'other';
++ if(/\bveins?\b|\bvena\b|\bvenous\b|静脉/.test(text))return 'vein';
++ if(/\barter(?:y|ies|ial)\b|\baorta\b|\baortic\b|动脉/.test(text))return 'artery';
++ return 'other';
++}
++export function validVesselFilter(value){return ['all','artery','vein'].includes(value)?value:'all';}
++export function vesselMatches(row,filter){return filter==='all'||!['heart','vascular','vessels'].includes(row.system)||vesselKind(row)===filter;}
