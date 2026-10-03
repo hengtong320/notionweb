@@ -1,0 +1,54 @@
+name: Publish V36 readable controls and surface contacts
+on:
+  push:
+    paths:
+      - 'atlas36-tools/**'
+      - '.github/workflows/atlas36-publish.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas36-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify and prepare reviewed sources
+        run: |
+          python3 atlas36-tools/prepare.py
+      - name: Build and validate data
+        run: |
+          npm install --prefix /tmp/atlas36-build --no-audit --no-fund three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10
+          NODE_PATH=/tmp/atlas36-build/node_modules node atlas36-tools/build.cjs
+          node --check fullbody-tcm-v36/app.bundle.js
+      - name: Match reviewed local build
+        env:
+          EXPECTED_BUNDLE: a7d6ae4295b3f7a9945dbe336f7a9e112fa8bb248f71f4e1d629754dc3c8d871
+          EXPECTED_EVIDENCE: d616f4a218f33e5cbdc5fb03a3e7d4089830c6fca80b0851e85a8ad76754459d
+        run: |
+          python3 - <<'PYCODE'
+          import pathlib,hashlib,json,os
+          d=pathlib.Path('fullbody-tcm-v36')
+          for name,key in [('app.bundle.js','EXPECTED_BUNDLE'),('evidence.bundle.js','EXPECTED_EVIDENCE')]:
+            assert hashlib.sha256((d/name).read_bytes()).hexdigest()==os.environ[key],name
+          for name,sha in json.loads((d/'build-info.json').read_text())['files'].items():
+            assert hashlib.sha256((d/name).read_bytes()).hexdigest()==sha,name
+          p=pathlib.Path('anatomy/index.html');s=p.read_text()
+          assert 'fullbody-tcm-v35' in s
+          p.write_text(s.replace('fullbody-tcm-v35','fullbody-tcm-v36').replace('35.0.1','36.0.0'))
+          PYCODE
+          git diff --exit-code -- fullbody-tcm-v35 fullbody-tcm-v34 fullbody-tcm-v31 fullbody-tcm-v9 fullbody-tcm-v11 fullbody-tcm-v12
+      - name: Publish version and fixed entry
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v36 anatomy/index.html
+          git commit -m "Publish V36 persistent navigation, local position focus and stable zoom"
+          git push origin HEAD:main
