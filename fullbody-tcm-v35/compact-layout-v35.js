@@ -14,8 +14,9 @@ export function initCompactLayout({learning}){
  const select=directions.querySelector('select');
  for(const b of views.querySelectorAll('[data-view]')){const option=document.createElement('option');option.value=b.dataset.view;option.textContent=b.textContent;select.append(option);}
  views.append(directions);select.onchange=()=>views.querySelector('[data-view="'+select.value+'"]').click();
+ const restoreDetails=document.createElement('button');restoreDetails.id='restorePointDetails';restoreDetails.textContent='查看穴位详情';restoreDetails.hidden=true;document.querySelector('.study-toolbar').append(restoreDetails);restoreDetails.onclick=()=>$('chipDetails').click();
  let compact=false,scheduled=false;
- function layout(){scheduled=false;const on=innerWidth<=650||(innerHeight<=440&&innerWidth<=1100);
+ function layout(){scheduled=false;const collapsed=innerWidth>1100&&body.dataset.currentKind==='point'&&!learning.getState().cardOpen;body.classList.toggle('point-detail-collapsed',collapsed);restoreDetails.hidden=!collapsed;const on=innerWidth<=650||(innerHeight<=440&&innerWidth<=1100);
   if(on!==compact){compact=on;menu.open=false;body.classList.toggle('compact-v35',on);for(const {el,home}of homes){if(on||alwaysMenu.has(el.id))content.append(el);else home.after(el);}}
   if(on){const stage=$('stage').getBoundingClientRect(),heading=document.querySelector('.stage-heading').getBoundingClientRect(),view=views.getBoundingClientRect();
    body.style.setProperty('--compact-view-top',Math.max(42,heading.bottom-stage.top+8)+'px');
@@ -25,6 +26,8 @@ export function initCompactLayout({learning}){
   const active=views.querySelector('[data-view][aria-pressed="true"]');select.value=active?.dataset.view||'free';
  }
  function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(layout);}}
+ new MutationObserver(schedule).observe($('tcmPointCard'),{attributes:true,attributeFilter:['hidden']});
+ new MutationObserver(schedule).observe(body,{attributes:true,attributeFilter:['data-current-kind']});
  new ResizeObserver(schedule).observe(document.querySelector('.study-toolbar'));
  new ResizeObserver(schedule).observe(document.querySelector('.stage-heading'));
  new MutationObserver(schedule).observe(views,{subtree:true,attributes:true,attributeFilter:['aria-pressed']});
