@@ -1,0 +1,73 @@
+#compactDirection{display:none}
+.compact-control-name{display:none}
+.stage-heading h2{overflow-wrap:anywhere;min-width:0}
+.shared-result strong,.shared-result small,.female-detail h2{overflow-wrap:anywhere}
+body #compactActions{display:block;position:relative;flex:none}
+body #compactActions>summary{display:flex;align-items:center;justify-content:center;min-height:40px;padding:5px 8px;border:1px solid #d4e0d2;border-radius:6px;background:#f2f6ee;cursor:pointer;list-style:none;font-size:11px}
+body #compactActions>summary::-webkit-details-marker{display:none}
+body #compactActions:not([open])>.compact-actions-body{display:none}
+body .compact-actions-body{position:absolute;right:0;top:46px;z-index:160;width:220px;max-height:calc(100dvh - 100px);overflow:auto;display:grid;gap:4px;padding:10px;background:#fbfdf8;border:1px solid #cad9cc;border-radius:10px;box-shadow:0 8px 24px #27493530}
+body #compactActions .compact-control-name{display:inline}
+body #compactActions button,body #compactActions select{display:flex!important;width:100%!important;min-height:44px!important;height:auto!important;align-items:center;gap:9px;white-space:normal;text-align:left;padding:8px!important;font-size:12px!important;max-width:none!important;border-radius:6px}
+body #compactActions button[aria-pressed=true]{background:#e0eddb}
+body #compactActions #renderQuality{display:block!important}
+body.compact-v35 .topbar{gap:4px;padding:0 9px;position:relative;z-index:110}
+body.compact-v35 .drawer-buttons{gap:3px}
+body.compact-v35 .drawer-buttons button{min-height:40px;padding:5px 7px}
+body.compact-v35 .header-actions{gap:0}
+body.compact-v35 .stage-heading{top:8px;left:12px;right:12px;display:flex;gap:8px;align-items:center;max-width:none}
+body.compact-v35 .stage-heading h2{font-size:17px;line-height:1.4;flex:1;margin:5px 0}
+body.compact-v35 .stage-heading .model-status{font-size:9px;max-width:100px;white-space:normal;text-align:right;line-height:1.4;flex-shrink:0}
+body.compact-v35 .view-switcher{top:var(--compact-view-top,48px);left:12px;right:12px;padding:0;overflow:visible;max-width:none;background:transparent;border:0}
+body.compact-v35 .view-switcher>[data-view]{display:none}
+body.compact-v35 #compactDirection{display:flex;align-items:center;gap:8px;width:100%;font-size:11px;color:#3f6151}
+body.compact-v35 #compactDirection select{flex:1;min-height:40px;background:#fafcf8f2}
+body.compact-v35 .study-toolbar{top:var(--compact-study-top,96px);left:12px;right:12px;max-width:none;gap:4px;flex-wrap:wrap}
+body.compact-v35 .study-toolbar button{min-height:40px;font-size:10px;padding:5px 6px}
+body.compact-v35 .study-toolbar select{min-height:40px;flex:1;min-width:70px;width:0;max-width:none;font-size:10px;padding:5px}
+body.compact-v35 .tcm-status{top:var(--compact-status-top,146px);left:12px;right:12px;max-width:calc(100% - 24px)}
+body.compact-v35 .stage-tools{display:flex;flex-direction:row;justify-content:center;top:auto;bottom:12px;left:12px;right:12px;max-height:none;overflow:visible;padding:4px;gap:5px;z-index:12}
+body.compact-v35 .stage-tools button{width:44px;min-width:40px;min-height:44px;height:44px;flex:1}
+body.compact-v35 #v26PointSummary{bottom:72px;left:12px;right:12px;padding:7px 9px;min-height:56px}
+body.compact-v35 #acupointLabelNav{bottom:140px;left:12px;right:12px;max-width:none;justify-content:center;min-height:36px;font-size:10px}
+body.compact-v35 #acupointLabelNav button{min-height:32px;flex-shrink:0}
+body.compact-v35 #acupointLabelNav span{min-width:0;white-space:normal;text-align:center}
+body.compact-v35 #v34VesselLegend{bottom:188px;left:12px;right:auto;max-width:calc(100% - 24px)}
+body.compact-v35 .control-dock{bottom:70px;left:12px;right:12px;max-height:calc(100% - 240px);overflow:auto}
+body.compact-v35.dock-collapsed .control-dock{display:none!important}
+body.compact-v35:not(.dock-collapsed) #v26PointSummary,body.compact-v35:not(.dock-collapsed) #acupointLabelNav,body.compact-v35:not(.dock-collapsed) #v34VesselLegend{display:none!important}
+body.compact-v35[data-current-kind=point].detail-open:not(.atlas-expanded) .stage-tools{bottom:calc(38dvh + 12px)}
+body.compact-v35.nav-open .stage-tools{visibility:hidden}
+body.compact-v35 .more-views-panel{top:var(--compact-status-top,146px);left:12px;right:12px;max-height:calc(100% - 220px);width:auto;z-index:35}
+body.compact-v35 .zoom-instruction,body.compact-v35 .layer-legend{display:none!important}
+body.compact-v35.atlas-expanded #wideViewBar{left:8px;right:8px;transform:none;width:auto;max-width:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+body.compact-v35.atlas-expanded #wideViewBar #bodySelector{grid-column:span 2;width:100%;justify-content:center}
+body.compact-v35.atlas-expanded #wideViewBar button{font-size:11px;padding:4px;min-width:0}
+body.compact-v35.atlas-expanded #wideViewBar #wideNative{display:none}
+body.compact-v35.atlas-expanded .sidebar,body.compact-v35.atlas-expanded .detail-panel{top:112px!important}
+body.compact-v35.atlas-expanded #wideClosePanel{top:118px}
+body.compact-v35.atlas-expanded #wideViewBottom{left:8px;right:8px;transform:none;max-width:none;width:auto;gap:3px}
+body.compact-v35.atlas-expanded #wideViewBottom button{min-width:0;padding:5px;font-size:11px;flex:1}
+@media(max-width:350px){body.compact-v35 .stage-heading .model-status{display:none}}
+@media(max-height:440px) and (max-width:1100px){body.compact-v35 #acupointLabelNav{display:none!important}body.compact-v35 #v34VesselLegend{display:none!important}}
+
+body.compact-v35 .v9-precision-badge{display:none!important}
+
+body:not(.compact-v35) #acupointLabelNav{right:68px;max-width:calc(100% - 84px)}
+body:not(.compact-v35) .stage-tools{max-height:calc(100% - 250px);overflow:auto}
+
+body.compact-v35 #tcmPointCard h3{flex-wrap:wrap;gap:3px}
+body.compact-v35 #tcmPointCard h3 small{flex-basis:100%;line-height:1.6;overflow-wrap:anywhere}
+
+/* Region selections must not show the previously selected bone's information. */
+body[data-current-kind="region"] #detailTitle{display:none!important}
+body[data-current-kind="region"] #boneIndex{visibility:hidden}
+body[data-current-kind="region"] .detail-scroll>*:not(#currentStudy){display:none!important}
+
+body.dock-collapsed .control-dock{display:none!important}
+body[data-current-kind="bone"] #currentStudy>small,
+body[data-current-kind="bone"] #currentStudyName,
+body[data-current-kind="bone"] #currentStudyMode,
+body[data-current-kind="tissue"] #currentStudy>small,
+body[data-current-kind="tissue"] #currentStudyName,
+body[data-current-kind="tissue"] #currentStudyMode{display:none!important}
