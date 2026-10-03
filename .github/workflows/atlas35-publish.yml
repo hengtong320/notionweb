@@ -22,7 +22,6 @@ jobs:
           node-version: '22'
       - name: Verify and prepare reviewed sources
         run: |
-          test ! -d fullbody-tcm-v35
           python3 atlas35-tools/prepare.py
       - name: Build and validate data
         run: |
@@ -31,7 +30,7 @@ jobs:
           node --check fullbody-tcm-v35/app.bundle.js
       - name: Match reviewed local build
         env:
-          EXPECTED_BUNDLE: 2d5e3c46c5121582c685c7541c918e7973c5982b9ad572c4c84ffca770fafd67
+          EXPECTED_BUNDLE: 8317ab33f46a74097f5821a0b8585864c22eb8c9358cdc7ef39bde9e201fbbcb
           EXPECTED_EVIDENCE: d616f4a218f33e5cbdc5fb03a3e7d4089830c6fca80b0851e85a8ad76754459d
         run: |
           python3 - <<'PYCODE'
@@ -42,8 +41,8 @@ jobs:
           for name,sha in json.loads((d/'build-info.json').read_text())['files'].items():
             assert hashlib.sha256((d/name).read_bytes()).hexdigest()==sha,name
           p=pathlib.Path('anatomy/index.html');s=p.read_text()
-          assert 'fullbody-tcm-v34' in s
-          p.write_text(s.replace('fullbody-tcm-v34','fullbody-tcm-v35').replace('34.0.0','35.0.0'))
+          assert 'fullbody-tcm-v35' in s
+          p.write_text(s.replace('35.0.0','35.0.1'))
           PYCODE
           git diff --exit-code -- fullbody-tcm-v34 fullbody-tcm-v31 fullbody-tcm-v9 fullbody-tcm-v11 fullbody-tcm-v12
       - name: Publish version and fixed entry
