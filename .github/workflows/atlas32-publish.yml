@@ -1,0 +1,54 @@
+name: Publish V32 clear interaction and surface display
+on:
+  push:
+    paths: ['atlas32-tools/**', '.github/workflows/atlas32-publish.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas32-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build the locally reviewed source
+        run: |
+          test ! -d fullbody-tcm-v32
+          python - <<'PYCODE'
+          from pathlib import Path
+          import hashlib,json
+          p=Path('fullbody-tcm-v31')
+          b=json.loads((p/'build-info.json').read_text())
+          assert all(hashlib.sha256((p/n).read_bytes()).hexdigest()==h for n,h in b['files'].items())
+          assert 'fullbody-tcm-v31' in Path('anatomy/index.html').read_text()
+          PYCODE
+          npm install --prefix /tmp/anatomy-v32-build three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10
+          python3 atlas32-tools/prepare.py
+          NODE_PATH=/tmp/anatomy-v32-build/node_modules node atlas32-tools/build.cjs
+          node --check fullbody-tcm-v32/app.bundle.js
+      - name: Verify the exact reviewed bundle and activate the entry
+        run: |
+          python - <<'PYCODE'
+          from pathlib import Path
+          import hashlib,json
+          p=Path('fullbody-tcm-v32')
+          assert hashlib.sha256((p/'app.bundle.js').read_bytes()).hexdigest()=='363e28428ed58337dfb1a7a8ad7ca42f62d5cf39e0ac07aa7c7d62d4a354a5a0', 'Bundle differs from locally reviewed candidate'
+          b=json.loads((p/'build-info.json').read_text())
+          assert all(hashlib.sha256((p/n).read_bytes()).hexdigest()==h for n,h in b['files'].items())
+          e=Path('anatomy/index.html')
+          e.write_text(e.read_text().replace('31.0.0','32.0.0').replace('V31','V32').replace('fullbody-tcm-v31','fullbody-tcm-v32').replace('体表侧别与切换一致性','清晰操作与点线显示'))
+          PYCODE
+          git diff --exit-code -- fullbody-tcm-v31 fullbody-tcm-v9/assets fullbody-tcm-v11/assets fullbody-tcm-v12/assets
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v32 anatomy/index.html
+          git commit -m 'Publish V32 clear mobile controls and consistent surface observation'
+          git push origin HEAD:main
