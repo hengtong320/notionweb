@@ -1,0 +1,28 @@
+{
+  "male": {
+    "body": "male",
+    "viewport": [
+      320,
+      568
+    ],
+    "total": 670,
+    "selectionFailures": [],
+    "nonfinite": [],
+    "missingSelectedNames": [],
+    "occludedAfterFocus": 0,
+    "rawEvidenceSha256": "89f79d109a8fb38ba4ac2473e102ce4ff5b69df5597e5e78b2ea246f69e1befa"
+  },
+  "female": {
+    "body": "female",
+    "viewport": [
+      390,
+      844
+    ],
+    "total": 670,
+    "selectionFailures": [],
+    "nonfinite": [],
+    "missingSelectedNames": [],
+    "occludedAfterFocus": 0,
+    "rawEvidenceSha256": "b5eb30c98db94f332b178bbca70820045b3aa5f04e6a02a457c73388841cc024"
+  }
+}

@@ -1,0 +1,429 @@
+--- a/README.md
++++ b/README.md
+@@ -1,7 +1,7 @@
+ # V35：清晰学习
+ 
+-基于 V33，合并重复入口，提供按需展开的叠加设置和经络进阶工具，统一男女血管类型筛选、目录、链接与组合恢复。保留骨骼、肌肉、神经、内脏、经络和穴位资料。
++基于 V34，修复小屏文字与按钮重叠、当前穴名消失、局部皮肤接触点遮挡、自动转向开关无效和详情残留。提供手机观察方向选择与附加工具菜单，保留骨骼、肌肉、神经、内脏、血管、经络和穴位资料。
+ 
+-详细操作验收与边界见 ../atlas34-tools/REVIEW.md。医学定位尚未全部校准。
++详细操作验收与边界见 ../atlas35-tools/REVIEW.md。医学定位尚未全部校准。
+ 
+ 从仓库根目录以 HTTP 静态服务器运行；不要单独移动此文件夹，它仍使用 V9、V11、V12 的模型资源。
+--- a/app.js
++++ b/app.js
+@@ -1,3 +1,4 @@
++import {initCompactLayout} from './compact-layout-v35.js';
+ import {initSimpleStudy} from './simple-study-v34.js';
+ import {findOpaqueSkinHit} from './opaque-skin-v29.js';
+ import {initObservationV27} from './observation-v27.js';
+@@ -96,7 +97,7 @@
+ function setExplode(percent,fit=true){invalidate();if(!state.ready)return;state.explode=clamp(Number(percent)||0,0,100);$('explode').value=String(state.explode);$('explode').style.setProperty('--progress',state.explode+'%');$('explodeValue').innerHTML=`${Math.round(state.explode)}<span>%</span>`;document.querySelectorAll('[data-explode-preset]').forEach(el=>el.classList.toggle('active',Number(el.dataset.explodePreset)===Math.round(state.explode)));const note=$('explodeNote');if(note)note.textContent=['cervical','thoracic','lumbar','spine'].includes(state.region)?'按上下轴向分层，完全展开时逐节留出间隙':state.region==='thorax'?'胸廓按左右与前后分层展开':'按解剖方向分层：中轴上下、左右骨向身体两侧';for(const b of bones.values()){b.userData.explosion=regionContains(b.name)?explosionVector(b.name,b.userData.home):new THREE.Vector3();b.position.copy(b.userData.home).addScaledVector(b.userData.explosion,state.explode/100).add(b.userData.offset);}updateGhosts();tissueLayer?.updateFrame();if(fit&&!state.isolated)fitToContent(true);}
+ function updateGhosts(){for(const [id,b]of bones){const moved=b.position.distanceTo(b.userData.home)>.3||b.quaternion.angleTo(new THREE.Quaternion())>.04,show=state.bodySex!=='female'&&state.ghost&&moved&&b.visible&&!state.isolated;const ghost=ghosts.get(id),guide=guides.get(id);if(!ghost||!guide)continue;ghost.visible=show;guide.visible=show&&b.position.distanceTo(b.userData.home)>2;ghost.material.opacity=id===state.selected?.17:.085;if(guide.visible){const arr=guide.geometry.attributes.position;arr.setXYZ(0,...b.userData.home.toArray());arr.setXYZ(1,...b.position.toArray());arr.needsUpdate=true;guide.computeLineDistances();}}}
+ function isManuallyMoved(b){return b.userData.offset.lengthSq()>.04||b.quaternion.angleTo(new THREE.Quaternion())>.015;}
+-function resetBones(full=false,options={}){if(full&&!options.keepStudy)learningEnhancements?.clearStudyContext(true);if(!state.ready)return;for(const b of bones.values()){b.userData.offset.set(0,0,0);b.quaternion.identity();}if(full){state.hidden.clear();state.isolated=false;state.neighbors=false;state.ghost=false;state.view='overview';$('ghostBtn').classList.remove('active');$('ghostBtn').setAttribute('aria-pressed','false');setMode('orbit');}setExplode(0,false);applyVisibility();updateTree();if(full)setView('overview');else fitToContent(true);toast('已恢复骨骼的原始位置与朝向');}
++function resetBones(full=false,options={}){if(full&&!options.keepStudy)learningEnhancements?.clearStudyContext(true);if(!state.ready)return;for(const b of bones.values()){b.userData.offset.set(0,0,0);b.quaternion.identity();}if(full){state.hidden.clear();state.isolated=false;state.neighbors=false;state.ghost=false;state.view='overview';$('ghostBtn').classList.remove('active');$('ghostBtn').setAttribute('aria-pressed','false');setMode('orbit');}setExplode(0,false);applyVisibility();updateTree();if(full)setView('overview');else fitToContent(true);toast('已恢复骨骼的原始位置与朝向');window.dispatchEvent(new Event('atlas:structure-updated'));}
+ function resetSelected(){if(!state.ready)return;const b=bones.get(state.selected);if(!b)return;b.userData.offset.set(0,0,0);b.quaternion.identity();setExplode(state.explode,false);updateTree();if(state.isolated)fitToContent(true);toast(`${BY_ID[state.selected].name}已归位${state.explode?'，保留整体展开程度':''}`);}
+ function setMode(mode){invalidate();state.mode=mode;document.querySelectorAll('[data-mode]').forEach(b=>{b.classList.toggle('active',b.dataset.mode===mode);b.setAttribute('aria-pressed',String(b.dataset.mode===mode));});$('modeHint').textContent=mode==='move'?'按住骨头直接拖出 · 拖拽空白仍可旋转模型':mode==='rotate'?'按住骨头单独转动 · 拖拽空白仍可旋转模型':'拖拽空白或骨骼旋转模型 · 单击选择一块骨';viewport.style.cursor=mode==='orbit'?'grab':'default';if(controls)controls.enabled=true;}
+ function toggleIsolate(){if(!state.ready)return;if(state.isolated){exitIsolate();return;}state.isolated=true;state.neighbors=false;state.hidden.delete(state.selected);applyVisibility();fitToContent(true);}
+@@ -367,6 +368,7 @@
+  for(const event of ['pointerdown','pointermove','pointerup','wheel','click','input','change','keydown','scroll'])document.addEventListener(event,()=>{invalidate();},{capture:true,passive:event!=='keydown'});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)invalidate();});
+  initReadingV26({learning:learningEnhancements,invalidate});
++ initCompactLayout({learning:learningEnhancements});
+  const initialReadyMs=performance.now();window.__ATLAS_PERFORMANCE__={snapshot:()=>({framesRendered,renderScheduled:!!frameRequest,onDemand:true,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,readyMs:initialReadyMs})};
+  invalidate();
+ }
+--- /dev/null
++++ b/compact-layout-v35.css
+@@ -0,0 +1,73 @@
++#compactDirection{display:none}
++.compact-control-name{display:none}
++.stage-heading h2{overflow-wrap:anywhere;min-width:0}
++.shared-result strong,.shared-result small,.female-detail h2{overflow-wrap:anywhere}
++body #compactActions{display:block;position:relative;flex:none}
++body #compactActions>summary{display:flex;align-items:center;justify-content:center;min-height:40px;padding:5px 8px;border:1px solid #d4e0d2;border-radius:6px;background:#f2f6ee;cursor:pointer;list-style:none;font-size:11px}
++body #compactActions>summary::-webkit-details-marker{display:none}
++body #compactActions:not([open])>.compact-actions-body{display:none}
++body .compact-actions-body{position:absolute;right:0;top:46px;z-index:160;width:220px;max-height:calc(100dvh - 100px);overflow:auto;display:grid;gap:4px;padding:10px;background:#fbfdf8;border:1px solid #cad9cc;border-radius:10px;box-shadow:0 8px 24px #27493530}
++body #compactActions .compact-control-name{display:inline}
++body #compactActions button,body #compactActions select{display:flex!important;width:100%!important;min-height:44px!important;height:auto!important;align-items:center;gap:9px;white-space:normal;text-align:left;padding:8px!important;font-size:12px!important;max-width:none!important;border-radius:6px}
++body #compactActions button[aria-pressed=true]{background:#e0eddb}
++body #compactActions #renderQuality{display:block!important}
++body.compact-v35 .topbar{gap:4px;padding:0 9px;position:relative;z-index:110}
++body.compact-v35 .drawer-buttons{gap:3px}
++body.compact-v35 .drawer-buttons button{min-height:40px;padding:5px 7px}
++body.compact-v35 .header-actions{gap:0}
++body.compact-v35 .stage-heading{top:8px;left:12px;right:12px;display:flex;gap:8px;align-items:center;max-width:none}
++body.compact-v35 .stage-heading h2{font-size:17px;line-height:1.4;flex:1;margin:5px 0}
++body.compact-v35 .stage-heading .model-status{font-size:9px;max-width:100px;white-space:normal;text-align:right;line-height:1.4;flex-shrink:0}
++body.compact-v35 .view-switcher{top:var(--compact-view-top,48px);left:12px;right:12px;padding:0;overflow:visible;max-width:none;background:transparent;border:0}
++body.compact-v35 .view-switcher>[data-view]{display:none}
++body.compact-v35 #compactDirection{display:flex;align-items:center;gap:8px;width:100%;font-size:11px;color:#3f6151}
++body.compact-v35 #compactDirection select{flex:1;min-height:40px;background:#fafcf8f2}
++body.compact-v35 .study-toolbar{top:var(--compact-study-top,96px);left:12px;right:12px;max-width:none;gap:4px;flex-wrap:wrap}
++body.compact-v35 .study-toolbar button{min-height:40px;font-size:10px;padding:5px 6px}
++body.compact-v35 .study-toolbar select{min-height:40px;flex:1;min-width:70px;width:0;max-width:none;font-size:10px;padding:5px}
++body.compact-v35 .tcm-status{top:var(--compact-status-top,146px);left:12px;right:12px;max-width:calc(100% - 24px)}
++body.compact-v35 .stage-tools{display:flex;flex-direction:row;justify-content:center;top:auto;bottom:12px;left:12px;right:12px;max-height:none;overflow:visible;padding:4px;gap:5px;z-index:12}
++body.compact-v35 .stage-tools button{width:44px;min-width:40px;min-height:44px;height:44px;flex:1}
++body.compact-v35 #v26PointSummary{bottom:72px;left:12px;right:12px;padding:7px 9px;min-height:56px}
++body.compact-v35 #acupointLabelNav{bottom:140px;left:12px;right:12px;max-width:none;justify-content:center;min-height:36px;font-size:10px}
++body.compact-v35 #acupointLabelNav button{min-height:32px;flex-shrink:0}
++body.compact-v35 #acupointLabelNav span{min-width:0;white-space:normal;text-align:center}
++body.compact-v35 #v34VesselLegend{bottom:188px;left:12px;right:auto;max-width:calc(100% - 24px)}
++body.compact-v35 .control-dock{bottom:70px;left:12px;right:12px;max-height:calc(100% - 240px);overflow:auto}
++body.compact-v35.dock-collapsed .control-dock{display:none!important}
++body.compact-v35:not(.dock-collapsed) #v26PointSummary,body.compact-v35:not(.dock-collapsed) #acupointLabelNav,body.compact-v35:not(.dock-collapsed) #v34VesselLegend{display:none!important}
++body.compact-v35[data-current-kind=point].detail-open:not(.atlas-expanded) .stage-tools{bottom:calc(38dvh + 12px)}
++body.compact-v35.nav-open .stage-tools{visibility:hidden}
++body.compact-v35 .more-views-panel{top:var(--compact-status-top,146px);left:12px;right:12px;max-height:calc(100% - 220px);width:auto;z-index:35}
++body.compact-v35 .zoom-instruction,body.compact-v35 .layer-legend{display:none!important}
++body.compact-v35.atlas-expanded #wideViewBar{left:8px;right:8px;transform:none;width:auto;max-width:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
++body.compact-v35.atlas-expanded #wideViewBar #bodySelector{grid-column:span 2;width:100%;justify-content:center}
++body.compact-v35.atlas-expanded #wideViewBar button{font-size:11px;padding:4px;min-width:0}
++body.compact-v35.atlas-expanded #wideViewBar #wideNative{display:none}
++body.compact-v35.atlas-expanded .sidebar,body.compact-v35.atlas-expanded .detail-panel{top:112px!important}
++body.compact-v35.atlas-expanded #wideClosePanel{top:118px}
++body.compact-v35.atlas-expanded #wideViewBottom{left:8px;right:8px;transform:none;max-width:none;width:auto;gap:3px}
++body.compact-v35.atlas-expanded #wideViewBottom button{min-width:0;padding:5px;font-size:11px;flex:1}
++@media(max-width:350px){body.compact-v35 .stage-heading .model-status{display:none}}
++@media(max-height:440px) and (max-width:1100px){body.compact-v35 #acupointLabelNav{display:none!important}body.compact-v35 #v34VesselLegend{display:none!important}}
++
++body.compact-v35 .v9-precision-badge{display:none!important}
++
++body:not(.compact-v35) #acupointLabelNav{right:68px;max-width:calc(100% - 84px)}
++body:not(.compact-v35) .stage-tools{max-height:calc(100% - 250px);overflow:auto}
++
++body.compact-v35 #tcmPointCard h3{flex-wrap:wrap;gap:3px}
++body.compact-v35 #tcmPointCard h3 small{flex-basis:100%;line-height:1.6;overflow-wrap:anywhere}
++
++/* Region selections must not show the previously selected bone's information. */
++body[data-current-kind="region"] #detailTitle{display:none!important}
++body[data-current-kind="region"] #boneIndex{visibility:hidden}
++body[data-current-kind="region"] .detail-scroll>*:not(#currentStudy){display:none!important}
++
++body.dock-collapsed .control-dock{display:none!important}
++body[data-current-kind="bone"] #currentStudy>small,
++body[data-current-kind="bone"] #currentStudyName,
++body[data-current-kind="bone"] #currentStudyMode,
++body[data-current-kind="tissue"] #currentStudy>small,
++body[data-current-kind="tissue"] #currentStudyName,
++body[data-current-kind="tissue"] #currentStudyMode{display:none!important}
+--- /dev/null
++++ b/compact-layout-v35.js
+@@ -0,0 +1,38 @@
++// Move existing controls, retaining their handlers and state; no duplicate actions.
++export function initCompactLayout({learning}){
++ const $=id=>document.getElementById(id),body=document.body;
++ const menu=document.createElement('details');menu.id='compactActions';
++ menu.innerHTML='<summary aria-label="更多观察工具">更多</summary><div class="compact-actions-body"></div>';
++ document.querySelector('.header-actions').append(menu);
++ const content=menu.lastElementChild;
++ const ids=['renderQuality','helpBtn','focusWorkspace','fullscreenBtn','captureBtn','moreViewsBtn','autoSpeakBtn','labelsBtn','colorBtn','ghostBtn','dockToggle'];
++ const alwaysMenu=new Set(['moreViewsBtn','autoSpeakBtn','labelsBtn','colorBtn','ghostBtn','dockToggle']);
++ const homes=ids.map(id=>{const el=$(id),home=document.createComment('control home: '+id);el.before(home);return {el,home};});
++ const labels={helpBtn:'操作指南',focusWorkspace:'专注看图',fullscreenBtn:'铺满看图',captureBtn:'保存当前视图',moreViewsBtn:'局部观察',autoSpeakBtn:'点选时朗读',labelsBtn:'骨名标注',colorBtn:'解剖分组配色',ghostBtn:'原位参考影'};
++ for(const [id,label]of Object.entries(labels)){const el=$(id);el.setAttribute('aria-label',label);el.title=label;if(['moreViewsBtn','autoSpeakBtn'].includes(id))for(const node of [...el.childNodes])if(node.nodeType===3)node.remove();if(!el.querySelector('.compact-control-name')&&el.textContent.trim()!==label){const text=document.createElement('span');text.className='compact-control-name';text.textContent=label;el.append(text);}}
++ const views=document.querySelector('.view-switcher'),directions=document.createElement('label');directions.id='compactDirection';directions.innerHTML='观察方向<select aria-label="观察方向"><option value="free" disabled>自由视角</option></select>';
++ const select=directions.querySelector('select');
++ for(const b of views.querySelectorAll('[data-view]')){const option=document.createElement('option');option.value=b.dataset.view;option.textContent=b.textContent;select.append(option);}
++ views.append(directions);select.onchange=()=>views.querySelector('[data-view="'+select.value+'"]').click();
++ let compact=false,scheduled=false;
++ function layout(){scheduled=false;const on=innerWidth<=650||(innerHeight<=440&&innerWidth<=1100);
++  if(on!==compact){compact=on;menu.open=false;body.classList.toggle('compact-v35',on);for(const {el,home}of homes){if(on||alwaysMenu.has(el.id))content.append(el);else home.after(el);}}
++  if(on){const stage=$('stage').getBoundingClientRect(),heading=document.querySelector('.stage-heading').getBoundingClientRect(),view=views.getBoundingClientRect();
++   body.style.setProperty('--compact-view-top',Math.max(42,heading.bottom-stage.top+8)+'px');
++   body.style.setProperty('--compact-study-top',Math.max(92,view.bottom-stage.top+8)+'px');
++   const toolbar=document.querySelector('.study-toolbar').getBoundingClientRect();body.style.setProperty('--compact-status-top',toolbar.bottom-stage.top+8+'px');
++  }
++  const active=views.querySelector('[data-view][aria-pressed="true"]');select.value=active?.dataset.view||'free';
++ }
++ function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(layout);}}
++ new ResizeObserver(schedule).observe(document.querySelector('.study-toolbar'));
++ new ResizeObserver(schedule).observe(document.querySelector('.stage-heading'));
++ new MutationObserver(schedule).observe(views,{subtree:true,attributes:true,attributeFilter:['aria-pressed']});
++ window.addEventListener('resize',()=>{schedule();requestAnimationFrame(()=>requestAnimationFrame(()=>window.__ATLAS_LEARNING__?.keepSelectedInView()));});
++ for(const event of ['atlas:selection','atlas:profile-changed','atlas:transition-settled','atlas:sex-changed'])window.addEventListener(event,schedule);
++ content.addEventListener('click',e=>{if(e.target.closest('button')&&!e.target.closest('#renderQuality'))menu.open=false;});
++ document.addEventListener('pointerdown',e=>{if(menu.open&&!menu.contains(e.target))menu.open=false;});
++ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.open){menu.open=false;menu.querySelector('summary').focus();}});
++ for(const {el}of homes)if(alwaysMenu.has(el.id))content.append(el);
++ layout();schedule();
++}
+--- a/display-audit-v33.js
++++ b/display-audit-v33.js
+@@ -4,13 +4,32 @@
+  const button=document.createElement('button');button.textContent='检查显示状态';button.style.cssText='position:fixed;bottom:5px;left:5px;z-index:9999';document.body.append(button);
+  const out=document.createElement('pre');out.id='displayAudit';out.hidden=true;out.style.cssText='position:fixed;inset:80px 10px 40px;background:white;z-index:10000;overflow:auto;font-size:11px';document.body.append(out);
+  out.onclick=()=>{out.hidden=true};
++ const sweep=document.createElement('button');sweep.textContent='逐穴检查';sweep.style.cssText='position:fixed;bottom:5px;left:120px;z-index:9999';document.body.append(sweep);
++ const progress=document.createElement('pre');progress.id='pointSweep';progress.hidden=true;progress.style.cssText='position:fixed;right:5px;bottom:5px;max-height:100px;max-width:280px;overflow:auto;background:white;z-index:9999;font-size:10px';document.body.append(progress);
++ sweep.onclick=async()=>{
++  if(sweep.disabled)return;sweep.disabled=true;progress.hidden=false;
++  const l=window.__ATLAS_LEARNING__,catalog=l.getNavigationCatalog(),rows=[],old=l.getState();
++  l.setTCMSide('both');l.setMeridians(['LU','LI','ST','SP','HT','SI','BL','KI','PC','TE','GB','LR','GV','CV']);
++  for(const p of catalog){
++   l.selectPoint(p.code,p.side,true);
++   await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
++   l.flushLabels();
++   const point=l.getPointScreen(p.code,p.side),selected=l.getState().selectedPoint,labels=l.getLabelPlacementAudit();
++   const named=labels.find(q=>q.code===p.code&&q.side===p.side);
++   rows.push({code:p.code,side:p.side,selectionMatches:selected?.code===p.code&&selected?.side===p.side,finite:point&&Object.values(point).every(Number.isFinite),screen:point,unoccluded:l.getSelectedVisibility(),named:!!named,label:named?.box});
++   progress.textContent=JSON.stringify({running:true,body:l.getState().referenceBody,completed:rows.length,total:catalog.length,last:p.code});
++  }
++  const result={running:false,body:l.getState().referenceBody,viewport:[innerWidth,innerHeight],total:rows.length,selectionFailures:rows.filter(r=>!r.selectionMatches),nonfinite:rows.filter(r=>!r.finite),missingSelectedNames:rows.filter(r=>!r.named),rows};
++  progress.textContent=JSON.stringify(result);progress.hidden=true;sweep.disabled=false;
++  l.setMeridians(old.selectedMeridians);l.setTCMSide(old.tcmSide);if(old.selectedPoint)l.selectPoint(old.selectedPoint.code,old.selectedPoint.side,true);
++ };
+  button.onclick=()=>{
+   const l=window.__ATLAS_LEARNING__,s=l.getState(),a=l.getSurfaceConsistencyAudit(),g=l.getDisplayAudit(),labels=l.getLabelPlacementAudit();
+   const valid=a.points.every(p=>p.position.every(Number.isFinite)&&(!p.skinContact||p.skinContact.every(Number.isFinite)));
+   const labelButtons=[...document.querySelectorAll('#acupointLabels button')].filter(b=>b.getBoundingClientRect().width).map(b=>({name:b.getAttribute('aria-label'),rect:b.getBoundingClientRect().toJSON()}));
+   const engine=window.__FOOT_ATLAS__.getState();
+   const visibleBlood={artery:0,vein:0,other:0};let visibleDepthMasks=0,ignoredNerveDepth=0;window.__ATLAS_RENDER_AUDIT__.scene.traverse(n=>{if(!n.isMesh)return;for(let q=n;q;q=q.parent)if(!q.visible)return;const row=n.userData.atlas||n.userData.female;if(['vessels','vascular','heart'].includes(row?.system))visibleBlood[vesselKind(row)]++;if(n.userData.skinInkDepth)visibleDepthMasks++;if((n.userData.atlas?.system||n.userData.female?.system)==='nervous'&&n.material.depthTest===false)ignoredNerveDepth++;});
+-  const result={visibleBlood,vesselFilter:window.__ATLAS_SHARED__.getState().vesselFilter,visibleDepthMasks,ignoredNerveDepth,camera:engine.camera,target:engine.target,scene:window.__ATLAS_SHARED__.getState().scene,version:s.version,body:a.body,referenceBody:a.referenceBody,skinVisible:a.skinVisible,attached:a.surfaceAttached,busy:a.surfaceBusy,transition:a.transition,enabled:s.enabled,side:s.tcmSide,xray:s.xray,lines:s.linesOn,points:s.pointsOn,names:s.namesOn,selected:a.selected,count:g.count,valid,finite:g.geometryFinite,collisions:g.collisions,maxSecondaryShift:g.maxSecondaryShift,maxLineGap:g.maxLineGap,missingContacts:a.points.filter(p=>!p.skinContact).map(p=>p.code+'|'+p.side),largestGaps:g.points.filter(p=>p.lineGap>15).map(p=>({code:p.code,side:p.side,gap:p.lineGap,skinDistance:p.skinDistance})),ink:a.ink.map(({centers,...rest})=>rest),labels,labelButtons,pointsData:a.points};
++  const result={bindingDiagnostics:l.getSurfaceState().projectionDiagnostics,visibleBlood,vesselFilter:window.__ATLAS_SHARED__.getState().vesselFilter,visibleDepthMasks,ignoredNerveDepth,camera:engine.camera,target:engine.target,scene:window.__ATLAS_SHARED__.getState().scene,version:s.version,body:a.body,referenceBody:a.referenceBody,skinVisible:a.skinVisible,attached:a.surfaceAttached,busy:a.surfaceBusy,transition:a.transition,enabled:s.enabled,side:s.tcmSide,xray:s.xray,lines:s.linesOn,points:s.pointsOn,names:s.namesOn,visibilityProbe:a.visibilityProbe,selected:a.selected,count:g.count,valid,finite:g.geometryFinite,collisions:g.collisions,maxSecondaryShift:g.maxSecondaryShift,maxLineGap:g.maxLineGap,missingContacts:a.points.filter(p=>!p.skinContact).map(p=>p.code+'|'+p.side),largestGaps:g.points.filter(p=>p.lineGap>15).map(p=>({code:p.code,side:p.side,gap:p.lineGap,skinDistance:p.skinDistance})),ink:a.ink.map(({centers,...rest})=>rest),labels,labelButtons,pointsData:a.points};
+   out.textContent=JSON.stringify(result,null,2);out.hidden=false;
+  };
+ }
+--- a/index.html
++++ b/index.html
+@@ -9,6 +9,7 @@
+ 
+ <link rel="stylesheet" href="stability-v10.css?v=35.0.0"><link rel="stylesheet" href="refinement-v12.css?v=35.0.0"><script>window.ATLAS_RESOURCE_BASE="../fullbody-tcm-v9/";</script><link rel="stylesheet" href="shared-v14.css?v=35.0.0"><link rel="stylesheet" href="view-v16.css?v=35.0.0">
+ <link rel="stylesheet" href="./layers-ui-v21.css?v=35.0.0"><link rel="stylesheet" href="./meridian-ux-v26.css?v=35.0.0"><link rel="stylesheet" href="reading-v26.css?v=35.0.0"><style>body[data-body-switching="true"] #acupointHover,body[data-body-switching="true"] #femalePointLabel,body[data-body-switching="true"] #femaleStructureLabels,body[data-body-switching="true"] #acupointLabels{visibility:hidden!important}</style><link rel="stylesheet" href="experience-v32.css?v=35.0.0"><link rel="stylesheet" href="simple-study-v34.css?v=35.0.0">
++<link rel="stylesheet" href="compact-layout-v35.css?v=35.0.0">
+ </head>
+ <body>
+ <svg class="icon-library" aria-hidden="true"><defs>
+--- a/learning-enhancements.js
++++ b/learning-enhancements.js
+@@ -1,3 +1,4 @@
++import {fitFractions} from './view-v16.js';
+ import {placeLabels,labelSlots,placeCompleteLabels} from './meridian-layout-v26.js';
+ import {FEMALE_FINGER_LANDMARKS} from './female-fingers-v24.js';
+ import {correctRegionalReferences} from './route-corridors-v13.js';
+@@ -233,7 +234,14 @@
+  function frameNavigation(box,direction,up,title,pointFocus=false){ctx.invalidate();
+   const serial=++focusSerial;
+   navigationFocus={box:box.clone(),direction:[...direction],up:[...up],title,serial};
+-  const apply=()=>{if(serial!==focusSerial||!navigationFocus)return;ctx.focusBounds(box,{direction,up,safeCenter:pointFocus});$('viewBadge').lastElementChild.textContent=title;};
++  const apply=()=>{if(serial!==focusSerial||!navigationFocus)return;ctx.focusBounds(box,{direction,up,safeCenter:pointFocus});
++   if(pointFocus&&paintedSkinVisible()&&selectedPoint?.position&&!surfaceProjector.isVisible(selectedPoint.skinContact||selectedPoint.position,camera.position)){
++    const contact=selectedPoint.skinContact||selectedPoint.position,distance=camera.position.distanceTo(selectedPoint.position),d=surfaceProjector.visibleDirection(contact,direction);
++    // Safe-area translation can place the camera behind a fold or the other leg.
++    // Retry the verified sight line before retaining a hidden selected marker.
++    camera.position.copy(contact).addScaledVector(new THREE.Vector3(...d),distance);controls.target.copy(contact);camera.up.set(...(Math.abs(d[1])>.9?[0,0,1]:[0,1,0]));const damping=controls.enableDamping;controls.enableDamping=false;controls.update();controls.enableDamping=damping;camera.updateMatrixWorld(true);
++   }
++   $('viewBadge').lastElementChild.textContent=title;};
+   apply();requestAnimationFrame(()=>{apply();lastLabelsAt=0;});
+  }
+  function fitMeridian(requestedDirection=null){if(state.bodySex==='female'&&referenceBody!=='female')return false;
+@@ -251,6 +259,19 @@
+   updateOverlayVisibility();return true;
+  }
+  function strictBounds(p){const box=new THREE.Box3();for(let id of p?.landmarks||[]){if(p.side==='left'){const original=BY_ID[id];id=BONES.find(b=>b.side==='left'&&b.baseId===original?.baseId)?.id||id;}const b=bones.get(id);if(b){b.geometry.computeBoundingBox();box.union(b.geometry.boundingBox.clone().translate(b.userData.home));}}return box;}
++ function keepSelectedInView(){
++  if(!selectedPoint?.position||!enabled||state.bodyTransition)return;
++  camera.updateMatrixWorld(true);const safe=fitFractions(viewport),v=selectedPoint.position.clone().project(camera);
++  if(v.z < -1||v.z > 1)return;
++  const x=(v.x+1)*safe.width/2,y=(1-v.y)*safe.height/2;
++  if(x>=safe.left+12&&x<=safe.width-safe.right-12&&y>=safe.top+12&&y<=safe.height-safe.bottom-12)return;
++  const centerX=(safe.left+safe.width-safe.right)/2,centerY=(safe.top+safe.height-safe.bottom)/2;
++  const forward=controls.target.clone().sub(camera.position).normalize(),depth=selectedPoint.position.clone().sub(camera.position).dot(forward);
++  if(depth<=0)return;
++  const right=new THREE.Vector3().crossVectors(forward,camera.up).normalize(),up=new THREE.Vector3().crossVectors(right,forward).normalize(),scale=2*depth*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))/safe.height;
++  const shift=right.multiplyScalar((x-centerX)*scale).addScaledVector(up,(centerY-y)*scale);
++  const damping=controls.enableDamping;controls.enableDamping=false;camera.position.add(shift);controls.target.add(shift);controls.update();controls.enableDamping=damping;camera.updateMatrixWorld(true);lastLabelsAt=0;ctx.invalidate();
++ }
+  function focusPoint(pos){
+   if(!pos)return false;
+   const p=selectedPoint?.position===pos?selectedPoint:getVisiblePoints().find(p=>p.position===pos);
+@@ -376,7 +397,7 @@
+   let candidates=localNames.map(p=>({p,v:project(p)})).filter(x=>inView(x.v)&&pointUnoccluded(x.p));
+   candidates.sort((a,b)=>a.v.y-b.v.y||a.v.x-b.v.x||a.p.ordinal-b.p.ordinal);
+   const pin=candidates.find(x=>x.p.code===selectedPoint?.code&&x.p.side===selectedPoint?.side),pool=candidates.filter(x=>x!==pin);
+-  const item=x=>({key:x.p.code+'|'+x.p.side,p:x.p,x:x.v.x-rect.left,y:x.v.y-rect.top,w:phone?126:140,h:phone?32:28});
++  const item=x=>({key:x.p.code+'|'+x.p.side,p:x.p,x:x.v.x-rect.left,y:x.v.y-rect.top,w:phone?(x===pin?Math.min(126,Math.max(96,18+(x.p.name.length*2+x.p.code.length+4)*6)):126):140,h:phone?32:28,priority:x===pin});
+   const anchorObstacles=candidates.map(x=>({x:x.v.x-rect.left,y:x.v.y-rect.top}));
+   const availableSlots=labelSlots({width:w,height:h,obstacles,anchors:anchorObstacles,labelWidth:phone?126:140,labelHeight:phone?32:28});
+   const capacity=availableSlots.length,slots=Math.max(1,capacity-(pin?1:0)),pages=Math.max(1,Math.ceil(pool.length/slots));
+@@ -407,9 +428,20 @@
+    paths+=`<path data-point="${a.p.code}" data-side="${a.p.side}" d="M${a.sx.toFixed(2)},${a.sy.toFixed(2)} L${a.tx.toFixed(2)},${a.ty.toFixed(2)}" class="${a.key===currentKey?'active':''}"/>`;
+   });
+   wires.innerHTML=paths;labelPlacementAudit=placements.map(a=>({code:a.p.code,side:a.p.side,anchor:[a.tx,a.ty],box:[a.x,a.y,a.w,a.h],leaderStart:[a.sx,a.sy]}));
++  // In a dense small view the existing selected-point summary is the label.
++  // Connect it to the unchanged skin anchor instead of covering other points.
++  if(pin&&!placements.some(a=>a.key===currentKey)){
++   const summary=document.getElementById('v26PointSummary'),sr=summary?.getBoundingClientRect();
++   if(sr?.width&&getComputedStyle(summary).display!=='none'&&getComputedStyle(summary).visibility!=='hidden'){
++    const tx=pin.v.x-rect.left,ty=pin.v.y-rect.top,sx=Math.max(sr.left-rect.left+8,Math.min(sr.right-rect.left-8,tx)),sy=sr.top-rect.top;
++    wires.innerHTML+=`<path data-point="${pin.p.code}" data-side="${pin.p.side}" d="M${sx.toFixed(2)},${sy.toFixed(2)} L${tx.toFixed(2)},${ty.toFixed(2)}" class="active"/>`;
++    labelPlacementAudit.push({code:pin.p.code,side:pin.p.side,anchor:[tx,ty],box:[sr.left-rect.left,sr.top-rect.top,sr.width,sr.height],leaderStart:[sx,sy],docked:true});
++   }
++  }
++
+   labelStats={total:all.length,inView:candidates.length,shown:placements.length,page:labelMode==='complete'?labelPage+1:1,pages:labelMode==='complete'?pages:1,capacity};
+   if(selectedPoint?.navigationArea&&!candidates.length)labelNav.hidden=true;
+-  $('labelPageInfo').textContent=labelMode==='complete'?`${placements.length}/${candidates.length} 视野内 · ${labelPage+1}/${pages}页`:`${placements.length}个穴名 · 点击查看`;
++  $('labelPageInfo').textContent=labelMode==='complete'?`${placements.length}/${candidates.length} 视野内 · ${labelPage+1}/${pages}页`:`${placements.length}个附近穴名${labelPlacementAudit.some(a=>a.docked)?' · 选中穴见摘要':' · 点击查看'}`;
+   $('labelPrevious').disabled=labelMode!=='complete'||!capacity||!labelPage;$('labelNext').disabled=labelMode!=='complete'||!capacity||labelPage>=pages-1;if(labelMode==='complete'&&!capacity)$('labelPageInfo').textContent='空间不足，请收起面板或调整视角';
+  }
+  $('meridianQuick').add(new Option('多经脉对照','MULTI'));setMeridians(['HT','SI']);renderResults();updateStatus();
+@@ -434,7 +466,7 @@
+     const target=surfaceDesired,body=desiredBody,projector=desiredProjector,pending=[];
+     if(target&&!projector)return false;
+     for(const r of routeRecords){
+-     const anchors=r.data.map(p=>({code:p.code,source:p.sourcePosition,point:target?projector.project(p.sourcePosition,2.4,{meridian:r.meridian,side:r.side,region:p.region,view:p.view,projectionNormal:p.projectionNormal,code:p.code}):p.sourcePosition.clone(),region:p.region,view:p.view,projectionNormal:p.projectionNormal}));
++     const anchors=r.data.map(p=>({code:p.code,source:p.sourcePosition,point:target?projector.project(p.sourcePosition,2.4,{meridian:r.meridian,side:r.side,region:p.region,view:p.view,projectionNormal:p.projectionNormal,code:p.code}):p.sourcePosition.clone(),region:p.region,view:p.view,projectionNormal:p.projectionNormal,skin:target?projector.getContact(p.sourcePosition,{meridian:r.meridian,side:r.side,region:p.region,view:p.view,projectionNormal:p.projectionNormal,code:p.code}):null}));
+      const guides=r.guides.map(g=>{let value;if(target){if(!g.bodyCache.has(projector.key))g.bodyCache.set(projector.key,projector.curve(g.sourcePoints,{meridian:r.meridian,side:r.side,anchors:anchors.filter(a=>g.codes.includes(a.code)),codes:g.codes}));value=g.bodyCache.get(projector.key);}else value={points:g.sourcePoints,geometry:g.sourceGeometry};return {g,value};});let ink=null;if(target&&projector.createInk){r.inkCache??=new Map();if(!r.inkCache.has(projector.key))r.inkCache.set(projector.key,projector.createInk(guides,anchors,r.color));ink=r.inkCache.get(projector.key);}pending.push({r,anchors,guides,ink});
+      await new Promise(resolve=>setTimeout(resolve,0));if(target!==surfaceDesired||body!==desiredBody||projector!==desiredProjector)break;
+     }
+@@ -479,10 +511,10 @@
+   const effective=o=>{for(let n=o;n;n=n.parent)if(!n.visible)return false;return true;};
+   const points=routeRecords.flatMap(r=>r.data.map(p=>({code:p.code,side:p.side,position:p.position.toArray(),sourcePosition:p.sourcePosition.toArray(),skinContact:p.skinContact?.toArray()||null,visibleFromCamera:!!surfaceProjector?.isVisible(p.skinContact||p.position,camera.position)})));
+   const ink=routeRecords.filter(routeMatches).map(r=>({meridian:r.meridian,side:r.side,body:r.ink?.mesh.userData.referenceBody||referenceBody,projectorKey:r.ink?.mesh.userData.projectorKey||null,visible:!!r.ink&&effective(r.ink.mesh),lines:!!r.ink&&r.ink.mesh.material.uniforms.linesOn.value>0,points:!!r.ink&&r.ink.mesh.material.uniforms.pointsOn.value>0,selected:!!r.ink&&effective(r.ink.mesh)&&r.ink.mesh.material.uniforms.selectedOn?.value>0,cloud:effective(r.cloud),centers:r.ink?.centers}));
+-  return {body:state.bodySex||'male',referenceBody,desiredBody,surfaceAttached,surfaceBusy,transition:!!state.bodyTransition,routeRootVisible:effective(routeRoot),skinVisible:paintedSkinVisible(),points,ink,selected:selectedPoint?.position?{code:selectedPoint.code,side:selectedPoint.side,position:selectedPoint.position.toArray(),visibleFromCamera:pointUnoccluded(selectedPoint),skinContact:selectedPoint.skinContact?.toArray()||null,markerVisible:(!!selectedMarker&&effective(selectedMarker)||ink.some(i=>i.selected))&&pointUnoccluded(selectedPoint),spriteVisible:!!selectedMarker&&effective(selectedMarker),paintedSelection:ink.some(i=>i.selected),markerPosition:ink.some(i=>i.selected)?selectedPoint.skinContact.toArray():selectedMarker?.geometry?.attributes.position?Array.from(selectedMarker.geometry.attributes.position.array).slice(0,3):null}:null,localWindow:referenceWindow()&&[referenceWindow().min.toArray(),referenceWindow().max.toArray()],transfer:lastSurfaceTransfer,clinicalCalibration:false};
+- }
+-
+- window.__ATLAS_LEARNING__={captureSurfaceObservation,transferSurfaceObservation,getSurfaceConsistencyAudit,getInkAudit:()=>({active:paintedSkinVisible(),body:referenceBody,depthTest:routeRecords.every(r=>!r.ink||r.ink.mesh.material.depthTest),routes:routeRecords.filter(routeMatches).map(r=>({meridian:r.meridian,side:r.side,visible:!!r.ink?.mesh.visible,...r.ink?.stats,centers:r.ink?.centers}))}),getRegistration,registrationSummary,cancelPendingFocus:()=>{focusSerial++;navigationFocus=null;},setReferenceBody,setSurfaceProjector:p=>{bodyProjectors.set(p.sex||'male',p);desiredProjector=p;},setSurfaceAttachment,getSurfaceAudit:()=>routeRecords.filter(routeMatches).flatMap(r=>r.guides.flatMap(g=>g.points.filter((v,i)=>i%Math.max(1,Math.floor(g.points.length/30))===0).map(position=>({screen:project({position}),visible:surfaceProjector?.isVisible(position,camera.position)})))),getDisplayAudit:()=>{
++  return {body:state.bodySex||'male',referenceBody,desiredBody,surfaceAttached,surfaceBusy,transition:!!state.bodyTransition,routeRootVisible:effective(routeRoot),skinVisible:paintedSkinVisible(),points,ink,selected:selectedPoint?.position?{code:selectedPoint.code,side:selectedPoint.side,position:selectedPoint.position.toArray(),visibleFromCamera:pointUnoccluded(selectedPoint),skinContact:selectedPoint.skinContact?.toArray()||null,markerVisible:(!!selectedMarker&&effective(selectedMarker)||ink.some(i=>i.selected))&&pointUnoccluded(selectedPoint),spriteVisible:!!selectedMarker&&effective(selectedMarker),paintedSelection:ink.some(i=>i.selected),markerPosition:ink.some(i=>i.selected)?selectedPoint.skinContact.toArray():selectedMarker?.geometry?.attributes.position?Array.from(selectedMarker.geometry.attributes.position.array).slice(0,3):null}:null,localWindow:referenceWindow()&&[referenceWindow().min.toArray(),referenceWindow().max.toArray()],transfer:lastSurfaceTransfer,visibilityProbe:selectedPoint?.skinContact&&surfaceProjector?.visibilityProbe(selectedPoint.skinContact),clinicalCalibration:false};
++ }
++
++ window.__ATLAS_LEARNING__={getSelectedVisibility:()=>selectedPoint?pointUnoccluded(selectedPoint):null,keepSelectedInView,captureSurfaceObservation,transferSurfaceObservation,getSurfaceConsistencyAudit,getInkAudit:()=>({active:paintedSkinVisible(),body:referenceBody,depthTest:routeRecords.every(r=>!r.ink||r.ink.mesh.material.depthTest),routes:routeRecords.filter(routeMatches).map(r=>({meridian:r.meridian,side:r.side,visible:!!r.ink?.mesh.visible,...r.ink?.stats,centers:r.ink?.centers}))}),getRegistration,registrationSummary,cancelPendingFocus:()=>{focusSerial++;navigationFocus=null;},setReferenceBody,setSurfaceProjector:p=>{bodyProjectors.set(p.sex||'male',p);desiredProjector=p;},setSurfaceAttachment,getSurfaceAudit:()=>routeRecords.filter(routeMatches).flatMap(r=>r.guides.flatMap(g=>g.points.filter((v,i)=>i%Math.max(1,Math.floor(g.points.length/30))===0).map(position=>({screen:project({position}),visible:surfaceProjector?.isVisible(position,camera.position)})))),getDisplayAudit:()=>{
+  const rows=[];for(const r of routeRecords)for(const p of r.data){const expected=surfaceAttached?surfaceProjector.project(p.sourcePosition||p.position,2.2,{meridian:r.meridian,side:r.side,region:p.region,view:p.view,projectionNormal:p.projectionNormal,code:p.code}):(p.sourcePosition||p.position);let gap=Infinity;for(const g of r.guides)for(let i=1;i<g.points.length;i++){if(g.connections&&!g.connections[i])continue;const a=g.points[i-1],b=g.points[i];gap=Math.min(gap,a.distanceToSquared(b)<1e-12?p.position.distanceTo(a):new THREE.Line3(a,b).closestPointToPoint(p.position,true,new THREE.Vector3()).distanceTo(p.position));}rows.push({code:p.code,name:p.name,side:p.side,sourcePosition:(p.sourcePosition||p.position).toArray(),displayDisplacement:p.position.distanceTo(p.sourcePosition||p.position),position:p.position.toArray(),expected:expected.toArray(),secondaryShift:p.position.distanceTo(expected),lineGap:gap,registrationStatus:p.registration?.status,skinDistance:surfaceAttached?surfaceProjector.auditPoint(p.position).distance:null});}
+  const collisions=[];for(let i=0;i<rows.length;i++)for(let j=0;j<i;j++)if(rows[i].side===rows[j].side&&rows[i].position.every((v,k)=>Math.abs(v-rows[j].position[k])<1e-6))collisions.push([rows[j].code,rows[i].code,rows[i].side]);
+  return {surfaceTrace:routeRecords.flatMap(r=>r.guides.map(g=>({meridian:r.meridian,side:r.side,...g.traceDiagnostics}))),source:'display consistency only; not anatomical calibration',count:rows.length,attached:surfaceAttached,geometryFinite:routeRecords.every(r=>r.guides.every(g=>g.points.every(p=>p.toArray().every(Number.isFinite))&&g.tube.geometry.attributes.position.array.every(Number.isFinite)&&g.tube.geometry.attributes.normal.array.every(Number.isFinite))),collisions,maxSecondaryShift:Math.max(...rows.map(p=>p.secondaryShift)),maxLineGap:Math.max(...rows.map(p=>p.lineGap)),points:rows};},getSurfaceState:()=>({referenceBody,desiredBody,projectionDiagnostics:surfaceProjector?.stats()||null,attached:surfaceAttached,desired:surfaceDesired,busy:surfaceBusy,originalRecordsPreserved:true,navigationRevision:18,clinicalCalibration:false}),clearStudyContext,focusSelectedPoint:()=>selectedPoint?focusReference(selectedPoint):false,flushLabels:()=>{lastLabelsAt=0;updatePointLabels();},setLabelMode:mode=>{labelMode=mode==='complete'?'complete':'smart';$('labelModeToggle').textContent=labelMode==='complete'?'完整穴名':'附近穴名';lastLabelRebuild='';ctx.invalidate();},clearPointSelection:()=>{selectedPoint=null;cardOpen=false;card.hidden=true;clearSelectedMarker();clearStudyContext(false);updateStatus();},setPrecisionMode:mode=>{precisionMode='illustrative';if(selectedPoint)setStudyContext(selectedPoint);updateOverlayVisibility();lastLabelsAt=0;lastLabelRebuild='';window.dispatchEvent(new CustomEvent('atlas:precision-changed'));ctx.invalidate();},getReferenceWindowState:()=>{const b=referenceWindow();return {active:!!b,bounds:b&&[b.min.toArray(),b.max.toArray()],visible:getVisiblePoints().map(p=>({code:p.code,side:p.side,position:p.position.toArray()})),drawnPoints:routeRecords.filter(routeMatches).reduce((n,r)=>n+r.cloud.geometry.attributes.position.count,0),clippedRouteMaterials:routeRecords.filter(routeMatches).flatMap(r=>r.guides).filter(g=>g.guide.material.clippingPlanes?.length===6).length};},getStudyContext:()=>studyContext&&{...studyContext,center:[...studyContext.center]},getCurveDiagnostics:()=>routeRecords.flatMap(r=>r.guides.map(g=>({meridian:r.meridian,side:r.side,note:g.note,...g.curveDiagnostics}))),hasNavigationFocus:()=>!!navigationFocus&&enabled,restoreNavigationFocus:()=>{if(navigationFocus){const f=navigationFocus;ctx.focusBounds(f.box,{direction:f.direction,up:f.up});}},setLabelPage:value=>{labelPage=Math.max(0,Number(value)||0);lastLabelsAt=0;},getNavigationCatalog:()=>routeRecords.flatMap(r=>r.data.map(p=>({code:p.code,name:p.name,side:p.side,position:p.position.toArray(),sourcePosition:(p.sourcePosition||p.position).toArray(),originalPosition:p.originalPosition||null,navigationRevision:p.navigationRevision||null,displayProjection:surfaceAttached,region:p.region,view:p.view,projectionNormal:p.projectionNormal}))),getRouteSamples:()=>routeRecords.map(r=>({meridian:r.meridian,side:r.side,branches:r.guides.map(g=>({points:g.points.map(v=>v.toArray()),connections:g.connections,diagnostics:g.traceDiagnostics}))})),getRouteGeometry:()=>routeRecords.map(r=>({meridian:r.meridian,side:r.side,branches:r.guides.map(g=>g.points.map(v=>v.toArray()))})),getRouteScreen:(id,side='right')=>{const r=routeRecords.find(r=>r.meridian===id&&(r.side===side||r.side==='midline'));return r?.guides.flatMap(g=>g.points.map(position=>project({position})))||[];},setMeridians,suspend:value=>{value=!!value;if(suspended!==value){suspended=value;updateOverlayVisibility();}},getReferences:()=>ctx.ACUPOINTS.map(p=>({code:p.code,name:p.name,pinyin:p.pinyin,mapped:p.mapped,region:p.region,hasPosition:!!p.position})),handlePointerClick,hitRoute,hitPoint,toggleTCM,setPanel,setMeridian,setTCMSide,fitMeridian,runPreset,updateFrame,selectPoint:(code,side='right',focus=false)=>selectPoint(pointIndex.get(code+'|'+side)||pointIndex.get(code+'|midline')||{...ctx.ACUPOINTS.find(p=>p.code===code),side,position:null},focus),getPointScreen:(code,side='right')=>{const p=pointIndex.get(code+'|'+side)||pointIndex.get(code+'|midline');return p?.position?project(p):p?.navigationArea?{...project({position:areaCenter(p)}),areaOnly:true}:null;},speakBone:id=>speak(BY_ID[id]?.name),getObservationState:()=>({skinVisible:paintedSkinVisible(),xray,active:enabled&&!suspended&&!surfaceBusy&&referenceBody===(state.bodySex||'male')}),getLabelPerformance:()=>({...labelWork}),getLabelPlacementAudit:()=>labelPlacementAudit,getState:()=>({localStudyOnly:!!$('localStudyToggle')?.checked,labelPage,registration:registrationSummary(),referenceBody,surfaceBusy,surfaceAttached,labelMode,precisionMode,coordinateVerified:0,curveStyle,surfaceTrace:routeRecords.flatMap(r=>r.guides.map(g=>({meridian:r.meridian,side:r.side,...g.traceDiagnostics}))),headAreaVisible:!!selectedMarker?.userData.studyArea&&selectedMarker.visible,studyContext,labelStats,autoFocus,navigationFocus:navigationFocus&&{title:navigationFocus.title,serial:navigationFocus.serial,center:navigationFocus.box.getCenter(new THREE.Vector3()).toArray()},guideOn,routeDiagnostics:routeRecords.filter(routeMatches).map(r=>({meridian:r.meridian,side:r.side,markerRenderOrder:r.cloud.renderOrder,guideRenderOrder:Math.max(0,...r.guides.map(g=>g.guide.renderOrder)),referencePoints:r.data.length,connected:r.hasSegments,guideCount:r.guides.length,guideVertices:r.guides.reduce((n,g)=>n+g.points.length,0),visible:precisionMode==='illustrative'&&enabled&&!suspended&&(r.line.visible||r.guides.some(g=>g.guide.visible||g.tube.visible||r.ink?.mesh.visible))})),version:'35.0.0',termSource:'catalog-v10',selectedMeridians:[...selectedMeridians],suspended,legacyEqualSpacingRemoved:true,clinicalCalibration:false,enabled,panelOpen,linesOn,pointsOn,namesOn,xray,tcmSide,activeMeridian,selectedPoint:selectedPoint&&{code:selectedPoint.code,name:selectedPoint.name,side:selectedPoint.side,areaOnly:!!selectedPoint.navigationArea},cardOpen,statusVisible:!status.hidden,meridians:14,supplementalNames:12,standardAcupoints:361,annotatedNames:ctx.ACUPOINTS.filter(p=>p.mapped).length,markerInstances:routeRecords.reduce((n,r)=>n+r.data.length,0),visiblePoints:getVisiblePoints().length,routes:routeRecords.length,autoSpeak:autoSpeak(),lineWidthPixels:activeMeridian==='ALL'?2.2:3.5,pointSizePixels:activeMeridian==='ALL'?7:11})};
+--- a/meridian-layout-v26.js
++++ b/meridian-layout-v26.js
+@@ -11,7 +11,12 @@
+   if(old)offsets.push([old.dx,old.dy]);
+   offsets.push([14,-h/2],[-w-14,-h/2],[14,-h-12],[-w-14,-h-12],[14,12],[-w-14,12],[-w/2,-h-16],[-w/2,16]);
+   for(const d of [2,3,4])for(const dy of [-d*h-10,(d-1)*h+20])offsets.push([14,dy],[-w-14,dy]);
+-  const box=offsets.map(([dx,dy])=>({x:item.x+dx,y:item.y+dy,w,h})).find(q=>clear(q,options,placed));
++  let box=offsets.map(([dx,dy])=>({x:item.x+dx,y:item.y+dy,w,h})).find(q=>clear(q,options,placed));
++  if(!box&&item.priority){
++   const candidates=[];
++   for(let y=8;y+h<=height-8;y+=8)for(let x=8;x+w<=width-8;x+=8){const q={x,y,w,h};if(clear(q,options,placed))candidates.push(q);}
++   candidates.sort((a,b)=>Math.hypot(a.x+a.w/2-item.x,a.y+a.h/2-item.y)-Math.hypot(b.x+b.w/2-item.x,b.y+b.h/2-item.y));box=candidates[0];
++  }
+   if(box)placed.push(result(item,box));
+  }
+  return placed;
+--- a/meridian-ux-v26.js
++++ b/meridian-ux-v26.js
+@@ -32,7 +32,7 @@
+   for(const [id,on]of [['meridianLineToggle',s.linesOn],['acupointToggle',s.pointsOn],['pointNamesToggle',s.namesOn]])$(id).setAttribute('aria-pressed',String(on));
+   if($('autoFocusPoint'))$('autoFocusPoint').checked=s.autoFocus;
+  }
+- const schedule=()=>{if(!queued){queued=true;queueMicrotask(update);}};
++ const schedule=()=>{if(!queued){queued=true;requestAnimationFrame(update);}};
+  for(const event of ['atlas:selection','atlas:tcm-visibility','atlas:transition-settled','atlas:sex-changed'])window.addEventListener(event,schedule);
+  panel.addEventListener('click',schedule);panel.addEventListener('change',schedule);
+  const oldLocalHandler=local?.onchange;if(local)local.onchange=e=>{oldLocalHandler?.call(local,e);learning.flushLabels();invalidate();};
+--- a/simple-study-v34.js
++++ b/simple-study-v34.js
+@@ -19,6 +19,8 @@
+  const pairs=$('pairHeart').parentElement,pairDetails=document.createElement('details');pairDetails.className='v34-pairs';pairDetails.innerHTML='<summary>经脉对照组合</summary>';pairs.before(pairDetails);pairDetails.append(pairs);
+  const legend=document.createElement('div');legend.id='v34VesselLegend';legend.setAttribute('role','status');document.querySelector('.stage').append(legend);
+  const help=$('helpDialog');help.querySelector('h2').textContent='三步开始学习';
++ help.querySelector('[data-close]').setAttribute('aria-label','关闭操作指南');$('sourceDialog').querySelector('[data-close]').setAttribute('aria-label','关闭来源说明');
++ const notices=help.querySelectorAll('.notice');notices[0].textContent='手机：点选后先看模型，点“详情”阅读说明。常用观察按钮在底部，附加工具在“更多”。左右均指人体自身的左右。';notices[1].textContent='经络与穴位为学习示意，尚未逐穴临床校准。骨骼拆解用于观察结构，位移不代表人体允许的活动范围。';
+  const articles=help.querySelectorAll('.guide-cards article');
+  [['选择内容','在“查看图层”选择经络、骨骼、肌肉、神经、内脏或血管；男女使用同一套入口。'],['找到结构','在“人体结构”搜索名称；在“经络穴位”搜索穴名或编码。点击后看位置和资料。'],['观察关系','拖动旋转、滚轮缩放。需要叠加或透明度时展开“叠加与显示设置”；点“返回全身”结束局部观察。']].forEach(([h,p],i)=>{articles[i].querySelector('h3').textContent=h;articles[i].querySelector('p').textContent=p;});
+  let queued=false;
+--- a/skin-ink-v24.js
++++ b/skin-ink-v24.js
+@@ -21,7 +21,7 @@
+  for(const g of guides){const values=g.value||g,ps=values.points||[];let last=null,along=0;
+   for(let i=0;i<ps.length;i++){const h=surface(ps[i]);if(!h){last=null;continue;}if(last&&(!values.connections||values.connections[i])){const aim=last.normal.clone().add(h.normal);if(aim.lengthSq()<.01)aim.copy(last.normal);aim.normalize();add(last,h,aim,0,along);along+=last.point.distanceTo(h.point);segments++;}else along=0;last=h;}
+  }
+- for(const p of points){const h=surface(p.point||p.position);if(!h)continue;centers.push({code:p.code,position:h.point.toArray()});add(h,h,h.normal,1,0);}
++ for(const p of points){const h=surface(p.skin||p.point||p.position);if(!h)continue;centers.push({code:p.code,position:h.point.toArray()});add(h,h,h.normal,1,0);}
+ 
+  const vertices=[],ranges=[],references=[],owners=[];let subdivided=0,maxCandidates=0;
+  function emit(a,b,c,list,depth=0,owner=0){
+--- a/skin-v17.js
++++ b/skin-v17.js
+@@ -46,7 +46,22 @@
+  const faceNormal=(hit,aim)=>{const idx=geometry.index,a=geometry.attributes.position,i=hit.faceIndex*3;const va=toV(a,idx.getX(i)),vb=toV(a,idx.getX(i+1)),vc=toV(a,idx.getX(i+2)),n=vb.sub(va).cross(vc.sub(va)).normalize();if(n.dot(aim)<0)n.negate();return n;};
+  const sagittalNearest=createSagittalContact(geometry,bvh,faceNormal);
+  function solve(world,d,c={}){const origin=world.clone().addScaledVector(d,220),ray=new THREE.Ray(origin,d.clone().negate());let hits=bvh.raycast(ray,THREE.DoubleSide).filter(h=>h.point.distanceTo(world)<(c.region==='hand'?45:c.region==='foot'?65:190)&&(c.side==='midline'||!c.side||(c.side==='right'?h.point.x<mid+4:h.point.x>mid-4)));if(c.side==='midline'){for(const dx of [-.02,.02]){const o=origin.clone();o.x+=dx;hits.push(...bvh.raycast(new THREE.Ray(o,d.clone().negate()),THREE.DoubleSide).filter(h=>h.point.distanceTo(world)<190));}}if(c.side==='midline'&&!hits.length){const tangent=new THREE.Vector3(0,-d.z,d.y).normalize();for(const dx of [-.02,.02])for(const dt of [-.5,.5]){const o=origin.clone().addScaledVector(tangent,dt);o.x+=dx;hits.push(...bvh.raycast(new THREE.Ray(o,d.clone().negate()),THREE.DoubleSide).filter(h=>h.point.distanceTo(world)<190));}}const local=['hand','foot'].includes(c.region);const palmar=c.region==='hand'&&['PC','HT','LU'].includes(c.meridian)&&d.z>.6&&Math.abs(d.y)<.35;hits.sort((a,b)=>a.distance-b.distance);let hit=hits[0];if(hits.length&&['abdomen','pelvis','thigh'].includes(c.region)){hits.sort((a,b)=>a.point.distanceToSquared(world)-b.point.distanceToSquared(world));const near=hits[0];hit=hits.filter(h=>h.point.distanceTo(near.point)<8).sort((a,b)=>b.point.dot(d)-a.point.dot(d))[0];const closest=bvh.closestPointToPoint(world);if(closest&&hit.point.distanceTo(world)>Math.max(65,closest.distance*2+15))hit=null;}if(!hit&&c.side==='midline'){fallbacks++;return sagittalNearest(world,d);}if(!hit){fallbacks++;const near=bvh.closestPointToPoint(world);if(!near)throw Error('体表投影失败');hit=near;const n=faceNormal(hit,d),outer=bvh.raycastFirst(new THREE.Ray(hit.point.clone().addScaledVector(n,24),n.clone().negate()),THREE.DoubleSide);if(outer&&outer.point.distanceTo(hit.point)<24)hit=outer;d=n;}const normal=faceNormal(hit,d);return {point:hit.point.clone().addScaledVector(normal,.35),skin:hit.point.clone(),normal};}
+- function sample(v,c={}){const key=v.toArray().map(x=>x.toFixed(4)).join(',')+'|'+c.meridian+'|'+c.side+'|'+c.region+'|'+(c.view||[]).join(',')+'|'+(c.projectionNormal||[]).join(',')+'|'+(c.code||'');if(memo.has(key))return memo.get(key);calls++;const world=mapSource(v,c),finger=sex==='female'&&standardized?FEMALE_FINGER_LANDMARKS[c.code]?.[c.side]:null,s=finger?{skin:new THREE.Vector3(...finger.position),point:new THREE.Vector3(...finger.position).addScaledVector(new THREE.Vector3(...finger.normal).normalize(),.35),normal:new THREE.Vector3(...finger.normal).normalize()}:solve(world,direction(v,c),c);maxShift=Math.max(maxShift,s.point.distanceTo(world));memo.set(key,s);return s;}
++ const repairedContacts=[];
++ function outerContact(s,code){
++  const sight=new THREE.Vector3(...visibleDirection(s.skin,s.normal.toArray()));
++  if([180,600,1800].every(distance=>isVisible(s.skin,s.skin.clone().addScaledVector(sight,distance))))return s;
++  const choices=[];
++  for(const d of [s.normal,s.normal.clone().negate(),...[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]].map(a=>new THREE.Vector3(...a))]){
++   const origin=s.skin.clone().addScaledVector(d,180),hit=bvh.raycastFirst(new THREE.Ray(origin,d.clone().negate()),THREE.DoubleSide);
++   if(!hit)continue;const shift=hit.point.distanceTo(s.skin);
++   // Overlapping source skin shells can leave a nearest contact inside the skin.
++   // Repair only a local shell overlap, never jump to an arm or the other leg.
++   if(shift>.25&&shift<8&&isVisible(hit.point,origin))choices.push({hit,d,shift});
++  }
++  choices.sort((a,b)=>a.shift-b.shift);if(!choices.length){repairedContacts.push({code,blocked:true,position:s.skin.toArray()});return s;}
++  const {hit,d}=choices[0],normal=faceNormal(hit,d);repairedContacts.push({code,shift:hit.point.distanceTo(s.skin),from:s.skin.toArray(),to:hit.point.toArray()});return {skin:hit.point.clone(),point:hit.point.clone().addScaledVector(normal,.35),normal};
++ }
++ function sample(v,c={}){const key=v.toArray().map(x=>x.toFixed(4)).join(',')+'|'+c.meridian+'|'+c.side+'|'+c.region+'|'+(c.view||[]).join(',')+'|'+(c.projectionNormal||[]).join(',')+'|'+(c.code||'');if(memo.has(key))return memo.get(key);calls++;const world=mapSource(v,c),finger=sex==='female'&&standardized?FEMALE_FINGER_LANDMARKS[c.code]?.[c.side]:null,s=finger?{skin:new THREE.Vector3(...finger.position),point:new THREE.Vector3(...finger.position).addScaledVector(new THREE.Vector3(...finger.normal).normalize(),.35),normal:new THREE.Vector3(...finger.normal).normalize()}:solve(world,direction(v,c),c);const contact=c.code?outerContact(s,c.code):s;maxShift=Math.max(maxShift,contact.point.distanceTo(world));memo.set(key,contact);return contact;}
+  function project(v,offset=.35,c={}){return sample(v,c).point.clone();}
+  function tube(points,normals,connections){const sides=10,p=[],n=[],ind=[];for(let i=0;i<points.length;i++){let tangent=points[Math.min(points.length-1,i+1)].clone().sub(points[Math.max(0,i-1)]).normalize(),s=tangent.clone().cross(normals[i]);if(s.lengthSq()<1e-7)s=tangent.clone().cross(new THREE.Vector3(0,1,0));if(s.lengthSq()<1e-7)s.set(1,0,0);s.normalize();const up=tangent.clone().cross(s).normalize();for(let k=0;k<sides;k++){const a=2*Math.PI*k/sides,normal=s.clone().multiplyScalar(Math.cos(a)).addScaledVector(up,Math.sin(a));p.push(...points[i].clone().addScaledVector(normal,.85).toArray());n.push(...normal.toArray());if(i&&connections[i]){const a=(i-1)*sides+k,b=(i-1)*sides+(k+1)%sides,c=i*sides+k,d=i*sides+(k+1)%sides;ind.push(a,c,b,b,c,d);}}}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(p,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(n,3));g.setIndex(ind);g.computeBoundingSphere();return g;}
+ 
+@@ -94,6 +109,11 @@
+   const contact=bvh.closestPointToPoint(v);if(!contact||!faceShown(contact.faceIndex,contact.point))return false;
+   return !bvh.raycast(ray,THREE.DoubleSide).some(hit=>hit.distance<distance-.25&&faceShown(hit.faceIndex,hit.point));
+  }
++ function visibilityProbe(point){
++  const h=bvh.closestPointToPoint(point),n=faceNormal(h,new THREE.Vector3(1,0,0)),rows=[];
++  for(const d of [n,n.clone().negate(),new THREE.Vector3(-1,0,0),new THREE.Vector3(1,0,0),new THREE.Vector3(0,0,-1),new THREE.Vector3(0,0,1),new THREE.Vector3(0,-1,0)]){const cp=point.clone().addScaledVector(d,600),hit=bvh.raycastFirst(new THREE.Ray(cp,d.clone().negate()),THREE.DoubleSide);rows.push({direction:d.toArray(),visible:isVisible(point,cp),first:hit?.point.toArray(),gap:hit?600-hit.distance:null});}
++  return rows;
++ }
+  function visibleDirection(point,preferred){
+   const first=new THREE.Vector3(...preferred).normalize(),check=d=>[180,600,1800].every(distance=>isVisible(point,point.clone().addScaledVector(d,distance)));
+   if(check(first))return first.toArray();
+@@ -116,7 +136,7 @@
+  const getSkinClipping=()=>meshes.find(sourceShown)?.material.clippingPlanes||[];
+ 
+  const hasVisibleSkin=()=>meshes.some(sourceShown);
+- return {hasVisibleSkin,getSkinClipping,occlusionRoot,syncOcclusion,createInk:(guides,points,color)=>createSkinInk(geometry,bvh,guides,points,color,{texture:visibilityTexture,size:Math.max(1,meshes.length)}),key:sex+'-skin-v28-outer-contact'+(standardized?'-common-frame':''),sex,project,curve,mapSource,isVisible,visibleDirection,stats:()=>({version:18,sex,standardized,method:standardized?'common teaching proportions with body-specific skin, not clinical registration':sex==='female'?'body-and-limb proportional illustrative transfer onto independent female skin':'outer-skin normal projection',clinicalCalibration:false,calls,fallbacks,maxShift}),auditPoint:(p)=>{const h=bvh.closestPointToPoint(p);return {distance:h?.distance??null};},dispose:()=>{visibilityTexture.dispose();occlusionMeshes.forEach(({mesh})=>mesh.material.dispose());geometry.dispose();if(template!==geometry)template.dispose();}};
++ return {hasVisibleSkin,getSkinClipping,occlusionRoot,syncOcclusion,createInk:(guides,points,color)=>createSkinInk(geometry,bvh,guides,points,color,{texture:visibilityTexture,size:Math.max(1,meshes.length)}),getContact:(v,c={})=>sample(v,c).skin.clone(),key:sex+'-skin-v35-outer-contact'+(standardized?'-common-frame':''),sex,project,curve,mapSource,isVisible,visibilityProbe,visibleDirection,stats:()=>({version:18,sex,standardized,method:standardized?'common teaching proportions with body-specific skin, not clinical registration':sex==='female'?'body-and-limb proportional illustrative transfer onto independent female skin':'outer-skin normal projection',clinicalCalibration:false,calls,fallbacks,maxShift,repairedContacts}),auditPoint:(p)=>{const h=bvh.closestPointToPoint(p);return {distance:h?.distance??null};},dispose:()=>{visibilityTexture.dispose();occlusionMeshes.forEach(({mesh})=>mesh.material.dispose());geometry.dispose();if(template!==geometry)template.dispose();}};
+ }
+ 
+ export {createSkinProjector as createSurfaceProjector};
+--- a/stability-v10.js
++++ b/stability-v10.js
+@@ -22,7 +22,7 @@
+   $('currentStudyName').textContent=current.name||current.id;
+   const p=learning.getState().precisionMode;
+   $('currentStudyMode').textContent=(current.kind==='point'||current.kind==='meridian')?(p==='strict'?'资料查阅':'经穴示意'):'解剖结构';
+-  $('evidenceCurrent').href=linkFor(current,'evidence.html');$('evidenceCurrent').textContent=current.kind==='point'||current.kind==='meridian'?'查阅同一条目 ↗':'查阅经穴资料 ↗';
++  $('evidenceCurrent').href=linkFor(current,'evidence.html');$('evidenceCurrent').textContent=current.kind==='point'||current.kind==='meridian'?'查阅同一条目 ↗':'来源与说明';
+   $('backCurrent').disabled=!lastTarget;
+   $('speakCurrent').disabled=current.kind==='region';
+   status.textContent='当前：'+current.name;
+--- a/view-v16.js
++++ b/view-v16.js
+@@ -3,11 +3,11 @@
+  const r=viewport.getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height);
+  let top=18,bottom=18,left=18,right=18;
+  const expanded=document.body.classList.contains('atlas-expanded');
+- const selectors=expanded?['#wideViewBar','#wideViewBottom']:['.stage-heading','.view-switcher','.study-toolbar','#tcmStatus','.control-dock','.zoom-instruction'];
++ const selectors=expanded?['#wideViewBar','#wideViewBottom']:['.stage-heading','.view-switcher','.study-toolbar','#tcmStatus','.control-dock','#v26PointSummary','#acupointLabelNav','.stage-tools','#v34VesselLegend','.zoom-instruction'];
+  for(const sel of selectors){const e=document.querySelector(sel);if(!e||e.hidden||!e.getClientRects().length||getComputedStyle(e).visibility==='hidden')continue;const b=e.getBoundingClientRect();if(b.right<=r.left||b.left>=r.right||b.bottom<=r.top||b.top>=r.bottom)continue;
+   if(b.top<r.top+h*.4)top=Math.max(top,b.bottom-r.top+12);else if(b.bottom>r.top+h*.6)bottom=Math.max(bottom,r.bottom-b.top+12);
+  }
+- if(!expanded)right=64;
++ if(!expanded&&!document.body.classList.contains('compact-v35'))right=64;
+  if(innerWidth<=650&&document.body.dataset.currentKind==='point'&&document.body.classList.contains('detail-open')){const e=document.querySelector('.detail-panel');if(e?.getClientRects().length){const b=e.getBoundingClientRect();if(b.top<r.bottom&&b.bottom>r.top)bottom=Math.max(bottom,r.bottom-b.top+12);}}
+  const hf=Math.max(.28,Math.min(.94,1-2*Math.max(top,bottom)/h));
+  const wf=Math.max(.38,Math.min(.94,1-2*Math.max(left,right)/w));
+@@ -27,7 +27,7 @@
+  function nativeElement(){return document.fullscreenElement||document.webkitFullscreenElement;}
+  function visibleMesh(n){if(!n.isMesh||!n.geometry)return false;if(!(n.userData.atlas||n.userData.female||ctx.bones.has(n.name)))return false;let p=n;while(p){if(!p.visible)return false;p=p.parent;}return true;}
+  function visibleBounds(){scene.updateMatrixWorld(true);const box=new THREE.Box3();scene.traverse(n=>{if(!visibleMesh(n))return;if(!n.geometry.boundingBox)n.geometry.computeBoundingBox();box.union(n.geometry.boundingBox.clone().applyMatrix4(n.matrixWorld));});return box;}
+- function frameAll(){const box=visibleBounds();if(box.isEmpty()){toast('当前没有可见结构，请打开一个结构图层');return false;}captureCamera();body.classList.remove('nav-open','detail-open');resize();focusBounds(box.expandByScalar(8),{direction:camera.position.clone().sub(controls.target).normalize().toArray(),up:camera.up.toArray()});invalidate();return true;}
++ function frameAll(){const box=visibleBounds();if(box.isEmpty()){toast('当前没有可见结构，请打开一个结构图层');return false;}captureCamera();body.classList.remove('nav-open','detail-open');resize();focusBounds(box.expandByScalar(8),{direction:camera.position.clone().sub(controls.target).normalize().toArray(),up:camera.up.toArray(),safeCenter:true});invalidate();return true;}
+  function layout(){cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{const v=window.visualViewport;body.style.setProperty('--atlas-view-height',(v?.height||innerHeight)+'px');body.style.setProperty('--atlas-view-top',(v?.offsetTop||0)+'px');resize();invalidate();});}
+  function setPan(on){pan=!!on;controls.touches.ONE=pan?THREE.TOUCH.PAN:THREE.TOUCH.ROTATE;controls.touches.TWO=THREE.TOUCH.DOLLY_PAN;$('widePan').textContent=pan?'单指平移':'单指旋转';$('widePan').setAttribute('aria-pressed',String(pan));}
+  function enter(){if(expanded)return;previous={focus:body.classList.contains('study-focus'),scroll:scrollY,mode:state.mode};expanded=true;top.querySelector('.wide-title').after($('bodySelector'));captureCamera();body.classList.remove('study-focus','nav-open','detail-open');body.classList.add('atlas-expanded');top.hidden=bottom.hidden=false;$('fullscreenBtn').setAttribute('aria-pressed','true');window.__FOOT_ATLAS__.setMode('orbit');setPan(false);layout();}
