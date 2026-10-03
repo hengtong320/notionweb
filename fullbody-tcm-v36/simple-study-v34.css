@@ -1,0 +1,21 @@
+/* Keep one primary control for each action. */
+.simple-v34 [hidden]{display:none!important}
+.simple-v34 #tcmControls .tcm-head,.simple-v34 #tcmControls .tcm-master-row{display:none!important}
+.simple-v34 .v26-orientation,.simple-v34 #labelFitAll{display:none!important}
+.simple-v34 #customLayers{margin-top:16px;border:1px solid #dae5dc;border-radius:10px;background:#fbfcf9;padding:12px}
+.simple-v34 #customLayers>summary{cursor:pointer;font-size:13px;font-weight:600;min-height:32px;line-height:32px;color:#36584a}
+.simple-v34 #customLayers:not([open])>*:not(summary){display:none!important}
+.simple-v34 #structureLibrary>h2,.simple-v34 .v21-panel-heading>span{display:none}
+.simple-v34 .v21-panel-heading{justify-content:flex-end;margin-bottom:6px}
+.simple-v34 #tcmControls .v9-reference-actions{margin-bottom:10px}
+.simple-v34 #v34VesselPanel,.simple-v34 #v34DirectoryVessels{margin:12px 0;padding:10px;border-radius:8px;background:#eff5ee}
+.simple-v34 #v34VesselPanel label,.simple-v34 #v34DirectoryVessels{display:grid;gap:7px;font-size:12px;color:#3d5d50}
+.simple-v34 #v34VesselPanel select,.simple-v34 #v34DirectoryVessels select{width:100%;min-height:40px;border:1px solid #d1ded4;border-radius:6px;background:white;color:#294f40;padding:7px}
+.simple-v34 #v34VesselPanel p{font-size:11px;line-height:1.6;margin:8px 0 0;color:#63776c}
+.simple-v34 #v34VesselLegend{position:absolute;bottom:16px;left:16px;padding:7px 10px;border-radius:8px;background:#fffffff0;border:1px solid #dce6db;color:#436050;font-size:11px;pointer-events:none}
+.simple-v34 .v34-pairs{margin:10px 0}.simple-v34 .v34-pairs summary{font-size:12px;color:#526b5c;cursor:pointer;min-height:36px;line-height:36px}
+@media(min-width:1101px){.simple-v34[data-atlas-tab=meridians] #meridianQuick,.simple-v34[data-atlas-tab=meridians] #tcmBtn{display:none!important}}
+@media(max-width:600px){.simple-v34 #v34VesselLegend{bottom:12px;left:12px;font-size:10px;max-width:55%;line-height:1.4}}
+
+.simple-v34 #focusCurrent,.simple-v34 #speakCurrent{display:none!important}
+@media(max-width:1100px){.simple-v34 [data-action="details"]{display:none!important}}
