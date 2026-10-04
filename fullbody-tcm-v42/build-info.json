@@ -1,7 +1,7 @@
 {
   "version": "42.0.0",
   "baseVersion": "41.0.0",
-  "baseCommit": "b84138e9e9dec56a67bf2d3d9db016b5d50c413b",
+  "baseCommit": "e48ab23f1bdfc24d0ef8f86a0e63072cecb6b6ae",
   "files": {
     "FEMALE-LICENSE.txt": "ad66f2995e1e3da373301888645ac33dedc5bbc5bfcea01cdc63fd9460ab4fc8",
     "IMPLEMENTATION.md": "7f16b0d84113f2d57ee5a8f048992da7fe41921c32bed1274de4adda8b298d3f",
@@ -65,10 +65,10 @@
     "pose-data.js": "1f2fc12b974e544683be733381c8719620b26bc23d982847d81eb67a39b0805e",
     "pose-engine.js": "9071eed3b0aa1f2c51518cfb5e2d9e8239ef7b666ec6ccd9a869c4a98cb84fa9",
     "pose-grip.js": "a2c50b6edc36649ff8584c743402f79813f5ec4db9c6f721716532496a91dc5c",
-    "pose-inertia.js": "df5f09466f164502721dff9d1c9bc0f8bcf1977e3f3b2a451162ef0b15ed787c",
+    "pose-inertia.js": "2075d4c5ec3ff425748349c61b6e557bade7883cd6a4f9f5c14cf55a8b76b58e",
     "pose-lab.js": "5766d27dc84b83d961d92df56e68624cf8cd4137c865d8be0a54b8674b4e44e5",
     "pose-observation.js": "153bc16676af7fb0489ef64b495fc0eca42e305bf4a38b046114832989f8995e",
-    "pose.bundle.js": "32955e9ebfc0e36190a367a3fb7f4432fc123be5c382ace6d6b5874e8ad3138b",
+    "pose.bundle.js": "45eda64e830c0165ef3b41f353c5964013460c5715f69976d9d4bb3832977ab6",
     "pose.css": "b295c76d65957269574e9a91bbb9bd31ce9091f4b9a50fb549c245ff2b09fa32",
     "pose.html": "0af0da7e558fd5a889ec2b36a799999142b45f4afb68fb60de5e60c77fd3e5f7",
     "projection-changes.json": "1709e28ddae1dfc3b7a33410b819e536e36fafb9633b2e22ad3ece7467bd94a3",
