@@ -1,7 +1,7 @@
 {
   "version": "37.0.0",
   "baseVersion": "36.0.0",
-  "baseCommit": "4f118ca1636fb4ca8f52ef15f0b430d6d84beadb",
+  "baseCommit": "f3d4e08d2ff62391111635330b06f3e96f9fba07",
   "files": {
     "FEMALE-LICENSE.txt": "ad66f2995e1e3da373301888645ac33dedc5bbc5bfcea01cdc63fd9460ab4fc8",
     "IMPLEMENTATION.md": "7f16b0d84113f2d57ee5a8f048992da7fe41921c32bed1274de4adda8b298d3f",
@@ -61,8 +61,8 @@
     "point-registration-v18.json": "041d075a9ed478a0d88648df120a7c9e71c3c3563b176029e17393bd5d1e8c83",
     "point-rules-v18.js": "c57162385c13d5e1aea56e6649d311c8f2899c676b166756c8d3a792f59b7970",
     "pose-data.js": "1f2fc12b974e544683be733381c8719620b26bc23d982847d81eb67a39b0805e",
-    "pose-lab.js": "e30b211541961ec65bf2640d85c7282a57be7d30a7c569658b7956d233e0a46b",
-    "pose.bundle.js": "b1a4c591ea9eab470acb501bd0cd5638f6a8f394e8243b3e34ec27c282b8fce8",
+    "pose-lab.js": "0cb7770c947081a6c43830865406d99bb513cffbd87e99d8873530a13c616aa6",
+    "pose.bundle.js": "0870281ed48a9f18300c59d062a3fe4d1ccfd97226810bb3afc5de0b85fd9edf",
     "pose.css": "763c826bec46e7aed7287ca33d9016daa50045a81683984a5ba0642644f95a6c",
     "pose.html": "85eba2493efe686e75cb11c4fb6a193e83c8904a0c82139b5c82f81bb85fbacf",
     "projection-changes.json": "1709e28ddae1dfc3b7a33410b819e536e36fafb9633b2e22ad3ece7467bd94a3",
