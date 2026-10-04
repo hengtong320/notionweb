@@ -1,0 +1,28 @@
+{
+  "baseFiles": {
+    "shared-v14.js": "20d2139bfe5e79512ba4fb5d260d53805b4683965e4d7ce63d0e46a81a9b8057",
+    "refinement-v12.js": "97a1ce58f4e4806a9fb5d0ae7e6ec3a72fbfbfe3a49c38083f6553da94eca4ce",
+    "female-v12.js": "c3dea96222c5c829f62388447154850d8583af7d3e94d69a5aef30fa73fe2da3",
+    "learning-enhancements.js": "b971e77e6c844f3c373f6168b6972442353f88ff6e1d003b7eb28bf2de7b041a",
+    "app.bundle.js": "fadf2269c595712a004c6296479fb96aabd4101959bd7b82f44ff86633cd3e7b",
+    "index.html": "bc8fd090f29e388c2c29fbef40f75f82d42539c6137038d859e7252c49b405d6",
+    "index.template.html": "b516cd8ebf5ddaa9d8b697b775216c9b4c7330d9b048b6b6d3425bf63b0c8340",
+    "README.md": "d50ac67c6db767f2721a790b41431958ccc80692efcd7a9caf358a86647aa083"
+  },
+  "sourceCommit": "cf62241af5ff382a65d0fe12d85b6f37f1c92017",
+  "verificationRun": "36982450841",
+  "files": {
+    "shared-v14.js": "719cfd4148ac79e882c91b0a0844a8669d30657754e205554fd2e0e542642511",
+    "refinement-v12.js": "630a32655bfec9fac5fde1f11c1b1aa4d6465e32867db1841389d5c91e301c10",
+    "female-v12.js": "eeebdcfab7de15bdf03341fe97f7d0cb19e297f5a4ee4cc0185c8a2b3b8b95a4",
+    "learning-enhancements.js": "1856fe3a17754ae1c14492427f7382c489f024d244beb1335898cc1f5babbed1",
+    "app.bundle.js": "32029acc4f9951fc5bd57473494e18e5749bd9a4a72fb4e9fe609d46572e26f5",
+    "index.html": "5a40640eba3cb6057424f1d50ea1a0e905019da8ff044b7008a7aadfe7a2e37d",
+    "index.template.html": "f56cf2c9d92830764b1f82f8a6358ce6a22e4fa40ee8c3ebf0b935f5580a005b",
+    "README.md": "d616a094f6de55f63982c4db44ce548cb97504a5ff1fae76bc6eba4e87104e9c"
+  },
+  "tests": {
+    "atlas30-caption/verify.cjs": "0cf49a1055993d9987597837e3cf70fae60e13a22d85617d9bf89ed32b432e66",
+    "atlas30-publish/verified-tests/probe.cjs": "2ff98847c422c50e3429315c919de43ce60566dfdcf93b33ab1c56e419f90363"
+  }
+}

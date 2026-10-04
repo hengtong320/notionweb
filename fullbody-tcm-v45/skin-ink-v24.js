@@ -1,0 +1,90 @@
+import * as THREE from 'three';
+import {ExtendedTriangle} from 'three-mesh-bvh';
+// Each skin face is drawn once per meridian. Adjacent line segments contribute
+// to one distance field instead of stacking alpha and forming dark fat joints.
+export function createSkinInk(geometry,bvh,guides,points,color,visibility=null){
+ const primitives=[],faces=new Map(),centers=[],normal=new THREE.Vector3(),box=new THREE.Box3();
+ const idx=geometry.index,pos=geometry.attributes.position;
+ const vertex=i=>new THREE.Vector3().fromBufferAttribute(pos,i);
+ function surface(v){const h=bvh.closestPointToPoint(v);if(!h)return null;const i=h.faceIndex*3,a=vertex(idx.getX(i)),b=vertex(idx.getX(i+1)),c=vertex(idx.getX(i+2)),n=b.sub(a).cross(c.sub(a)).normalize();if(n.dot(v.clone().sub(h.point))<0)n.negate();return {point:h.point.clone(),normal:n,face:h.faceIndex};}
+ function add(a,b,aim,kind,along){
+  const id=primitives.length,radius=kind?13.5:5.2,line=new THREE.Line3(a.point,b.point);
+  primitives.push({a:a.point.clone(),b:b.point.clone(),kind,along,radius,line});
+  box.makeEmpty().expandByPoint(a.point).expandByPoint(b.point).expandByScalar(radius);
+  bvh.shapecast({intersectsBounds:bounds=>bounds.intersectsBox(box),intersectsTriangle:(tri,face)=>{
+   tri.getNormal(normal);if(normal.dot(aim)<.015)return false;
+   if(tri.closestPointToSegment(line)>radius)return false;
+   let entry=faces.get(face);if(!entry){entry={a:tri.a.clone(),b:tri.b.clone(),c:tri.c.clone(),owner:geometry.attributes.skinOwner?.getX(idx.getX(face*3))||0,ids:[]};faces.set(face,entry);}entry.ids.push(id);return false;
+  }});
+ }
+ let segments=0;
+ for(const g of guides){const values=g.value||g,ps=values.points||[];let last=null,along=0;
+  for(let i=0;i<ps.length;i++){const h=surface(ps[i]);if(!h){last=null;continue;}if(last&&(!values.connections||values.connections[i])){const aim=last.normal.clone().add(h.normal);if(aim.lengthSq()<.01)aim.copy(last.normal);aim.normalize();add(last,h,aim,0,along);along+=last.point.distanceTo(h.point);segments++;}else along=0;last=h;}
+ }
+ for(const p of points){const h=surface(p.skin||p.point||p.position);if(!h)continue;centers.push({code:p.code,position:h.point.toArray()});add(h,h,h.normal,1,0);}
+
+ const vertices=[],ranges=[],references=[],owners=[];let subdivided=0,maxCandidates=0;
+ function emit(a,b,c,list,depth=0,owner=0){
+  if(list.length>32){
+   const tri=new ExtendedTriangle(a,b,c);tri.needsUpdate=true;list=list.filter(i=>tri.closestPointToSegment(primitives[i].line)<=primitives[i].radius);
+   if(!list.length)return;
+   if(list.length>32&&depth<3){subdivided++;const ab=a.clone().lerp(b,.5),bc=b.clone().lerp(c,.5),ca=c.clone().lerp(a,.5);emit(a,ab,ca,list,depth+1,owner);emit(ab,b,bc,list,depth+1,owner);emit(ca,bc,c,list,depth+1,owner);emit(ab,bc,ca,list,depth+1,owner);return;}
+  }
+  // Retain every nearby primitive, even in dense point clusters.
+  maxCandidates=Math.max(maxCandidates,list.length);const offset=references.length;references.push(...list);
+  for(const v of [a,b,c]){vertices.push(v.x,v.y,v.z);ranges.push(offset,list.length);owners.push(owner);}
+ }
+ for(const f of faces.values())emit(f.a,f.b,f.c,f.ids,0,f.owner);
+ function textureFrom(values,width=256){const height=Math.max(1,Math.ceil(values.length/(width*4))),data=new Float32Array(width*height*4);data.set(values);const tex=new THREE.DataTexture(data,width,height,THREE.RGBAFormat,THREE.FloatType);tex.minFilter=THREE.NearestFilter;tex.magFilter=THREE.NearestFilter;tex.generateMipmaps=false;tex.needsUpdate=true;return {tex,size:new THREE.Vector2(width,height)};}
+ const primitiveData=textureFrom(primitives.flatMap(p=>[...p.a.toArray(),p.kind,...p.b.toArray(),p.along]));
+ const referenceData=textureFrom(references.flatMap(i=>[i,0,0,0]));
+ const texture=primitiveData.tex;
+ const meshGeometry=new THREE.BufferGeometry();meshGeometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));meshGeometry.setAttribute('inkRange',new THREE.Float32BufferAttribute(ranges,2));meshGeometry.setAttribute('skinOwner',new THREE.Float32BufferAttribute(owners,1));meshGeometry.computeBoundingSphere();
+ const skinVisibility=visibility?.texture||textureFrom([1,0,0,0],1).tex;
+ const material=new THREE.ShaderMaterial({uniforms:{skinVisibility:{value:skinVisibility},skinVisibilitySize:{value:visibility?.size||1},tint:{value:new THREE.Color(color)},linesOn:{value:1},pointsOn:{value:1},selectedOn:{value:0},selectedContact:{value:new THREE.Vector3()},selectedTint:{value:new THREE.Color('#d37022')},dashed:{value:0},physicalSide:{value:0},midline:{value:99.55318156},inkData:{value:texture},inkSize:{value:primitiveData.size},inkRefs:{value:referenceData.tex},refSize:{value:referenceData.size},lineScale:{value:1},pixelRatio:{value:1},inkViewProjection:{value:new THREE.Matrix4()},inkViewport:{value:new THREE.Vector4(0,0,1,1)}},
+  vertexShader:`attribute vec2 inkRange;attribute float skinOwner;varying float vSkinOwner;
+   varying vec2 vRange;varying vec3 vInkWorld;
+   #include <clipping_planes_pars_vertex>
+   void main(){vSkinOwner=skinOwner;vInkWorld=position;vRange=inkRange;vec4 mvPosition=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mvPosition;
+    #include <clipping_planes_vertex>
+   }`,
+  fragmentShader:`varying float vSkinOwner;uniform sampler2D skinVisibility;uniform float skinVisibilitySize;uniform float selectedOn;uniform vec3 selectedContact;uniform vec3 selectedTint;uniform vec3 tint;uniform float linesOn;uniform float pointsOn;uniform float dashed;uniform float physicalSide;uniform float midline;uniform float lineScale;uniform float pixelRatio;uniform mat4 inkViewProjection;uniform vec4 inkViewport;uniform sampler2D inkData;uniform vec2 inkSize;uniform sampler2D inkRefs;uniform vec2 refSize;
+   varying vec2 vRange;varying vec3 vInkWorld;
+   #include <clipping_planes_pars_fragment>
+   vec4 datum(float i){return texture2D(inkData,vec2(mod(i,inkSize.x)+.5,floor(i/inkSize.x)+.5)/inkSize);}
+   void main(){
+    #include <clipping_planes_fragment>
+    if(texture2D(skinVisibility,vec2((vSkinOwner+.5)/skinVisibilitySize,.5)).r<.5)discard;
+    if(physicalSide!=0.&&(vInkWorld.x-midline)*physicalSide<-.3)discard;
+    float lineRadius=1.15*pixelRatio*lineScale;
+    float pointRadius=3.0*pixelRatio;
+    float lineDistance=1.e5,pointDistance=1.e5,selectedDistance=1.e5,lineAlong=0.;
+    for(int k=0;k<${Math.max(1,maxCandidates)};k++){
+     if(float(k)>=vRange.y)break;float ri=vRange.x+float(k);float id=texture2D(inkRefs,vec2(mod(ri,refSize.x)+.5,floor(ri/refSize.x)+.5)/refSize).x;
+     vec4 a=datum(id*2.),b=datum(id*2.+1.);
+     vec4 ca=inkViewProjection*vec4(a.xyz,1.),cb=inkViewProjection*vec4(b.xyz,1.);
+     if(ca.w<=.0001||cb.w<=.0001)continue;
+     vec2 sa=inkViewport.xy+(ca.xy/ca.w*.5+.5)*inkViewport.zw;
+     vec2 sb=inkViewport.xy+(cb.xy/cb.w*.5+.5)*inkViewport.zw;
+     vec2 ab=sb-sa;float t=clamp(dot(gl_FragCoord.xy-sa,ab)/max(dot(ab,ab),.0001),0.,1.);
+     float d=length(gl_FragCoord.xy-(sa+t*ab));
+     if(a.w>.5){if(pointsOn>.5){pointDistance=min(pointDistance,d);if(selectedOn>.5&&distance(a.xyz,selectedContact)<.01)selectedDistance=min(selectedDistance,d);}}
+     else if(linesOn>.5){
+      float along=b.w+t*length(b.xyz-a.xyz);
+      if(dashed>.5){float phase=mod(along,16.);if(phase>10.){float gap=min(phase-10.,16.-phase);float scale=length(ab)/max(length(b.xyz-a.xyz),.001);d=length(vec2(d,gap*scale));}}
+      if(d<lineDistance){lineDistance=d;lineAlong=along;}
+     }
+    }
+    float aa=.65;
+    float lineAlpha=1.-smoothstep(lineRadius-aa,lineRadius+aa,lineDistance);
+    float pointAlpha=1.-smoothstep(pointRadius-aa,pointRadius+aa,pointDistance);
+    vec3 paint=tint;float alpha=max(lineAlpha,pointAlpha);
+    if(pointAlpha>.01){float ring=smoothstep(pointRadius*.34-aa*.4,pointRadius*.55,pointDistance)*(1.-smoothstep(pointRadius*.80,pointRadius,pointDistance));paint=mix(tint,vec3(.98,.99,.97),ring);}
+    float selectionRing=(1.-smoothstep(4.8*pixelRatio-aa,4.8*pixelRatio+aa,selectedDistance))*smoothstep(3.5*pixelRatio-aa,3.5*pixelRatio+aa,selectedDistance);
+    if(selectedOn>.5&&selectionRing>.01){paint=mix(paint,selectedTint,selectionRing);alpha=max(alpha,selectionRing);}
+    if(alpha<.02)discard;gl_FragColor=vec4(paint,alpha);
+    #include <colorspace_fragment>
+   }`,transparent:true,depthTest:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-2,side:THREE.DoubleSide,toneMapped:false,clipping:true});
+ const mesh=new THREE.Mesh(meshGeometry,material);mesh.name='Skin pigment: single-pass surface union';mesh.renderOrder=41;mesh.userData.skinInk=true;mesh.onBeforeRender=(renderer,scene,camera)=>{material.uniforms.pixelRatio.value=renderer.getPixelRatio();material.uniforms.inkViewProjection.value.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);renderer.getCurrentViewport(material.uniforms.inkViewport.value);};
+ return {mesh,centers,stats:{surfaceTriangles:vertices.length/9,sourceFaces:faces.size,drawnSegments:segments,points:centers.length,subdivided,maxCandidates,candidateOverflow:0,uniqueFacePainting:true,method:'skin-face-restricted screen-space round stroke; fixed device-pixel AA',skinContactSelection:true,screenSpaceStroke:true,normalDepthPreserved:true,highDpiAware:true,roundedDashes:true,clinicalCalibration:false},dispose(){meshGeometry.dispose();material.dispose();texture.dispose();referenceData.tex.dispose();if(!visibility)skinVisibility.dispose();}};
+}
