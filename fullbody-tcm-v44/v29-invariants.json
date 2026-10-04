@@ -1,0 +1,31 @@
+{
+  "originalSource": "fullbody-tcm-v28",
+  "unchangedFiles": {
+    "voice-map.json": "5aec3cd164bd986b567094d570184ba4b9eaab3d13d66984cca25e65efe7839f",
+    "female-fingers-v24.js": "b082d5f13e2ef5d043efc993331929b4261cd09e65a34f942ff432acd1265050",
+    "hegu-reference-v16.json": "2f73514cc831a9b4cc996c21d4b91c9be080b07e5a150ffc9d47a6ac4e89469e",
+    "point-registration-v18.json": "041d075a9ed478a0d88648df120a7c9e71c3c3563b176029e17393bd5d1e8c83",
+    "acupoints-data.js": "018cfb7926dba5c4ca693d04fc8778e0ab0f26478c3acf09b7c5464d801d5fc9",
+    "term-catalog.json": "c60c9dba7425bb10e7c7a224efab99e0b08c11cdf82327596cfbf143c81c6515",
+    "registration-template.json": "aba5ead2876222c29512265bfe5b4a5018220893fe3bf6a122d2bd803139d215",
+    "evidence-data-v9.json": "c8bdd4acabd07738e70f2dc113e5ce911faf63c5c6da6537191025cfd0a9c9e3",
+    "final-source-match.json": "7a00c93f4cee468dec0dcc00ca1b6d716f939415bafc183b1d6ad7966d54e51d",
+    "female-local-v18.json": "996ef9bb451724d4523a0af5028ba4ba3d2357b03c3236b6f2a918393c812edc",
+    "projection-changes.json": "1709e28ddae1dfc3b7a33410b819e536e36fafb9633b2e22ad3ece7467bd94a3",
+    "skin-ink-v24.js": "5454ff601946f0b07fb5f60de94f13254810680e36593d589442344125fae463",
+    "region-membership.json": "7986dace06106fef340f0cf95645942e97f1fa4caf2e546f88885c89d5b3a7f9",
+    "point-rules-v18.js": "c57162385c13d5e1aea56e6649d311c8f2899c676b166756c8d3a792f59b7970",
+    "additional-groups.json": "635d17b04162ef2e0d29bdd1a3e819a4f103789ca5d56ee3e1ea77117127aebf",
+    "skin-route-v24.js": "0b7b2b36b7ec0d8c6785a56657bb6a6a4c164bbcd26416962444122ce389e3ab",
+    "female-hand-route-v18.json": "1edd6a2217cfd03b497e7289239c84e388f2ecb3fa3bb397adf00c5ec3b2c5ee",
+    "additions.json": "c16ae04f6c7553e76df13c52360a065d44ac70a2a5915393d2064ce3f2c5b922",
+    "skin-v17.js": "bdc41c40ac10d8059d91f3da0105d552978d3edc41769f7fead4ffbf2075e292",
+    "meridian-reference-coverage.json": "157f490f2e71e1b3d71393464026ecad69198baec84e2f53e9967e7c39e13d86",
+    "reference-data.js": "ec06e60dea8a95e8709b5200025b626f8a912fe73caf13a98daaec46c1ff56a9",
+    "surface-path-v25.js": "b5ace1b3e09a216579ef6fc3ee0a3a56f869c166c69d50a003ce042968e404f5",
+    "body-frame-v18.json": "acb5fe7c123321f81844e87930911cc69a6ecc8cc313b7401d8e9fe8e19ba7f9",
+    "calibration-pilot.json": "eed214363a0b2d363e3e1220f909c87200f402ce96fa1e129daf717ce211d22c",
+    "invariants.json": "a3d31dcbc073cb0a884f1e68c7e7e16137f8bac02db28b146f6118e05be5ab3d"
+  },
+  "clinicalCalibration": false
+}
