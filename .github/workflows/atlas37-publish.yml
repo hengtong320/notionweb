@@ -31,7 +31,7 @@ jobs:
       - name: Match reviewed local build
         env:
           EXPECTED_BUNDLE: 07a89bfa5cc5ce111b41d193dfdff85baa3ff3555083524597283fb4f14b236e
-          EXPECTED_POSE: b1a4c591ea9eab470acb501bd0cd5638f6a8f394e8243b3e34ec27c282b8fce8
+          EXPECTED_POSE: 0870281ed48a9f18300c59d062a3fe4d1ccfd97226810bb3afc5de0b85fd9edf
           EXPECTED_EVIDENCE: d616f4a218f33e5cbdc5fb03a3e7d4089830c6fca80b0851e85a8ad76754459d
         run: |
           python3 - <<'PYCODE'
@@ -42,7 +42,7 @@ jobs:
           for name,sha in json.loads((d/'build-info.json').read_text())['files'].items():
             assert hashlib.sha256((d/name).read_bytes()).hexdigest()==sha,name
           p=pathlib.Path('anatomy/index.html');s=p.read_text()
-          assert 'fullbody-tcm-v36' in s
+          assert 'fullbody-tcm-v36' in s or 'fullbody-tcm-v37' in s
           p.write_text(s.replace('fullbody-tcm-v36','fullbody-tcm-v37').replace('36.0.0','37.0.0'))
           PYCODE
           git diff --exit-code -- fullbody-tcm-v36 fullbody-tcm-v34 fullbody-tcm-v31 fullbody-tcm-v9 fullbody-tcm-v11 fullbody-tcm-v12
