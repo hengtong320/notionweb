@@ -1,0 +1,56 @@
+name: Publish V39 consistent body transition and safe framing
+on:
+  push:
+    paths:
+      - 'atlas39-tools/**'
+      - '.github/workflows/atlas39-publish.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas39-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify and prepare reviewed sources
+        run: |
+          python3 atlas39-tools/prepare.py
+      - name: Build and validate data
+        run: |
+          npm install --prefix /tmp/atlas39-build --no-audit --no-fund three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10
+          NODE_PATH=/tmp/atlas39-build/node_modules node atlas39-tools/build.cjs
+          node --check fullbody-tcm-v39/app.bundle.js
+          node --check fullbody-tcm-v39/pose.bundle.js
+      - name: Match reviewed local build
+        env:
+          EXPECTED_BUNDLE: 76e78b90e006bc26b11350b734cd47aa1dd40901757686115bccb83b4f8fab6d
+          EXPECTED_POSE: 7f62fcbf43c00ef11c4a17e87ff2c9c4126fb9538c0f5989daf6f18364593c44
+          EXPECTED_EVIDENCE: d616f4a218f33e5cbdc5fb03a3e7d4089830c6fca80b0851e85a8ad76754459d
+        run: |
+          python3 - <<'PYCODE'
+          import pathlib,hashlib,json,os
+          d=pathlib.Path('fullbody-tcm-v39')
+          for name,key in [('app.bundle.js','EXPECTED_BUNDLE'),('evidence.bundle.js','EXPECTED_EVIDENCE'),('pose.bundle.js','EXPECTED_POSE')]:
+            assert hashlib.sha256((d/name).read_bytes()).hexdigest()==os.environ[key],name
+          for name,sha in json.loads((d/'build-info.json').read_text())['files'].items():
+            assert hashlib.sha256((d/name).read_bytes()).hexdigest()==sha,name
+          p=pathlib.Path('anatomy/index.html');s=p.read_text()
+          assert 'fullbody-tcm-v38' in s or 'fullbody-tcm-v39' in s
+          p.write_text(s.replace('fullbody-tcm-v38','fullbody-tcm-v39').replace('38.0.0','39.0.0'))
+          PYCODE
+          git diff --exit-code -- fullbody-tcm-v38 fullbody-tcm-v34 fullbody-tcm-v31 fullbody-tcm-v9 fullbody-tcm-v11 fullbody-tcm-v12
+      - name: Publish version and fixed entry
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v39 anatomy/index.html
+          git diff --cached --quiet || git commit -m "Publish V39 preserved meridian entry, safe camera framing and skeleton contrast"
+          git push origin HEAD:main
