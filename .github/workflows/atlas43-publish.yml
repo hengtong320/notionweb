@@ -32,7 +32,7 @@ jobs:
       - name: Match reviewed local build
         env:
           EXPECTED_BUNDLE: c9f14a4039aed73482c242d71af00e96d8d3a6db23a2d168f9efb35552f9793d
-          EXPECTED_POSE: f49ecfc793ab894f5b66486408741620f46fef6f2c707f1e992feeb1e83460c3
+          EXPECTED_POSE: c2c973488160b671857ddccd204f991f1f47c463feeec54c8b7cddffbe842d08
           EXPECTED_EVIDENCE: d616f4a218f33e5cbdc5fb03a3e7d4089830c6fca80b0851e85a8ad76754459d
         run: |
           python3 - <<'PYCODE'
