@@ -41,7 +41,10 @@ jobs:
           for name,key in [('app.bundle.js','EXPECTED_BUNDLE'),('evidence.bundle.js','EXPECTED_EVIDENCE'),('pose.bundle.js','EXPECTED_POSE')]:
             assert hashlib.sha256((d/name).read_bytes()).hexdigest()==os.environ[key],name
           expected=json.loads(pathlib.Path('atlas47-tools/reviewed-files.json').read_text())
-          assert json.loads((d/'build-info.json').read_text())['files']==expected
+          actual=json.loads((d/'build-info.json').read_text())['files']
+          differences={name:{'local':expected.get(name),'build':sha} for name,sha in actual.items() if sha!=expected.get(name)}
+          print('Reviewed file differences:',json.dumps(differences))
+          assert actual==expected
           for name,sha in expected.items():
             assert hashlib.sha256((d/name).read_bytes()).hexdigest()==sha,name
           p=pathlib.Path('anatomy/index.html');s=p.read_text()

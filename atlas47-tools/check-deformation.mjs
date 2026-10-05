@@ -49,6 +49,6 @@ for(const id of cases.filter(id=>!process.env.ATLAS_DIAG||process.env.ATLAS_DIAG
   }
  }
 }
-fs.writeFileSync('atlas47-tools/deformation-verification.json',JSON.stringify({sourceSkinUnchanged:true,boneMeshesRescaled:false,measurement:'all three triangle edges, rest length > 1 mm; repeated shared edges included',rows},null,2));
+fs.writeFileSync('atlas47-tools/deformation-verification.json',JSON.stringify({sourceSkinUnchanged:true,boneMeshesRescaled:false,measurement:'all three triangle edges, rest length > 1 mm; repeated shared edges included',serializationDecimalPlaces:8,rows},(_key,value)=>typeof value==='number'?Number(value.toFixed(8)):value,2));
 
 for(const a of rows.filter(r=>r.version==='after')){const b=rows.find(r=>r.version==='before'&&r.pose===a.pose&&r.sex===a.sex);assert(a.over3<=b.over3,`${a.pose}/${a.sex}: new edges over 3x`);if(a.sex==='female'&&['yoga-dog','yoga-child','bend-hips','side-curl-left','swim-breast-glide'].includes(a.pose))assert(a.maxRatio<b.maxRatio*.5,`${a.pose}: upper-arm improvement lost`);}

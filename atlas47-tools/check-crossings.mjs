@@ -49,6 +49,6 @@ for(const id of ['yoga-dog','yoga-child','side-curl-left','bend-hips','carry-che
  }
  }
 }
-fs.writeFileSync('atlas47-tools/crossing-verification.json',JSON.stringify({measurement:'New intersections of nonadjacent region triangles, rest centroids at least 40 mm apart; excludes shared vertices and intersections already in source. Counts triangle pairs, not depth, force or clinical pressure.',rows},null,2));
+fs.writeFileSync('atlas47-tools/crossing-verification.json',JSON.stringify({measurement:'New intersections of nonadjacent region triangles, rest centroids at least 40 mm apart; excludes shared vertices and intersections already in source. Counts triangle pairs, not depth, force or clinical pressure.',serializationDecimalPlaces:8,rows},(_key,value)=>typeof value==='number'?Number(value.toFixed(8)):value,2));
 
 const total=(pose,sex,version)=>rows.filter(r=>r.pose===pose&&r.sex===sex&&r.version===version).reduce((n,r)=>n+r.crossingTrianglePairs,0);for(const sex of ['male','female'])assert(total('side-curl-left',sex,'after')<total('side-curl-left',sex,'before')*.7,'side-curl crossings regression');assert(total('yoga-dog','male','after')<total('yoga-dog','male','before'),'male armpit crossings regression');assert.equal(total('bend-hips','female','after'),0,'female hinge new intersections');
