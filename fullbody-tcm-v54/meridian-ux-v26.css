@@ -1,0 +1,28 @@
+/* Scoped to the meridian workspace; the familiar anatomy layout is retained. */
+.meridian-v26 #tcmControls [hidden]{display:none!important}
+.v26-orientation{display:flex;align-items:center;gap:5px;margin:9px 0 12px;color:#667b6f;font-size:12px}
+.v26-orientation button{flex:1;min-height:36px;padding:5px;border:1px solid #d6e1d4;background:#fbfdf8;border-radius:6px;color:#395f4b;cursor:pointer}
+.v26-local-scope{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:10px 0 12px;font-size:12px;color:#3c6150;cursor:pointer}
+.v26-local-scope input{width:17px;height:17px;accent-color:#397960}.v26-local-scope small{width:100%;padding-left:24px;font-size:11px;color:#748879}
+#v26ClearPointSearch{border:0;background:transparent;color:#376d50;cursor:pointer;min-height:32px;padding:3px 5px;text-decoration:underline}
+.meridian-v26 #acupointLabels .acu-name.v6-label{box-sizing:border-box;padding:4px 7px;min-height:28px;line-height:19px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 1px 5px #193b2812}
+.meridian-v26 .acupoint-label-wires path{fill:none;stroke:#507265;stroke-width:1;opacity:.65;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.meridian-v26 .acupoint-label-wires path.active{stroke:#b77227;stroke-width:1.4;opacity:.9}
+.meridian-v26 #tcmControls .selection-help,.meridian-v26 #tcmControls .tcm-disclaimer{font-size:11px;line-height:1.6}
+#v26PointSummary{display:none}#v26PointSummary[hidden]{display:none!important}
+.meridian-v26 #tcmControls button:focus-visible{outline:2px solid #397960;outline-offset:2px}
+@media(max-width:600px){
+ .meridian-v26 #tcmControls .tcm-toggle-row button,.v26-orientation button,.meridian-v26 #tcmControls .tcm-side-picker button{min-height:40px}
+ .meridian-v26 #acupointLabels .acu-name.v6-label{min-height:32px;line-height:23px;font-size:12px}
+ #v26PointSummary{position:absolute;z-index:26;bottom:120px;left:12px;right:12px;display:flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #cbdccc;border-radius:10px;background:#fbfdf8f5;box-shadow:0 3px 14px #28472c17;color:#30543d}
+ #v26PointSummary>div{flex:1;min-width:0}#v26PointSummary strong{display:block;font-size:14px}#v26PointSummary small{display:block;margin-top:3px;font-size:11px;color:#708373}
+ #v26PointSummary button{min-height:40px;min-width:42px;border:1px solid #c8dac8;border-radius:6px;background:#edf5e9;color:#376344;cursor:pointer}
+ body.v26-point-selected #acupointLabelNav{bottom:194px}
+ body.nav-open #v26PointSummary,body.detail-open #v26PointSummary{display:none}
+ body.atlas-expanded #v26PointSummary{bottom:calc(76px + env(safe-area-inset-bottom))}
+ body.atlas-expanded.v26-point-selected #acupointLabelNav{bottom:156px}
+}
+
+/* V27 current camera and point-to-label correspondence. */
+.v26-orientation button.active{background:#356d59;color:white;border-color:#356d59}
+.meridian-v26 #acupointLabels .acu-name.v6-label{font-size:12px;letter-spacing:0}

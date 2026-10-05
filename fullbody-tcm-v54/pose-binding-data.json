@@ -1,0 +1,133 @@
+{
+  "version": "54.0.0",
+  "influences": 8,
+  "layout": "sparse-phone-hand-eight",
+  "palette": [
+    "pelvis",
+    "lumbar",
+    "trunk",
+    "head",
+    "hipR",
+    "hipL",
+    "kneeR",
+    "kneeL",
+    "ankleR",
+    "ankleL",
+    "shoulderR",
+    "shoulderL",
+    "elbowR",
+    "elbowL",
+    "wristR",
+    "wristL",
+    "L5",
+    "L4",
+    "L3",
+    "L2",
+    "L1",
+    "C7",
+    "C6",
+    "C5",
+    "C4",
+    "C3",
+    "C2",
+    "C1",
+    "patellaR",
+    "patellaL",
+    "hand-metacarpal-1-right",
+    "hand-proximal-1-right",
+    "hand-distal-1-right",
+    "hand-proximal-2-right",
+    "hand-middle-2-right",
+    "hand-distal-2-right",
+    "hand-proximal-3-right",
+    "hand-middle-3-right",
+    "hand-distal-3-right",
+    "hand-proximal-4-right",
+    "hand-middle-4-right",
+    "hand-distal-4-right",
+    "hand-proximal-5-right",
+    "hand-middle-5-right",
+    "hand-distal-5-right",
+    "hand-metacarpal-1-left",
+    "hand-proximal-1-left",
+    "hand-distal-1-left",
+    "hand-proximal-2-left",
+    "hand-middle-2-left",
+    "hand-distal-2-left",
+    "hand-proximal-3-left",
+    "hand-middle-3-left",
+    "hand-distal-3-left",
+    "hand-proximal-4-left",
+    "hand-middle-4-left",
+    "hand-distal-4-left",
+    "hand-proximal-5-left",
+    "hand-middle-5-left",
+    "hand-distal-5-left",
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5",
+    "T6",
+    "T7",
+    "T8",
+    "T9",
+    "T10",
+    "T11",
+    "T12"
+  ],
+  "models": {
+    "male": {
+      "legPartition": {
+        "plane": -0.25,
+        "components": [
+          {
+            "meanX": 0.09300393001400048,
+            "minY": -0.8827216029167175,
+            "groups": 5872,
+            "side": "left"
+          },
+          {
+            "meanX": -0.09299138545337382,
+            "minY": -0.8827216029167175,
+            "groups": 5871,
+            "side": "right"
+          }
+        ],
+        "method": "Source topology leg side propagation",
+        "clinicalCalibration": false
+      },
+      "vertices": 75668,
+      "extraVertices": 16930,
+      "positionHash": "401410349598440c7d1ccf55a6fc33b832d1a38172fb2e9adc8f4c704fe9be0b",
+      "bindingHash": "eba5f2e7e5ec7db82b04d2c1571555a83c76b5f5a19ea0e5e71d173bcdc1826c"
+    },
+    "female": {
+      "legPartition": {
+        "plane": -0.25,
+        "components": [
+          {
+            "meanX": 0.07781313960839586,
+            "minY": -0.8822499513626099,
+            "groups": 29914,
+            "side": "left"
+          },
+          {
+            "meanX": -0.08812631624677875,
+            "minY": -0.8827216029167175,
+            "groups": 29695,
+            "side": "right"
+          }
+        ],
+        "method": "Source topology leg side propagation",
+        "clinicalCalibration": false
+      },
+      "vertices": 191322,
+      "extraVertices": 16962,
+      "positionHash": "23fb7a43e7feec09419ae5637223d6ddcc922acc4e309bded319daab0d3fd36c",
+      "bindingHash": "5f268f964b9fe199b72d583fac00f940e5c00d623ad9506ac26d10140054341d"
+    }
+  },
+  "sourceSkinVerticesUnmoved": true,
+  "method": "Source-topology leg sides, continuous wrist neighbourhood, phone palm contact and thoracic contributions"
+}
