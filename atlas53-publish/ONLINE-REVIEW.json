@@ -1,0 +1,218 @@
+{
+  "version": "53.0.0",
+  "localStates": 29,
+  "publicConfirmedStates": 14,
+  "publicInitialUnconfirmedAttempts": [
+    "male-sit-surface",
+    "male-sit-bones"
+  ],
+  "unconfirmedAttemptsExcluded": true,
+  "publicStates": [
+    {
+      "name": "female-sit-surface",
+      "confirmed": true,
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "male-sit-surface",
+      "confirmed": false,
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "male-sit-bones",
+      "confirmed": false,
+      "sex": "female",
+      "view": "bones",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "female-sit-organs",
+      "confirmed": true,
+      "sex": "female",
+      "view": "organs",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "male-sit-organs",
+      "confirmed": true,
+      "sex": "male",
+      "view": "organs",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "male-sit-nerves",
+      "confirmed": true,
+      "sex": "male",
+      "view": "nerves",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "male-sit-surface-retry",
+      "confirmed": true,
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "female-sit-surface-return",
+      "confirmed": true,
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "female-sit-vessels",
+      "confirmed": true,
+      "sex": "female",
+      "view": "vessels",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "female-sit-bones",
+      "confirmed": true,
+      "sex": "female",
+      "view": "bones",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "male-sit-bones-confirmed",
+      "confirmed": true,
+      "sex": "male",
+      "view": "bones",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "male-sit-vessels",
+      "confirmed": true,
+      "sex": "male",
+      "view": "vessels",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "male-sit-flags-off",
+      "confirmed": true,
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": false,
+        "linesOn": false,
+        "namesOn": false
+      }
+    },
+    {
+      "name": "female-sit-flags-off",
+      "confirmed": true,
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": false,
+        "linesOn": false,
+        "namesOn": false
+      }
+    },
+    {
+      "name": "female-sit-nerves",
+      "confirmed": true,
+      "sex": "female",
+      "view": "nerves",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    },
+    {
+      "name": "female-sit-final",
+      "confirmed": true,
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      }
+    }
+  ],
+  "skinComparison": [
+    {
+      "sex": "male",
+      "samplePoints": 3,
+      "maximumErrorMetres": 0.0
+    },
+    {
+      "sex": "female",
+      "samplePoints": 3,
+      "maximumErrorMetres": 0.0
+    }
+  ],
+  "publicFiles": 136,
+  "allPublicFilesExact": true,
+  "entryPointsToV53": true,
+  "gpuStates": 52,
+  "gpuMaximumErrorMetres": 4.2419175466492536e-07,
+  "sourceCommit": "a01d34c864b0478b6bb11a45950d922dd497c4d5",
+  "releaseCommit": "a2343b313ebc332f1e4288e990bf6acc2a3e0d50",
+  "buildRun": 37289926174,
+  "pagesRun": 37290584595,
+  "bothRunsSucceeded": true,
+  "poses": 120,
+  "geometryStates": 1200,
+  "crossingFlaggedPosesBefore": 93,
+  "crossingFlaggedPosesAfter": 65,
+  "noGeometryRegression": true,
+  "physicalTouchGesturesVerified": false,
+  "clinicalPrediction": false,
+  "overallGoalComplete": false
+}
