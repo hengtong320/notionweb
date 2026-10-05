@@ -1,0 +1,108 @@
+--- a/pose-catalog.js
++++ b/pose-catalog.js
+@@ -11,11 +11,12 @@
+ };
+ const arm=(flex=0,elbow=12,abd=5,handTurn=0)=>({flex,elbow,abd,handTurn});
+ const leg=(flex=0,knee=4,abd=0,yaw=0,roll=0)=>({flex,knee,abd,yaw,roll});
+-const standing=o=>({height:.86,feet:['R','L'],armR:arm(),armL:arm(),legR:leg(),legL:leg(),...o});
++const relaxedArm=()=>arm(0,12,10);
++const standing=o=>({height:.86,feet:['R','L'],armR:relaxedArm(),armL:relaxedArm(),legR:leg(),legL:leg(),...o});
+ const sitting=o=>standing({handsLap:!o.armR&&!o.armL,height:.49,legR:leg(90,90),legL:leg(90,90),armR:arm(5,75),armL:arm(5,75),chair:true,...o});
+-const lying=(kind,o={})=>({height:0,orientation:kind==='supine'?[-90,0,0]:kind==='prone'?[90,0,0]:kind==='left'?[-90,90,0]:[-90,-90,0],bed:true,lying:kind,feet:[],legR:leg(0,0),legL:leg(0,0),armR:arm(0,5,8),armL:arm(0,5,8),...o});
++const lying=(kind,o={})=>({height:0,orientation:kind==='supine'?[-90,0,0]:kind==='prone'?[90,0,0]:kind==='left'?[-90,90,0]:[-90,-90,0],bed:true,lying:kind,feet:[],legR:leg(0,0),legL:leg(0,0),armR:arm(0,5,o.bridge||o.handTargetR||o.handTargetL||kind==='left'||kind==='right'?8:10),armL:arm(0,5,o.bridge||o.handTargetR||o.handTargetL||kind==='left'||kind==='right'?8:10),...o});
+ const squat=o=>standing({height:.37,pelvisTilt:25,bend:5,legR:leg(115,130,8),legL:leg(115,130,8),armR:arm(50,15),armL:arm(50,15),...o});
+-const kneel=o=>({height:.49,kneeling:true,feet:[],legR:leg(0,90),legL:leg(0,90),armR:arm(),armL:arm(),...o});
++const kneel=o=>({height:.49,kneeling:true,feet:[],legR:leg(0,90),legL:leg(0,90),armR:relaxedArm(),armL:relaxedArm(),...o});
+ const all=[];
+ function add(id,name,category,create,options,explanation,flags=[]){all.push({id,name,category,spec:create(options),explanation,flags,refs:category==='卧躺'?['rest','posture']:category==='搬抬' || category==='家务'?['handling','duration']:category==='游泳'?['buoyancy','motion']:category==='站立'?['standing','posture','duration']:['posture','duration','motion'],dynamic:['出行运动','游泳'].includes(category),compare:null});}
+ // 16 sleep/rest arrangements, including explicitly different left/right support and knee placement.
+@@ -83,9 +84,9 @@
+ add('cook-counter','家务 · 台面备菜','家务',standing,{desk:true,armR:arm(12,80),armL:arm(18,70),neck:15},'双手操作与低头观察，肩颈维持和手部反复动作同时存在。',['neckFlex','repetition']);
+ add('sweep','家务 · 扫地','家务',standing,{height:.82,pelvisTilt:12,armR:arm(25,55),armL:arm(45,20),legR:leg(8,12),legL:leg(-6,8),tool:'broom'},'前后分脚、两手高度不同；扫动方向、重复次数与腰背前倾需一起看。',['asymmetric','repetition']);
+ add('mop','家务 · 向前推拖把','家务',standing,{height:.74,pelvisTilt:18,bend:5,armR:arm(40,25),armL:arm(55,10),legR:leg(15,20),legL:leg(-10,12),tool:'mop'},'推拖把与扫地的伸臂距离不同；实际推力、摩擦与地面条件尚未输入。',['reach','repetition']);
+-add('vacuum','家务 · 吸尘','家务',standing,{height:.80,pelvisTilt:10,armR:arm(30,35),armL:arm(),legR:leg(10,15),legL:leg(-8,10),tool:'vacuum'},'单手推拉、另一臂放松；两侧负担不对称，实际吸头阻力没有计算。',['asymmetric','repetition']);
++add('vacuum','家务 · 吸尘','家务',standing,{height:.80,pelvisTilt:10,armR:arm(30,35),armL:relaxedArm(),legR:leg(10,15),legL:leg(-8,10),tool:'vacuum'},'单手推拉、另一臂放松；两侧负担不对称，实际吸头阻力没有计算。',['asymmetric','repetition']);
+ add('wipe-table','家务 · 擦低桌','家务',standing,{height:.76,pelvisTilt:35,bend:8,legR:leg(30,20),legL:leg(20,15),armR:arm(10,15),armL:arm(15,45),desk:true},'低桌令躯干前倾并向前伸手；给另一手支撑与缩短距离可作对照。',['spineFlex','reach']);
+-add('wipe-high','家务 · 擦高处窗面','家务',standing,{armR:arm(140,25,10),armL:arm(),neck:-15,window:true},'一侧上肢高举、头部仰看；肩部悬持与颈部维持是主要观察点。',['armsUp','neckExtension','repetition']);
++add('wipe-high','家务 · 擦高处窗面','家务',standing,{armR:arm(140,25,10),armL:relaxedArm(),neck:-15,window:true},'一侧上肢高举、头部仰看；肩部悬持与颈部维持是主要观察点。',['armsUp','neckExtension','repetition']);
+ add('laundry-low','家务 · 低处取衣','家务',squat,{height:.42,armR:arm(10,40),armL:arm(10,40),basket:true},'屈髋屈膝靠近衣篮；与站着弯腰取衣比较髋膝及腰背形态。',['kneeFlex']);
+ add('hang-clothes','家务 · 举臂晾衣','家务',standing,{armR:arm(145,20,15),armL:arm(145,20,15),neck:-10,rail:true},'双臂高举且反复摆放；模型没有肩部肌肉力，不以箭头长度表示肩负荷。',['armsUp','repetition']);
+ add('tie-shoe','家务 · 坐着系鞋带','家务',sitting,{height:.43,pelvisTilt:25,bend:30,neck:15,armR:arm(10,25),armL:arm(10,25),legR:leg(85,95),legL:leg(85,95)},'坐姿前倾、低头接近脚部；椅面仍承托骨盆，腰背处于前屈。',['spineFlex','neckFlex']);
+@@ -113,10 +114,10 @@
+ add('work-read-raised','工作 · 阅读架抬高书本','工作',sitting,{desk:true,neck:5,armR:arm(5,65),armL:arm(5,65),readingStand:true},'书本由阅读架支撑，头部相对抬高；减少低头不等于能持续不动。',['armsSupported']);
+ add('work-turn-right','工作 · 坐着向右看屏幕','工作',sitting,{twist:-20,look:-25,armR:arm(12,75),armL:arm(12,75),desk:true},'头和躯干朝向偏右；持续扭转与短时转头应区别观察。',['twist','neckTurn']);
+ add('work-turn-left','工作 · 坐着向左看屏幕','工作',sitting,{twist:20,look:25,armR:arm(12,75),armL:arm(12,75),desk:true},'与向右观看相反，肩带和骨盆相对朝向改变。',['twist','neckTurn']);
+-add('reach-shelf-right','取物 · 右手伸高架','工作',standing,{armR:arm(155,12,10),armL:arm(),neck:-10,shelf:true},'高举一侧肩，上肢与视线抬高；持续高举和短时取物不是同一种暴露。',['armsUp','asymmetric']);
+-add('reach-shelf-left','取物 · 左手伸高架','工作',standing,{armL:arm(155,12,10),armR:arm(),neck:-10,shelf:true},'左侧高举对应左肩活动，不能显示右侧接触。',['armsUp','asymmetric']);
+-add('reach-low-right','取物 · 右手向侧方低处','工作',standing,{height:.79,sideBend:15,armR:arm(10,15,25),armL:arm(),legR:leg(8,15),legL:leg(0,8)},'侧弯与单手伸取叠加；腰背存在侧向维持，该姿势尚未绑定持物位置，不能据此计算外物重力矩。',['asymmetric','sideBend']);
+-add('reach-low-left','取物 · 左手向侧方低处','工作',standing,{height:.79,sideBend:-15,armL:arm(10,15,25),armR:arm(),legL:leg(8,15),legR:leg(0,8)},'与右侧低处取物相反，关注腰段与骨盆的侧向姿态。',['asymmetric','sideBend']);
++add('reach-shelf-right','取物 · 右手伸高架','工作',standing,{armR:arm(155,12,10),armL:relaxedArm(),neck:-10,shelf:true},'高举一侧肩，上肢与视线抬高；持续高举和短时取物不是同一种暴露。',['armsUp','asymmetric']);
++add('reach-shelf-left','取物 · 左手伸高架','工作',standing,{armL:arm(155,12,10),armR:relaxedArm(),neck:-10,shelf:true},'左侧高举对应左肩活动，不能显示右侧接触。',['armsUp','asymmetric']);
++add('reach-low-right','取物 · 右手向侧方低处','工作',standing,{height:.79,sideBend:15,armR:arm(10,15,25),armL:relaxedArm(),legR:leg(8,15),legL:leg(0,8)},'侧弯与单手伸取叠加；腰背存在侧向维持，该姿势尚未绑定持物位置，不能据此计算外物重力矩。',['asymmetric','sideBend']);
++add('reach-low-left','取物 · 左手向侧方低处','工作',standing,{height:.79,sideBend:-15,armL:arm(10,15,25),armR:relaxedArm(),legL:leg(8,15),legR:leg(0,8)},'与右侧低处取物相反，关注腰段与骨盆的侧向姿态。',['asymmetric','sideBend']);
+ // 8 leisure configurations.
+ add('rest-sofa','休闲 · 沙发后靠','休闲',sitting,{height:.40,pelvisTilt:-22,backSupport:true,sofa:true,legR:leg(70,65),legL:leg(70,65),armR:arm(10,45),armL:arm(10,45)},'沙发靠背承托，但较低座面和脚部位置会改变髋膝姿态；仍要考虑持续不动。',['backSupported']);
+ add('rest-tv-side','休闲 · 侧坐看电视','休闲',sitting,{sofa:true,twist:28,look:15,legR:leg(80,90),legL:leg(95,105),armR:arm(15,55),armL:arm(15,55)},'骨盆仍朝座面前方，躯干与头偏转；与正对电视的姿态不同。',['twist','asymmetric']);
+@@ -127,7 +128,7 @@
+ add('rest-kneeling','休闲 · 跪坐脚跟','休闲',kneel,{height:.197,legR:leg(65,155),legL:leg(65,155),handsLap:true,heelSit:true},'膝屈曲较大、臀部靠近脚跟；个体膝踝活动范围和软组织压迫尚未评估。',['kneeFlex','kneeContact']);
+ add('rest-ball','休闲 · 半蹲接球','休闲',squat,{height:.64,pelvisTilt:12,legR:leg(38,55,8),legL:leg(38,55,8),armR:arm(65,35,15),armL:arm(65,35,15),ball:true},'髋膝屈曲与双手伸出共同形成准备姿态；球的冲击和实际反应速度没有建模。',['kneeFlex','armsHeld']);
+ // 12 yoga / movement practice snapshots. These are observation examples, not practice prescriptions.
+-add('yoga-mountain','瑜伽 · 山式','瑜伽',standing,{height:.86,legR:leg(0,3,2),legL:leg(0,3,2),armR:arm(0,5,2),armL:arm(0,5,2)},'观察身体直立与双脚支撑，不要求所有人按固定骨架达到同一对齐。',['staticStanding']);
++add('yoga-mountain','瑜伽 · 山式','瑜伽',standing,{height:.86,legR:leg(0,3,2),legL:leg(0,3,2),armR:arm(0,5,10),armL:arm(0,5,10)},'观察身体直立与双脚支撑，不要求所有人按固定骨架达到同一对齐。',['staticStanding']);
+ add('yoga-tree-right','瑜伽 · 树式右脚支撑','瑜伽',standing,{feet:['R'],legL:leg(40,115,22,55,55),armR:arm(135,35,15),armL:arm(135,35,15)},'单脚支撑，另一髋外展旋转、膝屈曲；没有自动平衡求解。',['asymmetric','armsUp']);
+ add('yoga-tree-left','瑜伽 · 树式左脚支撑','瑜伽',standing,{feet:['L'],legR:leg(40,115,22,-55,-55),armR:arm(135,35,15),armL:arm(135,35,15)},'左右相反，抬起的腿不应出现地面支撑箭头。',['asymmetric','armsUp']);
+ add('yoga-warrior-right','瑜伽 · 战士式右腿在前','瑜伽',standing,{height:.70,legR:leg(50,75),legL:leg(-30,5),armR:arm(0,5,90),armL:arm(0,5,90)},'前后脚支撑、前膝屈曲、双臂展开；活动范围和姿势稳定性仍需个体验证。',['kneeFlex','armsHeld']);
+@@ -150,7 +151,7 @@
+ add('swim-breast-glide','蛙泳 · 蹬腿后滑行','游泳',o=>({...lying('prone',o),bed:false,water:true,height:.5}),{armR:arm(178,5,4),armL:arm(178,5,4),legR:leg(0,2,3),legL:leg(0,2,3)},'手臂和腿伸展形成滑行姿态；身体外形与速度共同影响阻力，当前未计算。',['water','dynamic']);
+ add('swim-backstroke','仰泳 · 单臂回摆','游泳',o=>({...lying('supine',o),bed:false,water:true,height:.5}),{armR:arm(155,12,15),armL:arm(15,25,12),legR:leg(8,10),legL:leg(-8,5)},'仰卧于水中、双臂不同阶段；不能沿用俯卧自由泳的支撑说明。',['water','dynamic','asymmetric']);
+ add('swim-tread','水中 · 直立踩水','游泳',o=>({...standing(o),feet:[],water:true,height:.9}),{armR:arm(55,55,55),armL:arm(55,55,55),legR:leg(20,35,18),legL:leg(20,35,18)},'直立踩水没有地面支撑；浮力与主动划水共同影响身体，不能只靠静态浮力判断是否能浮起。',['water','dynamic']);
+-for(const p of all){if(['sit-recline','rest-sofa'].includes(p.id))p.spec.lapReach=.18;if(['sit-edge','sit-slouch','sit-recline','sit-high-stool','sit-right-cross','sit-left-cross','rest-sofa','rest-tv-side'].includes(p.id))p.spec.handsLap=true;if(['bend-hips','bend-round','lift-stoop','yoga-fold'].includes(p.id)){for(const side of ['R','L'])p.spec['arm'+side].flex=(p.spec.pelvisTilt||0)+(p.spec.bend||0);}if(p.id==='rest-one-hand'){p.spec.lapReach=.17;p.spec.handTargetR=[-.25,.035,-.30];p.spec.elbowPoleR=[-.35,.15,-.14];p.spec.handFlatR=true;p.spec.handSides=['R'];p.spec.handSupport=true;}if(p.spec.desk){for(const side of ['R','L'])p.spec['arm'+side].handTurn=side==='R'?-90:90;}if(p.spec.lying==='left'||p.spec.lying==='right'){const left=p.spec.lying==='left',x=left?1:-1,lower=left?'L':'R',upper=left?'R':'L';p.spec['handTarget'+lower]=[x*.25,-.14,-.51];p.spec['handTarget'+upper]=[x*.31,.13,-.35];p.spec['elbowPole'+lower]=[x*.36,-.30,-.30];p.spec['elbowPole'+upper]=[x*.40,.30,-.20];}p.actionState=p.dynamic;p.dynamic=p.id.includes('crawl')||['walk','run'].includes(p.spec.motion);}
++for(const p of all){if(['sit-supported','sit-edge','sit-slouch','sit-footrest','sit-high-stool','floor-long-sit'].includes(p.id))p.spec.lapHeight=.14;if(p.id==='floor-long-sit')p.spec.lapReach=.27;if(p.id==='sit-slouch'){p.spec.lapHeight=.16;p.spec.lapReach=.21;}if(p.id==='sit-recline'){p.spec.lapHeight=.16;p.spec.lapReach=.21;}if(p.id==='rest-sofa'){p.spec.lapHeight=.18;p.spec.lapReach=.21;}if(['sit-edge','sit-slouch','sit-recline','sit-high-stool','sit-right-cross','sit-left-cross','rest-sofa','rest-tv-side'].includes(p.id))p.spec.handsLap=true;if(['bend-hips','bend-round','lift-stoop','yoga-fold'].includes(p.id)){for(const side of ['R','L'])p.spec['arm'+side].flex=(p.spec.pelvisTilt||0)+(p.spec.bend||0);}if(p.id==='rest-one-hand'){p.spec.lapReach=.17;p.spec.handTargetR=[-.25,.035,-.30];p.spec.elbowPoleR=[-.35,.15,-.14];p.spec.handFlatR=true;p.spec.handSides=['R'];p.spec.handSupport=true;}if(p.spec.desk){for(const side of ['R','L'])p.spec['arm'+side].handTurn=side==='R'?-90:90;}if(p.spec.lying==='left'||p.spec.lying==='right'){const left=p.spec.lying==='left',x=left?1:-1,lower=left?'L':'R',upper=left?'R':'L';p.spec['handTarget'+lower]=[x*.25,-.14,-.51];p.spec['handTarget'+upper]=[x*.31,.13,-.35];p.spec['elbowPole'+lower]=[x*.36,-.30,-.30];p.spec['elbowPole'+upper]=[x*.40,.30,-.20];}p.actionState=p.dynamic;p.dynamic=p.id.includes('crawl')||['walk','run'].includes(p.spec.motion);}
+ // Explicit ground anchors keep the feet under the task while hips counter-shift.
+ // These are reference task configurations, not an automatic balance optimizer.
+ for(const [id,height,z,tilt,bend] of [['bend-hips',.78,-.16,45,0],['bend-round',.79,-.14,15,38],['lift-stoop',.85,-.18,35,25],['yoga-fold',.82,-.22,65,20]]){
+--- a/pose-engine.js
++++ b/pose-engine.js
+@@ -59,7 +59,7 @@
+   const footQ=leg.footEuler?q(...leg.footEuler):spec.feet?.includes(side)||spec['footTarget'+side]?q(0,leg.footYaw||0):spec.kneeling||spec.quadruped?q(180):root.clone().multiply(q(leg.footPitch||0,leg.footYaw||0));set('ankle'+side,ankle,footQ);
+   const shoulderBase=thoracicActive?parts.T2:parts.trunk,shoulderQ=shoulderBase.rotation,arm=spec['arm'+side]||{},shoulder=shoulderBase.position.clone().add(rest('shoulder'+side).sub(shoulderBase.rest).applyQuaternion(shoulderQ)),a1=diff('elbow'+side,'shoulder'+side).length(),a2=diff('wrist'+side,'elbow'+side).length();
+   const armQ=shoulderQ.clone().multiply(q(-(arm.flex||0),arm.yaw||0,sign*(arm.abd||0))).multiply(q(0,arm.roll||0));let elbow=shoulder.clone().addScaledVector(D.clone().applyQuaternion(armQ),a1),foreQ=armQ.clone().multiply(q(-(arm.elbow||0))),wrist=elbow.clone().addScaledVector(D.clone().applyQuaternion(foreQ),a2);
+-  if(spec['handTarget'+side]||spec.handsLap||(spec.floorSit&&!spec.flags?.includes('handContact'))){const target=spec['handTarget'+side]?V(spec['handTarget'+side]):pelvis.clone().add(new T.Vector3(sign*.15,.08,spec.lapReach??(spec.floorSit?.19:.27))),pole=spec['elbowPole'+side]?V(spec['elbowPole'+side]):shoulder.clone().add(new T.Vector3(sign*.35,-.35,.10));const ik=solveTwoBone(shoulder,target,a1,a2,pole);elbow=ik.mid;wrist=ik.end;constraints.push({id:'hand'+side,error:ik.error,target:target.toArray(),actual:wrist.toArray()});}
++  if(spec['handTarget'+side]||spec.handsLap||(spec.floorSit&&!spec.flags?.includes('handContact'))){const target=spec['handTarget'+side]?V(spec['handTarget'+side]):pelvis.clone().add(new T.Vector3(sign*.15,spec.lapHeight??.08,spec.lapReach??(spec.floorSit?.19:.27))),pole=spec['elbowPole'+side]?V(spec['elbowPole'+side]):shoulder.clone().add(new T.Vector3(sign*.35,-.35,.10));const ik=solveTwoBone(shoulder,target,a1,a2,pole);elbow=ik.mid;wrist=ik.end;constraints.push({id:'hand'+side,error:ik.error,target:target.toArray(),actual:wrist.toArray()});}
+   set('shoulder'+side,shoulder,aim(diff('elbow'+side,'shoulder'+side),elbow.clone().sub(shoulder),armQ));set('elbow'+side,elbow,aim(diff('wrist'+side,'elbow'+side),wrist.clone().sub(elbow),foreQ));
+   const handQ=spec['handFlat'+side]?q(-90).multiply(q(0,180)).multiply(new T.Quaternion().setFromUnitVectors(diff('wrist'+side,'elbow'+side).normalize(),D)):parts['elbow'+side].rotation.clone().premultiply(new T.Quaternion().setFromAxisAngle(wrist.clone().sub(elbow).normalize(),((spec.handsLap||spec.floorSit)?180:arm.handTurn||0)*Math.PI/180));set('wrist'+side,wrist,handQ);
+  }
+--- a/README.md
++++ b/README.md
+@@ -1,15 +1,13 @@
+-# V53 握持贴合与局部观察
++# V53 自然站姿与坐姿手部
+ 
+ 入口：[生活姿势](pose.html?v=53.0.0) · [解剖与经穴](index.html?v=53.0.0)
+ 
+ 保留 120 种生活姿态、男女体表、经穴、骨架、器官、神经、血管与颈胸腰分节观察。
+ 
+-本轮修复胸前抱箱的肘部方向，使男女体表在既有交叉检测中都没有手臂穿胸。手机掌腕过渡进一步平滑，耳边接听也使用连续的八关节手部影响。手机外壳处修正不超过 2 毫米的浅层皮肤穿插，较深穿插不会被这项修正移开。修正后的表面同样用于穴位、线路、点选与显示遮挡；不是接触压力或材料力学求解。
++放松手臂采用稍向外的间距；直坐、后靠和弓背的放腿手部目标分别调整。原始皮肤顶点、骨块、骨长和穴位坐标保留。这些是参考姿态的几何调整，尚未计算掌部接触压力和软组织压缩。
+ 
+-“看手部接触”只聚焦实际持物的手，耳边接听不再把垂下的另一只手算入取景范围。缩放、旋转、平移和完整显示保留。
++保留 V52 的手机浅层接触、胸前抱箱、实际持物手取景和相机控制。穴位与线条继续附着于各自皮肤的原三角形，使用同一变形计算参与显示、选取和遮挡。
+ 
+-原始皮肤顶点、骨块、骨长和穴位坐标未改动。皮肤保持不透明。男女仍使用各自皮肤上的三角附着，女性其余共用结构仍是教学参考。
++男性肩部接缝的绑定问题正在继续修正，尚未通过举臂与游泳回归，实验方案没有纳入此版本。完整婴儿式、盘腿、跷腿的软组织贴合、部分持物穿插及逐穴临床定位也未完成。真实内部受力、疲劳程度与病变预测未求解，女性共用结构仍是教学比例参考。
+ 
+-完整婴儿式的脚跟接触和深屈曲软组织贴合、直腿取物穿插、手指形态及逐穴定位校准仍未完成。真实内部受力、疲劳程度与病变预测未求解。
+-
+-检测口径、实际结果与未完成清单见[本轮复核](../atlas52-tools/REVIEW.md)。
++检测口径、结果与待办见[本轮复核](../atlas53-tools/REVIEW.md)。
+--- a/pose-tissues.js
++++ b/pose-tissues.js
+@@ -47,7 +47,7 @@
+   const file=which==='female'?'../fullbody-tcm-v12/assets/female/surface.glb':'../fullbody-tcm-v11/assets/surface.glb',bodyDoc=await doc(file);bodyDoc.scene.updateMatrixWorld(true);const nodes=[],geometries=[];bodyDoc.scene.traverse(n=>{if(n.isMesh){const g=bake(n,which==='female',true),temp=new T.Mesh(g);nodes.push(temp);geometries.push(g);}});
+   const g=meters(mergeSurfaceGeometry(geometries));g.userData.nativeFemale=which==='female';const bvh=new MeshBVH(g,{maxLeafTris:12}),projector=createSkinProjector(nodes,{sex:which,standardized:which==='female',templateMeshes:maleNodes});
+   await loadSurfaceBinding(g,which);binding.prepareSurface(g);binding.prepareSpine(g);const skin=mesh(g,new T.MeshStandardMaterial({color:color.surface,roughness:.86,side:T.DoubleSide}),false,true,true);binding.skinMaterial(skin.material);skin.applyBoneTransform=(i,v)=>binding.vertex(g,i,v);skin.visible=false;
+-  const model=models.get(which)||{layers:new Map(),ink:new Map()};Object.assign(model,{skin,bvh,projector,nodes,geometries,provenance:which==='female'?'HRA女性原生体表；共用教学比例配准，未个体校准':'Z-Anatomy男性分区体表；原有缺口保留'});models.set(which,model);return model;
++  const model=models.get(which)||{layers:new Map(),ink:new Map()};Object.assign(model,{skin,bvh,projector,nodes,geometries,provenance:which==='female'?'HRA女性原生体表；共用教学比例配准，未个体校准':'Z-Anatomy男性分区体表；肩部接缝随动仍待修正'});models.set(which,model);return model;
+  }
+  function anchor(model,point,aim=null){const hit=model.bvh.closestPointToPoint(point);if(!hit)throw Error('无法绑定体表三角面');const g=model.skin.geometry,i=hit.faceIndex*3,indices=[g.index.getX(i),g.index.getX(i+1),g.index.getX(i+2)],v=indices.map(j=>new T.Vector3().fromBufferAttribute(g.attributes.position,j)),bary=new T.Vector3();T.Triangle.getBarycoord(hit.point,...v,bary);const normal=v[1].clone().sub(v[0]).cross(v[2].clone().sub(v[0])).normalize();return {vertices:indices,bary:bary.toArray(),flip:!!aim&&normal.dot(aim)<0,rest:hit.point.toArray(),distance:hit.distance};}
+  async function ensureInk(which,id,physicalSide){

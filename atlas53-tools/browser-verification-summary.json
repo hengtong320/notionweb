@@ -1,0 +1,929 @@
+{
+  "version": "53.0.0",
+  "localBrowserStates": 29,
+  "records": [
+    {
+      "name": "female-sit-supported-surface",
+      "pose": "sit-supported",
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-stand-relaxed-surface",
+      "pose": "stand-relaxed",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-stand-wide-surface",
+      "pose": "stand-wide",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-sit-recline-surface",
+      "pose": "sit-recline",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-rest-sofa-surface",
+      "pose": "rest-sofa",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "female-stand-relaxed-surface",
+      "pose": "stand-relaxed",
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "female-stand-wide-surface",
+      "pose": "stand-wide",
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "female-sit-recline-surface",
+      "pose": "sit-recline",
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "female-rest-sofa-surface",
+      "pose": "rest-sofa",
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "female-sofa-organs-flags-off",
+      "pose": "rest-sofa",
+      "sex": "female",
+      "view": "organs",
+      "flags": {
+        "pointsOn": false,
+        "linesOn": false,
+        "namesOn": false
+      },
+      "busy": false
+    },
+    {
+      "name": "female-sofa-nerves-flags-off",
+      "pose": "rest-sofa",
+      "sex": "female",
+      "view": "nerves",
+      "flags": {
+        "pointsOn": false,
+        "linesOn": false,
+        "namesOn": false
+      },
+      "busy": false
+    },
+    {
+      "name": "female-sofa-veins-flags-off",
+      "pose": "rest-sofa",
+      "sex": "female",
+      "view": "vessels",
+      "flags": {
+        "pointsOn": false,
+        "linesOn": false,
+        "namesOn": false
+      },
+      "busy": false
+    },
+    {
+      "name": "female-sofa-all-vessels-flags-off",
+      "pose": "rest-sofa",
+      "sex": "female",
+      "view": "vessels",
+      "flags": {
+        "pointsOn": false,
+        "linesOn": false,
+        "namesOn": false
+      },
+      "busy": false
+    },
+    {
+      "name": "female-sofa-surface-flags-off",
+      "pose": "rest-sofa",
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": false,
+        "linesOn": false,
+        "namesOn": false
+      },
+      "busy": false
+    },
+    {
+      "name": "male-sofa-surface-flags-off",
+      "pose": "rest-sofa",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": false,
+        "linesOn": false,
+        "namesOn": false
+      },
+      "busy": false
+    },
+    {
+      "name": "male-sofa-surface-flags-on",
+      "pose": "rest-sofa",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-sofa-point-focus",
+      "pose": "rest-sofa",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-sofa-zoom-in",
+      "pose": "rest-sofa",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-sofa-zoom-out",
+      "pose": "rest-sofa",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-supine-surface",
+      "pose": "supine",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-prone-surface",
+      "pose": "prone",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "mobile390-male-sit-point-focus",
+      "pose": "sit-supported",
+      "sex": "male",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "mobile390-female-sit-point",
+      "pose": "sit-supported",
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "mobile360-female-sit-zoom-out",
+      "pose": "sit-supported",
+      "sex": "female",
+      "view": "surface",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "female-sit-bones",
+      "pose": "sit-supported",
+      "sex": "female",
+      "view": "bones",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-sit-organs",
+      "pose": "sit-supported",
+      "sex": "male",
+      "view": "organs",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-sit-nerves",
+      "pose": "sit-supported",
+      "sex": "male",
+      "view": "nerves",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-sit-all-vessels",
+      "pose": "sit-supported",
+      "sex": "male",
+      "view": "vessels",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    },
+    {
+      "name": "male-sit-bones",
+      "pose": "sit-supported",
+      "sex": "male",
+      "view": "bones",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "busy": false
+    }
+  ],
+  "actualWebGl": {
+    "passed": true,
+    "version": "53.0.0",
+    "measurement": "Actual WebGL float render of the production skin shader versus CPU attachment kernel; 2048 sampled vertices per state, 75% in hands",
+    "toleranceMetres": 2e-05,
+    "states": 52,
+    "rows": [
+      {
+        "sex": "male",
+        "pose": "stand-phone",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 3,
+        "maximumError": 3.2432054967247366e-07
+      },
+      {
+        "sex": "male",
+        "pose": "stand-phone",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 3,
+        "maximumError": 3.0758777728284246e-07
+      },
+      {
+        "sex": "male",
+        "pose": "sit-phone",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 2,
+        "maximumError": 1.8824543400714188e-07
+      },
+      {
+        "sex": "male",
+        "pose": "sit-phone",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 2,
+        "maximumError": 1.8730047859885195e-07
+      },
+      {
+        "sex": "male",
+        "pose": "stand-high-phone",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 3,
+        "maximumError": 3.872990928533682e-07
+      },
+      {
+        "sex": "male",
+        "pose": "stand-high-phone",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 3,
+        "maximumError": 3.571538872440477e-07
+      },
+      {
+        "sex": "male",
+        "pose": "work-phone-ear",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.700094501569286e-07
+      },
+      {
+        "sex": "male",
+        "pose": "work-phone-ear",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.9027695097636046e-07
+      },
+      {
+        "sex": "male",
+        "pose": "carry-chest",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.1374801812424634e-07
+      },
+      {
+        "sex": "male",
+        "pose": "carry-chest",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.2298940398608602e-07
+      },
+      {
+        "sex": "male",
+        "pose": "yoga-child",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 4.2419175466492536e-07
+      },
+      {
+        "sex": "male",
+        "pose": "yoga-child",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 4.2419175466492536e-07
+      },
+      {
+        "sex": "male",
+        "pose": "stand-relaxed",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.7851837290508393e-07
+      },
+      {
+        "sex": "male",
+        "pose": "stand-relaxed",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 3.1206045616576754e-07
+      },
+      {
+        "sex": "male",
+        "pose": "sit-supported",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.8182605786792773e-07
+      },
+      {
+        "sex": "male",
+        "pose": "sit-supported",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 3.0244888579087783e-07
+      },
+      {
+        "sex": "male",
+        "pose": "sit-recline",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.7422439644404854e-07
+      },
+      {
+        "sex": "male",
+        "pose": "sit-recline",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 3.060935444043078e-07
+      },
+      {
+        "sex": "male",
+        "pose": "rest-sofa",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.432443060271134e-07
+      },
+      {
+        "sex": "male",
+        "pose": "rest-sofa",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.899455534454289e-07
+      },
+      {
+        "sex": "male",
+        "pose": "supine",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 9.517183004841722e-08
+      },
+      {
+        "sex": "male",
+        "pose": "supine",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 1.0030873361231043e-07
+      },
+      {
+        "sex": "male",
+        "pose": "prone",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 9.618666058298914e-08
+      },
+      {
+        "sex": "male",
+        "pose": "prone",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 1.0362036919279452e-07
+      },
+      {
+        "sex": "male",
+        "pose": "yoga-bridge",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 1.2781290099227598e-07
+      },
+      {
+        "sex": "male",
+        "pose": "yoga-bridge",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 1.1640180598823313e-07
+      },
+      {
+        "sex": "female",
+        "pose": "stand-phone",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 3.3186177208980373e-07
+      },
+      {
+        "sex": "female",
+        "pose": "stand-phone",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.916353208816188e-07
+      },
+      {
+        "sex": "female",
+        "pose": "sit-phone",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 1.863933269953192e-07
+      },
+      {
+        "sex": "female",
+        "pose": "sit-phone",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 1.9147726688837398e-07
+      },
+      {
+        "sex": "female",
+        "pose": "stand-high-phone",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.9907558160014864e-07
+      },
+      {
+        "sex": "female",
+        "pose": "stand-high-phone",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 3.3948626111203495e-07
+      },
+      {
+        "sex": "female",
+        "pose": "work-phone-ear",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 22,
+        "maximumError": 2.4087222475464614e-07
+      },
+      {
+        "sex": "female",
+        "pose": "work-phone-ear",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 28,
+        "maximumError": 3.0644383477681717e-07
+      },
+      {
+        "sex": "female",
+        "pose": "carry-chest",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.0613397753055365e-07
+      },
+      {
+        "sex": "female",
+        "pose": "carry-chest",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.3513881933947027e-07
+      },
+      {
+        "sex": "female",
+        "pose": "yoga-child",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 3.5483876521522317e-07
+      },
+      {
+        "sex": "female",
+        "pose": "yoga-child",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 3.463401103960576e-07
+      },
+      {
+        "sex": "female",
+        "pose": "stand-relaxed",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.7837428800634037e-07
+      },
+      {
+        "sex": "female",
+        "pose": "stand-relaxed",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 3.59841990079063e-07
+      },
+      {
+        "sex": "female",
+        "pose": "sit-supported",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.962907511100747e-07
+      },
+      {
+        "sex": "female",
+        "pose": "sit-supported",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 3.0038937265293154e-07
+      },
+      {
+        "sex": "female",
+        "pose": "sit-recline",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.3538393724238686e-07
+      },
+      {
+        "sex": "female",
+        "pose": "sit-recline",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 3.0447133358777664e-07
+      },
+      {
+        "sex": "female",
+        "pose": "rest-sofa",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.67350300354422e-07
+      },
+      {
+        "sex": "female",
+        "pose": "rest-sofa",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 2.951238260953301e-07
+      },
+      {
+        "sex": "female",
+        "pose": "supine",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 8.608225341850981e-08
+      },
+      {
+        "sex": "female",
+        "pose": "supine",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 9.963365032047098e-08
+      },
+      {
+        "sex": "female",
+        "pose": "prone",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 8.608225341921666e-08
+      },
+      {
+        "sex": "female",
+        "pose": "prone",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 9.871621413909744e-08
+      },
+      {
+        "sex": "female",
+        "pose": "yoga-bridge",
+        "adjustment": {},
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 1.180538806770197e-07
+      },
+      {
+        "sex": "female",
+        "pose": "yoga-bridge",
+        "adjustment": {
+          "thoracicSide": 8,
+          "lumbarSide": -6,
+          "thoracicTwist": 10,
+          "cervicalFlex": -5
+        },
+        "vertices": 2048,
+        "correctedVerticesGpuVerified": 0,
+        "maximumError": 1.2543335443495533e-07
+      }
+    ]
+  },
+  "reconstruction": {
+    "version": "53.0.0",
+    "reconstructedFiles": 125,
+    "allFilesExact": true,
+    "fullInventoryPassed": true
+  },
+  "mobileViewports": [
+    [
+      390,
+      844,
+      2
+    ],
+    [
+      360,
+      640,
+      2
+    ]
+  ],
+  "physicalTouchGesturesVerified": false,
+  "publicVerification": "pending"
+}
