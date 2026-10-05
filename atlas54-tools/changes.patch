@@ -1,0 +1,463 @@
+--- a/IMPLEMENTATION.md
++++ b/IMPLEMENTATION.md
+@@ -1,6 +1,6 @@
+-本文件记录继承的模型与研究方法；V54 新增结果以 [本轮复核](../atlas50-tools/REVIEW.md) 为准。
++本文件记录继承的模型与研究方法；V54 新增结果以 [本轮复核](../atlas54-tools/REVIEW.md) 为准。
+ 
+-> 历史阶段记录，保留当时的范围与结论。当前 V54 的实现和验收请以 [README](README.md) 及 [本轮复盘](../atlas49-tools/REVIEW.md) 为准。
++> 历史阶段记录，保留当时的范围与结论。当前 V54 的实现和验收请以 [README](README.md) 及 [本轮复盘](../atlas54-tools/REVIEW.md) 为准。
+ 
+ # V12.0.1 发布范围
+ 
+--- a/README.md
++++ b/README.md
+@@ -1,13 +1,13 @@
+-# V54 自然站姿与坐姿手部
++# V54 左右腿随动与结构载入
+ 
+ 入口：[生活姿势](pose.html?v=54.0.0) · [解剖与经穴](index.html?v=54.0.0)
+ 
+-保留 120 种生活姿态、男女体表、经穴、骨架、器官、神经、血管与颈胸腰分节观察。
++保留 120 种生活姿态、男女体表、经络穴位、骨架、器官、神经、血管与颈胸腰分节观察。
+ 
+-放松手臂采用稍向外的间距；直坐、后靠和弓背的放腿手部目标分别调整。原始皮肤顶点、骨块、骨长和穴位坐标保留。这些是参考姿态的几何调整，尚未计算掌部接触压力和软组织压缩。
++左右腿按原体表连通区域绑定，避免内侧大腿同时跟随两腿。髋部保留连续过渡；男体腕部接缝的邻域与平滑过渡也已修正。盘腿分开双脚并把手放到对应膝上，交叠坐姿、侧坐、上楼及低处取物调整手臂摆放。原皮肤顶点、骨块、骨长和穴位坐标保留。
+ 
+-保留 V52 的手机浅层接触、胸前抱箱、实际持物手取景和相机控制。穴位与线条继续附着于各自皮肤的原三角形，使用同一变形计算参与显示、选取和遮挡。
++结构文件同时载入，绑定计算分段执行，并显示准备进度。点线仍附着于各自皮肤原三角形，使用与绘图相同的变形计算进行显示、选取和遮挡。男女切换保留观察和开关状态。
+ 
+-男性肩部接缝的绑定问题正在继续修正，尚未通过举臂与游泳回归，实验方案没有纳入此版本。完整婴儿式、盘腿、跷腿的软组织贴合、部分持物穿插及逐穴临床定位也未完成。真实内部受力、疲劳程度与病变预测未求解，女性共用结构仍是教学比例参考。
++男性肩部接缝、深屈曲软组织贴合和部分手部任务仍未解决；坐着系鞋带的真实手指与足部接触也未完成。穴位未逐穴临床校准，女性共用关节比例仍是教学参考。内部受力与病变预测未求解。
+ 
+-检测口径、结果与待办见[本轮复核](../atlas53-tools/REVIEW.md)。
++检测口径、结果与待办见[本轮复核](../atlas54-tools/REVIEW.md)。
+--- a/body-frame-v18.js
++++ b/body-frame-v18.js
+@@ -14,4 +14,16 @@
+ }
+ export function normalizeFemaleMesh(mesh,THREE){if(nativeGeometry.has(mesh))return;mesh.updateWorldMatrix(true,false);const native=mesh.geometry,derived=native.clone(),pos=derived.attributes.position,inv=mesh.matrixWorld.clone().invert(),v=new THREE.Vector3();nativeGeometry.set(mesh,native);
+  for(let i=0;i<pos.count;i++){v.fromBufferAttribute(pos,i).applyMatrix4(mesh.matrixWorld);v.fromArray(standardizeFemalePoint(v.toArray())).applyMatrix4(inv);pos.setXYZ(i,v.x,v.y,v.z);}pos.needsUpdate=true;derived.computeVertexNormals();derived.computeBoundingBox();derived.computeBoundingSphere();mesh.geometry=derived;mesh.userData.displayNormalization='common-body-frame-v18';}
++// The native coordinates must remain available when a source node is reused
++// by more than one layer; a normalized display geometry is not a native hint.
++export function nativeFemalePosition(mesh){return (nativeGeometry.get(mesh)||mesh.geometry).attributes.position;}
++const normalizing=new WeakMap();
++export async function normalizeFemaleMeshAsync(mesh,THREE,pause){
++ if(normalizing.has(mesh))return normalizing.get(mesh);if(nativeGeometry.has(mesh))return;
++ const task=(async()=>{mesh.updateWorldMatrix(true,false);const native=mesh.geometry,derived=native.clone(),pos=derived.attributes.position,inv=mesh.matrixWorld.clone().invert(),v=new THREE.Vector3();
++  try{for(let i=0;i<pos.count;i++){v.fromBufferAttribute(pos,i).applyMatrix4(mesh.matrixWorld);v.fromArray(standardizeFemalePoint(v.toArray())).applyMatrix4(inv);pos.setXYZ(i,v.x,v.y,v.z);if((i+1)%1024===0)await pause();}
++   pos.needsUpdate=true;derived.computeVertexNormals();await pause();derived.computeBoundingBox();derived.computeBoundingSphere();nativeGeometry.set(mesh,native);mesh.geometry=derived;mesh.userData.displayNormalization='common-body-frame-v18';
++  }catch(error){derived.dispose();throw error;}
++ })();normalizing.set(mesh,task);try{await task;}finally{normalizing.delete(mesh);}
++}
+ export function bodyFrameInfo(){return {mode:'common-proportion teaching frame',sourceMeshesUnchanged:true,clinicalRegistration:false,planes:FRAME.planes,commonFrame:true};}
+--- a/pose-binding-base.js
++++ b/pose-binding-base.js
+@@ -1,3 +1,5 @@
++import {surfaceLegSides,structureLegSide} from './pose-leg-regions.js';
++import {surfaceGroups} from './pose-surface-groups.js';
+ import * as T from 'three';
+ import {REST,matrixFor} from './pose-engine.js';
+ 
+@@ -49,13 +51,13 @@
+   }return [...combined].map(([id,w])=>[id,w/total]);
+  }
+  function distanceTo(point,family){let distance=Infinity;for(const c of chains){if(c.family!==family)continue;const x=point.x-c.a.x,y=point.y-c.a.y,z=point.z-c.a.z,t=T.MathUtils.clamp((x*c.dx+y*c.dy+z*c.dz)/c.lengthSq,0,1);distance=Math.min(distance,Math.hypot(x-c.dx*t,y-c.dy*t,z-c.dz*t));}return distance;}
+- function weights(point,bodyOnly=false,armHint=null){
+-  const side=point.x<0?'R':'L',y=point.y,armDistance=distanceTo(point,'arm'+side),centralDistance=Math.min(distanceTo(point,'body'),distanceTo(point,'leg'+side));
++ function weights(point,bodyOnly=false,armHint=null,legSideHint=null){
++  const side=point.x<0?'R':'L',y=point.y,armDistance=bodyOnly?0:distanceTo(point,'arm'+side),centralDistance=bodyOnly?0:Math.min(distanceTo(point,'body'),distanceTo(point,'leg'+side));
+   let arm=bodyOnly?0:T.MathUtils.smoothstep(centralDistance-armDistance,-.012,.025)*(1-T.MathUtils.smoothstep(y,.54,.60))*T.MathUtils.smoothstep(y,-.27,-.20);
+   if(!bodyOnly&&armHint!==null)arm=armHint;
+   const leg=bodyOnly?0:1-T.MathUtils.smoothstep(y,-.23,-.02),pairs=new Map();
+   const add=(family,factor)=>{if(factor<=0)return;for(const [id,w] of nearest(point,family))pairs.set(id,(pairs.get(id)||0)+w*factor);};
+-  const middleWidth=T.MathUtils.lerp(.001,.05,T.MathUtils.smoothstep(y,-.40,-.20)),left=T.MathUtils.smoothstep(point.x,-middleWidth,middleWidth);
++  const middleWidth=T.MathUtils.lerp(.001,.05,T.MathUtils.smoothstep(y,-.40,-.20)),left=legSideHint??T.MathUtils.smoothstep(point.x,-middleWidth,middleWidth);
+   add('arm'+side,arm);add('legR',leg*(1-arm)*(1-left));add('legL',leg*(1-arm)*left);add('body',(1-leg)*(1-arm));
+   const ordered=[...pairs].filter(([,w])=>w>1e-8).sort((a,b)=>b[1]-a[1]).slice(0,4),sum=ordered.reduce((n,[,w])=>n+w,0);
+   return {indices:[...ordered.map(([id])=>index.get(id)),0,0,0].slice(0,4),weights:[...ordered.map(([,w])=>w/sum),0,0,0].slice(0,4)};
+@@ -70,16 +72,15 @@
+  // unrelated limbs. Weld duplicated patch-border positions only; no vertices,
+  // topology or source shape are moved. The original weights anchor the solve.
+  function regularize(geometry,indices,values){
+-  const p=geometry.attributes.position,n=p.count,groups=[],lookup=new Map(),vertexGroup=new Uint32Array(n);
+-  for(let i=0;i<n;i++){const key=[p.getX(i),p.getY(i),p.getZ(i)].map(x=>Math.round(x*1e5)).join(',');let j=lookup.get(key);if(j===undefined){j=groups.length;lookup.set(key,j);groups.push({vertices:[],edges:new Set()});}groups[j].vertices.push(i);vertexGroup[i]=j;}
+-  const index=geometry.index,count=index?.count||n;
+-  for(let i=0;i<count;i+=3){const triangle=[0,1,2].map(k=>index?index.getX(i+k):i+k);for(let k=0;k<3;k++){const a=triangle[k],b=triangle[(k+1)%3],u=vertexGroup[a],v=vertexGroup[b];if(u!==v&&Math.hypot(p.getX(a)-p.getX(b),p.getY(a)-p.getY(b),p.getZ(a)-p.getZ(b))<.04){groups[u].edges.add(v);groups[v].edges.add(u);}}}
++  const p=geometry.attributes.position,groups=surfaceGroups(geometry);
+   const size=unique.length,original=new Float32Array(groups.length*size);for(let j=0;j<groups.length;j++)for(const i of groups[j].vertices)for(let k=0;k<4;k++)original[j*size+indices[i*4+k]]+=values[i*4+k]/groups[j].vertices.length;
+   let field=original.slice(),next=new Float32Array(field.length);
+   for(let pass=0;pass<24;pass++){for(let j=0;j<groups.length;j++){const neighbours=groups[j].edges,offset=j*size;for(let k=0;k<size;k++){let sum=0;for(const q of neighbours)sum+=field[q*size+k];next[offset+k]=neighbours.size?.02*original[offset+k]+.48*field[offset+k]+.5*sum/neighbours.size:original[offset+k];}}[field,next]=[next,field];}
+-  for(let j=0;j<groups.length;j++){const representative=groups[j].vertices[0];let armAmount=0;for(let k=0;k<4;k++)if(/^(shoulder|elbow|wrist|hand-)/.test(unique[indices[representative*4+k]]))armAmount+=values[representative*4+k];if(p.getY(representative)>0||armAmount<.99){continue;}const entries=[];for(let k=0;k<size;k++)if(field[j*size+k]>1e-7)entries.push([k,field[j*size+k]]);entries.sort((a,b)=>b[1]-a[1]);entries.length=Math.min(4,entries.length);const sum=entries.reduce((a,e)=>a+e[1],0);for(const i of groups[j].vertices)for(let k=0;k<4;k++){indices[i*4+k]=entries[k]?.[0]||0;values[i*4+k]=(entries[k]?.[1]||0)/sum;}}
++  for(let j=0;j<groups.length;j++){const representative=groups[j].vertices[0];let armAmount=0;for(let k=0;k<4;k++)if(/^(shoulder|elbow|wrist|hand-)/.test(unique[indices[representative*4+k]]))armAmount+=values[representative*4+k];const blend=geometry.userData.nativeFemale?+(p.getY(representative)<=0):1-T.MathUtils.smoothstep(p.getY(representative),-.04,.08);if(!blend||armAmount<.99){continue;}const entries=[];for(let k=0;k<size;k++){const value=blend*field[j*size+k]+(1-blend)*original[j*size+k];if(value>1e-7)entries.push([k,value]);}entries.sort((a,b)=>b[1]-a[1]);entries.length=Math.min(4,entries.length);const sum=entries.reduce((a,e)=>a+e[1],0);for(const i of groups[j].vertices)for(let k=0;k<4;k++){indices[i*4+k]=entries[k]?.[0]||0;values[i*4+k]=(entries[k]?.[1]||0)/sum;}}
+  }
+- function attributes(geometry,{bodyOnly=false,surface=false}={}){const p=geometry.attributes.position,hints=geometry.getAttribute('bindingArm'),armField=surface?continuousArmField(geometry):null,indices=new Uint16Array(p.count*4),values=new Float32Array(p.count*4),point=new T.Vector3();for(let i=0;i<p.count;i++){point.fromBufferAttribute(p,i);const w=weights(point,bodyOnly,armField?armField[i]:hints?hints.getX(i):null);indices.set(w.indices,i*4);values.set(w.weights,i*4);}if(surface)regularize(geometry,indices,values);geometry.setAttribute('skinIndex',new T.Uint16BufferAttribute(indices,4));geometry.setAttribute('skinWeight',new T.Float32BufferAttribute(values,4));return geometry;}
++ function* attributeSteps(geometry,{bodyOnly=false,surface=false}={}){const p=geometry.attributes.position,hints=geometry.getAttribute('bindingArm'),armField=surface?continuousArmField(geometry):null,legSides=surface?surfaceLegSides(geometry):null,structureSide=!surface&&!bodyOnly?structureLegSide(geometry):null,indices=new Uint16Array(p.count*4),values=new Float32Array(p.count*4),point=new T.Vector3();for(let i=0;i<p.count;i++){point.fromBufferAttribute(p,i);const w=weights(point,bodyOnly,armField?armField[i]:hints?hints.getX(i):null,legSides?legSides[i]:structureSide);indices.set(w.indices,i*4);values.set(w.weights,i*4);if((i+1)%256===0)yield;}if(surface)regularize(geometry,indices,values);geometry.setAttribute('skinIndex',new T.Uint16BufferAttribute(indices,4));geometry.setAttribute('skinWeight',new T.Float32BufferAttribute(values,4));return geometry;}
++ function attributes(geometry,options={}){const steps=attributeSteps(geometry,options);while(!steps.next().done){}return geometry;}
++ async function attributesAsync(geometry,options={},pause){if(options.surface)throw Error('体表绑定请使用已校验缓存');const steps=attributeSteps(geometry,options);while(!steps.next().done)await pause();return geometry;}
+  function update(result){dqEnabled.value=result.grip?0:1;for(let i=0;i<unique.length;i++){const id=unique[i],part=result.parts[id];if(part)matrices[i].copy(matrixFor(part));else{const entry=result.grip?.matrices.find(e=>e.mesh.name===id);if(entry)matrices[i].copy(entry.matrix);else matrices[i].copy(matrixFor(result.parts['wrist'+(id.endsWith('right')?'R':'L')]));}}for(let i=0;i<unique.length;i++){const q=new T.Quaternion().setFromRotationMatrix(matrices[i]),e=matrices[i].elements,x=e[12],y=e[13],z=e[14];real[i].set(q.x,q.y,q.z,q.w);dual[i].set(.5*(x*q.w+y*q.z-z*q.y),.5*(-x*q.z+y*q.w+z*q.x),.5*(x*q.y-y*q.x+z*q.w),-.5*(x*q.x+y*q.y+z*q.z));}}
+  function vertex(geometry,i,out=new T.Vector3()){
+   const factor=geometry.userData.dualQuaternion?(geometry.getAttribute('poseDq')?.getX(i)||0)*dqEnabled.value:0;
+@@ -98,7 +99,7 @@
+    void poseBlend(out vec4 qr,out vec4 qd){vec4 ref=poseReal[int(skinIndex.x)];qr=vec4(0.0);qd=vec4(0.0);for(int k=0;k<4;k++){int j=int(skinIndex[k]);float w=skinWeight[k]*(dot(ref,poseReal[j])<-0.000001?-1.0:1.0);qr+=poseReal[j]*w;qd+=poseDual[j]*w;}float l=length(qr);qr/=l;qd/=l;qd-=qr*dot(qr,qd);}
+   `).replace('#include <skinnormal_vertex>',`vec4 poseQR,poseQD;poseBlend(poseQR,poseQD);mat4 poseLinearMatrix=skinWeight.x*boneMatX+skinWeight.y*boneMatY+skinWeight.z*boneMatZ+skinWeight.w*boneMatW;objectNormal=mix((poseLinearMatrix*vec4(objectNormal,0.0)).xyz,poseRotate(objectNormal,poseQR),poseDq*poseDqEnabled);`).replace('#include <skinning_vertex>',`vec4 poseVR,poseVD;poseBlend(poseVR,poseVD);vec3 poseT=2.0*(-poseVD.w*poseVR.xyz+poseVR.w*poseVD.xyz+cross(poseVR.xyz,poseVD.xyz));vec4 poseLinearVertex=(skinWeight.x*boneMatX+skinWeight.y*boneMatY+skinWeight.z*boneMatZ+skinWeight.w*boneMatW)*vec4(transformed,1.0);transformed=mix(poseLinearVertex.xyz,poseRotate(transformed,poseVR)+poseT,poseDq*poseDqEnabled);`);};material.customProgramCacheKey=()=> 'pose-dq-v54-base-'+unique.length;return material;
+  }
+- return {ids:unique,matrices,real,dual,prepareSurface,skinMaterial,weights,attributes,update,vertex,method:'continuous region surface binding with dual quaternion wrist and finger blending',individualCalibration:false};
++ return {ids:unique,matrices,real,dual,prepareSurface,skinMaterial,weights,attributes,attributesAsync,update,vertex,method:'continuous region surface binding with dual quaternion wrist and finger blending',individualCalibration:false};
+ }
+ 
+ export function posedTriangle(binding,geometry,anchor,offset=0){
+--- a/pose-binding.js
++++ b/pose-binding.js
+@@ -1,3 +1,5 @@
++import {surfaceLegSides} from './pose-leg-regions.js';
++import {surfaceGroups} from './pose-surface-groups.js';
+ import * as T from 'three';
+ import {REST,matrixFor} from './pose-engine.js';
+ import {createPoseBinding as createBaseBinding} from './pose-binding-base.js';
+@@ -35,16 +37,18 @@
+  const unique=[...new Set(ids)],index=new Map(unique.map((id,i)=>[id,i])),matrices=unique.map(()=>new T.Matrix4()),real=unique.map(()=>new T.Vector4(0,0,0,1)),dual=unique.map(()=>new T.Vector4()),dqEnabled={value:1};
+  const central=id=>['pelvis','lumbar','trunk','head'].includes(id)||/^[CL]\d+$/.test(id);
+  const bodyIndices=unique.map((id,i)=>central(id)?i:null).filter(i=>i!==null);
+- function prepareSpine(g){
++ function* spineSteps(g){
+   const p=g.attributes.position,si=new Uint16Array(p.count*4),sw=new Float32Array(p.count*4),mask=new Float32Array(p.count),levels=['L1',...Array.from({length:12},(_,i)=>'T'+(12-i)),'C7'];
+   for(let i=0;i<p.count;i++){
+    const y=p.getY(i);let j=1;while(j<levels.length-1&&y>REST[levels[j]][1])j++;
+    const a=levels[j-1],b=levels[j],t=T.MathUtils.smoothstep(y,REST[a][1],REST[b][1]);
+    si[i*4]=index.get(a);si[i*4+1]=index.get(b);sw[i*4]=1-t;sw[i*4+1]=t;
+-   mask[i]=T.MathUtils.smoothstep(y,REST.L1[1]-.03,REST.L1[1])*(1-T.MathUtils.smoothstep(y,REST.C7[1],REST.C7[1]+.03));
++   mask[i]=T.MathUtils.smoothstep(y,REST.L1[1]-.03,REST.L1[1])*(1-T.MathUtils.smoothstep(y,REST.C7[1],REST.C7[1]+.03));if((i+1)%2048===0)yield;
+   }
+   g.setAttribute('skinIndexSpine',new T.Uint16BufferAttribute(si,4));g.setAttribute('skinWeightSpine',new T.Float32BufferAttribute(sw,4));g.setAttribute('poseSpine',new T.Float32BufferAttribute(mask,1));return g;
+  }
++ function prepareSpine(g){const steps=spineSteps(g);while(!steps.next().done){}return g;}
++ async function attributesAsync(g,options={},pause){await baseBinding.attributesAsync(g,options,pause);const steps=spineSteps(g);while(!steps.next().done)await pause();return g;}
+  function nearest(point,family){
+   if(family==='body'){const y=point.y,levels=['pelvis','lumbar','L5','L4','L3','L2','L1','trunk','C7','C6','C5','C4','C3','C2','C1','head'],heights=levels.map(id=>id==='head'?.69:REST[id][1]);let j=1;while(j<heights.length-1&&y>heights[j])j++;const a=levels[j-1],b=levels[j],t=T.MathUtils.smoothstep(y,heights[j-1],heights[j]);return [[a,1-t],[b,t]];}
+   const h=handRig?.[family.slice(-1)],progress=h?point.clone().sub(h.wristRest).dot(h.long):0;
+@@ -65,13 +69,13 @@
+   }return [...combined].map(([id,w])=>[id,w/total]);
+  }
+  function distanceTo(point,family){let distance=Infinity;for(const c of chains){if(c.family!==family)continue;const x=point.x-c.a.x,y=point.y-c.a.y,z=point.z-c.a.z,t=T.MathUtils.clamp((x*c.dx+y*c.dy+z*c.dz)/c.lengthSq,0,1);distance=Math.min(distance,Math.hypot(x-c.dx*t,y-c.dy*t,z-c.dz*t));}return distance;}
+- function weights(point,bodyOnly=false,armHint=null,limit=4){
++ function weights(point,bodyOnly=false,armHint=null,limit=4,legSideHint=null){
+   const side=point.x<0?'R':'L',y=point.y,armDistance=distanceTo(point,'arm'+side),centralDistance=Math.min(distanceTo(point,'body'),distanceTo(point,'leg'+side));
+   let arm=bodyOnly?0:T.MathUtils.smoothstep(centralDistance-armDistance,-.012,.025)*(1-T.MathUtils.smoothstep(y,.54,.60))*T.MathUtils.smoothstep(y,-.27,-.20);
+   if(!bodyOnly&&armHint!==null)arm=armHint;
+   const leg=bodyOnly?0:1-T.MathUtils.smoothstep(y,-.23,-.02),pairs=new Map();
+   const add=(family,factor)=>{if(factor<=0)return;for(const [id,w] of nearest(point,family))pairs.set(id,(pairs.get(id)||0)+w*factor);};
+-  const middleWidth=T.MathUtils.lerp(.001,.05,T.MathUtils.smoothstep(y,-.40,-.20)),left=T.MathUtils.smoothstep(point.x,-middleWidth,middleWidth);
++  const middleWidth=T.MathUtils.lerp(.001,.05,T.MathUtils.smoothstep(y,-.40,-.20)),left=legSideHint??T.MathUtils.smoothstep(point.x,-middleWidth,middleWidth);
+   add('arm'+side,arm);add('legR',leg*(1-arm)*(1-left));add('legL',leg*(1-arm)*left);add('body',(1-leg)*(1-arm));
+   const ordered=[...pairs].filter(([,w])=>w>1e-8).sort((a,b)=>b[1]-a[1]).slice(0,limit),sum=ordered.reduce((n,[,w])=>n+w,0);
+   return {indices:Array.from({length:limit},(_,i)=>ordered[i]?index.get(ordered[i][0]):0),weights:Array.from({length:limit},(_,i)=>ordered[i]?ordered[i][1]/sum:0)};
+@@ -86,19 +90,16 @@
+  // unrelated limbs. Weld duplicated patch-border positions only; no vertices,
+  // topology or source shape are moved. The original weights anchor the solve.
+  function regularize(geometry,indices,values,stride){
+-  const p=geometry.attributes.position,n=p.count,groups=[],lookup=new Map(),vertexGroup=new Uint32Array(n);
+-  for(let i=0;i<n;i++){const key=[p.getX(i),p.getY(i),p.getZ(i)].map(x=>Math.round(x*1e5)).join(',');let j=lookup.get(key);if(j===undefined){j=groups.length;lookup.set(key,j);groups.push({vertices:[],edges:new Set()});}groups[j].vertices.push(i);vertexGroup[i]=j;}
+-  const index=geometry.index,count=index?.count||n;
+-  for(let i=0;i<count;i+=3){const triangle=[0,1,2].map(k=>index?index.getX(i+k):i+k);for(let k=0;k<3;k++){const a=triangle[k],b=triangle[(k+1)%3],u=vertexGroup[a],v=vertexGroup[b];if(u!==v&&Math.hypot(p.getX(a)-p.getX(b),p.getY(a)-p.getY(b),p.getZ(a)-p.getZ(b))<.04){groups[u].edges.add(v);groups[v].edges.add(u);}}}
++  const p=geometry.attributes.position,groups=surfaceGroups(geometry);
+   const size=unique.length,original=new Float32Array(groups.length*size);for(let j=0;j<groups.length;j++)for(const i of groups[j].vertices)for(let k=0;k<stride;k++)original[j*size+indices[i*stride+k]]+=values[i*stride+k]/groups[j].vertices.length;
+   let field=original.slice(),next=new Float32Array(field.length);
+   for(let pass=0;pass<64;pass++){for(let j=0;j<groups.length;j++){const neighbours=groups[j].edges,offset=j*size;for(let k=0;k<size;k++){let sum=0;for(const q of neighbours)sum+=field[q*size+k];next[offset+k]=neighbours.size?.004*original[offset+k]+.496*field[offset+k]+.5*sum/neighbours.size:original[offset+k];}}[field,next]=[next,field];}
+-  for(let j=0;j<groups.length;j++){const representative=groups[j].vertices[0];let armAmount=0;for(let k=0;k<stride;k++)if(/^(shoulder|elbow|wrist|hand-)/.test(unique[indices[representative*stride+k]]))armAmount+=values[representative*stride+k];if(p.getY(representative)>0||armAmount<.99){continue;}const entries=[];for(let k=0;k<size;k++)if(field[j*size+k]>1e-7)entries.push([k,field[j*size+k]]);entries.sort((a,b)=>b[1]-a[1]);entries.length=Math.min(stride,entries.length);const sum=entries.reduce((a,e)=>a+e[1],0);for(const i of groups[j].vertices)for(let k=0;k<stride;k++){indices[i*stride+k]=entries[k]?.[0]||0;values[i*stride+k]=(entries[k]?.[1]||0)/sum;}}
++  for(let j=0;j<groups.length;j++){const representative=groups[j].vertices[0];let armAmount=0;for(let k=0;k<stride;k++)if(/^(shoulder|elbow|wrist|hand-)/.test(unique[indices[representative*stride+k]]))armAmount+=values[representative*stride+k];const blend=geometry.userData.nativeFemale?+(p.getY(representative)<=0):1-T.MathUtils.smoothstep(p.getY(representative),-.04,.08);if(!blend||armAmount<.99){continue;}const entries=[];for(let k=0;k<size;k++){const value=blend*field[j*size+k]+(1-blend)*original[j*size+k];if(value>1e-7)entries.push([k,value]);}entries.sort((a,b)=>b[1]-a[1]);entries.length=Math.min(stride,entries.length);const sum=entries.reduce((a,e)=>a+e[1],0);for(const i of groups[j].vertices)for(let k=0;k<stride;k++){indices[i*stride+k]=entries[k]?.[0]||0;values[i*stride+k]=(entries[k]?.[1]||0)/sum;}}
+  }
+  function attributes(geometry,{bodyOnly=false,surface=false}={}){
+   if(!surface)return prepareSpine(baseBinding.attributes(geometry,{bodyOnly}));
+-  const p=geometry.attributes.position,hints=geometry.getAttribute('bindingArm'),armField=continuousArmField(geometry),stride=8,indices=new Uint16Array(p.count*stride),values=new Float32Array(p.count*stride),point=new T.Vector3();
+-  for(let i=0;i<p.count;i++){point.fromBufferAttribute(p,i);const hint=armField?armField[i]:hints?hints.getX(i):null,w=weights(point,bodyOnly,hint,point.y<=0&&hint>=.99?8:4);indices.set(w.indices,i*stride);values.set(w.weights,i*stride);}
++  const p=geometry.attributes.position,hints=geometry.getAttribute('bindingArm'),armField=continuousArmField(geometry),legSides=surfaceLegSides(geometry),stride=8,indices=new Uint16Array(p.count*stride),values=new Float32Array(p.count*stride),point=new T.Vector3();
++  for(let i=0;i<p.count;i++){point.fromBufferAttribute(p,i);const hint=armField?armField[i]:hints?hints.getX(i):null,w=weights(point,bodyOnly,hint,point.y<=0&&hint>=.99?8:4,legSides[i]);indices.set(w.indices,i*stride);values.set(w.weights,i*stride);}
+   regularize(geometry,indices,values,stride);baseBinding.attributes(geometry,{surface:true});
+   const amount=new Float32Array(p.count);for(let i=0;i<p.count;i++){let arm=0;for(let k=0;k<4;k++)if(/^(shoulder|elbow|wrist|hand-)/.test(unique[geometry.attributes.skinIndex.array[i*4+k]]))arm+=geometry.attributes.skinWeight.array[i*4+k];amount[i]=(1-T.MathUtils.smoothstep(p.getY(i),-.03,0))*T.MathUtils.smoothstep(arm,.99,1);}
+   for(let block=0;block<2;block++){const si=new Uint16Array(p.count*4),sw=new Float32Array(p.count*4);for(let i=0;i<p.count;i++)if(amount[i]>0)for(let k=0;k<4;k++){si[i*4+k]=indices[i*stride+block*4+k];sw[i*4+k]=values[i*stride+block*4+k];}geometry.setAttribute(block?'skinIndexExtra':'skinIndexHand',new T.Uint16BufferAttribute(si,4));geometry.setAttribute(block?'skinWeightExtra':'skinWeightHand',new T.Float32BufferAttribute(sw,4));}
+@@ -156,7 +157,7 @@
+    void poseBlend(out vec4 qr,out vec4 qd){vec4 ref=poseReal[int(skinIndex.x)];qr=vec4(0.0);qd=vec4(0.0);for(int k=0;k<4;k++){int j=int(skinIndex[k]);float w=skinWeight[k]*(dot(ref,poseReal[j])<-0.000001?-1.0:1.0);qr+=poseReal[j]*w;qd+=poseDual[j]*w;}float l=length(qr);qr/=l;qd/=l;qd-=qr*dot(qr,qd);}
+   `).replace('#include <skinnormal_vertex>',`vec3 poseRestNormal=objectNormal;vec4 poseQR,poseQD;poseBlend(poseQR,poseQD);mat4 poseLinearMatrix=skinWeight.x*boneMatX+skinWeight.y*boneMatY+skinWeight.z*boneMatZ+skinWeight.w*boneMatW;mat4 poseHandMatrix=mat4(0.0);float poseHandBlend=poseHand*posePhoneHand;if(poseHandBlend>0.0){for(int k=0;k<4;k++){poseHandMatrix+=skinWeightHand[k]*getBoneMatrix(skinIndexHand[k])+skinWeightExtra[k]*getBoneMatrix(skinIndexExtra[k]);}}float posePalmBlend=posePalm.x*posePalmSides[int(posePalm.z)];mat4 posePalmMatrix=getBoneMatrix(posePalm.y);${spineMatrix()}objectNormal=mix(mix((poseLinearMatrix*vec4(objectNormal,0.0)).xyz,poseRotate(objectNormal,poseQR),poseDq*poseDqEnabled),(poseHandMatrix*vec4(objectNormal,0.0)).xyz,poseHandBlend)+(poseSpineDelta*vec4(poseRestNormal,0.0)).xyz;objectNormal=mix(objectNormal,(posePalmMatrix*vec4(poseRestNormal,0.0)).xyz,posePalmBlend);vec3 poseShellPosition=mix(mix((poseLinearMatrix*vec4(position,1.0)).xyz,poseRotate(position,poseQR)+2.0*(-poseQD.w*poseQR.xyz+poseQR.w*poseQD.xyz+cross(poseQR.xyz,poseQD.xyz)),poseDq*poseDqEnabled),(poseHandMatrix*vec4(position,1.0)).xyz,poseHandBlend)+(poseSpineDelta*vec4(position,1.0)).xyz;poseShellPosition=mix(poseShellPosition,(posePalmMatrix*vec4(position,1.0)).xyz,posePalmBlend);poseShell(poseShellPosition);if(length(poseShellNormal)>0.0)objectNormal=poseShellNormal;`).replace('#include <skinning_vertex>',`vec3 poseRestPosition=transformed;vec4 poseVR,poseVD;poseBlend(poseVR,poseVD);vec3 poseT=2.0*(-poseVD.w*poseVR.xyz+poseVR.w*poseVD.xyz+cross(poseVR.xyz,poseVD.xyz));vec4 poseLinearVertex=(skinWeight.x*boneMatX+skinWeight.y*boneMatY+skinWeight.z*boneMatZ+skinWeight.w*boneMatW)*vec4(transformed,1.0);transformed=mix(mix(poseLinearVertex.xyz,poseRotate(transformed,poseVR)+poseT,poseDq*poseDqEnabled),(poseHandMatrix*vec4(transformed,1.0)).xyz,poseHandBlend)+(poseSpineDelta*vec4(poseRestPosition,1.0)).xyz;transformed=mix(transformed,(posePalmMatrix*vec4(poseRestPosition,1.0)).xyz,posePalmBlend);transformed=poseShell(transformed);`);};material.customProgramCacheKey=()=> 'pose-hand8-v54-'+unique.length;return material;
+  }
+- return {ids:unique,matrices,real,dual,prepareSurface,prepareSpine,skinMaterial,tissueMaterial,weights,attributes,update,vertex,method:'Continuous phone hand field, palm transition, shallow device shell contact and thoracic central contributions',individualCalibration:false};
++ return {ids:unique,matrices,real,dual,prepareSurface,prepareSpine,skinMaterial,tissueMaterial,weights,attributes,attributesAsync,update,vertex,method:'Source-topology leg sides, continuous wrist neighbourhood, phone palm contact and thoracic contributions',individualCalibration:false};
+ }
+ 
+ export function posedTriangle(binding,geometry,anchor,offset=0){
+--- a/pose-catalog.js
++++ b/pose-catalog.js
+@@ -52,7 +52,7 @@
+ add('sit-footrest','坐姿 · 双脚放脚踏','坐姿',sitting,{legR:{...leg(88,95),step:.16},legL:{...leg(88,95),step:.16},footrest:true,backSupport:true},'脚踏增加脚部支撑，腿不再悬垂；腰背仍需靠背与活动变化。',['backSupported']);
+ add('sit-high-stool','坐姿 · 高凳脚踏','坐姿',sitting,{height:.66,legR:{...leg(65,80),step:.19},legL:{...leg(65,80),step:.19},stool:true,footrest:true,armR:arm(12,70),armL:arm(12,70)},'高凳与普通椅的髋膝角不同；足部需要脚踏，不能把脚悬空标成地面支撑。',['unsupported']);
+ add('floor-long-sit','地面坐 · 双腿伸直','坐姿',o=>({...o,height:.16,feet:[],floorSit:true,legR:leg(90,0,4),legL:leg(90,0,4),armR:arm(20,35),armL:arm(20,35)}),{},'地面承托骨盆和腿，髋屈曲；腿后侧的活动范围与骨盆姿态因人而异。',['flexHip','unsupported']);
+-add('floor-cross-sit','地面坐 · 自然盘腿','坐姿',o=>({...o,height:.16,feet:[],floorSit:true,legR:leg(90,125,0,-40,-85),legL:leg(90,125,0,40,85),armR:arm(25,85),armL:arm(25,85)}),{},'盘腿要屈髋、外展和旋转共同配合；不是把膝关节向侧面掰弯。',['flexHip','unsupported']);
++add('floor-cross-sit','地面坐 · 右腿在上盘腿','坐姿',o=>({...o,height:.16,feet:[],floorSit:true,handsKnees:true,footTargetR:[.07,.23,.30],footTargetL:[-.07,.067,.43],legR:{...leg(90,125,0,-40,-85),footYaw:60},legL:{...leg(90,125,0,40,85),footYaw:-60},armR:arm(25,85),armL:arm(25,85)}),{},'盘腿要屈髋、外展和旋转共同配合；不是把膝关节向侧面掰弯。',['flexHip','unsupported']);
+ // 12 standing configurations.
+ add('stand-relaxed','站立 · 放松双脚','站立',standing,{},'腰背、髋与下肢共同维持直立；久站不动可能出现腰背不适和下肢疲劳，应与行走及坐站转换对照。',['staticStanding']);
+ add('stand-wide','站立 · 宽站距','站立',standing,{height:.81,legR:leg(0,8,18),legL:leg(0,8,18)},'站距扩大了支撑范围，但不代表腰椎内部压力自动降低。',['staticStanding']);
+@@ -87,19 +87,19 @@
+ add('vacuum','家务 · 吸尘','家务',standing,{height:.80,pelvisTilt:10,armR:arm(30,35),armL:relaxedArm(),legR:leg(10,15),legL:leg(-8,10),tool:'vacuum'},'单手推拉、另一臂放松；两侧负担不对称，实际吸头阻力没有计算。',['asymmetric','repetition']);
+ add('wipe-table','家务 · 擦低桌','家务',standing,{height:.76,pelvisTilt:35,bend:8,legR:leg(30,20),legL:leg(20,15),armR:arm(10,15),armL:arm(15,45),desk:true},'低桌令躯干前倾并向前伸手；给另一手支撑与缩短距离可作对照。',['spineFlex','reach']);
+ add('wipe-high','家务 · 擦高处窗面','家务',standing,{armR:arm(140,25,10),armL:relaxedArm(),neck:-15,window:true},'一侧上肢高举、头部仰看；肩部悬持与颈部维持是主要观察点。',['armsUp','neckExtension','repetition']);
+-add('laundry-low','家务 · 低处取衣','家务',squat,{height:.42,armR:arm(10,40),armL:arm(10,40),basket:true},'屈髋屈膝靠近衣篮；与站着弯腰取衣比较髋膝及腰背形态。',['kneeFlex']);
++add('laundry-low','家务 · 低处取衣','家务',squat,{height:.42,armR:arm(10,40,10),armL:arm(10,40,10),basket:true},'屈髋屈膝靠近衣篮；与站着弯腰取衣比较髋膝及腰背形态。',['kneeFlex']);
+ add('hang-clothes','家务 · 举臂晾衣','家务',standing,{armR:arm(145,20,15),armL:arm(145,20,15),neck:-10,rail:true},'双臂高举且反复摆放；模型没有肩部肌肉力，不以箭头长度表示肩负荷。',['armsUp','repetition']);
+-add('tie-shoe','家务 · 坐着系鞋带','家务',sitting,{height:.43,pelvisTilt:25,bend:30,neck:15,armR:arm(10,25),armL:arm(10,25),legR:leg(85,95),legL:leg(85,95)},'坐姿前倾、低头接近脚部；椅面仍承托骨盆，腰背处于前屈。',['spineFlex','neckFlex']);
++add('tie-shoe','家务 · 坐着系鞋带','家务',sitting,{height:.43,pelvisTilt:25,bend:30,neck:15,armR:arm(10,25,10),armL:arm(10,25,10),legR:leg(85,95),legL:leg(85,95)},'坐姿前倾、低头接近脚部；椅面仍承托骨盆，腰背处于前屈。',['spineFlex','neckFlex']);
+ add('garden-kneel','家务 · 跪姿园艺','家务',kneel,{pelvisTilt:18,bend:8,armR:arm(30,30),armL:arm(30,30)},'膝与胫骨区域靠近地面，躯干前倾；可比较跪垫与减少持续固定的条件。',['kneeContact','spineFlex']);
+ add('clean-floor','家务 · 四点支撑擦地','家务',o=>({...o,height:.445,pelvisTilt:75,feet:[],legR:leg(75,90),legL:leg(75,90),handTargetR:[-.20,.035,.57],handTargetL:[.20,.035,.57],handFlatR:true,handFlatL:true,quadruped:true}),{},'双手和双膝支撑，反复向前伸手会改变上肢与躯干的负担；不计算掌部压强。',['handContact','kneeContact','repetition']);
+ // 12 travel and motion snapshots.
+-add('walk-right','行走 · 右脚支撑','出行运动',standing,{height:.84,feet:['R'],legR:leg(8,8),legL:leg(25,45),armR:arm(-10,20),armL:arm(15,20),motion:'walk'},'支撑腿与摆动腿不同，地面反力随加速度变化；重量不能替代步态受力。',['dynamic','asymmetric']);
+-add('walk-left','行走 · 左脚支撑','出行运动',standing,{height:.84,feet:['L'],legL:leg(8,8),legR:leg(25,45),armL:arm(-10,20),armR:arm(15,20),motion:'walk'},'与右支撑相反；检查摆动脚离地和左右标记。',['dynamic','asymmetric']);
++add('walk-right','行走 · 右脚支撑','出行运动',standing,{height:.84,feet:['R'],legR:leg(8,8),legL:leg(25,45,3),armR:arm(-10,20,10),armL:arm(15,20,10),motion:'walk'},'支撑腿与摆动腿不同，地面反力随加速度变化；重量不能替代步态受力。',['dynamic','asymmetric']);
++add('walk-left','行走 · 左脚支撑','出行运动',standing,{height:.84,feet:['L'],legL:leg(8,8),legR:leg(25,45,3),armL:arm(-10,20,10),armR:arm(15,20,10),motion:'walk'},'与右支撑相反；检查摆动脚离地和左右标记。',['dynamic','asymmetric']);
+ add('run-right','跑步 · 右支撑阶段','出行运动',standing,{height:.78,pelvisTilt:8,feet:['R'],legR:leg(18,22),legL:leg(-15,100),armR:arm(-15,85),armL:arm(30,85),motion:'run'},'跑步支撑常伴随较明显的屈髋屈膝与摆臂；真实地面反力需要测力数据。',['dynamic','asymmetric']);
+ add('run-left','跑步 · 左支撑阶段','出行运动',standing,{height:.78,pelvisTilt:8,feet:['L'],legL:leg(18,22),legR:leg(-15,100),armL:arm(-15,85),armR:arm(30,85),motion:'run'},'左支撑与右支撑互换，摆动脚保持离地。',['dynamic','asymmetric']);
+ add('run-flight','跑步 · 腾空阶段','出行运动',standing,{height:.98,pelvisTilt:8,feet:[],legR:leg(50,65),legL:leg(-20,110),armR:arm(-15,85),armL:arm(35,85),motion:'flight'},'腾空时没有地面支撑，身体受重力等外力；不能显示地面支撑箭头。',['dynamic']);
+-add('stairs-up-right','上台阶 · 右脚抬高','出行运动',standing,{height:.76,legR:{...leg(45,65),step:.22},legL:leg(-8,10),stepProp:true,armR:arm(-10,20),armL:arm(20,25)},'一脚在台阶、一脚在地面；髋膝活动和身体提升需要肌肉做功。',['dynamic','kneeFlex']);
+-add('stairs-up-left','上台阶 · 左脚抬高','出行运动',standing,{height:.76,legL:{...leg(45,65),step:.22},legR:leg(-8,10),stepProp:true,armL:arm(-10,20),armR:arm(20,25)},'左腿抬高，台阶位置随支撑脚变化；两侧不能用同一台阶落点。',['dynamic','kneeFlex']);
++add('stairs-up-right','上台阶 · 右脚抬高','出行运动',standing,{height:.76,legR:{...leg(45,65),step:.22},legL:leg(-8,10),stepProp:true,armR:arm(-10,20,10),armL:arm(20,25,10)},'一脚在台阶、一脚在地面；髋膝活动和身体提升需要肌肉做功。',['dynamic','kneeFlex']);
++add('stairs-up-left','上台阶 · 左脚抬高','出行运动',standing,{height:.76,legL:{...leg(45,65),step:.22},legR:leg(-8,10),stepProp:true,armL:arm(-10,20,10),armR:arm(20,25,10)},'左腿抬高，台阶位置随支撑脚变化；两侧不能用同一台阶落点。',['dynamic','kneeFlex']);
+ add('stairs-down','下台阶 · 前腿承接','出行运动',standing,{height:.76,legR:leg(25,40),legL:{...leg(-5,20),step:.18},stepProp:true,armR:arm(10,25),armL:arm(-10,25)},'下降阶段需要控制身体下落，屈膝承担制动；静态截图不代表瞬时冲击。',['dynamic','kneeFlex']);
+ add('jump-crouch','跳跃 · 起跳准备','出行运动',squat,{height:.54,pelvisTilt:20,legR:leg(55,75),legL:leg(55,75),armR:arm(-25,15),armL:arm(-25,15)},'髋膝屈曲、手臂向后；起跳力和落地冲击未由截图计算。',['dynamic','kneeFlex']);
+ add('jump-air','跳跃 · 空中伸展','出行运动',standing,{height:1.08,feet:[],legR:leg(10,15),legL:leg(10,15),armR:arm(150,10,15),armL:arm(150,10,15)},'双脚离地，上肢伸展；与有地面接触的起跳、落地阶段区别显示。',['dynamic','armsUp']);
+@@ -123,9 +123,9 @@
+ add('rest-tv-side','休闲 · 侧坐看电视','休闲',sitting,{sofa:true,twist:28,look:15,legR:leg(80,90),legL:leg(95,105),armR:arm(15,55),armL:arm(15,55)},'骨盆仍朝座面前方，躯干与头偏转；与正对电视的姿态不同。',['twist','asymmetric']);
+ add('rest-guitar','休闲 · 坐姿弹吉他','休闲',sitting,{armR:arm(35,80,20),armL:arm(40,80,35),neck:18,legR:leg(95,95),legL:leg(85,85),guitar:true},'两臂任务不同且低头观察，坐姿支撑和上肢重复动作同时存在。',['asymmetric','repetition','neckFlex']);
+ add('rest-game','休闲 · 坐姿握游戏手柄','休闲',sitting,{neck:12,armR:arm(10,105),armL:arm(10,105),backSupport:true},'手柄靠近身体，前臂仍需维持；靠背不能消除手腕重复动作。',['backSupported','armsHeld','repetition']);
+-add('rest-picnic','休闲 · 地面屈膝坐','休闲',o=>({...o,height:.085,feet:['R','L'],floorSit:true,legR:leg(135,130,6),legL:leg(135,130,6),armR:arm(35,80),armL:arm(35,80)}),{},'骨盆在地面、双膝抬起，与盘腿不同；腰背没有靠背时需要维持躯干。',['flexHip','unsupported']);
++add('rest-picnic','休闲 · 地面屈膝坐','休闲',o=>({...o,height:.085,feet:['R','L'],floorSit:true,handsLap:true,lapHeight:.20,lapReach:.27,legR:leg(135,125,6),legL:leg(135,125,6),armR:arm(35,80),armL:arm(35,80)}),{},'骨盆在地面、双膝抬起，与盘腿不同；腰背没有靠背时需要维持躯干。',['flexHip','unsupported']);
+ add('rest-one-hand','休闲 · 地面坐单手后撑','休闲',o=>({...o,height:.10,feet:[],floorSit:true,pelvisTilt:-25,legR:{...leg(65,0,5),footPitch:25},legL:{...leg(65,0,5),footPitch:25},armR:arm(-35,5,20),armL:arm(25,70)}),{},'一侧手在身体后方支撑，肩腕接触与无手撑地面坐不同。',['handContact','asymmetric']);
+-add('rest-kneeling','休闲 · 跪坐脚跟','休闲',kneel,{height:.197,legR:leg(65,155),legL:leg(65,155),handsLap:true,heelSit:true},'膝屈曲较大、臀部靠近脚跟；个体膝踝活动范围和软组织压迫尚未评估。',['kneeFlex','kneeContact']);
++add('rest-kneeling','休闲 · 跪坐脚跟','休闲',kneel,{height:.197,legR:leg(65,155,3),legL:leg(65,155,3),handsLap:true,heelSit:true},'膝屈曲较大、臀部靠近脚跟；个体膝踝活动范围和软组织压迫尚未评估。',['kneeFlex','kneeContact']);
+ add('rest-ball','休闲 · 半蹲接球','休闲',squat,{height:.64,pelvisTilt:12,legR:leg(38,55,8),legL:leg(38,55,8),armR:arm(65,35,15),armL:arm(65,35,15),ball:true},'髋膝屈曲与双手伸出共同形成准备姿态；球的冲击和实际反应速度没有建模。',['kneeFlex','armsHeld']);
+ // 12 yoga / movement practice snapshots. These are observation examples, not practice prescriptions.
+ add('yoga-mountain','瑜伽 · 山式','瑜伽',standing,{height:.86,legR:leg(0,3,2),legL:leg(0,3,2),armR:arm(0,5,10),armL:arm(0,5,10)},'观察身体直立与双脚支撑，不要求所有人按固定骨架达到同一对齐。',['staticStanding']);
+@@ -138,7 +138,7 @@
+ add('yoga-dog','瑜伽 · 下犬式','瑜伽',o=>({...o,height:.64,pelvisTilt:135,feet:['R','L'],armR:arm(-60),armL:arm(-60),legR:leg(95,3),legL:leg(95,3),handTargetR:[-.20,.035,.84],handTargetL:[.20,.035,.84],handFlatR:true,handFlatL:true,handSupport:true}),{},'骨盆抬高，双手双脚形成支撑；手腕、肩与腿后侧的范围不能由姿势名称推定。',['handContact','hinge']);
+ add('yoga-table','瑜伽 · 四点支撑','瑜伽',o=>({...o,height:.44,pelvisTilt:75,feet:[],legR:leg(75,90),legL:leg(75,90),handTargetR:[-.20,.035,.60],handTargetL:[.20,.035,.60],handFlatR:true,handFlatL:true,quadruped:true}),{},'双膝双手承托，背部接近水平；与下犬式的伸膝和足部支撑不同。',['handContact','kneeContact']);
+ add('yoga-cat','瑜伽 · 四点支撑弓背','瑜伽',o=>({...o,height:.45,pelvisTilt:70,bend:25,neck:15,feet:[],legR:leg(70,90),legL:leg(70,90),handTargetR:[-.20,.035,.60],handTargetL:[.20,.035,.60],handFlatR:true,handFlatL:true,quadruped:true}),{},'从四点支撑加入脊柱前屈，逐段观察腰背变化；不是把整块胸廓绕错误轴翻转。',['handContact','spineFlex']);
+-add('yoga-child','瑜伽 · 婴儿式前伸参考','瑜伽',kneel,{height:.23,pelvisTilt:90,bend:5,armR:arm(-60),armL:arm(-60),legR:leg(135,140,25),legL:leg(135,140,25),handTargetR:[-.20,.035,1.03],handTargetL:[.20,.035,1.03],handFlatR:true,handFlatL:true,handSupport:true},'宽膝前伸参考：双膝分开、躯干前倾、双臂前伸。当前尚未完成骨盆坐到脚跟、深屈曲软组织接触；请勿把它当作完整婴儿式或个体活动范围。',['kneeFlex','hinge','armsUp']);
++add('yoga-child','瑜伽 · 婴儿式前伸参考','瑜伽',kneel,{height:.23,pelvisTilt:90,bend:5,armR:arm(-60),armL:arm(-60),legR:leg(135,135,25),legL:leg(135,135,25),handTargetR:[-.20,.035,1.03],handTargetL:[.20,.035,1.03],handFlatR:true,handFlatL:true,handSupport:true},'宽膝前伸参考：双膝分开、躯干前倾、双臂前伸。当前尚未完成骨盆坐到脚跟、深屈曲软组织接触；请勿把它当作完整婴儿式或个体活动范围。',['kneeFlex','hinge','armsUp']);
+ add('yoga-bridge','瑜伽 · 仰卧桥式','瑜伽',o=>lying('supine',o),{bridge:true,orientation:[-110,0,0],height:.31,neck:20,feet:['R','L'],legR:leg(-10,100),legL:leg(-10,100),handTargetR:[-.22,.10,-.20],handTargetL:[.22,.10,-.20],elbowPoleR:[-.32,.10,-.42],elbowPoleL:[.32,.10,-.42],handFlatR:true,handFlatL:true},'肩背与双脚承托、骨盆抬高；与完全躺在床面不同，不按重量均分支撑。',['hipExtension']);
+ // The IK rotation prior also controls humeral twist; wrist reach alone
+ // does not establish a suitable shoulder surface orientation.
+@@ -151,7 +151,7 @@
+ add('swim-breast-glide','蛙泳 · 蹬腿后滑行','游泳',o=>({...lying('prone',o),bed:false,water:true,height:.5}),{armR:arm(178,5,4),armL:arm(178,5,4),legR:leg(0,2,3),legL:leg(0,2,3)},'手臂和腿伸展形成滑行姿态；身体外形与速度共同影响阻力，当前未计算。',['water','dynamic']);
+ add('swim-backstroke','仰泳 · 单臂回摆','游泳',o=>({...lying('supine',o),bed:false,water:true,height:.5}),{armR:arm(155,12,15),armL:arm(15,25,12),legR:leg(8,10),legL:leg(-8,5)},'仰卧于水中、双臂不同阶段；不能沿用俯卧自由泳的支撑说明。',['water','dynamic','asymmetric']);
+ add('swim-tread','水中 · 直立踩水','游泳',o=>({...standing(o),feet:[],water:true,height:.9}),{armR:arm(55,55,55),armL:arm(55,55,55),legR:leg(20,35,18),legL:leg(20,35,18)},'直立踩水没有地面支撑；浮力与主动划水共同影响身体，不能只靠静态浮力判断是否能浮起。',['water','dynamic']);
+-for(const p of all){if(['sit-supported','sit-edge','sit-slouch','sit-footrest','sit-high-stool','floor-long-sit'].includes(p.id))p.spec.lapHeight=.14;if(p.id==='floor-long-sit')p.spec.lapReach=.27;if(p.id==='sit-slouch'){p.spec.lapHeight=.16;p.spec.lapReach=.21;}if(p.id==='sit-recline'){p.spec.lapHeight=.16;p.spec.lapReach=.21;}if(p.id==='rest-sofa'){p.spec.lapHeight=.18;p.spec.lapReach=.21;}if(['sit-edge','sit-slouch','sit-recline','sit-high-stool','sit-right-cross','sit-left-cross','rest-sofa','rest-tv-side'].includes(p.id))p.spec.handsLap=true;if(['bend-hips','bend-round','lift-stoop','yoga-fold'].includes(p.id)){for(const side of ['R','L'])p.spec['arm'+side].flex=(p.spec.pelvisTilt||0)+(p.spec.bend||0);}if(p.id==='rest-one-hand'){p.spec.lapReach=.17;p.spec.handTargetR=[-.25,.035,-.30];p.spec.elbowPoleR=[-.35,.15,-.14];p.spec.handFlatR=true;p.spec.handSides=['R'];p.spec.handSupport=true;}if(p.spec.desk){for(const side of ['R','L'])p.spec['arm'+side].handTurn=side==='R'?-90:90;}if(p.spec.lying==='left'||p.spec.lying==='right'){const left=p.spec.lying==='left',x=left?1:-1,lower=left?'L':'R',upper=left?'R':'L';p.spec['handTarget'+lower]=[x*.25,-.14,-.51];p.spec['handTarget'+upper]=[x*.31,.13,-.35];p.spec['elbowPole'+lower]=[x*.36,-.30,-.30];p.spec['elbowPole'+upper]=[x*.40,.30,-.20];}p.actionState=p.dynamic;p.dynamic=p.id.includes('crawl')||['walk','run'].includes(p.spec.motion);}
++for(const p of all){if(['sit-supported','sit-edge','sit-slouch','sit-footrest','sit-high-stool','floor-long-sit'].includes(p.id))p.spec.lapHeight=.14;if(p.id==='floor-long-sit')p.spec.lapReach=.27;if(['sit-right-cross','sit-left-cross','rest-tv-side'].includes(p.id))p.spec.lapHeight=.16;if(p.id==='sit-slouch'){p.spec.lapHeight=.16;p.spec.lapReach=.21;}if(p.id==='sit-recline'){p.spec.lapHeight=.16;p.spec.lapReach=.21;}if(p.id==='rest-sofa'){p.spec.lapHeight=.18;p.spec.lapReach=.21;}if(['sit-edge','sit-slouch','sit-recline','sit-high-stool','sit-right-cross','sit-left-cross','rest-sofa','rest-tv-side'].includes(p.id))p.spec.handsLap=true;if(['bend-hips','bend-round','lift-stoop','yoga-fold'].includes(p.id)){for(const side of ['R','L'])p.spec['arm'+side].flex=(p.spec.pelvisTilt||0)+(p.spec.bend||0);}if(p.id==='rest-one-hand'){p.spec.lapReach=.17;p.spec.handTargetR=[-.25,.035,-.30];p.spec.elbowPoleR=[-.35,.15,-.14];p.spec.handFlatR=true;p.spec.handSides=['R'];p.spec.handSupport=true;}if(p.spec.desk){for(const side of ['R','L'])p.spec['arm'+side].handTurn=side==='R'?-90:90;}if(p.spec.lying==='left'||p.spec.lying==='right'){const left=p.spec.lying==='left',x=left?1:-1,lower=left?'L':'R',upper=left?'R':'L';p.spec['handTarget'+lower]=[x*.25,-.14,-.51];p.spec['handTarget'+upper]=[x*.31,.13,-.35];p.spec['elbowPole'+lower]=[x*.36,-.30,-.30];p.spec['elbowPole'+upper]=[x*.40,.30,-.20];}p.actionState=p.dynamic;p.dynamic=p.id.includes('crawl')||['walk','run'].includes(p.spec.motion);}
+ // Explicit ground anchors keep the feet under the task while hips counter-shift.
+ // These are reference task configurations, not an automatic balance optimizer.
+ for(const [id,height,z,tilt,bend] of [['bend-hips',.78,-.16,45,0],['bend-round',.79,-.14,15,38],['lift-stoop',.85,-.18,35,25],['yoga-fold',.82,-.22,65,20]]){
+@@ -159,7 +159,7 @@
+  for(const side of ['R','L']){const x=side==='R'?-.11:.11;p.spec['footTarget'+side]=[x,.067,0];p.spec['kneePole'+side]=[x,.45,.30];}
+ }
+ for(const side of ['R','L']){const right=side==='R',p=all.find(p=>p.id==='reach-low-'+(right?'right':'left')),x=right?.055:-.055;Object.assign(p.spec,{height:.79,position:[x,.79,-.025]});for(const foot of ['R','L']){const fx=foot==='R'?-.14:.14;p.spec['footTarget'+foot]=[fx,.067,0];p.spec['kneePole'+foot]=[fx,.45,.3];}}
+-for(const side of ['R','L']){const right=side==='R',other=right?'L':'R',p=all.find(p=>p.id==='yoga-tree-'+(right?'right':'left')),x=right?-.10:.10;Object.assign(p.spec,{height:.86,position:[x,.86,0]});p.spec['footTarget'+side]=[right?-.07:.07,.067,0];p.spec['kneePole'+side]=[x,.45,.3];p.spec['leg'+other]={flex:30,knee:120,abd:35,yaw:right?45:-45,roll:0,footEuler:[90,0,right?-90:90]};p.spec['footTarget'+other]=[right?-.065:.065,.53,.01];p.spec['kneePole'+other]=[right?.40:-.40,.8,.07];p.explanation='单脚承重，骨盆移向承重脚；另一髋外展、膝屈曲。参考质心与足骨投影用于检查摆位，不代表个体平衡能力。';}
++for(const side of ['R','L']){const right=side==='R',other=right?'L':'R',p=all.find(p=>p.id==='yoga-tree-'+(right?'right':'left')),x=right?-.10:.10;Object.assign(p.spec,{height:.86,position:[x,.86,0]});p.spec['footTarget'+side]=[right?-.07:.07,.067,0];p.spec['kneePole'+side]=[x,.45,.3];p.spec['leg'+other]={flex:30,knee:120,abd:35,yaw:right?45:-45,roll:0,footEuler:[90,0,right?-90:90]};p.spec['footTarget'+other]=[right?.10:-.10,.53,.01];p.spec['kneePole'+other]=[right?.40:-.40,.8,.07];p.explanation='单脚承重，骨盆移向承重脚；另一髋外展、膝屈曲。参考质心与足骨投影用于检查摆位，不代表个体平衡能力。';}
+ for(const id of ['bend-hips','bend-round','yoga-fold']){const p=all.find(p=>p.id===id);for(const side of ['R','L'])p.spec['arm'+side].abd=15;}
+ export const POSES=all;
+ export const CATEGORIES=[...new Set(all.map(p=>p.category))];
+--- a/pose-engine.js
++++ b/pose-engine.js
+@@ -59,7 +59,7 @@
+   const footQ=leg.footEuler?q(...leg.footEuler):spec.feet?.includes(side)||spec['footTarget'+side]?q(0,leg.footYaw||0):spec.kneeling||spec.quadruped?q(180):root.clone().multiply(q(leg.footPitch||0,leg.footYaw||0));set('ankle'+side,ankle,footQ);
+   const shoulderBase=thoracicActive?parts.T2:parts.trunk,shoulderQ=shoulderBase.rotation,arm=spec['arm'+side]||{},shoulder=shoulderBase.position.clone().add(rest('shoulder'+side).sub(shoulderBase.rest).applyQuaternion(shoulderQ)),a1=diff('elbow'+side,'shoulder'+side).length(),a2=diff('wrist'+side,'elbow'+side).length();
+   const armQ=shoulderQ.clone().multiply(q(-(arm.flex||0),arm.yaw||0,sign*(arm.abd||0))).multiply(q(0,arm.roll||0));let elbow=shoulder.clone().addScaledVector(D.clone().applyQuaternion(armQ),a1),foreQ=armQ.clone().multiply(q(-(arm.elbow||0))),wrist=elbow.clone().addScaledVector(D.clone().applyQuaternion(foreQ),a2);
+-  if(spec['handTarget'+side]||spec.handsLap||(spec.floorSit&&!spec.flags?.includes('handContact'))){const target=spec['handTarget'+side]?V(spec['handTarget'+side]):pelvis.clone().add(new T.Vector3(sign*.15,spec.lapHeight??.08,spec.lapReach??(spec.floorSit?.19:.27))),pole=spec['elbowPole'+side]?V(spec['elbowPole'+side]):shoulder.clone().add(new T.Vector3(sign*.35,-.35,.10));const ik=solveTwoBone(shoulder,target,a1,a2,pole);elbow=ik.mid;wrist=ik.end;constraints.push({id:'hand'+side,error:ik.error,target:target.toArray(),actual:wrist.toArray()});}
++  if(spec['handTarget'+side]||spec.handsLap||spec.handsKnees||(spec.floorSit&&!spec.flags?.includes('handContact'))){const target=spec['handTarget'+side]?V(spec['handTarget'+side]):spec.handsKnees?knee.clone().lerp(hip,.12).add(new T.Vector3(0,spec.kneeHandHeight??.12,0)):pelvis.clone().add(new T.Vector3(sign*.15,spec.lapHeight??.08,spec.lapReach??(spec.floorSit?.19:.27))),pole=spec['elbowPole'+side]?V(spec['elbowPole'+side]):shoulder.clone().add(new T.Vector3(sign*.35,-.35,.10));const ik=solveTwoBone(shoulder,target,a1,a2,pole);elbow=ik.mid;wrist=ik.end;constraints.push({id:'hand'+side,error:ik.error,target:target.toArray(),actual:wrist.toArray()});}
+   set('shoulder'+side,shoulder,aim(diff('elbow'+side,'shoulder'+side),elbow.clone().sub(shoulder),armQ));set('elbow'+side,elbow,aim(diff('wrist'+side,'elbow'+side),wrist.clone().sub(elbow),foreQ));
+   const handQ=spec['handFlat'+side]?q(-90).multiply(q(0,180)).multiply(new T.Quaternion().setFromUnitVectors(diff('wrist'+side,'elbow'+side).normalize(),D)):parts['elbow'+side].rotation.clone().premultiply(new T.Quaternion().setFromAxisAngle(wrist.clone().sub(elbow).normalize(),((spec.handsLap||spec.floorSit)?180:arm.handTurn||0)*Math.PI/180));set('wrist'+side,wrist,handQ);
+  }
+--- /dev/null
++++ b/pose-leg-regions.js
+@@ -0,0 +1,46 @@
++import * as T from 'three';
++import {surfaceGroups} from './pose-surface-groups.js';
++
++export function structureLegSide(geometry){
++ const info=geometry.userData.sourceInfo,text=[info?.name,info?.en,info?.english].join(' ');
++ if(!/femoral|popliteal|tibial|peroneal|fibular|saphenous|sural|sciatic|plantar|dorsalis pedis|foot|股|胫|腓|坐骨|足/i.test(text))return null;
++ if(/\bright\b|\bR[. _]|右/i.test(text))return 0;
++ if(/\bleft\b|\bL[. _]|左/i.test(text))return 1;
++ geometry.computeBoundingBox();const box=geometry.boundingBox;
++ if(box.min.x>=-.001)return 1;if(box.max.x<=.001)return 0;return null;
++}
++
++// A medial thigh can be close to the midline without belonging to both legs.
++// Identify each source leg by connectivity below the groin, then extend its
++// side through the connected hip transition. This changes display weights only.
++export function surfaceLegSides(geometry){
++ if(geometry.hasAttribute('bindingLeg'))return geometry.attributes.bindingLeg.array;
++ const p=geometry.attributes.position,groups=surfaceGroups(geometry),n=groups.length,arm=geometry.attributes.bindingArm;
++ const representative=groups.map(g=>g.vertices[0]),prior=new Float32Array(n),fixed=new Int8Array(n);fixed.fill(-1);
++ for(let i=0;i<n;i++){const v=representative[i],y=p.getY(v),width=T.MathUtils.lerp(.001,.05,T.MathUtils.smoothstep(y,-.40,-.20));prior[i]=T.MathUtils.smoothstep(p.getX(v),-width,width);}
++ let components=null,plane=null;
++ for(const cut of [-.25,-.30,-.35]){
++  const visited=new Uint8Array(n),rows=[];
++  for(let i=0;i<n;i++){
++   const vi=representative[i];if(visited[i]||p.getY(vi)>=cut||(arm?.getX(vi)||0)>.5)continue;
++   const queue=[i];visited[i]=1;let meanX=0,minY=Infinity;
++   for(let q=0;q<queue.length;q++){const j=queue[q],v=representative[j];meanX+=p.getX(v);minY=Math.min(minY,p.getY(v));
++    for(const k of groups[j].edges){const u=representative[k];if(!visited[k]&&p.getY(u)<cut&&(arm?.getX(u)||0)<=.5){visited[k]=1;queue.push(k);}}
++   }
++   meanX/=queue.length;if(minY<-.55&&queue.length>1000)rows.push({queue,meanX,minY});
++  }
++  if(rows.some(r=>r.meanX<-.02)&&rows.some(r=>r.meanX>.02)){components=rows;plane=cut;break;}
++ }
++ if(!components)throw Error('无法从原体表辨认左右腿连通区域');
++ for(const c of components)for(const i of c.queue)fixed[i]=+(c.meanX>0);
++ for(let i=0;i<n;i++){const v=representative[i];if(p.getY(v)>-.02||(arm?.getX(v)||0)>.5)fixed[i]=prior[i]>=.5?1:0;}
++ let field=prior.slice(),next=new Float32Array(n);for(let i=0;i<n;i++)if(fixed[i]>=0)field[i]=fixed[i];
++ for(let pass=0;pass<300;pass++){
++  for(let i=0;i<n;i++){if(fixed[i]>=0){next[i]=fixed[i];continue;}let sum=0;for(const j of groups[i].edges)sum+=field[j];next[i]=groups[i].edges.size?.25*field[i]+.75*sum/groups[i].edges.size:prior[i];}
++  [field,next]=[next,field];
++ }
++ const values=new Float32Array(p.count);for(let i=0;i<n;i++)for(const v of groups[i].vertices)values[v]=field[i];
++ geometry.setAttribute('bindingLeg',new T.Float32BufferAttribute(values,1));
++ geometry.userData.legPartition={plane,components:components.map(({queue,...r})=>({...r,groups:queue.length,side:r.meanX<0?'right':'left'})),method:'Source topology leg side propagation',clinicalCalibration:false};
++ return values;
++}
+--- /dev/null
++++ b/pose-preparation.js
+@@ -0,0 +1,11 @@
++// Yield between bounded pieces of mesh preparation so input and painting can run.
++// MessageChannel avoids nested-timer delays and also works in browsers without
++// the prioritized task scheduler. No geometry or binding calculation is skipped.
++export function yieldPreparation(){
++ if(globalThis.scheduler?.yield)return globalThis.scheduler.yield();
++ return new Promise(resolve=>{
++  const channel=new MessageChannel();channel.port1.onmessage=()=>{
++   channel.port1.close();channel.port2.close();resolve();
++  };channel.port2.postMessage(null);
++ });
++}
+--- /dev/null
++++ b/pose-surface-groups.js
+@@ -0,0 +1,38 @@
++// Preserve the source mesh and existing quantized groups. Coincident vertices
++// on opposite sides of a bin boundary must share the same diffusion neighbourhood.
++const cachedGroups=new WeakMap();
++export function surfaceGroups(geometry){
++ if(cachedGroups.has(geometry))return cachedGroups.get(geometry);
++ const p=geometry.attributes.position,n=p.count,groups=[],lookup=new Map(),vertexGroup=new Uint32Array(n);
++ for(let i=0;i<n;i++){
++  const key=[p.getX(i),p.getY(i),p.getZ(i)].map(x=>Math.round(x*1e5)).join(',');
++  let j=lookup.get(key);if(j===undefined){j=groups.length;lookup.set(key,j);groups.push({vertices:[],edges:new Set()});}
++  groups[j].vertices.push(i);vertexGroup[i]=j;
++ }
++ if(!geometry.userData.nativeFemale){
++  const parent=Uint32Array.from({length:groups.length},(_,i)=>i),bins=new Map(),cell=1e-6;
++  const find=i=>{while(parent[i]!==i){parent[i]=parent[parent[i]];i=parent[i];}return i;};
++  for(let i=0;i<n;i++){
++   const x=p.getX(i),y=p.getY(i),z=p.getZ(i),ix=Math.floor(x/cell),iy=Math.floor(y/cell),iz=Math.floor(z/cell);
++   for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++)for(let dz=-1;dz<=1;dz++){
++    const bucket=bins.get([ix+dx,iy+dy,iz+dz].join(','));if(!bucket)continue;
++    for(const j of bucket){if((x-p.getX(j))**2+(y-p.getY(j))**2+(z-p.getZ(j))**2>cell*cell)continue;
++     const a=find(vertexGroup[i]),b=find(vertexGroup[j]);if(a!==b)parent[Math.max(a,b)]=Math.min(a,b);
++    }
++   }
++   const key=[ix,iy,iz].join(','),bucket=bins.get(key);if(bucket)bucket.push(i);else bins.set(key,[i]);
++  }
++  const merged=[],mapping=new Map();for(let i=0;i<n;i++){
++   const root=find(vertexGroup[i]);let j=mapping.get(root);if(j===undefined){j=merged.length;mapping.set(root,j);merged.push({vertices:[],edges:new Set()});}
++   merged[j].vertices.push(i);vertexGroup[i]=j;
++  }
++  groups.length=0;groups.push(...merged);
++ }
++ const index=geometry.index,count=index?.count||n;
++ for(let i=0;i<count;i+=3){const triangle=[0,1,2].map(k=>index?index.getX(i+k):i+k);
++  for(let k=0;k<3;k++){const a=triangle[k],b=triangle[(k+1)%3],u=vertexGroup[a],v=vertexGroup[b];
++   if(u!==v&&Math.hypot(p.getX(a)-p.getX(b),p.getY(a)-p.getY(b),p.getZ(a)-p.getZ(b))<.04){groups[u].edges.add(v);groups[v].edges.add(u);}
++  }
++ }
++ cachedGroups.set(geometry,groups);return groups;
++}
+--- a/pose-tissues.js
++++ b/pose-tissues.js
+@@ -1,10 +1,11 @@
++import {yieldPreparation} from './pose-preparation.js';
+ import * as T from 'three';
+ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+ import {DRACOLoader} from 'three/addons/loaders/DRACOLoader.js';
+ import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
+ import {MeshBVH} from 'three-mesh-bvh';
+ import decoderSource from './draco-decoder.txt';
+-import {normalizeFemaleMesh,bodyFrameInfo} from './body-frame-v18.js';
++import {normalizeFemaleMesh,normalizeFemaleMeshAsync,nativeFemalePosition,bodyFrameInfo} from './body-frame-v18.js';
+ import {poseStructureInfo} from './pose-names.js';
+ import {addRegionHints,mergeSurfaceGeometry} from './pose-regions.js';
+ import {createPoseBinding,posedTriangle} from './pose-binding.js';
+@@ -23,14 +24,14 @@
+ const referencesByCode=new Map([...headStudyReferences(REFERENCES,NAVIGATION_POINTS),...NAVIGATION_POINTS].map(p=>[p.code,p]));
+ const referencePoints=applyPointRules(correctRegionalReferences(ACUPOINTS.map(p=>canonicalPoint({...p,...referencesByCode.get(p.code)}))));
+ const color={surface:'#c9a58c',organs:'#b56f67',nerves:'#c9a22d',vessels:'#ad626a'};
+-function bake(node,female=false,surface=false){const nativePosition=female?node.geometry.attributes.position.clone():null;if(female)normalizeFemaleMesh(node,T);node.updateWorldMatrix(true,false);const g=node.geometry.clone().applyMatrix4(node.matrixWorld);if(node.matrixWorld.determinant()<0&&g.index){const a=g.index.array;for(let i=0;i<a.length;i+=3)[a[i+1],a[i+2]]=[a[i+2],a[i+1]];}g.computeVertexNormals();addRegionHints(g,surface?{...node.userData.atlas,system:'surface'}:node.userData.atlas,nativePosition);return g;}
++function bake(node,female=false,surface=false){const nativePosition=female?nativeFemalePosition(node).clone():null;if(female)normalizeFemaleMesh(node,T);node.updateWorldMatrix(true,false);const g=node.geometry.clone().applyMatrix4(node.matrixWorld);if(node.matrixWorld.determinant()<0&&g.index){const a=g.index.array;for(let i=0;i<a.length;i+=3)[a[i+1],a[i+2]]=[a[i+2],a[i+1]];}g.computeVertexNormals();addRegionHints(g,surface?{...node.userData.atlas,system:'surface'}:node.userData.atlas,nativePosition);return g;}
+ function meters(geometry){geometry.scale(.001,.001,.001);geometry.translate(-.09955,-.835,.05);return geometry;}
+ function mergedPosition(geometries){if(geometries.length===1){const g=geometries[0].clone();for(const name of Object.keys(g.attributes))if(!['position','normal','bindingArm'].includes(name))g.deleteAttribute(name);g.computeVertexNormals();g.computeBoundingBox();return g;}const hasHints=geometries.some(g=>g.hasAttribute('bindingArm'));const pieces=geometries.map(g=>{const x=g.index?g.toNonIndexed():g.clone();if(hasHints&&!x.hasAttribute('bindingArm')){const values=new Float32Array(x.attributes.position.count);for(let i=0;i<values.length;i++)values[i]=T.MathUtils.smoothstep(Math.abs(x.attributes.position.getX(i)-99.553),180,230);x.setAttribute('bindingArm',new T.Float32BufferAttribute(values,1));}for(const name of Object.keys(x.attributes))if(!['position','bindingArm'].includes(name))x.deleteAttribute(name);return x;}),g=mergeGeometries(pieces,false);pieces.forEach(x=>x.dispose());g.computeVertexNormals();g.computeBoundingBox();return g;}
+ 
+ export function createPoseTissues({scene,meshes,handRig,onStatus,onChange,getOccluders=()=>[]}){
+  const root=new T.Group();scene.add(root);const binding=createPoseBinding(handRig),bones=binding.ids.map(()=>{const b=new T.Bone();b.matrixAutoUpdate=false;root.add(b);return b;}),skeleton=new T.Skeleton(bones,bones.map(()=>new T.Matrix4()));
+  const draco=new DRACOLoader().setDecoderConfig({type:'js'}).setWorkerLimit(2);draco._loadLibrary=()=>Promise.resolve(decoderSource);const loader=new GLTFLoader().setDRACOLoader(draco);
+- const documents=new Map(),models=new Map(),pending=new Map();let sex='male',view='bones',channel='PC',side='right',vesselFilter='all',detailsOn=false,pointsOn=true,linesOn=true,namesOn=true,highlightOn=false,selectedCode='PC6',selectedSide='right',currentResult=null,busy=false,epoch=0,activeInk=null,activeRoutes=[],activePoints=[],currentStructure=null;
++ const documents=new Map(),models=new Map(),pending=new Map(),preparationMetrics=new Map();let sex='male',view='bones',channel='PC',side='right',vesselFilter='all',detailsOn=false,pointsOn=true,linesOn=true,namesOn=true,highlightOn=false,selectedCode='PC6',selectedSide='right',currentResult=null,busy=false,epoch=0,activeInk=null,activeRoutes=[],activePoints=[],currentStructure=null;
+  const doc=async url=>{if(!documents.has(url))documents.set(url,loader.loadAsync(url).catch(e=>{documents.delete(url);throw e;}));return documents.get(url);};
+  function mesh(geometry,material,bodyOnly=false,surface=false,prepared=false){if(!prepared)binding.attributes(geometry,{bodyOnly,surface});if(!surface)binding.tissueMaterial(material);const n=new T.SkinnedMesh(geometry,material);n.bind(skeleton,new T.Matrix4());n.frustumCulled=false;n.applyBoneTransform=(i,v)=>binding.vertex(geometry,i,v);root.add(n);return n;}
+  async function loadSurfaceBinding(g,which){
+@@ -40,7 +41,7 @@
+   g.setAttribute('skinIndex',new T.Uint16BufferAttribute(new Uint16Array(bytes,12,n*4).slice(),4));g.setAttribute('skinWeight',new T.Float32BufferAttribute(new Float32Array(bytes,12+n*8,n*4).slice(),4));
+   const hand=new Float32Array(n),si=new Uint16Array(n*4),sw=new Float32Array(n*4),xi=new Uint16Array(n*4),xw=new Float32Array(n*4),data=new DataView(bytes);let previous=-1;
+   for(let j=0;j<extra;j++){const offset=12+n*24+j*56,i=data.getUint32(offset,true);if(i<=previous||i>=n)throw Error('体表额外绑定索引不正确');previous=i;hand[i]=data.getFloat32(offset+4,true);for(let block=0;block<2;block++)for(let k=0;k<4;k++){(block?xi:si)[i*4+k]=data.getUint16(offset+8+block*8+k*2,true);(block?xw:sw)[i*4+k]=data.getFloat32(offset+24+block*16+k*4,true);}}
+-  g.setAttribute('poseHand',new T.Float32BufferAttribute(hand,1));g.setAttribute('skinIndexHand',new T.Uint16BufferAttribute(si,4));g.setAttribute('skinWeightHand',new T.Float32BufferAttribute(sw,4));g.setAttribute('skinIndexExtra',new T.Uint16BufferAttribute(xi,4));g.setAttribute('skinWeightExtra',new T.Float32BufferAttribute(xw,4));
++  g.userData.legPartition=row.legPartition||null;g.setAttribute('poseHand',new T.Float32BufferAttribute(hand,1));g.setAttribute('skinIndexHand',new T.Uint16BufferAttribute(si,4));g.setAttribute('skinWeightHand',new T.Float32BufferAttribute(sw,4));g.setAttribute('skinIndexExtra',new T.Uint16BufferAttribute(xi,4));g.setAttribute('skinWeightExtra',new T.Float32BufferAttribute(xw,4));
+  }
+  async function ensureSkin(which){
+   if(models.get(which)?.skin)return models.get(which);const maleDoc=await doc('../fullbody-tcm-v11/assets/surface.glb');maleDoc.scene.updateMatrixWorld(true);const maleNodes=[];maleDoc.scene.traverse(n=>{if(n.isMesh)maleNodes.push(n);});
+@@ -74,9 +75,24 @@
+   // Reuse its actual meshes instead of rebuilding hundreds of identical bindings.
+   if(layer==='nerves'){const shared=[...models.values()].map(m=>m.layers.get('nerves')).find(Boolean);if(shared){model.layers.set(layer,shared);return shared;}}
+   const female=which==='female',systems=layer==='organs'?(female?['respiratory','digestive','urinary','reproductive','breast','vascular']:['visceral','heart']):layer==='vessels'?(female?['vascular']:['vessels']):['nervous'];const nodes=[];
+-  const native=female&&layer!=='nerves';let catalog=null;if(female&&native){const response=await fetch('../fullbody-tcm-v12/assets/female/catalog.json');if(!response.ok)throw Error('女性结构目录读取失败');catalog=(await response.json()).entries;}
+-  for(const system of systems){const url=native?'../fullbody-tcm-v12/assets/female/'+system+'.glb':layer==='nerves'?'../fullbody-tcm-v9/assets/nervous.glb':'../fullbody-tcm-v11/assets/'+system+'.glb';const d=await doc(url);d.scene.updateMatrixWorld(true);d.scene.traverse(n=>{if(!n.isMesh)return;const original=catalog?.find(x=>x.id===n.name)||n.userData.atlas,info=poseStructureInfo(original);if(!info||native&&layer==='organs'&&system==='vascular'&&!info.ancestry?.includes('VH_F_heart'))return;const g=meters(bake(n,native)),mat=new T.MeshStandardMaterial({color:layer==='vessels'&&(/vein|vena|静脉/i.test([info.name,info.en,info.english].join(' ')))?'#668ba2':color[layer],roughness:.7});const posed=mesh(g,mat,layer==='organs');posed.userData={info,layer,origin:native?'female-native':'shared-teaching'};posed.visible=false;nodes.push(posed);});}
+-  if(!nodes.length)throw Error('没有找到对应结构');model.layers.set(layer,nodes);return nodes;
++  const native=female&&layer!=='nerves',title={organs:'器官',nerves:'神经',vessels:'血管'}[layer];
++  const preparationStart=performance.now();onStatus('正在载入'+title+'模型…');
++  const catalogTask=native?fetch('../fullbody-tcm-v12/assets/female/catalog.json').then(async response=>{if(!response.ok)throw Error('女性结构目录读取失败');return new Map((await response.json()).entries.map(row=>[row.id,row]));}):Promise.resolve(null);
++  const files=systems.map(system=>({system,url:native?'../fullbody-tcm-v12/assets/female/'+system+'.glb':layer==='nerves'?'../fullbody-tcm-v9/assets/nervous.glb':'../fullbody-tcm-v11/assets/'+system+'.glb'}));
++  const [catalog,docs]=await Promise.all([catalogTask,Promise.all(files.map(file=>doc(file.url)))]),entries=[];
++  for(let i=0;i<docs.length;i++){const d=docs[i],system=files[i].system;d.scene.updateMatrixWorld(true);d.scene.traverse(n=>{
++   if(!n.isMesh)return;const original=catalog?.get(n.name)||n.userData.atlas,info=poseStructureInfo(original);
++   if(!info||native&&layer==='organs'&&system==='vascular'&&!info.ancestry?.includes('VH_F_heart'))return;entries.push({node:n,info});
++  });}
++  const downloadAndDecodeMilliseconds=performance.now()-preparationStart;let yieldCount=0,maximumMeshWallMilliseconds=0,maximumSliceMilliseconds=0,computeMilliseconds=0,sliceStart=performance.now();onStatus('正在准备'+title+' 0 / '+entries.length);await yieldPreparation();sliceStart=performance.now();
++  const pause=async()=>{if(performance.now()-sliceStart<12)return;const slice=performance.now()-sliceStart;computeMilliseconds+=slice;maximumSliceMilliseconds=Math.max(maximumSliceMilliseconds,slice);yieldCount++;onStatus('正在准备'+title+' '+nodes.length+' / '+entries.length);await yieldPreparation();sliceStart=performance.now();};
++  try{for(const {node:n,info} of entries){
++   const meshStart=performance.now();if(native)await normalizeFemaleMeshAsync(n,T,pause);const g=meters(bake(n,native)),mat=new T.MeshStandardMaterial({color:layer==='vessels'&&(/vein|vena|静脉/i.test([info.name,info.en,info.english].join(' ')))?'#668ba2':color[layer],roughness:.7});
++   g.userData.sourceInfo=info;await binding.attributesAsync(g,{bodyOnly:layer==='organs'},pause);const posed=mesh(g,mat,layer==='organs',false,true);posed.userData={info,layer,origin:native?'female-native':'shared-teaching'};posed.visible=false;nodes.push(posed);
++   const meshTime=performance.now()-meshStart;maximumMeshWallMilliseconds=Math.max(maximumMeshWallMilliseconds,meshTime);maximumSliceMilliseconds=Math.max(maximumSliceMilliseconds,performance.now()-sliceStart);
++   await pause();
++  }}catch(error){for(const n of nodes){root.remove(n);n.geometry.dispose();n.material.dispose();}throw error;}
++  if(!nodes.length)throw Error('没有找到对应结构');computeMilliseconds+=performance.now()-sliceStart;preparationMetrics.set(which+'|'+layer,{nodes:nodes.length,yieldCount,maximumMeshWallMilliseconds,maximumSliceMilliseconds,computeMilliseconds,downloadAndDecodeMilliseconds,totalMilliseconds:performance.now()-preparationStart,method:'Parallel source loading, indexed catalog lookup, chunked binding and yielding between meshes; synchronous decoding, normals and other mesh work may exceed 12 ms; browser-run measurements'});model.layers.set(layer,nodes);return nodes;
+  }
+  async function ensurePelvis(which){
+   if(which!=='female'||models.get('female')?.pelvis)return;const d=await doc('../fullbody-tcm-v12/assets/female/skeletal.glb');d.scene.updateMatrixWorld(true);const response=await fetch('../fullbody-tcm-v12/assets/female/catalog.json');if(!response.ok)throw Error('女性骨盆目录读取失败');const rows=(await response.json()).entries,map=new Map();d.scene.traverse(n=>{if(n.isMesh)map.set(n.name,n);});const groups={sacrum:['VH_F_sacrum'],coccyx:['VH_F_coccyx']};for(const side of ['right','left'])groups['hip-'+side]=['pubis','ilium','ischium'].map(p=>'VH_F_'+p+'_compact_bone_'+(side==='right'?'R':'L'));const pelvis=[];
+@@ -107,6 +123,6 @@
+  function select(code,physicalSide){selectedCode=code;if(physicalSide)selectedSide=physicalSide;update(currentResult);onChange();return activePoints.find(p=>p.code===code&&p.side===selectedSide);}
+  function highlightStructure(node,on=highlightOn){currentStructure=node;highlightOn=!!on;for(const nodes of models.get(sex)?.layers.values()||[])for(const n of nodes){const selected=n===node,fade=highlightOn&&node&&!selected;n.material.transparent=!!fade;n.material.opacity=fade?.18:1;n.material.depthWrite=!fade;n.material.emissive.set(highlightOn&&selected?'#71382d':'#000000');n.material.emissiveIntensity=highlightOn&&selected?.4:0;n.material.needsUpdate=true;}onChange();}
+  function structureBounds(node){const b=new T.Box3(),p=new T.Vector3(),g=node.geometry;for(let i=0;i<g.attributes.position.count;i+=Math.max(1,Math.floor(g.attributes.position.count/5000)))b.expandByPoint(binding.vertex(g,i,p));return b;}
+- function audit(){const model=models.get(sex);const sample=model?.skin?[0,Math.floor(model.skin.geometry.attributes.position.count/2),model.skin.geometry.attributes.position.count-1].map(i=>binding.vertex(model.skin.geometry,i).toArray()):[];return {sex,view,channel,side,vesselFilter,detailsOn,busy,pointsOn,linesOn,namesOn,highlightOn,structureId:currentStructure?.userData.info.id||null,provenance:model?.provenance||null,femaleFrame:sex==='female'?bodyFrameInfo():null,nativePelvis:model?.pelvis?.length||0,loadedLayers:Object.fromEntries([...(model?.layers||[])].map(([key,nodes])=>[key,{parts:nodes.length,visible:nodes.filter(n=>n.visible).length,origins:[...new Set(nodes.map(n=>n.userData.origin))]}])),skinSample:sample,skinVertices:model?.skin?.geometry.attributes.position.count||0,skinTriangles:model?.skin?model.skin.geometry.index.count/3:0,selectedCode,selectedSide,points:activePoints.map(p=>({code:p.code,side:p.side,rest:p.attached.rest,posed:p.posed?.toArray(),triangle:p.attached.vertices,bary:p.attached.bary,restBindingError:p.attached.distance})),ink:activeInk?.stats||null,skinDeviceContact:{active:view==='surface'&&currentResult?.grip?.type==='phone',method:'shallow projection to phone shell',maximumCorrectionMetres:.002,clearanceMetres:.00005,sourceVerticesUnchanged:true,internalForce:null},clinicalCalibration:false,internalTissueForces:null};}
++ function audit(){const model=models.get(sex);const sample=model?.skin?[0,Math.floor(model.skin.geometry.attributes.position.count/2),model.skin.geometry.attributes.position.count-1].map(i=>binding.vertex(model.skin.geometry,i).toArray()):[];return {sex,view,channel,side,vesselFilter,detailsOn,busy,preparation:preparationMetrics.get(sex+'|'+view)||null,pointsOn,linesOn,namesOn,highlightOn,structureId:currentStructure?.userData.info.id||null,provenance:model?.provenance||null,femaleFrame:sex==='female'?bodyFrameInfo():null,nativePelvis:model?.pelvis?.length||0,loadedLayers:Object.fromEntries([...(model?.layers||[])].map(([key,nodes])=>[key,{parts:nodes.length,visible:nodes.filter(n=>n.visible).length,origins:[...new Set(nodes.map(n=>n.userData.origin))]}])),legPartition:model?.skin?.geometry.userData.legPartition||null,skinSample:sample,skinVertices:model?.skin?.geometry.attributes.position.count||0,skinTriangles:model?.skin?model.skin.geometry.index.count/3:0,selectedCode,selectedSide,points:activePoints.map(p=>({code:p.code,side:p.side,rest:p.attached.rest,posed:p.posed?.toArray(),triangle:p.attached.vertices,bary:p.attached.bary,restBindingError:p.attached.distance})),ink:activeInk?.stats||null,skinDeviceContact:{active:view==='surface'&&currentResult?.grip?.type==='phone',method:'shallow projection to phone shell',maximumCorrectionMetres:.002,clearanceMetres:.00005,sourceVerticesUnchanged:true,internalForce:null},clinicalCalibration:false,internalTissueForces:null};}
+  return {set,update,pick,visible,select,highlightStructure,structureBounds,audit,setDetails:on=>{detailsOn=!!on;applyView();},setVesselFilter:filter=>{vesselFilter=validVesselFilter(filter);applyView();},structures:()=>models.get(sex)?.layers.get(view)?.filter(n=>n.visible)||[],points:()=>activePoints,selected:()=>activePoints.find(p=>p.code===selectedCode&&p.side===selectedSide),state:()=>({sex,view,channel,side,vesselFilter,detailsOn,highlightOn,structureId:currentStructure?.userData.info.id||'',pointsOn,linesOn,namesOn,selectedCode,selectedSide}),routes:()=>activeRoutes,provenance:()=>models.get(sex)?.provenance||null};
+ }
+--- a/pose.css
++++ b/pose.css
+@@ -20,3 +20,6 @@
+ 
+ #spineStudy{margin-bottom:18px}#spineStudy p{font-size:11px}#spineStudy button{width:100%;font-size:11px}#spineStudy input[type=range]{width:100%;accent-color:#28664f;min-height:36px}.spineInputs{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.spineInputs output{display:block;color:#28664f;font-size:11px}#spineTable table{width:100%;border-collapse:collapse;font-size:10px}#spineTable caption{text-align:left;padding:6px 0}#spineTable th,#spineTable td{text-align:left;border-bottom:1px solid #dce5d7;padding:6px 3px}
+ @media(max-width:650px){#stage:not(.hasGrip) .stageState{bottom:180px}.viewTools{bottom:62px}.stageLegend{bottom:30px}}
++
++/* Paint selectors consistently over the WebGL canvas after scripted restores. */
++.bodyControls select{appearance:none;-webkit-appearance:none;padding-right:25px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M2 2l4 4 4-4' fill='none' stroke='%23426250' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center}.bodyControls select:disabled{opacity:.55}
