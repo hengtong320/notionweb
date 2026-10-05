@@ -1,0 +1,19 @@
+
+/* V47: retain one clear action per task on compact screens. */
+#sharedAcupointCoverage{display:none!important}
+@media(max-width:650px){body.reading-v26[data-current-kind=point] .detail-panel>.detail-top{display:none!important}}
+@media(max-width:600px){
+ .topbar .brand{flex:none;width:25px;min-width:25px}
+ .topbar .brand>span:last-child{display:none}
+ .topbar .brand-mark{display:flex!important;width:25px;height:28px}
+ .topbar .brand-mark svg{width:20px;height:20px}
+ .topbar{gap:4px}
+ #bodySelector{flex:none}
+ body.female-view .stage-heading .eyebrow{display:none!important}
+ #labelFitAll{display:none!important}
+ body.v26-point-selected:not(.nav-open):not(.detail-open) .tcm-status{display:none!important}
+ .view-switcher button{min-height:34px}
+ #tcmQuickControls button{min-height:36px}
+ #acupointSearch{min-height:44px}
+}
+@media(max-width:350px){.topbar .brand{display:none}}
