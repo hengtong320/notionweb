@@ -43,6 +43,10 @@
     {
       "name": "no-renderer-or-shader-errors",
       "pass": true
+    },
+    {
+      "name": "anatomical-twist-direction-label",
+      "pass": true
     }
   ],
   "allPassed": true,

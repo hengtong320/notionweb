@@ -249,7 +249,7 @@ diff --git a/pose-lab.js b/pose-lab.js
   if(!solved)return;currentSpine=observeSpine(solved,meshes);const settings=getSpineInput(),row=currentSpine.levels.find(r=>r.id===$('spineLevel').value);
 - for(const key of SPINE_KEYS){const n=settings[key];$(key+'Value').textContent=n===0?'原姿势':(key.endsWith('Side')?(n>0?'向右 ':'向左 '):(n>0?'前屈 ':'后伸 '))+Math.abs(n)+'°';}
 - $('spineLevelInfo').textContent=row.name+(row.name.includes(row.id)?'':' '+row.id)+'：相对附加调整为零时，骨块中心移动 '+row.displacementMM.toFixed(1)+' mm，方向差 '+row.rotationDifferenceDegrees.toFixed(1)+'°。'+(row.independentRotation?'沿颈/腰关节链逐节变化。':'目前跟随胸廓整体变化。');
-+ for(const key of SPINE_KEYS){const n=settings[key];$(key+'Value').textContent=n===0?'原姿势':((key.endsWith('Side')||key.endsWith('Twist'))?(n>0?'向右 ':'向左 '):(n>0?'前屈 ':'后伸 '))+Math.abs(n)+'°';}
++ for(const key of SPINE_KEYS){const n=settings[key];$(key+'Value').textContent=n===0?'原姿势':(key.endsWith('Twist')?(n>0?'左转 ':'右转 '):key.endsWith('Side')?(n>0?'向右 ':'向左 '):(n>0?'前屈 ':'后伸 '))+Math.abs(n)+'°';}
 + $('spineLevelInfo').textContent=row.name+(row.name.includes(row.id)?'':' '+row.id)+'：相对附加调整为零时，骨块中心移动 '+row.displacementMM.toFixed(1)+' mm，方向差 '+row.rotationDifferenceDegrees.toFixed(1)+'°。'+(row.independentRotation?'沿颈、胸、腰关节链逐节变化。':'目前跟随胸廓整体变化。');
   const adjusted=Object.values(settings).some(Boolean),errors=solved.constraints.filter(c=>c.error>.003);
   $('spineNotice').textContent=adjusted?'已叠加弯曲示意，原场景的支撑标记仅供位置参考，未重新求接触与反力。'+(errors.length?'当前有 '+errors.length+' 个手/足目标超出参考肢段可达范围。':''):'附加调整为零，保留当前生活姿势。可以改变时长对照任务暴露，时长本身不会改变骨骼或给出损伤等级。';
