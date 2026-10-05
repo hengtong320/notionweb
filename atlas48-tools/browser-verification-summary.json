@@ -1,0 +1,292 @@
+{
+  "checks": [
+    {
+      "name": "女性同镜头前后对照",
+      "pass": true
+    },
+    {
+      "name": "男性同镜头前后对照",
+      "pass": true
+    },
+    {
+      "name": "劳宫附着三角面未改变",
+      "pass": true
+    },
+    {
+      "name": "男女神经复用后均显示550个共用教学部件",
+      "pass": true
+    },
+    {
+      "name": "手机遮挡的劳宫名称隐藏，选择框仍保留",
+      "pass": true
+    },
+    {
+      "name": "spine levels and preserved share settings",
+      "pass": true
+    },
+    {
+      "name": "lumbar focus retains opaque surface view and spine settings",
+      "pass": true
+    },
+    {
+      "name": "neck focus retains organs view",
+      "pass": true
+    },
+    {
+      "name": "gender change retains spine adjustment and shared nerves",
+      "pass": true
+    },
+    {
+      "name": "vein filter and spine settings retained across gender",
+      "pass": true
+    },
+    {
+      "name": "lumbar focus retains vessels",
+      "pass": true
+    },
+    {
+      "name": "hip-knee focus retains male skin and spine settings",
+      "pass": true
+    },
+    {
+      "name": "reset returns all spine adjustments and per-level differences to zero",
+      "pass": true
+    },
+    {
+      "name": "actual opaque skin click selects PC6 from previous PC5 selection",
+      "pass": true
+    },
+    {
+      "name": "390px layout has no horizontal overflow and visible controls stay inside width",
+      "pass": true
+    }
+  ],
+  "layers": [
+    {
+      "sex": "male",
+      "view": "bones",
+      "pose": "stand-phone",
+      "pass": true
+    },
+    {
+      "sex": "male",
+      "view": "surface",
+      "pose": "stand-phone",
+      "pass": true
+    },
+    {
+      "sex": "male",
+      "view": "organs",
+      "pose": "stand-phone",
+      "pass": true
+    },
+    {
+      "sex": "male",
+      "view": "nerves",
+      "pose": "stand-phone",
+      "pass": true
+    },
+    {
+      "sex": "male",
+      "view": "vessels",
+      "pose": "stand-phone",
+      "pass": true
+    },
+    {
+      "sex": "female",
+      "view": "vessels",
+      "pose": "stand-phone",
+      "pass": true
+    },
+    {
+      "sex": "female",
+      "view": "organs",
+      "pose": "stand-phone",
+      "pass": true
+    },
+    {
+      "sex": "female",
+      "view": "surface",
+      "pose": "stand-relaxed",
+      "spine": {
+        "lumbarFlex": 0,
+        "lumbarSide": 10,
+        "cervicalFlex": 0,
+        "cervicalSide": -8
+      },
+      "pass": true
+    },
+    {
+      "sex": "female",
+      "view": "organs",
+      "pose": "stand-relaxed",
+      "spine": {
+        "lumbarFlex": 0,
+        "lumbarSide": 10,
+        "cervicalFlex": 0,
+        "cervicalSide": -8
+      },
+      "pass": true
+    },
+    {
+      "sex": "female",
+      "view": "nerves",
+      "pose": "stand-relaxed",
+      "spine": {
+        "lumbarFlex": 0,
+        "lumbarSide": 10,
+        "cervicalFlex": 0,
+        "cervicalSide": -8
+      },
+      "pass": true
+    },
+    {
+      "sex": "male",
+      "view": "nerves",
+      "pose": "stand-relaxed",
+      "spine": {
+        "lumbarFlex": 0,
+        "lumbarSide": 10,
+        "cervicalFlex": 0,
+        "cervicalSide": -8
+      },
+      "pass": true
+    },
+    {
+      "sex": "male",
+      "view": "vessels",
+      "pose": "stand-relaxed",
+      "spine": {
+        "lumbarFlex": 0,
+        "lumbarSide": 10,
+        "cervicalFlex": 0,
+        "cervicalSide": -8
+      },
+      "pass": true
+    },
+    {
+      "sex": "female",
+      "view": "vessels",
+      "pose": "stand-relaxed",
+      "spine": {
+        "lumbarFlex": 0,
+        "lumbarSide": 10,
+        "cervicalFlex": 0,
+        "cervicalSide": -8
+      },
+      "pass": true
+    },
+    {
+      "sex": "male",
+      "view": "surface",
+      "pose": "stand-relaxed",
+      "spine": {
+        "lumbarFlex": 0,
+        "lumbarSide": 10,
+        "cervicalFlex": 0,
+        "cervicalSide": -8
+      },
+      "pass": true
+    },
+    {
+      "sex": "male",
+      "view": "organs",
+      "pose": "stand-relaxed",
+      "spine": {
+        "lumbarFlex": 0,
+        "lumbarSide": 10,
+        "cervicalFlex": 0,
+        "cervicalSide": -8
+      },
+      "pass": true
+    },
+    {
+      "sex": "male",
+      "view": "bones",
+      "pose": "stand-relaxed",
+      "spine": {
+        "lumbarFlex": 0,
+        "lumbarSide": 10,
+        "cervicalFlex": 0,
+        "cervicalSide": -8
+      },
+      "pass": true
+    },
+    {
+      "sex": "female",
+      "view": "bones",
+      "pose": "stand-relaxed",
+      "spine": {
+        "lumbarFlex": 0,
+        "lumbarSide": 10,
+        "cervicalFlex": 0,
+        "cervicalSide": -8
+      },
+      "pass": true
+    }
+  ],
+  "actualPointClick": "PC5 to PC6 on opaque male surface",
+  "mobile": {
+    "buttons": [
+      {
+        "h": 44,
+        "text": "旋转",
+        "w": 89.5,
+        "x": 10,
+        "y": 352
+      },
+      {
+        "h": 44,
+        "text": "平移",
+        "w": 89.5,
+        "x": 103.5,
+        "y": 352
+      },
+      {
+        "h": 44,
+        "text": "− 缩小",
+        "w": 89.5,
+        "x": 197,
+        "y": 352
+      },
+      {
+        "h": 44,
+        "text": "＋ 放大",
+        "w": 89.5,
+        "x": 290.5,
+        "y": 352
+      },
+      {
+        "h": 44,
+        "text": "完整显示",
+        "w": 89.5,
+        "x": 10,
+        "y": 400
+      },
+      {
+        "h": 44,
+        "text": "正面",
+        "w": 89.5,
+        "x": 103.5,
+        "y": 400
+      },
+      {
+        "h": 44,
+        "text": "侧面",
+        "w": 89.5,
+        "x": 197,
+        "y": 400
+      },
+      {
+        "h": 44,
+        "text": "俯视",
+        "w": 89.5,
+        "x": 290.5,
+        "y": 400
+      }
+    ],
+    "scrollWidth": 390,
+    "width": 390
+  },
+  "physicalPhoneAcceptance": false
+}
