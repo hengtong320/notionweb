@@ -14,3 +14,5 @@ export function boneSegment(b){
  if(b.group==='leg')return 'knee'+s;
  return 'ankle'+s;
 }
+export const isTrunkBone=mesh=>['thorax','thoracic','shoulder'].includes(mesh.userData.info.group);
+export const belongsToSegment=(mesh,id)=>id==='trunk'?isTrunkBone(mesh):mesh.userData.segment===id;
