@@ -1,0 +1,56 @@
+name: Publish V46 posed anatomy and surface attachments
+on:
+  push:
+    paths:
+      - 'atlas46-tools/**'
+      - '.github/workflows/atlas46-publish.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: atlas46-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify and prepare reviewed sources
+        run: |
+          python3 atlas46-tools/prepare.py
+      - name: Build and validate data
+        run: |
+          npm install --prefix /tmp/atlas46-build --no-audit --no-fund three@0.180.0 three-mesh-bvh@0.9.2 esbuild@0.25.10
+          NODE_PATH=/tmp/atlas46-build/node_modules node atlas46-tools/build.cjs
+          node --check fullbody-tcm-v46/app.bundle.js
+          node --check fullbody-tcm-v46/pose.bundle.js
+      - name: Match reviewed local build
+        env:
+          EXPECTED_BUNDLE: a208ba4863cd2bfc03560d17ca1b39ca37d19eb1c5479dfcbdb3fece4fa90e6d
+          EXPECTED_POSE: f2112e9588f88a5e563d1f3d3554f6d2e46f440ddc6a1bae161225a06b84e811
+          EXPECTED_EVIDENCE: d616f4a218f33e5cbdc5fb03a3e7d4089830c6fca80b0851e85a8ad76754459d
+        run: |
+          python3 - <<'PYCODE'
+          import pathlib,hashlib,json,os
+          d=pathlib.Path('fullbody-tcm-v46')
+          for name,key in [('app.bundle.js','EXPECTED_BUNDLE'),('evidence.bundle.js','EXPECTED_EVIDENCE'),('pose.bundle.js','EXPECTED_POSE')]:
+            assert hashlib.sha256((d/name).read_bytes()).hexdigest()==os.environ[key],name
+          for name,sha in json.loads((d/'build-info.json').read_text())['files'].items():
+            assert hashlib.sha256((d/name).read_bytes()).hexdigest()==sha,name
+          p=pathlib.Path('anatomy/index.html');s=p.read_text()
+          assert 'fullbody-tcm-v45' in s or 'fullbody-tcm-v46' in s
+          p.write_text(s.replace('fullbody-tcm-v45','fullbody-tcm-v46').replace('45.0.0','46.0.0'))
+          PYCODE
+          git diff --exit-code -- fullbody-tcm-v45 fullbody-tcm-v41 fullbody-tcm-v40 fullbody-tcm-v34 fullbody-tcm-v31 fullbody-tcm-v9 fullbody-tcm-v11 fullbody-tcm-v12
+      - name: Publish version and fixed entry
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fullbody-tcm-v46 anatomy/index.html
+          git diff --cached --quiet || git commit -m "Publish V46 posed anatomy and surface attachments"
+          git push origin HEAD:main
