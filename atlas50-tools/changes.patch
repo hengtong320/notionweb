@@ -1,0 +1,73 @@
+--- a/IMPLEMENTATION.md
++++ b/IMPLEMENTATION.md
+@@ -1,3 +1,5 @@
++本文件记录继承的模型与研究方法；V50 新增结果以 [本轮复核](../atlas50-tools/REVIEW.md) 为准。
++
+ > 历史阶段记录，保留当时的范围与结论。当前 V50 的实现和验收请以 [README](README.md) 及 [本轮复盘](../atlas49-tools/REVIEW.md) 为准。
+ 
+ # V12.0.1 发布范围
+--- a/README.md
++++ b/README.md
+@@ -1,13 +1,11 @@
+-# V50 · 姿势中的分层与脊柱分节观察
++# V50 姿势体表关系修正
+ 
+-本地使用仓库根目录作为静态服务目录，打开 `fullbody-tcm-v50/pose.html`。固定入口为 `anatomy/`。
++入口：[生活姿势](pose.html?v=50.0.0) · [解剖与经穴](index.html?v=50.0.0)
+ 
+-保留 120 种生活姿势，男女可切换骨架、皮肤与经穴、内脏、神经、动静脉。点击腰椎、颈肩、髋膝只调整镜头，保留当前图层。握持与遮挡修复继承 V48。
++保留 120 种姿态，以及男女体表、经穴、骨架、器官、神经和血管观察。颈、胸、腰分节附加弯曲与定位功能继承 V49。
+ 
+-新增 T1–T12 独立教学关节链，七项附加设置覆盖颈腰前后屈与侧屈、胸段前后屈与侧屈及转向。24 个骨块可逐节定位，观察相对同姿势零附加设置时的中心位移与方向差。皮肤、经穴与内部结构按同一姿势随动；附加设置、选择节段、镜头和图层可保存到链接或观察记录。
++本轮修正六种左右侧卧的腕部目标与肘部方向参照，让上、下侧手臂离开胸廓；修正下犬式、宽膝婴儿式的上臂旋转参照；前屈姿态的手臂适度分开。婴儿式的膝部间距和屈膝设置减少体表穿插，仍有残留。
+ 
+-肋骨按编号胸椎作刚体随动，肩带随 T2，胸骨随 T6；未求解肋软骨和肋椎关节运动。卧躺、靠背和水中标记随新的胸段集合定位；这些是骨架几何参考，未求解真实皮肤接触。零胸段调整保留 V48 姿势和体表缓存。源骨块大小、源皮肤位置和拓扑不变，女性原生体表、骨盆及器官保留。
++体表保持不透明；每个性别使用自己的皮肤三角附着，线路、点和名称沿同一姿态更新。没有移动穴位来隐藏穿插，也没有改动源皮肤或骨块形状。
+ 
+-这是参考几何与外部重力项的学习工具。未测椎体终板，不能给出临床 Cobb 角、病变节段、腰椎压力、神经张力或损伤概率。时长显示任务暴露和研究依据，不会自动把某节骨头变成受损。仍有原始皮肤缺口、握持局部褶皱与穿插、未校准穴位和真实材料求解待处理。
+-
+-验证与局限见 `../atlas49-tools/REVIEW.md`、研究依据见 `../atlas49-tools/RESEARCH.md`。
++完整诊断和剩余问题见 [本轮复核](../atlas50-tools/REVIEW.md)。真实组织压力、神经张力、椎间盘压缩和病变预测仍未求解；穴位医学定位仍需逐点校准。
+--- a/RESEARCH-AND-ACCEPTANCE.md
++++ b/RESEARCH-AND-ACCEPTANCE.md
+@@ -1,3 +1,5 @@
++本文件记录继承的模型与研究方法；V50 新增结果以 [本轮复核](../atlas50-tools/REVIEW.md) 为准。
++
+ > 历史阶段记录，保留当时的范围与结论。当前 V50 的实现和验收请以 [README](README.md) 及 [本轮复盘](../atlas49-tools/REVIEW.md) 为准。
+ 
+ # 经络线条、穴位定位和点击说明：本轮核查与实现
+--- a/pose-catalog.js
++++ b/pose-catalog.js
+@@ -134,11 +134,13 @@
+ add('yoga-warrior-left','瑜伽 · 战士式左腿在前','瑜伽',standing,{height:.70,legL:leg(50,75),legR:leg(-30,5),armR:arm(0,5,90),armL:arm(0,5,90)},'左前右后与右前左后区别显示，支撑脚不悬浮。',['kneeFlex','armsHeld']);
+ add('yoga-chair','瑜伽 · 椅式','瑜伽',squat,{height:.64,pelvisTilt:15,legR:leg(40,60),legL:leg(40,60),armR:arm(150,10,8),armL:arm(150,10,8)},'髋膝屈曲与双臂举起，需要下肢和躯干维持；不提供保持多久才安全的阈值。',['kneeFlex','armsUp']);
+ add('yoga-fold','瑜伽 · 站姿前屈','瑜伽',standing,{height:.79,pelvisTilt:65,bend:20,legR:leg(50,12),legL:leg(50,12),armR:arm(0,8),armL:arm(0,8)},'髋与腰背共同前屈；腿后侧柔韧性因人而异，骨架不代表必须触地。',['hinge','spineFlex']);
+-add('yoga-dog','瑜伽 · 下犬式','瑜伽',o=>({...o,height:.64,pelvisTilt:135,feet:['R','L'],legR:leg(95,3),legL:leg(95,3),handTargetR:[-.20,.035,.84],handTargetL:[.20,.035,.84],handFlatR:true,handFlatL:true,handSupport:true}),{},'骨盆抬高，双手双脚形成支撑；手腕、肩与腿后侧的范围不能由姿势名称推定。',['handContact','hinge']);
++add('yoga-dog','瑜伽 · 下犬式','瑜伽',o=>({...o,height:.64,pelvisTilt:135,feet:['R','L'],armR:arm(-60),armL:arm(-60),legR:leg(95,3),legL:leg(95,3),handTargetR:[-.20,.035,.84],handTargetL:[.20,.035,.84],handFlatR:true,handFlatL:true,handSupport:true}),{},'骨盆抬高，双手双脚形成支撑；手腕、肩与腿后侧的范围不能由姿势名称推定。',['handContact','hinge']);
+ add('yoga-table','瑜伽 · 四点支撑','瑜伽',o=>({...o,height:.44,pelvisTilt:75,feet:[],legR:leg(75,90),legL:leg(75,90),handTargetR:[-.20,.035,.60],handTargetL:[.20,.035,.60],handFlatR:true,handFlatL:true,quadruped:true}),{},'双膝双手承托，背部接近水平；与下犬式的伸膝和足部支撑不同。',['handContact','kneeContact']);
+ add('yoga-cat','瑜伽 · 四点支撑弓背','瑜伽',o=>({...o,height:.45,pelvisTilt:70,bend:25,neck:15,feet:[],legR:leg(70,90),legL:leg(70,90),handTargetR:[-.20,.035,.60],handTargetL:[.20,.035,.60],handFlatR:true,handFlatL:true,quadruped:true}),{},'从四点支撑加入脊柱前屈，逐段观察腰背变化；不是把整块胸廓绕错误轴翻转。',['handContact','spineFlex']);
+-add('yoga-child','瑜伽 · 婴儿式','瑜伽',kneel,{height:.23,pelvisTilt:90,bend:5,legR:leg(150,150,10),legL:leg(150,150,10),handTargetR:[-.20,.035,1.03],handTargetL:[.20,.035,1.03],handFlatR:true,handFlatL:true,handSupport:true,heelSit:true},'臀部靠近脚跟、躯干前倾、双臂前伸；膝髋范围不同的人需要不同支撑。',['kneeFlex','hinge','armsUp']);
++add('yoga-child','瑜伽 · 婴儿式','瑜伽',kneel,{height:.23,pelvisTilt:90,bend:5,armR:arm(-60),armL:arm(-60),legR:leg(150,140,30),legL:leg(150,140,30),handTargetR:[-.20,.035,1.03],handTargetL:[.20,.035,1.03],handFlatR:true,handFlatL:true,handSupport:true,heelSit:true},'宽膝婴儿式参考：双膝分开、躯干前倾、双臂前伸。保留体表空间；不是要求每个人达到同一髋膝角度。',['kneeFlex','hinge','armsUp']);
+ add('yoga-bridge','瑜伽 · 仰卧桥式','瑜伽',o=>lying('supine',o),{bridge:true,orientation:[-110,0,0],height:.31,neck:20,feet:['R','L'],legR:leg(-10,100),legL:leg(-10,100),handTargetR:[-.22,.10,-.20],handTargetL:[.22,.10,-.20],elbowPoleR:[-.32,.10,-.42],elbowPoleL:[.32,.10,-.42],handFlatR:true,handFlatL:true},'肩背与双脚承托、骨盆抬高；与完全躺在床面不同，不按重量均分支撑。',['hipExtension']);
++// The IK rotation prior also controls humeral twist; wrist reach alone
++// does not establish a suitable shoulder surface orientation.
+ // 8 swimming states.
+ add('swim-prone-float','水中 · 俯漂伸展','游泳',o=>({...lying('prone',o),bed:false,water:true,height:.5}),{armR:arm(170,5,8),armL:arm(170,5,8)},'身体俯向水面、双臂前伸；浮力来自排水体积，而不是骨块体积。',['water']);
+ add('swim-back-float','水中 · 仰漂','游泳',o=>({...lying('supine',o),bed:false,water:true,height:.5}),{armR:arm(0,5,35),armL:arm(0,5,35)},'仰向水面、上肢展开；姿态不会自动给出实际排水量或平衡稳定性。',['water']);
+@@ -148,7 +150,7 @@
+ add('swim-breast-glide','蛙泳 · 蹬腿后滑行','游泳',o=>({...lying('prone',o),bed:false,water:true,height:.5}),{armR:arm(178,5,4),armL:arm(178,5,4),legR:leg(0,2,3),legL:leg(0,2,3)},'手臂和腿伸展形成滑行姿态；身体外形与速度共同影响阻力，当前未计算。',['water','dynamic']);
+ add('swim-backstroke','仰泳 · 单臂回摆','游泳',o=>({...lying('supine',o),bed:false,water:true,height:.5}),{armR:arm(155,12,15),armL:arm(15,25,12),legR:leg(8,10),legL:leg(-8,5)},'仰卧于水中、双臂不同阶段；不能沿用俯卧自由泳的支撑说明。',['water','dynamic','asymmetric']);
+ add('swim-tread','水中 · 直立踩水','游泳',o=>({...standing(o),feet:[],water:true,height:.9}),{armR:arm(55,55,55),armL:arm(55,55,55),legR:leg(20,35,18),legL:leg(20,35,18)},'直立踩水没有地面支撑；浮力与主动划水共同影响身体，不能只靠静态浮力判断是否能浮起。',['water','dynamic']);
+-for(const p of all){if(['sit-recline','rest-sofa'].includes(p.id))p.spec.lapReach=.18;if(['sit-edge','sit-slouch','sit-recline','sit-high-stool','sit-right-cross','sit-left-cross','rest-sofa','rest-tv-side'].includes(p.id))p.spec.handsLap=true;if(['bend-hips','bend-round','lift-stoop','yoga-fold'].includes(p.id)){for(const side of ['R','L'])p.spec['arm'+side].flex=(p.spec.pelvisTilt||0)+(p.spec.bend||0);}if(p.id==='rest-one-hand'){p.spec.lapReach=.17;p.spec.handTargetR=[-.25,.035,-.30];p.spec.elbowPoleR=[-.35,.15,-.14];p.spec.handFlatR=true;p.spec.handSides=['R'];p.spec.handSupport=true;}if(p.spec.desk){for(const side of ['R','L'])p.spec['arm'+side].handTurn=side==='R'?-90:90;}if(p.spec.lying==='left'||p.spec.lying==='right'){const left=p.spec.lying==='left',x=left?1:-1,lower=left?'L':'R',upper=left?'R':'L';p.spec['handTarget'+lower]=[x*.13,-.14,-.51];p.spec['handTarget'+upper]=[x*.19,.13,-.35];p.spec['elbowPole'+lower]=[x*.18,-.14,-.30];p.spec['elbowPole'+upper]=[x*.22,.13,-.20];}p.actionState=p.dynamic;p.dynamic=p.id.includes('crawl')||['walk','run'].includes(p.spec.motion);}
++for(const p of all){if(['sit-recline','rest-sofa'].includes(p.id))p.spec.lapReach=.18;if(['sit-edge','sit-slouch','sit-recline','sit-high-stool','sit-right-cross','sit-left-cross','rest-sofa','rest-tv-side'].includes(p.id))p.spec.handsLap=true;if(['bend-hips','bend-round','lift-stoop','yoga-fold'].includes(p.id)){for(const side of ['R','L'])p.spec['arm'+side].flex=(p.spec.pelvisTilt||0)+(p.spec.bend||0);}if(p.id==='rest-one-hand'){p.spec.lapReach=.17;p.spec.handTargetR=[-.25,.035,-.30];p.spec.elbowPoleR=[-.35,.15,-.14];p.spec.handFlatR=true;p.spec.handSides=['R'];p.spec.handSupport=true;}if(p.spec.desk){for(const side of ['R','L'])p.spec['arm'+side].handTurn=side==='R'?-90:90;}if(p.spec.lying==='left'||p.spec.lying==='right'){const left=p.spec.lying==='left',x=left?1:-1,lower=left?'L':'R',upper=left?'R':'L';p.spec['handTarget'+lower]=[x*.25,-.14,-.51];p.spec['handTarget'+upper]=[x*.31,.13,-.35];p.spec['elbowPole'+lower]=[x*.36,-.30,-.30];p.spec['elbowPole'+upper]=[x*.40,.30,-.20];}p.actionState=p.dynamic;p.dynamic=p.id.includes('crawl')||['walk','run'].includes(p.spec.motion);}
+ // Explicit ground anchors keep the feet under the task while hips counter-shift.
+ // These are reference task configurations, not an automatic balance optimizer.
+ for(const [id,height,z,tilt,bend] of [['bend-hips',.78,-.16,45,0],['bend-round',.79,-.14,15,38],['lift-stoop',.85,-.18,35,25],['yoga-fold',.82,-.22,65,20]]){
+@@ -157,6 +159,7 @@
+ }
+ for(const side of ['R','L']){const right=side==='R',p=all.find(p=>p.id==='reach-low-'+(right?'right':'left')),x=right?.055:-.055;Object.assign(p.spec,{height:.79,position:[x,.79,-.025]});for(const foot of ['R','L']){const fx=foot==='R'?-.14:.14;p.spec['footTarget'+foot]=[fx,.067,0];p.spec['kneePole'+foot]=[fx,.45,.3];}}
+ for(const side of ['R','L']){const right=side==='R',other=right?'L':'R',p=all.find(p=>p.id==='yoga-tree-'+(right?'right':'left')),x=right?-.10:.10;Object.assign(p.spec,{height:.86,position:[x,.86,0]});p.spec['footTarget'+side]=[right?-.07:.07,.067,0];p.spec['kneePole'+side]=[x,.45,.3];p.spec['leg'+other]={flex:30,knee:120,abd:35,yaw:right?45:-45,roll:0,footEuler:[90,0,right?-90:90]};p.spec['footTarget'+other]=[right?-.065:.065,.53,.01];p.spec['kneePole'+other]=[right?.40:-.40,.8,.07];p.explanation='单脚承重，骨盆移向承重脚；另一髋外展、膝屈曲。参考质心与足骨投影用于检查摆位，不代表个体平衡能力。';}
++for(const id of ['bend-hips','bend-round','yoga-fold']){const p=all.find(p=>p.id===id);for(const side of ['R','L'])p.spec['arm'+side].abd=15;}
+ export const POSES=all;
+ export const CATEGORIES=[...new Set(all.map(p=>p.category))];
+ const pairs=[['supine','supine-roll'],['side-left','side-left-pillow'],['side-right','side-right-pillow'],['sit-supported','sit-edge'],['sit-typing','sit-laptop'],['sit-phone','sit-read'],['stand-relaxed','stand-counter'],['stand-phone','stand-high-phone'],['bend-hips','bend-round'],['lift-close','lift-far'],['lift-squat','lift-stoop'],['yoga-table','yoga-cat'],['swim-breast-pull','swim-breast-glide']];

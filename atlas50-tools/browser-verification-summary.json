@@ -1,0 +1,414 @@
+{
+  "version": "50.0.0",
+  "checks": [
+    {
+      "name": "女性右侧蜷腿体表",
+      "pass": true,
+      "info": 191322
+    },
+    {
+      "name": "关闭穴名后画面标签隐藏",
+      "pass": true
+    },
+    {
+      "name": "男女切换保留点线名称关闭",
+      "pass": true
+    },
+    {
+      "name": "前向转动保留观察中心",
+      "pass": true
+    },
+    {
+      "name": "平移模式有明确选中状态",
+      "pass": true
+    },
+    {
+      "name": "拖动平移改变观察中心",
+      "pass": true
+    },
+    {
+      "name": "男性内脏加载并可见",
+      "pass": true
+    },
+    {
+      "name": "女性原生内脏保持右侧卧姿态",
+      "pass": true
+    },
+    {
+      "name": "女性神经在侧卧状态可见",
+      "pass": true
+    },
+    {
+      "name": "女性血管图层显示",
+      "pass": true
+    },
+    {
+      "name": "静脉筛选有效",
+      "pass": true
+    },
+    {
+      "name": "男女性别切换保留静脉筛选",
+      "pass": true
+    },
+    {
+      "name": "男性神经显示",
+      "pass": true
+    },
+    {
+      "name": "胸腰调整与T6定位保留",
+      "pass": true
+    },
+    {
+      "name": "手机没有横向溢出",
+      "pass": true
+    },
+    {
+      "name": "手机八个可见控制按钮可点",
+      "pass": true
+    },
+    {
+      "name": "浏览器无渲染错误",
+      "pass": true
+    }
+  ],
+  "allPass": true,
+  "cases": [
+    {
+      "pose": "side-curl-right",
+      "sex": "female",
+      "view": "surface",
+      "skinVertices": 191322,
+      "loadedLayers": {},
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "spineAdjustment": {
+        "cervicalFlex": 0,
+        "cervicalSide": 0,
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 0,
+        "thoracicTwist": 0
+      }
+    },
+    {
+      "pose": "side-curl-right",
+      "sex": "male",
+      "view": "surface",
+      "skinVertices": 75668,
+      "loadedLayers": {},
+      "selectedCode": "PC6",
+      "selectedSide": "left",
+      "spineAdjustment": {
+        "cervicalFlex": 0,
+        "cervicalSide": 0,
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 0,
+        "thoracicTwist": 0
+      }
+    },
+    {
+      "pose": "side-curl-right",
+      "sex": "male",
+      "view": "organs",
+      "skinVertices": 75668,
+      "loadedLayers": {
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 105
+        }
+      },
+      "selectedCode": "PC6",
+      "selectedSide": "left",
+      "spineAdjustment": {
+        "cervicalFlex": 0,
+        "cervicalSide": 0,
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 0,
+        "thoracicTwist": 0
+      }
+    },
+    {
+      "pose": "side-curl-right",
+      "sex": "female",
+      "view": "organs",
+      "skinVertices": 191322,
+      "loadedLayers": {
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 208
+        }
+      },
+      "selectedCode": "PC6",
+      "selectedSide": "left",
+      "spineAdjustment": {
+        "cervicalFlex": 0,
+        "cervicalSide": 0,
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 0,
+        "thoracicTwist": 0
+      }
+    },
+    {
+      "pose": "side-curl-right",
+      "sex": "female",
+      "view": "nerves",
+      "skinVertices": 191322,
+      "loadedLayers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 550
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        }
+      },
+      "selectedCode": "PC6",
+      "selectedSide": "left",
+      "spineAdjustment": {
+        "cervicalFlex": 0,
+        "cervicalSide": 0,
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 0,
+        "thoracicTwist": 0
+      }
+    },
+    {
+      "pose": "side-curl-right",
+      "sex": "female",
+      "view": "vessels",
+      "skinVertices": 191322,
+      "loadedLayers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 57
+        }
+      },
+      "selectedCode": "PC6",
+      "selectedSide": "left",
+      "spineAdjustment": {
+        "cervicalFlex": 0,
+        "cervicalSide": 0,
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 0,
+        "thoracicTwist": 0
+      }
+    },
+    {
+      "pose": "side-curl-right",
+      "sex": "male",
+      "view": "vessels",
+      "skinVertices": 75668,
+      "loadedLayers": {
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 659,
+          "visible": 231
+        }
+      },
+      "selectedCode": "PC6",
+      "selectedSide": "left",
+      "spineAdjustment": {
+        "cervicalFlex": 0,
+        "cervicalSide": 0,
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 0,
+        "thoracicTwist": 0
+      }
+    },
+    {
+      "pose": "side-curl-right",
+      "sex": "male",
+      "view": "nerves",
+      "skinVertices": 75668,
+      "loadedLayers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 550
+        },
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 659,
+          "visible": 0
+        }
+      },
+      "selectedCode": "PC6",
+      "selectedSide": "left",
+      "spineAdjustment": {
+        "cervicalFlex": 0,
+        "cervicalSide": 0,
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 0,
+        "thoracicTwist": 0
+      }
+    },
+    {
+      "pose": "side-curl-right",
+      "sex": "male",
+      "view": "bones",
+      "skinVertices": 75668,
+      "loadedLayers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 659,
+          "visible": 0
+        }
+      },
+      "selectedCode": "PC6",
+      "selectedSide": "left",
+      "spineAdjustment": {
+        "cervicalFlex": 0,
+        "cervicalSide": 0,
+        "lumbarFlex": 0,
+        "lumbarSide": -6,
+        "thoracicFlex": 0,
+        "thoracicSide": 8,
+        "thoracicTwist": 0
+      }
+    }
+  ],
+  "mobile": {
+    "buttons": [
+      {
+        "h": 44,
+        "text": "旋转",
+        "w": 89.5,
+        "x": 10,
+        "y": 552
+      },
+      {
+        "h": 44,
+        "text": "平移",
+        "w": 89.5,
+        "x": 103.5,
+        "y": 552
+      },
+      {
+        "h": 44,
+        "text": "− 缩小",
+        "w": 89.5,
+        "x": 197,
+        "y": 552
+      },
+      {
+        "h": 44,
+        "text": "＋ 放大",
+        "w": 89.5,
+        "x": 290.5,
+        "y": 552
+      },
+      {
+        "h": 44,
+        "text": "完整显示",
+        "w": 89.5,
+        "x": 10,
+        "y": 600
+      },
+      {
+        "h": 44,
+        "text": "正面",
+        "w": 89.5,
+        "x": 103.5,
+        "y": 600
+      },
+      {
+        "h": 44,
+        "text": "侧面",
+        "w": 89.5,
+        "x": 197,
+        "y": 600
+      },
+      {
+        "h": 44,
+        "text": "俯视",
+        "w": 89.5,
+        "x": 290.5,
+        "y": 600
+      }
+    ],
+    "scrollWidth": 390,
+    "width": 390
+  },
+  "consoleErrors": []
+}
