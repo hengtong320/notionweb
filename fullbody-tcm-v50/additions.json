@@ -1,0 +1,2863 @@
+[
+  {
+    "id": "frontal",
+    "name": "额骨",
+    "en": "Frontal bone",
+    "group": "cranial",
+    "region": "脑颅骨",
+    "sourceNodes": [
+      "Frontal bone.001"
+    ],
+    "description": "构成额部和眼眶上壁，位于颅骨前上方。",
+    "look": "由额部转向下方，比较眶部的平面与向后弯曲的颅面。",
+    "tip": "额骨是一块；左右眼眶上方属于同一额骨。",
+    "neighbors": [
+      "parietal-right",
+      "parietal-left",
+      "sphenoid",
+      "ethmoid",
+      "nasal-right",
+      "nasal-left"
+    ],
+    "side": "midline",
+    "baseId": "frontal",
+    "pinyin": ""
+  },
+  {
+    "id": "occipital",
+    "name": "枕骨",
+    "en": "Occipital bone",
+    "group": "cranial",
+    "region": "脑颅骨",
+    "sourceNodes": [
+      "Occipital bone.001"
+    ],
+    "description": "位于颅后下部，参与颅底，并围绕枕骨大孔。",
+    "look": "从颅底看枕骨大孔及其两侧的枕髁，再对照下方寰椎的位置。",
+    "tip": "枕骨下方与第一颈椎衔接；本图没有显示脊髓。",
+    "neighbors": [
+      "parietal-right",
+      "parietal-left",
+      "temporal-right",
+      "temporal-left",
+      "sphenoid",
+      "C1"
+    ],
+    "side": "midline",
+    "baseId": "occipital",
+    "pinyin": ""
+  },
+  {
+    "id": "sphenoid",
+    "name": "蝶骨",
+    "en": "Sphenoid bone",
+    "group": "cranial",
+    "region": "脑颅骨",
+    "sourceNodes": [
+      "Sphenoid bone.001"
+    ],
+    "description": "位于颅底中央，向两侧展开，参与眼眶和颅底的构成。",
+    "look": "单独查看，比较中央骨体、向两侧的翼状部分和向下的翼突。",
+    "tip": "从整颅中移开周围骨，较容易理解蝶骨的位置。",
+    "neighbors": [
+      "frontal",
+      "ethmoid",
+      "occipital",
+      "temporal-right",
+      "temporal-left",
+      "parietal-right",
+      "parietal-left"
+    ],
+    "side": "midline",
+    "baseId": "sphenoid",
+    "pinyin": ""
+  },
+  {
+    "id": "ethmoid",
+    "name": "筛骨",
+    "en": "Ethmoid bone",
+    "group": "cranial",
+    "region": "脑颅骨",
+    "sourceNodes": [
+      "Ethmoid bone.001"
+    ],
+    "description": "位于两眼眶之间和鼻腔上部，参与鼻中隔、鼻腔侧壁及眶内侧壁。",
+    "look": "移开额骨和鼻骨，观察筛骨的中线骨板及左右两侧的结构。",
+    "tip": "上、中鼻甲属于筛骨；下鼻甲是另外的独立骨。",
+    "neighbors": [
+      "frontal",
+      "sphenoid",
+      "vomer",
+      "lacrimal-right",
+      "lacrimal-left",
+      "maxilla-right",
+      "maxilla-left"
+    ],
+    "side": "midline",
+    "baseId": "ethmoid",
+    "pinyin": ""
+  },
+  {
+    "id": "parietal-right",
+    "name": "右顶骨",
+    "en": "Parietal bone · right",
+    "group": "cranial",
+    "region": "脑颅骨",
+    "sourceNodes": [
+      "Parietal bone.r.001"
+    ],
+    "description": "位于颅顶及颅侧上部；左右顶骨共同形成颅盖的大部分。",
+    "look": "转动观察外表面的弧度，再看朝向颅腔的内表面和周边骨缝边缘。",
+    "tip": "骨缝是连接边界；拆开只是教学展示，不表示可自由活动。",
+    "neighbors": [
+      "frontal",
+      "occipital",
+      "temporal-right",
+      "sphenoid",
+      "parietal-left"
+    ],
+    "side": "right",
+    "baseId": "parietal",
+    "pinyin": ""
+  },
+  {
+    "id": "temporal-right",
+    "name": "右颞骨",
+    "en": "Temporal bone · right",
+    "group": "cranial",
+    "region": "脑颅骨",
+    "sourceNodes": [
+      "Temporal bone.r.001"
+    ],
+    "description": "位于颅侧下部和颅底，外耳道区域、乳突及下颌窝位于此骨。",
+    "look": "由侧面寻找外耳道附近和颧突，再从下方看与下颌骨相对的下颌窝。",
+    "tip": "颞骨读 niè gǔ。中耳听小骨可在专门区域放大观察。",
+    "neighbors": [
+      "parietal-right",
+      "occipital",
+      "sphenoid",
+      "zygomatic-right",
+      "mandible"
+    ],
+    "side": "right",
+    "baseId": "temporal",
+    "pinyin": "niè gǔ"
+  },
+  {
+    "id": "parietal-left",
+    "name": "左顶骨",
+    "en": "Parietal bone · left",
+    "group": "cranial",
+    "region": "脑颅骨",
+    "sourceNodes": [
+      "Parietal bone.l.001"
+    ],
+    "description": "位于颅顶及颅侧上部；左右顶骨共同形成颅盖的大部分。",
+    "look": "转动观察外表面的弧度，再看朝向颅腔的内表面和周边骨缝边缘。",
+    "tip": "骨缝是连接边界；拆开只是教学展示，不表示可自由活动。",
+    "neighbors": [
+      "frontal",
+      "occipital",
+      "temporal-left",
+      "sphenoid",
+      "parietal-right"
+    ],
+    "side": "left",
+    "baseId": "parietal",
+    "pinyin": ""
+  },
+  {
+    "id": "temporal-left",
+    "name": "左颞骨",
+    "en": "Temporal bone · left",
+    "group": "cranial",
+    "region": "脑颅骨",
+    "sourceNodes": [
+      "Temporal bone.l.001"
+    ],
+    "description": "位于颅侧下部和颅底，外耳道区域、乳突及下颌窝位于此骨。",
+    "look": "由侧面寻找外耳道附近和颧突，再从下方看与下颌骨相对的下颌窝。",
+    "tip": "颞骨读 niè gǔ。中耳听小骨可在专门区域放大观察。",
+    "neighbors": [
+      "parietal-left",
+      "occipital",
+      "sphenoid",
+      "zygomatic-left",
+      "mandible"
+    ],
+    "side": "left",
+    "baseId": "temporal",
+    "pinyin": "niè gǔ"
+  },
+  {
+    "id": "maxilla-right",
+    "name": "右上颌骨",
+    "en": "Maxilla · right",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Maxilla.r.001"
+    ],
+    "description": "形成上颌、硬腭的前部和眼眶底部的一部分。",
+    "look": "比较牙槽缘、眶面和向内的腭突；左右上颌骨在中线相接。",
+    "tip": "牙齿不属于骨，未计入本图206块标准骨。",
+    "neighbors": [
+      "frontal",
+      "ethmoid",
+      "nasal-right",
+      "lacrimal-right",
+      "zygomatic-right",
+      "palatine-right",
+      "inferior-concha-right",
+      "maxilla-left",
+      "vomer"
+    ],
+    "side": "right",
+    "baseId": "maxilla",
+    "pinyin": "hé gǔ"
+  },
+  {
+    "id": "zygomatic-right",
+    "name": "右颧骨",
+    "en": "Zygomatic bone · right",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Zygomatic bone.r.001"
+    ],
+    "description": "形成面颊的骨性突起，参与眼眶外侧壁及颧弓。",
+    "look": "从侧面看它如何向后接续颞骨的颧突，再看朝向眼眶的骨面。",
+    "tip": "颧弓由颧骨与颞骨的相应骨突共同形成。",
+    "neighbors": [
+      "frontal",
+      "sphenoid",
+      "temporal-right",
+      "maxilla-right"
+    ],
+    "side": "right",
+    "baseId": "zygomatic",
+    "pinyin": "quán gǔ"
+  },
+  {
+    "id": "nasal-right",
+    "name": "右鼻骨",
+    "en": "Nasal bone · right",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Nasal bone.r.001"
+    ],
+    "description": "位于鼻梁上部，左右各一块，处于额骨下方和上颌骨之间。",
+    "look": "在正面辨认左右鼻骨，再单独旋转看其薄板状形态。",
+    "tip": "鼻尖主要不是骨结构；本版没有加入鼻软骨。",
+    "neighbors": [
+      "frontal",
+      "ethmoid",
+      "maxilla-right",
+      "nasal-left"
+    ],
+    "side": "right",
+    "baseId": "nasal",
+    "pinyin": ""
+  },
+  {
+    "id": "lacrimal-right",
+    "name": "右泪骨",
+    "en": "Lacrimal bone · right",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Lacrimal bone.r.001"
+    ],
+    "description": "是眼眶内侧壁前部的小骨，靠近鼻根两侧。",
+    "look": "先在眼眶区域定位，再单独查看薄骨板与沟样区域。",
+    "tip": "它很小，整颅视图不易点到时可从目录选择。",
+    "neighbors": [
+      "frontal",
+      "ethmoid",
+      "maxilla-right",
+      "inferior-concha-right"
+    ],
+    "side": "right",
+    "baseId": "lacrimal",
+    "pinyin": ""
+  },
+  {
+    "id": "palatine-right",
+    "name": "右腭骨",
+    "en": "Palatine bone · right",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Palatine bone.r.001"
+    ],
+    "description": "位于鼻腔后部与硬腭后方，左右各一块。",
+    "look": "从颅底观察水平板与上颌骨腭突的接续，再看向上的骨板。",
+    "tip": "硬腭后部主要由腭骨参与构成。",
+    "neighbors": [
+      "sphenoid",
+      "ethmoid",
+      "maxilla-right",
+      "inferior-concha-right",
+      "palatine-left",
+      "vomer"
+    ],
+    "side": "right",
+    "baseId": "palatine",
+    "pinyin": "è gǔ"
+  },
+  {
+    "id": "inferior-concha-right",
+    "name": "右下鼻甲",
+    "en": "Inferior nasal concha bone · right",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Inferior nasal concha bone.r.001"
+    ],
+    "description": "位于鼻腔外侧壁，向鼻腔内卷曲；左右各为一块独立骨。",
+    "look": "转到鼻腔前方，必要时隐藏上颌骨，观察其卷曲的薄板形态。",
+    "tip": "下鼻甲是独立骨，不能与筛骨的中鼻甲混淆。",
+    "neighbors": [
+      "ethmoid",
+      "maxilla-right",
+      "lacrimal-right",
+      "palatine-right"
+    ],
+    "side": "right",
+    "baseId": "inferior-concha",
+    "pinyin": ""
+  },
+  {
+    "id": "maxilla-left",
+    "name": "左上颌骨",
+    "en": "Maxilla · left",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Maxilla.l.001"
+    ],
+    "description": "形成上颌、硬腭的前部和眼眶底部的一部分。",
+    "look": "比较牙槽缘、眶面和向内的腭突；左右上颌骨在中线相接。",
+    "tip": "牙齿不属于骨，未计入本图206块标准骨。",
+    "neighbors": [
+      "frontal",
+      "ethmoid",
+      "nasal-left",
+      "lacrimal-left",
+      "zygomatic-left",
+      "palatine-left",
+      "inferior-concha-left",
+      "maxilla-right",
+      "vomer"
+    ],
+    "side": "left",
+    "baseId": "maxilla",
+    "pinyin": "hé gǔ"
+  },
+  {
+    "id": "zygomatic-left",
+    "name": "左颧骨",
+    "en": "Zygomatic bone · left",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Zygomatic bone.l.001"
+    ],
+    "description": "形成面颊的骨性突起，参与眼眶外侧壁及颧弓。",
+    "look": "从侧面看它如何向后接续颞骨的颧突，再看朝向眼眶的骨面。",
+    "tip": "颧弓由颧骨与颞骨的相应骨突共同形成。",
+    "neighbors": [
+      "frontal",
+      "sphenoid",
+      "temporal-left",
+      "maxilla-left"
+    ],
+    "side": "left",
+    "baseId": "zygomatic",
+    "pinyin": "quán gǔ"
+  },
+  {
+    "id": "nasal-left",
+    "name": "左鼻骨",
+    "en": "Nasal bone · left",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Nasal bone.l.001"
+    ],
+    "description": "位于鼻梁上部，左右各一块，处于额骨下方和上颌骨之间。",
+    "look": "在正面辨认左右鼻骨，再单独旋转看其薄板状形态。",
+    "tip": "鼻尖主要不是骨结构；本版没有加入鼻软骨。",
+    "neighbors": [
+      "frontal",
+      "ethmoid",
+      "maxilla-left",
+      "nasal-right"
+    ],
+    "side": "left",
+    "baseId": "nasal",
+    "pinyin": ""
+  },
+  {
+    "id": "lacrimal-left",
+    "name": "左泪骨",
+    "en": "Lacrimal bone · left",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Lacrimal bone.l.001"
+    ],
+    "description": "是眼眶内侧壁前部的小骨，靠近鼻根两侧。",
+    "look": "先在眼眶区域定位，再单独查看薄骨板与沟样区域。",
+    "tip": "它很小，整颅视图不易点到时可从目录选择。",
+    "neighbors": [
+      "frontal",
+      "ethmoid",
+      "maxilla-left",
+      "inferior-concha-left"
+    ],
+    "side": "left",
+    "baseId": "lacrimal",
+    "pinyin": ""
+  },
+  {
+    "id": "palatine-left",
+    "name": "左腭骨",
+    "en": "Palatine bone · left",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Palatine bone.l.001"
+    ],
+    "description": "位于鼻腔后部与硬腭后方，左右各一块。",
+    "look": "从颅底观察水平板与上颌骨腭突的接续，再看向上的骨板。",
+    "tip": "硬腭后部主要由腭骨参与构成。",
+    "neighbors": [
+      "sphenoid",
+      "ethmoid",
+      "maxilla-left",
+      "inferior-concha-left",
+      "palatine-right",
+      "vomer"
+    ],
+    "side": "left",
+    "baseId": "palatine",
+    "pinyin": "è gǔ"
+  },
+  {
+    "id": "inferior-concha-left",
+    "name": "左下鼻甲",
+    "en": "Inferior nasal concha bone · left",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Inferior nasal concha bone.l.001"
+    ],
+    "description": "位于鼻腔外侧壁，向鼻腔内卷曲；左右各为一块独立骨。",
+    "look": "转到鼻腔前方，必要时隐藏上颌骨，观察其卷曲的薄板形态。",
+    "tip": "下鼻甲是独立骨，不能与筛骨的中鼻甲混淆。",
+    "neighbors": [
+      "ethmoid",
+      "maxilla-left",
+      "lacrimal-left",
+      "palatine-left"
+    ],
+    "side": "left",
+    "baseId": "inferior-concha",
+    "pinyin": ""
+  },
+  {
+    "id": "vomer",
+    "name": "犁骨",
+    "en": "Vomer",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Vomer.001"
+    ],
+    "description": "位于鼻腔中线，构成骨性鼻中隔的后下部。",
+    "look": "从侧面看薄板形态，回到原位比较它与筛骨垂直板的相接。",
+    "tip": "鼻中隔不全是骨；前部软骨没有显示。",
+    "neighbors": [
+      "sphenoid",
+      "ethmoid",
+      "maxilla-right",
+      "maxilla-left",
+      "palatine-right",
+      "palatine-left"
+    ],
+    "side": "midline",
+    "baseId": "vomer",
+    "pinyin": ""
+  },
+  {
+    "id": "mandible",
+    "name": "下颌骨",
+    "en": "Mandible",
+    "group": "facial",
+    "region": "面颅骨",
+    "sourceNodes": [
+      "Mandible.001"
+    ],
+    "description": "形成下颌，包含水平的骨体和两侧向上的下颌支。",
+    "look": "沿下颌支向上，比较前方冠突和后方髁突；观察髁突与颞骨的位置关系。",
+    "tip": "下颌骨为一块，左右两端分别与颞骨构成颞下颌关节。",
+    "neighbors": [
+      "temporal-right",
+      "temporal-left"
+    ],
+    "side": "midline",
+    "baseId": "mandible",
+    "pinyin": "hé gǔ"
+  },
+  {
+    "id": "hyoid",
+    "name": "舌骨",
+    "en": "Hyoid bone",
+    "group": "head-other",
+    "region": "舌骨与听小骨",
+    "sourceNodes": [
+      "Hyoid bone.001"
+    ],
+    "description": "位于下颌骨下方、颈前部，具有骨体及向两侧伸出的角。",
+    "look": "单独查看其弧形轮廓与大小角，再回到下颌骨和颈椎附近定位。",
+    "tip": "舌骨不与其他骨直接形成关节，主要由软组织悬系。",
+    "neighbors": [],
+    "side": "midline",
+    "baseId": "hyoid",
+    "pinyin": ""
+  },
+  {
+    "id": "malleus-right",
+    "name": "右锤骨",
+    "en": "Malleus · right",
+    "group": "head-other",
+    "region": "舌骨与听小骨",
+    "sourceNodes": [
+      "Malleus.r.001"
+    ],
+    "description": "位于右侧中耳，是三块听小骨之一；在全身比例下非常细小。",
+    "look": "使用听小骨区域或单独查看，旋转比较与相邻听小骨接续的部位。",
+    "tip": "这是自动放大的观察视图，不代表真实大小；此处未显示鼓膜与内耳。",
+    "neighbors": [
+      "incus-right"
+    ],
+    "side": "right",
+    "baseId": "malleus",
+    "pinyin": ""
+  },
+  {
+    "id": "incus-right",
+    "name": "右砧骨",
+    "en": "Incus · right",
+    "group": "head-other",
+    "region": "舌骨与听小骨",
+    "sourceNodes": [
+      "Incus.r.001"
+    ],
+    "description": "位于右侧中耳，是三块听小骨之一；在全身比例下非常细小。",
+    "look": "使用听小骨区域或单独查看，旋转比较与相邻听小骨接续的部位。",
+    "tip": "这是自动放大的观察视图，不代表真实大小；此处未显示鼓膜与内耳。",
+    "neighbors": [
+      "malleus-right",
+      "stapes-right"
+    ],
+    "side": "right",
+    "baseId": "incus",
+    "pinyin": "zhēn gǔ"
+  },
+  {
+    "id": "stapes-right",
+    "name": "右镫骨",
+    "en": "Stapes · right",
+    "group": "head-other",
+    "region": "舌骨与听小骨",
+    "sourceNodes": [
+      "Stapes.r.001"
+    ],
+    "description": "位于右侧中耳，是三块听小骨之一；在全身比例下非常细小。",
+    "look": "使用听小骨区域或单独查看，旋转比较与相邻听小骨接续的部位。",
+    "tip": "这是自动放大的观察视图，不代表真实大小；此处未显示鼓膜与内耳。",
+    "neighbors": [
+      "incus-right"
+    ],
+    "side": "right",
+    "baseId": "stapes",
+    "pinyin": "dèng gǔ"
+  },
+  {
+    "id": "malleus-left",
+    "name": "左锤骨",
+    "en": "Malleus · left",
+    "group": "head-other",
+    "region": "舌骨与听小骨",
+    "sourceNodes": [
+      "Malleus.l.001"
+    ],
+    "description": "位于左侧中耳，是三块听小骨之一；在全身比例下非常细小。",
+    "look": "使用听小骨区域或单独查看，旋转比较与相邻听小骨接续的部位。",
+    "tip": "这是自动放大的观察视图，不代表真实大小；此处未显示鼓膜与内耳。",
+    "neighbors": [
+      "incus-left"
+    ],
+    "side": "left",
+    "baseId": "malleus",
+    "pinyin": ""
+  },
+  {
+    "id": "incus-left",
+    "name": "左砧骨",
+    "en": "Incus · left",
+    "group": "head-other",
+    "region": "舌骨与听小骨",
+    "sourceNodes": [
+      "Incus.l.001"
+    ],
+    "description": "位于左侧中耳，是三块听小骨之一；在全身比例下非常细小。",
+    "look": "使用听小骨区域或单独查看，旋转比较与相邻听小骨接续的部位。",
+    "tip": "这是自动放大的观察视图，不代表真实大小；此处未显示鼓膜与内耳。",
+    "neighbors": [
+      "malleus-left",
+      "stapes-left"
+    ],
+    "side": "left",
+    "baseId": "incus",
+    "pinyin": "zhēn gǔ"
+  },
+  {
+    "id": "stapes-left",
+    "name": "左镫骨",
+    "en": "Stapes · left",
+    "group": "head-other",
+    "region": "舌骨与听小骨",
+    "sourceNodes": [
+      "Stapes.l.001"
+    ],
+    "description": "位于左侧中耳，是三块听小骨之一；在全身比例下非常细小。",
+    "look": "使用听小骨区域或单独查看，旋转比较与相邻听小骨接续的部位。",
+    "tip": "这是自动放大的观察视图，不代表真实大小；此处未显示鼓膜与内耳。",
+    "neighbors": [
+      "incus-left"
+    ],
+    "side": "left",
+    "baseId": "stapes",
+    "pinyin": "dèng gǔ"
+  },
+  {
+    "id": "C1",
+    "name": "寰椎 C1",
+    "en": "Atlas (C1)",
+    "group": "cervical",
+    "region": "颈椎",
+    "sourceNodes": [
+      "Atlas (C1).001"
+    ],
+    "description": "位于枕骨下方，是第一颈椎；环形结构不同于典型椎骨，没有一般椎体和棘突。",
+    "look": "从上方看左右侧块与椎孔，再从后面比较前弓和后弓。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "occipital",
+      "C2"
+    ],
+    "side": "midline",
+    "baseId": "C1",
+    "pinyin": "huán zhuī"
+  },
+  {
+    "id": "C2",
+    "name": "枢椎 C2",
+    "en": "Axis (C2)",
+    "group": "cervical",
+    "region": "颈椎",
+    "sourceNodes": [
+      "Axis (C2).001"
+    ],
+    "description": "位于寰椎下方，向上的齿突是识别第二颈椎的重要特征。",
+    "look": "观察齿突、椎体和后方棘突，比较其与寰椎的空间关系。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "C1",
+      "C3"
+    ],
+    "side": "midline",
+    "baseId": "C2",
+    "pinyin": "shū zhuī"
+  },
+  {
+    "id": "C3",
+    "name": "第3颈椎 C3",
+    "en": "Vertebra C3",
+    "group": "cervical",
+    "region": "颈椎",
+    "sourceNodes": [
+      "Vertebra C3.001"
+    ],
+    "description": "从上向下编号为第3颈椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。注意两侧横突区域与胸椎、腰椎的区别。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "C2",
+      "C4"
+    ],
+    "side": "midline",
+    "baseId": "C3",
+    "pinyin": ""
+  },
+  {
+    "id": "C4",
+    "name": "第4颈椎 C4",
+    "en": "Vertebra C4",
+    "group": "cervical",
+    "region": "颈椎",
+    "sourceNodes": [
+      "Vertebra C4.001"
+    ],
+    "description": "从上向下编号为第4颈椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。注意两侧横突区域与胸椎、腰椎的区别。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "C3",
+      "C5"
+    ],
+    "side": "midline",
+    "baseId": "C4",
+    "pinyin": ""
+  },
+  {
+    "id": "C5",
+    "name": "第5颈椎 C5",
+    "en": "Vertebra C5",
+    "group": "cervical",
+    "region": "颈椎",
+    "sourceNodes": [
+      "Vertebra C5.001"
+    ],
+    "description": "从上向下编号为第5颈椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。注意两侧横突区域与胸椎、腰椎的区别。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "C4",
+      "C6"
+    ],
+    "side": "midline",
+    "baseId": "C5",
+    "pinyin": ""
+  },
+  {
+    "id": "C6",
+    "name": "第6颈椎 C6",
+    "en": "Vertebra C6",
+    "group": "cervical",
+    "region": "颈椎",
+    "sourceNodes": [
+      "Vertebra C6.001"
+    ],
+    "description": "从上向下编号为第6颈椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。注意两侧横突区域与胸椎、腰椎的区别。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "C5",
+      "C7"
+    ],
+    "side": "midline",
+    "baseId": "C6",
+    "pinyin": ""
+  },
+  {
+    "id": "C7",
+    "name": "第7颈椎 C7",
+    "en": "Vertebra C7",
+    "group": "cervical",
+    "region": "颈椎",
+    "sourceNodes": [
+      "Vertebra C7.001"
+    ],
+    "description": "从上向下编号为第7颈椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。注意两侧横突区域与胸椎、腰椎的区别。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "C6",
+      "T1"
+    ],
+    "side": "midline",
+    "baseId": "C7",
+    "pinyin": ""
+  },
+  {
+    "id": "T1",
+    "name": "第1胸椎 T1",
+    "en": "Vertebra T1",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T1.001"
+    ],
+    "description": "从上向下编号为第1胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "C7",
+      "T2",
+      "rib-1-right",
+      "rib-1-left"
+    ],
+    "side": "midline",
+    "baseId": "T1",
+    "pinyin": ""
+  },
+  {
+    "id": "T2",
+    "name": "第2胸椎 T2",
+    "en": "Vertebra T2",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T2.001"
+    ],
+    "description": "从上向下编号为第2胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T1",
+      "T3",
+      "rib-2-right",
+      "rib-2-left"
+    ],
+    "side": "midline",
+    "baseId": "T2",
+    "pinyin": ""
+  },
+  {
+    "id": "T3",
+    "name": "第3胸椎 T3",
+    "en": "Vertebra T3",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T3.001"
+    ],
+    "description": "从上向下编号为第3胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T2",
+      "T4",
+      "rib-3-right",
+      "rib-3-left"
+    ],
+    "side": "midline",
+    "baseId": "T3",
+    "pinyin": ""
+  },
+  {
+    "id": "T4",
+    "name": "第4胸椎 T4",
+    "en": "Vertebra T4",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T4.001"
+    ],
+    "description": "从上向下编号为第4胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T3",
+      "T5",
+      "rib-4-right",
+      "rib-4-left"
+    ],
+    "side": "midline",
+    "baseId": "T4",
+    "pinyin": ""
+  },
+  {
+    "id": "T5",
+    "name": "第5胸椎 T5",
+    "en": "Vertebra T5",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T5.001"
+    ],
+    "description": "从上向下编号为第5胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T4",
+      "T6",
+      "rib-5-right",
+      "rib-5-left"
+    ],
+    "side": "midline",
+    "baseId": "T5",
+    "pinyin": ""
+  },
+  {
+    "id": "T6",
+    "name": "第6胸椎 T6",
+    "en": "Vertebra T6",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T6.001"
+    ],
+    "description": "从上向下编号为第6胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T5",
+      "T7",
+      "rib-6-right",
+      "rib-6-left"
+    ],
+    "side": "midline",
+    "baseId": "T6",
+    "pinyin": ""
+  },
+  {
+    "id": "T7",
+    "name": "第7胸椎 T7",
+    "en": "Vertebra T7",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T7.001"
+    ],
+    "description": "从上向下编号为第7胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T6",
+      "T8",
+      "rib-7-right",
+      "rib-7-left"
+    ],
+    "side": "midline",
+    "baseId": "T7",
+    "pinyin": ""
+  },
+  {
+    "id": "T8",
+    "name": "第8胸椎 T8",
+    "en": "Vertebra T8",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T8.001"
+    ],
+    "description": "从上向下编号为第8胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T7",
+      "T9",
+      "rib-8-right",
+      "rib-8-left"
+    ],
+    "side": "midline",
+    "baseId": "T8",
+    "pinyin": ""
+  },
+  {
+    "id": "T9",
+    "name": "第9胸椎 T9",
+    "en": "Vertebra T9",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T9.001"
+    ],
+    "description": "从上向下编号为第9胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T8",
+      "T10",
+      "rib-9-right",
+      "rib-9-left"
+    ],
+    "side": "midline",
+    "baseId": "T9",
+    "pinyin": ""
+  },
+  {
+    "id": "T10",
+    "name": "第10胸椎 T10",
+    "en": "Vertebra T10",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T10.001"
+    ],
+    "description": "从上向下编号为第10胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T9",
+      "T11",
+      "rib-10-right",
+      "rib-10-left"
+    ],
+    "side": "midline",
+    "baseId": "T10",
+    "pinyin": ""
+  },
+  {
+    "id": "T11",
+    "name": "第11胸椎 T11",
+    "en": "Vertebra T11",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T11.001"
+    ],
+    "description": "从上向下编号为第11胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T10",
+      "T12",
+      "rib-11-right",
+      "rib-11-left"
+    ],
+    "side": "midline",
+    "baseId": "T11",
+    "pinyin": ""
+  },
+  {
+    "id": "T12",
+    "name": "第12胸椎 T12",
+    "en": "Vertebra T12",
+    "group": "thoracic",
+    "region": "胸椎",
+    "sourceNodes": [
+      "Vertebra T12.001"
+    ],
+    "description": "从上向下编号为第12胸椎，位于相邻椎骨之间。",
+    "look": "先区分前方椎体与后方椎弓，再观察椎孔、横突及棘突。胸椎还可结合对应肋骨观察骨性接续。",
+    "tip": "仅显示骨表面，椎间盘、韧带、脊髓和神经未显示。",
+    "neighbors": [
+      "T11",
+      "L1",
+      "rib-12-right",
+      "rib-12-left"
+    ],
+    "side": "midline",
+    "baseId": "T12",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-1-right",
+    "name": "右第1肋骨",
+    "en": "First rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "First rib.r.001"
+    ],
+    "description": "从上向下编号为第1肋，位于胸廓右侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T1"
+    ],
+    "side": "right",
+    "baseId": "rib-1",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-2-right",
+    "name": "右第2肋骨",
+    "en": "Second rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Second rib.r.001"
+    ],
+    "description": "从上向下编号为第2肋，位于胸廓右侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T2",
+      "T1"
+    ],
+    "side": "right",
+    "baseId": "rib-2",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-3-right",
+    "name": "右第3肋骨",
+    "en": "Third rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Third rib.r.001"
+    ],
+    "description": "从上向下编号为第3肋，位于胸廓右侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T3",
+      "T2"
+    ],
+    "side": "right",
+    "baseId": "rib-3",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-4-right",
+    "name": "右第4肋骨",
+    "en": "Fourth rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Fourth rib.r.001"
+    ],
+    "description": "从上向下编号为第4肋，位于胸廓右侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T4",
+      "T3"
+    ],
+    "side": "right",
+    "baseId": "rib-4",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-5-right",
+    "name": "右第5肋骨",
+    "en": "Fifth rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Fifth rib.r.001"
+    ],
+    "description": "从上向下编号为第5肋，位于胸廓右侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T5",
+      "T4"
+    ],
+    "side": "right",
+    "baseId": "rib-5",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-6-right",
+    "name": "右第6肋骨",
+    "en": "Sixth rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Sixth rib.r.001"
+    ],
+    "description": "从上向下编号为第6肋，位于胸廓右侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T6",
+      "T5"
+    ],
+    "side": "right",
+    "baseId": "rib-6",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-7-right",
+    "name": "右第7肋骨",
+    "en": "Seventh rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Seventh rib.r.001"
+    ],
+    "description": "从上向下编号为第7肋，位于胸廓右侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T7",
+      "T6"
+    ],
+    "side": "right",
+    "baseId": "rib-7",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-8-right",
+    "name": "右第8肋骨",
+    "en": "Eighth rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Eighth rib.r.001"
+    ],
+    "description": "从上向下编号为第8肋，位于胸廓右侧。前端经肋软骨参与肋弓连接，不直接以骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T8",
+      "T7"
+    ],
+    "side": "right",
+    "baseId": "rib-8",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-9-right",
+    "name": "右第9肋骨",
+    "en": "Ninth rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Ninth rib.r.001"
+    ],
+    "description": "从上向下编号为第9肋，位于胸廓右侧。前端经肋软骨参与肋弓连接，不直接以骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T9",
+      "T8"
+    ],
+    "side": "right",
+    "baseId": "rib-9",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-10-right",
+    "name": "右第10肋骨",
+    "en": "Tenth rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Tenth rib.r.001"
+    ],
+    "description": "从上向下编号为第10肋，位于胸廓右侧。前端经肋软骨参与肋弓连接，不直接以骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T10"
+    ],
+    "side": "right",
+    "baseId": "rib-10",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-11-right",
+    "name": "右第11肋骨",
+    "en": "Eleventh rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Eleventh rib.r.001"
+    ],
+    "description": "从上向下编号为第11肋，位于胸廓右侧。属于浮肋，前端不与胸骨连接。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T11"
+    ],
+    "side": "right",
+    "baseId": "rib-11",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-12-right",
+    "name": "右第12肋骨",
+    "en": "Twelfth rib · right",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Twelfth rib.r.001"
+    ],
+    "description": "从上向下编号为第12肋，位于胸廓右侧。属于浮肋，前端不与胸骨连接。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T12"
+    ],
+    "side": "right",
+    "baseId": "rib-12",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-1-left",
+    "name": "左第1肋骨",
+    "en": "First rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "First rib.l.001"
+    ],
+    "description": "从上向下编号为第1肋，位于胸廓左侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T1"
+    ],
+    "side": "left",
+    "baseId": "rib-1",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-2-left",
+    "name": "左第2肋骨",
+    "en": "Second rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Second rib.l.001"
+    ],
+    "description": "从上向下编号为第2肋，位于胸廓左侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T2",
+      "T1"
+    ],
+    "side": "left",
+    "baseId": "rib-2",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-3-left",
+    "name": "左第3肋骨",
+    "en": "Third rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Third rib.l.001"
+    ],
+    "description": "从上向下编号为第3肋，位于胸廓左侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T3",
+      "T2"
+    ],
+    "side": "left",
+    "baseId": "rib-3",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-4-left",
+    "name": "左第4肋骨",
+    "en": "Fourth rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Fourth rib.l.001"
+    ],
+    "description": "从上向下编号为第4肋，位于胸廓左侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T4",
+      "T3"
+    ],
+    "side": "left",
+    "baseId": "rib-4",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-5-left",
+    "name": "左第5肋骨",
+    "en": "Fifth rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Fifth rib.l.001"
+    ],
+    "description": "从上向下编号为第5肋，位于胸廓左侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T5",
+      "T4"
+    ],
+    "side": "left",
+    "baseId": "rib-5",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-6-left",
+    "name": "左第6肋骨",
+    "en": "Sixth rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Sixth rib.l.001"
+    ],
+    "description": "从上向下编号为第6肋，位于胸廓左侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T6",
+      "T5"
+    ],
+    "side": "left",
+    "baseId": "rib-6",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-7-left",
+    "name": "左第7肋骨",
+    "en": "Seventh rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Seventh rib.l.001"
+    ],
+    "description": "从上向下编号为第7肋，位于胸廓左侧。前端经相应肋软骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T7",
+      "T6"
+    ],
+    "side": "left",
+    "baseId": "rib-7",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-8-left",
+    "name": "左第8肋骨",
+    "en": "Eighth rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Eighth rib.l.001"
+    ],
+    "description": "从上向下编号为第8肋，位于胸廓左侧。前端经肋软骨参与肋弓连接，不直接以骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T8",
+      "T7"
+    ],
+    "side": "left",
+    "baseId": "rib-8",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-9-left",
+    "name": "左第9肋骨",
+    "en": "Ninth rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Ninth rib.l.001"
+    ],
+    "description": "从上向下编号为第9肋，位于胸廓左侧。前端经肋软骨参与肋弓连接，不直接以骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T9",
+      "T8"
+    ],
+    "side": "left",
+    "baseId": "rib-9",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-10-left",
+    "name": "左第10肋骨",
+    "en": "Tenth rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Tenth rib.l.001"
+    ],
+    "description": "从上向下编号为第10肋，位于胸廓左侧。前端经肋软骨参与肋弓连接，不直接以骨接到胸骨。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T10"
+    ],
+    "side": "left",
+    "baseId": "rib-10",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-11-left",
+    "name": "左第11肋骨",
+    "en": "Eleventh rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Eleventh rib.l.001"
+    ],
+    "description": "从上向下编号为第11肋，位于胸廓左侧。属于浮肋，前端不与胸骨连接。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T11"
+    ],
+    "side": "left",
+    "baseId": "rib-11",
+    "pinyin": ""
+  },
+  {
+    "id": "rib-12-left",
+    "name": "左第12肋骨",
+    "en": "Twelfth rib · left",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Twelfth rib.l.001"
+    ],
+    "description": "从上向下编号为第12肋，位于胸廓左侧。属于浮肋，前端不与胸骨连接。",
+    "look": "沿后端辨认肋头、肋颈或结节区域，再沿弯曲骨体看到前端。",
+    "tip": "本图不显示肋软骨，因此肋骨前端与胸骨之间可见空隙。",
+    "neighbors": [
+      "T12"
+    ],
+    "side": "left",
+    "baseId": "rib-12",
+    "pinyin": ""
+  },
+  {
+    "id": "sternum",
+    "name": "胸骨",
+    "en": "Sternum",
+    "group": "thorax",
+    "region": "肋骨与胸骨",
+    "sourceNodes": [
+      "Manubrium of sternum.001",
+      "Body of sternum.001",
+      "Xiphoid process.001"
+    ],
+    "description": "位于胸廓前方正中，由胸骨柄、胸骨体和剑突三个区域构成。",
+    "look": "从侧面比较胸骨柄与体的角度，再从前面辨认上端和下端的形状。",
+    "tip": "按成人骨骼标准清单计为一块；源模型的三个部分合为同一可选对象。",
+    "neighbors": [
+      "clavicle-right",
+      "clavicle-left"
+    ],
+    "side": "midline",
+    "baseId": "sternum",
+    "pinyin": ""
+  },
+  {
+    "id": "clavicle-right",
+    "name": "右锁骨",
+    "en": "Clavicle · right",
+    "group": "shoulder",
+    "region": "肩带骨",
+    "sourceNodes": [
+      "Clavicle.r.001"
+    ],
+    "description": "横位于胸廓前上方，内端接胸骨，外端接肩胛骨肩峰。",
+    "look": "转动比较S形轮廓和两端；在原位查看它如何连接胸骨和肩部。",
+    "tip": "骨性连接之外还有韧带和关节盘等软组织，本版未显示。",
+    "neighbors": [
+      "sternum",
+      "scapula-right"
+    ],
+    "side": "right",
+    "baseId": "clavicle",
+    "pinyin": ""
+  },
+  {
+    "id": "scapula-right",
+    "name": "右肩胛骨",
+    "en": "Scapula · right",
+    "group": "shoulder",
+    "region": "肩带骨",
+    "sourceNodes": [
+      "Scapula.r.001"
+    ],
+    "description": "位于胸廓后上方，是扁平的肩带骨；外侧关节盂与肱骨头相对。",
+    "look": "从后面看肩胛冈、肩峰，从外侧看关节盂和喙突，再观察面向肋骨的前面。",
+    "tip": "肩胛骨贴近胸廓，但不与肋骨直接形成普通骨性关节。",
+    "neighbors": [
+      "clavicle-right",
+      "humerus-right"
+    ],
+    "side": "right",
+    "baseId": "scapula",
+    "pinyin": "jiǎ gǔ"
+  },
+  {
+    "id": "humerus-right",
+    "name": "右肱骨",
+    "en": "Humerus · right",
+    "group": "arm",
+    "region": "上臂与前臂",
+    "sourceNodes": [
+      "Humerus.r.001"
+    ],
+    "description": "位于上臂；上端为肱骨头，下端与尺骨、桡骨衔接。",
+    "look": "比较上端圆形骨头和下端滑车、小头等区域，再看骨干。",
+    "tip": "上端参与肩关节，下端参与肘关节。",
+    "neighbors": [
+      "scapula-right",
+      "ulna-right",
+      "radius-right"
+    ],
+    "side": "right",
+    "baseId": "humerus",
+    "pinyin": "gōng gǔ"
+  },
+  {
+    "id": "radius-right",
+    "name": "右桡骨",
+    "en": "Radius · right",
+    "group": "arm",
+    "region": "上臂与前臂",
+    "sourceNodes": [
+      "Radius.r.001"
+    ],
+    "description": "位于前臂拇指一侧；近端的桡骨头较小，远端靠近腕部较宽。",
+    "look": "观察近端圆盘状骨头，再对照远端与腕骨的排列。",
+    "tip": "解剖学姿势下桡骨在外侧；本图没有模拟前臂旋转。",
+    "neighbors": [
+      "humerus-right",
+      "ulna-right",
+      "scaphoid-right",
+      "lunate-right"
+    ],
+    "side": "right",
+    "baseId": "radius",
+    "pinyin": "ráo gǔ"
+  },
+  {
+    "id": "ulna-right",
+    "name": "右尺骨",
+    "en": "Ulna · right",
+    "group": "arm",
+    "region": "上臂与前臂",
+    "sourceNodes": [
+      "Ulna.r.001"
+    ],
+    "description": "位于前臂小指一侧，近端形成明显的鹰嘴与滑车切迹。",
+    "look": "从侧面看近端钩状轮廓，再比较细小的远端与桡骨远端。",
+    "tip": "尺骨与腕骨之间有软组织结构，不应把它与腕骨简单标成直接骨关节。",
+    "neighbors": [
+      "humerus-right",
+      "radius-right"
+    ],
+    "side": "right",
+    "baseId": "ulna",
+    "pinyin": ""
+  },
+  {
+    "id": "clavicle-left",
+    "name": "左锁骨",
+    "en": "Clavicle · left",
+    "group": "shoulder",
+    "region": "肩带骨",
+    "sourceNodes": [
+      "Clavicle.l.001"
+    ],
+    "description": "横位于胸廓前上方，内端接胸骨，外端接肩胛骨肩峰。",
+    "look": "转动比较S形轮廓和两端；在原位查看它如何连接胸骨和肩部。",
+    "tip": "骨性连接之外还有韧带和关节盘等软组织，本版未显示。",
+    "neighbors": [
+      "sternum",
+      "scapula-left"
+    ],
+    "side": "left",
+    "baseId": "clavicle",
+    "pinyin": ""
+  },
+  {
+    "id": "scapula-left",
+    "name": "左肩胛骨",
+    "en": "Scapula · left",
+    "group": "shoulder",
+    "region": "肩带骨",
+    "sourceNodes": [
+      "Scapula.l.001"
+    ],
+    "description": "位于胸廓后上方，是扁平的肩带骨；外侧关节盂与肱骨头相对。",
+    "look": "从后面看肩胛冈、肩峰，从外侧看关节盂和喙突，再观察面向肋骨的前面。",
+    "tip": "肩胛骨贴近胸廓，但不与肋骨直接形成普通骨性关节。",
+    "neighbors": [
+      "clavicle-left",
+      "humerus-left"
+    ],
+    "side": "left",
+    "baseId": "scapula",
+    "pinyin": "jiǎ gǔ"
+  },
+  {
+    "id": "humerus-left",
+    "name": "左肱骨",
+    "en": "Humerus · left",
+    "group": "arm",
+    "region": "上臂与前臂",
+    "sourceNodes": [
+      "Humerus.l.001"
+    ],
+    "description": "位于上臂；上端为肱骨头，下端与尺骨、桡骨衔接。",
+    "look": "比较上端圆形骨头和下端滑车、小头等区域，再看骨干。",
+    "tip": "上端参与肩关节，下端参与肘关节。",
+    "neighbors": [
+      "scapula-left",
+      "ulna-left",
+      "radius-left"
+    ],
+    "side": "left",
+    "baseId": "humerus",
+    "pinyin": "gōng gǔ"
+  },
+  {
+    "id": "radius-left",
+    "name": "左桡骨",
+    "en": "Radius · left",
+    "group": "arm",
+    "region": "上臂与前臂",
+    "sourceNodes": [
+      "Radius.l.001"
+    ],
+    "description": "位于前臂拇指一侧；近端的桡骨头较小，远端靠近腕部较宽。",
+    "look": "观察近端圆盘状骨头，再对照远端与腕骨的排列。",
+    "tip": "解剖学姿势下桡骨在外侧；本图没有模拟前臂旋转。",
+    "neighbors": [
+      "humerus-left",
+      "ulna-left",
+      "scaphoid-left",
+      "lunate-left"
+    ],
+    "side": "left",
+    "baseId": "radius",
+    "pinyin": "ráo gǔ"
+  },
+  {
+    "id": "ulna-left",
+    "name": "左尺骨",
+    "en": "Ulna · left",
+    "group": "arm",
+    "region": "上臂与前臂",
+    "sourceNodes": [
+      "Ulna.l.001"
+    ],
+    "description": "位于前臂小指一侧，近端形成明显的鹰嘴与滑车切迹。",
+    "look": "从侧面看近端钩状轮廓，再比较细小的远端与桡骨远端。",
+    "tip": "尺骨与腕骨之间有软组织结构，不应把它与腕骨简单标成直接骨关节。",
+    "neighbors": [
+      "humerus-left",
+      "radius-left"
+    ],
+    "side": "left",
+    "baseId": "ulna",
+    "pinyin": ""
+  },
+  {
+    "id": "scaphoid-right",
+    "name": "右手舟骨",
+    "en": "Scaphoid bone · right",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Scaphoid bone.r.001"
+    ],
+    "description": "位于右手近侧列拇指侧，是八块腕骨之一。",
+    "look": "舟骨近端与桡骨相对，远端朝向大、小多角骨。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "手舟骨位于腕部，足舟骨位于足部，两者不是同一块骨。",
+    "neighbors": [
+      "radius-right",
+      "lunate-right",
+      "trapezium-right",
+      "trapezoid-right",
+      "capitate-right"
+    ],
+    "side": "right",
+    "baseId": "scaphoid",
+    "pinyin": ""
+  },
+  {
+    "id": "lunate-right",
+    "name": "右月骨",
+    "en": "Lunate bone · right",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Lunate bone.r.001"
+    ],
+    "description": "位于右手近侧列中部，是八块腕骨之一。",
+    "look": "比较朝向桡骨的近端凸面与朝向头状骨的远端面。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "radius-right",
+      "scaphoid-right",
+      "triquetrum-right",
+      "capitate-right",
+      "hamate-right"
+    ],
+    "side": "right",
+    "baseId": "lunate",
+    "pinyin": ""
+  },
+  {
+    "id": "triquetrum-right",
+    "name": "右三角骨",
+    "en": "Triquetrum bone · right",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Triquetrum bone.r.001"
+    ],
+    "description": "位于右手近侧列小指侧，是八块腕骨之一。",
+    "look": "掌侧邻接豌豆骨，远侧邻接钩骨。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "lunate-right",
+      "pisiform-right",
+      "hamate-right"
+    ],
+    "side": "right",
+    "baseId": "triquetrum",
+    "pinyin": ""
+  },
+  {
+    "id": "pisiform-right",
+    "name": "右豌豆骨",
+    "en": "Pisiform bone · right",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Pisiform bone.r.001"
+    ],
+    "description": "位于右手腕部掌侧，是八块腕骨之一。",
+    "look": "找到它与三角骨相对的骨面。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "triquetrum-right"
+    ],
+    "side": "right",
+    "baseId": "pisiform",
+    "pinyin": ""
+  },
+  {
+    "id": "trapezium-right",
+    "name": "右大多角骨",
+    "en": "Trapezium bone · right",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Trapezium bone.r.001"
+    ],
+    "description": "位于右手远侧列拇指侧，是八块腕骨之一。",
+    "look": "比较它与第一掌骨基底相对的鞍形关节区域。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "scaphoid-right",
+      "trapezoid-right",
+      "hand-metacarpal-1-right",
+      "hand-metacarpal-2-right"
+    ],
+    "side": "right",
+    "baseId": "trapezium",
+    "pinyin": ""
+  },
+  {
+    "id": "trapezoid-right",
+    "name": "右小多角骨",
+    "en": "Trapezoid bone · right",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Trapezoid bone.r.001"
+    ],
+    "description": "位于右手远侧列第二掌骨后方，是八块腕骨之一。",
+    "look": "观察它夹在大多角骨和头状骨之间的位置。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "scaphoid-right",
+      "trapezium-right",
+      "capitate-right",
+      "hand-metacarpal-2-right"
+    ],
+    "side": "right",
+    "baseId": "trapezoid",
+    "pinyin": ""
+  },
+  {
+    "id": "capitate-right",
+    "name": "右头状骨",
+    "en": "Capitate bone · right",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Capitate bone.r.001"
+    ],
+    "description": "位于右手远侧列中央，是八块腕骨之一。",
+    "look": "观察较圆的头部与向第三掌骨接续的远端。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "scaphoid-right",
+      "lunate-right",
+      "trapezoid-right",
+      "hamate-right",
+      "hand-metacarpal-2-right",
+      "hand-metacarpal-3-right",
+      "hand-metacarpal-4-right"
+    ],
+    "side": "right",
+    "baseId": "capitate",
+    "pinyin": ""
+  },
+  {
+    "id": "hamate-right",
+    "name": "右钩骨",
+    "en": "Hamate bone · right",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Hamate bone.r.001"
+    ],
+    "description": "位于右手远侧列小指侧，是八块腕骨之一。",
+    "look": "从掌侧寻找钩状突起，再看它与第四、第五掌骨的接续。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "lunate-right",
+      "triquetrum-right",
+      "capitate-right",
+      "hand-metacarpal-4-right",
+      "hand-metacarpal-5-right"
+    ],
+    "side": "right",
+    "baseId": "hamate",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-metacarpal-1-right",
+    "name": "右第1掌骨",
+    "en": "First metacarpal · right",
+    "group": "metacarpal",
+    "region": "掌骨",
+    "sourceNodes": [
+      "First metacarpal bone.r.001"
+    ],
+    "description": "从拇指到小指编号，这是第1掌骨，位于手掌内部。",
+    "look": "沿近端基底、骨干、远端掌骨头依次观察，再对照同列近节指骨。",
+    "tip": "掌骨属于手掌，指骨属于手指。",
+    "neighbors": [
+      "trapezium-right",
+      "hand-proximal-1-right"
+    ],
+    "side": "right",
+    "baseId": "hand-metacarpal-1",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-proximal-1-right",
+    "name": "右拇指近节指骨",
+    "en": "Proximal phalanx · finger 1 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Proximal phalanx of first finger of hand.r.001"
+    ],
+    "description": "位于右手拇指的近节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-metacarpal-1-right",
+      "hand-distal-1-right"
+    ],
+    "side": "right",
+    "baseId": "hand-proximal-1",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-distal-1-right",
+    "name": "右拇指远节指骨",
+    "en": "Distal phalanx · finger 1 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Distal phalanx of first finger of hand.r.001"
+    ],
+    "description": "位于右手拇指的远节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-proximal-1-right"
+    ],
+    "side": "right",
+    "baseId": "hand-distal-1",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-metacarpal-2-right",
+    "name": "右第2掌骨",
+    "en": "Second metacarpal · right",
+    "group": "metacarpal",
+    "region": "掌骨",
+    "sourceNodes": [
+      "Second metacarpal bone.r.001"
+    ],
+    "description": "从拇指到小指编号，这是第2掌骨，位于手掌内部。",
+    "look": "沿近端基底、骨干、远端掌骨头依次观察，再对照同列近节指骨。",
+    "tip": "掌骨属于手掌，指骨属于手指。",
+    "neighbors": [
+      "trapezium-right",
+      "trapezoid-right",
+      "capitate-right",
+      "hand-proximal-2-right"
+    ],
+    "side": "right",
+    "baseId": "hand-metacarpal-2",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-proximal-2-right",
+    "name": "右示指近节指骨",
+    "en": "Proximal phalanx · finger 2 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Proximal phalanx of second finger of hand.r.001"
+    ],
+    "description": "位于右手示指的近节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-metacarpal-2-right",
+      "hand-middle-2-right"
+    ],
+    "side": "right",
+    "baseId": "hand-proximal-2",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-middle-2-right",
+    "name": "右示指中节指骨",
+    "en": "Middle phalanx · finger 2 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Middle phalanx of second finger of hand.r.001"
+    ],
+    "description": "位于右手示指的中节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-proximal-2-right",
+      "hand-distal-2-right"
+    ],
+    "side": "right",
+    "baseId": "hand-middle-2",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-distal-2-right",
+    "name": "右示指远节指骨",
+    "en": "Distal phalanx · finger 2 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Distal phalanx of second finger of hand.r.001"
+    ],
+    "description": "位于右手示指的远节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-middle-2-right"
+    ],
+    "side": "right",
+    "baseId": "hand-distal-2",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-metacarpal-3-right",
+    "name": "右第3掌骨",
+    "en": "Third metacarpal · right",
+    "group": "metacarpal",
+    "region": "掌骨",
+    "sourceNodes": [
+      "Third metacarpal bone.r.001"
+    ],
+    "description": "从拇指到小指编号，这是第3掌骨，位于手掌内部。",
+    "look": "沿近端基底、骨干、远端掌骨头依次观察，再对照同列近节指骨。",
+    "tip": "掌骨属于手掌，指骨属于手指。",
+    "neighbors": [
+      "capitate-right",
+      "hand-proximal-3-right"
+    ],
+    "side": "right",
+    "baseId": "hand-metacarpal-3",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-proximal-3-right",
+    "name": "右中指近节指骨",
+    "en": "Proximal phalanx · finger 3 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Proximal phalanx of third finger of hand.r.001"
+    ],
+    "description": "位于右手中指的近节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-metacarpal-3-right",
+      "hand-middle-3-right"
+    ],
+    "side": "right",
+    "baseId": "hand-proximal-3",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-middle-3-right",
+    "name": "右中指中节指骨",
+    "en": "Middle phalanx · finger 3 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Middle phalanx of third finger of hand.r.001"
+    ],
+    "description": "位于右手中指的中节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-proximal-3-right",
+      "hand-distal-3-right"
+    ],
+    "side": "right",
+    "baseId": "hand-middle-3",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-distal-3-right",
+    "name": "右中指远节指骨",
+    "en": "Distal phalanx · finger 3 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Distal phalanx of third finger of hand.r.001"
+    ],
+    "description": "位于右手中指的远节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-middle-3-right"
+    ],
+    "side": "right",
+    "baseId": "hand-distal-3",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-metacarpal-4-right",
+    "name": "右第4掌骨",
+    "en": "Fourth metacarpal · right",
+    "group": "metacarpal",
+    "region": "掌骨",
+    "sourceNodes": [
+      "Fourth metacarpal bone.r.001"
+    ],
+    "description": "从拇指到小指编号，这是第4掌骨，位于手掌内部。",
+    "look": "沿近端基底、骨干、远端掌骨头依次观察，再对照同列近节指骨。",
+    "tip": "掌骨属于手掌，指骨属于手指。",
+    "neighbors": [
+      "capitate-right",
+      "hamate-right",
+      "hand-proximal-4-right"
+    ],
+    "side": "right",
+    "baseId": "hand-metacarpal-4",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-proximal-4-right",
+    "name": "右环指近节指骨",
+    "en": "Proximal phalanx · finger 4 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Proximal phalanx of fourth finger of hand.r.001"
+    ],
+    "description": "位于右手环指的近节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-metacarpal-4-right",
+      "hand-middle-4-right"
+    ],
+    "side": "right",
+    "baseId": "hand-proximal-4",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-middle-4-right",
+    "name": "右环指中节指骨",
+    "en": "Middle phalanx · finger 4 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Middle phalanx of fourth finger of hand.r.001"
+    ],
+    "description": "位于右手环指的中节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-proximal-4-right",
+      "hand-distal-4-right"
+    ],
+    "side": "right",
+    "baseId": "hand-middle-4",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-distal-4-right",
+    "name": "右环指远节指骨",
+    "en": "Distal phalanx · finger 4 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Distal phalanx of fourth finger of hand.r.001"
+    ],
+    "description": "位于右手环指的远节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-middle-4-right"
+    ],
+    "side": "right",
+    "baseId": "hand-distal-4",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-metacarpal-5-right",
+    "name": "右第5掌骨",
+    "en": "Fifth metacarpal · right",
+    "group": "metacarpal",
+    "region": "掌骨",
+    "sourceNodes": [
+      "Fifth metacarpal bone.r.001"
+    ],
+    "description": "从拇指到小指编号，这是第5掌骨，位于手掌内部。",
+    "look": "沿近端基底、骨干、远端掌骨头依次观察，再对照同列近节指骨。",
+    "tip": "掌骨属于手掌，指骨属于手指。",
+    "neighbors": [
+      "hamate-right",
+      "hand-proximal-5-right"
+    ],
+    "side": "right",
+    "baseId": "hand-metacarpal-5",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-proximal-5-right",
+    "name": "右小指近节指骨",
+    "en": "Proximal phalanx · finger 5 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Proximal phalanx of fifth finger of hand.r.001"
+    ],
+    "description": "位于右手小指的近节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-metacarpal-5-right",
+      "hand-middle-5-right"
+    ],
+    "side": "right",
+    "baseId": "hand-proximal-5",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-middle-5-right",
+    "name": "右小指中节指骨",
+    "en": "Middle phalanx · finger 5 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Middle phalanx of fifth finger of hand.r.001"
+    ],
+    "description": "位于右手小指的中节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-proximal-5-right",
+      "hand-distal-5-right"
+    ],
+    "side": "right",
+    "baseId": "hand-middle-5",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-distal-5-right",
+    "name": "右小指远节指骨",
+    "en": "Distal phalanx · finger 5 · right",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Distal phalanx of fifth finger of hand.r.001"
+    ],
+    "description": "位于右手小指的远节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-middle-5-right"
+    ],
+    "side": "right",
+    "baseId": "hand-distal-5",
+    "pinyin": ""
+  },
+  {
+    "id": "scaphoid-left",
+    "name": "左手舟骨",
+    "en": "Scaphoid bone · left",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Scaphoid bone.l.001"
+    ],
+    "description": "位于左手近侧列拇指侧，是八块腕骨之一。",
+    "look": "舟骨近端与桡骨相对，远端朝向大、小多角骨。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "手舟骨位于腕部，足舟骨位于足部，两者不是同一块骨。",
+    "neighbors": [
+      "radius-left",
+      "lunate-left",
+      "trapezium-left",
+      "trapezoid-left",
+      "capitate-left"
+    ],
+    "side": "left",
+    "baseId": "scaphoid",
+    "pinyin": ""
+  },
+  {
+    "id": "lunate-left",
+    "name": "左月骨",
+    "en": "Lunate bone · left",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Lunate bone.l.001"
+    ],
+    "description": "位于左手近侧列中部，是八块腕骨之一。",
+    "look": "比较朝向桡骨的近端凸面与朝向头状骨的远端面。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "radius-left",
+      "scaphoid-left",
+      "triquetrum-left",
+      "capitate-left",
+      "hamate-left"
+    ],
+    "side": "left",
+    "baseId": "lunate",
+    "pinyin": ""
+  },
+  {
+    "id": "triquetrum-left",
+    "name": "左三角骨",
+    "en": "Triquetrum bone · left",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Triquetrum bone.l.001"
+    ],
+    "description": "位于左手近侧列小指侧，是八块腕骨之一。",
+    "look": "掌侧邻接豌豆骨，远侧邻接钩骨。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "lunate-left",
+      "pisiform-left",
+      "hamate-left"
+    ],
+    "side": "left",
+    "baseId": "triquetrum",
+    "pinyin": ""
+  },
+  {
+    "id": "pisiform-left",
+    "name": "左豌豆骨",
+    "en": "Pisiform bone · left",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Pisiform bone.l.001"
+    ],
+    "description": "位于左手腕部掌侧，是八块腕骨之一。",
+    "look": "找到它与三角骨相对的骨面。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "triquetrum-left"
+    ],
+    "side": "left",
+    "baseId": "pisiform",
+    "pinyin": ""
+  },
+  {
+    "id": "trapezium-left",
+    "name": "左大多角骨",
+    "en": "Trapezium bone · left",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Trapezium bone.l.001"
+    ],
+    "description": "位于左手远侧列拇指侧，是八块腕骨之一。",
+    "look": "比较它与第一掌骨基底相对的鞍形关节区域。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "scaphoid-left",
+      "trapezoid-left",
+      "hand-metacarpal-1-left",
+      "hand-metacarpal-2-left"
+    ],
+    "side": "left",
+    "baseId": "trapezium",
+    "pinyin": ""
+  },
+  {
+    "id": "trapezoid-left",
+    "name": "左小多角骨",
+    "en": "Trapezoid bone · left",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Trapezoid bone.l.001"
+    ],
+    "description": "位于左手远侧列第二掌骨后方，是八块腕骨之一。",
+    "look": "观察它夹在大多角骨和头状骨之间的位置。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "scaphoid-left",
+      "trapezium-left",
+      "capitate-left",
+      "hand-metacarpal-2-left"
+    ],
+    "side": "left",
+    "baseId": "trapezoid",
+    "pinyin": ""
+  },
+  {
+    "id": "capitate-left",
+    "name": "左头状骨",
+    "en": "Capitate bone · left",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Capitate bone.l.001"
+    ],
+    "description": "位于左手远侧列中央，是八块腕骨之一。",
+    "look": "观察较圆的头部与向第三掌骨接续的远端。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "scaphoid-left",
+      "lunate-left",
+      "trapezoid-left",
+      "hamate-left",
+      "hand-metacarpal-2-left",
+      "hand-metacarpal-3-left",
+      "hand-metacarpal-4-left"
+    ],
+    "side": "left",
+    "baseId": "capitate",
+    "pinyin": ""
+  },
+  {
+    "id": "hamate-left",
+    "name": "左钩骨",
+    "en": "Hamate bone · left",
+    "group": "carpal",
+    "region": "腕骨",
+    "sourceNodes": [
+      "Hamate bone.l.001"
+    ],
+    "description": "位于左手远侧列小指侧，是八块腕骨之一。",
+    "look": "从掌侧寻找钩状突起，再看它与第四、第五掌骨的接续。单骨观察可排除周围腕骨的遮挡。",
+    "tip": "腕骨按近侧列与远侧列观察；展开距离只是显示效果。",
+    "neighbors": [
+      "lunate-left",
+      "triquetrum-left",
+      "capitate-left",
+      "hand-metacarpal-4-left",
+      "hand-metacarpal-5-left"
+    ],
+    "side": "left",
+    "baseId": "hamate",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-metacarpal-1-left",
+    "name": "左第1掌骨",
+    "en": "First metacarpal · left",
+    "group": "metacarpal",
+    "region": "掌骨",
+    "sourceNodes": [
+      "First metacarpal bone.l.001"
+    ],
+    "description": "从拇指到小指编号，这是第1掌骨，位于手掌内部。",
+    "look": "沿近端基底、骨干、远端掌骨头依次观察，再对照同列近节指骨。",
+    "tip": "掌骨属于手掌，指骨属于手指。",
+    "neighbors": [
+      "trapezium-left",
+      "hand-proximal-1-left"
+    ],
+    "side": "left",
+    "baseId": "hand-metacarpal-1",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-proximal-1-left",
+    "name": "左拇指近节指骨",
+    "en": "Proximal phalanx · finger 1 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Proximal phalanx of first finger of hand.l.001"
+    ],
+    "description": "位于左手拇指的近节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-metacarpal-1-left",
+      "hand-distal-1-left"
+    ],
+    "side": "left",
+    "baseId": "hand-proximal-1",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-distal-1-left",
+    "name": "左拇指远节指骨",
+    "en": "Distal phalanx · finger 1 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Distal phalanx of first finger of hand.l.001"
+    ],
+    "description": "位于左手拇指的远节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-proximal-1-left"
+    ],
+    "side": "left",
+    "baseId": "hand-distal-1",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-metacarpal-2-left",
+    "name": "左第2掌骨",
+    "en": "Second metacarpal · left",
+    "group": "metacarpal",
+    "region": "掌骨",
+    "sourceNodes": [
+      "Second metacarpal bone.l.001"
+    ],
+    "description": "从拇指到小指编号，这是第2掌骨，位于手掌内部。",
+    "look": "沿近端基底、骨干、远端掌骨头依次观察，再对照同列近节指骨。",
+    "tip": "掌骨属于手掌，指骨属于手指。",
+    "neighbors": [
+      "trapezium-left",
+      "trapezoid-left",
+      "capitate-left",
+      "hand-proximal-2-left"
+    ],
+    "side": "left",
+    "baseId": "hand-metacarpal-2",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-proximal-2-left",
+    "name": "左示指近节指骨",
+    "en": "Proximal phalanx · finger 2 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Proximal phalanx of second finger of hand.l.001"
+    ],
+    "description": "位于左手示指的近节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-metacarpal-2-left",
+      "hand-middle-2-left"
+    ],
+    "side": "left",
+    "baseId": "hand-proximal-2",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-middle-2-left",
+    "name": "左示指中节指骨",
+    "en": "Middle phalanx · finger 2 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Middle phalanx of second finger of hand.l.001"
+    ],
+    "description": "位于左手示指的中节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-proximal-2-left",
+      "hand-distal-2-left"
+    ],
+    "side": "left",
+    "baseId": "hand-middle-2",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-distal-2-left",
+    "name": "左示指远节指骨",
+    "en": "Distal phalanx · finger 2 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Distal phalanx of second finger of hand.l.001"
+    ],
+    "description": "位于左手示指的远节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-middle-2-left"
+    ],
+    "side": "left",
+    "baseId": "hand-distal-2",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-metacarpal-3-left",
+    "name": "左第3掌骨",
+    "en": "Third metacarpal · left",
+    "group": "metacarpal",
+    "region": "掌骨",
+    "sourceNodes": [
+      "Third metacarpal bone.l.001"
+    ],
+    "description": "从拇指到小指编号，这是第3掌骨，位于手掌内部。",
+    "look": "沿近端基底、骨干、远端掌骨头依次观察，再对照同列近节指骨。",
+    "tip": "掌骨属于手掌，指骨属于手指。",
+    "neighbors": [
+      "capitate-left",
+      "hand-proximal-3-left"
+    ],
+    "side": "left",
+    "baseId": "hand-metacarpal-3",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-proximal-3-left",
+    "name": "左中指近节指骨",
+    "en": "Proximal phalanx · finger 3 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Proximal phalanx of third finger of hand.l.001"
+    ],
+    "description": "位于左手中指的近节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-metacarpal-3-left",
+      "hand-middle-3-left"
+    ],
+    "side": "left",
+    "baseId": "hand-proximal-3",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-middle-3-left",
+    "name": "左中指中节指骨",
+    "en": "Middle phalanx · finger 3 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Middle phalanx of third finger of hand.l.001"
+    ],
+    "description": "位于左手中指的中节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-proximal-3-left",
+      "hand-distal-3-left"
+    ],
+    "side": "left",
+    "baseId": "hand-middle-3",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-distal-3-left",
+    "name": "左中指远节指骨",
+    "en": "Distal phalanx · finger 3 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Distal phalanx of third finger of hand.l.001"
+    ],
+    "description": "位于左手中指的远节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-middle-3-left"
+    ],
+    "side": "left",
+    "baseId": "hand-distal-3",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-metacarpal-4-left",
+    "name": "左第4掌骨",
+    "en": "Fourth metacarpal · left",
+    "group": "metacarpal",
+    "region": "掌骨",
+    "sourceNodes": [
+      "Fourth metacarpal bone.l.001"
+    ],
+    "description": "从拇指到小指编号，这是第4掌骨，位于手掌内部。",
+    "look": "沿近端基底、骨干、远端掌骨头依次观察，再对照同列近节指骨。",
+    "tip": "掌骨属于手掌，指骨属于手指。",
+    "neighbors": [
+      "capitate-left",
+      "hamate-left",
+      "hand-proximal-4-left"
+    ],
+    "side": "left",
+    "baseId": "hand-metacarpal-4",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-proximal-4-left",
+    "name": "左环指近节指骨",
+    "en": "Proximal phalanx · finger 4 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Proximal phalanx of fourth finger of hand.l.001"
+    ],
+    "description": "位于左手环指的近节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-metacarpal-4-left",
+      "hand-middle-4-left"
+    ],
+    "side": "left",
+    "baseId": "hand-proximal-4",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-middle-4-left",
+    "name": "左环指中节指骨",
+    "en": "Middle phalanx · finger 4 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Middle phalanx of fourth finger of hand.l.001"
+    ],
+    "description": "位于左手环指的中节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-proximal-4-left",
+      "hand-distal-4-left"
+    ],
+    "side": "left",
+    "baseId": "hand-middle-4",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-distal-4-left",
+    "name": "左环指远节指骨",
+    "en": "Distal phalanx · finger 4 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Distal phalanx of fourth finger of hand.l.001"
+    ],
+    "description": "位于左手环指的远节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-middle-4-left"
+    ],
+    "side": "left",
+    "baseId": "hand-distal-4",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-metacarpal-5-left",
+    "name": "左第5掌骨",
+    "en": "Fifth metacarpal · left",
+    "group": "metacarpal",
+    "region": "掌骨",
+    "sourceNodes": [
+      "Fifth metacarpal bone.l.001"
+    ],
+    "description": "从拇指到小指编号，这是第5掌骨，位于手掌内部。",
+    "look": "沿近端基底、骨干、远端掌骨头依次观察，再对照同列近节指骨。",
+    "tip": "掌骨属于手掌，指骨属于手指。",
+    "neighbors": [
+      "hamate-left",
+      "hand-proximal-5-left"
+    ],
+    "side": "left",
+    "baseId": "hand-metacarpal-5",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-proximal-5-left",
+    "name": "左小指近节指骨",
+    "en": "Proximal phalanx · finger 5 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Proximal phalanx of fifth finger of hand.l.001"
+    ],
+    "description": "位于左手小指的近节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-metacarpal-5-left",
+      "hand-middle-5-left"
+    ],
+    "side": "left",
+    "baseId": "hand-proximal-5",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-middle-5-left",
+    "name": "左小指中节指骨",
+    "en": "Middle phalanx · finger 5 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Middle phalanx of fifth finger of hand.l.001"
+    ],
+    "description": "位于左手小指的中节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-proximal-5-left",
+      "hand-distal-5-left"
+    ],
+    "side": "left",
+    "baseId": "hand-middle-5",
+    "pinyin": ""
+  },
+  {
+    "id": "hand-distal-5-left",
+    "name": "左小指远节指骨",
+    "en": "Distal phalanx · finger 5 · left",
+    "group": "hand-phalanges",
+    "region": "指骨",
+    "sourceNodes": [
+      "Distal phalanx of fifth finger of hand.l.001"
+    ],
+    "description": "位于左手小指的远节。",
+    "look": "转动比较近端基底与远端形态，再在手部区域沿同一手指逐节定位。",
+    "tip": "拇指只有近节、远节；其余四指各有近节、中节、远节。",
+    "neighbors": [
+      "hand-middle-5-left"
+    ],
+    "side": "left",
+    "baseId": "hand-distal-5",
+    "pinyin": ""
+  }
+]
