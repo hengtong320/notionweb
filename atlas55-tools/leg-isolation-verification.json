@@ -1,0 +1,639 @@
+{
+  "version": "55.0.0",
+  "sourceSkinUnchanged": true,
+  "independentOppositeLegMotion": true,
+  "toleranceMetres": 0.00002,
+  "skin": [
+    {
+      "sex": "male",
+      "side": "R",
+      "samples": 9898,
+      "before": {
+        "maxDisplacementMetres": 0,
+        "changedVertices": 0
+      },
+      "after": {
+        "maxDisplacementMetres": 0,
+        "changedVertices": 0
+      }
+    },
+    {
+      "sex": "male",
+      "side": "L",
+      "samples": 9898,
+      "before": {
+        "maxDisplacementMetres": 0,
+        "changedVertices": 0
+      },
+      "after": {
+        "maxDisplacementMetres": 0,
+        "changedVertices": 0
+      }
+    },
+    {
+      "sex": "female",
+      "side": "R",
+      "samples": 28838,
+      "before": {
+        "maxDisplacementMetres": 0,
+        "changedVertices": 0
+      },
+      "after": {
+        "maxDisplacementMetres": 0,
+        "changedVertices": 0
+      }
+    },
+    {
+      "sex": "female",
+      "side": "L",
+      "samples": 29044,
+      "before": {
+        "maxDisplacementMetres": 0,
+        "changedVertices": 0
+      },
+      "after": {
+        "maxDisplacementMetres": 0,
+        "changedVertices": 0
+      }
+    }
+  ],
+  "structures": [
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-349",
+      "name": "右隐神经髌下支",
+      "side": "R",
+      "samples": 325,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-350",
+      "name": "右隐神经",
+      "side": "R",
+      "samples": 2964,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-352",
+      "name": "右腓肠神经",
+      "side": "R",
+      "samples": 2223,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-353",
+      "name": "右腓总神经交通支",
+      "side": "R",
+      "samples": 637,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-354",
+      "name": "右腓肠内侧皮神经",
+      "side": "R",
+      "samples": 169,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-355",
+      "name": "左隐神经髌下支",
+      "side": "L",
+      "samples": 325,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-356",
+      "name": "左隐神经",
+      "side": "L",
+      "samples": 2964,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-358",
+      "name": "左腓肠神经",
+      "side": "L",
+      "samples": 2223,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-359",
+      "name": "左腓总神经交通支",
+      "side": "L",
+      "samples": 637,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-360",
+      "name": "左腓肠内侧皮神经",
+      "side": "L",
+      "samples": 169,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-361",
+      "name": "右股神经前皮支",
+      "side": "R",
+      "samples": 286,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-362",
+      "name": "左股神经前皮支",
+      "side": "L",
+      "samples": 286,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-364",
+      "name": "右股外侧皮神经",
+      "side": "R",
+      "samples": 429,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-366",
+      "name": "左股外侧皮神经",
+      "side": "L",
+      "samples": 429,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-382",
+      "name": "右腓浅神经趾背神经",
+      "side": "R",
+      "samples": 4615,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-383",
+      "name": "右腓浅神经",
+      "side": "R",
+      "samples": 1729,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-386",
+      "name": "左腓浅神经趾背神经",
+      "side": "L",
+      "samples": 4615,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-387",
+      "name": "左腓浅神经",
+      "side": "L",
+      "samples": 1729,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-390",
+      "name": "右腓深神经趾背神经",
+      "side": "R",
+      "samples": 1742,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-391",
+      "name": "右腓深神经肌支",
+      "side": "R",
+      "samples": 481,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-392",
+      "name": "右腓深神经",
+      "side": "R",
+      "samples": 2353,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-393",
+      "name": "左腓深神经趾背神经",
+      "side": "L",
+      "samples": 1742,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-394",
+      "name": "左腓深神经肌支",
+      "side": "L",
+      "samples": 481,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-395",
+      "name": "左腓深神经",
+      "side": "L",
+      "samples": 2353,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-396",
+      "name": "右坐骨神经",
+      "side": "R",
+      "samples": 247,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-397",
+      "name": "右胫神经",
+      "side": "R",
+      "samples": 1417,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-402",
+      "name": "右腓总神经",
+      "side": "R",
+      "samples": 1105,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-403",
+      "name": "左坐骨神经",
+      "side": "L",
+      "samples": 247,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-404",
+      "name": "左胫神经",
+      "side": "L",
+      "samples": 1417,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "nerves",
+      "chunkedPreparationMatchesSync": true,
+      "id": "nervous-409",
+      "name": "左腓总神经",
+      "side": "L",
+      "samples": 1105,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-378",
+      "name": "旋股外侧动脉降支",
+      "side": "R",
+      "samples": 585,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-380",
+      "name": "左旋股外侧动脉降支",
+      "side": "L",
+      "samples": 585,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-382",
+      "name": "右股深动脉",
+      "side": "R",
+      "samples": 286,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-383",
+      "name": "左股深动脉",
+      "side": "L",
+      "samples": 286,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-394",
+      "name": "右胫前动脉",
+      "side": "R",
+      "samples": 2353,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-395",
+      "name": "左胫前动脉",
+      "side": "L",
+      "samples": 2353,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-396",
+      "name": "右腓动脉跟支",
+      "side": "R",
+      "samples": 325,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-397",
+      "name": "左腓动脉跟支",
+      "side": "L",
+      "samples": 325,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-398",
+      "name": "右腓动脉",
+      "side": "R",
+      "samples": 3497,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-399",
+      "name": "左腓动脉",
+      "side": "L",
+      "samples": 3497,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-416",
+      "name": "右胫后动脉",
+      "side": "R",
+      "samples": 2197,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-417",
+      "name": "右胫后动脉跟支",
+      "side": "R",
+      "samples": 481,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-418",
+      "name": "左胫后动脉",
+      "side": "L",
+      "samples": 2197,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-419",
+      "name": "左胫后动脉跟支",
+      "side": "L",
+      "samples": 481,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-420",
+      "name": "右腘动脉",
+      "side": "R",
+      "samples": 1105,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-427",
+      "name": "左腘动脉",
+      "side": "L",
+      "samples": 1105,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-434",
+      "name": "右股动脉",
+      "side": "R",
+      "samples": 247,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-436",
+      "name": "左股动脉",
+      "side": "L",
+      "samples": 247,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-574",
+      "name": "右大隐静脉",
+      "side": "R",
+      "samples": 3510,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-576",
+      "name": "左大隐静脉",
+      "side": "L",
+      "samples": 3510,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-578",
+      "name": "右股深静脉",
+      "side": "R",
+      "samples": 221,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-580",
+      "name": "左股深静脉",
+      "side": "L",
+      "samples": 221,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-581",
+      "name": "右胫前静脉",
+      "side": "R",
+      "samples": 2509,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-582",
+      "name": "左胫前静脉",
+      "side": "L",
+      "samples": 2509,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-591",
+      "name": "右胫后静脉",
+      "side": "R",
+      "samples": 2665,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-592",
+      "name": "右腓静脉",
+      "side": "R",
+      "samples": 1573,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-594",
+      "name": "左胫后静脉",
+      "side": "L",
+      "samples": 2665,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-595",
+      "name": "左腓静脉",
+      "side": "L",
+      "samples": 1573,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-601",
+      "name": "右小隐静脉",
+      "side": "R",
+      "samples": 3133,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-602",
+      "name": "左小隐静脉",
+      "side": "L",
+      "samples": 3133,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-603",
+      "name": "右腘静脉",
+      "side": "R",
+      "samples": 1105,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-605",
+      "name": "左腘静脉",
+      "side": "L",
+      "samples": 1105,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-607",
+      "name": "右股静脉",
+      "side": "R",
+      "samples": 182,
+      "maxDisplacementMetres": 0
+    },
+    {
+      "system": "vessels",
+      "chunkedPreparationMatchesSync": true,
+      "id": "vessels-610",
+      "name": "左股静脉",
+      "side": "L",
+      "samples": 182,
+      "maxDisplacementMetres": 0
+    }
+  ],
+  "clinicalCalibration": false
+}

@@ -1,0 +1,97 @@
+--- a/README.md
++++ b/README.md
+@@ -1,13 +1,13 @@
+-# V55 左右腿随动与结构载入
++# V55 观察控制与保存状态
+ 
+ 入口：[生活姿势](pose.html?v=55.0.0) · [解剖与经穴](index.html?v=55.0.0)
+ 
+ 保留 120 种生活姿态、男女体表、经络穴位、骨架、器官、神经、血管与颈胸腰分节观察。
+ 
+-左右腿按原体表连通区域绑定，避免内侧大腿同时跟随两腿。髋部保留连续过渡；男体腕部接缝的邻域与平滑过渡也已修正。盘腿分开双脚并把手放到对应膝上，交叠坐姿、侧坐、上楼及低处取物调整手臂摆放。原皮肤顶点、骨块、骨长和穴位坐标保留。
++本轮修正模型操作与点选的冲突：旋转或平移后回到起点，仍视为拖动；双指、右键、中键及组合键操作不触发穴位或结构点选。正常单指或左键轻点继续选择。更换姿势、人体或图层时，清除旧手势；点选前刷新相机矩阵。
+ 
+-结构文件同时载入，绑定计算分段执行，并显示准备进度。点线仍附着于各自皮肤原三角形，使用与绘图相同的变形计算进行显示、选取和遮挡。男女切换保留观察和开关状态。
++同一标签页打开另一组保存链接时，原版会保留旧姿势与男女图层。现在重新读取该链接的完整观察状态；日常拖动、放大和选项调整继续更新保存状态。
+ 
+-男性肩部接缝、深屈曲软组织贴合和部分手部任务仍未解决；坐着系鞋带的真实手指与足部接触也未完成。穴位未逐穴临床校准，女性共用关节比例仍是教学参考。内部受力与病变预测未求解。
++男性肩部接缝、大幅举臂、深屈曲软组织贴合与部分手部接触仍待处理。肩胛带与皮肤绑定试验有回归，尚未纳入发布版。所有穴位未逐穴临床校准，女性共用关节比例仍是教学参考。内部受力与病变预测未求解。
+ 
+ 检测口径、结果与待办见[本轮复核](../atlas55-tools/REVIEW.md)。
+--- a/pose-lab.js
++++ b/pose-lab.js
+@@ -1,4 +1,9 @@
+ import * as T from 'three';
++import {createPointerIntent} from './pose-pointer-intent.js';
++// Saved links encode the complete observation in the fragment. Navigating to
++// another saved state in this tab must re-read it; replaceState does not fire
++// hashchange, so routine camera and control updates do not reload the model.
++window.addEventListener('hashchange',()=>location.reload());
+ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+ import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
+@@ -14,6 +19,7 @@
+ import {boneSegment,belongsToSegment} from './pose-segments.js';
+ import {poseContacts} from './pose-contacts.js';
+ import {SPINE_LEVELS,SPINE_KEYS,spineAdjustment,observeSpine} from './pose-spine.js';
++const pointerIntent=createPointerIntent();
+ const $=id=>document.getElementById(id),viewport=$('viewport'),byId=new Map(POSES.map(p=>[p.id,p])),boneData=new Map(BONES.map(b=>[b.id,b]));
+ const hash=new URLSearchParams(location.hash.slice(1));let selected=byId.has(hash.get('pose'))?hash.get('pose'):'stand-relaxed',phase=T.MathUtils.clamp(Number(hash.get('phase'))||0,0,100)/100,ready=false,playing=false,focus='lumbar',pinned=null,recordURL=null,renderPending=0,lastTime=0,lastPoseTime=0,phaseDirection=1,atlasPage=0,atlasGeneration=0,atlasBusy=false;
+ let currentSpine=null;for(const key of SPINE_KEYS)$(key).value=spineAdjustment(Object.fromEntries(SPINE_KEYS.map(k=>[k,hash.get(k)])))[key];
+@@ -126,7 +132,7 @@
+ 
+ function applySelected(refit=false){if(!ready)return;if(refit){gripFocused=false;signs.visible=true;}const p=byId.get(selected);currentSpec=stateFor(p,phase);currentSpec.flags=p.flags;currentSpec.taskId=p.id;currentSpec.spineAdjustment=getSpineInput();solved=configure(currentSpec);tissues?.update(solved);currentSpec=solved.spec;renderSpine();$('gripFocus').hidden=!solved.grip;$('stage').classList.toggle('hasGrip',!!solved.grip);drawProps(currentSpec,solved);drawSigns(currentSpec);updateAnalysis();if(refit)frameBody(preferredDirection(currentSpec));invalidate();}
+ function stop(){playing=false;$('play').textContent='播放';saveHash();}
+-function choose(id,restoreLoad=true){if(!byId.has(id))return;const previous=byId.get(selected);stop();selected=id;phase=0;$('phase').value=0;$('phaseName').value='0%';syncLoad(previous,!restoreLoad);invalidateRecord();const p=byId.get(id);$('sceneTitle').textContent=p.name;$('sceneCategory').textContent=p.category;$('sceneExplanation').textContent=p.explanation;$('phaseRow').hidden=!p.dynamic;$('play').hidden=!p.dynamic;$('play').disabled=!p.dynamic||!ready||layerLoading;$('comparePreset').hidden=!p.compare;$('mobilePose').value=id;document.querySelectorAll('[data-pose]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pose===id)));$('analysisPanel').scrollTop=0;applySelected(true);saveHash();}
++function choose(id,restoreLoad=true){if(!byId.has(id))return;pointerIntent.clear();const previous=byId.get(selected);stop();selected=id;phase=0;$('phase').value=0;$('phaseName').value='0%';syncLoad(previous,!restoreLoad);invalidateRecord();const p=byId.get(id);$('sceneTitle').textContent=p.name;$('sceneCategory').textContent=p.category;$('sceneExplanation').textContent=p.explanation;$('phaseRow').hidden=!p.dynamic;$('play').hidden=!p.dynamic;$('play').disabled=!p.dynamic||!ready||layerLoading;$('comparePreset').hidden=!p.compare;$('mobilePose').value=id;document.querySelectorAll('[data-pose]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pose===id)));$('analysisPanel').scrollTop=0;applySelected(true);saveHash();}
+ function renderList(){const term=$('search').value.trim(),category=$('category').value,list=POSES.filter(p=>(category==='all'||p.category===category)&&(!term||(p.name+' '+p.explanation+' '+(p.flags.includes('staticStanding')?'久站':'')).includes(term)));$('catalogCount').textContent=`显示 ${list.length} / ${POSES.length} 种`;$('poseList').innerHTML=list.map(p=>`<button class="poseRow" data-pose="${p.id}" aria-pressed="${p.id===selected}"><span class="number">${String(POSES.indexOf(p)+1).padStart(3,'0')}</span><span><strong>${p.name}</strong><small>${p.category} · ${p.actionState?'动作阶段':'支撑姿态'}</small></span></button>`).join('')||'<p class="muted">没有找到。试试“卧”“坐”或清空搜索。</p>';$('poseList').querySelectorAll('button').forEach(b=>b.onclick=()=>choose(b.dataset.pose));}
+ $('category').innerHTML='<option value="all">全部生活场景</option>'+CATEGORIES.map(c=>`<option>${c}</option>`).join('');$('mobilePose').innerHTML=CATEGORIES.map(c=>`<optgroup label="${c}">`+POSES.filter(p=>p.category===c).map(p=>`<option value="${p.id}">${p.name}</option>`).join('')+'</optgroup>').join('');$('mobilePose').onchange=()=>choose($('mobilePose').value);$('category').onchange=renderList;$('search').oninput=renderList;renderList();
+ $('phase').oninput=()=>{stop();phase=Number($('phase').value)/100;invalidateRecord();applySelected(false);$('phaseName').value=fmt(phase*100)+'%';saveHash();};$('play').onclick=()=>{playing=!playing;invalidateRecord();$('play').textContent=playing?'暂停':'播放';lastTime=performance.now();invalidate();};
+@@ -164,7 +170,7 @@
+  if(st.view==='surface'){const p=tissues.selected(),value=p?.code+'|'+p?.side;$('posePoint').innerHTML=points.map(x=>'<option value="'+x.code+'|'+x.side+'">'+x.name+' '+x.code+' · '+(x.side==='left'?'左':x.side==='right'?'右':'中线')+'</option>').join('');if(p)$('posePoint').value=value;$('focusPoint').disabled=!p;$('pointStudy').textContent=p?p.name+' '+p.code+' · '+(p.locationNote||'参考落点，细部定位待复核'):'选择这一经脉的穴位。';}
+  $('bindingStatus').textContent=st.view==='bones'?'':st.view==='surface'?'穴位与线路随体表变化；皮肤或物体遮挡处隐藏画面穴名，选择框仍保留名称。':'软组织几何随动，未求解真实变形、压力或神经张力。';
+ }
+-async function switchLayers(){if(!tissues)return;stop();layerLoading=true;invalidateRecord();const before=tissues.state();if(['GV','CV'].includes($('poseMeridian').value))$('poseSide').value='midline';else if($('poseSide').value==='midline')$('poseSide').value=pairedSide;else pairedSide=$('poseSide').value;const layerIds=['poseSex','poseView','poseMeridian','poseSide','posePoint','poseLines','posePoints','poseNames','focusPoint','focusStructure','play','record','pin','focusSpine','resetSpine','spineLevel',...SPINE_KEYS];layerIds.forEach(id=>$(id).disabled=true);$('bindingStatus').textContent='正在载入对应结构…';$('poseSex').disabled=$('poseView').disabled=true;try{await tissues.set({sex:$('poseSex').value,view:$('poseView').value,channel:$('poseMeridian').value,side:$('poseSide').value,pointsOn:$('posePoints').checked,linesOn:$('poseLines').checked,namesOn:$('poseNames').checked});inertiaRig=createInertiaRig(meshes,handRig,tissues.state().sex);structureSelected=null;if(['organs','nerves','vessels'].includes(tissues.state().view))renderStructureList();applySelected(false);renderPointControls();saveHash();invalidate();$('inputError').textContent='';}catch(e){$('inputError').textContent=e.message;$('poseSex').value=before.sex;$('poseView').value=before.view;$('poseMeridian').value=before.channel;$('poseSide').value=before.side;for(const [key,id] of [['pointsOn','posePoints'],['linesOn','poseLines'],['namesOn','poseNames']])$(id).checked=before[key];renderPointControls();}finally{layerLoading=false;layerIds.forEach(id=>$(id).disabled=false);$('record').disabled=!valid();$('play').disabled=!ready||!byId.get(selected).dynamic;$('focusPoint').disabled=!tissues.selected();$('focusStructure').disabled=!structureSelected;$('poseSide').disabled=['GV','CV'].includes($('poseMeridian').value);}}
++async function switchLayers(){pointerIntent.clear();if(!tissues)return;stop();layerLoading=true;invalidateRecord();const before=tissues.state();if(['GV','CV'].includes($('poseMeridian').value))$('poseSide').value='midline';else if($('poseSide').value==='midline')$('poseSide').value=pairedSide;else pairedSide=$('poseSide').value;const layerIds=['poseSex','poseView','poseMeridian','poseSide','posePoint','poseLines','posePoints','poseNames','focusPoint','focusStructure','play','record','pin','focusSpine','resetSpine','spineLevel',...SPINE_KEYS];layerIds.forEach(id=>$(id).disabled=true);$('bindingStatus').textContent='正在载入对应结构…';$('poseSex').disabled=$('poseView').disabled=true;try{await tissues.set({sex:$('poseSex').value,view:$('poseView').value,channel:$('poseMeridian').value,side:$('poseSide').value,pointsOn:$('posePoints').checked,linesOn:$('poseLines').checked,namesOn:$('poseNames').checked});inertiaRig=createInertiaRig(meshes,handRig,tissues.state().sex);structureSelected=null;if(['organs','nerves','vessels'].includes(tissues.state().view))renderStructureList();applySelected(false);renderPointControls();saveHash();invalidate();$('inputError').textContent='';}catch(e){$('inputError').textContent=e.message;$('poseSex').value=before.sex;$('poseView').value=before.view;$('poseMeridian').value=before.channel;$('poseSide').value=before.side;for(const [key,id] of [['pointsOn','posePoints'],['linesOn','poseLines'],['namesOn','poseNames']])$(id).checked=before[key];renderPointControls();}finally{layerLoading=false;layerIds.forEach(id=>$(id).disabled=false);$('record').disabled=!valid();$('play').disabled=!ready||!byId.get(selected).dynamic;$('focusPoint').disabled=!tissues.selected();$('focusStructure').disabled=!structureSelected;$('poseSide').disabled=['GV','CV'].includes($('poseMeridian').value);}}
+ for(const id of ['poseSex','poseView','poseMeridian','poseSide','posePoints','poseLines','poseNames'])$(id).onchange=switchLayers;
+ $('posePoint').onchange=()=>{const [code,side]=$('posePoint').value.split('|');tissues.select(code,side);invalidateRecord();saveHash();};
+ function showModel(){if(innerWidth<=650)$('stage').scrollIntoView({block:'start',behavior:'smooth'});}
+@@ -191,7 +197,12 @@
+ $('poseStructureDetails').onchange=()=>{tissues.setDetails($('poseStructureDetails').checked);renderStructureList();invalidateRecord();saveHash();};
+ $('poseVesselFilter').onchange=()=>{tissues.setVesselFilter($('poseVesselFilter').value);renderStructureList();invalidateRecord();saveHash();};
+ $('structureSearch').oninput=renderStructureList;$('structureChoice').onchange=()=>{structureSelected=tissues.structures().find(n=>n.userData.info.id===$('structureChoice').value);renderStructureSelection();saveHash();};$('focusStructure').onclick=()=>{if(!structureSelected)return;showModel();$('poseStructureHighlight').checked=true;renderStructureSelection();const b=tissues.structureBounds(structureSelected),d=camera.position.clone().sub(controls.target).normalize(),center=fit(camera,b,d,.55);controls.target.copy(center);controls.update();saveHash();invalidate();};
+-let pointerStart=null;renderer.domElement.addEventListener('pointerdown',e=>{pointerStart=[e.clientX,e.clientY];});renderer.domElement.addEventListener('pointerup',e=>{if(!pointerStart||Math.hypot(e.clientX-pointerStart[0],e.clientY-pointerStart[1])>5||!tissues||layerLoading)return;const rect=renderer.domElement.getBoundingClientRect(),hit=tissues.pick(new T.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);if(hit?.kind==='structure'){structureSelected=hit.mesh;$('poseStructureHighlight').checked=true;$('structureChoice').value=hit.mesh.userData.info.id;renderStructureSelection();}if(hit){invalidateRecord();saveHash();invalidate();}});
++renderer.domElement.addEventListener('pointerdown',event=>pointerIntent.down(event));
++renderer.domElement.addEventListener('pointermove',event=>pointerIntent.move(event));
++renderer.domElement.addEventListener('pointercancel',event=>pointerIntent.cancel(event));
++renderer.domElement.addEventListener('lostpointercapture',event=>pointerIntent.cancel(event));
++window.addEventListener('blur',()=>pointerIntent.clear());
++renderer.domElement.addEventListener('pointerup',e=>{if(!pointerIntent.up(e)||!tissues||layerLoading||atlasBusy)return;camera.updateMatrixWorld(true);const rect=renderer.domElement.getBoundingClientRect(),hit=tissues.pick(new T.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);if(hit?.kind==='structure'){structureSelected=hit.mesh;$('poseStructureHighlight').checked=true;$('structureChoice').value=hit.mesh.userData.info.id;renderStructureSelection();}if(hit){invalidateRecord();saveHash();invalidate();}});
+ 
+ const needsModel=document.querySelectorAll('.viewTools button,.focusButtons button,#pin,#record,#comparePreset,#compareChoice,#atlasButton,#segmentCenters,#gravityView,#poseSex,#poseView,#poseMeridian,#poseSide,#posePoint,#focusPoint,#focusStructure,#focusSpine,#resetSpine,#spineLevel,.spineInputs input');needsModel.forEach(b=>b.disabled=true);
+ async function load(){const gltf=await new GLTFLoader().loadAsync('../fullbody-tcm-v9/assets/fullbody.glb',e=>{if(e.total)$('modelStatus').textContent='骨架加载 '+Math.round(e.loaded/e.total*100)+'%';});gltf.scene.updateMatrixWorld(true);gltf.scene.traverse(n=>{if(!n.isMesh)return;const info=boneData.get(n.name);if(!info)throw Error('无法识别源骨块 '+n.name);const baked=n.geometry.clone(),matrix=new T.Matrix4().makeScale(.001,.001,.001).multiply(n.matrixWorld);baked.applyMatrix4(matrix);baked.translate(-.09955,-.835,.05);baked.computeBoundingBox();const mesh=new T.Mesh(baked,new T.MeshStandardMaterial({color:'#ccba94',roughness:.75}));mesh.name=n.name;mesh.userData={segment:segment(info),info};mesh.matrixAutoUpdate=false;body.add(mesh);meshes.push(mesh);});if(meshes.length!==210)throw Error('骨架没有完整载入');handRig=createHandRig(meshes);inertiaRig=createInertiaRig(meshes,handRig);tissues=createPoseTissues({scene,meshes,handRig,getOccluders:()=>props.children,onStatus:text=>$('modelStatus').textContent=text,onChange:()=>{renderPointControls();invalidate();}});ready=true;needsModel.forEach(b=>b.disabled=false);$('modelStatus').textContent='210 骨块 · 支撑与关节链';choose(selected,false);phase=T.MathUtils.clamp(Number(hash.get('phase'))||0,0,100)/100;$('phase').value=Math.round(phase*100);$('phaseName').value=Math.round(phase*100)+'%';applySelected(true);$('poseStructureHighlight').checked=hash.get('highlightOn')==='true';$('poseSex').value=hash.get('sex')==='female'?'female':'male';$('poseView').value=['bones','surface','organs','nerves','vessels'].includes(hash.get('view'))?hash.get('view'):'bones';$('poseMeridian').value=MERIDIANS.some(m=>m.id===hash.get('channel'))?hash.get('channel'):'PC';$('poseSide').value=['left','right','both'].includes(hash.get('side'))?hash.get('side'):'right';for(const [key,id] of [['pointsOn','posePoints'],['linesOn','poseLines'],['namesOn','poseNames']])if(hash.has(key))$(id).checked=hash.get(key)!=='false';await switchLayers();if(hash.has('detailsOn')){$('poseStructureDetails').checked=hash.get('detailsOn')==='true';tissues.setDetails($('poseStructureDetails').checked);if(['organs','nerves','vessels'].includes(tissues.state().view))renderStructureList();}if(hash.has('vesselFilter')){$('poseVesselFilter').value=['all','artery','vein'].includes(hash.get('vesselFilter'))?hash.get('vesselFilter'):'all';tissues.setVesselFilter($('poseVesselFilter').value);if(tissues.state().view==='vessels')renderStructureList();}if(hash.has('selectedCode'))tissues.select(hash.get('selectedCode'),hash.get('selectedSide'));if(hash.has('structureId')){const n=tissues.structures().find(n=>n.userData.info.id===hash.get('structureId'));if(n){structureSelected=n;$('structureChoice').value=n.userData.info.id;renderStructureSelection();}}const savedCamera=(hash.get('camera')||'').split(',').map(Number);if(hash.has('camera')&&savedCamera.length===6&&savedCamera.every(Number.isFinite)&&savedCamera.every(n=>Math.abs(n)<50)&&new T.Vector3(...savedCamera.slice(0,3)).distanceTo(new T.Vector3(...savedCamera.slice(3)))>.05){camera.position.fromArray(savedCamera);controls.target.fromArray(savedCamera,3);controls.update();invalidate();}hashRestored=true;saveHash();}
+--- /dev/null
++++ b/pose-pointer-intent.js
+@@ -0,0 +1,22 @@
++// A point selection requires one quiet primary-pointer gesture. Keep its full
++// travel history: a drag returning to its origin is still a drag.
++export function createPointerIntent(tolerance=5){
++ const pointers=new Map();
++ return {
++  down(event){
++   const quiet=event.button===0&&event.isPrimary!==false&&!event.altKey&&!event.ctrlKey&&!event.metaKey&&!event.shiftKey;
++   pointers.set(event.pointerId,{x:event.clientX,y:event.clientY,quiet});
++   if(pointers.size>1)for(const point of pointers.values())point.quiet=false;
++  },
++  move(event){
++   const point=pointers.get(event.pointerId);
++   if(point&&Math.hypot(event.clientX-point.x,event.clientY-point.y)>tolerance)point.quiet=false;
++  },
++  up(event){
++   this.move(event);const point=pointers.get(event.pointerId);pointers.delete(event.pointerId);
++   return !!point?.quiet&&pointers.size===0&&event.button===0;
++  },
++  cancel(event){pointers.delete(event.pointerId);},
++  clear(){pointers.clear();}
++ };
++}

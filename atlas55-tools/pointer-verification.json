@@ -1,0 +1,79 @@
+{
+  "version": "55.0.0",
+  "cases": 18,
+  "rows": [
+    {
+      "name": "Quiet primary tap selects",
+      "passed": true
+    },
+    {
+      "name": "Small tap jitter selects",
+      "passed": true
+    },
+    {
+      "name": "Drag does not select",
+      "passed": true
+    },
+    {
+      "name": "Drag returning to origin does not select",
+      "passed": true
+    },
+    {
+      "name": "Right-button pan does not select",
+      "passed": true
+    },
+    {
+      "name": "Middle-button zoom does not select",
+      "passed": true
+    },
+    {
+      "name": "ctrlKey navigation does not select",
+      "passed": true
+    },
+    {
+      "name": "shiftKey navigation does not select",
+      "passed": true
+    },
+    {
+      "name": "metaKey navigation does not select",
+      "passed": true
+    },
+    {
+      "name": "altKey navigation does not select",
+      "passed": true
+    },
+    {
+      "name": "Both fingers of a pinch are ignored for selection",
+      "passed": true
+    },
+    {
+      "name": "Pinch ending back at the start does not select",
+      "passed": true
+    },
+    {
+      "name": "Cancelled pointer does not select",
+      "passed": true
+    },
+    {
+      "name": "Cancelling one pinch finger does not reactivate the other",
+      "passed": true
+    },
+    {
+      "name": "Focus or anatomy change clears the old gesture",
+      "passed": true
+    },
+    {
+      "name": "Unmatched pointer-up does not select",
+      "passed": true
+    },
+    {
+      "name": "New tap after pinch works",
+      "passed": true
+    },
+    {
+      "name": "Secondary pointer without a primary is ignored",
+      "passed": true
+    }
+  ],
+  "browserTouchGestureVerified": false
+}

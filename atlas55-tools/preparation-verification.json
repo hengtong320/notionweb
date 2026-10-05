@@ -1,0 +1,95 @@
+{
+  "version": "55.0.0",
+  "largestNativeOrganMeshes": 8,
+  "rows": [
+    {
+      "id": "hraf-927",
+      "name": "右肺段支气管软骨",
+      "vertices": 211572,
+      "normalizationYields": 207,
+      "bindingYields": 929,
+      "positionsAndNormalsIdentical": true,
+      "nativeSourceUnmoved": true,
+      "nativeHintRetainedOnReuse": true,
+      "bodyWeightsMatchV53": true
+    },
+    {
+      "id": "hraf-14",
+      "name": "右脂肪",
+      "vertices": 186595,
+      "normalizationYields": 183,
+      "bindingYields": 819,
+      "positionsAndNormalsIdentical": true,
+      "nativeSourceUnmoved": true,
+      "nativeHintRetainedOnReuse": true,
+      "bodyWeightsMatchV53": true
+    },
+    {
+      "id": "hraf-909",
+      "name": "左肺段支气管软骨",
+      "vertices": 176704,
+      "normalizationYields": 173,
+      "bindingYields": 776,
+      "positionsAndNormalsIdentical": true,
+      "nativeSourceUnmoved": true,
+      "nativeHintRetainedOnReuse": true,
+      "bodyWeightsMatchV53": true
+    },
+    {
+      "id": "hraf-9",
+      "name": "左乳腺叶",
+      "vertices": 151584,
+      "normalizationYields": 149,
+      "bindingYields": 666,
+      "positionsAndNormalsIdentical": true,
+      "nativeSourceUnmoved": true,
+      "nativeHintRetainedOnReuse": true,
+      "bodyWeightsMatchV53": true
+    },
+    {
+      "id": "hraf-20",
+      "name": "右乳腺叶",
+      "vertices": 151584,
+      "normalizationYields": 149,
+      "bindingYields": 666,
+      "positionsAndNormalsIdentical": true,
+      "nativeSourceUnmoved": true,
+      "nativeHintRetainedOnReuse": true,
+      "bodyWeightsMatchV53": true
+    },
+    {
+      "id": "hraf-21",
+      "name": "右悬韧带",
+      "vertices": 103364,
+      "normalizationYields": 101,
+      "bindingYields": 453,
+      "positionsAndNormalsIdentical": true,
+      "nativeSourceUnmoved": true,
+      "nativeHintRetainedOnReuse": true,
+      "bodyWeightsMatchV53": true
+    },
+    {
+      "id": "hraf-12",
+      "name": "左悬韧带",
+      "vertices": 88556,
+      "normalizationYields": 87,
+      "bindingYields": 388,
+      "positionsAndNormalsIdentical": true,
+      "nativeSourceUnmoved": true,
+      "nativeHintRetainedOnReuse": true,
+      "bodyWeightsMatchV53": true
+    },
+    {
+      "id": "hraf-10",
+      "name": "左主输乳管",
+      "vertices": 69517,
+      "normalizationYields": 68,
+      "bindingYields": 304,
+      "positionsAndNormalsIdentical": true,
+      "nativeSourceUnmoved": true,
+      "nativeHintRetainedOnReuse": true,
+      "bodyWeightsMatchV53": true
+    }
+  ],
+  "clinicalCalibration": false
+}

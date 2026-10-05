@@ -1,0 +1,124 @@
+{
+  "version": "55.0.0",
+  "localBrowserStates": 9,
+  "records": [
+    {
+      "name": "same-tab-saved-state-male-organs",
+      "pose": "sit-phone",
+      "sex": "male",
+      "view": "organs",
+      "version": "55.0.0"
+    },
+    {
+      "name": "female-organs-with-spine-adjustment",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "organs",
+      "version": "55.0.0"
+    },
+    {
+      "name": "female-nerves-with-spine-adjustment",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "nerves",
+      "version": "55.0.0"
+    },
+    {
+      "name": "female-vessels-with-spine-adjustment",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "vessels",
+      "version": "55.0.0"
+    },
+    {
+      "name": "female-surface-with-spine-adjustment",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "surface",
+      "version": "55.0.0"
+    },
+    {
+      "name": "zoom-turn-unzoom-with-target-preserved",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "surface",
+      "version": "55.0.0"
+    },
+    {
+      "name": "male-surface-keeps-disabled-lines-and-names",
+      "pose": "sit-phone",
+      "sex": "male",
+      "view": "surface",
+      "version": "55.0.0"
+    },
+    {
+      "name": "female-return-keeps-disabled-lines-and-names",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "surface",
+      "version": "55.0.0"
+    },
+    {
+      "name": "female-point-focus-after-navigation-tests",
+      "pose": "stand-relaxed",
+      "sex": "female",
+      "view": "surface",
+      "version": "55.0.0"
+    }
+  ],
+  "actualMouseCases": [
+    {
+      "case": "normal-left-click",
+      "selected": "PC6|right",
+      "passed": true
+    },
+    {
+      "case": "right-click",
+      "selected": "PC5|right",
+      "passed": true
+    },
+    {
+      "case": "drag-out-and-back",
+      "selected": "PC5|right",
+      "passed": true,
+      "cameraBefore": "0.320120196,1.018956746,0.993746123,-0.241200902,0.878626471,0.058210961"
+    }
+  ],
+  "camera": {
+    "before": "2.809357397,1.350633108,4.939909392,0.010095973,0.650817752,0.274473684",
+    "zoom": "2.249505112,1.210670037,4.006822251,0.010095973,0.650817752,0.274473684",
+    "side": "4.389831736,0.913601898,0.3620684,0.010095973,0.650817752,0.274473684",
+    "out": "5.484765676,0.979297934,0.383967078,0.010095973,0.650817752,0.274473684",
+    "zoomRatio": 0.8000000000790702,
+    "sideRatio": 0.9999999999199811,
+    "outRatio": 1.2499999998180684,
+    "targetUnchanged": true
+  },
+  "mobile": {
+    "dpr": 2,
+    "error": "",
+    "height": 844,
+    "point": "PC6|right",
+    "scrollWidth": 390,
+    "sex": "female",
+    "view": "surface",
+    "width": 390,
+    "zoomRatio": 0.8000000004948286
+  },
+  "actualGpuVerification": {
+    "states": 84,
+    "sampledVerticesPerState": 2048,
+    "maximumErrorMetres": 6.174789884303982e-07,
+    "passed": true
+  },
+  "physicalMultitouchVerified": false,
+  "reconstruction": {
+    "version": "55.0.0",
+    "sourceFiles": 120,
+    "buildFiles": 129,
+    "reviewedSourcesMatch": true,
+    "independentReconstructionFilesMatch": true,
+    "previousVersionPreserved": true
+  },
+  "publicVerification": "pending"
+}
