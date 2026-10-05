@@ -36,6 +36,10 @@ const spineCheck=path.join(require('os').tmpdir(),'atlas49-spine-check.mjs');
 require('esbuild').buildSync({entryPoints:[path.join(root,'atlas49-tools/check-spine.mjs')],outfile:spineCheck,bundle:true,platform:'node',format:'esm',nodePaths:[process.env.NODE_PATH]});
 child.execFileSync(process.execPath,[spineCheck],{stdio:'inherit',cwd:root});
 
+const contactCheck=path.join(require('os').tmpdir(),'atlas49-contact-check.mjs');
+require('esbuild').buildSync({entryPoints:[path.join(root,'atlas49-tools/check-contacts.mjs')],outfile:contactCheck,bundle:true,platform:'node',format:'esm',nodePaths:[process.env.NODE_PATH]});
+child.execFileSync(process.execPath,[contactCheck],{stdio:'inherit',cwd:root});
+
 const bindingCheck=path.join(require('os').tmpdir(),'atlas49-binding-check.mjs');
 require('esbuild').buildSync({entryPoints:[path.join(root,'atlas49-tools/check-binding.mjs')],outfile:bindingCheck,bundle:true,platform:'node',format:'esm',nodePaths:[process.env.NODE_PATH]});
 child.execFileSync(process.execPath,[bindingCheck],{stdio:'inherit',cwd:root});
@@ -55,5 +59,5 @@ for (const name of ['deformation','crossings']){
 }
 for(const name of ['deformation','crossing']) fs.copyFileSync(path.join(root,'atlas49-tools/'+name+'-verification.json'),path.join(dir,'pose-'+name+'-verification.json'));
 const files = Object.fromEntries(fs.readdirSync(dir).filter(n => fs.statSync(path.join(dir,n)).isFile() && n !== 'build-info.json').map(n => [n,crypto.createHash('sha256').update(fs.readFileSync(path.join(dir,n))).digest('hex')]));
-fs.writeFileSync(path.join(dir,'build-info.json'),JSON.stringify({version:'49.0.0',baseVersion:'48.0.0',baseCommit:child.execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),files,clinicalCalibration:false},null,2));
+fs.writeFileSync(path.join(dir,'build-info.json'),JSON.stringify({version:'49.0.1',baseVersion:'48.0.0',baseCommit:child.execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),files,clinicalCalibration:false},null,2));
 console.log('Built V49:',Object.keys(files).length,'hashed files');

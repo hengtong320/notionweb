@@ -31,8 +31,8 @@ jobs:
           node --check fullbody-tcm-v49/pose.bundle.js
       - name: Match reviewed local build
         env:
-          EXPECTED_BUNDLE: d1f128e799c1ce48af0b0b2563ea5f6ef3a250632496db834469d57e10b1ce0b
-          EXPECTED_POSE: fa351e80a78888c17140e773838bcc3c61f2c269f4ffda608a34f4450663844a
+          EXPECTED_BUNDLE: 863326898926ab517ffd8348361567f3642b0d9622cb850a5a73b03dcb494150
+          EXPECTED_POSE: 5219487b2bbf8ac982754dec96fe4175a35fee349899bbfa9f7c7a27336ac550
           EXPECTED_EVIDENCE: d616f4a218f33e5cbdc5fb03a3e7d4089830c6fca80b0851e85a8ad76754459d
         run: |
           python3 - <<'PYCODE'
@@ -49,7 +49,7 @@ jobs:
             assert hashlib.sha256((d/name).read_bytes()).hexdigest()==sha,name
           p=pathlib.Path('anatomy/index.html');s=p.read_text()
           assert 'fullbody-tcm-v48' in s or 'fullbody-tcm-v49' in s
-          p.write_text(s.replace('fullbody-tcm-v48','fullbody-tcm-v49').replace('48.0.0','49.0.0'))
+          p.write_text(s.replace('fullbody-tcm-v48','fullbody-tcm-v49').replace('48.0.0','49.0.1').replace('49.0.0','49.0.1'))
           PYCODE
           git diff --exit-code -- fullbody-tcm-v48 fullbody-tcm-v47 fullbody-tcm-v41 fullbody-tcm-v40 fullbody-tcm-v34 fullbody-tcm-v31 fullbody-tcm-v9 fullbody-tcm-v11 fullbody-tcm-v12
       - name: Publish version and fixed entry
