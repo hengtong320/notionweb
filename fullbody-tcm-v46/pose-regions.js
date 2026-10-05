@@ -1,0 +1,7 @@
+import * as T from 'three';
+import FRAME from './body-frame-v18.json';
+// Native region information disambiguates a thigh surface from fingers that
+// happen to be nearby in the rest scan. It is a binding hint, not new anatomy.
+export function sourceArmHint(info){const text=[info?.en,info?.english,info?.name].join(' ');if(/forearm|region of arm|region of elbow|wrist|hand|palm|bicipital|cubital|deltoid|deltopectoral|radial foveola|nail plate|perionyx|brachial|ulnar|median nerve|radial nerve|腋神经|尺神经|正中神经|桡神经/i.test(text)&&!/foot/i.test(text))return 1;if(/thigh|femoral|popliteal|ankle|foot|sole|knee|leg|hip|inguinal|gluteal|sacral|urogenital|anal region|sciatic|tibial|sural|saphenous|peroneal|fibular|坐骨|股神经|胫神经|腓神经/i.test(text))return 0;return info?.system==='surface'?0:null;}
+export function nativeFemaleArmHint(point){const y=point.y,boundary=175+70*(1-T.MathUtils.smoothstep(y,880,1050))-35*T.MathUtils.smoothstep(y,1050,1240);return T.MathUtils.smoothstep(Math.abs(point.x-FRAME.midFemale),boundary,boundary+65)*(1-T.MathUtils.smoothstep(y,1200,1375));}
+export function addRegionHints(geometry,info,nativePosition=null){const hint=sourceArmHint(info);if(!nativePosition&&hint===null)return;const values=new Float32Array(geometry.attributes.position.count),point=new T.Vector3();for(let i=0;i<values.length;i++)values[i]=nativePosition?nativeFemaleArmHint(point.fromBufferAttribute(nativePosition,i)):hint;geometry.setAttribute('bindingArm',new T.Float32BufferAttribute(values,1));}
