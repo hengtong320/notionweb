@@ -1,0 +1,589 @@
+{
+  "version": "56.0.0",
+  "sourceCommit": "f3ff5c7a394bf6aa651294d9807cbe94c464b64f",
+  "firstSourceCommit": "994f56e5a944f0d4edc31c17bc1bc1d35eb2ede3",
+  "releaseCommit": "2567855fdb4af312b073497795480201ea396817",
+  "buildRun": 37343531013,
+  "pagesRun": 37345148108,
+  "bothRunsSucceeded": true,
+  "initialBuildFailure": {
+    "run": 37342788616,
+    "reason": "Publication packet omitted surface-cache.mjs; restored exact missing dependency, checks unchanged"
+  },
+  "sourceFiles": 120,
+  "buildFiles": 129,
+  "publicResourceFiles": 140,
+  "publicFilesMatch": true,
+  "fixedEntryPointsToV56": true,
+  "reconstruction": {
+    "passed": true,
+    "bundleCompilation": "independent",
+    "physicalDerivedReports": "Reused from preceding successful full build in independent tree after camera-only refinement; latest GitHub CI reran complete validation"
+  },
+  "publicBrowserStates": 23,
+  "publicStates": [
+    {
+      "name": "female-PC6-focus",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "all",
+      "busy": false
+    },
+    {
+      "name": "male-PC6-switch",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "male",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "all",
+      "busy": false
+    },
+    {
+      "name": "male-organs",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "male",
+      "view": "organs",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "all",
+      "busy": false
+    },
+    {
+      "name": "male-nerves",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "male",
+      "view": "nerves",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "all",
+      "busy": false
+    },
+    {
+      "name": "male-vessels",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "male",
+      "view": "vessels",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "all",
+      "busy": false
+    },
+    {
+      "name": "male-veins",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "male",
+      "view": "vessels",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "female-veins",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "vessels",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "female-organs",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "organs",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "male-surface-flags-off",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "male",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": false,
+      "namesOn": false,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "female-surface-flags-retained",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": false,
+      "namesOn": false,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "public-mobile-real-PC6-click",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "public-mobile-zoom-in",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "public-mobile-zoom-out",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "public-short-native-rotate",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "public-short-native-pan",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "public-landscape-walk-phase-100",
+      "pose": "walk-right",
+      "normalizedPhase": 1,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "public-landscape-atlas-restored",
+      "pose": "walk-right",
+      "normalizedPhase": 0.7567999999999994,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "public-female-box-grip-focus",
+      "pose": "lift-close",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "vein",
+      "busy": false
+    },
+    {
+      "name": "public-male-below-ground",
+      "pose": "lift-squat",
+      "normalizedPhase": 0,
+      "sex": "male",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "all",
+      "busy": false
+    },
+    {
+      "name": "public-female-below-ground",
+      "pose": "lift-squat",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "all",
+      "busy": false
+    },
+    {
+      "name": "public-female-above-ground",
+      "pose": "lift-squat",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "all",
+      "busy": false
+    },
+    {
+      "name": "public-saved-spine-before-reload",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "all",
+      "busy": false
+    },
+    {
+      "name": "public-saved-spine-after-reload",
+      "pose": "stand-relaxed",
+      "normalizedPhase": 0,
+      "sex": "female",
+      "view": "surface",
+      "channel": "PC",
+      "side": "right",
+      "selectedCode": "PC6",
+      "selectedSide": "right",
+      "linesOn": true,
+      "namesOn": true,
+      "pointsOn": true,
+      "vesselFilter": "all",
+      "busy": false
+    }
+  ],
+  "publicInteractionChecks": {
+    "realPointClick": "PC6|right",
+    "zoomRatio": 0.8,
+    "zoomOutReturnsCamera": true,
+    "rotateChangesCameraAndPreservesTarget": true,
+    "panChangesCameraAndTarget": true,
+    "selectionRetainedByDrag": true,
+    "layersAndSexPreserveCamera": true,
+    "displayFlagsRetainedAcrossSex": true,
+    "phaseEndNormalized": 1,
+    "playPauseLabels": [
+      "暂停",
+      "播放"
+    ],
+    "atlasFirstPageCards": 12,
+    "atlasRestoresPoseAndSelection": true,
+    "shortScreen": {
+      "buttons": [
+        {
+          "bottom": 489.703125,
+          "height": 44,
+          "text": "旋转"
+        },
+        {
+          "bottom": 489.703125,
+          "height": 44,
+          "text": "平移"
+        },
+        {
+          "bottom": 489.703125,
+          "height": 44,
+          "text": "− 缩小"
+        },
+        {
+          "bottom": 489.703125,
+          "height": 44,
+          "text": "＋ 放大"
+        },
+        {
+          "bottom": 537.703125,
+          "height": 44,
+          "text": "完整显示"
+        },
+        {
+          "bottom": 537.703125,
+          "height": 44,
+          "text": "正面"
+        },
+        {
+          "bottom": 537.703125,
+          "height": 44,
+          "text": "侧面"
+        },
+        {
+          "bottom": 537.703125,
+          "height": 44,
+          "text": "俯视"
+        }
+      ],
+      "height": 568,
+      "scrollWidth": 320,
+      "viewport": {
+        "bottom": 383.703125,
+        "height": 214.203125,
+        "left": 0,
+        "right": 320,
+        "top": 169.5,
+        "width": 320,
+        "x": 0,
+        "y": 169.5
+      },
+      "width": 320
+    },
+    "gripShortScreen": {
+      "buttons": [
+        {
+          "bottom": 441.703125,
+          "height": 44,
+          "text": "旋转"
+        },
+        {
+          "bottom": 441.703125,
+          "height": 44,
+          "text": "平移"
+        },
+        {
+          "bottom": 441.703125,
+          "height": 44,
+          "text": "− 缩小"
+        },
+        {
+          "bottom": 441.703125,
+          "height": 44,
+          "text": "＋ 放大"
+        },
+        {
+          "bottom": 489.703125,
+          "height": 44,
+          "text": "完整显示"
+        },
+        {
+          "bottom": 489.703125,
+          "height": 44,
+          "text": "看手部接触"
+        },
+        {
+          "bottom": 489.703125,
+          "height": 44,
+          "text": "正面"
+        },
+        {
+          "bottom": 489.703125,
+          "height": 44,
+          "text": "侧面"
+        },
+        {
+          "bottom": 537.703125,
+          "height": 44,
+          "text": "俯视"
+        }
+      ],
+      "height": 568,
+      "scrollWidth": 320,
+      "viewport": {
+        "bottom": 335.703125,
+        "height": 166.203125,
+        "left": 0,
+        "right": 320,
+        "top": 169.5,
+        "width": 320,
+        "x": 0,
+        "y": 169.5
+      },
+      "width": 320
+    },
+    "savedSpineAdjustment": {
+      "cervicalFlex": 0,
+      "cervicalSide": 0,
+      "lumbarFlex": 0,
+      "lumbarSide": -6,
+      "thoracicFlex": 0,
+      "thoracicSide": 8,
+      "thoracicTwist": 0
+    },
+    "savedCameraMaximumDelta": 3.070423915119136e-10,
+    "savedSkinSampleMaximumDelta": 0,
+    "groundBelowAndAbove": "Actual screenshots checked for both sexes below, female above; camera-based floor visibility only",
+    "viewportSizes": [
+      [
+        1280,
+        720
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        568
+      ],
+      [
+        844,
+        390
+      ]
+    ],
+    "physicalMultitouchVerified": false,
+    "browserScope": "Codex in-app Chromium, simulated viewports; not all browsers or physical devices"
+  },
+  "gpuVerification": {
+    "states": 88,
+    "sampledVerticesPerState": 2048,
+    "maximumErrorMetres": 6.174789884303982e-07,
+    "passed": true,
+    "scope": "Display shader versus CPU attachment kernel only"
+  },
+  "fullSurfaceVerification": {
+    "states": 1200,
+    "uniqueGeometryStates": 144,
+    "noIncreasedFlaggedFacePairs": true,
+    "flaggedPosesStillRemaining": 105,
+    "previousSixPairInventoryFlagged": 63,
+    "scope": "Entire source triangle meshes, including mixed-region and same-region intersections; unique unordered face pairs; excludes shared vertices, intersections already in source and source-centroid separations below 40 mm"
+  },
+  "clinicalCalibration": false,
+  "clinicallyCalibratedPoints": 0,
+  "internalTissueForces": null,
+  "physicalGeometryChangeAdopted": false,
+  "remaining": [
+    "Male shoulder source weight seam divergence",
+    "Female extreme arm local folding",
+    "Deep hip and knee bending and arm/leg/box intersections",
+    "Per-point anatomical calibration",
+    "Organ material deformation, nerve tension, internal joint forces, contact pressure, individual fatigue and injury prediction"
+  ],
+  "overallGoal": "active"
+}
