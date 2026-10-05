@@ -1,0 +1,1542 @@
+{
+  "baselineVersion": "55.0.0",
+  "scannedSexPhaseStates": 1200,
+  "uniqueGeometryStates": 144,
+  "previousSixRegionFlaggedPoses": 63,
+  "fullMeshFlaggedPoses": 105,
+  "additionalFlaggedPoseIds": [
+    "bend-hips",
+    "floor-cross-sit",
+    "floor-long-sit",
+    "hang-clothes",
+    "jump-air",
+    "reach-shelf-left",
+    "reach-shelf-right",
+    "rest-ball",
+    "rest-sofa",
+    "side-curl-left",
+    "side-curl-right",
+    "side-left",
+    "side-left-pillow",
+    "side-right",
+    "side-right-pillow",
+    "sit-edge",
+    "sit-high-stool",
+    "sit-phone",
+    "sit-recline",
+    "sit-slouch",
+    "sit-supported",
+    "stand-high-phone",
+    "stand-left-rest",
+    "stand-phone",
+    "stand-right-rest",
+    "stand-stagger",
+    "supine-knees",
+    "supine-legs-chair",
+    "supine-one-left",
+    "supine-one-right",
+    "swim-breast-glide",
+    "swim-breast-pull",
+    "swim-prone-float",
+    "wipe-high",
+    "work-phone-ear",
+    "yoga-bridge",
+    "yoga-cat",
+    "yoga-chair",
+    "yoga-dog",
+    "yoga-tree-left",
+    "yoga-warrior-left",
+    "yoga-warrior-right"
+  ],
+  "lostPreviousFlaggedPoseIds": [],
+  "groupCounts": {
+    "leg-right|leg-right": 143707,
+    "leg-left|leg-left": 182825,
+    "body|body": 478227,
+    "arm-right|arm-right": 83980,
+    "arm-right|body": 159351,
+    "arm-left|body": 157555,
+    "arm-left|arm-left": 69310,
+    "arm-right|leg-right": 60475,
+    "arm-left|leg-left": 68545,
+    "body|leg-right": 14100,
+    "arm-left|leg-right": 10315,
+    "leg-left|leg-right": 46870,
+    "body|leg-left": 14805,
+    "arm-right|leg-left": 11375
+  },
+  "poses": [
+    {
+      "id": "supine",
+      "name": "仰卧 · 双腿伸直",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "supine-knees",
+      "name": "仰卧 · 双膝屈曲",
+      "maximumFacePairsBySex": {
+        "male": 560,
+        "female": 595
+      },
+      "pairs": [
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "supine-roll",
+      "name": "仰卧 · 膝下垫枕",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "supine-legs-chair",
+      "name": "仰卧 · 小腿放凳上",
+      "maximumFacePairsBySex": {
+        "male": 3146,
+        "female": 950
+      },
+      "pairs": [
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "supine-one-right",
+      "name": "仰卧 · 右腿屈膝",
+      "maximumFacePairsBySex": {
+        "male": 90,
+        "female": 188
+      },
+      "pairs": [
+        "body|body",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "supine-one-left",
+      "name": "仰卧 · 左腿屈膝",
+      "maximumFacePairsBySex": {
+        "male": 90,
+        "female": 267
+      },
+      "pairs": [
+        "body|body",
+        "leg-left|leg-left"
+      ]
+    },
+    {
+      "id": "supine-arms",
+      "name": "仰卧 · 双手放头旁",
+      "maximumFacePairsBySex": {
+        "male": 3426,
+        "female": 1455
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-left|body",
+        "arm-right|arm-right",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "side-left",
+      "name": "左侧卧 · 双腿微屈",
+      "maximumFacePairsBySex": {
+        "male": 355
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right"
+      ]
+    },
+    {
+      "id": "side-right",
+      "name": "右侧卧 · 双腿微屈",
+      "maximumFacePairsBySex": {
+        "male": 358
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right"
+      ]
+    },
+    {
+      "id": "side-left-pillow",
+      "name": "左侧卧 · 膝间夹枕",
+      "maximumFacePairsBySex": {
+        "male": 398
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right"
+      ]
+    },
+    {
+      "id": "side-right-pillow",
+      "name": "右侧卧 · 膝间夹枕",
+      "maximumFacePairsBySex": {
+        "male": 393
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right"
+      ]
+    },
+    {
+      "id": "side-curl-left",
+      "name": "左侧卧 · 蜷腿",
+      "maximumFacePairsBySex": {
+        "male": 1509,
+        "female": 844
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "side-curl-right",
+      "name": "右侧卧 · 蜷腿",
+      "maximumFacePairsBySex": {
+        "male": 1509,
+        "female": 844
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "prone",
+      "name": "俯卧 · 手臂放两侧",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "prone-hip-pillow",
+      "name": "俯卧 · 骨盆下垫枕",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "recline-bed",
+      "name": "半卧 · 靠垫阅读",
+      "maximumFacePairsBySex": {
+        "male": 1218
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "sit-supported",
+      "name": "坐姿 · 靠背双脚着地",
+      "maximumFacePairsBySex": {
+        "male": 2347,
+        "female": 554
+      },
+      "pairs": [
+        "arm-left|leg-left",
+        "arm-right|leg-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "sit-edge",
+      "name": "坐姿 · 椅前沿无靠背",
+      "maximumFacePairsBySex": {
+        "male": 2797,
+        "female": 934
+      },
+      "pairs": [
+        "arm-left|leg-left",
+        "arm-right|leg-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "sit-slouch",
+      "name": "坐姿 · 骨盆后倾弓背",
+      "maximumFacePairsBySex": {
+        "male": 792,
+        "female": 175
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right",
+        "body|body"
+      ]
+    },
+    {
+      "id": "sit-recline",
+      "name": "坐姿 · 靠背后倾",
+      "maximumFacePairsBySex": {
+        "male": 126
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "sit-typing",
+      "name": "坐姿 · 桌前打字",
+      "maximumFacePairsBySex": {
+        "male": 2652,
+        "female": 502
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "sit-laptop",
+      "name": "坐姿 · 低头看笔记本",
+      "maximumFacePairsBySex": {
+        "male": 2720,
+        "female": 502
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "sit-phone",
+      "name": "坐姿 · 低头看手机",
+      "maximumFacePairsBySex": {
+        "male": 2647,
+        "female": 1274
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "sit-read",
+      "name": "坐姿 · 桌面阅读",
+      "maximumFacePairsBySex": {
+        "male": 2701,
+        "female": 502
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "sit-meal",
+      "name": "坐姿 · 进食",
+      "maximumFacePairsBySex": {
+        "male": 2583,
+        "female": 502
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "sit-drive",
+      "name": "坐姿 · 驾驶",
+      "maximumFacePairsBySex": {
+        "male": 3321,
+        "female": 415
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-left|body",
+        "arm-right|arm-right",
+        "arm-right|body",
+        "body|body"
+      ]
+    },
+    {
+      "id": "sit-right-cross",
+      "name": "坐姿 · 右腿交叠",
+      "maximumFacePairsBySex": {
+        "male": 7328,
+        "female": 4485
+      },
+      "pairs": [
+        "arm-left|leg-right",
+        "body|body",
+        "body|leg-left",
+        "body|leg-right",
+        "leg-left|leg-left",
+        "leg-left|leg-right",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "sit-left-cross",
+      "name": "坐姿 · 左腿交叠",
+      "maximumFacePairsBySex": {
+        "male": 7292,
+        "female": 4393
+      },
+      "pairs": [
+        "arm-right|leg-left",
+        "body|body",
+        "body|leg-left",
+        "leg-left|leg-left",
+        "leg-left|leg-right",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "sit-footrest",
+      "name": "坐姿 · 双脚放脚踏",
+      "maximumFacePairsBySex": {
+        "male": 6696,
+        "female": 3133
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-left|leg-left",
+        "arm-right|body",
+        "arm-right|leg-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "sit-high-stool",
+      "name": "坐姿 · 高凳脚踏",
+      "maximumFacePairsBySex": {
+        "male": 3515,
+        "female": 1087
+      },
+      "pairs": [
+        "arm-left|leg-left",
+        "arm-right|leg-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "floor-long-sit",
+      "name": "地面坐 · 双腿伸直",
+      "maximumFacePairsBySex": {
+        "male": 4461,
+        "female": 1333
+      },
+      "pairs": [
+        "arm-left|leg-left",
+        "arm-right|leg-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "floor-cross-sit",
+      "name": "地面坐 · 右腿在上盘腿",
+      "maximumFacePairsBySex": {
+        "male": 5537,
+        "female": 3166
+      },
+      "pairs": [
+        "arm-left|leg-left",
+        "arm-right|leg-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "stand-relaxed",
+      "name": "站立 · 放松双脚",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "stand-wide",
+      "name": "站立 · 宽站距",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "stand-stagger",
+      "name": "站立 · 前后分脚",
+      "maximumFacePairsBySex": {
+        "male": 6
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "stand-right-rest",
+      "name": "站立 · 右脚放矮台",
+      "maximumFacePairsBySex": {
+        "male": 30,
+        "female": 130
+      },
+      "pairs": [
+        "body|body",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "stand-left-rest",
+      "name": "站立 · 左脚放矮台",
+      "maximumFacePairsBySex": {
+        "male": 30,
+        "female": 225
+      },
+      "pairs": [
+        "body|body",
+        "leg-left|leg-left"
+      ]
+    },
+    {
+      "id": "stand-wall",
+      "name": "站立 · 背靠墙",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "stand-counter",
+      "name": "站立 · 前臂靠柜台",
+      "maximumFacePairsBySex": {
+        "male": 1534
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "stand-phone",
+      "name": "站立 · 低头看手机",
+      "maximumFacePairsBySex": {
+        "male": 1779,
+        "female": 941
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right"
+      ]
+    },
+    {
+      "id": "stand-high-phone",
+      "name": "站立 · 抬高手机",
+      "maximumFacePairsBySex": {
+        "male": 1723,
+        "female": 780
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right"
+      ]
+    },
+    {
+      "id": "stand-right-bag",
+      "name": "站立 · 右手提袋",
+      "maximumFacePairsBySex": {
+        "male": 2028,
+        "female": 874
+      },
+      "pairs": [
+        "arm-right|arm-right",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "stand-left-bag",
+      "name": "站立 · 左手提袋",
+      "maximumFacePairsBySex": {
+        "male": 2033,
+        "female": 846
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-left|body"
+      ]
+    },
+    {
+      "id": "stand-backpack",
+      "name": "站立 · 背包前倾调整",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "bend-hips",
+      "name": "弯腰 · 髋部折叠",
+      "maximumFacePairsBySex": {
+        "male": 886,
+        "female": 68
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "bend-round",
+      "name": "弯腰 · 腰背前屈",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "lift-close",
+      "name": "搬箱 · 贴近身体",
+      "maximumFacePairsBySex": {
+        "male": 1252
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "lift-far",
+      "name": "搬箱 · 向前伸臂",
+      "maximumFacePairsBySex": {
+        "male": 438,
+        "female": 109
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body"
+      ]
+    },
+    {
+      "id": "lift-squat",
+      "name": "搬箱 · 屈髋屈膝取物",
+      "maximumFacePairsBySex": {
+        "male": 9842,
+        "female": 4684
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-left|leg-left",
+        "arm-right|body",
+        "arm-right|leg-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "lift-stoop",
+      "name": "搬箱 · 直腿前屈取物",
+      "maximumFacePairsBySex": {
+        "male": 590,
+        "female": 225
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body"
+      ]
+    },
+    {
+      "id": "carry-chest",
+      "name": "搬物 · 胸前抱箱",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "carry-low",
+      "name": "搬物 · 双手低位提箱",
+      "maximumFacePairsBySex": {
+        "male": 2032,
+        "female": 669
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "turn-load-right",
+      "name": "搬物 · 持箱向右转身",
+      "maximumFacePairsBySex": {
+        "male": 1092
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "turn-load-left",
+      "name": "搬物 · 持箱向左转身",
+      "maximumFacePairsBySex": {
+        "male": 1092
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "place-high",
+      "name": "搬物 · 放上高层架",
+      "maximumFacePairsBySex": {
+        "male": 42,
+        "female": 681
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body"
+      ]
+    },
+    {
+      "id": "pick-one-knee",
+      "name": "搬物 · 单膝着地取物",
+      "maximumFacePairsBySex": {
+        "male": 2818,
+        "female": 853
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "wash-dishes",
+      "name": "家务 · 水槽前洗碗",
+      "maximumFacePairsBySex": {
+        "male": 1444
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "cook-counter",
+      "name": "家务 · 台面备菜",
+      "maximumFacePairsBySex": {
+        "male": 1502
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "sweep",
+      "name": "家务 · 扫地",
+      "maximumFacePairsBySex": {
+        "male": 3694,
+        "female": 2005
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-left|body",
+        "arm-right|arm-right",
+        "arm-right|body",
+        "body|body"
+      ]
+    },
+    {
+      "id": "mop",
+      "name": "家务 · 向前推拖把",
+      "maximumFacePairsBySex": {
+        "male": 3352,
+        "female": 1476
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-left|body",
+        "arm-right|arm-right",
+        "arm-right|body",
+        "body|body"
+      ]
+    },
+    {
+      "id": "vacuum",
+      "name": "家务 · 吸尘",
+      "maximumFacePairsBySex": {
+        "male": 1836,
+        "female": 327
+      },
+      "pairs": [
+        "arm-right|arm-right",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "wipe-table",
+      "name": "家务 · 擦低桌",
+      "maximumFacePairsBySex": {
+        "male": 1688
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "wipe-high",
+      "name": "家务 · 擦高处窗面",
+      "maximumFacePairsBySex": {
+        "female": 456
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "laundry-low",
+      "name": "家务 · 低处取衣",
+      "maximumFacePairsBySex": {
+        "male": 3807,
+        "female": 1895
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "hang-clothes",
+      "name": "家务 · 举臂晾衣",
+      "maximumFacePairsBySex": {
+        "female": 862
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "tie-shoe",
+      "name": "家务 · 坐着系鞋带",
+      "maximumFacePairsBySex": {
+        "male": 3939,
+        "female": 1794
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "garden-kneel",
+      "name": "家务 · 跪姿园艺",
+      "maximumFacePairsBySex": {
+        "male": 1866,
+        "female": 616
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "clean-floor",
+      "name": "家务 · 四点支撑擦地",
+      "maximumFacePairsBySex": {
+        "male": 1752,
+        "female": 1059
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-left|body",
+        "arm-right|arm-right",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "walk-right",
+      "name": "行走 · 右脚支撑",
+      "maximumFacePairsBySex": {
+        "male": 483
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "walk-left",
+      "name": "行走 · 左脚支撑",
+      "maximumFacePairsBySex": {
+        "male": 483
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "run-right",
+      "name": "跑步 · 右支撑阶段",
+      "maximumFacePairsBySex": {
+        "male": 2797,
+        "female": 910
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left"
+      ]
+    },
+    {
+      "id": "run-left",
+      "name": "跑步 · 左支撑阶段",
+      "maximumFacePairsBySex": {
+        "male": 2801,
+        "female": 862
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "run-flight",
+      "name": "跑步 · 腾空阶段",
+      "maximumFacePairsBySex": {
+        "male": 2991,
+        "female": 1002
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left"
+      ]
+    },
+    {
+      "id": "stairs-up-right",
+      "name": "上台阶 · 右脚抬高",
+      "maximumFacePairsBySex": {
+        "male": 1260,
+        "female": 415
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "stairs-up-left",
+      "name": "上台阶 · 左脚抬高",
+      "maximumFacePairsBySex": {
+        "male": 1260,
+        "female": 488
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left"
+      ]
+    },
+    {
+      "id": "stairs-down",
+      "name": "下台阶 · 前腿承接",
+      "maximumFacePairsBySex": {
+        "male": 2419,
+        "female": 598
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "leg-left|leg-left"
+      ]
+    },
+    {
+      "id": "jump-crouch",
+      "name": "跳跃 · 起跳准备",
+      "maximumFacePairsBySex": {
+        "male": 1936,
+        "female": 1027
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "jump-air",
+      "name": "跳跃 · 空中伸展",
+      "maximumFacePairsBySex": {
+        "female": 1311
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "jump-land",
+      "name": "跳跃 · 屈膝落地",
+      "maximumFacePairsBySex": {
+        "male": 2581,
+        "female": 931
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "cycle",
+      "name": "骑行 · 前倾握把",
+      "maximumFacePairsBySex": {
+        "male": 5134,
+        "female": 1539
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-left|body",
+        "arm-right|arm-right",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left"
+      ]
+    },
+    {
+      "id": "work-standing",
+      "name": "工作 · 站立键盘台",
+      "maximumFacePairsBySex": {
+        "male": 1494
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "work-low-desk",
+      "name": "工作 · 站着使用低桌",
+      "maximumFacePairsBySex": {
+        "male": 1452
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body"
+      ]
+    },
+    {
+      "id": "work-right-mouse",
+      "name": "工作 · 右手远伸鼠标",
+      "maximumFacePairsBySex": {
+        "male": 1972,
+        "female": 502
+      },
+      "pairs": [
+        "arm-left|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "work-left-mouse",
+      "name": "工作 · 左手远伸鼠标",
+      "maximumFacePairsBySex": {
+        "male": 1970,
+        "female": 502
+      },
+      "pairs": [
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "work-phone-ear",
+      "name": "工作 · 持电话到右耳",
+      "maximumFacePairsBySex": {
+        "male": 2930,
+        "female": 725
+      },
+      "pairs": [
+        "arm-right|arm-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "work-read-raised",
+      "name": "工作 · 阅读架抬高书本",
+      "maximumFacePairsBySex": {
+        "male": 2652,
+        "female": 502
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "work-turn-right",
+      "name": "工作 · 坐着向右看屏幕",
+      "maximumFacePairsBySex": {
+        "male": 2691,
+        "female": 502
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "work-turn-left",
+      "name": "工作 · 坐着向左看屏幕",
+      "maximumFacePairsBySex": {
+        "male": 2691,
+        "female": 502
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "reach-shelf-right",
+      "name": "取物 · 右手伸高架",
+      "maximumFacePairsBySex": {
+        "female": 515
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "reach-shelf-left",
+      "name": "取物 · 左手伸高架",
+      "maximumFacePairsBySex": {
+        "female": 623
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "reach-low-right",
+      "name": "取物 · 右手向侧方低处",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "reach-low-left",
+      "name": "取物 · 左手向侧方低处",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "rest-sofa",
+      "name": "休闲 · 沙发后靠",
+      "maximumFacePairsBySex": {
+        "male": 264
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "rest-tv-side",
+      "name": "休闲 · 侧坐看电视",
+      "maximumFacePairsBySex": {
+        "male": 2288,
+        "female": 816
+      },
+      "pairs": [
+        "arm-left|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "rest-guitar",
+      "name": "休闲 · 坐姿弹吉他",
+      "maximumFacePairsBySex": {
+        "male": 2568,
+        "female": 1093
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-left|body",
+        "arm-right|arm-right",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "rest-game",
+      "name": "休闲 · 坐姿握游戏手柄",
+      "maximumFacePairsBySex": {
+        "male": 1320,
+        "female": 502
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "rest-picnic",
+      "name": "休闲 · 地面屈膝坐",
+      "maximumFacePairsBySex": {
+        "male": 9640,
+        "female": 6467
+      },
+      "pairs": [
+        "arm-left|leg-left",
+        "arm-right|leg-right",
+        "body|body",
+        "body|leg-left",
+        "body|leg-right",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "rest-one-hand",
+      "name": "休闲 · 地面坐单手后撑",
+      "maximumFacePairsBySex": {
+        "male": 1257,
+        "female": 319
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|arm-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "rest-kneeling",
+      "name": "休闲 · 跪坐脚跟",
+      "maximumFacePairsBySex": {
+        "male": 4515,
+        "female": 3007
+      },
+      "pairs": [
+        "arm-left|leg-left",
+        "arm-right|leg-right",
+        "body|body",
+        "body|leg-left",
+        "body|leg-right",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "rest-ball",
+      "name": "休闲 · 半蹲接球",
+      "maximumFacePairsBySex": {
+        "male": 456,
+        "female": 584
+      },
+      "pairs": [
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "yoga-mountain",
+      "name": "瑜伽 · 山式",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "yoga-tree-right",
+      "name": "瑜伽 · 树式右脚支撑",
+      "maximumFacePairsBySex": {
+        "male": 883,
+        "female": 1163
+      },
+      "pairs": [
+        "body|body",
+        "body|leg-left",
+        "leg-left|leg-left"
+      ]
+    },
+    {
+      "id": "yoga-tree-left",
+      "name": "瑜伽 · 树式左脚支撑",
+      "maximumFacePairsBySex": {
+        "male": 882,
+        "female": 1149
+      },
+      "pairs": [
+        "body|body",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "yoga-warrior-right",
+      "name": "瑜伽 · 战士式右腿在前",
+      "maximumFacePairsBySex": {
+        "male": 126
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "yoga-warrior-left",
+      "name": "瑜伽 · 战士式左腿在前",
+      "maximumFacePairsBySex": {
+        "male": 124
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "yoga-chair",
+      "name": "瑜伽 · 椅式",
+      "maximumFacePairsBySex": {
+        "male": 592,
+        "female": 1693
+      },
+      "pairs": [
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "yoga-fold",
+      "name": "瑜伽 · 站姿前屈",
+      "maximumFacePairsBySex": {
+        "male": 3084,
+        "female": 485
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body"
+      ]
+    },
+    {
+      "id": "yoga-dog",
+      "name": "瑜伽 · 下犬式",
+      "maximumFacePairsBySex": {
+        "male": 2695,
+        "female": 1909
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "yoga-table",
+      "name": "瑜伽 · 四点支撑",
+      "maximumFacePairsBySex": {
+        "male": 1736,
+        "female": 1078
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "yoga-cat",
+      "name": "瑜伽 · 四点支撑弓背",
+      "maximumFacePairsBySex": {
+        "male": 1114,
+        "female": 736
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right",
+        "body|body",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "yoga-child",
+      "name": "瑜伽 · 婴儿式前伸参考",
+      "maximumFacePairsBySex": {
+        "male": 4635,
+        "female": 4675
+      },
+      "pairs": [
+        "body|body",
+        "body|leg-left",
+        "body|leg-right",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "yoga-bridge",
+      "name": "瑜伽 · 仰卧桥式",
+      "maximumFacePairsBySex": {
+        "male": 1942,
+        "female": 1455
+      },
+      "pairs": [
+        "arm-left|arm-left",
+        "arm-right|arm-right",
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "swim-prone-float",
+      "name": "水中 · 俯漂伸展",
+      "maximumFacePairsBySex": {
+        "female": 1047
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "swim-back-float",
+      "name": "水中 · 仰漂",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    },
+    {
+      "id": "swim-crawl-right",
+      "name": "自由泳 · 右臂划水",
+      "maximumFacePairsBySex": {
+        "male": 554,
+        "female": 595
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body"
+      ]
+    },
+    {
+      "id": "swim-crawl-left",
+      "name": "自由泳 · 左臂划水",
+      "maximumFacePairsBySex": {
+        "male": 554,
+        "female": 692
+      },
+      "pairs": [
+        "arm-left|body",
+        "arm-right|body",
+        "body|body"
+      ]
+    },
+    {
+      "id": "swim-breast-pull",
+      "name": "蛙泳 · 收臂屈腿",
+      "maximumFacePairsBySex": {
+        "male": 1050,
+        "female": 877
+      },
+      "pairs": [
+        "leg-left|leg-left",
+        "leg-right|leg-right"
+      ]
+    },
+    {
+      "id": "swim-breast-glide",
+      "name": "蛙泳 · 蹬腿后滑行",
+      "maximumFacePairsBySex": {
+        "female": 1080
+      },
+      "pairs": [
+        "body|body"
+      ]
+    },
+    {
+      "id": "swim-backstroke",
+      "name": "仰泳 · 单臂回摆",
+      "maximumFacePairsBySex": {
+        "male": 199,
+        "female": 739
+      },
+      "pairs": [
+        "arm-left|body",
+        "body|body"
+      ]
+    },
+    {
+      "id": "swim-tread",
+      "name": "水中 · 直立踩水",
+      "maximumFacePairsBySex": {},
+      "pairs": []
+    }
+  ],
+  "clinicalDiagnosis": false,
+  "limitations": "Entire source triangle meshes, including mixed-region and same-region intersections; unique unordered face pairs; excludes shared vertices, intersections already in source and source-centroid separations below 40 mm"
+}
