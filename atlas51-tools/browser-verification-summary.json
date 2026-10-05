@@ -1,0 +1,663 @@
+{
+  "version": "51.0.0",
+  "recordedStates": 30,
+  "verifiedStates": 28,
+  "notCountedAsPasses": [
+    "mobile-pan",
+    "mobile-rotate"
+  ],
+  "viewAndGenderRecords": [
+    {
+      "label": "male-sit-phone-organs",
+      "pose": "sit-phone",
+      "sex": "male",
+      "view": "organs",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 0,
+      "layers": {
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 105
+        }
+      }
+    },
+    {
+      "label": "male-sit-phone-nerves",
+      "pose": "sit-phone",
+      "sex": "male",
+      "view": "nerves",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 0,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 550
+        },
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "male-sit-phone-vessels",
+      "pose": "sit-phone",
+      "sex": "male",
+      "view": "vessels",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 0,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 659,
+          "visible": 659
+        }
+      }
+    },
+    {
+      "label": "female-sit-phone-surface-roundtrip",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    },
+    {
+      "label": "female-child-surface",
+      "pose": "yoga-child",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    },
+    {
+      "label": "female-child-organs",
+      "pose": "yoga-child",
+      "sex": "female",
+      "view": "organs",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 0,
+      "layers": {
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 208
+        }
+      }
+    },
+    {
+      "label": "female-child-nerves",
+      "pose": "yoga-child",
+      "sex": "female",
+      "view": "nerves",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 0,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 550
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "female-child-vessels",
+      "pose": "yoga-child",
+      "sex": "female",
+      "view": "vessels",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 0,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 117
+        }
+      }
+    },
+    {
+      "label": "female-child-bones",
+      "pose": "yoga-child",
+      "sex": "female",
+      "view": "bones",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 0,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "female-child-surface-final",
+      "pose": "yoga-child",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "female-stand-phone-surface",
+      "pose": "stand-phone",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "female-stand-high-phone-surface",
+      "pose": "stand-high-phone",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "female-work-phone-ear-surface",
+      "pose": "work-phone-ear",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "male-ear-surface",
+      "pose": "work-phone-ear",
+      "sex": "male",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    },
+    {
+      "label": "male-ear-bones",
+      "pose": "work-phone-ear",
+      "sex": "male",
+      "view": "bones",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 0,
+      "layers": {}
+    },
+    {
+      "label": "mobile-male-sit-phone",
+      "pose": "sit-phone",
+      "sex": "male",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    },
+    {
+      "label": "mobile-zoom-in",
+      "pose": "sit-phone",
+      "sex": "male",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    },
+    {
+      "label": "mobile-zoom-out",
+      "pose": "sit-phone",
+      "sex": "male",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    },
+    {
+      "label": "mobile-pan",
+      "pose": "sit-phone",
+      "sex": "male",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    },
+    {
+      "label": "mobile-rotate",
+      "pose": "sit-phone",
+      "sex": "male",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    },
+    {
+      "label": "mobile-female-flags-off",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "mobile-female-left-PC6",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|left",
+      "pointCount": 9,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "mobile-female-PC6-focus",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "desktop-controls-before",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "desktop-pan-confirmed",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "desktop-rotate-confirmed",
+      "pose": "sit-phone",
+      "sex": "female",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      }
+    },
+    {
+      "label": "male-stand-phone-surface-final",
+      "pose": "stand-phone",
+      "sex": "male",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    },
+    {
+      "label": "male-stand-high-phone-surface-final",
+      "pose": "stand-high-phone",
+      "sex": "male",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    },
+    {
+      "label": "male-yoga-child-surface-final",
+      "pose": "yoga-child",
+      "sex": "male",
+      "view": "surface",
+      "busy": false,
+      "selected": "PC6|right",
+      "pointCount": 9,
+      "layers": {}
+    }
+  ],
+  "mobileWidths": [
+    390,
+    360
+  ],
+  "pointLabel": {
+    "hidden": false,
+    "rect": [
+      207,
+      312.09375,
+      70.328125,
+      23
+    ],
+    "text": "内关 PC6 · 右"
+  },
+  "sourceAttachmentChecks": true,
+  "desktopDragCameraChecks": true,
+  "mobileZoomAndSwitchChecks": true,
+  "mobileTouchGesturesVerified": false,
+  "touchLimitation": "Unavailable: in-app browser does not support Input.dispatchTouchEvent. Emulated-coordinate drags did not change camera; not counted as passes.",
+  "physicalPhonesTested": false,
+  "screenshots": [
+    "sit-phone-female-before.png",
+    "sit-phone-female-after.png",
+    "sit-phone-male-before.png",
+    "sit-phone-male-after.png",
+    "child-female-before.png",
+    "child-female-after.png",
+    "mobile-female-PC6.png"
+  ],
+  "publicRetest": "pending"
+}
