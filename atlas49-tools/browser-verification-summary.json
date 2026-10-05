@@ -1,0 +1,450 @@
+{
+  "checks": [
+    {
+      "name": "restored-thoracic-settings",
+      "pass": true
+    },
+    {
+      "name": "vein-filter-retained-across-sex",
+      "pass": true
+    },
+    {
+      "name": "lumbar-focus-retains-vessels",
+      "pass": true
+    },
+    {
+      "name": "both-sexes-all-internal-layers",
+      "pass": true
+    },
+    {
+      "name": "both-sexes-five-layers-keep-thoracic-settings",
+      "pass": true
+    },
+    {
+      "name": "native-GV9-click-on-thoracic-deformed-opaque-skin",
+      "pass": true
+    },
+    {
+      "name": "duration-changes-exposure-not-invented-vertebral-injury",
+      "pass": true
+    },
+    {
+      "name": "reload-restores-seven-settings-and-point-choice",
+      "pass": true
+    },
+    {
+      "name": "seven-control-reset-and-spine-comparison",
+      "pass": true
+    },
+    {
+      "name": "mobile-390-no-overflow-seven-spine-fields-and-zoom",
+      "pass": true
+    },
+    {
+      "name": "no-renderer-or-shader-errors",
+      "pass": true
+    }
+  ],
+  "allPassed": true,
+  "layerCases": [
+    {
+      "sex": "female",
+      "view": "organs",
+      "spineAdjustment": {
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 10,
+        "thoracicTwist": -6,
+        "cervicalFlex": 0,
+        "cervicalSide": 0
+      },
+      "loadedLayers": {
+        "organs": {
+          "parts": 286,
+          "visible": 208,
+          "origins": [
+            "female-native"
+          ]
+        }
+      },
+      "skinVertices": 191322
+    },
+    {
+      "sex": "female",
+      "view": "nerves",
+      "spineAdjustment": {
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 10,
+        "thoracicTwist": -6,
+        "cervicalFlex": 0,
+        "cervicalSide": 0
+      },
+      "loadedLayers": {
+        "nerves": {
+          "parts": 550,
+          "visible": 550,
+          "origins": [
+            "shared-teaching"
+          ]
+        }
+      },
+      "skinVertices": 0
+    },
+    {
+      "sex": "male",
+      "view": "nerves",
+      "spineAdjustment": {
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 10,
+        "thoracicTwist": -6,
+        "cervicalFlex": 0,
+        "cervicalSide": 0
+      },
+      "loadedLayers": {
+        "nerves": {
+          "parts": 550,
+          "visible": 550,
+          "origins": [
+            "shared-teaching"
+          ]
+        }
+      },
+      "skinVertices": 0
+    },
+    {
+      "sex": "male",
+      "view": "vessels",
+      "spineAdjustment": {
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 10,
+        "thoracicTwist": -6,
+        "cervicalFlex": 0,
+        "cervicalSide": 0
+      },
+      "loadedLayers": {
+        "nerves": {
+          "parts": 550,
+          "visible": 0,
+          "origins": [
+            "shared-teaching"
+          ]
+        },
+        "vessels": {
+          "parts": 659,
+          "visible": 659,
+          "origins": [
+            "shared-teaching"
+          ]
+        }
+      },
+      "skinVertices": 0
+    },
+    {
+      "sex": "female",
+      "view": "vessels",
+      "spineAdjustment": {
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 10,
+        "thoracicTwist": -6,
+        "cervicalFlex": 0,
+        "cervicalSide": 0
+      },
+      "loadedLayers": {
+        "nerves": {
+          "parts": 550,
+          "visible": 0,
+          "origins": [
+            "shared-teaching"
+          ]
+        },
+        "vessels": {
+          "parts": 124,
+          "visible": 57,
+          "origins": [
+            "female-native"
+          ]
+        }
+      },
+      "skinVertices": 0
+    },
+    {
+      "sex": "female",
+      "view": "bones",
+      "spineAdjustment": {
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 10,
+        "thoracicTwist": -6,
+        "cervicalFlex": 0,
+        "cervicalSide": 0
+      },
+      "loadedLayers": {
+        "nerves": {
+          "parts": 550,
+          "visible": 0,
+          "origins": [
+            "shared-teaching"
+          ]
+        },
+        "vessels": {
+          "parts": 124,
+          "visible": 0,
+          "origins": [
+            "female-native"
+          ]
+        }
+      },
+      "skinVertices": 0
+    },
+    {
+      "sex": "male",
+      "view": "bones",
+      "spineAdjustment": {
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 10,
+        "thoracicTwist": -6,
+        "cervicalFlex": 0,
+        "cervicalSide": 0
+      },
+      "loadedLayers": {
+        "nerves": {
+          "parts": 550,
+          "visible": 0,
+          "origins": [
+            "shared-teaching"
+          ]
+        },
+        "vessels": {
+          "parts": 659,
+          "visible": 0,
+          "origins": [
+            "shared-teaching"
+          ]
+        }
+      },
+      "skinVertices": 0
+    },
+    {
+      "sex": "male",
+      "view": "organs",
+      "spineAdjustment": {
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 10,
+        "thoracicTwist": -6,
+        "cervicalFlex": 0,
+        "cervicalSide": 0
+      },
+      "loadedLayers": {
+        "nerves": {
+          "parts": 550,
+          "visible": 0,
+          "origins": [
+            "shared-teaching"
+          ]
+        },
+        "vessels": {
+          "parts": 659,
+          "visible": 0,
+          "origins": [
+            "shared-teaching"
+          ]
+        },
+        "organs": {
+          "parts": 136,
+          "visible": 105,
+          "origins": [
+            "shared-teaching"
+          ]
+        }
+      },
+      "skinVertices": 0
+    },
+    {
+      "sex": "male",
+      "view": "surface",
+      "spineAdjustment": {
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 10,
+        "thoracicTwist": -6,
+        "cervicalFlex": 0,
+        "cervicalSide": 0
+      },
+      "loadedLayers": {
+        "nerves": {
+          "parts": 550,
+          "visible": 0,
+          "origins": [
+            "shared-teaching"
+          ]
+        },
+        "vessels": {
+          "parts": 659,
+          "visible": 0,
+          "origins": [
+            "shared-teaching"
+          ]
+        },
+        "organs": {
+          "parts": 136,
+          "visible": 0,
+          "origins": [
+            "shared-teaching"
+          ]
+        }
+      },
+      "skinVertices": 75668
+    },
+    {
+      "sex": "female",
+      "view": "surface",
+      "spineAdjustment": {
+        "lumbarFlex": 0,
+        "lumbarSide": 0,
+        "thoracicFlex": 0,
+        "thoracicSide": 10,
+        "thoracicTwist": -6,
+        "cervicalFlex": 0,
+        "cervicalSide": 0
+      },
+      "loadedLayers": {},
+      "skinVertices": 191322
+    }
+  ],
+  "mobile": {
+    "buttons": [
+      {
+        "rect": [
+          10,
+          89.5,
+          44
+        ],
+        "text": "旋转"
+      },
+      {
+        "rect": [
+          103.5,
+          89.5,
+          44
+        ],
+        "text": "平移"
+      },
+      {
+        "rect": [
+          197,
+          89.5,
+          44
+        ],
+        "text": "− 缩小"
+      },
+      {
+        "rect": [
+          290.5,
+          89.5,
+          44
+        ],
+        "text": "＋ 放大"
+      },
+      {
+        "rect": [
+          10,
+          89.5,
+          44
+        ],
+        "text": "完整显示"
+      },
+      {
+        "rect": [
+          103.5,
+          89.5,
+          44
+        ],
+        "text": "正面"
+      },
+      {
+        "rect": [
+          197,
+          89.5,
+          44
+        ],
+        "text": "侧面"
+      },
+      {
+        "rect": [
+          290.5,
+          89.5,
+          44
+        ],
+        "text": "俯视"
+      }
+    ],
+    "scrollWidth": 390,
+    "spineInputs": [
+      {
+        "id": "lumbarFlex",
+        "rect": [
+          17,
+          172.5
+        ]
+      },
+      {
+        "id": "lumbarSide",
+        "rect": [
+          201.5,
+          172.5
+        ]
+      },
+      {
+        "id": "thoracicFlex",
+        "rect": [
+          17,
+          172.5
+        ]
+      },
+      {
+        "id": "thoracicSide",
+        "rect": [
+          201.5,
+          172.5
+        ]
+      },
+      {
+        "id": "thoracicTwist",
+        "rect": [
+          17,
+          172.5
+        ]
+      },
+      {
+        "id": "cervicalFlex",
+        "rect": [
+          201.5,
+          172.5
+        ]
+      },
+      {
+        "id": "cervicalSide",
+        "rect": [
+          17,
+          172.5
+        ]
+      }
+    ],
+    "width": 390
+  }
+}
