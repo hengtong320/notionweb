@@ -1,0 +1,3494 @@
+{
+  "version": "58.0.0",
+  "scope": "All currently mapped fourteen-channel branches, both anatomical sides and sexes; exact retained point contacts; no new disconnected transitions",
+  "clinicalCalibration": false,
+  "rows": [
+    {
+      "sex": "male",
+      "meridian": "LU",
+      "side": "right",
+      "branch": 0,
+      "anchors": 11,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 770.9352437528115,
+        "intermediateUpdates": 2174,
+        "maxIntermediateMove": 1.183027665143883,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 11,
+        "drawnSegments": 473,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4438883474730054,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 770.9352437528115,
+        "intermediateUpdates": 2174,
+        "maxIntermediateMove": 1.183027665143883,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 11,
+        "drawnSegments": 473,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4438883474730054,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "LU",
+      "side": "left",
+      "branch": 0,
+      "anchors": 11,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 770.9181622913753,
+        "intermediateUpdates": 2162,
+        "maxIntermediateMove": 1.1830302416589635,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 11,
+        "drawnSegments": 473,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4400253806898393,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 770.9181622913753,
+        "intermediateUpdates": 2162,
+        "maxIntermediateMove": 1.1830302416589635,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 11,
+        "drawnSegments": 473,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4400253806898393,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "LI",
+      "side": "right",
+      "branch": 0,
+      "anchors": 20,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1248.058427214748,
+        "intermediateUpdates": 3113,
+        "maxIntermediateMove": 1.1976677988585795,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 20,
+        "drawnSegments": 731,
+        "retracedTransitions": 11,
+        "disconnectedTransitions": 6,
+        "maxDrawnSurfaceGap": 1.259328586775262,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1227.5213529674481,
+        "intermediateUpdates": 3379,
+        "maxIntermediateMove": 1.1976677988585795,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 2,
+          "rejectedSpans": 1,
+          "originalLength": 209.35095485369249,
+          "repairedLength": 128.72464788111193,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "LI18",
+              "to": "LI19",
+              "before": 167.01145815039774,
+              "after": 109.4773827329956
+            },
+            {
+              "from": "LI19",
+              "to": "LI20",
+              "before": 42.339496703294756,
+              "after": 19.247265148116355
+            }
+          ]
+        },
+        "sourceKnotCount": 20,
+        "drawnSegments": 766,
+        "retracedTransitions": 4,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.5197062991330524,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "LI",
+      "side": "left",
+      "branch": 0,
+      "anchors": 20,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1248.0383488457494,
+        "intermediateUpdates": 3097,
+        "maxIntermediateMove": 1.1976687429949804,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 20,
+        "drawnSegments": 731,
+        "retracedTransitions": 11,
+        "disconnectedTransitions": 6,
+        "maxDrawnSurfaceGap": 1.2593293006051298,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1227.3172854406318,
+        "intermediateUpdates": 3380,
+        "maxIntermediateMove": 1.1976687429949804,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 2,
+          "rejectedSpans": 0,
+          "originalLength": 209.05665888941263,
+          "repairedLength": 128.5014381864635,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "LI18",
+              "to": "LI19",
+              "before": 166.71714580916912,
+              "after": 109.25630213644791
+            },
+            {
+              "from": "LI19",
+              "to": "LI20",
+              "before": 42.33951308024352,
+              "after": 19.245136050015585
+            }
+          ]
+        },
+        "sourceKnotCount": 20,
+        "drawnSegments": 769,
+        "retracedTransitions": 4,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.498074986220008,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "ST",
+      "side": "right",
+      "branch": 0,
+      "anchors": 45,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 2319.8965261995368,
+        "intermediateUpdates": 6445,
+        "maxIntermediateMove": 1.1676826318390532,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 45,
+        "drawnSegments": 1443,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.6153647262781374,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 2319.8965261995368,
+        "intermediateUpdates": 6445,
+        "maxIntermediateMove": 1.1676826318390532,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 45,
+        "drawnSegments": 1443,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.6153647262781374,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "ST",
+      "side": "left",
+      "branch": 0,
+      "anchors": 45,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 2324.293028246869,
+        "intermediateUpdates": 6469,
+        "maxIntermediateMove": 1.167683909724427,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 45,
+        "drawnSegments": 1443,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 1.1310202274910903,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 2324.293028246869,
+        "intermediateUpdates": 6469,
+        "maxIntermediateMove": 1.167683909724427,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 45,
+        "drawnSegments": 1443,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 1.1310202274910903,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "SP",
+      "side": "right",
+      "branch": 0,
+      "anchors": 21,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1692.725389971797,
+        "intermediateUpdates": 4563,
+        "maxIntermediateMove": 1.1924898945868405,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 21,
+        "drawnSegments": 1047,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 6,
+        "maxDrawnSurfaceGap": 0.657755110165452,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1692.725389971797,
+        "intermediateUpdates": 4563,
+        "maxIntermediateMove": 1.1924898945868405,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 21,
+        "drawnSegments": 1047,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 6,
+        "maxDrawnSurfaceGap": 0.657755110165452,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "SP",
+      "side": "left",
+      "branch": 0,
+      "anchors": 21,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1692.8786485732674,
+        "intermediateUpdates": 4599,
+        "maxIntermediateMove": 1.1874816124247385,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 21,
+        "drawnSegments": 1047,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 6,
+        "maxDrawnSurfaceGap": 0.6597915777281321,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1692.8786485732674,
+        "intermediateUpdates": 4599,
+        "maxIntermediateMove": 1.1874816124247385,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 21,
+        "drawnSegments": 1047,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 6,
+        "maxDrawnSurfaceGap": 0.6597915777281321,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "HT",
+      "side": "right",
+      "branch": 0,
+      "anchors": 9,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 667.0273464783767,
+        "intermediateUpdates": 1866,
+        "maxIntermediateMove": 1.183198870816207,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 410,
+        "retracedTransitions": 4,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 1.0847983146907898,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 667.0273464783767,
+        "intermediateUpdates": 1866,
+        "maxIntermediateMove": 1.183198870816207,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 410,
+        "retracedTransitions": 4,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 1.0847983146907898,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "HT",
+      "side": "left",
+      "branch": 0,
+      "anchors": 9,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 667.0556372978165,
+        "intermediateUpdates": 1884,
+        "maxIntermediateMove": 1.1831833607810776,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 410,
+        "retracedTransitions": 4,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 1.0847942397670653,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 667.0556372978165,
+        "intermediateUpdates": 1884,
+        "maxIntermediateMove": 1.1831833607810776,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 410,
+        "retracedTransitions": 4,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 1.0847942397670653,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "SI",
+      "side": "right",
+      "branch": 0,
+      "anchors": 19,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1260.2438548521895,
+        "intermediateUpdates": 3406,
+        "maxIntermediateMove": 1.1360177613162215,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 19,
+        "drawnSegments": 770,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 2.3935242686797618,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1259.7911219065397,
+        "intermediateUpdates": 3404,
+        "maxIntermediateMove": 1.1360177613162215,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 53.31518921502457,
+          "repairedLength": 52.02755248373664,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "SI18",
+              "to": "SI19",
+              "before": 53.31518921502457,
+              "after": 52.02755248373664
+            }
+          ]
+        },
+        "sourceKnotCount": 19,
+        "drawnSegments": 778,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 2.3935242686797618,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "SI",
+      "side": "left",
+      "branch": 0,
+      "anchors": 19,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1260.2208218256874,
+        "intermediateUpdates": 3437,
+        "maxIntermediateMove": 1.1360233271399618,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 19,
+        "drawnSegments": 770,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 2.425766954080153,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1259.764631033379,
+        "intermediateUpdates": 3439,
+        "maxIntermediateMove": 1.1360233271399618,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 53.315219225072674,
+          "repairedLength": 52.11489842880452,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "SI18",
+              "to": "SI19",
+              "before": 53.315219225072674,
+              "after": 52.11489842880452
+            }
+          ]
+        },
+        "sourceKnotCount": 19,
+        "drawnSegments": 778,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 2.425766954080153,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "BL",
+      "side": "right",
+      "branch": 0,
+      "anchors": 10,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 470.7820666771815,
+        "intermediateUpdates": 1159,
+        "maxIntermediateMove": 1.0232090461839976,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 10,
+        "drawnSegments": 289,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.8137027614792564,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 470.7820666771815,
+        "intermediateUpdates": 1159,
+        "maxIntermediateMove": 1.0232090461839976,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 10,
+        "drawnSegments": 289,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.8137027614792564,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "BL",
+      "side": "right",
+      "branch": 1,
+      "anchors": 40,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1808.300098620211,
+        "intermediateUpdates": 5108,
+        "maxIntermediateMove": 1.1653767267818724,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 25.3206065202775,
+          "repairedLength": 24.365687980823278,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "BL65",
+              "to": "BL66",
+              "before": 25.3206065202775,
+              "after": 24.365687980823278
+            }
+          ]
+        },
+        "sourceKnotCount": 40,
+        "drawnSegments": 1141,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4752990336690339,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1808.300098620211,
+        "intermediateUpdates": 5108,
+        "maxIntermediateMove": 1.1653767267818724,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 25.3206065202775,
+          "repairedLength": 24.365687980823278,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "BL65",
+              "to": "BL66",
+              "before": 25.3206065202775,
+              "after": 24.365687980823278
+            }
+          ]
+        },
+        "sourceKnotCount": 40,
+        "drawnSegments": 1141,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4752990336690339,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "BL",
+      "side": "right",
+      "branch": 2,
+      "anchors": 17,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1145.714447616822,
+        "intermediateUpdates": 3292,
+        "maxIntermediateMove": 1.1769269262453415,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 17,
+        "drawnSegments": 709,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 1.1298317495938548,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1145.714447616822,
+        "intermediateUpdates": 3292,
+        "maxIntermediateMove": 1.1769269262453415,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 17,
+        "drawnSegments": 709,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 1.1298317495938548,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "BL",
+      "side": "right",
+      "branch": 3,
+      "anchors": 4,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 78.47521891019895,
+        "intermediateUpdates": 238,
+        "maxIntermediateMove": 0.17212408822522698,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 4,
+        "drawnSegments": 50,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.69250022951256,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 78.47521891019895,
+        "intermediateUpdates": 238,
+        "maxIntermediateMove": 0.17212408822522698,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 4,
+        "drawnSegments": 50,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.69250022951256,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "BL",
+      "side": "left",
+      "branch": 0,
+      "anchors": 10,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 470.77629190134957,
+        "intermediateUpdates": 1163,
+        "maxIntermediateMove": 1.023202118294245,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 10,
+        "drawnSegments": 289,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.8137050690928967,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 470.77629190134957,
+        "intermediateUpdates": 1163,
+        "maxIntermediateMove": 1.023202118294245,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 10,
+        "drawnSegments": 289,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.8137050690928967,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "BL",
+      "side": "left",
+      "branch": 1,
+      "anchors": 40,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1807.5034524514542,
+        "intermediateUpdates": 5033,
+        "maxIntermediateMove": 1.1132792717646582,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 40,
+        "drawnSegments": 1135,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.47634267514635853,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1807.5034524514542,
+        "intermediateUpdates": 5033,
+        "maxIntermediateMove": 1.1132792717646582,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 40,
+        "drawnSegments": 1135,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.47634267514635853,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "BL",
+      "side": "left",
+      "branch": 2,
+      "anchors": 17,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1141.6611689210156,
+        "intermediateUpdates": 3278,
+        "maxIntermediateMove": 1.1993195700175148,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 17,
+        "drawnSegments": 709,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.5425655893163451,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1141.6611689210156,
+        "intermediateUpdates": 3278,
+        "maxIntermediateMove": 1.1993195700175148,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 17,
+        "drawnSegments": 709,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.5425655893163451,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "BL",
+      "side": "left",
+      "branch": 3,
+      "anchors": 4,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 78.47314647815452,
+        "intermediateUpdates": 239,
+        "maxIntermediateMove": 0.17217344091991937,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 4,
+        "drawnSegments": 50,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.6921629696167142,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 78.47314647815452,
+        "intermediateUpdates": 239,
+        "maxIntermediateMove": 0.17217344091991937,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 4,
+        "drawnSegments": 50,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.6921629696167142,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "KI",
+      "side": "right",
+      "branch": 0,
+      "anchors": 27,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1757.2971593910092,
+        "intermediateUpdates": 4623,
+        "maxIntermediateMove": 1.1485719822738436,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 30,
+        "drawnSegments": 1081,
+        "retracedTransitions": 5,
+        "disconnectedTransitions": 5,
+        "maxDrawnSurfaceGap": 1.1304798529098468,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1757.2971593910092,
+        "intermediateUpdates": 4623,
+        "maxIntermediateMove": 1.1485719822738436,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 30,
+        "drawnSegments": 1081,
+        "retracedTransitions": 5,
+        "disconnectedTransitions": 5,
+        "maxDrawnSurfaceGap": 1.1304798529098468,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "KI",
+      "side": "left",
+      "branch": 0,
+      "anchors": 27,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1763.0999809679104,
+        "intermediateUpdates": 4631,
+        "maxIntermediateMove": 1.1485697297936903,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 30,
+        "drawnSegments": 1081,
+        "retracedTransitions": 6,
+        "disconnectedTransitions": 5,
+        "maxDrawnSurfaceGap": 1.1304777690518233,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1763.0999809679104,
+        "intermediateUpdates": 4631,
+        "maxIntermediateMove": 1.1485697297936903,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 30,
+        "drawnSegments": 1081,
+        "retracedTransitions": 6,
+        "disconnectedTransitions": 5,
+        "maxDrawnSurfaceGap": 1.1304777690518233,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "PC",
+      "side": "right",
+      "branch": 0,
+      "anchors": 9,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 796.9542403496853,
+        "intermediateUpdates": 2502,
+        "maxIntermediateMove": 1.1598132230502167,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 113.24918090277524,
+          "repairedLength": 99.45516539415351,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "PC8",
+              "to": "PC9",
+              "before": 113.24918090277524,
+              "after": 99.45516539415351
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 508,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.9176702570472837,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 796.9542403496853,
+        "intermediateUpdates": 2502,
+        "maxIntermediateMove": 1.1598132230502167,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 113.24918090277524,
+          "repairedLength": 99.45516539415351,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "PC8",
+              "to": "PC9",
+              "before": 113.24918090277524,
+              "after": 99.45516539415351
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 508,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.9176702570472837,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "PC",
+      "side": "left",
+      "branch": 0,
+      "anchors": 9,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 796.9295722194875,
+        "intermediateUpdates": 2450,
+        "maxIntermediateMove": 1.1598102254721525,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 113.36458316292023,
+          "repairedLength": 99.62590902617863,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "PC8",
+              "to": "PC9",
+              "before": 113.36458316292023,
+              "after": 99.62590902617863
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 508,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 1.1072337990084589,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 796.9295722194875,
+        "intermediateUpdates": 2450,
+        "maxIntermediateMove": 1.1598102254721525,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 113.36458316292023,
+          "repairedLength": 99.62590902617863,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "PC8",
+              "to": "PC9",
+              "before": 113.36458316292023,
+              "after": 99.62590902617863
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 508,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 1.1072337990084589,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "TE",
+      "side": "right",
+      "branch": 0,
+      "anchors": 23,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1264.9152865771573,
+        "intermediateUpdates": 3527,
+        "maxIntermediateMove": 1.180770088727038,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 2,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 23,
+        "drawnSegments": 789,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.47969973393449084,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1264.9152865771573,
+        "intermediateUpdates": 3527,
+        "maxIntermediateMove": 1.180770088727038,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 3,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 23,
+        "drawnSegments": 789,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.47969973393449084,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "TE",
+      "side": "left",
+      "branch": 0,
+      "anchors": 23,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1265.008350311523,
+        "intermediateUpdates": 3482,
+        "maxIntermediateMove": 1.18074583364123,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 2,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 23,
+        "drawnSegments": 789,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.47970519216144164,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1265.008350311523,
+        "intermediateUpdates": 3482,
+        "maxIntermediateMove": 1.18074583364123,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 3,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 23,
+        "drawnSegments": 789,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.47970519216144164,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "GB",
+      "side": "right",
+      "branch": 0,
+      "anchors": 44,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 3212.8299080148818,
+        "intermediateUpdates": 7879,
+        "maxIntermediateMove": 1.1982163922699471,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 44,
+        "drawnSegments": 1921,
+        "retracedTransitions": 17,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 2.622410269743315,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 3212.8299080148818,
+        "intermediateUpdates": 7879,
+        "maxIntermediateMove": 1.1982163922699471,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 44,
+        "drawnSegments": 1921,
+        "retracedTransitions": 17,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 2.622410269743315,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "GB",
+      "side": "left",
+      "branch": 0,
+      "anchors": 44,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 3217.336376392511,
+        "intermediateUpdates": 7810,
+        "maxIntermediateMove": 1.1982148420650176,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 44,
+        "drawnSegments": 1918,
+        "retracedTransitions": 16,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 2.010380080924466,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 3217.336376392511,
+        "intermediateUpdates": 7810,
+        "maxIntermediateMove": 1.1982148420650176,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 44,
+        "drawnSegments": 1918,
+        "retracedTransitions": 16,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 2.010380080924466,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "LR",
+      "side": "right",
+      "branch": 0,
+      "anchors": 14,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1427.8614277082183,
+        "intermediateUpdates": 3871,
+        "maxIntermediateMove": 1.1893439290239498,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 14,
+        "drawnSegments": 860,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 1.2747979058456989,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1427.8614277082183,
+        "intermediateUpdates": 3871,
+        "maxIntermediateMove": 1.1893439290239498,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 14,
+        "drawnSegments": 860,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 1.2747979058456989,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "LR",
+      "side": "left",
+      "branch": 0,
+      "anchors": 14,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1427.808966792778,
+        "intermediateUpdates": 3859,
+        "maxIntermediateMove": 1.1893467790219585,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 14,
+        "drawnSegments": 860,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 1.2747991473196376,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1427.808966792778,
+        "intermediateUpdates": 3859,
+        "maxIntermediateMove": 1.1893467790219585,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 14,
+        "drawnSegments": 860,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 1.2747991473196376,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "GV",
+      "side": "midline",
+      "branch": 0,
+      "anchors": 24,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1085.8034551892113,
+        "intermediateUpdates": 2869,
+        "maxIntermediateMove": 1.1729879504483514,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 24,
+        "drawnSegments": 688,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 0.45767434206312585,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1085.8034551892113,
+        "intermediateUpdates": 2869,
+        "maxIntermediateMove": 1.1729879504483514,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 24,
+        "drawnSegments": 688,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 0.45767434206312585,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "GV",
+      "side": "midline",
+      "branch": 1,
+      "anchors": 5,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 155.61870566235103,
+        "intermediateUpdates": 393,
+        "maxIntermediateMove": 1.0625403987334499,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 6,
+        "drawnSegments": 97,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.9780855489486121,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 155.61870566235103,
+        "intermediateUpdates": 393,
+        "maxIntermediateMove": 1.0625403987334499,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 6,
+        "drawnSegments": 97,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.9780855489486121,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "male",
+      "meridian": "CV",
+      "side": "midline",
+      "branch": 0,
+      "anchors": 24,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 723.8909862022017,
+        "intermediateUpdates": 1997,
+        "maxIntermediateMove": 1.1864294379677782,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 24,
+        "drawnSegments": 485,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 4,
+        "maxDrawnSurfaceGap": 0.5533708431773149,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 723.8909862022017,
+        "intermediateUpdates": 1997,
+        "maxIntermediateMove": 1.1864294379677782,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 24,
+        "drawnSegments": 485,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 4,
+        "maxDrawnSurfaceGap": 0.5533708431773149,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "LU",
+      "side": "right",
+      "branch": 0,
+      "anchors": 11,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 743.1524162759782,
+        "intermediateUpdates": 2077,
+        "maxIntermediateMove": 1.1274413933072325,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 11,
+        "drawnSegments": 451,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.41957062877105594,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 743.1524162759782,
+        "intermediateUpdates": 2077,
+        "maxIntermediateMove": 1.1274413933072325,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 11,
+        "drawnSegments": 451,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.41957062877105594,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "LU",
+      "side": "left",
+      "branch": 0,
+      "anchors": 11,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 742.2840860126895,
+        "intermediateUpdates": 2095,
+        "maxIntermediateMove": 1.0337970578956457,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 11,
+        "drawnSegments": 451,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.5028775591859527,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 742.2840860126895,
+        "intermediateUpdates": 2095,
+        "maxIntermediateMove": 1.0337970578956457,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 11,
+        "drawnSegments": 451,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.5028775591859527,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "LI",
+      "side": "right",
+      "branch": 0,
+      "anchors": 20,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1218.3028151488684,
+        "intermediateUpdates": 3067,
+        "maxIntermediateMove": 1.196175981746134,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 20,
+        "drawnSegments": 717,
+        "retracedTransitions": 7,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 1.0604819905236185,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1217.9191179369948,
+        "intermediateUpdates": 3178,
+        "maxIntermediateMove": 1.196175981746134,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 74.92111418553611,
+          "repairedLength": 73.5621343216823,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "LI18",
+              "to": "LI19",
+              "before": 74.92111418553611,
+              "after": 73.5621343216823
+            }
+          ]
+        },
+        "sourceKnotCount": 20,
+        "drawnSegments": 741,
+        "retracedTransitions": 7,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.41702041406691476,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "LI",
+      "side": "left",
+      "branch": 0,
+      "anchors": 20,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1220.791401099874,
+        "intermediateUpdates": 3064,
+        "maxIntermediateMove": 1.1984693012532577,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 20,
+        "drawnSegments": 717,
+        "retracedTransitions": 6,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.6445701097191369,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1220.791401099874,
+        "intermediateUpdates": 3064,
+        "maxIntermediateMove": 1.1984693012532577,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 20,
+        "drawnSegments": 717,
+        "retracedTransitions": 6,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.6445701097191369,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "ST",
+      "side": "right",
+      "branch": 0,
+      "anchors": 45,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 2414.155478458342,
+        "intermediateUpdates": 6471,
+        "maxIntermediateMove": 1.1981069448229964,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 60.613997607284084,
+          "repairedLength": 52.79405683430805,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "ST43",
+              "to": "ST44",
+              "before": 60.613997607284084,
+              "after": 52.79405683430805
+            }
+          ]
+        },
+        "sourceKnotCount": 45,
+        "drawnSegments": 1517,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.41179593766551564,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 2414.155478458342,
+        "intermediateUpdates": 6471,
+        "maxIntermediateMove": 1.1981069448229964,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 60.613997607284084,
+          "repairedLength": 52.79405683430805,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "ST43",
+              "to": "ST44",
+              "before": 60.613997607284084,
+              "after": 52.79405683430805
+            }
+          ]
+        },
+        "sourceKnotCount": 45,
+        "drawnSegments": 1517,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.41179593766551564,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "ST",
+      "side": "left",
+      "branch": 0,
+      "anchors": 45,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 2418.714781164135,
+        "intermediateUpdates": 6392,
+        "maxIntermediateMove": 1.1244850196926546,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 45,
+        "drawnSegments": 1497,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4362240718032483,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 2418.714781164135,
+        "intermediateUpdates": 6392,
+        "maxIntermediateMove": 1.1244850196926546,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 45,
+        "drawnSegments": 1497,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4362240718032483,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "SP",
+      "side": "right",
+      "branch": 0,
+      "anchors": 21,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1765.7451365142597,
+        "intermediateUpdates": 4651,
+        "maxIntermediateMove": 1.0420136509749407,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 61.77313378047887,
+          "repairedLength": 58.822491227973785,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "SP1",
+              "to": "SP2",
+              "before": 61.77313378047887,
+              "after": 58.822491227973785
+            }
+          ]
+        },
+        "sourceKnotCount": 21,
+        "drawnSegments": 1096,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.46846443643788516,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1765.7451365142597,
+        "intermediateUpdates": 4651,
+        "maxIntermediateMove": 1.0420136509749407,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 61.77313378047887,
+          "repairedLength": 58.822491227973785,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "SP1",
+              "to": "SP2",
+              "before": 61.77313378047887,
+              "after": 58.822491227973785
+            }
+          ]
+        },
+        "sourceKnotCount": 21,
+        "drawnSegments": 1096,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.46846443643788516,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "SP",
+      "side": "left",
+      "branch": 0,
+      "anchors": 21,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1771.1069926281036,
+        "intermediateUpdates": 4511,
+        "maxIntermediateMove": 1.178904856470995,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 21,
+        "drawnSegments": 1079,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.43972106407061246,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1771.1069926281036,
+        "intermediateUpdates": 4511,
+        "maxIntermediateMove": 1.178904856470995,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 21,
+        "drawnSegments": 1079,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.43972106407061246,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "HT",
+      "side": "right",
+      "branch": 0,
+      "anchors": 9,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 706.012467128323,
+        "intermediateUpdates": 2051,
+        "maxIntermediateMove": 0.5487352418174692,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 83.07899778151476,
+          "repairedLength": 78.83765297882098,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "HT8",
+              "to": "HT9",
+              "before": 83.07899778151476,
+              "after": 78.83765297882098
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 448,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.8029112314675854,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 706.012467128323,
+        "intermediateUpdates": 2051,
+        "maxIntermediateMove": 0.5487352418174692,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 83.07899778151476,
+          "repairedLength": 78.83765297882098,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "HT8",
+              "to": "HT9",
+              "before": 83.07899778151476,
+              "after": 78.83765297882098
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 448,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.8029112314675854,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "HT",
+      "side": "left",
+      "branch": 0,
+      "anchors": 9,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 700.650697389677,
+        "intermediateUpdates": 1971,
+        "maxIntermediateMove": 1.177086823400856,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 87.21384223445875,
+          "repairedLength": 75.98364122462054,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "HT8",
+              "to": "HT9",
+              "before": 87.21384223445875,
+              "after": 75.98364122462054
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 442,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.9086593942805721,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 700.650697389677,
+        "intermediateUpdates": 1971,
+        "maxIntermediateMove": 1.177086823400856,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 87.21384223445875,
+          "repairedLength": 75.98364122462054,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "HT8",
+              "to": "HT9",
+              "before": 87.21384223445875,
+              "after": 75.98364122462054
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 442,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.9086593942805721,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "SI",
+      "side": "right",
+      "branch": 0,
+      "anchors": 19,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1235.5943121019836,
+        "intermediateUpdates": 3373,
+        "maxIntermediateMove": 1.0810047077091307,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 19,
+        "drawnSegments": 761,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.6074167349553781,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1235.5943121019836,
+        "intermediateUpdates": 3373,
+        "maxIntermediateMove": 1.0810047077091307,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 19,
+        "drawnSegments": 761,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.6074167349553781,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "SI",
+      "side": "left",
+      "branch": 0,
+      "anchors": 19,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1252.5405625949372,
+        "intermediateUpdates": 3337,
+        "maxIntermediateMove": 1.191979853526218,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 2,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 19,
+        "drawnSegments": 766,
+        "retracedTransitions": 3,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.6496957577219086,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1252.5405625949372,
+        "intermediateUpdates": 3337,
+        "maxIntermediateMove": 1.191979853526218,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 2,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 19,
+        "drawnSegments": 766,
+        "retracedTransitions": 3,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.6496957577219086,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "BL",
+      "side": "right",
+      "branch": 0,
+      "anchors": 10,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 458.753466006224,
+        "intermediateUpdates": 1198,
+        "maxIntermediateMove": 0.2490903839329592,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 10,
+        "drawnSegments": 285,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3842216860783989,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 458.753466006224,
+        "intermediateUpdates": 1198,
+        "maxIntermediateMove": 0.2490903839329592,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 10,
+        "drawnSegments": 285,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3842216860783989,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "BL",
+      "side": "right",
+      "branch": 1,
+      "anchors": 40,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1804.9535253027955,
+        "intermediateUpdates": 4703,
+        "maxIntermediateMove": 0.3162776434620409,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 40,
+        "drawnSegments": 1135,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3804274789508399,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1804.9535253027955,
+        "intermediateUpdates": 4703,
+        "maxIntermediateMove": 0.3162776434620409,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 40,
+        "drawnSegments": 1135,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3804274789508399,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "BL",
+      "side": "right",
+      "branch": 2,
+      "anchors": 17,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1132.0976002832222,
+        "intermediateUpdates": 3182,
+        "maxIntermediateMove": 0.46436687789849923,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 17,
+        "drawnSegments": 705,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3876853339316951,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1132.0976002832222,
+        "intermediateUpdates": 3182,
+        "maxIntermediateMove": 0.46436687789849923,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 17,
+        "drawnSegments": 705,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3876853339316951,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "BL",
+      "side": "right",
+      "branch": 3,
+      "anchors": 4,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 74.68945608019752,
+        "intermediateUpdates": 186,
+        "maxIntermediateMove": 0.018207388554642243,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 4,
+        "drawnSegments": 48,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.35620453624041065,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 74.68945608019752,
+        "intermediateUpdates": 186,
+        "maxIntermediateMove": 0.018207388554642243,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 4,
+        "drawnSegments": 48,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.35620453624041065,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "BL",
+      "side": "left",
+      "branch": 0,
+      "anchors": 10,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 458.9726542562002,
+        "intermediateUpdates": 1183,
+        "maxIntermediateMove": 0.30141160637662795,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 10,
+        "drawnSegments": 286,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.38971557347073393,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 458.9726542562002,
+        "intermediateUpdates": 1183,
+        "maxIntermediateMove": 0.30141160637662795,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 10,
+        "drawnSegments": 286,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.38971557347073393,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "BL",
+      "side": "left",
+      "branch": 1,
+      "anchors": 40,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1864.7644444311782,
+        "intermediateUpdates": 5038,
+        "maxIntermediateMove": 0.47816155974446284,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 40,
+        "drawnSegments": 1172,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3774570130982654,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1864.7644444311782,
+        "intermediateUpdates": 5038,
+        "maxIntermediateMove": 0.47816155974446284,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 40,
+        "drawnSegments": 1172,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3774570130982654,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "BL",
+      "side": "left",
+      "branch": 2,
+      "anchors": 17,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1134.9469014465055,
+        "intermediateUpdates": 3175,
+        "maxIntermediateMove": 0.5493865397241283,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 17,
+        "drawnSegments": 706,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3918769022622388,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1134.9469014465055,
+        "intermediateUpdates": 3175,
+        "maxIntermediateMove": 0.5493865397241283,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 17,
+        "drawnSegments": 706,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3918769022622388,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "BL",
+      "side": "left",
+      "branch": 3,
+      "anchors": 4,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 74.86581974497663,
+        "intermediateUpdates": 186,
+        "maxIntermediateMove": 0.022803355275596213,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 4,
+        "drawnSegments": 48,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3623150938661899,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 74.86581974497663,
+        "intermediateUpdates": 186,
+        "maxIntermediateMove": 0.022803355275596213,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 4,
+        "drawnSegments": 48,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.3623150938661899,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "KI",
+      "side": "right",
+      "branch": 0,
+      "anchors": 27,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1722.298456145894,
+        "intermediateUpdates": 4581,
+        "maxIntermediateMove": 1.1674611774255546,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 30,
+        "drawnSegments": 1066,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 0.45814065200763116,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1722.298456145894,
+        "intermediateUpdates": 4581,
+        "maxIntermediateMove": 1.1674611774255546,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 30,
+        "drawnSegments": 1066,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 0.45814065200763116,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "KI",
+      "side": "left",
+      "branch": 0,
+      "anchors": 27,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1735.8061033505066,
+        "intermediateUpdates": 4554,
+        "maxIntermediateMove": 1.1337247464894196,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 30,
+        "drawnSegments": 1077,
+        "retracedTransitions": 4,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4384722375333818,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1735.8061033505066,
+        "intermediateUpdates": 4554,
+        "maxIntermediateMove": 1.1337247464894196,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 30,
+        "drawnSegments": 1077,
+        "retracedTransitions": 4,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4384722375333818,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "PC",
+      "side": "right",
+      "branch": 0,
+      "anchors": 9,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 787.8961684011562,
+        "intermediateUpdates": 2294,
+        "maxIntermediateMove": 1.1116693255143237,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 109.35018936028635,
+          "repairedLength": 86.0546261821102,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "PC8",
+              "to": "PC9",
+              "before": 109.35018936028635,
+              "after": 86.0546261821102
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 506,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.42558462656795903,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 787.8961684011562,
+        "intermediateUpdates": 2294,
+        "maxIntermediateMove": 1.1116693255143237,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 109.35018936028635,
+          "repairedLength": 86.0546261821102,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "PC8",
+              "to": "PC9",
+              "before": 109.35018936028635,
+              "after": 86.0546261821102
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 506,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.42558462656795903,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "PC",
+      "side": "left",
+      "branch": 0,
+      "anchors": 9,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 788.0060896732189,
+        "intermediateUpdates": 2285,
+        "maxIntermediateMove": 0.8569791044788447,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 99.92247421453128,
+          "repairedLength": 86.13332866841274,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "PC8",
+              "to": "PC9",
+              "before": 99.92247421453128,
+              "after": 86.13332866841274
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 504,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4038976100679737,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 788.0060896732189,
+        "intermediateUpdates": 2285,
+        "maxIntermediateMove": 0.8569791044788447,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 99.92247421453128,
+          "repairedLength": 86.13332866841274,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "PC8",
+              "to": "PC9",
+              "before": 99.92247421453128,
+              "after": 86.13332866841274
+            }
+          ]
+        },
+        "sourceKnotCount": 9,
+        "drawnSegments": 504,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.4038976100679737,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "TE",
+      "side": "right",
+      "branch": 0,
+      "anchors": 23,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1294.3053834369018,
+        "intermediateUpdates": 3527,
+        "maxIntermediateMove": 1.1167898959391802,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 23,
+        "drawnSegments": 803,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 0.43148779061240394,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1300.93265217544,
+        "intermediateUpdates": 3647,
+        "maxIntermediateMove": 0.391050390260207,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 66.64172301035202,
+          "repairedLength": 59.40134941911033,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "TE17",
+              "to": "TE18",
+              "before": 66.64172301035202,
+              "after": 59.40134941911033
+            }
+          ]
+        },
+        "sourceKnotCount": 23,
+        "drawnSegments": 824,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.47843745576104973,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "TE",
+      "side": "left",
+      "branch": 0,
+      "anchors": 23,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1291.102859838448,
+        "intermediateUpdates": 3443,
+        "maxIntermediateMove": 1.161987701422635,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 23,
+        "drawnSegments": 801,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 0.4132860248216054,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1295.2229923751227,
+        "intermediateUpdates": 3542,
+        "maxIntermediateMove": 0.37082768251597714,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 1,
+          "rejectedSpans": 0,
+          "originalLength": 66.11398286522714,
+          "repairedLength": 56.455422088027525,
+          "anchorsMoved": 0,
+          "spans": [
+            {
+              "from": "TE17",
+              "to": "TE18",
+              "before": 66.11398286522714,
+              "after": 56.455422088027525
+            }
+          ]
+        },
+        "sourceKnotCount": 23,
+        "drawnSegments": 818,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.42956988130742857,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "GB",
+      "side": "right",
+      "branch": 0,
+      "anchors": 44,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 3115.3318962571884,
+        "intermediateUpdates": 8198,
+        "maxIntermediateMove": 1.1902182775975452,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 44,
+        "drawnSegments": 1876,
+        "retracedTransitions": 4,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.44023102436100736,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 3115.3318962571884,
+        "intermediateUpdates": 8198,
+        "maxIntermediateMove": 1.1902182775975452,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 44,
+        "drawnSegments": 1876,
+        "retracedTransitions": 4,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.44023102436100736,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "GB",
+      "side": "left",
+      "branch": 0,
+      "anchors": 44,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 3052.01031714239,
+        "intermediateUpdates": 7991,
+        "maxIntermediateMove": 1.0358624328947803,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 44,
+        "drawnSegments": 1856,
+        "retracedTransitions": 3,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.44404934025598375,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 3052.01031714239,
+        "intermediateUpdates": 7991,
+        "maxIntermediateMove": 1.0358624328947803,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 44,
+        "drawnSegments": 1856,
+        "retracedTransitions": 3,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.44404934025598375,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "LR",
+      "side": "right",
+      "branch": 0,
+      "anchors": 14,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1463.6937404813602,
+        "intermediateUpdates": 3863,
+        "maxIntermediateMove": 1.191629439698901,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 14,
+        "drawnSegments": 896,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 0.5462070638223747,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1463.6937404813602,
+        "intermediateUpdates": 3863,
+        "maxIntermediateMove": 1.191629439698901,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 1,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 14,
+        "drawnSegments": 896,
+        "retracedTransitions": 2,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 0.5462070638223747,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "LR",
+      "side": "left",
+      "branch": 0,
+      "anchors": 14,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1456.1901669744,
+        "intermediateUpdates": 3927,
+        "maxIntermediateMove": 1.071296875337908,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 14,
+        "drawnSegments": 889,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 0.5833222026860546,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1456.1901669744,
+        "intermediateUpdates": 3927,
+        "maxIntermediateMove": 1.071296875337908,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 14,
+        "drawnSegments": 889,
+        "retracedTransitions": 1,
+        "disconnectedTransitions": 1,
+        "maxDrawnSurfaceGap": 0.5833222026860546,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "GV",
+      "side": "midline",
+      "branch": 0,
+      "anchors": 24,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 1082.8483345531695,
+        "intermediateUpdates": 3047,
+        "maxIntermediateMove": 0.608908447955997,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 24,
+        "drawnSegments": 685,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.38591935394609067,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 1082.8483345531695,
+        "intermediateUpdates": 3047,
+        "maxIntermediateMove": 0.608908447955997,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 24,
+        "drawnSegments": 685,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.38591935394609067,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "GV",
+      "side": "midline",
+      "branch": 1,
+      "anchors": 5,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 142.83735624439768,
+        "intermediateUpdates": 471,
+        "maxIntermediateMove": 0.635580939368633,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 6,
+        "drawnSegments": 89,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.5337323315180627,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 142.83735624439768,
+        "intermediateUpdates": 471,
+        "maxIntermediateMove": 0.635580939368633,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 6,
+        "drawnSegments": 89,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.5337323315180627,
+        "clinicalCalibration": false
+      }
+    },
+    {
+      "sex": "female",
+      "meridian": "CV",
+      "side": "midline",
+      "branch": 0,
+      "anchors": 24,
+      "maxAnchorGap": 0,
+      "before": {
+        "length": 824.1262391075988,
+        "intermediateUpdates": 2342,
+        "maxIntermediateMove": 0.6521499334335686,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 24,
+        "drawnSegments": 516,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.552270292278982,
+        "clinicalCalibration": false
+      },
+      "after": {
+        "length": 824.1262391075988,
+        "intermediateUpdates": 2342,
+        "maxIntermediateMove": 0.6521499334335686,
+        "numberedAnchorsMoved": 0,
+        "method": "bounded energy-decreasing surface fairing; numbered anchors fixed",
+        "digitRepair": {
+          "repairedSpans": 0,
+          "rejectedSpans": 0,
+          "originalLength": 0,
+          "repairedLength": 0,
+          "anchorsMoved": 0,
+          "spans": []
+        },
+        "sourceKnotCount": 24,
+        "drawnSegments": 516,
+        "retracedTransitions": 0,
+        "disconnectedTransitions": 0,
+        "maxDrawnSurfaceGap": 0.552270292278982,
+        "clinicalCalibration": false
+      }
+    }
+  ]
+}
