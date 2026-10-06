@@ -1,0 +1,8038 @@
+{
+  "measurement": "New intersections of nonadjacent region triangles, rest centroids at least 40 mm apart; excludes shared vertices and intersections already in source. Counts triangle pairs, not depth, force or clinical pressure.",
+  "serializationDecimalPlaces": 8,
+  "rows": [
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-dog",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 58,
+      "examples": [
+        {
+          "vertices": [
+            [
+              114351,
+              114352,
+              114481
+            ],
+            [
+              130710,
+              130070,
+              130711
+            ]
+          ],
+          "rest": [
+            [
+              -0.07163883,
+              -0.62679994,
+              -0.08054876
+            ],
+            [
+              -0.07418529,
+              -0.62672132,
+              -0.08107242
+            ],
+            [
+              -0.07401898,
+              -0.62349838,
+              -0.08164386
+            ],
+            [
+              -0.06475715,
+              -0.26416978,
+              -0.06199558
+            ],
+            [
+              -0.06837725,
+              -0.26653448,
+              -0.06308307
+            ],
+            [
+              -0.06862053,
+              -0.26373753,
+              -0.06337466
+            ]
+          ],
+          "posed": [
+            [
+              -0.16562371,
+              0.00533893,
+              0.11344677
+            ],
+            [
+              -0.16780227,
+              0.00660415,
+              0.11280029
+            ],
+            [
+              -0.16840629,
+              0.00727594,
+              0.11595075
+            ],
+            [
+              -0.16433547,
+              0.00821099,
+              0.11533895
+            ],
+            [
+              -0.16859223,
+              0.00689755,
+              0.11515343
+            ],
+            [
+              -0.16773994,
+              0.00855808,
+              0.11303604
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              114351,
+              114352,
+              114481
+            ],
+            [
+              130069,
+              130070,
+              130710
+            ]
+          ],
+          "rest": [
+            [
+              -0.07163883,
+              -0.62679994,
+              -0.08054876
+            ],
+            [
+              -0.07418529,
+              -0.62672132,
+              -0.08107242
+            ],
+            [
+              -0.07401898,
+              -0.62349838,
+              -0.08164386
+            ],
+            [
+              -0.06453414,
+              -0.26694128,
+              -0.06169972
+            ],
+            [
+              -0.06837725,
+              -0.26653448,
+              -0.06308307
+            ],
+            [
+              -0.06475715,
+              -0.26416978,
+              -0.06199558
+            ]
+          ],
+          "posed": [
+            [
+              -0.16562371,
+              0.00533893,
+              0.11344677
+            ],
+            [
+              -0.16780227,
+              0.00660415,
+              0.11280029
+            ],
+            [
+              -0.16840629,
+              0.00727594,
+              0.11595075
+            ],
+            [
+              -0.16519663,
+              0.00657544,
+              0.11743701
+            ],
+            [
+              -0.16859223,
+              0.00689755,
+              0.11515343
+            ],
+            [
+              -0.16433547,
+              0.00821099,
+              0.11533895
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              114480,
+              114351,
+              114481
+            ],
+            [
+              130069,
+              130070,
+              130710
+            ]
+          ],
+          "rest": [
+            [
+              -0.07144196,
+              -0.623577,
+              -0.08111882
+            ],
+            [
+              -0.07163883,
+              -0.62679994,
+              -0.08054876
+            ],
+            [
+              -0.07401898,
+              -0.62349838,
+              -0.08164386
+            ],
+            [
+              -0.06453414,
+              -0.26694128,
+              -0.06169972
+            ],
+            [
+              -0.06837725,
+              -0.26653448,
+              -0.06308307
+            ],
+            [
+              -0.06475715,
+              -0.26416978,
+              -0.06199558
+            ]
+          ],
+          "posed": [
+            [
+              -0.16620037,
+              0.00600026,
+              0.11660608
+            ],
+            [
+              -0.16562371,
+              0.00533893,
+              0.11344677
+            ],
+            [
+              -0.16840629,
+              0.00727594,
+              0.11595075
+            ],
+            [
+              -0.16519663,
+              0.00657544,
+              0.11743701
+            ],
+            [
+              -0.16859223,
+              0.00689755,
+              0.11515343
+            ],
+            [
+              -0.16433547,
+              0.00821099,
+              0.11533895
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 138,
+      "examples": [
+        {
+          "vertices": [
+            [
+              176791,
+              176656,
+              176792
+            ],
+            [
+              161733,
+              161734,
+              161866
+            ]
+          ],
+          "rest": [
+            [
+              0.06076103,
+              -0.63817191,
+              -0.09361093
+            ],
+            [
+              0.06303749,
+              -0.63466078,
+              -0.09501131
+            ],
+            [
+              0.06327093,
+              -0.63796228,
+              -0.09445661
+            ],
+            [
+              0.05469894,
+              -0.24670155,
+              -0.0614665
+            ],
+            [
+              0.05868592,
+              -0.24652357,
+              -0.06284469
+            ],
+            [
+              0.05823643,
+              -0.24932046,
+              -0.06270177
+            ]
+          ],
+          "posed": [
+            [
+              0.14850925,
+              0.01393106,
+              0.10618135
+            ],
+            [
+              0.15116571,
+              0.01613937,
+              0.10892688
+            ],
+            [
+              0.15059501,
+              0.01549929,
+              0.1056824
+            ],
+            [
+              0.1451357,
+              0.01664566,
+              0.10737009
+            ],
+            [
+              0.1489028,
+              0.01685228,
+              0.10521299
+            ],
+            [
+              0.15103088,
+              0.01527414,
+              0.10703798
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              176791,
+              176656,
+              176792
+            ],
+            [
+              161865,
+              161733,
+              161866
+            ]
+          ],
+          "rest": [
+            [
+              0.06076103,
+              -0.63817191,
+              -0.09361093
+            ],
+            [
+              0.06303749,
+              -0.63466078,
+              -0.09501131
+            ],
+            [
+              0.06327093,
+              -0.63796228,
+              -0.09445661
+            ],
+            [
+              0.05428977,
+              -0.24949844,
+              -0.06134405
+            ],
+            [
+              0.05469894,
+              -0.24670155,
+              -0.0614665
+            ],
+            [
+              0.05823643,
+              -0.24932046,
+              -0.06270177
+            ]
+          ],
+          "posed": [
+            [
+              0.14850925,
+              0.01393106,
+              0.10618135
+            ],
+            [
+              0.15116571,
+              0.01613937,
+              0.10892688
+            ],
+            [
+              0.15059501,
+              0.01549929,
+              0.1056824
+            ],
+            [
+              0.14740515,
+              0.01506311,
+              0.10917057
+            ],
+            [
+              0.1451357,
+              0.01664566,
+              0.10737009
+            ],
+            [
+              0.15103088,
+              0.01527414,
+              0.10703798
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              176791,
+              176656,
+              176792
+            ],
+            [
+              161865,
+              161866,
+              161998
+            ]
+          ],
+          "rest": [
+            [
+              0.06076103,
+              -0.63817191,
+              -0.09361093
+            ],
+            [
+              0.06303749,
+              -0.63466078,
+              -0.09501131
+            ],
+            [
+              0.06327093,
+              -0.63796228,
+              -0.09445661
+            ],
+            [
+              0.05428977,
+              -0.24949844,
+              -0.06134405
+            ],
+            [
+              0.05823643,
+              -0.24932046,
+              -0.06270177
+            ],
+            [
+              0.05783433,
+              -0.25209203,
+              -0.06255622
+            ]
+          ],
+          "posed": [
+            [
+              0.14850925,
+              0.01393106,
+              0.10618135
+            ],
+            [
+              0.15116571,
+              0.01613937,
+              0.10892688
+            ],
+            [
+              0.15059501,
+              0.01549929,
+              0.1056824
+            ],
+            [
+              0.14740515,
+              0.01506311,
+              0.10917057
+            ],
+            [
+              0.15103088,
+              0.01527414,
+              0.10703798
+            ],
+            [
+              0.15328711,
+              0.01373312,
+              0.1088292
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 58,
+      "examples": [
+        {
+          "vertices": [
+            [
+              114351,
+              114352,
+              114481
+            ],
+            [
+              130710,
+              130070,
+              130711
+            ]
+          ],
+          "rest": [
+            [
+              -0.07163883,
+              -0.62679994,
+              -0.08054876
+            ],
+            [
+              -0.07418529,
+              -0.62672132,
+              -0.08107242
+            ],
+            [
+              -0.07401898,
+              -0.62349838,
+              -0.08164386
+            ],
+            [
+              -0.06475715,
+              -0.26416978,
+              -0.06199558
+            ],
+            [
+              -0.06837725,
+              -0.26653448,
+              -0.06308307
+            ],
+            [
+              -0.06862053,
+              -0.26373753,
+              -0.06337466
+            ]
+          ],
+          "posed": [
+            [
+              -0.16562371,
+              0.00533893,
+              0.11344677
+            ],
+            [
+              -0.16780227,
+              0.00660415,
+              0.11280029
+            ],
+            [
+              -0.16840629,
+              0.00727594,
+              0.11595075
+            ],
+            [
+              -0.16433547,
+              0.00821099,
+              0.11533895
+            ],
+            [
+              -0.16859223,
+              0.00689755,
+              0.11515343
+            ],
+            [
+              -0.16773994,
+              0.00855808,
+              0.11303604
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              114351,
+              114352,
+              114481
+            ],
+            [
+              130069,
+              130070,
+              130710
+            ]
+          ],
+          "rest": [
+            [
+              -0.07163883,
+              -0.62679994,
+              -0.08054876
+            ],
+            [
+              -0.07418529,
+              -0.62672132,
+              -0.08107242
+            ],
+            [
+              -0.07401898,
+              -0.62349838,
+              -0.08164386
+            ],
+            [
+              -0.06453414,
+              -0.26694128,
+              -0.06169972
+            ],
+            [
+              -0.06837725,
+              -0.26653448,
+              -0.06308307
+            ],
+            [
+              -0.06475715,
+              -0.26416978,
+              -0.06199558
+            ]
+          ],
+          "posed": [
+            [
+              -0.16562371,
+              0.00533893,
+              0.11344677
+            ],
+            [
+              -0.16780227,
+              0.00660415,
+              0.11280029
+            ],
+            [
+              -0.16840629,
+              0.00727594,
+              0.11595075
+            ],
+            [
+              -0.16519663,
+              0.00657544,
+              0.11743701
+            ],
+            [
+              -0.16859223,
+              0.00689755,
+              0.11515343
+            ],
+            [
+              -0.16433547,
+              0.00821099,
+              0.11533895
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              114480,
+              114351,
+              114481
+            ],
+            [
+              130069,
+              130070,
+              130710
+            ]
+          ],
+          "rest": [
+            [
+              -0.07144196,
+              -0.623577,
+              -0.08111882
+            ],
+            [
+              -0.07163883,
+              -0.62679994,
+              -0.08054876
+            ],
+            [
+              -0.07401898,
+              -0.62349838,
+              -0.08164386
+            ],
+            [
+              -0.06453414,
+              -0.26694128,
+              -0.06169972
+            ],
+            [
+              -0.06837725,
+              -0.26653448,
+              -0.06308307
+            ],
+            [
+              -0.06475715,
+              -0.26416978,
+              -0.06199558
+            ]
+          ],
+          "posed": [
+            [
+              -0.16620037,
+              0.00600026,
+              0.11660608
+            ],
+            [
+              -0.16562371,
+              0.00533893,
+              0.11344677
+            ],
+            [
+              -0.16840629,
+              0.00727594,
+              0.11595075
+            ],
+            [
+              -0.16519663,
+              0.00657544,
+              0.11743701
+            ],
+            [
+              -0.16859223,
+              0.00689755,
+              0.11515343
+            ],
+            [
+              -0.16433547,
+              0.00821099,
+              0.11533895
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "yoga-child",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 138,
+      "examples": [
+        {
+          "vertices": [
+            [
+              176791,
+              176656,
+              176792
+            ],
+            [
+              161733,
+              161734,
+              161866
+            ]
+          ],
+          "rest": [
+            [
+              0.06076103,
+              -0.63817191,
+              -0.09361093
+            ],
+            [
+              0.06303749,
+              -0.63466078,
+              -0.09501131
+            ],
+            [
+              0.06327093,
+              -0.63796228,
+              -0.09445661
+            ],
+            [
+              0.05469894,
+              -0.24670155,
+              -0.0614665
+            ],
+            [
+              0.05868592,
+              -0.24652357,
+              -0.06284469
+            ],
+            [
+              0.05823643,
+              -0.24932046,
+              -0.06270177
+            ]
+          ],
+          "posed": [
+            [
+              0.14850925,
+              0.01393106,
+              0.10618135
+            ],
+            [
+              0.15116571,
+              0.01613937,
+              0.10892688
+            ],
+            [
+              0.15059501,
+              0.01549929,
+              0.1056824
+            ],
+            [
+              0.1451357,
+              0.01664566,
+              0.10737009
+            ],
+            [
+              0.1489028,
+              0.01685228,
+              0.10521299
+            ],
+            [
+              0.15103088,
+              0.01527414,
+              0.10703798
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              176791,
+              176656,
+              176792
+            ],
+            [
+              161865,
+              161733,
+              161866
+            ]
+          ],
+          "rest": [
+            [
+              0.06076103,
+              -0.63817191,
+              -0.09361093
+            ],
+            [
+              0.06303749,
+              -0.63466078,
+              -0.09501131
+            ],
+            [
+              0.06327093,
+              -0.63796228,
+              -0.09445661
+            ],
+            [
+              0.05428977,
+              -0.24949844,
+              -0.06134405
+            ],
+            [
+              0.05469894,
+              -0.24670155,
+              -0.0614665
+            ],
+            [
+              0.05823643,
+              -0.24932046,
+              -0.06270177
+            ]
+          ],
+          "posed": [
+            [
+              0.14850925,
+              0.01393106,
+              0.10618135
+            ],
+            [
+              0.15116571,
+              0.01613937,
+              0.10892688
+            ],
+            [
+              0.15059501,
+              0.01549929,
+              0.1056824
+            ],
+            [
+              0.14740515,
+              0.01506311,
+              0.10917057
+            ],
+            [
+              0.1451357,
+              0.01664566,
+              0.10737009
+            ],
+            [
+              0.15103088,
+              0.01527414,
+              0.10703798
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              176791,
+              176656,
+              176792
+            ],
+            [
+              161865,
+              161866,
+              161998
+            ]
+          ],
+          "rest": [
+            [
+              0.06076103,
+              -0.63817191,
+              -0.09361093
+            ],
+            [
+              0.06303749,
+              -0.63466078,
+              -0.09501131
+            ],
+            [
+              0.06327093,
+              -0.63796228,
+              -0.09445661
+            ],
+            [
+              0.05428977,
+              -0.24949844,
+              -0.06134405
+            ],
+            [
+              0.05823643,
+              -0.24932046,
+              -0.06270177
+            ],
+            [
+              0.05783433,
+              -0.25209203,
+              -0.06255622
+            ]
+          ],
+          "posed": [
+            [
+              0.14850925,
+              0.01393106,
+              0.10618135
+            ],
+            [
+              0.15116571,
+              0.01613937,
+              0.10892688
+            ],
+            [
+              0.15059501,
+              0.01549929,
+              0.1056824
+            ],
+            [
+              0.14740515,
+              0.01506311,
+              0.10917057
+            ],
+            [
+              0.15103088,
+              0.01527414,
+              0.10703798
+            ],
+            [
+              0.15328711,
+              0.01373312,
+              0.1088292
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-left-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-right-pillow",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-left",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "side-curl-right",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-hips",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "bend-round",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 295,
+      "examples": [
+        {
+          "vertices": [
+            [
+              41188,
+              41176,
+              41189
+            ],
+            [
+              33061,
+              33180,
+              33065
+            ]
+          ],
+          "rest": [
+            [
+              -0.18052836,
+              0.318275,
+              -0.05708097
+            ],
+            [
+              -0.18912269,
+              0.33171037,
+              -0.06315854
+            ],
+            [
+              -0.17890783,
+              0.33142987,
+              -0.05852171
+            ],
+            [
+              -0.12522592,
+              0.3644034,
+              0.13130304
+            ],
+            [
+              -0.13431005,
+              0.36959615,
+              0.12102585
+            ],
+            [
+              -0.13577577,
+              0.36268178,
+              0.11290569
+            ]
+          ],
+          "posed": [
+            [
+              -0.13261756,
+              0.9670741,
+              0.15438421
+            ],
+            [
+              -0.14425336,
+              0.97837859,
+              0.14908096
+            ],
+            [
+              -0.13426368,
+              0.98029244,
+              0.15382078
+            ],
+            [
+              -0.12522592,
+              0.96728492,
+              0.16066808
+            ],
+            [
+              -0.13431005,
+              0.97878158,
+              0.16002655
+            ],
+            [
+              -0.13577577,
+              0.98235667,
+              0.14997843
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              41252,
+              41247,
+              41251
+            ],
+            [
+              32850,
+              32866,
+              32804
+            ]
+          ],
+          "rest": [
+            [
+              -0.17578523,
+              0.30523053,
+              -0.04889197
+            ],
+            [
+              -0.16888639,
+              0.31676832,
+              -0.04101483
+            ],
+            [
+              -0.17110564,
+              0.3045347,
+              -0.04076431
+            ],
+            [
+              -0.11591519,
+              0.36651888,
+              0.14094868
+            ],
+            [
+              -0.12507297,
+              0.37644187,
+              0.13497621
+            ],
+            [
+              -0.12522592,
+              0.3644034,
+              0.131303
+            ]
+          ],
+          "posed": [
+            [
+              -0.12480465,
+              0.95506901,
+              0.16177008
+            ],
+            [
+              -0.12090588,
+              0.96739477,
+              0.17046711
+            ],
+            [
+              -0.12006936,
+              0.95500034,
+              0.16989498
+            ],
+            [
+              -0.11591519,
+              0.95998931,
+              0.16732296
+            ],
+            [
+              -0.12507297,
+              0.97012311,
+              0.17293029
+            ],
+            [
+              -0.12522592,
+              0.96728492,
+              0.16066806
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              41252,
+              41248,
+              41247
+            ],
+            [
+              32850,
+              32866,
+              32804
+            ]
+          ],
+          "rest": [
+            [
+              -0.17578523,
+              0.30523053,
+              -0.04889197
+            ],
+            [
+              -0.17338005,
+              0.31785372,
+              -0.04989533
+            ],
+            [
+              -0.16888639,
+              0.31676832,
+              -0.04101483
+            ],
+            [
+              -0.11591519,
+              0.36651888,
+              0.14094868
+            ],
+            [
+              -0.12507297,
+              0.37644187,
+              0.13497621
+            ],
+            [
+              -0.12522592,
+              0.3644034,
+              0.131303
+            ]
+          ],
+          "posed": [
+            [
+              -0.12480465,
+              0.95506901,
+              0.16177008
+            ],
+            [
+              -0.12555856,
+              0.96793544,
+              0.16161868
+            ],
+            [
+              -0.12090588,
+              0.96739477,
+              0.17046711
+            ],
+            [
+              -0.11591519,
+              0.95998931,
+              0.16732296
+            ],
+            [
+              -0.12507297,
+              0.97012311,
+              0.17293029
+            ],
+            [
+              -0.12522592,
+              0.96728492,
+              0.16066806
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 295,
+      "examples": [
+        {
+          "vertices": [
+            [
+              40672,
+              40668,
+              40667
+            ],
+            [
+              32168,
+              32184,
+              32122
+            ]
+          ],
+          "rest": [
+            [
+              0.17579158,
+              0.30523053,
+              -0.04889198
+            ],
+            [
+              0.17338641,
+              0.31785372,
+              -0.04989533
+            ],
+            [
+              0.16889276,
+              0.31676844,
+              -0.04101484
+            ],
+            [
+              0.11592153,
+              0.36651888,
+              0.14094865
+            ],
+            [
+              0.12507933,
+              0.37644187,
+              0.13497619
+            ],
+            [
+              0.12523228,
+              0.36440352,
+              0.131303
+            ]
+          ],
+          "posed": [
+            [
+              0.12480806,
+              0.95504302,
+              0.16176872
+            ],
+            [
+              0.12556197,
+              0.96790946,
+              0.16161732
+            ],
+            [
+              0.12090933,
+              0.9673689,
+              0.17046575
+            ],
+            [
+              0.11592153,
+              0.95998937,
+              0.16732295
+            ],
+            [
+              0.12507933,
+              0.97012311,
+              0.17293029
+            ],
+            [
+              0.12523228,
+              0.96728504,
+              0.16066816
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              40672,
+              40667,
+              40671
+            ],
+            [
+              32168,
+              32184,
+              32122
+            ]
+          ],
+          "rest": [
+            [
+              0.17579158,
+              0.30523053,
+              -0.04889198
+            ],
+            [
+              0.16889276,
+              0.31676844,
+              -0.04101484
+            ],
+            [
+              0.17111199,
+              0.3045347,
+              -0.04076431
+            ],
+            [
+              0.11592153,
+              0.36651888,
+              0.14094865
+            ],
+            [
+              0.12507933,
+              0.37644187,
+              0.13497619
+            ],
+            [
+              0.12523228,
+              0.36440352,
+              0.131303
+            ]
+          ],
+          "posed": [
+            [
+              0.12480806,
+              0.95504302,
+              0.16176872
+            ],
+            [
+              0.12090933,
+              0.9673689,
+              0.17046575
+            ],
+            [
+              0.12007277,
+              0.95497435,
+              0.16989362
+            ],
+            [
+              0.11592153,
+              0.95998937,
+              0.16732295
+            ],
+            [
+              0.12507933,
+              0.97012311,
+              0.17293029
+            ],
+            [
+              0.12523228,
+              0.96728504,
+              0.16066816
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              40672,
+              40667,
+              40671
+            ],
+            [
+              32168,
+              32199,
+              32184
+            ]
+          ],
+          "rest": [
+            [
+              0.17579158,
+              0.30523053,
+              -0.04889198
+            ],
+            [
+              0.16889276,
+              0.31676844,
+              -0.04101484
+            ],
+            [
+              0.17111199,
+              0.3045347,
+              -0.04076431
+            ],
+            [
+              0.11592153,
+              0.36651888,
+              0.14094865
+            ],
+            [
+              0.11674509,
+              0.37631801,
+              0.14191708
+            ],
+            [
+              0.12507933,
+              0.37644187,
+              0.13497619
+            ]
+          ],
+          "posed": [
+            [
+              0.12480806,
+              0.95504302,
+              0.16176872
+            ],
+            [
+              0.12090933,
+              0.9673689,
+              0.17046575
+            ],
+            [
+              0.12007277,
+              0.95497435,
+              0.16989362
+            ],
+            [
+              0.11592153,
+              0.95998937,
+              0.16732295
+            ],
+            [
+              0.11674509,
+              0.96405017,
+              0.17629345
+            ],
+            [
+              0.12507933,
+              0.97012311,
+              0.17293029
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 115,
+      "examples": [
+        {
+          "vertices": [
+            [
+              16233,
+              16136,
+              16234
+            ],
+            [
+              79745,
+              79370,
+              79746
+            ]
+          ],
+          "rest": [
+            [
+              -0.1916329,
+              0.25998417,
+              -0.01849331
+            ],
+            [
+              -0.19339491,
+              0.25768402,
+              -0.02207901
+            ],
+            [
+              -0.19273409,
+              0.26039794,
+              -0.02213762
+            ],
+            [
+              -0.14738294,
+              0.32575837,
+              0.13729072
+            ],
+            [
+              -0.14728917,
+              0.32822469,
+              0.13916802
+            ],
+            [
+              -0.14826639,
+              0.3290638,
+              0.13578665
+            ]
+          ],
+          "posed": [
+            [
+              -0.14673726,
+              0.94485992,
+              0.13417351
+            ],
+            [
+              -0.14677259,
+              0.94073576,
+              0.13437892
+            ],
+            [
+              -0.14738065,
+              0.94490564,
+              0.13273841
+            ],
+            [
+              -0.14680198,
+              0.94311714,
+              0.13297677
+            ],
+            [
+              -0.14670406,
+              0.94276625,
+              0.13609487
+            ],
+            [
+              -0.14764431,
+              0.94610465,
+              0.13528916
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              16233,
+              16136,
+              16234
+            ],
+            [
+              79369,
+              79370,
+              79745
+            ]
+          ],
+          "rest": [
+            [
+              -0.1916329,
+              0.25998417,
+              -0.01849331
+            ],
+            [
+              -0.19339491,
+              0.25768402,
+              -0.02207901
+            ],
+            [
+              -0.19273409,
+              0.26039794,
+              -0.02213762
+            ],
+            [
+              -0.14630614,
+              0.32504633,
+              0.14062251
+            ],
+            [
+              -0.14728917,
+              0.32822469,
+              0.13916802
+            ],
+            [
+              -0.14738294,
+              0.32575837,
+              0.13729072
+            ]
+          ],
+          "posed": [
+            [
+              -0.14673726,
+              0.94485992,
+              0.13417351
+            ],
+            [
+              -0.14677259,
+              0.94073576,
+              0.13437892
+            ],
+            [
+              -0.14738065,
+              0.94490564,
+              0.13273841
+            ],
+            [
+              -0.14576583,
+              0.93988144,
+              0.13384916
+            ],
+            [
+              -0.14670406,
+              0.94276625,
+              0.13609487
+            ],
+            [
+              -0.14680198,
+              0.94311714,
+              0.13297677
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              16233,
+              16136,
+              16234
+            ],
+            [
+              79745,
+              79746,
+              80117
+            ]
+          ],
+          "rest": [
+            [
+              -0.1916329,
+              0.25998417,
+              -0.01849331
+            ],
+            [
+              -0.19339491,
+              0.25768402,
+              -0.02207901
+            ],
+            [
+              -0.19273409,
+              0.26039794,
+              -0.02213762
+            ],
+            [
+              -0.14738294,
+              0.32575837,
+              0.13729072
+            ],
+            [
+              -0.14826639,
+              0.3290638,
+              0.13578665
+            ],
+            [
+              -0.14817765,
+              0.32654658,
+              0.13388692
+            ]
+          ],
+          "posed": [
+            [
+              -0.14673726,
+              0.94485992,
+              0.13417351
+            ],
+            [
+              -0.14677259,
+              0.94073576,
+              0.13437892
+            ],
+            [
+              -0.14738065,
+              0.94490564,
+              0.13273841
+            ],
+            [
+              -0.14680198,
+              0.94311714,
+              0.13297677
+            ],
+            [
+              -0.14764431,
+              0.94610465,
+              0.13528916
+            ],
+            [
+              -0.14755769,
+              0.94644862,
+              0.13212419
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 106,
+      "examples": [
+        {
+          "vertices": [
+            [
+              57383,
+              57247,
+              57384
+            ],
+            [
+              81078,
+              80715,
+              81079
+            ]
+          ],
+          "rest": [
+            [
+              0.19170205,
+              0.25621119,
+              -0.01575239
+            ],
+            [
+              0.19153233,
+              0.25338498,
+              -0.01242204
+            ],
+            [
+              0.19074459,
+              0.25610474,
+              -0.01217789
+            ],
+            [
+              0.14676979,
+              0.32891122,
+              0.14037943
+            ],
+            [
+              0.14538421,
+              0.32827559,
+              0.14408727
+            ],
+            [
+              0.14576545,
+              0.32591084,
+              0.1421102
+            ]
+          ],
+          "posed": [
+            [
+              0.14566612,
+              0.93985051,
+              0.13688366
+            ],
+            [
+              0.14467528,
+              0.93587768,
+              0.13993941
+            ],
+            [
+              0.14533126,
+              0.94025213,
+              0.13795972
+            ],
+            [
+              0.14629075,
+              0.94200718,
+              0.13679251
+            ],
+            [
+              0.14493966,
+              0.93848348,
+              0.13794608
+            ],
+            [
+              0.14532888,
+              0.93897653,
+              0.13485207
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              57247,
+              57248,
+              57384
+            ],
+            [
+              80714,
+              80715,
+              81078
+            ]
+          ],
+          "rest": [
+            [
+              0.19153233,
+              0.25338498,
+              -0.01242204
+            ],
+            [
+              0.19072492,
+              0.25352147,
+              -0.00888018
+            ],
+            [
+              0.19074459,
+              0.25610474,
+              -0.01217789
+            ],
+            [
+              0.14636217,
+              0.33125058,
+              0.14230807
+            ],
+            [
+              0.14538421,
+              0.32827559,
+              0.14408727
+            ],
+            [
+              0.14676979,
+              0.32891122,
+              0.14037943
+            ]
+          ],
+          "posed": [
+            [
+              0.14467528,
+              0.93587768,
+              0.13993941
+            ],
+            [
+              0.14455588,
+              0.93650693,
+              0.14096642
+            ],
+            [
+              0.14533126,
+              0.94025213,
+              0.13795972
+            ],
+            [
+              0.14587983,
+              0.94154292,
+              0.13981931
+            ],
+            [
+              0.14493966,
+              0.93848348,
+              0.13794608
+            ],
+            [
+              0.14629075,
+              0.94200718,
+              0.13679251
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              57383,
+              57247,
+              57384
+            ],
+            [
+              80714,
+              80715,
+              81078
+            ]
+          ],
+          "rest": [
+            [
+              0.19170205,
+              0.25621119,
+              -0.01575239
+            ],
+            [
+              0.19153233,
+              0.25338498,
+              -0.01242204
+            ],
+            [
+              0.19074459,
+              0.25610474,
+              -0.01217789
+            ],
+            [
+              0.14636217,
+              0.33125058,
+              0.14230807
+            ],
+            [
+              0.14538421,
+              0.32827559,
+              0.14408727
+            ],
+            [
+              0.14676979,
+              0.32891122,
+              0.14037943
+            ]
+          ],
+          "posed": [
+            [
+              0.14566612,
+              0.93985051,
+              0.13688366
+            ],
+            [
+              0.14467528,
+              0.93587768,
+              0.13993941
+            ],
+            [
+              0.14533126,
+              0.94025213,
+              0.13795972
+            ],
+            [
+              0.14587983,
+              0.94154292,
+              0.13981931
+            ],
+            [
+              0.14493966,
+              0.93848348,
+              0.13794608
+            ],
+            [
+              0.14629075,
+              0.94200718,
+              0.13679251
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 295,
+      "examples": [
+        {
+          "vertices": [
+            [
+              41188,
+              41176,
+              41189
+            ],
+            [
+              33061,
+              33180,
+              33065
+            ]
+          ],
+          "rest": [
+            [
+              -0.18052836,
+              0.318275,
+              -0.05708097
+            ],
+            [
+              -0.18912269,
+              0.33171037,
+              -0.06315854
+            ],
+            [
+              -0.17890783,
+              0.33142987,
+              -0.05852171
+            ],
+            [
+              -0.12522592,
+              0.3644034,
+              0.13130304
+            ],
+            [
+              -0.13431005,
+              0.36959615,
+              0.12102585
+            ],
+            [
+              -0.13577577,
+              0.36268178,
+              0.11290569
+            ]
+          ],
+          "posed": [
+            [
+              -0.13261756,
+              0.9670741,
+              0.15438421
+            ],
+            [
+              -0.14425336,
+              0.97837859,
+              0.14908096
+            ],
+            [
+              -0.13426368,
+              0.98029244,
+              0.15382078
+            ],
+            [
+              -0.12522592,
+              0.96728492,
+              0.16066808
+            ],
+            [
+              -0.13431005,
+              0.97878158,
+              0.16002655
+            ],
+            [
+              -0.13577577,
+              0.98235667,
+              0.14997843
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              41252,
+              41247,
+              41251
+            ],
+            [
+              32850,
+              32866,
+              32804
+            ]
+          ],
+          "rest": [
+            [
+              -0.17578523,
+              0.30523053,
+              -0.04889197
+            ],
+            [
+              -0.16888639,
+              0.31676832,
+              -0.04101483
+            ],
+            [
+              -0.17110564,
+              0.3045347,
+              -0.04076431
+            ],
+            [
+              -0.11591519,
+              0.36651888,
+              0.14094868
+            ],
+            [
+              -0.12507297,
+              0.37644187,
+              0.13497621
+            ],
+            [
+              -0.12522592,
+              0.3644034,
+              0.131303
+            ]
+          ],
+          "posed": [
+            [
+              -0.12480465,
+              0.95506901,
+              0.16177008
+            ],
+            [
+              -0.12090588,
+              0.96739477,
+              0.17046711
+            ],
+            [
+              -0.12006936,
+              0.95500034,
+              0.16989498
+            ],
+            [
+              -0.11591519,
+              0.95998931,
+              0.16732296
+            ],
+            [
+              -0.12507297,
+              0.97012311,
+              0.17293029
+            ],
+            [
+              -0.12522592,
+              0.96728492,
+              0.16066806
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              41252,
+              41248,
+              41247
+            ],
+            [
+              32850,
+              32866,
+              32804
+            ]
+          ],
+          "rest": [
+            [
+              -0.17578523,
+              0.30523053,
+              -0.04889197
+            ],
+            [
+              -0.17338005,
+              0.31785372,
+              -0.04989533
+            ],
+            [
+              -0.16888639,
+              0.31676832,
+              -0.04101483
+            ],
+            [
+              -0.11591519,
+              0.36651888,
+              0.14094868
+            ],
+            [
+              -0.12507297,
+              0.37644187,
+              0.13497621
+            ],
+            [
+              -0.12522592,
+              0.3644034,
+              0.131303
+            ]
+          ],
+          "posed": [
+            [
+              -0.12480465,
+              0.95506901,
+              0.16177008
+            ],
+            [
+              -0.12555856,
+              0.96793544,
+              0.16161868
+            ],
+            [
+              -0.12090588,
+              0.96739477,
+              0.17046711
+            ],
+            [
+              -0.11591519,
+              0.95998931,
+              0.16732296
+            ],
+            [
+              -0.12507297,
+              0.97012311,
+              0.17293029
+            ],
+            [
+              -0.12522592,
+              0.96728492,
+              0.16066806
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 295,
+      "examples": [
+        {
+          "vertices": [
+            [
+              40672,
+              40668,
+              40667
+            ],
+            [
+              32168,
+              32184,
+              32122
+            ]
+          ],
+          "rest": [
+            [
+              0.17579158,
+              0.30523053,
+              -0.04889198
+            ],
+            [
+              0.17338641,
+              0.31785372,
+              -0.04989533
+            ],
+            [
+              0.16889276,
+              0.31676844,
+              -0.04101484
+            ],
+            [
+              0.11592153,
+              0.36651888,
+              0.14094865
+            ],
+            [
+              0.12507933,
+              0.37644187,
+              0.13497619
+            ],
+            [
+              0.12523228,
+              0.36440352,
+              0.131303
+            ]
+          ],
+          "posed": [
+            [
+              0.12480806,
+              0.95504302,
+              0.16176872
+            ],
+            [
+              0.12556197,
+              0.96790946,
+              0.16161732
+            ],
+            [
+              0.12090933,
+              0.9673689,
+              0.17046575
+            ],
+            [
+              0.11592153,
+              0.95998937,
+              0.16732295
+            ],
+            [
+              0.12507933,
+              0.97012311,
+              0.17293029
+            ],
+            [
+              0.12523228,
+              0.96728504,
+              0.16066816
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              40672,
+              40667,
+              40671
+            ],
+            [
+              32168,
+              32184,
+              32122
+            ]
+          ],
+          "rest": [
+            [
+              0.17579158,
+              0.30523053,
+              -0.04889198
+            ],
+            [
+              0.16889276,
+              0.31676844,
+              -0.04101484
+            ],
+            [
+              0.17111199,
+              0.3045347,
+              -0.04076431
+            ],
+            [
+              0.11592153,
+              0.36651888,
+              0.14094865
+            ],
+            [
+              0.12507933,
+              0.37644187,
+              0.13497619
+            ],
+            [
+              0.12523228,
+              0.36440352,
+              0.131303
+            ]
+          ],
+          "posed": [
+            [
+              0.12480806,
+              0.95504302,
+              0.16176872
+            ],
+            [
+              0.12090933,
+              0.9673689,
+              0.17046575
+            ],
+            [
+              0.12007277,
+              0.95497435,
+              0.16989362
+            ],
+            [
+              0.11592153,
+              0.95998937,
+              0.16732295
+            ],
+            [
+              0.12507933,
+              0.97012311,
+              0.17293029
+            ],
+            [
+              0.12523228,
+              0.96728504,
+              0.16066816
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              40672,
+              40667,
+              40671
+            ],
+            [
+              32168,
+              32199,
+              32184
+            ]
+          ],
+          "rest": [
+            [
+              0.17579158,
+              0.30523053,
+              -0.04889198
+            ],
+            [
+              0.16889276,
+              0.31676844,
+              -0.04101484
+            ],
+            [
+              0.17111199,
+              0.3045347,
+              -0.04076431
+            ],
+            [
+              0.11592153,
+              0.36651888,
+              0.14094865
+            ],
+            [
+              0.11674509,
+              0.37631801,
+              0.14191708
+            ],
+            [
+              0.12507933,
+              0.37644187,
+              0.13497619
+            ]
+          ],
+          "posed": [
+            [
+              0.12480806,
+              0.95504302,
+              0.16176872
+            ],
+            [
+              0.12090933,
+              0.9673689,
+              0.17046575
+            ],
+            [
+              0.12007277,
+              0.95497435,
+              0.16989362
+            ],
+            [
+              0.11592153,
+              0.95998937,
+              0.16732295
+            ],
+            [
+              0.11674509,
+              0.96405017,
+              0.17629345
+            ],
+            [
+              0.12507933,
+              0.97012311,
+              0.17293029
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 115,
+      "examples": [
+        {
+          "vertices": [
+            [
+              16233,
+              16136,
+              16234
+            ],
+            [
+              79745,
+              79370,
+              79746
+            ]
+          ],
+          "rest": [
+            [
+              -0.1916329,
+              0.25998417,
+              -0.01849331
+            ],
+            [
+              -0.19339491,
+              0.25768402,
+              -0.02207901
+            ],
+            [
+              -0.19273409,
+              0.26039794,
+              -0.02213762
+            ],
+            [
+              -0.14738294,
+              0.32575837,
+              0.13729072
+            ],
+            [
+              -0.14728917,
+              0.32822469,
+              0.13916802
+            ],
+            [
+              -0.14826639,
+              0.3290638,
+              0.13578665
+            ]
+          ],
+          "posed": [
+            [
+              -0.14673726,
+              0.94485992,
+              0.13417351
+            ],
+            [
+              -0.14677259,
+              0.94073576,
+              0.13437892
+            ],
+            [
+              -0.14738065,
+              0.94490564,
+              0.13273841
+            ],
+            [
+              -0.14680198,
+              0.94311714,
+              0.13297677
+            ],
+            [
+              -0.14670406,
+              0.94276625,
+              0.13609487
+            ],
+            [
+              -0.14764431,
+              0.94610465,
+              0.13528916
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              16233,
+              16136,
+              16234
+            ],
+            [
+              79369,
+              79370,
+              79745
+            ]
+          ],
+          "rest": [
+            [
+              -0.1916329,
+              0.25998417,
+              -0.01849331
+            ],
+            [
+              -0.19339491,
+              0.25768402,
+              -0.02207901
+            ],
+            [
+              -0.19273409,
+              0.26039794,
+              -0.02213762
+            ],
+            [
+              -0.14630614,
+              0.32504633,
+              0.14062251
+            ],
+            [
+              -0.14728917,
+              0.32822469,
+              0.13916802
+            ],
+            [
+              -0.14738294,
+              0.32575837,
+              0.13729072
+            ]
+          ],
+          "posed": [
+            [
+              -0.14673726,
+              0.94485992,
+              0.13417351
+            ],
+            [
+              -0.14677259,
+              0.94073576,
+              0.13437892
+            ],
+            [
+              -0.14738065,
+              0.94490564,
+              0.13273841
+            ],
+            [
+              -0.14576583,
+              0.93988144,
+              0.13384916
+            ],
+            [
+              -0.14670406,
+              0.94276625,
+              0.13609487
+            ],
+            [
+              -0.14680198,
+              0.94311714,
+              0.13297677
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              16233,
+              16136,
+              16234
+            ],
+            [
+              79745,
+              79746,
+              80117
+            ]
+          ],
+          "rest": [
+            [
+              -0.1916329,
+              0.25998417,
+              -0.01849331
+            ],
+            [
+              -0.19339491,
+              0.25768402,
+              -0.02207901
+            ],
+            [
+              -0.19273409,
+              0.26039794,
+              -0.02213762
+            ],
+            [
+              -0.14738294,
+              0.32575837,
+              0.13729072
+            ],
+            [
+              -0.14826639,
+              0.3290638,
+              0.13578665
+            ],
+            [
+              -0.14817765,
+              0.32654658,
+              0.13388692
+            ]
+          ],
+          "posed": [
+            [
+              -0.14673726,
+              0.94485992,
+              0.13417351
+            ],
+            [
+              -0.14677259,
+              0.94073576,
+              0.13437892
+            ],
+            [
+              -0.14738065,
+              0.94490564,
+              0.13273841
+            ],
+            [
+              -0.14680198,
+              0.94311714,
+              0.13297677
+            ],
+            [
+              -0.14764431,
+              0.94610465,
+              0.13528916
+            ],
+            [
+              -0.14755769,
+              0.94644862,
+              0.13212419
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 106,
+      "examples": [
+        {
+          "vertices": [
+            [
+              57383,
+              57247,
+              57384
+            ],
+            [
+              81078,
+              80715,
+              81079
+            ]
+          ],
+          "rest": [
+            [
+              0.19170205,
+              0.25621119,
+              -0.01575239
+            ],
+            [
+              0.19153233,
+              0.25338498,
+              -0.01242204
+            ],
+            [
+              0.19074459,
+              0.25610474,
+              -0.01217789
+            ],
+            [
+              0.14676979,
+              0.32891122,
+              0.14037943
+            ],
+            [
+              0.14538421,
+              0.32827559,
+              0.14408727
+            ],
+            [
+              0.14576545,
+              0.32591084,
+              0.1421102
+            ]
+          ],
+          "posed": [
+            [
+              0.14566612,
+              0.93985051,
+              0.13688366
+            ],
+            [
+              0.14467528,
+              0.93587768,
+              0.13993941
+            ],
+            [
+              0.14533126,
+              0.94025213,
+              0.13795972
+            ],
+            [
+              0.14629075,
+              0.94200718,
+              0.13679251
+            ],
+            [
+              0.14493966,
+              0.93848348,
+              0.13794608
+            ],
+            [
+              0.14532888,
+              0.93897653,
+              0.13485207
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              57247,
+              57248,
+              57384
+            ],
+            [
+              80714,
+              80715,
+              81078
+            ]
+          ],
+          "rest": [
+            [
+              0.19153233,
+              0.25338498,
+              -0.01242204
+            ],
+            [
+              0.19072492,
+              0.25352147,
+              -0.00888018
+            ],
+            [
+              0.19074459,
+              0.25610474,
+              -0.01217789
+            ],
+            [
+              0.14636217,
+              0.33125058,
+              0.14230807
+            ],
+            [
+              0.14538421,
+              0.32827559,
+              0.14408727
+            ],
+            [
+              0.14676979,
+              0.32891122,
+              0.14037943
+            ]
+          ],
+          "posed": [
+            [
+              0.14467528,
+              0.93587768,
+              0.13993941
+            ],
+            [
+              0.14455588,
+              0.93650693,
+              0.14096642
+            ],
+            [
+              0.14533126,
+              0.94025213,
+              0.13795972
+            ],
+            [
+              0.14587983,
+              0.94154292,
+              0.13981931
+            ],
+            [
+              0.14493966,
+              0.93848348,
+              0.13794608
+            ],
+            [
+              0.14629075,
+              0.94200718,
+              0.13679251
+            ]
+          ]
+        },
+        {
+          "vertices": [
+            [
+              57383,
+              57247,
+              57384
+            ],
+            [
+              80714,
+              80715,
+              81078
+            ]
+          ],
+          "rest": [
+            [
+              0.19170205,
+              0.25621119,
+              -0.01575239
+            ],
+            [
+              0.19153233,
+              0.25338498,
+              -0.01242204
+            ],
+            [
+              0.19074459,
+              0.25610474,
+              -0.01217789
+            ],
+            [
+              0.14636217,
+              0.33125058,
+              0.14230807
+            ],
+            [
+              0.14538421,
+              0.32827559,
+              0.14408727
+            ],
+            [
+              0.14676979,
+              0.32891122,
+              0.14037943
+            ]
+          ],
+          "posed": [
+            [
+              0.14566612,
+              0.93985051,
+              0.13688366
+            ],
+            [
+              0.14467528,
+              0.93587768,
+              0.13993941
+            ],
+            [
+              0.14533126,
+              0.94025213,
+              0.13795972
+            ],
+            [
+              0.14587983,
+              0.94154292,
+              0.13981931
+            ],
+            [
+              0.14493966,
+              0.93848348,
+              0.13794608
+            ],
+            [
+              0.14629075,
+              0.94200718,
+              0.13679251
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "lift-stoop",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 1,
+      "examples": [
+        {
+          "vertices": [
+            [
+              31651,
+              31649,
+              31653
+            ],
+            [
+              31916,
+              31924,
+              31938
+            ]
+          ],
+          "rest": [
+            [
+              -0.13032718,
+              0.50568432,
+              0.05651369
+            ],
+            [
+              -0.12324834,
+              0.5122835,
+              0.05153402
+            ],
+            [
+              -0.11676376,
+              0.51842338,
+              0.04594405
+            ],
+            [
+              -0.12073112,
+              0.53722864,
+              0.02429128
+            ],
+            [
+              -0.10833792,
+              0.54153627,
+              0.02823235
+            ],
+            [
+              -0.11734199,
+              0.54660982,
+              0.01907697
+            ]
+          ],
+          "posed": [
+            [
+              -0.13048996,
+              0.88156056,
+              0.30735341
+            ],
+            [
+              -0.12339273,
+              0.8876912,
+              0.30805269
+            ],
+            [
+              -0.11688862,
+              0.89392054,
+              0.30821905
+            ],
+            [
+              -0.12073112,
+              0.89228022,
+              0.30612534
+            ],
+            [
+              -0.10833792,
+              0.88872963,
+              0.31076005
+            ],
+            [
+              -0.11734199,
+              0.89829236,
+              0.31501636
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 1,
+      "examples": [
+        {
+          "vertices": [
+            [
+              31569,
+              31567,
+              31571
+            ],
+            [
+              31744,
+              31752,
+              31766
+            ]
+          ],
+          "rest": [
+            [
+              0.13033356,
+              0.50568432,
+              0.05651369
+            ],
+            [
+              0.12325469,
+              0.5122835,
+              0.05153402
+            ],
+            [
+              0.11677013,
+              0.51842338,
+              0.04594405
+            ],
+            [
+              0.12073747,
+              0.53722864,
+              0.0242913
+            ],
+            [
+              0.10834426,
+              0.54153627,
+              0.02823236
+            ],
+            [
+              0.11734835,
+              0.54660982,
+              0.01907699
+            ]
+          ],
+          "posed": [
+            [
+              0.13049635,
+              0.88156217,
+              0.30735496
+            ],
+            [
+              0.12339909,
+              0.88769132,
+              0.30805239
+            ],
+            [
+              0.11689499,
+              0.89392066,
+              0.30821875
+            ],
+            [
+              0.12073747,
+              0.89228022,
+              0.30612534
+            ],
+            [
+              0.10834426,
+              0.88872963,
+              0.31076005
+            ],
+            [
+              0.11734835,
+              0.89829236,
+              0.31501636
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 1,
+      "examples": [
+        {
+          "vertices": [
+            [
+              31651,
+              31649,
+              31653
+            ],
+            [
+              31916,
+              31924,
+              31938
+            ]
+          ],
+          "rest": [
+            [
+              -0.13032718,
+              0.50568432,
+              0.05651369
+            ],
+            [
+              -0.12324834,
+              0.5122835,
+              0.05153402
+            ],
+            [
+              -0.11676376,
+              0.51842338,
+              0.04594405
+            ],
+            [
+              -0.12073112,
+              0.53722864,
+              0.02429128
+            ],
+            [
+              -0.10833792,
+              0.54153627,
+              0.02823235
+            ],
+            [
+              -0.11734199,
+              0.54660982,
+              0.01907697
+            ]
+          ],
+          "posed": [
+            [
+              -0.13048996,
+              0.88156056,
+              0.30735341
+            ],
+            [
+              -0.12339273,
+              0.8876912,
+              0.30805269
+            ],
+            [
+              -0.11688862,
+              0.89392054,
+              0.30821905
+            ],
+            [
+              -0.12073112,
+              0.89228022,
+              0.30612534
+            ],
+            [
+              -0.10833792,
+              0.88872963,
+              0.31076005
+            ],
+            [
+              -0.11734199,
+              0.89829236,
+              0.31501636
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 1,
+      "examples": [
+        {
+          "vertices": [
+            [
+              31569,
+              31567,
+              31571
+            ],
+            [
+              31744,
+              31752,
+              31766
+            ]
+          ],
+          "rest": [
+            [
+              0.13033356,
+              0.50568432,
+              0.05651369
+            ],
+            [
+              0.12325469,
+              0.5122835,
+              0.05153402
+            ],
+            [
+              0.11677013,
+              0.51842338,
+              0.04594405
+            ],
+            [
+              0.12073747,
+              0.53722864,
+              0.0242913
+            ],
+            [
+              0.10834426,
+              0.54153627,
+              0.02823236
+            ],
+            [
+              0.11734835,
+              0.54660982,
+              0.01907699
+            ]
+          ],
+          "posed": [
+            [
+              0.13049635,
+              0.88156217,
+              0.30735496
+            ],
+            [
+              0.12339909,
+              0.88769132,
+              0.30805239
+            ],
+            [
+              0.11689499,
+              0.89392066,
+              0.30821875
+            ],
+            [
+              0.12073747,
+              0.89228022,
+              0.30612534
+            ],
+            [
+              0.10834426,
+              0.88872963,
+              0.31076005
+            ],
+            [
+              0.11734835,
+              0.89829236,
+              0.31501636
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "yoga-fold",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "carry-chest",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "sit-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "stand-high-phone",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "before",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "male",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "arm-right",
+        "arm-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "leg-left"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-right",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    },
+    {
+      "pose": "work-phone-ear",
+      "phase": 0,
+      "sex": "female",
+      "version": "after",
+      "pair": [
+        "leg-left",
+        "body"
+      ],
+      "crossingTrianglePairs": 0,
+      "examples": []
+    }
+  ]
+}
