@@ -1,0 +1,5136 @@
+{
+  "version": "58.0.0",
+  "sourceCommit": "738a2af8f56eaca0690aac0fc8d397af940e7592",
+  "releaseCommit": "8442a45bd813311dea57e4f3caa71c4a70c0758c",
+  "publisherRun": 37412406641,
+  "pagesRun": 37412480898,
+  "publisherSuccess": true,
+  "pagesSuccess": true,
+  "publicFiles": {
+    "files": 142,
+    "allMatch": true,
+    "fixedEntryMatch": true,
+    "rows": [
+      {
+        "file": "build-info.json",
+        "expected": "dd32e703169499f535e4997badea3408fdd1e56f63b8ca83b3f5a46f60f226db",
+        "actual": "dd32e703169499f535e4997badea3408fdd1e56f63b8ca83b3f5a46f60f226db",
+        "match": true
+      },
+      {
+        "file": "pose-inertia.js",
+        "expected": "3f5e0da410dc15a18c157a2fa581f9f81e8e00e6b0431711398a46ddefb31ce6",
+        "actual": "3f5e0da410dc15a18c157a2fa581f9f81e8e00e6b0431711398a46ddefb31ce6",
+        "match": true
+      },
+      {
+        "file": "reading-v26.js",
+        "expected": "6ae96e2c94941e528726ae0b7be3fa5ad96bff556073a084a41c3e833f157c28",
+        "actual": "6ae96e2c94941e528726ae0b7be3fa5ad96bff556073a084a41c3e833f157c28",
+        "match": true
+      },
+      {
+        "file": "learning-enhancements.js",
+        "expected": "5300ee61dda99d51bffb84225e5dcc8ed21b21700611cbd4c9b2f8f1f2b0e557",
+        "actual": "5300ee61dda99d51bffb84225e5dcc8ed21b21700611cbd4c9b2f8f1f2b0e557",
+        "match": true
+      },
+      {
+        "file": "IMPLEMENTATION.md",
+        "expected": "bc044ae7b1872160f81b9557c53c94a4e0e0f382ae83188dda736713f302afbb",
+        "actual": "bc044ae7b1872160f81b9557c53c94a4e0e0f382ae83188dda736713f302afbb",
+        "match": true
+      },
+      {
+        "file": "refinement-v12.css",
+        "expected": "4b6bd341b4c74e02521619d63e39279d83d63f72caa4e05b7ff03aca20199f43",
+        "actual": "4b6bd341b4c74e02521619d63e39279d83d63f72caa4e05b7ff03aca20199f43",
+        "match": true
+      },
+      {
+        "file": "RESEARCH-AND-ACCEPTANCE.md",
+        "expected": "c40137b1cb743fdecb8422930d87bc2ae062098f06f31e59571a5456fa449470",
+        "actual": "c40137b1cb743fdecb8422930d87bc2ae062098f06f31e59571a5456fa449470",
+        "match": true
+      },
+      {
+        "file": "app.bundle.js",
+        "expected": "f712597b5c7b0b74aa2778600df0451d5f27dfdad9fc4a515aadf2f5b8c54735",
+        "actual": "f712597b5c7b0b74aa2778600df0451d5f27dfdad9fc4a515aadf2f5b8c54735",
+        "match": true
+      },
+      {
+        "file": "tissues-v4.js",
+        "expected": "1ba5a13c9acb4d6b814e4dc3eee5160a636bf1b44e72271a7955b10aeb91eb22",
+        "actual": "1ba5a13c9acb4d6b814e4dc3eee5160a636bf1b44e72271a7955b10aeb91eb22",
+        "match": true
+      },
+      {
+        "file": "female-v12.js",
+        "expected": "ea7b2c8b16807bd14217f0d890c80a3dbd0b1efe29d7c666767f4c5a3177b9b7",
+        "actual": "ea7b2c8b16807bd14217f0d890c80a3dbd0b1efe29d7c666767f4c5a3177b9b7",
+        "match": true
+      },
+      {
+        "file": "point-rules-v18.js",
+        "expected": "c57162385c13d5e1aea56e6649d311c8f2899c676b166756c8d3a792f59b7970",
+        "actual": "c57162385c13d5e1aea56e6649d311c8f2899c676b166756c8d3a792f59b7970",
+        "match": true
+      },
+      {
+        "file": "midline-v24.js",
+        "expected": "c24293d1096582ea247cb09b91988b473304420d04c00057b97e5fac825fb28b",
+        "actual": "c24293d1096582ea247cb09b91988b473304420d04c00057b97e5fac825fb28b",
+        "match": true
+      },
+      {
+        "file": "pose-contacts.js",
+        "expected": "02b741e893b9d394bef625f6677a9654aa779f6a79790ff614e155341669d36e",
+        "actual": "02b741e893b9d394bef625f6677a9654aa779f6a79790ff614e155341669d36e",
+        "match": true
+      },
+      {
+        "file": "pose-lab.js",
+        "expected": "d43b34cd2a7c2748786015c7c4d4eeaa178e420120eded91662fe8e9f0ef75ed",
+        "actual": "d43b34cd2a7c2748786015c7c4d4eeaa178e420120eded91662fe8e9f0ef75ed",
+        "match": true
+      },
+      {
+        "file": "pose-regions.js",
+        "expected": "13297ae466a8c20787346de6a8faafa71fb7380cef8ca675080e517b27f9dc31",
+        "actual": "13297ae466a8c20787346de6a8faafa71fb7380cef8ca675080e517b27f9dc31",
+        "match": true
+      },
+      {
+        "file": "registration-template.json",
+        "expected": "aba5ead2876222c29512265bfe5b4a5018220893fe3bf6a122d2bd803139d215",
+        "actual": "aba5ead2876222c29512265bfe5b4a5018220893fe3bf6a122d2bd803139d215",
+        "match": true
+      },
+      {
+        "file": "pose-analysis.js",
+        "expected": "49b63bc12673cfcc8dfb239622700621e6206505cfd1c67f43faa48ff66b59e2",
+        "actual": "49b63bc12673cfcc8dfb239622700621e6206505cfd1c67f43faa48ff66b59e2",
+        "match": true
+      },
+      {
+        "file": "layers-ui-v21.js",
+        "expected": "565c1ad50c06793444a735b6363ae8dea82b4813131ae1fc2d2527644c50928d",
+        "actual": "565c1ad50c06793444a735b6363ae8dea82b4813131ae1fc2d2527644c50928d",
+        "match": true
+      },
+      {
+        "file": "additions.json",
+        "expected": "c16ae04f6c7553e76df13c52360a065d44ac70a2a5915393d2064ce3f2c5b922",
+        "actual": "c16ae04f6c7553e76df13c52360a065d44ac70a2a5915393d2064ce3f2c5b922",
+        "match": true
+      },
+      {
+        "file": "opaque-skin-v29.js",
+        "expected": "9c79f73e4106a2597f472aa927e1658f5f4a41ed5bec472ad8cb785ee1e1920a",
+        "actual": "9c79f73e4106a2597f472aa927e1658f5f4a41ed5bec472ad8cb785ee1e1920a",
+        "match": true
+      },
+      {
+        "file": "index.html",
+        "expected": "5eca7f083eb6f496552828d196894954a6263f7eb85f2e17782974f963ac91a0",
+        "actual": "5eca7f083eb6f496552828d196894954a6263f7eb85f2e17782974f963ac91a0",
+        "match": true
+      },
+      {
+        "file": "baseline-data.js",
+        "expected": "daea303f5008a3dc422ba736e7f4c5db4cf4e71e7fcaf5fe01387d953a1d9eef",
+        "actual": "daea303f5008a3dc422ba736e7f4c5db4cf4e71e7fcaf5fe01387d953a1d9eef",
+        "match": true
+      },
+      {
+        "file": "LICENSE",
+        "expected": "8d399d76d22622809cdd1c0b78f84d0dfff75f91c7e6398a5671b6d151483ea7",
+        "actual": "8d399d76d22622809cdd1c0b78f84d0dfff75f91c7e6398a5671b6d151483ea7",
+        "match": true
+      },
+      {
+        "file": "meridian-reference-coverage.json",
+        "expected": "157f490f2e71e1b3d71393464026ecad69198baec84e2f53e9967e7c39e13d86",
+        "actual": "157f490f2e71e1b3d71393464026ecad69198baec84e2f53e9967e7c39e13d86",
+        "match": true
+      },
+      {
+        "file": "stability-v10.css",
+        "expected": "95f635f53718366edf089b34904bba1206fcbf95cd95fb77a92a285fa95ee15b",
+        "actual": "95f635f53718366edf089b34904bba1206fcbf95cd95fb77a92a285fa95ee15b",
+        "match": true
+      },
+      {
+        "file": "female-hand-route-v18.json",
+        "expected": "1edd6a2217cfd03b497e7289239c84e388f2ecb3fa3bb397adf00c5ec3b2c5ee",
+        "actual": "1edd6a2217cfd03b497e7289239c84e388f2ecb3fa3bb397adf00c5ec3b2c5ee",
+        "match": true
+      },
+      {
+        "file": "styles.css",
+        "expected": "6e6f8ad06751c7a3cce006fb342d3912fbaf408f5cc9f5b39a6479ee437da209",
+        "actual": "6e6f8ad06751c7a3cce006fb342d3912fbaf408f5cc9f5b39a6479ee437da209",
+        "match": true
+      },
+      {
+        "file": "shared-v14.js",
+        "expected": "cd0c015863ad3c0e304e5d5ab8ae8a62e5e864337424e9a647124e3c89cfc08f",
+        "actual": "cd0c015863ad3c0e304e5d5ab8ae8a62e5e864337424e9a647124e3c89cfc08f",
+        "match": true
+      },
+      {
+        "file": "pronunciation-v5.js",
+        "expected": "95973facf55e5f65fe7d4c730435a7403f9501c992d1f035f30895d7a796fea9",
+        "actual": "95973facf55e5f65fe7d4c730435a7403f9501c992d1f035f30895d7a796fea9",
+        "match": true
+      },
+      {
+        "file": "route-geometry-v9.js",
+        "expected": "1f34380fb60ac765d1fb49f75fd6f81cc070b1748c5d3205bac419858d5f79f5",
+        "actual": "1f34380fb60ac765d1fb49f75fd6f81cc070b1748c5d3205bac419858d5f79f5",
+        "match": true
+      },
+      {
+        "file": "catalog-v10.js",
+        "expected": "fe3021683d8035fe210775468b05ca2f5ac625119f9a5af6ac920ec93748ad0b",
+        "actual": "fe3021683d8035fe210775468b05ca2f5ac625119f9a5af6ac920ec93748ad0b",
+        "match": true
+      },
+      {
+        "file": "pose-skin-female.bin",
+        "expected": "5f268f964b9fe199b72d583fac00f940e5c00d623ad9506ac26d10140054341d",
+        "actual": "5f268f964b9fe199b72d583fac00f940e5c00d623ad9506ac26d10140054341d",
+        "match": true
+      },
+      {
+        "file": "coordinate-audit.csv",
+        "expected": "9f50e5c9286a04820f49019eb93d5acb887fb243e06988e1f92bae96060be779",
+        "actual": "9f50e5c9286a04820f49019eb93d5acb887fb243e06988e1f92bae96060be779",
+        "match": true
+      },
+      {
+        "file": "pose-pointer-intent.js",
+        "expected": "a295bac1e827d8077d74eac39c1bf5dc2bf72f7b35e86fd24f45bb51821533ed",
+        "actual": "a295bac1e827d8077d74eac39c1bf5dc2bf72f7b35e86fd24f45bb51821533ed",
+        "match": true
+      },
+      {
+        "file": "simple-study-v34.css",
+        "expected": "7c17e4357d17da3b8cd1e8401ee506b12139bcb59e7817349e9833b4ac10a42d",
+        "actual": "7c17e4357d17da3b8cd1e8401ee506b12139bcb59e7817349e9833b4ac10a42d",
+        "match": true
+      },
+      {
+        "file": "display-audit-v33.js",
+        "expected": "5730647f2bf3bc383e55af5a06462705672edd9a2da1058386ecac508f725e14",
+        "actual": "5730647f2bf3bc383e55af5a06462705672edd9a2da1058386ecac508f725e14",
+        "match": true
+      },
+      {
+        "file": "surface-v11.js",
+        "expected": "28a199fc35e696a014d81e64be8f132f9b81fa79feb58d988d040a3b4f25645d",
+        "actual": "28a199fc35e696a014d81e64be8f132f9b81fa79feb58d988d040a3b4f25645d",
+        "match": true
+      },
+      {
+        "file": "pose.bundle.js",
+        "expected": "167f3a8e0176f4771a600b863bd890e5dbf03c98385e0e82e37d636ef00eef23",
+        "actual": "167f3a8e0176f4771a600b863bd890e5dbf03c98385e0e82e37d636ef00eef23",
+        "match": true
+      },
+      {
+        "file": "pose-skin-male.bin",
+        "expected": "eba5f2e7e5ec7db82b04d2c1571555a83c76b5f5a19ea0e5e71d173bcdc1826c",
+        "actual": "eba5f2e7e5ec7db82b04d2c1571555a83c76b5f5a19ea0e5e71d173bcdc1826c",
+        "match": true
+      },
+      {
+        "file": "bone-pinyin.js",
+        "expected": "5d22a11eb4e38952782ec0c111ee58fa60759950c8f5704c162641c2795da8a9",
+        "actual": "5d22a11eb4e38952782ec0c111ee58fa60759950c8f5704c162641c2795da8a9",
+        "match": true
+      },
+      {
+        "file": "experience-v32.css",
+        "expected": "bba7b11199c5ef1980eb23d2b16b3beb2f5c6249fe7ec2dc56c28e7b8dd05e1e",
+        "actual": "bba7b11199c5ef1980eb23d2b16b3beb2f5c6249fe7ec2dc56c28e7b8dd05e1e",
+        "match": true
+      },
+      {
+        "file": "route-smoothing-v8.js",
+        "expected": "b627c74cdfdc05aac0624d77fe51401c0e2b72a4c9df6758cc315f96d7f7b412",
+        "actual": "b627c74cdfdc05aac0624d77fe51401c0e2b72a4c9df6758cc315f96d7f7b412",
+        "match": true
+      },
+      {
+        "file": "draco-decoder.txt",
+        "expected": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f",
+        "actual": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f",
+        "match": true
+      },
+      {
+        "file": "projection-changes.json",
+        "expected": "1709e28ddae1dfc3b7a33410b819e536e36fafb9633b2e22ad3ece7467bd94a3",
+        "actual": "1709e28ddae1dfc3b7a33410b819e536e36fafb9633b2e22ad3ece7467bd94a3",
+        "match": true
+      },
+      {
+        "file": "calibration-pilot.json",
+        "expected": "eed214363a0b2d363e3e1220f909c87200f402ce96fa1e129daf717ce211d22c",
+        "actual": "eed214363a0b2d363e3e1220f909c87200f402ce96fa1e129daf717ce211d22c",
+        "match": true
+      },
+      {
+        "file": "pose-catalog.js",
+        "expected": "066e812ffc0f326f2589c1efe052571e273d7a8916c0e94a941e5136b35fca25",
+        "actual": "066e812ffc0f326f2589c1efe052571e273d7a8916c0e94a941e5136b35fca25",
+        "match": true
+      },
+      {
+        "file": "pose.css",
+        "expected": "7e19f9d19181238fbfa2f501bd623ef121b953eda9a2567a2e9191047b19cc4b",
+        "actual": "7e19f9d19181238fbfa2f501bd623ef121b953eda9a2567a2e9191047b19cc4b",
+        "match": true
+      },
+      {
+        "file": "body-frame-v18.js",
+        "expected": "dd6da206e1fd1b0b42611948cdb70f19de1b5d031e3ab896c2917f8d6dd8c165",
+        "actual": "dd6da206e1fd1b0b42611948cdb70f19de1b5d031e3ab896c2917f8d6dd8c165",
+        "match": true
+      },
+      {
+        "file": "speech-v4.js",
+        "expected": "1514277daf81034a7e6ddccc57cae54e58071213bc7ac1fe47c9386161097bef",
+        "actual": "1514277daf81034a7e6ddccc57cae54e58071213bc7ac1fe47c9386161097bef",
+        "match": true
+      },
+      {
+        "file": "pose-surface-inventory.json",
+        "expected": "c826e979783071492c8783cce056676702341692e23156a97fcd4925763dcc2f",
+        "actual": "c826e979783071492c8783cce056676702341692e23156a97fcd4925763dcc2f",
+        "match": true
+      },
+      {
+        "file": "skin-v17.js",
+        "expected": "3eaa54a0a0ced512c859ae0cb18f0cf22fb4a44d9b03de97c0738e6720c10bd8",
+        "actual": "3eaa54a0a0ced512c859ae0cb18f0cf22fb4a44d9b03de97c0738e6720c10bd8",
+        "match": true
+      },
+      {
+        "file": "pose-engine.js",
+        "expected": "5667fac63ea761eaf153a31b825333cee21c34b2820a7eb787c8b2f76a5ffa19",
+        "actual": "5667fac63ea761eaf153a31b825333cee21c34b2820a7eb787c8b2f76a5ffa19",
+        "match": true
+      },
+      {
+        "file": "invariants.json",
+        "expected": "a3d31dcbc073cb0a884f1e68c7e7e16137f8bac02db28b146f6118e05be5ab3d",
+        "actual": "a3d31dcbc073cb0a884f1e68c7e7e16137f8bac02db28b146f6118e05be5ab3d",
+        "match": true
+      },
+      {
+        "file": "route-guides-v6.js",
+        "expected": "c901c9aa9ce60ced40779193e9ee53633a0adba8ef9bc2083e1eb6af5f867f44",
+        "actual": "c901c9aa9ce60ced40779193e9ee53633a0adba8ef9bc2083e1eb6af5f867f44",
+        "match": true
+      },
+      {
+        "file": "invariants-v31.json",
+        "expected": "237774e64b70ee1b97c7ce0a3239a3e8098e16a7103837a4cdf229dcb5103d0a",
+        "actual": "237774e64b70ee1b97c7ce0a3239a3e8098e16a7103837a4cdf229dcb5103d0a",
+        "match": true
+      },
+      {
+        "file": "term-catalog.json",
+        "expected": "c60c9dba7425bb10e7c7a224efab99e0b08c11cdf82327596cfbf143c81c6515",
+        "actual": "c60c9dba7425bb10e7c7a224efab99e0b08c11cdf82327596cfbf143c81c6515",
+        "match": true
+      },
+      {
+        "file": "pose-observation.js",
+        "expected": "baac0abb94240c520269b489a88cfba1532cf239b3c4530ecd08452fe44bbf40",
+        "actual": "baac0abb94240c520269b489a88cfba1532cf239b3c4530ecd08452fe44bbf40",
+        "match": true
+      },
+      {
+        "file": "v30-invariants.json",
+        "expected": "02a1bf681fdce886edd45005d71274d5cf9139a2268276304e62ca3146a0cc6d",
+        "actual": "02a1bf681fdce886edd45005d71274d5cf9139a2268276304e62ca3146a0cc6d",
+        "match": true
+      },
+      {
+        "file": "pose-support.js",
+        "expected": "fe2183e154afeccacbf4124903b836ddd08304a241fae22559672c844e828ded",
+        "actual": "fe2183e154afeccacbf4124903b836ddd08304a241fae22559672c844e828ded",
+        "match": true
+      },
+      {
+        "file": "evidence-data-v9.json",
+        "expected": "c8bdd4acabd07738e70f2dc113e5ce911faf63c5c6da6537191025cfd0a9c9e3",
+        "actual": "c8bdd4acabd07738e70f2dc113e5ce911faf63c5c6da6537191025cfd0a9c9e3",
+        "match": true
+      },
+      {
+        "file": "skin-ink-v19.js",
+        "expected": "80395b28b998b8ad1e77b6eaa86446d5a29f18848874df00eaa2a52f430e2aed",
+        "actual": "80395b28b998b8ad1e77b6eaa86446d5a29f18848874df00eaa2a52f430e2aed",
+        "match": true
+      },
+      {
+        "file": "layers-ui-v21.css",
+        "expected": "e4b335061005f3372f504a1ced7a6e260a5e6d155a27821ea56f81786ef869ab",
+        "actual": "e4b335061005f3372f504a1ced7a6e260a5e6d155a27821ea56f81786ef869ab",
+        "match": true
+      },
+      {
+        "file": "view-v16.js",
+        "expected": "bda503e910e6acb4571fa6090f8fb0506af5c80093f8fad7e2a138bd564a70b2",
+        "actual": "bda503e910e6acb4571fa6090f8fb0506af5c80093f8fad7e2a138bd564a70b2",
+        "match": true
+      },
+      {
+        "file": "pose-segments.js",
+        "expected": "23b35f33261e4bd2f3fd8c9e2f113cf4ab30823845e78a0e52c774430ce386b8",
+        "actual": "23b35f33261e4bd2f3fd8c9e2f113cf4ab30823845e78a0e52c774430ce386b8",
+        "match": true
+      },
+      {
+        "file": "v29-invariants.json",
+        "expected": "1431cdf5a359505d94129e2424750175a69068d03f6415cf7dce3f1091660d66",
+        "actual": "1431cdf5a359505d94129e2424750175a69068d03f6415cf7dce3f1091660d66",
+        "match": true
+      },
+      {
+        "file": "pose-surface-groups.js",
+        "expected": "47b6021f6719d3ddcc0d819e244ebdabf27614d4d236fa7de1d8b5333b7c570d",
+        "actual": "47b6021f6719d3ddcc0d819e244ebdabf27614d4d236fa7de1d8b5333b7c570d",
+        "match": true
+      },
+      {
+        "file": "README.md",
+        "expected": "9b2751975db3cfe976d389e8e92374201d351887f8e54595030c98697d9844c0",
+        "actual": "9b2751975db3cfe976d389e8e92374201d351887f8e54595030c98697d9844c0",
+        "match": true
+      },
+      {
+        "file": "selection-rules-v10.js",
+        "expected": "d71885e2df398c77bfd95af4ab2947e2b34bf9612c6883fd37c537d8f79444f9",
+        "actual": "d71885e2df398c77bfd95af4ab2947e2b34bf9612c6883fd37c537d8f79444f9",
+        "match": true
+      },
+      {
+        "file": "pose-surface-bound.js",
+        "expected": "ab780ab424a499ad4caf57d6942c57f396e915e8fe02fa0b73e11371fa616c20",
+        "actual": "ab780ab424a499ad4caf57d6942c57f396e915e8fe02fa0b73e11371fa616c20",
+        "match": true
+      },
+      {
+        "file": "region-membership.json",
+        "expected": "7986dace06106fef340f0cf95645942e97f1fa4caf2e546f88885c89d5b3a7f9",
+        "actual": "7986dace06106fef340f0cf95645942e97f1fa4caf2e546f88885c89d5b3a7f9",
+        "match": true
+      },
+      {
+        "file": "female-fingers-v24.js",
+        "expected": "b082d5f13e2ef5d043efc993331929b4261cd09e65a34f942ff432acd1265050",
+        "actual": "b082d5f13e2ef5d043efc993331929b4261cd09e65a34f942ff432acd1265050",
+        "match": true
+      },
+      {
+        "file": "pose-binding.js",
+        "expected": "41fcefe3267f4893431f2833a78c43074e9ef9807efd4016d816018dcd6f6640",
+        "actual": "41fcefe3267f4893431f2833a78c43074e9ef9807efd4016d816018dcd6f6640",
+        "match": true
+      },
+      {
+        "file": "pose-preparation.js",
+        "expected": "7fcd4866e28864bab762329efc3753ca9125ff60131e15bace88bb43780ff9f9",
+        "actual": "7fcd4866e28864bab762329efc3753ca9125ff60131e15bace88bb43780ff9f9",
+        "match": true
+      },
+      {
+        "file": "evidence-page-v10.js",
+        "expected": "b560dec1c50eade57bfef2ef578303d2ea614ee9960381085f2d67d7d776137b",
+        "actual": "b560dec1c50eade57bfef2ef578303d2ea614ee9960381085f2d67d7d776137b",
+        "match": true
+      },
+      {
+        "file": "route-guides-v5.js",
+        "expected": "80b3c4ba67b8f20e35f36607bf1068a217f0df161e36d9409ddb8c72f784c653",
+        "actual": "80b3c4ba67b8f20e35f36607bf1068a217f0df161e36d9409ddb8c72f784c653",
+        "match": true
+      },
+      {
+        "file": "observation-v27.js",
+        "expected": "4425c1672cfba7e0d3735be8980f9cdbcb275f268468afb2310797b9ace0bb14",
+        "actual": "4425c1672cfba7e0d3735be8980f9cdbcb275f268468afb2310797b9ace0bb14",
+        "match": true
+      },
+      {
+        "file": "pose.html",
+        "expected": "c046ca7637d90f816e86ecccb88425a0fa9789a09c0d6d91c7fff3547632115f",
+        "actual": "c046ca7637d90f816e86ecccb88425a0fa9789a09c0d6d91c7fff3547632115f",
+        "match": true
+      },
+      {
+        "file": "surface-v13.js",
+        "expected": "90c9577b54426737de1c1b0dc91412f6e04492df347e740ae58186b1a33e2512",
+        "actual": "90c9577b54426737de1c1b0dc91412f6e04492df347e740ae58186b1a33e2512",
+        "match": true
+      },
+      {
+        "file": "skin-route-v24.js",
+        "expected": "0b7b2b36b7ec0d8c6785a56657bb6a6a4c164bbcd26416962444122ce389e3ab",
+        "actual": "0b7b2b36b7ec0d8c6785a56657bb6a6a4c164bbcd26416962444122ce389e3ab",
+        "match": true
+      },
+      {
+        "file": "female-local-v18.json",
+        "expected": "996ef9bb451724d4523a0af5028ba4ba3d2357b03c3236b6f2a918393c812edc",
+        "actual": "996ef9bb451724d4523a0af5028ba4ba3d2357b03c3236b6f2a918393c812edc",
+        "match": true
+      },
+      {
+        "file": "stability-v10.js",
+        "expected": "e17d9e9cf4f45bcb05488966b6e38b4889b5b3d2a5a4c9b2426d760d804e8b01",
+        "actual": "e17d9e9cf4f45bcb05488966b6e38b4889b5b3d2a5a4c9b2426d760d804e8b01",
+        "match": true
+      },
+      {
+        "file": "versions.html",
+        "expected": "78f4591a647913bfab4edf1ffe708685a501f0f09379dcba23a365cbb6a70988",
+        "actual": "78f4591a647913bfab4edf1ffe708685a501f0f09379dcba23a365cbb6a70988",
+        "match": true
+      },
+      {
+        "file": "reading-v26.css",
+        "expected": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40",
+        "actual": "e64ff1cf390d9035d91160a85cebb1793c36fc730c6ec3459d05f08ff704ac40",
+        "match": true
+      },
+      {
+        "file": "meridian-ux-v26.css",
+        "expected": "a8d76ff6914102877dd6c62bb87203853d8c41ba67b4f964bd2e434579f7cc89",
+        "actual": "a8d76ff6914102877dd6c62bb87203853d8c41ba67b4f964bd2e434579f7cc89",
+        "match": true
+      },
+      {
+        "file": "voice-map.json",
+        "expected": "5aec3cd164bd986b567094d570184ba4b9eaab3d13d66984cca25e65efe7839f",
+        "actual": "5aec3cd164bd986b567094d570184ba4b9eaab3d13d66984cca25e65efe7839f",
+        "match": true
+      },
+      {
+        "file": "body-frame-v18.json",
+        "expected": "acb5fe7c123321f81844e87930911cc69a6ecc8cc313b7401d8e9fe8e19ba7f9",
+        "actual": "acb5fe7c123321f81844e87930911cc69a6ecc8cc313b7401d8e9fe8e19ba7f9",
+        "match": true
+      },
+      {
+        "file": "acupoints-data.js",
+        "expected": "018cfb7926dba5c4ca693d04fc8778e0ab0f26478c3acf09b7c5464d801d5fc9",
+        "actual": "018cfb7926dba5c4ca693d04fc8778e0ab0f26478c3acf09b7c5464d801d5fc9",
+        "match": true
+      },
+      {
+        "file": "navigation-v36.css",
+        "expected": "262696328fa7c096a8310310c4ccc3c2114dcb09423041bbbd523b77954e5292",
+        "actual": "262696328fa7c096a8310310c4ccc3c2114dcb09423041bbbd523b77954e5292",
+        "match": true
+      },
+      {
+        "file": "refinement-v12.js",
+        "expected": "5cfd34d1d0a22a3637497ffaa53e88f536f5b4802eb8f9a00fce9aaef4ea5aa1",
+        "actual": "5cfd34d1d0a22a3637497ffaa53e88f536f5b4802eb8f9a00fce9aaef4ea5aa1",
+        "match": true
+      },
+      {
+        "file": "caption-build.json",
+        "expected": "c608fccf00dd7524da25c12ec873072350bb1ef63f5fbf9e4fa2e2e118b5a590",
+        "actual": "c608fccf00dd7524da25c12ec873072350bb1ef63f5fbf9e4fa2e2e118b5a590",
+        "match": true
+      },
+      {
+        "file": "pose-binding-base.js",
+        "expected": "01c768ddf5faef3388749010cc64ce799086da1b569a2288cde5ea1849607ca5",
+        "actual": "01c768ddf5faef3388749010cc64ce799086da1b569a2288cde5ea1849607ca5",
+        "match": true
+      },
+      {
+        "file": "pose-grip.js",
+        "expected": "76db403378bdfbd754ca749e687d01bccb5dcb3265f90cc12d14ad19a8a5708b",
+        "actual": "76db403378bdfbd754ca749e687d01bccb5dcb3265f90cc12d14ad19a8a5708b",
+        "match": true
+      },
+      {
+        "file": "compact-layout-v35.css",
+        "expected": "fb4ef08c11cc216dffa571ac59ea481cf6cd173285e1ffa1e5e1bb56322dc234",
+        "actual": "fb4ef08c11cc216dffa571ac59ea481cf6cd173285e1ffa1e5e1bb56322dc234",
+        "match": true
+      },
+      {
+        "file": "head-study-v8.js",
+        "expected": "b22cac416e9ae462f88d29de3194b66e3808db1d7fe18ccfabd3ad4c15564ce8",
+        "actual": "b22cac416e9ae462f88d29de3194b66e3808db1d7fe18ccfabd3ad4c15564ce8",
+        "match": true
+      },
+      {
+        "file": "meridian-layout-v26.js",
+        "expected": "d29af31d83db9d4ca7d7ccab9e8a6494af169513ffefc3e63eb84a78accba34f",
+        "actual": "d29af31d83db9d4ca7d7ccab9e8a6494af169513ffefc3e63eb84a78accba34f",
+        "match": true
+      },
+      {
+        "file": "MODEL-LICENSES.txt",
+        "expected": "8b00b6cd78c98c721622359d7d7265e57d76fb1d9be089229698f0eebb69f376",
+        "actual": "8b00b6cd78c98c721622359d7d7265e57d76fb1d9be089229698f0eebb69f376",
+        "match": true
+      },
+      {
+        "file": "compact-layout-v35.js",
+        "expected": "24df5ba6401635f053e92ad38fdfc1546e89c29f60f316f14cea74b649734c43",
+        "actual": "24df5ba6401635f053e92ad38fdfc1546e89c29f60f316f14cea74b649734c43",
+        "match": true
+      },
+      {
+        "file": "calibration.html",
+        "expected": "0bddf9236e1e13f5d4a28cd04bdd1b51d347fa18d10a2d8648ce0fd6a98e1cbf",
+        "actual": "0bddf9236e1e13f5d4a28cd04bdd1b51d347fa18d10a2d8648ce0fd6a98e1cbf",
+        "match": true
+      },
+      {
+        "file": "FEMALE-LICENSE.txt",
+        "expected": "ad66f2995e1e3da373301888645ac33dedc5bbc5bfcea01cdc63fd9460ab4fc8",
+        "actual": "ad66f2995e1e3da373301888645ac33dedc5bbc5bfcea01cdc63fd9460ab4fc8",
+        "match": true
+      },
+      {
+        "file": "meridian-ux-v26.js",
+        "expected": "62f66c3d288df08b31cf3289116d86ea6971e2b37ab2095af852691a58ddbcb2",
+        "actual": "62f66c3d288df08b31cf3289116d86ea6971e2b37ab2095af852691a58ddbcb2",
+        "match": true
+      },
+      {
+        "file": "shared-v13.js",
+        "expected": "4bca1ee67bd98be1c698d1c8ef3980bf3a4ab765c63219b2b42a818d95728aa2",
+        "actual": "4bca1ee67bd98be1c698d1c8ef3980bf3a4ab765c63219b2b42a818d95728aa2",
+        "match": true
+      },
+      {
+        "file": "simple-study-v34.js",
+        "expected": "20d851331d0a4e96edc1c21adbfe4fc5ee7f15724eae6efab810351553a6e093",
+        "actual": "20d851331d0a4e96edc1c21adbfe4fc5ee7f15724eae6efab810351553a6e093",
+        "match": true
+      },
+      {
+        "file": "bones-data.js",
+        "expected": "3074249933a0c7ae79fd89f00a514e736899e851d5ce36f2e7baa52470d6d826",
+        "actual": "3074249933a0c7ae79fd89f00a514e736899e851d5ce36f2e7baa52470d6d826",
+        "match": true
+      },
+      {
+        "file": "point-registration-v18.json",
+        "expected": "041d075a9ed478a0d88648df120a7c9e71c3c3563b176029e17393bd5d1e8c83",
+        "actual": "041d075a9ed478a0d88648df120a7c9e71c3c3563b176029e17393bd5d1e8c83",
+        "match": true
+      },
+      {
+        "file": "additional-groups.json",
+        "expected": "635d17b04162ef2e0d29bdd1a3e819a4f103789ca5d56ee3e1ea77117127aebf",
+        "actual": "635d17b04162ef2e0d29bdd1a3e819a4f103789ca5d56ee3e1ea77117127aebf",
+        "match": true
+      },
+      {
+        "file": "reference-data.js",
+        "expected": "ec06e60dea8a95e8709b5200025b626f8a912fe73caf13a98daaec46c1ff56a9",
+        "actual": "ec06e60dea8a95e8709b5200025b626f8a912fe73caf13a98daaec46c1ff56a9",
+        "match": true
+      },
+      {
+        "file": "evidence-ui-v9.js",
+        "expected": "a5fa3d0695c646fdfdc0f9cb735611de03e24ee93397183617f0df99b479fe15",
+        "actual": "a5fa3d0695c646fdfdc0f9cb735611de03e24ee93397183617f0df99b479fe15",
+        "match": true
+      },
+      {
+        "file": "pose-binding-data.json",
+        "expected": "3d19c7d716f26cdd924f4b6f8d69f697457ab15492d7315e84596c042563de2e",
+        "actual": "3d19c7d716f26cdd924f4b6f8d69f697457ab15492d7315e84596c042563de2e",
+        "match": true
+      },
+      {
+        "file": "pose-leg-regions.js",
+        "expected": "fa9721076032cb4c1cfb07112bbafe4c7570bddd5a1abad02f1b3bb3409042f0",
+        "actual": "fa9721076032cb4c1cfb07112bbafe4c7570bddd5a1abad02f1b3bb3409042f0",
+        "match": true
+      },
+      {
+        "file": "skin-ink-v24.js",
+        "expected": "f387ca2a44084fdfe6197471b8e528688b95cc95224c252123dc594995831d27",
+        "actual": "f387ca2a44084fdfe6197471b8e528688b95cc95224c252123dc594995831d27",
+        "match": true
+      },
+      {
+        "file": "female-complete-v21.js",
+        "expected": "be830081b4cb3d96cc3005ff2d96ae15a555fb2e788f98313998579d2cffe826",
+        "actual": "be830081b4cb3d96cc3005ff2d96ae15a555fb2e788f98313998579d2cffe826",
+        "match": true
+      },
+      {
+        "file": "vessel-kind-v34.js",
+        "expected": "f17ac2d4846ba0790ff00ae6ac9bfeefab8c25e50ad982464979a392c75e5727",
+        "actual": "f17ac2d4846ba0790ff00ae6ac9bfeefab8c25e50ad982464979a392c75e5727",
+        "match": true
+      },
+      {
+        "file": "pose-time-evidence.js",
+        "expected": "a12a5800e3598b5055d62b47bed3761f042edad293079153d3f818a60091630f",
+        "actual": "a12a5800e3598b5055d62b47bed3761f042edad293079153d3f818a60091630f",
+        "match": true
+      },
+      {
+        "file": "pose-data.js",
+        "expected": "1f2fc12b974e544683be733381c8719620b26bc23d982847d81eb67a39b0805e",
+        "actual": "1f2fc12b974e544683be733381c8719620b26bc23d982847d81eb67a39b0805e",
+        "match": true
+      },
+      {
+        "file": "pose-names.js",
+        "expected": "2f30516dafe3883574d4a4be4be555e0da2eb40ee65eaeee28539197aa5dbb3d",
+        "actual": "2f30516dafe3883574d4a4be4be555e0da2eb40ee65eaeee28539197aa5dbb3d",
+        "match": true
+      },
+      {
+        "file": "pose-deformation-verification.json",
+        "expected": "32fb976cc2ee522c2557e5b3d512feea199500118871d2efe1efd73514d561fe",
+        "actual": "32fb976cc2ee522c2557e5b3d512feea199500118871d2efe1efd73514d561fe",
+        "match": true
+      },
+      {
+        "file": "shared-v13.css",
+        "expected": "930ae0dbe5270a440077c8397383422372e334185d4aeea81f60cfa5e23d1367",
+        "actual": "930ae0dbe5270a440077c8397383422372e334185d4aeea81f60cfa5e23d1367",
+        "match": true
+      },
+      {
+        "file": "view-v16.css",
+        "expected": "7292f71da405fd43c971e3543b2592869afc5ab619ae79b345aa6d14cc8d0b96",
+        "actual": "7292f71da405fd43c971e3543b2592869afc5ab619ae79b345aa6d14cc8d0b96",
+        "match": true
+      },
+      {
+        "file": "evidence.bundle.js",
+        "expected": "d616f4a218f33e5cbdc5fb03a3e7d4089830c6fca80b0851e85a8ad76754459d",
+        "actual": "d616f4a218f33e5cbdc5fb03a3e7d4089830c6fca80b0851e85a8ad76754459d",
+        "match": true
+      },
+      {
+        "file": "pose-spine.js",
+        "expected": "96e7859c68e37c8d1e43d7936a4e41c1c4f3706ea5eae66bbc4bd8fdcd1ab4c5",
+        "actual": "96e7859c68e37c8d1e43d7936a4e41c1c4f3706ea5eae66bbc4bd8fdcd1ab4c5",
+        "match": true
+      },
+      {
+        "file": "pose-crossing-verification.json",
+        "expected": "7ed8511d436728f073b55f334de4c73ca78936e796f07d38829155a5eeacb069",
+        "actual": "7ed8511d436728f073b55f334de4c73ca78936e796f07d38829155a5eeacb069",
+        "match": true
+      },
+      {
+        "file": "navigation-v36.js",
+        "expected": "8a5c6df9ee13b08f5f4818b51ba8cc57a46d67ba911a298655744f28a76d5d23",
+        "actual": "8a5c6df9ee13b08f5f4818b51ba8cc57a46d67ba911a298655744f28a76d5d23",
+        "match": true
+      },
+      {
+        "file": "hegu-reference-v16.json",
+        "expected": "2f73514cc831a9b4cc996c21d4b91c9be080b07e5a150ffc9d47a6ac4e89469e",
+        "actual": "2f73514cc831a9b4cc996c21d4b91c9be080b07e5a150ffc9d47a6ac4e89469e",
+        "match": true
+      },
+      {
+        "file": "surface-path-v25.js",
+        "expected": "af404bbad52394841f5a92276bfe48a1ee9f2c75d191fc59b5fbfea9e89298ed",
+        "actual": "af404bbad52394841f5a92276bfe48a1ee9f2c75d191fc59b5fbfea9e89298ed",
+        "match": true
+      },
+      {
+        "file": "app.js",
+        "expected": "9d526cfdc5786e4293b059def71d0f8e2cfd902af62bcdadb115e889946e5e89",
+        "actual": "9d526cfdc5786e4293b059def71d0f8e2cfd902af62bcdadb115e889946e5e89",
+        "match": true
+      },
+      {
+        "file": "navigation-points-v6.js",
+        "expected": "490fcef0caaa0b617b65b2e62d8ab53c728dfa2519d27b8c247012e168a3141e",
+        "actual": "490fcef0caaa0b617b65b2e62d8ab53c728dfa2519d27b8c247012e168a3141e",
+        "match": true
+      },
+      {
+        "file": "shared-v14.css",
+        "expected": "0900721fb70d233b4254821f31f6bd07a54f4d53ce4696d6604ab11a0718d953",
+        "actual": "0900721fb70d233b4254821f31f6bd07a54f4d53ce4696d6604ab11a0718d953",
+        "match": true
+      },
+      {
+        "file": "pose-tissues.js",
+        "expected": "e52dce68426a20197131bf49c43180deeeb027b36f962f779971a9d26de5653c",
+        "actual": "e52dce68426a20197131bf49c43180deeeb027b36f962f779971a9d26de5653c",
+        "match": true
+      },
+      {
+        "file": "index.template.html",
+        "expected": "82a3df75c8f26f975297713c50dff84ea048d881d2d2e5f76757499a47e6d06c",
+        "actual": "82a3df75c8f26f975297713c50dff84ea048d881d2d2e5f76757499a47e6d06c",
+        "match": true
+      },
+      {
+        "file": "evidence.html",
+        "expected": "e3935bfc0c8f407ce9f7b4d9737461b7619e364419bb37cf7c8a50e9fd89ec2f",
+        "actual": "e3935bfc0c8f407ce9f7b4d9737461b7619e364419bb37cf7c8a50e9fd89ec2f",
+        "match": true
+      },
+      {
+        "file": "route-corridors-v13.js",
+        "expected": "38dd6e369c85757a181bbeecca491be5951e4bc84783ee289ef334352d9f4593",
+        "actual": "38dd6e369c85757a181bbeecca491be5951e4bc84783ee289ef334352d9f4593",
+        "match": true
+      },
+      {
+        "file": "voice-corrected/ximen.mp3",
+        "expected": "920b2b165278c2f2209fbe44e7209942b728e3dea28f80c360b3379e4f6cb526",
+        "actual": "920b2b165278c2f2209fbe44e7209942b728e3dea28f80c360b3379e4f6cb526",
+        "match": true
+      },
+      {
+        "file": "voice-corrected/changqiang.mp3",
+        "expected": "a7706c8040f60844e284c7d00945e7c292e65539bcdd84fa68418a611e159494",
+        "actual": "a7706c8040f60844e284c7d00945e7c292e65539bcdd84fa68418a611e159494",
+        "match": true
+      },
+      {
+        "file": "voice-corrected/manifest.json",
+        "expected": "67a5757a8fe59c2c2374d6845c79b55d84f69a7835b0fb07a1441fbb2fa707f4",
+        "actual": "67a5757a8fe59c2c2374d6845c79b55d84f69a7835b0fb07a1441fbb2fa707f4",
+        "match": true
+      },
+      {
+        "file": "voice-corrected/yinxi.mp3",
+        "expected": "16c6e3bcc4c4f65d776925b8e92e716794b0fbaf6458768d238cfaba40a78b61",
+        "actual": "16c6e3bcc4c4f65d776925b8e92e716794b0fbaf6458768d238cfaba40a78b61",
+        "match": true
+      },
+      {
+        "file": "voice-corrected/yinjiao.mp3",
+        "expected": "5a6a2674df90877804def196953b03c4a845ef65fecc1351d29fa78b1378a9a9",
+        "actual": "5a6a2674df90877804def196953b03c4a845ef65fecc1351d29fa78b1378a9a9",
+        "match": true
+      },
+      {
+        "file": "voice-corrected/dazhui.mp3",
+        "expected": "4e4691129a3eaa8539831054b6e9bdfd15bfec1a861c205689a44b4a29edbcf5",
+        "actual": "4e4691129a3eaa8539831054b6e9bdfd15bfec1a861c205689a44b4a29edbcf5",
+        "match": true
+      },
+      {
+        "file": "assets/new-catalog.json",
+        "expected": "968736853556d3a603da530174c15eca1a6b01d269479242f22e06bfda06ea54",
+        "actual": "968736853556d3a603da530174c15eca1a6b01d269479242f22e06bfda06ea54",
+        "match": true
+      },
+      {
+        "file": "assets/new-source-manifest.json",
+        "expected": "cbf29ebf20e4a2224ba2821c630b3380fc2b1beeb3f2e89def548523a0ca5edc",
+        "actual": "cbf29ebf20e4a2224ba2821c630b3380fc2b1beeb3f2e89def548523a0ca5edc",
+        "match": true
+      },
+      {
+        "file": "assets/female/compression-manifest.json",
+        "expected": "d6061d32f393d9247dd88d0d2e9f9825b1c1dcad28a9b46418fac0629b186e93",
+        "actual": "d6061d32f393d9247dd88d0d2e9f9825b1c1dcad28a9b46418fac0629b186e93",
+        "match": true
+      },
+      {
+        "file": "assets/female/catalog.json",
+        "expected": "438809211b1c14ab3f26aba8f496a6c26caaaecc70731674f0947e103e5390e8",
+        "actual": "438809211b1c14ab3f26aba8f496a6c26caaaecc70731674f0947e103e5390e8",
+        "match": true
+      },
+      {
+        "file": "assets/female/source-metadata.json",
+        "expected": "a06aea4d28e03b751b87f7f07d5126aacd6c41770a31097f05ecef8b6ead27bc",
+        "actual": "a06aea4d28e03b751b87f7f07d5126aacd6c41770a31097f05ecef8b6ead27bc",
+        "match": true
+      }
+    ]
+  },
+  "publicChecks": [
+    {
+      "name": "public-male-surface",
+      "tabId": "57",
+      "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=surface&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "surface",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "public-male-six-channels",
+      "tabId": "57",
+      "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=surface&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "surface",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "public-native-click-SI19",
+      "tabId": "57",
+      "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v58/#kind=point&id=SI19&side=right&mode=illustrative&layer=surface&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "surface",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI19",
+        "name": "听宫",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        32.398163759779685,
+        1524.327439658202,
+        11.548793164036965
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "public-male-opaque-bones-on",
+      "tabId": "57",
+      "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "public-female-opaque",
+      "tabId": "57",
+      "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "public-female-bones-100-covered",
+      "tabId": "57",
+      "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "public-female-transparent-restores-bones",
+      "tabId": "57",
+      "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 210,
+      "visibleInternal": 210,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 210
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "public-female-opaque-restored",
+      "tabId": "57",
+      "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "public-female-phone-390",
+      "tabId": "57",
+      "url": "https://hengtong320.github.io/notionweb/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    }
+  ],
+  "localFinalChecks": [
+    {
+      "name": "female-opaque",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "female-transparent",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 210,
+      "visibleInternal": 210,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 210
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "female-opaque-restored",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "male-opaque",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "male-transparent",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 210,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 0.08
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "male-opaque-restored",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "male-bones-displaced-not-blank",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 210,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 0,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": false,
+      "marker": false,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "male-bones-return-covered",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "male-native-skin-click-SI19",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI19&side=right&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI19",
+        "name": "听宫",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        32.398163759779685,
+        1524.327439658202,
+        11.548793164036965
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "male-lines-names-off",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": false,
+        "points": true,
+        "names": false,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "female-lines-names-off",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": false,
+        "points": true,
+        "names": false,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "female-hidden-internal-still-covered",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": false,
+        "points": true,
+        "names": false,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "female-hidden-restored",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#sex=female&preset=custom&mode=solid&side=both&blood=all",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": false,
+        "points": true,
+        "names": false,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "female-left-side",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=left&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "left",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        149.77809281543222,
+        1503.8099754274058,
+        57.704508548113935
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "male-left-side-preserved",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=left&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "left",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        146.71761957997214,
+        1503.5317505878184,
+        52.14001175636833
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "male-right-side",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "male-six-channels",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all",
+      "sex": "male",
+      "referenceBody": "male",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "muscular": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "nervous": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "heart": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "visceral": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "vessels": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "ear": {
+          "on": false,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0,
+          "opacity": 1
+        },
+        "surface": {
+          "on": true,
+          "loaded": true,
+          "loading": false,
+          "count": 250,
+          "visible": 250,
+          "opacity": 1
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        52.38874277139764,
+        1503.5317506571457,
+        52.1400131429134
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "female-six-channels",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    },
+    {
+      "name": "female-mobile-390",
+      "tabId": "56",
+      "url": "http://127.0.0.1:8783/fullbody-tcm-v58/#kind=point&id=SI18&side=right&mode=illustrative&layer=custom&blood=all&sex=female&preset=custom&display=solid",
+      "sex": "female",
+      "referenceBody": "female",
+      "scene": "custom",
+      "busy": false,
+      "transition": false,
+      "errors": [],
+      "visibleBones": 0,
+      "visibleInternal": 0,
+      "systems": {
+        "skeletal": {
+          "on": true,
+          "opacity": 0.08,
+          "loaded": true,
+          "loading": false,
+          "count": 210,
+          "visible": 0
+        },
+        "muscular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "nervous": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "respiratory": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "digestive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "urinary": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "reproductive": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vascular": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "vessels": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "surface": {
+          "on": true,
+          "opacity": 1,
+          "loaded": true,
+          "loading": false,
+          "count": 1,
+          "visible": 1
+        },
+        "ear": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "breast": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        },
+        "lymphatic": {
+          "on": false,
+          "opacity": 1,
+          "loaded": false,
+          "loading": false,
+          "count": 0,
+          "visible": 0
+        }
+      },
+      "selected": {
+        "code": "SI18",
+        "name": "颧髎",
+        "side": "right",
+        "areaOnly": false
+      },
+      "meridians": [
+        "HT",
+        "SI",
+        "LU",
+        "LI",
+        "PC",
+        "TE"
+      ],
+      "flags": {
+        "lines": true,
+        "points": true,
+        "names": true,
+        "xray": false
+      },
+      "skin": true,
+      "marker": true,
+      "selectedContact": [
+        49.25518971023671,
+        1503.8166191172513,
+        57.837382345024196
+      ],
+      "trace": [
+        {
+          "meridian": "LI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "LI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "SI",
+          "side": "left",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "right",
+          "breaks": 0
+        },
+        {
+          "meridian": "TE",
+          "side": "left",
+          "breaks": 0
+        }
+      ]
+    }
+  ],
+  "phoneZoomAndTouch": {
+    "width": 390,
+    "height": 844,
+    "zoomBefore": 450.0443473299207,
+    "zoomAfter": 360.0354778639366,
+    "zoomButton": {
+      "height": 44,
+      "width": 50
+    }
+  },
+  "publicConsoleWarningsAndErrors": [],
+  "screenshots": [
+    "public-male.png",
+    "public-female.png",
+    "public-phone.png"
+  ],
+  "clinicalCalibration": false,
+  "remainingRouteDisconnects": 34,
+  "longPoseGoalActive": false,
+  "goalStateAtFinalAudit": null
+}
