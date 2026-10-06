@@ -1,0 +1,1464 @@
+{
+  "version": "57.0.0",
+  "scope": "Actual in-app Chromium actions; 1280x720 desktop,390x844 phone,844x390 landscape viewport simulation; not all hardware or browsers",
+  "passed": true,
+  "records": [
+    {
+      "case": "female-seven-axis-surface",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {},
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.19999980926514,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        0.8913424979999999,
+        0.7025132220000001,
+        0.8801142760000003
+      ],
+      "target": [
+        0.043523745,
+        0.515993096,
+        0.7275069000000001
+      ],
+      "controls": null
+    },
+    {
+      "case": "female-organs",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "organs",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 208
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.19999980926514,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        0.8913424979999999,
+        0.7025132220000001,
+        0.8801142760000003
+      ],
+      "target": [
+        0.043523745,
+        0.515993096,
+        0.7275069000000001
+      ],
+      "controls": null
+    },
+    {
+      "case": "male-organs",
+      "pose": "lift-squat",
+      "sex": "male",
+      "view": "organs",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 105
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false
+      },
+      "camera": [
+        0.8913424979999999,
+        0.7025132220000001,
+        0.8801142760000003
+      ],
+      "target": [
+        0.043523745,
+        0.515993096,
+        0.7275069000000001
+      ],
+      "controls": null
+    },
+    {
+      "case": "male-nerves",
+      "pose": "lift-squat",
+      "sex": "male",
+      "view": "nerves",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 550
+        },
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false
+      },
+      "camera": [
+        0.8913424979999999,
+        0.7025132220000001,
+        0.8801142760000003
+      ],
+      "target": [
+        0.043523745,
+        0.515993096,
+        0.7275069000000001
+      ],
+      "controls": null
+    },
+    {
+      "case": "female-nerves",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "nerves",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 550
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.19999980926514,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        0.8913424979999999,
+        0.7025132220000001,
+        0.8801142760000003
+      ],
+      "target": [
+        0.043523745,
+        0.515993096,
+        0.7275069000000001
+      ],
+      "controls": null
+    },
+    {
+      "case": "female-vessels-all",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "vessels",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 117
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.19999980926514,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        0.8913424979999999,
+        0.7025132220000001,
+        0.8801142760000003
+      ],
+      "target": [
+        0.043523745,
+        0.515993096,
+        0.7275069000000001
+      ],
+      "controls": null
+    },
+    {
+      "case": "female-vessels-vein",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "vessels",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 57
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.19999980926514,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        2.161305283343264,
+        1.0081992281114347,
+        0.7477010199568368
+      ],
+      "target": [
+        0.06160358614523629,
+        0.5462648538858268,
+        0.3697547133219588
+      ],
+      "controls": null
+    },
+    {
+      "case": "male-vessels-vein",
+      "pose": "lift-squat",
+      "sex": "male",
+      "view": "vessels",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 659,
+          "visible": 231
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false
+      },
+      "camera": [
+        2.161305283343264,
+        1.0081992281114347,
+        0.7477010199568368
+      ],
+      "target": [
+        0.06160358614523629,
+        0.5462648538858268,
+        0.3697547133219588
+      ],
+      "controls": null
+    },
+    {
+      "case": "male-vessels-artery",
+      "pose": "lift-squat",
+      "sex": "male",
+      "view": "vessels",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 659,
+          "visible": 405
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false
+      },
+      "camera": [
+        2.161305283343264,
+        1.0081992281114347,
+        0.7477010199568368
+      ],
+      "target": [
+        0.06160358614523629,
+        0.5462648538858268,
+        0.3697547133219588
+      ],
+      "controls": null
+    },
+    {
+      "case": "male-bones",
+      "pose": "lift-squat",
+      "sex": "male",
+      "view": "bones",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 136,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 659,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false
+      },
+      "camera": [
+        2.161305283343264,
+        1.0081992281114347,
+        0.7477010199568368
+      ],
+      "target": [
+        0.06160358614523629,
+        0.5462648538858268,
+        0.3697547133219588
+      ],
+      "controls": null
+    },
+    {
+      "case": "female-return-lines-names-off",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": false,
+        "namesOn": false
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.19999980926514,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        2.161305283343264,
+        1.0081992281114347,
+        0.7477010199568368
+      ],
+      "target": [
+        0.06160358614523629,
+        0.5462648538858268,
+        0.3697547133219588
+      ],
+      "controls": null
+    },
+    {
+      "case": "points-off-lines-names-on",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": false,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.19999980926514,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        2.161305283343264,
+        1.0081992281114347,
+        0.7477010199568368
+      ],
+      "target": [
+        0.06160358614523629,
+        0.5462648538858268,
+        0.3697547133219588
+      ],
+      "controls": null
+    },
+    {
+      "case": "native-skin-click-PC6",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.19999980926514,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        -0.29861433449715324,
+        1.5356239186150438,
+        1.0745726206283592
+      ],
+      "target": [
+        -0.13509800106825876,
+        0.543146044489998,
+        0.6293197957364774
+      ],
+      "controls": null
+    },
+    {
+      "case": "point-zoom-in",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.19999980926514,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        -0.2659110678113743,
+        1.3371283437900343,
+        0.9855220556499829
+      ],
+      "target": [
+        -0.13509800106825876,
+        0.543146044489998,
+        0.6293197957364774
+      ],
+      "controls": null
+    },
+    {
+      "case": "native-pan",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.19999980926514,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        -0.3954648556493248,
+        1.5088981287993757,
+        1.0985772138696974
+      ],
+      "target": [
+        -0.2319485222204304,
+        0.5164202546743297,
+        0.6533243889778158
+      ],
+      "controls": null
+    },
+    {
+      "case": "leave-box-clears-correction",
+      "pose": "stand-relaxed",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "camera": [
+        1.713208089684397,
+        1.2402477057495291,
+        2.7611374364872607
+      ],
+      "target": [
+        0.07581789063120403,
+        0.8309001559862315,
+        0.03215377139860573
+      ],
+      "controls": null
+    },
+    {
+      "case": "return-box-retains-seven-axis",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 22.59999990463257,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        1.1332929183248537,
+        0.8309384066993144,
+        2.2515534944320144
+      ],
+      "target": [
+        0.015669277834065076,
+        0.5515324965766171,
+        0.3888474269473673
+      ],
+      "controls": null
+    },
+    {
+      "case": "phone-390-844-PC6",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 22.59999990463257,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        -0.29861433449715324,
+        1.5356239186150438,
+        1.0745726206283592
+      ],
+      "target": [
+        -0.13509800106825876,
+        0.543146044489998,
+        0.6293197957364774
+      ],
+      "controls": [
+        {
+          "height": 44,
+          "text": "旋转",
+          "width": 89.5,
+          "x": 10,
+          "y": 531.703125
+        },
+        {
+          "height": 44,
+          "text": "平移",
+          "width": 89.5,
+          "x": 103.5,
+          "y": 531.703125
+        },
+        {
+          "height": 44,
+          "text": "− 缩小",
+          "width": 89.5,
+          "x": 197,
+          "y": 531.703125
+        },
+        {
+          "height": 44,
+          "text": "＋ 放大",
+          "width": 89.5,
+          "x": 290.5,
+          "y": 531.703125
+        },
+        {
+          "height": 44,
+          "text": "完整显示",
+          "width": 89.5,
+          "x": 10,
+          "y": 579.703125
+        },
+        {
+          "height": 44,
+          "text": "看手部接触",
+          "width": 89.5,
+          "x": 103.5,
+          "y": 579.703125
+        },
+        {
+          "height": 44,
+          "text": "正面",
+          "width": 89.5,
+          "x": 197,
+          "y": 579.703125
+        },
+        {
+          "height": 44,
+          "text": "侧面",
+          "width": 89.5,
+          "x": 290.5,
+          "y": 579.703125
+        },
+        {
+          "height": 44,
+          "text": "俯视",
+          "width": 89.5,
+          "x": 10,
+          "y": 627.703125
+        }
+      ]
+    },
+    {
+      "case": "landscape-844-390",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 22.59999990463257,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        -0.18534310765029208,
+        2.0843731537349863,
+        1.1190303294618622
+      ],
+      "target": [
+        0.07003107716881465,
+        0.534355349758858,
+        0.423649783611902
+      ],
+      "controls": [
+        {
+          "height": 44,
+          "text": "旋转",
+          "width": 58,
+          "x": 590,
+          "y": 125
+        },
+        {
+          "height": 44,
+          "text": "平移",
+          "width": 58,
+          "x": 652,
+          "y": 125
+        },
+        {
+          "height": 44,
+          "text": "− 缩小",
+          "width": 58,
+          "x": 714,
+          "y": 125
+        },
+        {
+          "height": 44,
+          "text": "＋ 放大",
+          "width": 58,
+          "x": 776,
+          "y": 125
+        },
+        {
+          "height": 44,
+          "text": "完整显示",
+          "width": 58,
+          "x": 590,
+          "y": 173
+        },
+        {
+          "height": 44,
+          "text": "看手部接触",
+          "width": 58,
+          "x": 652,
+          "y": 173
+        },
+        {
+          "height": 44,
+          "text": "正面",
+          "width": 58,
+          "x": 714,
+          "y": 173
+        },
+        {
+          "height": 44,
+          "text": "侧面",
+          "width": 58,
+          "x": 776,
+          "y": 173
+        },
+        {
+          "height": 44,
+          "text": "俯视",
+          "width": 58,
+          "x": 590,
+          "y": 221
+        }
+      ]
+    },
+    {
+      "case": "atlas-box-restores-current-state",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {
+        "nerves": {
+          "origins": [
+            "shared-teaching"
+          ],
+          "parts": 550,
+          "visible": 0
+        },
+        "organs": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 286,
+          "visible": 0
+        },
+        "vessels": {
+          "origins": [
+            "female-native"
+          ],
+          "parts": 124,
+          "visible": 0
+        }
+      },
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 8.799999713897705,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        1.1332929183248537,
+        0.8309384066993144,
+        2.2515534944320144
+      ],
+      "target": [
+        0.015669277834065076,
+        0.5515324965766171,
+        0.3888474269473673
+      ],
+      "controls": null
+    },
+    {
+      "case": "reload-retains-state",
+      "pose": "lift-squat",
+      "sex": "female",
+      "view": "surface",
+      "selectedCode": "PC6",
+      "flags": {
+        "pointsOn": true,
+        "linesOn": true,
+        "namesOn": true
+      },
+      "spine": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "layers": {},
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 68.40000009536743,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012500025906568778,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17759
+      },
+      "camera": [
+        1.133292918,
+        0.8309384070000001,
+        2.251553494
+      ],
+      "target": [
+        0.015669278,
+        0.551532497,
+        0.388847427
+      ],
+      "controls": null
+    }
+  ],
+  "consoleErrors": [],
+  "gpu": {
+    "passed": true,
+    "states": 150,
+    "sampledVerticesPerState": 2048,
+    "maximumPositionErrorMetres": 6.174789884303982e-07,
+    "maximumNormalError": 1.3657139822709086e-07,
+    "correctedNormalStates": 18
+  }
+}

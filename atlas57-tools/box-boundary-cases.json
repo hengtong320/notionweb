@@ -1,0 +1,343 @@
+[
+  {
+    "pose": "lift-squat",
+    "name": "candidate-default",
+    "override": {
+      "spineAdjustment": {}
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-lumbarFlex-12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-lumbarFlex12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-lumbarSide-12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-lumbarSide12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarSide": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-thoracicFlex-12",
+    "override": {
+      "spineAdjustment": {
+        "thoracicFlex": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-thoracicFlex12",
+    "override": {
+      "spineAdjustment": {
+        "thoracicFlex": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-thoracicSide-12",
+    "override": {
+      "spineAdjustment": {
+        "thoracicSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-thoracicSide12",
+    "override": {
+      "spineAdjustment": {
+        "thoracicSide": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-thoracicTwist-12",
+    "override": {
+      "spineAdjustment": {
+        "thoracicTwist": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-thoracicTwist12",
+    "override": {
+      "spineAdjustment": {
+        "thoracicTwist": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-cervicalFlex-12",
+    "override": {
+      "spineAdjustment": {
+        "cervicalFlex": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-cervicalFlex12",
+    "override": {
+      "spineAdjustment": {
+        "cervicalFlex": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-cervicalSide-12",
+    "override": {
+      "spineAdjustment": {
+        "cervicalSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-cervicalSide12",
+    "override": {
+      "spineAdjustment": {
+        "cervicalSide": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-combined--12--12--12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-combined--12--12-12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-combined--12-12--12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-combined--12-12-12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-combined-12--12--12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": -12,
+        "thoracicSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-combined-12--12-12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-combined-12-12--12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-combined-12-12-12",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-all-corner-13",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12,
+        "cervicalFlex": -12,
+        "cervicalSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-all-corner-23",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "lumbarSide": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12,
+        "thoracicTwist": 12,
+        "cervicalFlex": -12,
+        "cervicalSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-all-corner-31",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "lumbarSide": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": 12,
+        "cervicalFlex": -12,
+        "cervicalSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-all-corner-5",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12,
+        "thoracicTwist": -12,
+        "cervicalFlex": -12,
+        "cervicalSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-all-corner-9",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12,
+        "cervicalFlex": -12,
+        "cervicalSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-all-corner-1",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": -12,
+        "thoracicTwist": -12,
+        "cervicalFlex": -12,
+        "cervicalSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-all-corner-29",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": 12,
+        "cervicalFlex": -12,
+        "cervicalSide": -12
+      }
+    }
+  },
+  {
+    "pose": "lift-squat",
+    "name": "candidate-all-corner-27",
+    "override": {
+      "spineAdjustment": {
+        "lumbarFlex": 12,
+        "lumbarSide": 12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12,
+        "thoracicTwist": 12,
+        "cervicalFlex": -12,
+        "cervicalSide": -12
+      }
+    }
+  }
+]

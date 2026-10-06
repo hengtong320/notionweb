@@ -1,0 +1,337 @@
+--- a/IMPLEMENTATION.md
++++ b/IMPLEMENTATION.md
+@@ -1,10 +1,6 @@
+ # V57 本轮范围
+ 
+-本轮新增的是观察布局、相机取景与地面遮挡修复，体表源网格和皮肤权重沿用 V55。以下继承说明不构成本轮新增功能通过验收的证据。本轮报告见 README.md 和 atlas57-tools/REVIEW.md。
+-
+-本文件记录继承的模型与研究方法；V57 新增结果以 [本轮复核](../atlas57-tools/REVIEW.md) 为准。
+-
+-> 历史阶段记录，保留当时的范围与结论。当前 V57 的实现和验收请以 [README](README.md) 及 [本轮复盘](../atlas57-tools/REVIEW.md) 为准。
++本轮修复第 49 项屈髋屈膝握箱的近似接触与体表随动；仅该姿势采用有界显示位移，原始皮肤、权重缓存和骨长未变。完整实现、复核范围与未完成问题以 [README](README.md) 和 [本轮复盘](../atlas57-tools/REVIEW.md) 为准。以下是继承的历史模型和研究说明，不构成本轮新增验收结果。
+ 
+ # V12.0.1 发布范围
+ 
+--- a/README.md
++++ b/README.md
+@@ -1,30 +1,27 @@
+-# V57：观察区、取景与地面遮挡修复
++# V57：屈髋屈膝握箱接触与体表修正
+ 
+-本轮保留 V55 的 120 种姿势、男女模型、骨骼、皮肤经穴、器官、神经和血管。骨链、原始网格、皮肤权重缓存和穴位坐标没有改动。
++本轮在 V56 上继续修复第 49 项「搬箱 · 屈髋屈膝取物」。120 项生活姿势和男女、骨骼、皮肤经穴、器官、神经、血管功能仍保留。本轮没有把所有体表问题宣布解决。
+ 
+-## 本轮修改
++## 实际修改
+ 
+-- 观察按钮和阶段控制置于模型区域外；手机名称沿用姿势选择器，减少重复。短屏横屏把按钮放到模型旁边，仍保留旋转、平移、缩放、完整显示及三个方向。
+-- 握箱姿势的“看手部接触”改为从靠近镜头一侧的箱面取景，便于检查手、箱体与身体的遮挡或穿插；可继续旋转看另一侧。其他握持类型保留当前方向。相机修改没有修正提物姿势中已知的箱体、手臂和腿部穿插。
+-- 完整显示按每块骨骼变换后的包围角点计算取景距离；较少受到空白全身包围盒影响。标签和实际点选共用观察区的坐标原点。
+-- 镜头位于地面下方时隐藏地面参考面及网格，避免半透明地面盖在不透明皮肤上；回到地面上方恢复显示。图册使用同一条件。
++该姿势调整站距、箱子的相对位置和双臂的肘部方向；上臂和前臂按同一屈伸平面配准，腕部与手掌接触一起更新。骨长、腕关节连接、手指骨长及原始网格不改变。手掌接触点向箱面外微调，避免只看骨点吻合、皮肤却进入箱子。
+ 
+-## 验证范围
++女性该姿势叠加部分脊柱调整时，原绑定混入邻近手臂影响，腰部小范围会出现额外网格拉伸。新增仅针对该姿势的显示修正：原坐标高度 0.10–0.32 米的体表带和相邻面片边，单顶点位移上限 1.25 毫米。46 个男女及脊柱调整样例的最大实际位移约 0.465 毫米。修正后的表面法线同时更新；经络、穴位三角面附着、引线和皮肤点击采用相同位置。退出该姿势清空修正，重复相同姿态复用结果。计算时只继续处理已拉伸的边和被移动顶点的邻边，同时保持逐边处理顺序；减少重复扫描，不降低显示检查精度。另检查七轴端点的 128 种组合和 32 个确定性区间样例，包含男女共 320 个状态；极端组合的实际位移最高约 1.25 毫米。
+ 
+-包含 120 姿势 × 5 阶段 × 男女的既有几何回归，以及新增完整三角网检查。完整检查包括原检查遗漏的手臂与腿、同区域和混合区域面片；8 个检测器夹具验证顺序对调、平移、自相交、源网相交排除和索引类型。
++这些是显示质量和近似接触修复。边长比例约束不是皮肤材料常数或损伤阈值，1.25 毫米不是医学定位精度；没有求组织压强、肌腱或肌肉力、病变椎节、个人疲劳或损伤概率。
+ 
+-旧六组检查标记 63 个姿势，完整网格检查标记 105 个姿势，增加 42 个待复核姿势。此变化来自扩大检查范围，不能解释为 105 种医学异常，也不能用零标记证明临床准确。检查仍排除共享顶点、源网已有相交及源面中心间距小于 40 毫米的局部面片，不覆盖全部包含关系或所有接触。
++七个脊柱调整的屏幕阅读名称与当前方向、角度一起更新，避免名称还报初始零值。
+ 
+-实际浏览器记录将桌面、手机、短屏、横屏、经穴点选、男女往返、图层切换、动作播放、图册及保存状态单独留证。桌面和手机视口模拟不等于实体设备及所有浏览器验收。构建摘要和发布后的复测记录分别记录实际结果，不将计划写成通过。
++## 复核
+ 
+-## 仍在继续修复
++先比较 46 个男女及单轴、前屈与侧弯组合状态的完整三角面穿插、边长变化、箱体实际三角网及刚性骨链约束，再逐点对照网页使用的显示内核与独立离线修正。实际 WebGL 检查增加到 134 个状态，每状态 2048 个位置样本；所有发生修正的法线顶点也经过独立绘制检查。结果见 atlas57-tools 的构建报告与 REVIEW.md，实际网页交互和发布状态另行留证。
+ 
+-男体肩部源分区在原姿态按位置合并后闭合，但不同权重会把接缝拉开；女性大幅抬臂也有局部翻折。局部接缝闭合、旋转混合及髋过渡试验均出现其他姿势退步，未采用。提物及交叠腿摆放试验同样未进入本轮产品。深屈髋屈膝、手臂接触和局部拉伸仍须逐项解决。
++完整体表回归仍检查 120 姿势 × 5 阶段 × 男女。检测排除共享顶点、源网已有相交及源面中心间距小于 40 毫米的局部面片，不能代替所有包含、接触及临床复核。浏览器视口和显卡检查不等于全部实体设备验收。
+ 
+-经络和穴位随各自体表三角面显示，原始穴位医学定位尚未逐点校准；不能把贴肤成功当作取穴准确。内部组织受力、接触压力、疲劳、疾病和损伤预测未求解。持续时间不会自动把某节椎骨判为受损。
++## 尚未完成
++
++深屈膝的腿部和骨盆局部仍有穿插；男性抬臂肩部源分区接缝、女性抬臂局部翻折以及其他生活姿势的软组织质量仍需继续修复。此次握箱修复降低相交数量，不代表这一姿势已完全无穿插。经穴仍沿用学习参考数据，未逐穴完成医学定位校准。持续时间仍表达观察计划和研究条件，不会自动判定某节椎骨受损。
+ 
+ ## 本地运行
+ 
+-从仓库根目录运行静态文件服务器，打开 `/fullbody-tcm-v57/pose.html?v=57.0.0`。源码可由 `atlas57-tools/prepare.py` 从核对过的 V55 重建，再运行 `atlas57-tools/build.cjs`；固定依赖版本见发布工作流。
+-
+-本轮是已经完成项目基础上的继续迭代，整个体表质量目标尚未完成。
++从仓库根目录启动静态文件服务器，打开 `/fullbody-tcm-v57/pose.html?v=57.0.0`。`atlas57-tools/prepare.py` 从哈希核对过的 V56 重建源码，`atlas57-tools/build.cjs` 构建并运行回归，依赖版本见发布工作流。旧版本保留，可回退对照。
+--- a/RESEARCH-AND-ACCEPTANCE.md
++++ b/RESEARCH-AND-ACCEPTANCE.md
+@@ -1,10 +1,6 @@
+ # V57 本轮范围
+ 
+-本轮新增的是观察布局、相机取景与地面遮挡修复，体表源网格和皮肤权重沿用 V55。以下继承说明不构成本轮新增功能通过验收的证据。本轮报告见 README.md 和 atlas57-tools/REVIEW.md。
+-
+-本文件记录继承的模型与研究方法；V57 新增结果以 [本轮复核](../atlas50-tools/REVIEW.md) 为准。
+-
+-> 历史阶段记录，保留当时的范围与结论。当前 V57 的实现和验收请以 [README](README.md) 及 [本轮复盘](../atlas49-tools/REVIEW.md) 为准。
++本轮修复第 49 项屈髋屈膝握箱的近似接触与体表随动；仅该姿势采用有界显示位移，原始皮肤、权重缓存和骨长未变。完整实现、复核范围与未完成问题以 [README](README.md) 和 [本轮复盘](../atlas57-tools/REVIEW.md) 为准。以下是继承的历史模型和研究说明，不构成本轮新增验收结果。
+ 
+ # 经络线条、穴位定位和点击说明：本轮核查与实现
+ 
+--- a/pose-binding.js
++++ b/pose-binding.js
+@@ -1,3 +1,4 @@
++import {createSurfaceBound} from './pose-surface-bound.js';
+ import {surfaceLegSides} from './pose-leg-regions.js';
+ import {surfaceGroups} from './pose-surface-groups.js';
+ import * as T from 'three';
+@@ -8,6 +9,7 @@
+ // material constants, subject measurements, tissue forces or clinical meaning.
+ const V=a=>new T.Vector3(...a);
+ export function createPoseBinding(handRig){
++ const surfaceBound=createSurfaceBound();let surfaceBoundEnabled=false;
+  const baseBinding=createBaseBinding(handRig),phoneHand={value:0},palmSides={value:new T.Vector2()},thoracicEnabled={value:0};
+  const phoneShell={value:0},phoneShellInverse={value:new T.Matrix4()},phoneShellMatrix={value:new T.Matrix4()};
+  const ids=Object.keys(REST).filter(id=>!/^T\d+$/.test(id)),chains=[];
+@@ -105,12 +107,22 @@
+   for(let block=0;block<2;block++){const si=new Uint16Array(p.count*4),sw=new Float32Array(p.count*4);for(let i=0;i<p.count;i++)if(amount[i]>0)for(let k=0;k<4;k++){si[i*4+k]=indices[i*stride+block*4+k];sw[i*4+k]=values[i*stride+block*4+k];}geometry.setAttribute(block?'skinIndexExtra':'skinIndexHand',new T.Uint16BufferAttribute(si,4));geometry.setAttribute(block?'skinWeightExtra':'skinWeightHand',new T.Float32BufferAttribute(sw,4));}
+   geometry.setAttribute('poseHand',new T.Float32BufferAttribute(amount,1));return prepareSpine(geometry);
+  }
+- function update(result){phoneShell.value=+(result.grip?.type==='phone');if(phoneShell.value){phoneShellMatrix.value.compose(result.grip.task.center,result.grip.task.rotation,new T.Vector3(1,1,1));phoneShellInverse.value.copy(phoneShellMatrix.value).invert();}const palmStrength=result.grip?.task.id.includes('ear')?1:.6;palmSides.value.set(palmStrength*+(result.grip?.type==='phone'&&!!result.grip.task.roles.R),palmStrength*+(result.grip?.type==='phone'&&!!result.grip.task.roles.L));thoracicEnabled.value=+(!!(result.spec?.spineAdjustment?.thoracicFlex||result.spec?.spineAdjustment?.thoracicSide||result.spec?.spineAdjustment?.thoracicTwist));phoneHand.value=+(result.grip?.type==='phone');dqEnabled.value=result.grip?0:1;for(let i=0;i<unique.length;i++){const id=unique[i],part=result.parts[id];if(part)matrices[i].copy(matrixFor(part));else{const entry=result.grip?.matrices.find(e=>e.mesh.name===id);if(entry)matrices[i].copy(entry.matrix);else matrices[i].copy(matrixFor(result.parts['wrist'+(id.endsWith('right')?'R':'L')]));}}for(let i=0;i<unique.length;i++){const q=new T.Quaternion().setFromRotationMatrix(matrices[i]),e=matrices[i].elements,x=e[12],y=e[13],z=e[14];real[i].set(q.x,q.y,q.z,q.w);dual[i].set(.5*(x*q.w+y*q.z-z*q.y),.5*(-x*q.z+y*q.w+z*q.x),.5*(x*q.y-y*q.x+z*q.w),-.5*(x*q.x+y*q.y+z*q.z));}}
++ function update(result){surfaceBoundEnabled=!!result.spec?.boxPlacement?.stabilizeWaist;phoneShell.value=+(result.grip?.type==='phone');if(phoneShell.value){phoneShellMatrix.value.compose(result.grip.task.center,result.grip.task.rotation,new T.Vector3(1,1,1));phoneShellInverse.value.copy(phoneShellMatrix.value).invert();}const palmStrength=result.grip?.task.id.includes('ear')?1:.6;palmSides.value.set(palmStrength*+(result.grip?.type==='phone'&&!!result.grip.task.roles.R),palmStrength*+(result.grip?.type==='phone'&&!!result.grip.task.roles.L));thoracicEnabled.value=+(!!(result.spec?.spineAdjustment?.thoracicFlex||result.spec?.spineAdjustment?.thoracicSide||result.spec?.spineAdjustment?.thoracicTwist));phoneHand.value=+(result.grip?.type==='phone');dqEnabled.value=result.grip?0:1;for(let i=0;i<unique.length;i++){const id=unique[i],part=result.parts[id];if(part)matrices[i].copy(matrixFor(part));else{const entry=result.grip?.matrices.find(e=>e.mesh.name===id);if(entry)matrices[i].copy(entry.matrix);else matrices[i].copy(matrixFor(result.parts['wrist'+(id.endsWith('right')?'R':'L')]));}}for(let i=0;i<unique.length;i++){const q=new T.Quaternion().setFromRotationMatrix(matrices[i]),e=matrices[i].elements,x=e[12],y=e[13],z=e[14];real[i].set(q.x,q.y,q.z,q.w);dual[i].set(.5*(x*q.w+y*q.z-z*q.y),.5*(-x*q.z+y*q.w+z*q.x),.5*(x*q.y-y*q.x+z*q.w),-.5*(x*q.x+y*q.y+z*q.z));}}
+  function vertex(geometry,i,out=new T.Vector3(),projectShell=true){
+   const factor=geometry.userData.dualQuaternion?(geometry.getAttribute('poseDq')?.getX(i)||0)*dqEnabled.value:0;
+   if(factor>=1)return spineVertex(geometry,i,dqVertex(geometry,i,out));
+   const p=new T.Vector3().fromBufferAttribute(geometry.attributes.position,i),indices=geometry.attributes.skinIndex,weights=geometry.attributes.skinWeight;out.set(0,0,0);
+-  for(let k=0;k<4;k++){const w=weights.array[i*4+k];if(w)out.addScaledVector(p.clone().applyMatrix4(matrices[indices.array[i*4+k]]),w);}if(factor)out.lerp(dqVertex(geometry,i,new T.Vector3()),factor);const hand=(geometry.attributes.poseHand?.getX(i)||0)*phoneHand.value;if(hand){const posed=new T.Vector3();for(const [si,sw]of [[geometry.attributes.skinIndexHand,geometry.attributes.skinWeightHand],[geometry.attributes.skinIndexExtra,geometry.attributes.skinWeightExtra]])for(let k=0;k<4;k++){const w=sw.array[i*4+k];if(w)posed.addScaledVector(p.clone().applyMatrix4(matrices[si.array[i*4+k]]),w);}out.lerp(posed,hand);}const palm=geometry.attributes.posePalm;if(palm){const mask=palm.getX(i)*palmSides.value.getComponent(palm.getZ(i));if(mask)out.lerp(p.clone().applyMatrix4(matrices[palm.getY(i)]),mask);}return projectShell?shellVertex(geometry,spineVertex(geometry,i,out)):spineVertex(geometry,i,out);
++  for(let k=0;k<4;k++){const w=weights.array[i*4+k];if(w)out.addScaledVector(p.clone().applyMatrix4(matrices[indices.array[i*4+k]]),w);}if(factor)out.lerp(dqVertex(geometry,i,new T.Vector3()),factor);const hand=(geometry.attributes.poseHand?.getX(i)||0)*phoneHand.value;if(hand){const posed=new T.Vector3();for(const [si,sw]of [[geometry.attributes.skinIndexHand,geometry.attributes.skinWeightHand],[geometry.attributes.skinIndexExtra,geometry.attributes.skinWeightExtra]])for(let k=0;k<4;k++){const w=sw.array[i*4+k];if(w)posed.addScaledVector(p.clone().applyMatrix4(matrices[si.array[i*4+k]]),w);}out.lerp(posed,hand);}const palm=geometry.attributes.posePalm;if(palm){const mask=palm.getX(i)*palmSides.value.getComponent(palm.getZ(i));if(mask)out.lerp(p.clone().applyMatrix4(matrices[palm.getY(i)]),mask);}return surfaceBound.vertex(geometry,i,projectShell?shellVertex(geometry,spineVertex(geometry,i,out)):spineVertex(geometry,i,out));
++ }
++ function updateSurfaceBound(g){
++  surfaceBound.update(g,surfaceBoundEnabled,matrices,(i,out)=>{
++   // The opt-in box pose uses linear skinning, without phone, palm or DQ blends.
++   const p=g.attributes.position.array,si=g.attributes.skinIndex.array,sw=g.attributes.skinWeight.array,x=p[i*3],y=p[i*3+1],z=p[i*3+2];let ox=0,oy=0,oz=0,bx=0,by=0,bz=0,bw=0;
++   for(let k=0;k<4;k++){const j=si[i*4+k],w=sw[i*4+k];if(!w)continue;const e=matrices[j].elements,px=e[0]*x+e[4]*y+e[8]*z+e[12],py=e[1]*x+e[5]*y+e[9]*z+e[13],pz=e[2]*x+e[6]*y+e[10]*z+e[14];ox+=px*w;oy+=py*w;oz+=pz*w;if(central(unique[j])){bw+=w;bx+=px*w;by+=py*w;bz+=pz*w;}}
++   const blend=g.attributes.poseSpine.array[i]*thoracicEnabled.value;
++   if(blend&&bw){let rx=0,ry=0,rz=0;for(let k=0;k<4;k++){const w=g.attributes.skinWeightSpine.array[i*4+k]*bw;if(!w)continue;const e=matrices[g.attributes.skinIndexSpine.array[i*4+k]].elements;rx+=(e[0]*x+e[4]*y+e[8]*z+e[12])*w;ry+=(e[1]*x+e[5]*y+e[9]*z+e[13])*w;rz+=(e[2]*x+e[6]*y+e[10]*z+e[14])*w;}ox+=(rx-bx)*blend;oy+=(ry-by)*blend;oz+=(rz-bz)*blend;}
++   out[i*3]=ox;out[i*3+1]=oy;out[i*3+2]=oz;
++  });
+  }
+  // Correct only shallow skin/device overlap in the displayed geometry. The
+  // source mesh and rigid bones stay unchanged; this is not a tissue force solve.
+@@ -145,19 +157,21 @@
+  function dqVertex(g,i,out){
+   const si=g.attributes.skinIndex.array,sw=g.attributes.skinWeight.array,ref=real[si[i*4]],r=new T.Vector4(0,0,0,0),d=new T.Vector4(0,0,0,0);for(let k=0;k<4;k++){const j=si[i*4+k],factor=sw[i*4+k]*(ref.dot(real[j])<-1e-6?-1:1);r.addScaledVector(real[j],factor);d.addScaledVector(dual[j],factor);}const length=r.length();r.divideScalar(length);d.divideScalar(length);d.addScaledVector(r,-r.dot(d));const q=new T.Quaternion(r.x,r.y,r.z,r.w),t=new T.Quaternion(d.x,d.y,d.z,d.w).multiply(q.clone().conjugate());return out.fromBufferAttribute(g.attributes.position,i).applyQuaternion(q).add(new T.Vector3(2*t.x,2*t.y,2*t.z));
+  }
+- function prepareSurface(g){const p=g.attributes.position,si=g.attributes.skinIndex.array,sw=g.attributes.skinWeight.array,values=new Float32Array(p.count);for(let i=0;i<p.count;i++){let arm=0;for(let k=0;k<4;k++)if(/^(shoulder|elbow|wrist|hand-)/.test(unique[si[i*4+k]]))arm+=sw[i*4+k];values[i]=(1-T.MathUtils.smoothstep(p.getY(i),.10,.20))*T.MathUtils.smoothstep(arm,.9,.99);}g.setAttribute('poseDq',new T.Float32BufferAttribute(values,1));const palm=new Float32Array(p.count*3),point=new T.Vector3();for(let i=0;i<p.count;i++){point.fromBufferAttribute(p,i);const side=point.x<0?'R':'L',h=handRig?.[side];if(!h)continue;const progress=point.clone().sub(h.wristRest).dot(h.long);palm[i*3]=(1-T.MathUtils.smoothstep(progress,.035,.12))*(g.attributes.poseHand?.getX(i)||0);palm[i*3+1]=index.get('wrist'+side);palm[i*3+2]=side==='R'?0:1;}g.setAttribute('posePalm',new T.Float32BufferAttribute(palm,3));g.userData.dualQuaternion=true;return g;}
+- function skinMaterial(material){
+-  material.onBeforeCompile=shader=>{shader.uniforms.posePhoneShell=phoneShell;shader.uniforms.posePhoneShellInverse=phoneShellInverse;shader.uniforms.posePhoneShellMatrix=phoneShellMatrix;shader.uniforms.posePalmSides=palmSides;shader.uniforms.poseThoracicEnabled=thoracicEnabled;shader.uniforms.poseDqEnabled=dqEnabled;shader.uniforms.posePhoneHand=phoneHand;shader.uniforms.poseReal={value:real};shader.uniforms.poseDual={value:dual};shader.vertexShader=shader.vertexShader.replace('#include <common>',`#include <common>
++ function prepareSurface(g){const p=g.attributes.position,si=g.attributes.skinIndex.array,sw=g.attributes.skinWeight.array,values=new Float32Array(p.count);for(let i=0;i<p.count;i++){let arm=0;for(let k=0;k<4;k++)if(/^(shoulder|elbow|wrist|hand-)/.test(unique[si[i*4+k]]))arm+=sw[i*4+k];values[i]=(1-T.MathUtils.smoothstep(p.getY(i),.10,.20))*T.MathUtils.smoothstep(arm,.9,.99);}g.setAttribute('poseDq',new T.Float32BufferAttribute(values,1));const palm=new Float32Array(p.count*3),point=new T.Vector3();for(let i=0;i<p.count;i++){point.fromBufferAttribute(p,i);const side=point.x<0?'R':'L',h=handRig?.[side];if(!h)continue;const progress=point.clone().sub(h.wristRest).dot(h.long);palm[i*3]=(1-T.MathUtils.smoothstep(progress,.035,.12))*(g.attributes.poseHand?.getX(i)||0);palm[i*3+1]=index.get('wrist'+side);palm[i*3+2]=side==='R'?0:1;}g.setAttribute('posePalm',new T.Float32BufferAttribute(palm,3));g.userData.dualQuaternion=true;surfaceBound.prepare(g);return g;}
++ function skinMaterial(material,geometry){
++  material.onBeforeCompile=shader=>{if(geometry)Object.assign(shader.uniforms,surfaceBound.uniforms(geometry));else Object.assign(shader.uniforms,{poseBoundOn:{value:0},poseBoundTexture:{value:null}});shader.uniforms.posePhoneShell=phoneShell;shader.uniforms.posePhoneShellInverse=phoneShellInverse;shader.uniforms.posePhoneShellMatrix=phoneShellMatrix;shader.uniforms.posePalmSides=palmSides;shader.uniforms.poseThoracicEnabled=thoracicEnabled;shader.uniforms.poseDqEnabled=dqEnabled;shader.uniforms.posePhoneHand=phoneHand;shader.uniforms.poseReal={value:real};shader.uniforms.poseDual={value:dual};shader.vertexShader=shader.vertexShader.replace('#include <common>',`#include <common>
+    ${spineHeader()}
++   uniform float poseBoundOn;uniform sampler2D poseBoundTexture;
++   vec4 poseBoundValue(int column){if(poseBoundOn<.5)return vec4(0.0);int id=gl_VertexID*2+column;ivec2 size=textureSize(poseBoundTexture,0);return texelFetch(poseBoundTexture,ivec2(id%size.x,id/size.x),0);}
+    uniform float posePhoneShell;uniform mat4 posePhoneShellInverse;uniform mat4 posePhoneShellMatrix;
+    vec3 poseShellNormal;
+    vec3 poseShell(vec3 p){poseShellNormal=vec3(0.0);if(posePhoneShell<0.5)return p;vec3 local=(posePhoneShellInverse*vec4(p,1.0)).xyz;vec3 depths=vec3(.0375,.07,.0045)-abs(local);float d=min(depths.x,min(depths.y,depths.z));if(d<=0.0||d>.00195)return p;int axis=d==depths.x?0:d==depths.y?1:2;float s=local[axis]<0.0?-1.0:1.0;local[axis]+=s*(d+.00005);vec3 n=vec3(0.0);n[axis]=s;poseShellNormal=(posePhoneShellMatrix*vec4(n,0.0)).xyz;return (posePhoneShellMatrix*vec4(local,1.0)).xyz;}
+    uniform vec2 posePalmSides;attribute vec3 posePalm;uniform float poseDqEnabled;uniform float posePhoneHand;attribute float poseDq;attribute float poseHand;attribute vec4 skinIndexHand;attribute vec4 skinWeightHand;attribute vec4 skinIndexExtra;attribute vec4 skinWeightExtra;uniform vec4 poseReal[${unique.length}];uniform vec4 poseDual[${unique.length}];
+    vec3 poseRotate(vec3 p,vec4 q){return p+2.0*cross(q.xyz,cross(q.xyz,p)+q.w*p);}
+    void poseBlend(out vec4 qr,out vec4 qd){vec4 ref=poseReal[int(skinIndex.x)];qr=vec4(0.0);qd=vec4(0.0);for(int k=0;k<4;k++){int j=int(skinIndex[k]);float w=skinWeight[k]*(dot(ref,poseReal[j])<-0.000001?-1.0:1.0);qr+=poseReal[j]*w;qd+=poseDual[j]*w;}float l=length(qr);qr/=l;qd/=l;qd-=qr*dot(qr,qd);}
+-  `).replace('#include <skinnormal_vertex>',`vec3 poseRestNormal=objectNormal;vec4 poseQR,poseQD;poseBlend(poseQR,poseQD);mat4 poseLinearMatrix=skinWeight.x*boneMatX+skinWeight.y*boneMatY+skinWeight.z*boneMatZ+skinWeight.w*boneMatW;mat4 poseHandMatrix=mat4(0.0);float poseHandBlend=poseHand*posePhoneHand;if(poseHandBlend>0.0){for(int k=0;k<4;k++){poseHandMatrix+=skinWeightHand[k]*getBoneMatrix(skinIndexHand[k])+skinWeightExtra[k]*getBoneMatrix(skinIndexExtra[k]);}}float posePalmBlend=posePalm.x*posePalmSides[int(posePalm.z)];mat4 posePalmMatrix=getBoneMatrix(posePalm.y);${spineMatrix()}objectNormal=mix(mix((poseLinearMatrix*vec4(objectNormal,0.0)).xyz,poseRotate(objectNormal,poseQR),poseDq*poseDqEnabled),(poseHandMatrix*vec4(objectNormal,0.0)).xyz,poseHandBlend)+(poseSpineDelta*vec4(poseRestNormal,0.0)).xyz;objectNormal=mix(objectNormal,(posePalmMatrix*vec4(poseRestNormal,0.0)).xyz,posePalmBlend);vec3 poseShellPosition=mix(mix((poseLinearMatrix*vec4(position,1.0)).xyz,poseRotate(position,poseQR)+2.0*(-poseQD.w*poseQR.xyz+poseQR.w*poseQD.xyz+cross(poseQR.xyz,poseQD.xyz)),poseDq*poseDqEnabled),(poseHandMatrix*vec4(position,1.0)).xyz,poseHandBlend)+(poseSpineDelta*vec4(position,1.0)).xyz;poseShellPosition=mix(poseShellPosition,(posePalmMatrix*vec4(position,1.0)).xyz,posePalmBlend);poseShell(poseShellPosition);if(length(poseShellNormal)>0.0)objectNormal=poseShellNormal;`).replace('#include <skinning_vertex>',`vec3 poseRestPosition=transformed;vec4 poseVR,poseVD;poseBlend(poseVR,poseVD);vec3 poseT=2.0*(-poseVD.w*poseVR.xyz+poseVR.w*poseVD.xyz+cross(poseVR.xyz,poseVD.xyz));vec4 poseLinearVertex=(skinWeight.x*boneMatX+skinWeight.y*boneMatY+skinWeight.z*boneMatZ+skinWeight.w*boneMatW)*vec4(transformed,1.0);transformed=mix(mix(poseLinearVertex.xyz,poseRotate(transformed,poseVR)+poseT,poseDq*poseDqEnabled),(poseHandMatrix*vec4(transformed,1.0)).xyz,poseHandBlend)+(poseSpineDelta*vec4(poseRestPosition,1.0)).xyz;transformed=mix(transformed,(posePalmMatrix*vec4(poseRestPosition,1.0)).xyz,posePalmBlend);transformed=poseShell(transformed);`);};material.customProgramCacheKey=()=> 'pose-hand8-v57-'+unique.length;return material;
++  `).replace('#include <skinnormal_vertex>',`vec3 poseRestNormal=objectNormal;vec4 poseQR,poseQD;poseBlend(poseQR,poseQD);mat4 poseLinearMatrix=skinWeight.x*boneMatX+skinWeight.y*boneMatY+skinWeight.z*boneMatZ+skinWeight.w*boneMatW;mat4 poseHandMatrix=mat4(0.0);float poseHandBlend=poseHand*posePhoneHand;if(poseHandBlend>0.0){for(int k=0;k<4;k++){poseHandMatrix+=skinWeightHand[k]*getBoneMatrix(skinIndexHand[k])+skinWeightExtra[k]*getBoneMatrix(skinIndexExtra[k]);}}float posePalmBlend=posePalm.x*posePalmSides[int(posePalm.z)];mat4 posePalmMatrix=getBoneMatrix(posePalm.y);${spineMatrix()}objectNormal=mix(mix((poseLinearMatrix*vec4(objectNormal,0.0)).xyz,poseRotate(objectNormal,poseQR),poseDq*poseDqEnabled),(poseHandMatrix*vec4(objectNormal,0.0)).xyz,poseHandBlend)+(poseSpineDelta*vec4(poseRestNormal,0.0)).xyz;objectNormal=mix(objectNormal,(posePalmMatrix*vec4(poseRestNormal,0.0)).xyz,posePalmBlend);vec3 poseShellPosition=mix(mix((poseLinearMatrix*vec4(position,1.0)).xyz,poseRotate(position,poseQR)+2.0*(-poseQD.w*poseQR.xyz+poseQR.w*poseQD.xyz+cross(poseQR.xyz,poseQD.xyz)),poseDq*poseDqEnabled),(poseHandMatrix*vec4(position,1.0)).xyz,poseHandBlend)+(poseSpineDelta*vec4(position,1.0)).xyz;poseShellPosition=mix(poseShellPosition,(posePalmMatrix*vec4(position,1.0)).xyz,posePalmBlend);poseShell(poseShellPosition);if(length(poseShellNormal)>0.0)objectNormal=poseShellNormal;vec4 poseBoundNormal=poseBoundValue(1);objectNormal=mix(objectNormal,poseBoundNormal.xyz,poseBoundNormal.w);`).replace('#include <skinning_vertex>',`vec3 poseRestPosition=transformed;vec4 poseVR,poseVD;poseBlend(poseVR,poseVD);vec3 poseT=2.0*(-poseVD.w*poseVR.xyz+poseVR.w*poseVD.xyz+cross(poseVR.xyz,poseVD.xyz));vec4 poseLinearVertex=(skinWeight.x*boneMatX+skinWeight.y*boneMatY+skinWeight.z*boneMatZ+skinWeight.w*boneMatW)*vec4(transformed,1.0);transformed=mix(mix(poseLinearVertex.xyz,poseRotate(transformed,poseVR)+poseT,poseDq*poseDqEnabled),(poseHandMatrix*vec4(transformed,1.0)).xyz,poseHandBlend)+(poseSpineDelta*vec4(poseRestPosition,1.0)).xyz;transformed=mix(transformed,(posePalmMatrix*vec4(poseRestPosition,1.0)).xyz,posePalmBlend);transformed=poseShell(transformed)+poseBoundValue(0).xyz;`);};material.customProgramCacheKey=()=> 'pose-hand8-surface-texture-v57-'+unique.length;return material;
+  }
+- return {ids:unique,matrices,real,dual,prepareSurface,prepareSpine,skinMaterial,tissueMaterial,weights,attributes,attributesAsync,update,vertex,method:'Source-topology leg sides, continuous wrist neighbourhood, phone palm contact and thoracic contributions',individualCalibration:false};
++ return {ids:unique,matrices,real,dual,prepareSurface,prepareSpine,updateSurfaceBound,surfaceBoundAudit:surfaceBound.audit,skinMaterial,tissueMaterial,weights,attributes,attributesAsync,update,vertex,method:'Source-topology leg sides, continuous wrist neighbourhood, phone palm contact and thoracic contributions',individualCalibration:false};
+ }
+ 
+ export function posedTriangle(binding,geometry,anchor,offset=0){
+--- a/pose-catalog.js
++++ b/pose-catalog.js
+@@ -71,7 +71,7 @@
+ add('bend-round','弯腰 · 腰背前屈','搬抬',standing,{height:.78,pelvisTilt:15,bend:38,legR:leg(15,15),legL:leg(15,15),armR:arm(0,8),armL:arm(0,8)},'与髋部折叠相比，腰段前屈更多；角度不能直接换算椎间盘压力或损伤。',['spineFlex','unsupported']);
+ add('lift-close','搬箱 · 贴近身体','搬抬',standing,{armR:arm(10,90,8,-70),armL:arm(10,90,8,70),box:true,load:5},'物体靠近躯干，重力对腰部参照点的水平力臂较短；只计算物体外力矩。',['load','armsHeld']);
+ add('lift-far','搬箱 · 向前伸臂','搬抬',standing,{armR:arm(70,15,8,-70),armL:arm(70,15,8,70),box:true,load:5},'相同物体向前伸远，水平力臂增加；物体外力矩通常随距离增加，不代表已算内部压缩力。',['load','reach','armsHeld']);
+-add('lift-squat','搬箱 · 屈髋屈膝取物','搬抬',squat,{height:.40,armR:arm(10,35,10,-70),armL:arm(10,35,10,70),box:true,load:5},'髋膝屈曲靠近低处物体，腿部与躯干共同参与；没有哪一种动作对所有人都绝对安全。',['load','kneeFlex','hinge']);
++add('lift-squat','搬箱 · 屈髋屈膝取物','搬抬',squat,{height:.45,legR:leg(115,130,24),legL:leg(115,130,24),armR:arm(50,35,10,-70),armL:arm(50,35,10,70),boxPlacement:{shoulderOffset:[0,-.28,.32],elbowGuide:[.7,-.4,.4],hingeFrame:true,palmOffset:.181,stabilizeWaist:true},box:true,load:5},'髋膝屈曲靠近低处物体，腿部与躯干共同参与；没有哪一种动作对所有人都绝对安全。',['load','kneeFlex','hinge']);
+ add('lift-stoop','搬箱 · 直腿前屈取物','搬抬',standing,{height:.80,pelvisTilt:35,bend:25,legR:leg(25,10),legL:leg(25,10),armR:arm(0,10,6,-70),armL:arm(0,10,6,70),box:true,load:5},'腿部屈曲较少、躯干前倾较多；观察物体距离、腰背维持与重复次数的叠加。',['load','spineFlex']);
+ add('carry-chest','搬物 · 胸前抱箱','搬抬',standing,{armR:arm(30,110,14,-70),armL:arm(30,110,14,70),box:true,load:8},'抱在胸前减少物体向前伸远，但肩肘需要维持，视野也可能受影响。',['load','armsHeld']);
+ add('carry-low','搬物 · 双手低位提箱','搬抬',standing,{armR:arm(8,20,12,-70),armL:arm(8,20,12,70),box:true,load:8},'双手低位提物与胸前抱物的上肢状态不同；腰部参照点的力臂由实际物体位置决定。',['load']);
+--- a/pose-grip.js
++++ b/pose-grip.js
+@@ -17,13 +17,15 @@
+ }
+ const local=(r,a)=>V(a).applyQuaternion(r.parts.trunk.rotation).add(r.joints.pelvis);
+ function role(point,long,normal,style){return {point,long:V(long),normal:V(normal),style};}
+-export function gripTask(spec,r){const id=spec.taskId,task={id,roles:{},type:null},wr=r.joints.wristR,wl=r.joints.wristL;
++export function gripTask(spec,r){const id=spec.taskId,task={id,roles:{},type:null,elbowGuide:spec.boxPlacement?.elbowGuide,hingeFrame:spec.boxPlacement?.hingeFrame,hingeMix:spec.boxPlacement?.hingeMix??1,palmOffset:spec.boxPlacement?.palmOffset??.173,elbowFrame:spec.boxPlacement?.elbowFrame},wr=r.joints.wristR,wl=r.joints.wristL;
+  const relative=(a)=>local(r,a),orient=v=>V(v).applyQuaternion(r.parts.trunk.rotation),set=(side,a,long,normal,style)=>{task.roles[side]=role(relative(a),long,normal,style);task.roles[side].long=orient(long);task.roles[side].normal=orient(normal);};
+  if(spec.guitar){task.type='guitar';task.center=relative([-.13,.19,.28]);task.rotation=r.parts.trunk.rotation.clone();task.neck=relative([.43,.40,.28]);
+   set('L',[.25,.340,.295],[-.35,.94,0],[0,0,1],'fret');set('R',[-.20,.29,.420],[0,-1,0],[0,0,-1],'strum');
+  }else if(id==='rest-game'){task.type='controller';task.center=relative([0,.15,.30]);task.rotation=r.parts.trunk.rotation.clone();for(const side of sides){const sign=side==='R'?-1:1;set(side,[sign*.124,.15,.275],[0,0,1],[-sign,0,0],'controller');}
+  }else if(id?.includes('phone')){task.type='phone';task.rotation=r.parts.trunk.rotation.clone();if(id.includes('ear')){task.center=r.joints.head.clone().add(orient([-.115,.050,.100]));task.rotation.multiply(new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),Math.PI/2));task.roles.R=role(task.center.clone().add(orient([-.051,-.065,.045])),[0,1,0],[1,0,0],'phone');}else{const height=id==='stand-high-phone'?.55:id==='stand-phone'?.33:.23;task.center=relative([0,height,id==='sit-phone'?.32:.35]);for(const side of sides){const sign=side==='R'?-1:1;set(side,[sign*.061,height-.025+(id==='sit-phone'?0:side==='R'?.012:-.012),id==='sit-phone'?.310:.340],[0,0,-1],[-sign,0,0],'phone');}}
+- }else if(spec.box){task.type='box';task.center=wr.clone().add(wl).multiplyScalar(.5).add(orient([0,-.04,.035]));task.rotation=r.parts.trunk.rotation.clone();for(const side of sides){const sign=side==='R'?-1:1;task.roles[side]=role(task.center.clone().add(orient([sign*.173,-.062,.069])),[0,0,1],[-sign,0,0],'box');task.roles[side].long=orient([0,0,1]);task.roles[side].normal=orient([-sign,0,0]);}
++ }else if(spec.box){task.type='box';task.center=wr.clone().add(wl).multiplyScalar(.5).add(orient([0,-.04,.035]));task.rotation=r.parts.trunk.rotation.clone();
++  if(spec.boxPlacement){task.center=spec.boxPlacement.shoulderOffset?r.joints.shoulderR.clone().add(r.joints.shoulderL).multiplyScalar(.5).add(V(spec.boxPlacement.shoulderOffset)):r.joints.kneeR.clone().add(r.joints.kneeL).multiplyScalar(.5).add(V([0,spec.boxPlacement.height,spec.boxPlacement.forward]));task.rotation.identity();}
++  const boxOrient=v=>V(v).applyQuaternion(task.rotation);for(const side of sides){const sign=side==='R'?-1:1;task.roles[side]=role(task.center.clone().add(boxOrient([sign*task.palmOffset,-.062,.069])),[0,0,1],[-sign,0,0],'box');task.roles[side].long=boxOrient([0,0,1]);task.roles[side].normal=boxOrient([-sign,0,0]);}
+  }else if(spec.bag){task.type='bag';const side=spec.loadSide==='L'?'L':'R';task.center=r.joints['wrist'+side].clone().add(new T.Vector3(0,-.18,.045));task.handleA=task.center.clone().add(new T.Vector3(-.07,.19,0));task.handleB=task.center.clone().add(new T.Vector3(.07,.19,0));task.roles[side]=role(task.center.clone().add(new T.Vector3(0,.25,-.032)),[0,-1,0],[0,0,1],'rod');
+  }else if(spec.tool){task.type='tool';task.tip=relative([.06,-r.joints.pelvis.y+.035,.79]);task.top=relative([.02,.40,.30]);task.axis=task.top.clone().sub(task.tip).normalize();const finger=new T.Vector3(0,0,1).addScaledVector(task.axis,-task.axis.z).normalize();const sidesUsed=spec.tool==='vacuum'?['R']:sides;
+   for(const side of sidesUsed){const sign=side==='R'?-1:1,c=task.top.clone().lerp(task.tip,side==='R'?.08:.31);task.roles[side]={point:c.add(new T.Vector3(sign*.038,0,0)),long:finger.clone(),normal:new T.Vector3(-sign,0,0),style:'rod'};}
+@@ -36,9 +38,19 @@
+  // Move a shared held object into the common reachable region, rather than stretching arms or detaching a hand.
+  if(task.type==='box'||task.type==='tool')for(let pass=0;pass<16;pass++){const shifts=[];for(const [side,role] of Object.entries(task.roles)){const h=rig[side],rotation=basis(role.long,role.normal).multiply(h.frame.clone().invert()),wrist=role.point.clone().sub(h.palm.clone().sub(h.wristRest).applyQuaternion(rotation)),shoulder=result.joints['shoulder'+side],a1=V(REST['shoulder'+side]).distanceTo(V(REST['elbow'+side])),a2=V(REST['elbow'+side]).distanceTo(h.wristRest),ik=solveTwoBone(shoulder,wrist,a1,a2,result.joints['elbow'+side]);if(ik.error>.00002)shifts.push(ik.end.clone().sub(wrist));}if(!shifts.length)break;const move=shifts.reduce((a,b)=>a.add(b),new T.Vector3()).multiplyScalar(1/shifts.length);if(task.type==='box'){task.center.add(move);for(const role of Object.values(task.roles))role.point.add(move);}else{task.top.add(move);task.axis.copy(task.top).sub(task.tip).normalize();for(const [side,role]of Object.entries(task.roles)){const sign=side==='R'?-1:1;role.point.copy(task.top).lerp(task.tip,side==='R'?.08:.31).add(new T.Vector3(sign*.038,0,0));role.long.set(0,0,1).addScaledVector(task.axis,-task.axis.z).normalize();}}}
+  result.grip={type:task.type,task,contacts:[],fingerChains:[],matrices:[]};
+- for(const [side,role] of Object.entries(task.roles)){const h=rig[side],rotation=basis(role.long,role.normal).multiply(h.frame.clone().invert());const wrist=role.point.clone().sub(h.palm.clone().sub(h.wristRest).applyQuaternion(rotation));const shoulder=result.joints['shoulder'+side],elbow=result.joints['elbow'+side],start=V(REST['shoulder'+side]),a1=start.distanceTo(V(REST['elbow'+side])),a2=V(REST['elbow'+side]).distanceTo(h.wristRest);const guide=task.id==='carry-chest'?[.5,-.55,.02]:task.type==='phone'?(task.id.includes('ear')?[.20,-.55,.02]:task.id==='sit-phone'?[.7,.15,.02]:[.7,-.55,.02]):[.12,-.55,.02],pole=shoulder.clone().add(new T.Vector3((side==='R'?-1:1)*guide[0],guide[1],guide[2])),ik=solveTwoBone(shoulder,wrist,a1,a2,pole);
++ for(const [side,role] of Object.entries(task.roles)){const h=rig[side],rotation=basis(role.long,role.normal).multiply(h.frame.clone().invert());const wrist=role.point.clone().sub(h.palm.clone().sub(h.wristRest).applyQuaternion(rotation));const shoulder=result.joints['shoulder'+side],elbow=result.joints['elbow'+side],start=V(REST['shoulder'+side]),a1=start.distanceTo(V(REST['elbow'+side])),a2=V(REST['elbow'+side]).distanceTo(h.wristRest);const guide=task.elbowGuide|| (task.id==='carry-chest'?[.5,-.55,.02]:task.type==='phone'?(task.id.includes('ear')?[.20,-.55,.02]:task.id==='sit-phone'?[.7,.15,.02]:[.7,-.55,.02]):[.12,-.55,.02]),poleOffset=new T.Vector3((side==='R'?-1:1)*guide[0],guide[1],guide[2]),pole=shoulder.clone().add(task.elbowFrame==='thorax'?poleOffset.applyQuaternion(result.parts.T2.rotation):poleOffset),ik=solveTwoBone(shoulder,wrist,a1,a2,pole);
+   // Keep the original shoulder/elbow rigid bone chain; only its target and hand orientation change.
++  if(task.hingeFrame){
++   const sourceUpper=V(REST['elbow'+side]).sub(start),sourceFore=h.wristRest.clone().sub(V(REST['elbow'+side])),sourceNormal=sourceUpper.clone().cross(sourceFore).normalize();
++   const directionUpper=result.parts['shoulder'+side].rotation.clone().premultiply(new T.Quaternion().setFromUnitVectors(elbow.clone().sub(shoulder).normalize(),ik.mid.clone().sub(shoulder).normalize())),directionFore=result.parts['elbow'+side].rotation.clone().premultiply(new T.Quaternion().setFromUnitVectors(h.wristRest.clone().sub(V(REST['elbow'+side])).applyQuaternion(result.parts['elbow'+side].rotation).normalize(),ik.end.clone().sub(ik.mid).normalize()));
++   const worldUpper=ik.mid.clone().sub(shoulder),worldFore=ik.end.clone().sub(ik.mid),worldNormal=worldUpper.clone().cross(worldFore).normalize();
++   result.parts['shoulder'+side].rotation.copy(basis(worldUpper,worldNormal).multiply(basis(sourceUpper,sourceNormal).invert()));
++   result.parts['elbow'+side].rotation.copy(basis(worldFore,worldNormal).multiply(basis(sourceFore,sourceNormal).invert()));
++   result.parts['shoulder'+side].rotation.copy(directionUpper.slerp(result.parts['shoulder'+side].rotation,T.MathUtils.clamp(task.hingeMix,0,1)));result.parts['elbow'+side].rotation.copy(directionFore.slerp(result.parts['elbow'+side].rotation,T.MathUtils.clamp(task.hingeMix,0,1)));
++   result.parts['elbow'+side].position.copy(ik.mid);result.joints['elbow'+side]=result.parts['elbow'+side].position;
++  }else{
+   for(const [key,from,to] of [['shoulder',elbow.clone().sub(shoulder),ik.mid.clone().sub(shoulder)],['elbow',h.wristRest.clone().sub(V(REST['elbow'+side])).applyQuaternion(result.parts['elbow'+side].rotation),ik.end.clone().sub(ik.mid)]]){const p=result.parts[key+side],delta=new T.Quaternion().setFromUnitVectors(from.normalize(),to.normalize());p.rotation.premultiply(delta);if(key==='elbow')p.position.copy(ik.mid);result.joints[key+side]=p.position;}
++  }
+   const hand=result.parts['wrist'+side];hand.position.copy(ik.end);hand.rest=h.wristRest.clone();hand.rotation.copy(rotation);result.joints['wrist'+side]=hand.position;const actual=h.palm.clone().applyMatrix4(matrixFor(hand));result.constraints.push({id:'grip'+side,error:actual.distanceTo(role.point),target:role.point.toArray(),actual:actual.toArray()});result.grip.contacts.push({side,style:role.style,target:role.point.toArray(),actual:actual.toArray(),error:actual.distanceTo(role.point),normal:role.normal.clone().normalize().toArray()});
+   const base=matrixFor(hand);for(const f of h.fingers){let parentQ=rotation.clone(),node=f.nodes[0].clone().applyMatrix4(base);const style=CURL[role.style],worldNodes=[node.clone()];
+    for(let k=0;k<f.bones.length;k++){let angle=f.index===1?(k===0?0:k===1?22:18):style[k];let turn=new T.Quaternion();if(f.index===1&&k===0&&role.style!=='strum'){const sign=side==='R'?1:-1;turn.setFromAxisAngle(h.normal,sign*24*Math.PI/180).multiply(new T.Quaternion().setFromAxisAngle(h.long,-sign*28*Math.PI/180));}else turn.setFromAxisAngle(h.across,angle*Math.PI/180);
+--- a/pose-lab.js
++++ b/pose-lab.js
+@@ -166,7 +166,7 @@
+ $('spineLevel').value=SPINE_LEVELS.includes(hash.get('spineLevel'))?hash.get('spineLevel'):'L5';
+ function renderSpine(){
+  if(!solved)return;currentSpine=observeSpine(solved,meshes);const settings=getSpineInput(),row=currentSpine.levels.find(r=>r.id===$('spineLevel').value);
+- for(const key of SPINE_KEYS){const n=settings[key];$(key+'Value').textContent=n===0?'原姿势':(key.endsWith('Twist')?(n>0?'左转 ':'右转 '):key.endsWith('Side')?(n>0?'向右 ':'向左 '):(n>0?'前屈 ':'后伸 '))+Math.abs(n)+'°';}
++ for(const key of SPINE_KEYS){const n=settings[key];const text=n===0?'原姿势':(key.endsWith('Twist')?(n>0?'左转 ':'右转 '):key.endsWith('Side')?(n>0?'向右 ':'向左 '):(n>0?'前屈 ':'后伸 '))+Math.abs(n)+'°';$(key+'Value').textContent=text;$(key+'Value').setAttribute('aria-label',$(key).getAttribute('aria-label').replace(/示意$/,'')+'：'+text);$(key).setAttribute('aria-valuetext',text);}
+  $('spineLevelInfo').textContent=row.name+(row.name.includes(row.id)?'':' '+row.id)+'：相对附加调整为零时，骨块中心移动 '+row.displacementMM.toFixed(1)+' mm，方向差 '+row.rotationDifferenceDegrees.toFixed(1)+'°。'+(row.independentRotation?'沿颈、胸、腰关节链逐节变化。':'目前跟随胸廓整体变化。');
+  const adjusted=Object.values(settings).some(Boolean),errors=solved.constraints.filter(c=>c.error>.003);
+  $('spineNotice').textContent=adjusted?'已叠加弯曲示意，原场景的支撑标记仅供位置参考，未重新求接触与反力。'+(errors.length?'当前有 '+errors.length+' 个手/足目标超出参考肢段可达范围。':''):'附加调整为零，保留当前生活姿势。可以改变时长对照任务暴露，时长本身不会改变骨骼或给出损伤等级。';
+--- /dev/null
++++ b/pose-surface-bound.js
+@@ -0,0 +1,92 @@
++import * as T from 'three';
++
++// A bounded correction of displayed vertices, only for the opt-in box pose.
++// The source positions, topology and rigid joints remain unchanged. The ratio
++// is a mesh quality guard, not a material constant or a tissue injury limit.
++const ratio=2.995,limit=.00125,passes=32;
++export function createSurfaceBound(){
++ const states=new WeakMap();
++ function prepare(g){
++  if(states.has(g))return states.get(g);
++  const n=g.attributes.position.count;
++  g.setAttribute('poseBoundOffset',new T.Float32BufferAttribute(new Float32Array(n*3),3));
++  g.setAttribute('poseBoundNormal',new T.Float32BufferAttribute(new Float32Array(n*4),4));
++  const width=1024,height=Math.ceil(n*2/width),texture=new T.DataTexture(new Float32Array(width*height*4),width,height,T.RGBAFormat,T.FloatType);texture.needsUpdate=true;
++  const state={texture,uniforms:{poseBoundTexture:{value:texture},poseBoundOn:{value:0}},active:false,dirty:[],normalDirty:[],snapshot:null,report:{active:false,correctedVertices:0,maximumCorrectionMetres:0,clinicalCalibration:false}};
++  states.set(g,state);return state;
++ }
++ function topology(g,s){
++  if(s.edges)return;
++  const p=g.attributes.position.array,n=g.attributes.position.count,ix=g.index.array,mask=new Uint8Array(n),seen=new Set(),edges=[],needed=new Set();
++  for(let i=0;i<n;i++)mask[i]=+(p[i*3+1]>.10&&p[i*3+1]<.32);
++  for(let f=0;f<ix.length;f+=3)for(let k=0;k<3;k++){
++   let a=ix[f+k],b=ix[f+(k+1)%3];if(a>b)[a,b]=[b,a];if(!mask[a]&&!mask[b])continue;
++   const key=a*n+b;if(seen.has(key))continue;seen.add(key);
++   const length=Math.hypot(p[a*3]-p[b*3],p[a*3+1]-p[b*3+1],p[a*3+2]-p[b*3+2]);
++   if(length>.001){edges.push(a,b,length);needed.add(a);needed.add(b);}
++  }
++  const edgeCounts=new Uint32Array(n);for(let j=0;j<edges.length;j+=3){edgeCounts[edges[j]]++;edgeCounts[edges[j+1]]++;}
++  const edgeStarts=new Uint32Array(n+1);for(let i=0;i<n;i++)edgeStarts[i+1]=edgeStarts[i]+edgeCounts[i];
++  const edgeCursor=edgeStarts.slice(),incidentEdges=new Uint32Array(edgeStarts[n]);for(let j=0;j<edges.length;j+=3){incidentEdges[edgeCursor[edges[j]]++]=j;incidentEdges[edgeCursor[edges[j+1]]++]=j;}
++  const counts=new Uint32Array(n);for(const v of ix)counts[v]++;
++  const starts=new Uint32Array(n+1);for(let i=0;i<n;i++)starts[i+1]=starts[i]+counts[i];
++  const cursor=starts.slice(),faces=new Uint32Array(ix.length);for(let f=0;f<ix.length;f+=3)for(let k=0;k<3;k++)faces[cursor[ix[f+k]]++]=f;
++  Object.assign(s,{edgeStarts,incidentEdges,mask,edges:new Float64Array(edges),needed:new Uint32Array([...needed]),starts,faces,original:new Float32Array(n*3),posed:new Float32Array(n*3),evaluated:new Uint8Array(n)});
++ }
++ function clear(g,s){
++  const offset=g.attributes.poseBoundOffset,normal=g.attributes.poseBoundNormal;
++  for(const i of s.dirty){offset.setXYZ(i,0,0,0);s.texture.image.data.fill(0,i*8,i*8+4);}
++  for(const i of s.normalDirty){normal.setXYZW(i,0,0,0,0);s.texture.image.data.fill(0,i*8+4,i*8+8);}
++  if(s.dirty.length)offset.needsUpdate=true;if(s.normalDirty.length)normal.needsUpdate=true;
++  if(s.dirty.length||s.normalDirty.length)s.texture.needsUpdate=true;s.dirty=[];s.normalDirty=[];
++ }
++ function update(g,enabled,matrices,write){
++  if(!g)return;const s=prepare(g);enabled=enabled&&!!g.userData.nativeFemale;
++  if(!enabled){if(s.active)clear(g,s);s.active=false;s.uniforms.poseBoundOn.value=0;s.snapshot=null;s.report={active:false,correctedVertices:0,maximumCorrectionMetres:0,clinicalCalibration:false};return;}
++  const palette=matrices.flatMap(m=>m.elements);
++  if(s.active&&s.snapshot?.length===palette.length&&palette.every((v,i)=>v===s.snapshot[i]))return;
++  const start=performance.now();topology(g,s);clear(g,s);s.active=true;s.snapshot=palette;s.evaluated.fill(0);
++  const {original:o,posed:p,edges:e,mask,needed}=s;
++  const evaluate=i=>{if(s.evaluated[i])return;write(i,o);p[i*3]=o[i*3];p[i*3+1]=o[i*3+1];p[i*3+2]=o[i*3+2];s.evaluated[i]=1;};
++  for(const i of needed)evaluate(i);
++  // Process only initially stretched edges and neighbours of moved vertices.
++  // A min-heap retains the original ascending edge order in every pass. Newly
++  // affected earlier edges wait for the next pass, exactly as in the full scan.
++  let candidates=[],iterations=0,visitedEdges=0;const queued=new Uint8Array(e.length/3),nextMark=new Uint8Array(e.length/3);
++  for(let j=0;j<e.length;j+=3){const a=e[j]*3,b=e[j+1]*3;if(Math.hypot(p[b]-p[a],p[b+1]-p[a+1],p[b+2]-p[a+2])-e[j+2]*ratio>1e-7)candidates.push(j);}
++  for(let pass=0;pass<passes;pass++){
++   const heap=[],next=[];queued.fill(0);nextMark.fill(0);let touched=0;
++   const push=j=>{const k=j/3;if(queued[k])return;queued[k]=1;let i=heap.length;heap.push(j);while(i){const parent=(i-1)>>1;if(heap[parent]<=j)break;heap[i]=heap[parent];i=parent;}heap[i]=j;};
++   const pop=()=>{const first=heap[0],last=heap.pop();if(heap.length){let i=0;while(i*2+1<heap.length){let child=i*2+1;if(child+1<heap.length&&heap[child+1]<heap[child])child++;if(heap[child]>=last)break;heap[i]=heap[child];i=child;}heap[i]=last;}queued[first/3]=0;return first;};
++   for(const j of candidates)push(j);
++   while(heap.length){const j=pop();visitedEdges++;const a=e[j],b=e[j+1],dx=p[b*3]-p[a*3],dy=p[b*3+1]-p[a*3+1],dz=p[b*3+2]-p[a*3+2],current=Math.hypot(dx,dy,dz),excess=current-e[j+2]*ratio;
++    if(excess<=1e-7)continue;const scale=excess/current/(mask[a]+mask[b]);
++    for(let endpoint=0;endpoint<2;endpoint++){
++     const v=endpoint?b:a;if(!mask[v])continue;const sign=endpoint?-1:1;
++     p[v*3]+=sign*dx*scale;p[v*3+1]+=sign*dy*scale;p[v*3+2]+=sign*dz*scale;
++     const x=p[v*3]-o[v*3],y=p[v*3+1]-o[v*3+1],z=p[v*3+2]-o[v*3+2],distance=Math.hypot(x,y,z);
++     if(distance>limit){p[v*3]=o[v*3]+x*limit/distance;p[v*3+1]=o[v*3+1]+y*limit/distance;p[v*3+2]=o[v*3+2]+z*limit/distance;}
++     for(let k=s.edgeStarts[v];k<s.edgeStarts[v+1];k++){const neighbour=s.incidentEdges[k];if(!nextMark[neighbour/3]){nextMark[neighbour/3]=1;next.push(neighbour);}if(neighbour>j)push(neighbour);}
++    }touched++;
++   }iterations++;if(!touched)break;candidates=next;
++  }
++  let maximum=0;const normalVertices=new Set(),ix=g.index.array,offset=g.attributes.poseBoundOffset,normal=g.attributes.poseBoundNormal;
++  for(const i of needed){const x=p[i*3]-o[i*3],y=p[i*3+1]-o[i*3+1],z=p[i*3+2]-o[i*3+2],distance=Math.hypot(x,y,z);if(!distance)continue;
++   maximum=Math.max(maximum,distance);s.dirty.push(i);offset.setXYZ(i,x,y,z);s.texture.image.data.set([x,y,z,0],i*8);
++   for(let j=s.starts[i];j<s.starts[i+1];j++){const f=s.faces[j];normalVertices.add(ix[f]);normalVertices.add(ix[f+1]);normalVertices.add(ix[f+2]);}
++  }
++  // Recompute area-weighted normals for affected vertices and their one-ring.
++  // Unchanged neighbourhoods keep the production skinning normals.
++  for(const i of normalVertices){let nx=0,ny=0,nz=0;
++   for(let j=s.starts[i];j<s.starts[i+1];j++){const f=s.faces[j],a=ix[f],b=ix[f+1],c=ix[f+2];evaluate(a);evaluate(b);evaluate(c);
++    const ux=p[b*3]-p[a*3],uy=p[b*3+1]-p[a*3+1],uz=p[b*3+2]-p[a*3+2],vx=p[c*3]-p[a*3],vy=p[c*3+1]-p[a*3+1],vz=p[c*3+2]-p[a*3+2];
++    nx+=uy*vz-uz*vy;ny+=uz*vx-ux*vz;nz+=ux*vy-uy*vx;
++   }const length=Math.hypot(nx,ny,nz);if(length){normal.setXYZW(i,nx/length,ny/length,nz/length,1);s.texture.image.data.set([nx/length,ny/length,nz/length,1],i*8+4);s.normalDirty.push(i);}
++  }
++  if(s.dirty.length)offset.needsUpdate=true;if(s.normalDirty.length)normal.needsUpdate=true;
++  s.uniforms.poseBoundOn.value=+(s.dirty.length>0);if(s.dirty.length||s.normalDirty.length)s.texture.needsUpdate=true;
++  s.report={active:true,correctedVertices:s.dirty.length,normalVertices:s.normalDirty.length,maximumCorrectionMetres:maximum,maximumAllowedCorrectionMetres:limit,edgeRatioGuard:ratio,passes:iterations,visitedEdges,solveMethod:'ascending active-edge queue',edges:e.length/3,computeMilliseconds:performance.now()-start,sourceVerticesUnchanged:true,clinicalCalibration:false};
++ }
++ function vertex(g,i,out){const s=states.get(g);if(s?.active){const a=g.attributes.poseBoundOffset.array;out.x+=a[i*3];out.y+=a[i*3+1];out.z+=a[i*3+2];}return out;}
++ return {prepare,update,vertex,uniforms:g=>prepare(g).uniforms,audit:g=>states.get(g)?.report||{active:false,clinicalCalibration:false}};
++}
+--- a/pose-tissues.js
++++ b/pose-tissues.js
+@@ -47,7 +47,7 @@
+   if(models.get(which)?.skin)return models.get(which);const maleDoc=await doc('../fullbody-tcm-v11/assets/surface.glb');maleDoc.scene.updateMatrixWorld(true);const maleNodes=[];maleDoc.scene.traverse(n=>{if(n.isMesh)maleNodes.push(n);});
+   const file=which==='female'?'../fullbody-tcm-v12/assets/female/surface.glb':'../fullbody-tcm-v11/assets/surface.glb',bodyDoc=await doc(file);bodyDoc.scene.updateMatrixWorld(true);const nodes=[],geometries=[];bodyDoc.scene.traverse(n=>{if(n.isMesh){const g=bake(n,which==='female',true),temp=new T.Mesh(g);nodes.push(temp);geometries.push(g);}});
+   const g=meters(mergeSurfaceGeometry(geometries));g.userData.nativeFemale=which==='female';const bvh=new MeshBVH(g,{maxLeafTris:12}),projector=createSkinProjector(nodes,{sex:which,standardized:which==='female',templateMeshes:maleNodes});
+-  await loadSurfaceBinding(g,which);binding.prepareSurface(g);binding.prepareSpine(g);const skin=mesh(g,new T.MeshStandardMaterial({color:color.surface,roughness:.86,side:T.DoubleSide}),false,true,true);binding.skinMaterial(skin.material);skin.applyBoneTransform=(i,v)=>binding.vertex(g,i,v);skin.visible=false;
++  await loadSurfaceBinding(g,which);binding.prepareSurface(g);binding.prepareSpine(g);const skin=mesh(g,new T.MeshStandardMaterial({color:color.surface,roughness:.86,side:T.DoubleSide}),false,true,true);binding.skinMaterial(skin.material,g);skin.applyBoneTransform=(i,v)=>binding.vertex(g,i,v);skin.visible=false;
+   const model=models.get(which)||{layers:new Map(),ink:new Map()};Object.assign(model,{skin,bvh,projector,nodes,geometries,provenance:which==='female'?'HRA女性原生体表；共用教学比例配准，未个体校准':'Z-Anatomy男性分区体表；肩部接缝随动仍待修正'});models.set(which,model);return model;
+  }
+  function anchor(model,point,aim=null){const hit=model.bvh.closestPointToPoint(point);if(!hit)throw Error('无法绑定体表三角面');const g=model.skin.geometry,i=hit.faceIndex*3,indices=[g.index.getX(i),g.index.getX(i+1),g.index.getX(i+2)],v=indices.map(j=>new T.Vector3().fromBufferAttribute(g.attributes.position,j)),bary=new T.Vector3();T.Triangle.getBarycoord(hit.point,...v,bary);const normal=v[1].clone().sub(v[0]).cross(v[2].clone().sub(v[0])).normalize();return {vertices:indices,bary:bary.toArray(),flip:!!aim&&normal.dot(aim)<0,rest:hit.point.toArray(),distance:hit.distance};}
+@@ -108,7 +108,7 @@
+   try{const key=previous.sex+'|'+previous.view+'|'+previous.channel+'|'+previous.side;let task=pending.get(key);if(!task){task=(async()=>{if(previous.sex==='female')await ensurePelvis('female');if(previous.view==='surface')return ensureInk(previous.sex,previous.channel,previous.side);if(previous.view!=='bones')await ensureLayer(previous.sex,previous.view);return null;})();pending.set(key,task);task.finally(()=>pending.delete(key)).catch(()=>{});}const ink=await task;if(ticket!==epoch)return;({sex,view,channel,side}=previous);if(options.pointsOn!==undefined)pointsOn=options.pointsOn;if(options.linesOn!==undefined)linesOn=options.linesOn;if(options.namesOn!==undefined)namesOn=options.namesOn;activeInk=ink;activePoints=ink?.points||[];activeRoutes=ink?.records||[];currentStructure=null;busy=false;applyView();}
+   catch(e){if(ticket!==epoch)return;busy=false;onStatus('读取失败，可重试');throw e;}
+  }
+- function update(result){if(!result)return;currentResult=result;binding.update(result);for(let i=0;i<bones.length;i++)bones[i].matrix.copy(binding.matrices[i]);root.updateMatrixWorld(true);skeleton.update();for(const model of models.values()){if(model.skin)model.skin.boundingSphere=new T.Sphere(result.joints.pelvis.clone(),3);for(const nodes of model.layers.values())for(const n of nodes)n.boundingSphere=new T.Sphere(result.joints.pelvis.clone(),3);}const model=models.get(sex);model?.pelvis?.forEach(n=>{n.matrix.copy(binding.matrices[binding.ids.indexOf('pelvis')]);n.matrixWorld.copy(n.matrix);});
++ function update(result){if(!result)return;currentResult=result;binding.update(result);binding.updateSurfaceBound(models.get(sex)?.skin?.geometry);for(let i=0;i<bones.length;i++)bones[i].matrix.copy(binding.matrices[i]);root.updateMatrixWorld(true);skeleton.update();for(const model of models.values()){if(model.skin)model.skin.boundingSphere=new T.Sphere(result.joints.pelvis.clone(),3);for(const nodes of model.layers.values())for(const n of nodes)n.boundingSphere=new T.Sphere(result.joints.pelvis.clone(),3);}const model=models.get(sex);model?.pelvis?.forEach(n=>{n.matrix.copy(binding.matrices[binding.ids.indexOf('pelvis')]);n.matrixWorld.copy(n.matrix);});
+   if(view!=='surface'||!activeInk)return;if(!activePoints.some(p=>p.code===selectedCode&&p.side===selectedSide)){const p=activePoints.find(p=>p.code===selectedCode)||activePoints[0];if(p){selectedCode=p.code;selectedSide=p.side;}}const g=model.skin.geometry,positions=activeInk.mesh.geometry.attributes.position,v=new T.Vector3();
+   for(let i=0;i<positions.count;i++){v.copy(posedTriangle(binding,g,activeInk.inkAnchors[i],.00015).point);positions.setXYZ(i,v.x,v.y,v.z);}positions.needsUpdate=true;
+   const tex=activeInk.mesh.material.uniforms.inkData.value,raw=tex.image.data;for(let i=0;i<activeInk.primitiveAnchors.length;i++){v.copy(posedTriangle(binding,g,activeInk.primitiveAnchors[i],.00015).point);raw[i*4]=v.x;raw[i*4+1]=v.y;raw[i*4+2]=v.z;}tex.needsUpdate=true;
+@@ -123,6 +123,6 @@
+  function select(code,physicalSide){selectedCode=code;if(physicalSide)selectedSide=physicalSide;update(currentResult);onChange();return activePoints.find(p=>p.code===code&&p.side===selectedSide);}
+  function highlightStructure(node,on=highlightOn){currentStructure=node;highlightOn=!!on;for(const nodes of models.get(sex)?.layers.values()||[])for(const n of nodes){const selected=n===node,fade=highlightOn&&node&&!selected;n.material.transparent=!!fade;n.material.opacity=fade?.18:1;n.material.depthWrite=!fade;n.material.emissive.set(highlightOn&&selected?'#71382d':'#000000');n.material.emissiveIntensity=highlightOn&&selected?.4:0;n.material.needsUpdate=true;}onChange();}
+  function structureBounds(node){const b=new T.Box3(),p=new T.Vector3(),g=node.geometry;for(let i=0;i<g.attributes.position.count;i+=Math.max(1,Math.floor(g.attributes.position.count/5000)))b.expandByPoint(binding.vertex(g,i,p));return b;}
+- function audit(){const model=models.get(sex);const sample=model?.skin?[0,Math.floor(model.skin.geometry.attributes.position.count/2),model.skin.geometry.attributes.position.count-1].map(i=>binding.vertex(model.skin.geometry,i).toArray()):[];return {sex,view,channel,side,vesselFilter,detailsOn,busy,preparation:preparationMetrics.get(sex+'|'+view)||null,pointsOn,linesOn,namesOn,highlightOn,structureId:currentStructure?.userData.info.id||null,provenance:model?.provenance||null,femaleFrame:sex==='female'?bodyFrameInfo():null,nativePelvis:model?.pelvis?.length||0,loadedLayers:Object.fromEntries([...(model?.layers||[])].map(([key,nodes])=>[key,{parts:nodes.length,visible:nodes.filter(n=>n.visible).length,origins:[...new Set(nodes.map(n=>n.userData.origin))]}])),legPartition:model?.skin?.geometry.userData.legPartition||null,skinSample:sample,skinVertices:model?.skin?.geometry.attributes.position.count||0,skinTriangles:model?.skin?model.skin.geometry.index.count/3:0,selectedCode,selectedSide,points:activePoints.map(p=>({code:p.code,side:p.side,rest:p.attached.rest,posed:p.posed?.toArray(),triangle:p.attached.vertices,bary:p.attached.bary,restBindingError:p.attached.distance})),ink:activeInk?.stats||null,skinDeviceContact:{active:view==='surface'&&currentResult?.grip?.type==='phone',method:'shallow projection to phone shell',maximumCorrectionMetres:.002,clearanceMetres:.00005,sourceVerticesUnchanged:true,internalForce:null},clinicalCalibration:false,internalTissueForces:null};}
++ function audit(){const model=models.get(sex);const sample=model?.skin?[0,Math.floor(model.skin.geometry.attributes.position.count/2),model.skin.geometry.attributes.position.count-1].map(i=>binding.vertex(model.skin.geometry,i).toArray()):[];return {sex,view,channel,side,vesselFilter,detailsOn,busy,preparation:preparationMetrics.get(sex+'|'+view)||null,pointsOn,linesOn,namesOn,highlightOn,structureId:currentStructure?.userData.info.id||null,provenance:model?.provenance||null,femaleFrame:sex==='female'?bodyFrameInfo():null,nativePelvis:model?.pelvis?.length||0,loadedLayers:Object.fromEntries([...(model?.layers||[])].map(([key,nodes])=>[key,{parts:nodes.length,visible:nodes.filter(n=>n.visible).length,origins:[...new Set(nodes.map(n=>n.userData.origin))]}])),legPartition:model?.skin?.geometry.userData.legPartition||null,skinSample:sample,skinVertices:model?.skin?.geometry.attributes.position.count||0,skinTriangles:model?.skin?model.skin.geometry.index.count/3:0,selectedCode,selectedSide,points:activePoints.map(p=>({code:p.code,side:p.side,rest:p.attached.rest,posed:p.posed?.toArray(),triangle:p.attached.vertices,bary:p.attached.bary,restBindingError:p.attached.distance})),ink:activeInk?.stats||null,surfaceDisplayBound:binding.surfaceBoundAudit(model?.skin?.geometry),skinDeviceContact:{active:view==='surface'&&currentResult?.grip?.type==='phone',method:'shallow projection to phone shell',maximumCorrectionMetres:.002,clearanceMetres:.00005,sourceVerticesUnchanged:true,internalForce:null},clinicalCalibration:false,internalTissueForces:null};}
+  return {set,update,pick,visible,select,highlightStructure,structureBounds,audit,setDetails:on=>{detailsOn=!!on;applyView();},setVesselFilter:filter=>{vesselFilter=validVesselFilter(filter);applyView();},structures:()=>models.get(sex)?.layers.get(view)?.filter(n=>n.visible)||[],points:()=>activePoints,selected:()=>activePoints.find(p=>p.code===selectedCode&&p.side===selectedSide),state:()=>({sex,view,channel,side,vesselFilter,detailsOn,highlightOn,structureId:currentStructure?.userData.info.id||'',pointsOn,linesOn,namesOn,selectedCode,selectedSide}),routes:()=>activeRoutes,provenance:()=>models.get(sex)?.provenance||null};
+ }
+--- a/pose.html
++++ b/pose.html
+@@ -1,5 +1,5 @@
+ <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>百种生活姿势 · 人体研习室</title><link rel="stylesheet" href="pose.css?v=57.0.0&layout=3"></head><body>
+-<header><a href="index.html">← 解剖与经穴</a><strong>生活姿势与身体负担</strong><span>V57 · 观察与遮挡修复</span><button id="atlasButton">姿势图册</button></header>
++<header><a href="index.html">← 解剖与经穴</a><strong>生活姿势与身体负担</strong><span>V57 · 握箱接触与体表</span><button id="atlasButton">姿势图册</button></header>
+ <div class="mobilePicker"><select id="mobilePose" aria-label="选择生活姿势"></select><button id="analysisJump">看分析 ↓</button></div>
+ <main><aside id="catalogPanel"><h1>从生活场景开始</h1><label class="searchLabel"><input id="search" type="search" placeholder="搜索：侧卧、久站、弯腰…" aria-label="搜索姿势"></label><label>场景分类<select id="category"></select></label><p id="catalogCount" class="muted"></p><div id="poseList"></div><p class="muted catalogFoot">每项是不同动作或支撑条件。姿势为成人参考骨架示意，不代表个体活动范围。</p></aside>
+ <section id="stage"><div class="stageHeading"><div><small id="sceneCategory"></small><h2 id="sceneTitle">正在准备…</h2><div class="bodyControls"><label>人体<select id="poseSex" aria-label="选择人体模型"><option value="male">男性参考</option><option value="female">女性参考</option></select></label><label>看哪一层<select id="poseView" aria-label="选择观察结构"><option value="bones">骨架</option><option value="surface">皮肤 · 经络 · 穴位</option><option value="organs">内脏器官</option><option value="nerves">神经</option><option value="vessels">动静脉</option></select></label></div></div><span id="modelStatus" role="status">加载骨架</span></div><div id="viewport"><div id="labelLayer" aria-hidden="true"></div></div><div class="stageState"><label id="phaseRow">动作阶段 <output id="phaseName"></output><input id="phase" type="range" min="0" max="100" value="0" aria-label="动作阶段"></label><div><button id="play">播放</button><button id="comparePreset">对照相关姿势</button><button id="pin">加入对比</button></div></div><div class="viewTools"><button id="rotate" aria-pressed="true">旋转</button><button id="pan" aria-pressed="false">平移</button><button id="zoomOut">− 缩小</button><button id="zoomIn">＋ 放大</button><button id="frame">完整显示</button><button id="gripFocus" hidden>看手部接触</button><button id="front">正面</button><button id="side">侧面</button><button id="top">俯视</button></div><div class="stageLegend"><span class="supportDot">●</span> 支撑区域 <span class="gravityDot">↓</span> 重力方向　<span id="viewDirection"></span></div><p class="modelNote">姿势与组织随动示意 · 形状、支撑标记不代表内部受力</p></section>

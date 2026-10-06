@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createPointerIntent} from '../fullbody-tcm-v57/pose-pointer-intent.js';
+const event=(overrides={})=>({pointerId:1,clientX:100,clientY:100,button:0,isPrimary:true,...overrides});
+const rows=[];
+function scenario(name,test){test(createPointerIntent());rows.push({name,passed:true});}
+scenario('Quiet primary tap selects',g=>{g.down(event());assert.equal(g.up(event({clientX:102})),true);});
+scenario('Small tap jitter selects',g=>{g.down(event());g.move(event({clientY:103}));assert.equal(g.up(event()),true);});
+scenario('Drag does not select',g=>{g.down(event());g.move(event({clientX:120}));assert.equal(g.up(event({clientX:120})),false);});
+scenario('Drag returning to origin does not select',g=>{g.down(event());g.move(event({clientX:160}));g.move(event());assert.equal(g.up(event()),false);});
+scenario('Right-button pan does not select',g=>{g.down(event({button:2}));assert.equal(g.up(event({button:2})),false);});
+scenario('Middle-button zoom does not select',g=>{g.down(event({button:1}));assert.equal(g.up(event({button:1})),false);});
+for(const modifier of ['ctrlKey','shiftKey','metaKey','altKey'])scenario(modifier+' navigation does not select',g=>{g.down(event({[modifier]:true}));assert.equal(g.up(event()),false);});
+scenario('Both fingers of a pinch are ignored for selection',g=>{g.down(event());g.down(event({pointerId:2,clientX:150,isPrimary:false}));assert.equal(g.up(event()),false);assert.equal(g.up(event({pointerId:2,clientX:150,isPrimary:false})),false);});
+scenario('Pinch ending back at the start does not select',g=>{g.down(event());g.down(event({pointerId:2,clientX:150,isPrimary:false}));g.move(event({clientX:70}));g.move(event({pointerId:2,clientX:180,isPrimary:false}));assert.equal(g.up(event({pointerId:2,clientX:150,isPrimary:false})),false);assert.equal(g.up(event()),false);});
+scenario('Cancelled pointer does not select',g=>{g.down(event());g.cancel(event());assert.equal(g.up(event()),false);});
+scenario('Cancelling one pinch finger does not reactivate the other',g=>{g.down(event());g.down(event({pointerId:2,isPrimary:false}));g.cancel(event({pointerId:2}));assert.equal(g.up(event()),false);});
+scenario('Focus or anatomy change clears the old gesture',g=>{g.down(event());g.clear();assert.equal(g.up(event()),false);});
+scenario('Unmatched pointer-up does not select',g=>assert.equal(g.up(event()),false));
+scenario('New tap after pinch works',g=>{g.down(event());g.down(event({pointerId:2,isPrimary:false}));g.up(event());g.up(event({pointerId:2,isPrimary:false}));g.down(event());assert.equal(g.up(event()),true);});
+scenario('Secondary pointer without a primary is ignored',g=>{g.down(event({isPrimary:false}));assert.equal(g.up(event({isPrimary:false})),false);});
+const report={version:'57.0.0',cases:rows.length,rows,browserTouchGestureVerified:false};fs.writeFileSync('atlas57-tools/pointer-verification.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));

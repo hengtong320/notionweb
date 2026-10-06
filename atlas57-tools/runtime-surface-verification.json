@@ -1,0 +1,1650 @@
+{
+  "passed": true,
+  "states": 62,
+  "measurement": "Runtime display kernel versus independently applied offline bounded-edge oracle, all source vertices; normal lengths; repeated-cache use; inactive-state cleanup; source hashes unchanged",
+  "rows": [
+    {
+      "sex": "male",
+      "variant": "candidate-default",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.24854200000004312,
+      "cachedMilliseconds": 0.016458000000056927,
+      "maximumPositionDifferenceMetres": 6.136292668608737e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-default",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 77.43762500000003,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 77.50879200000008,
+      "cachedMilliseconds": 0.11579200000005585,
+      "maximumPositionDifferenceMetres": 6.119506095952606e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-lumbarFlex-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.015750000000025466,
+      "cachedMilliseconds": 0.012958000000026004,
+      "maximumPositionDifferenceMetres": 6.098872934559539e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-lumbarFlex-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 7.638249999999971,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 7.671041999999943,
+      "cachedMilliseconds": 0.04558399999996254,
+      "maximumPositionDifferenceMetres": 6.123836087394533e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-lumbarFlex12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.009540999999899213,
+      "cachedMilliseconds": 0.010582999999769527,
+      "maximumPositionDifferenceMetres": 6.412883357632301e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-lumbarFlex12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.00032268504002925635,
+        "corrected": 48,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 48,
+        "normalVertices": 211,
+        "maximumCorrectionMetres": 0.00032268504002925635,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 2,
+        "visitedEdges": 413,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 13.067625000000135,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 13.103207999999995,
+      "cachedMilliseconds": 0.0463329999997768,
+      "maximumPositionDifferenceMetres": 6.595325543385122e-8,
+      "maximumNormalLengthError": 3.321466124361905e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-lumbarSide-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.007708999999977095,
+      "cachedMilliseconds": 0.005540999999993801,
+      "maximumPositionDifferenceMetres": 6.150753443607562e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-lumbarSide-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.000262550151987938,
+        "corrected": 14,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 14,
+        "normalVertices": 70,
+        "maximumCorrectionMetres": 0.000262550151987938,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 2,
+        "visitedEdges": 119,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 12.510416999999961,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 12.544541000000208,
+      "cachedMilliseconds": 0.07583299999987503,
+      "maximumPositionDifferenceMetres": 6.150564299184949e-8,
+      "maximumNormalLengthError": 3.5827300681745555e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-lumbarSide12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.00920799999994415,
+      "cachedMilliseconds": 0.005415999999968335,
+      "maximumPositionDifferenceMetres": 6.113893020931183e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-lumbarSide12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.0001216954464176116,
+        "corrected": 10,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 10,
+        "normalVertices": 43,
+        "maximumCorrectionMetres": 0.0001216954464176116,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 2,
+        "visitedEdges": 86,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 7.027207999999973,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 7.059582999999748,
+      "cachedMilliseconds": 0.0690839999997479,
+      "maximumPositionDifferenceMetres": 6.138970675962704e-8,
+      "maximumNormalLengthError": 3.927277425486153e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-thoracicFlex-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.007583000000067841,
+      "cachedMilliseconds": 0.009332999999969616,
+      "maximumPositionDifferenceMetres": 6.110994917060471e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-thoracicFlex-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 9.645958000000064,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 9.69662500000004,
+      "cachedMilliseconds": 0.03308299999980591,
+      "maximumPositionDifferenceMetres": 6.123858466292492e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-thoracicFlex12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.01125000000001819,
+      "cachedMilliseconds": 0.005458000000089669,
+      "maximumPositionDifferenceMetres": 6.108398631470654e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-thoracicFlex12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.00004224384324036115,
+        "corrected": 8,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 8,
+        "normalVertices": 40,
+        "maximumCorrectionMetres": 0.00004224384324036115,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 2,
+        "visitedEdges": 71,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 8.933709000000363,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 8.973625000000084,
+      "cachedMilliseconds": 0.032709000000068045,
+      "maximumPositionDifferenceMetres": 6.64909339639577e-8,
+      "maximumNormalLengthError": 3.11512895478927e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-thoracicSide-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.007166999999753898,
+      "cachedMilliseconds": 0.005417000000306871,
+      "maximumPositionDifferenceMetres": 6.12569825243134e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-thoracicSide-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 6.519416999999976,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 6.559416999999939,
+      "cachedMilliseconds": 0.026874999999563443,
+      "maximumPositionDifferenceMetres": 6.155848559649464e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-thoracicSide12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.006666999999652035,
+      "cachedMilliseconds": 0.007666999999855761,
+      "maximumPositionDifferenceMetres": 6.181378391678264e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-thoracicSide12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 6.213999999999942,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 6.246208999999908,
+      "cachedMilliseconds": 0.03487500000028376,
+      "maximumPositionDifferenceMetres": 6.129822743468058e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-thoracicTwist-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.013625000000502041,
+      "cachedMilliseconds": 0.009041000000252097,
+      "maximumPositionDifferenceMetres": 6.126634140815506e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-thoracicTwist-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.00008196811700448441,
+        "corrected": 4,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 4,
+        "normalVertices": 20,
+        "maximumCorrectionMetres": 0.00008196811700448441,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 2,
+        "visitedEdges": 35,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 9.242500000000291,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 9.273208000000523,
+      "cachedMilliseconds": 0.035542000000532425,
+      "maximumPositionDifferenceMetres": 6.129349501636555e-8,
+      "maximumNormalLengthError": 2.744295124479379e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-thoracicTwist12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.007333000000471657,
+      "cachedMilliseconds": 0.006124999999883585,
+      "maximumPositionDifferenceMetres": 6.110618748620784e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-thoracicTwist12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.00006514448750629092,
+        "corrected": 8,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 8,
+        "normalVertices": 33,
+        "maximumCorrectionMetres": 0.00006514448750629092,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 2,
+        "visitedEdges": 70,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 5.978417000000263,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 6.012791999999536,
+      "cachedMilliseconds": 0.029832999999598542,
+      "maximumPositionDifferenceMetres": 6.128819400998476e-8,
+      "maximumNormalLengthError": 2.2174798108842708e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-cervicalFlex-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.00724999999965803,
+      "cachedMilliseconds": 0.006125000000793079,
+      "maximumPositionDifferenceMetres": 6.110598718380591e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-cervicalFlex-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 9.238790999999765,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 9.273667000000387,
+      "cachedMilliseconds": 0.030499999999847205,
+      "maximumPositionDifferenceMetres": 6.129527313067796e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-cervicalFlex12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.006459000000177184,
+      "cachedMilliseconds": 0.0058330000001660665,
+      "maximumPositionDifferenceMetres": 6.124238327115947e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-cervicalFlex12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 5.956790999999612,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 5.988292000000001,
+      "cachedMilliseconds": 0.0310829999998532,
+      "maximumPositionDifferenceMetres": 6.124165315875189e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-cervicalSide-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.005500000000211003,
+      "cachedMilliseconds": 0.005957999999736785,
+      "maximumPositionDifferenceMetres": 6.118674240949282e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-cervicalSide-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 5.8897079999997,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 5.924958000000515,
+      "cachedMilliseconds": 0.02945799999997689,
+      "maximumPositionDifferenceMetres": 6.137980973708252e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-cervicalSide12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.006792000000132248,
+      "cachedMilliseconds": 0.005250000000160071,
+      "maximumPositionDifferenceMetres": 6.120848201611503e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-cervicalSide12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 8.93316700000014,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 8.97295800000029,
+      "cachedMilliseconds": 0.03654199999982666,
+      "maximumPositionDifferenceMetres": 6.128372276615614e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-combined--12--12--12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.006624999999985448,
+      "cachedMilliseconds": 0.004249999999956344,
+      "maximumPositionDifferenceMetres": 6.129125491337192e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-combined--12--12--12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 6.142917000000125,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 6.17383400000017,
+      "cachedMilliseconds": 0.028374999999869033,
+      "maximumPositionDifferenceMetres": 6.131421887575018e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-combined--12--12-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.010499999999410647,
+      "cachedMilliseconds": 0.005915999999160704,
+      "maximumPositionDifferenceMetres": 6.1231583297529e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-combined--12--12-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 6.457499999999527,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 6.4953749999995125,
+      "cachedMilliseconds": 0.02883300000030431,
+      "maximumPositionDifferenceMetres": 6.101947668973684e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-combined--12-12--12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.007458000000042375,
+      "cachedMilliseconds": 0.004667000000154076,
+      "maximumPositionDifferenceMetres": 6.141447079150836e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-combined--12-12--12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 9.655457999999271,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 9.68958400000065,
+      "cachedMilliseconds": 0.04383299999972223,
+      "maximumPositionDifferenceMetres": 6.15884724308755e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-combined--12-12-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.006083999999646039,
+      "cachedMilliseconds": 0.005709000000024389,
+      "maximumPositionDifferenceMetres": 6.114297627408608e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-combined--12-12-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0,
+        "corrected": 0,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 0,
+        "normalVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 1,
+        "visitedEdges": 0,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 6.174165999999786,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 6.2100829999999405,
+      "cachedMilliseconds": 0.02933400000074471,
+      "maximumPositionDifferenceMetres": 6.136657785022494e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-combined-12--12--12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.00616600000012113,
+      "cachedMilliseconds": 0.008458999999675143,
+      "maximumPositionDifferenceMetres": 6.514330796292076e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-combined-12--12--12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.00024275825437729238,
+        "corrected": 16,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 16,
+        "normalVertices": 78,
+        "maximumCorrectionMetres": 0.00024275825437729238,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 2,
+        "visitedEdges": 143,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 12.516125000000102,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 12.547833000000537,
+      "cachedMilliseconds": 0.04187499999989086,
+      "maximumPositionDifferenceMetres": 6.560958232235658e-8,
+      "maximumNormalLengthError": 3.0319924348987115e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-combined-12--12-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.00687500000003638,
+      "cachedMilliseconds": 0.005583000000115135,
+      "maximumPositionDifferenceMetres": 6.456692047066313e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-combined-12--12-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.00021003745700273177,
+        "corrected": 18,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 18,
+        "normalVertices": 78,
+        "maximumCorrectionMetres": 0.00021003745700273177,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 2,
+        "visitedEdges": 153,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 6.55145900000025,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 6.57916699999987,
+      "cachedMilliseconds": 0.02979200000027049,
+      "maximumPositionDifferenceMetres": 6.548556405838322e-8,
+      "maximumNormalLengthError": 3.253209346354424e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-combined-12-12--12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.006999999999607098,
+      "cachedMilliseconds": 0.004791999999724794,
+      "maximumPositionDifferenceMetres": 6.341290549746786e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-combined-12-12--12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.00044156715842715255,
+        "corrected": 118,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 118,
+        "normalVertices": 413,
+        "maximumCorrectionMetres": 0.00044156715842715255,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 8,
+        "visitedEdges": 1035,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 6.494332999999642,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 6.526832999999897,
+      "cachedMilliseconds": 0.027124999999614374,
+      "maximumPositionDifferenceMetres": 6.649454273734826e-8,
+      "maximumNormalLengthError": 3.266043746563696e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-combined-12-12-12",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.00687500000003638,
+      "cachedMilliseconds": 0.008583000000726315,
+      "maximumPositionDifferenceMetres": 6.499468579376453e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-combined-12-12-12",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.0004647260754241913,
+        "corrected": 120,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 120,
+        "normalVertices": 425,
+        "maximumCorrectionMetres": 0.0004647260754241913,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 8,
+        "visitedEdges": 1265,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 10.861166000000594,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 10.893833000000086,
+      "cachedMilliseconds": 0.026375000000371074,
+      "maximumPositionDifferenceMetres": 6.575409279576643e-8,
+      "maximumNormalLengthError": 3.6921180113225205e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-all-corner-13",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.00858299999981682,
+      "cachedMilliseconds": 0.003208999999515072,
+      "maximumPositionDifferenceMetres": 6.535120029267131e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-all-corner-13",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.0012498472683218763,
+        "corrected": 361,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 361,
+        "normalVertices": 711,
+        "maximumCorrectionMetres": 0.0012498472683218763,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 32,
+        "visitedEdges": 17749,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 13.10437499999989,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 13.139625000000706,
+      "cachedMilliseconds": 0.06908300000031886,
+      "maximumPositionDifferenceMetres": 6.523227890675655e-8,
+      "maximumNormalLengthError": 4.1102205194931685e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-all-corner-23",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.005583000000115135,
+      "cachedMilliseconds": 0.004667000000154076,
+      "maximumPositionDifferenceMetres": 6.391543689484066e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-all-corner-23",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.0011822046926045677,
+        "corrected": 435,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 435,
+        "normalVertices": 810,
+        "maximumCorrectionMetres": 0.0011822046926045677,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 32,
+        "visitedEdges": 23586,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 11.2015420000007,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 11.232249999999112,
+      "cachedMilliseconds": 0.06116699999984121,
+      "maximumPositionDifferenceMetres": 6.602428023547012e-8,
+      "maximumNormalLengthError": 3.806107151671512e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-all-corner-31",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.004957999999533058,
+      "cachedMilliseconds": 0.003416999999899417,
+      "maximumPositionDifferenceMetres": 6.328618585163112e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-all-corner-31",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.0011232885025682755,
+        "corrected": 362,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 362,
+        "normalVertices": 683,
+        "maximumCorrectionMetres": 0.0011232885025682755,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 32,
+        "visitedEdges": 17654,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 12.078332999999475,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 12.109000000000378,
+      "cachedMilliseconds": 0.02991699999984121,
+      "maximumPositionDifferenceMetres": 6.52526982344667e-8,
+      "maximumNormalLengthError": 4.768604300320334e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-all-corner-5",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.006167000001369161,
+      "cachedMilliseconds": 0.003040999999939231,
+      "maximumPositionDifferenceMetres": 5.955755028278069e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-all-corner-5",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.0010607297098591663,
+        "corrected": 304,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 304,
+        "normalVertices": 642,
+        "maximumCorrectionMetres": 0.0010607297098591663,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 32,
+        "visitedEdges": 12928,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 8.024917000000642,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 8.057041000000027,
+      "cachedMilliseconds": 0.026250000000800355,
+      "maximumPositionDifferenceMetres": 6.532078872760431e-8,
+      "maximumNormalLengthError": 4.6271211529003153e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-all-corner-9",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.006457999999838648,
+      "cachedMilliseconds": 0.003875000000334694,
+      "maximumPositionDifferenceMetres": 6.124344242480585e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-all-corner-9",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.000739075414383405,
+        "corrected": 99,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 99,
+        "normalVertices": 331,
+        "maximumCorrectionMetres": 0.000739075414383405,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 19,
+        "visitedEdges": 1982,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 9.593041000000085,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 9.628083999999944,
+      "cachedMilliseconds": 0.028000000000247383,
+      "maximumPositionDifferenceMetres": 6.15190841069342e-8,
+      "maximumNormalLengthError": 4.053085955746383e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-all-corner-1",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.005375000000640284,
+      "cachedMilliseconds": 0.004791999999724794,
+      "maximumPositionDifferenceMetres": 6.142276172532211e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-all-corner-1",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.0006720444936676469,
+        "corrected": 137,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 137,
+        "normalVertices": 381,
+        "maximumCorrectionMetres": 0.0006720444936676469,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 8,
+        "visitedEdges": 2251,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 6.848959000000832,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 6.880000000001019,
+      "cachedMilliseconds": 0.02750000000014552,
+      "maximumPositionDifferenceMetres": 6.256827063543481e-8,
+      "maximumNormalLengthError": 3.829536543431544e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-all-corner-29",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.0054579999996349216,
+      "cachedMilliseconds": 0.003208000000086031,
+      "maximumPositionDifferenceMetres": 6.372249411776459e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-all-corner-29",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.0006569828087987506,
+        "corrected": 154,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 154,
+        "normalVertices": 512,
+        "maximumCorrectionMetres": 0.0006569828087987506,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 8,
+        "visitedEdges": 1675,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 7.142875000001368,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 7.174291000001176,
+      "cachedMilliseconds": 0.02695800000037707,
+      "maximumPositionDifferenceMetres": 6.561390919300844e-8,
+      "maximumNormalLengthError": 3.407401127919485e-8
+    },
+    {
+      "sex": "male",
+      "variant": "candidate-all-corner-27",
+      "oracle": {
+        "applied": false,
+        "maximumCorrection": 0
+      },
+      "report": {
+        "active": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 0.005417000000306871,
+      "cachedMilliseconds": 0.0037080000001878943,
+      "maximumPositionDifferenceMetres": 6.124103124033023e-8,
+      "maximumNormalLengthError": 0
+    },
+    {
+      "sex": "female",
+      "variant": "candidate-all-corner-27",
+      "oracle": {
+        "applied": true,
+        "maximumCorrection": 0.0005990488249051348,
+        "corrected": 174,
+        "reversedFaceOrientations": 0,
+        "ratio": 2.995,
+        "limit": 0.00125,
+        "passes": 32,
+        "edges": 101739,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "report": {
+        "active": true,
+        "correctedVertices": 174,
+        "normalVertices": 453,
+        "maximumCorrectionMetres": 0.0005990488249051348,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "edgeRatioGuard": 2.995,
+        "passes": 14,
+        "visitedEdges": 3020,
+        "solveMethod": "ascending active-edge queue",
+        "edges": 101739,
+        "computeMilliseconds": 10.073958000000857,
+        "sourceVerticesUnchanged": true,
+        "clinicalCalibration": false
+      },
+      "computeMilliseconds": 10.10295799999949,
+      "cachedMilliseconds": 0.02770799999962037,
+      "maximumPositionDifferenceMetres": 6.147018148977159e-8,
+      "maximumNormalLengthError": 3.8068626695419994e-8
+    }
+  ]
+}

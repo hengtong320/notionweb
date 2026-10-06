@@ -1,0 +1,3174 @@
+{
+  "measurement": "Actual WebGL float render of the production skin shader versus CPU attachment kernel; 2048 sampled vertices per state, 50% in hands, 25% in lower legs/rest thighs, 25% across the source; all corrected phone vertices or all corrected box normals replace leading samples; normal framebuffer checks for every corrected-normal vertex; 46 added spine boundary states",
+  "passed": true,
+  "rows": [
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 3,
+      "maximumError": 3.264667480298833e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-phone",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 3,
+      "maximumError": 4.2520299339099626e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-phone",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 2,
+      "maximumError": 2.019736636653422e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-phone",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 2,
+      "maximumError": 1.8730047859885198e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-phone",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 3,
+      "maximumError": 3.504783289152882e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-high-phone",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 3,
+      "maximumError": 3.514913767774962e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-high-phone",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.254234335933353e-07,
+      "maximumNormalError": 0,
+      "pose": "work-phone-ear",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.120957242493257e-07,
+      "maximumNormalError": 0,
+      "pose": "work-phone-ear",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.870521526597207e-07,
+      "maximumNormalError": 0,
+      "pose": "carry-chest",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.506297435048297e-07,
+      "maximumNormalError": 0,
+      "pose": "carry-chest",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.344330281929513e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5242938969834505e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.583879603446518e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-child",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.583879603446518e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-child",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.61384400215574e-07,
+      "maximumNormalError": 0,
+      "pose": "floor-cross-sit",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.7269102832208874e-07,
+      "maximumNormalError": 0,
+      "pose": "floor-cross-sit",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.44994315763734e-07,
+      "maximumNormalError": 0,
+      "pose": "walk-right",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.630912843507673e-07,
+      "maximumNormalError": 0,
+      "pose": "walk-right",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.518300947062357e-07,
+      "maximumNormalError": 0,
+      "pose": "walk-left",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.017380685816563e-07,
+      "maximumNormalError": 0,
+      "pose": "walk-left",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 4.703786847533242e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-tree-right",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 6.174789884303982e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-tree-right",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 4.280982746718909e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-tree-left",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 5.863662116515818e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-tree-left",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4455841373515938e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-kneeling",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.531236649447038e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-kneeling",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.707877544223605e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-picnic",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.8290589600810261e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-picnic",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.817576322854039e-07,
+      "maximumNormalError": 0,
+      "pose": "reach-low-right",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.739221875966655e-07,
+      "maximumNormalError": 0,
+      "pose": "reach-low-right",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.807081691356832e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-relaxed",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.193969035695126e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-relaxed",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.727301023999928e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-supported",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.9351666268473345e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-supported",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.742243964440486e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-recline",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.74456706264097e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-recline",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.591840809524039e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-sofa",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.877884438619832e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-sofa",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 7.555284532088842e-08,
+      "maximumNormalError": 0,
+      "pose": "supine",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 8.04211495263632e-08,
+      "maximumNormalError": 0,
+      "pose": "supine",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 9.618666058298915e-08,
+      "maximumNormalError": 0,
+      "pose": "prone",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 8.357444478262529e-08,
+      "maximumNormalError": 0,
+      "pose": "prone",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.2261761270482137e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-bridge",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.0932066601611485e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-bridge",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.344330281929513e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4176357429766245e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5072234737674438e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.6135557745716198e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4682893468871497e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicFlex": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.535751568066164e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicFlex": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.506877031160637e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.1693927367102465e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5861435714931628e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicTwist": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4897153872654326e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicTwist": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.6927159194042286e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4386074487545436e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.3483954257207222e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.344330281929513e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.344330281929513e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.6471743394698965e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.2980681666479816e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4416278839912784e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.459494127994655e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": -12,
+        "thoracicSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5502870149741134e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5117649722425973e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.6490307435195906e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.33582251220997e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5072890835951692e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12,
+        "thoracicTwist": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.486376981898214e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5907591833336857e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12,
+        "thoracicTwist": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4590951680275904e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.470382098932293e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": -12,
+        "thoracicTwist": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5449967730663218e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4058545417008677e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": 12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12,
+        "thoracicTwist": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4312403470782244e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "male",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.535736745835529e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-phone",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.55040924846068e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-phone",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.8213026224789478e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-phone",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.041909081330748e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-phone",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.516339575977601e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-high-phone",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.976931856212859e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-high-phone",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 22,
+      "maximumError": 2.786153898371362e-07,
+      "maximumNormalError": 0,
+      "pose": "work-phone-ear",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 28,
+      "maximumError": 3.698478611375688e-07,
+      "maximumNormalError": 0,
+      "pose": "work-phone-ear",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.472791313658358e-07,
+      "maximumNormalError": 0,
+      "pose": "carry-chest",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.578062095432394e-07,
+      "maximumNormalError": 0,
+      "pose": "carry-chest",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.634019075303149e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 58.59999990463257,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.6434420261233541e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 8.700000286102295,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.254886266112705e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-child",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.4192266873001537e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-child",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.673867557549343e-07,
+      "maximumNormalError": 0,
+      "pose": "floor-cross-sit",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.3647837471463777e-07,
+      "maximumNormalError": 0,
+      "pose": "floor-cross-sit",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.265699959347164e-07,
+      "maximumNormalError": 0,
+      "pose": "walk-right",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.679451435001395e-07,
+      "maximumNormalError": 0,
+      "pose": "walk-right",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.718981324370307e-07,
+      "maximumNormalError": 0,
+      "pose": "walk-left",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.665434311572324e-07,
+      "maximumNormalError": 0,
+      "pose": "walk-left",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 4.781580129458001e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-tree-right",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 6.02515942284652e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-tree-right",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 4.093811557237414e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-tree-left",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 6.002957056513025e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-tree-left",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.6298380925858065e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-kneeling",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.3425153259222106e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-kneeling",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.3205900432775968e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-picnic",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.539972311601655e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-picnic",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.93135237265723e-07,
+      "maximumNormalError": 0,
+      "pose": "reach-low-right",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.4690232234258954e-07,
+      "maximumNormalError": 0,
+      "pose": "reach-low-right",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.705755824862699e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-relaxed",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.040214845846061e-07,
+      "maximumNormalError": 0,
+      "pose": "stand-relaxed",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.063760479284854e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-supported",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.817144525056316e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-supported",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.819327779851368e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-recline",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 3.0447133358777664e-07,
+      "maximumNormalError": 0,
+      "pose": "sit-recline",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.82877233057815e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-sofa",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 2.3869100860816545e-07,
+      "maximumNormalError": 0,
+      "pose": "rest-sofa",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 7.683899092157324e-08,
+      "maximumNormalError": 0,
+      "pose": "supine",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 7.683899092157324e-08,
+      "maximumNormalError": 0,
+      "pose": "supine",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 8.931538305327816e-08,
+      "maximumNormalError": 0,
+      "pose": "prone",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 9.057432900012396e-08,
+      "maximumNormalError": 0,
+      "pose": "prone",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.1814822481578607e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-bridge",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -5,
+        "lumbarSide": -6,
+        "thoracicSide": 8,
+        "thoracicTwist": 10
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.1814822481578607e-07,
+      "maximumNormalError": 0,
+      "pose": "yoga-bridge",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": false,
+        "clinicalCalibration": false,
+        "correctedVertices": 0,
+        "maximumCorrectionMetres": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {},
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.634019075303149e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.900000095367432,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.3329309738561194e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.299999713897705,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": 12
+      },
+      "correctedNormalSamples": 211,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.3102029206825933e-07,
+      "maximumNormalError": 1.2377834115800373e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 12.300000190734863,
+        "correctedVertices": 48,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.00032268504002925635,
+        "normalVertices": 211,
+        "passes": 2,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 413
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarSide": -12
+      },
+      "correctedNormalSamples": 70,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4910777872029326e-07,
+      "maximumNormalError": 1.3657139822709086e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 10.800000190734863,
+        "correctedVertices": 14,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.000262550151987938,
+        "normalVertices": 70,
+        "passes": 2,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 119
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarSide": 12
+      },
+      "correctedNormalSamples": 43,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5095464472436936e-07,
+      "maximumNormalError": 1.332800883347909e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 8.900000095367432,
+        "correctedVertices": 10,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0001216954464176116,
+        "normalVertices": 43,
+        "passes": 2,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 86
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicFlex": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5565577195210528e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.599999904632568,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicFlex": 12
+      },
+      "correctedNormalSamples": 40,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4869215981905448e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.699999809265137,
+        "correctedVertices": 8,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 4.224384324036115e-05,
+        "normalVertices": 40,
+        "passes": 2,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 71
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.6494078505378202e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.900000095367432,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.340187506655167e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.100000381469727,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicTwist": -12
+      },
+      "correctedNormalSamples": 20,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.585296361058224e-07,
+      "maximumNormalError": 6.828569911354543e-08,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.5,
+        "correctedVertices": 4,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 8.196811700448441e-05,
+        "normalVertices": 20,
+        "passes": 2,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 35
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "thoracicTwist": 12
+      },
+      "correctedNormalSamples": 33,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.3678715679452509e-07,
+      "maximumNormalError": 6.828569911354543e-08,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 5.900000095367432,
+        "correctedVertices": 8,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 6.514448750629092e-05,
+        "normalVertices": 33,
+        "passes": 2,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 70
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.634019075303149e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.634019075303149e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 5.699999809265137,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.634019075303149e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 5.800000190734863,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.634019075303149e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 5.599999904632568,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.438479351560167e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.099999904632568,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.557248046185663e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 5.900000095367432,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.301310197406648e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.299999713897705,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12
+      },
+      "correctedNormalSamples": 0,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.4027711858282882e-07,
+      "maximumNormalError": 0,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6,
+        "correctedVertices": 0,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0,
+        "normalVertices": 0,
+        "passes": 1,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 0
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": -12,
+        "thoracicSide": -12
+      },
+      "correctedNormalSamples": 78,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5062323451939294e-07,
+      "maximumNormalError": 1.3657139822709086e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.199999809265137,
+        "correctedVertices": 16,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0002427582543772924,
+        "normalVertices": 78,
+        "passes": 2,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 143
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12
+      },
+      "correctedNormalSamples": 78,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.558775121463382e-07,
+      "maximumNormalError": 1.2377834115800373e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.200000286102295,
+        "correctedVertices": 18,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.00021003745700273177,
+        "normalVertices": 78,
+        "passes": 2,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 153
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12
+      },
+      "correctedNormalSamples": 413,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.3890910355985865e-07,
+      "maximumNormalError": 1.3657139822709086e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.5,
+        "correctedVertices": 118,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.00044156715842715255,
+        "normalVertices": 413,
+        "passes": 8,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 1035
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "lumbarFlex": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12
+      },
+      "correctedNormalSamples": 425,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.445674284203826e-07,
+      "maximumNormalError": 1.3348812510944096e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.300000190734863,
+        "correctedVertices": 120,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0004647260754241913,
+        "normalVertices": 425,
+        "passes": 8,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 1265
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "correctedNormalSamples": 711,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.3035200076012104e-07,
+      "maximumNormalError": 1.3657139822709086e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 10.200000286102297,
+        "correctedVertices": 361,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0012498472683218763,
+        "normalVertices": 711,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17749
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12,
+        "thoracicTwist": 12
+      },
+      "correctedNormalSamples": 810,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.305896697249826e-07,
+      "maximumNormalError": 1.341104507446289e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 16.90000009536743,
+        "correctedVertices": 435,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0011822046926045675,
+        "normalVertices": 810,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 23586
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": 12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": 12
+      },
+      "correctedNormalSamples": 683,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.487587478605122e-07,
+      "maximumNormalError": 1.3657139822709086e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 8.900000095367432,
+        "correctedVertices": 362,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0011232885025682757,
+        "normalVertices": 683,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 17654
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": -12,
+        "thoracicTwist": -12
+      },
+      "correctedNormalSamples": 642,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5535345304403478e-07,
+      "maximumNormalError": 1.3657139822709086e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 8.699999809265137,
+        "correctedVertices": 304,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0010607297098591663,
+        "normalVertices": 642,
+        "passes": 32,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 12928
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12,
+        "thoracicTwist": -12
+      },
+      "correctedNormalSamples": 331,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.674593283648885e-07,
+      "maximumNormalError": 1.3657139822709086e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 7.300000190734863,
+        "correctedVertices": 99,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.000739075414383405,
+        "normalVertices": 331,
+        "passes": 19,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 1982
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": -12,
+        "thoracicSide": -12,
+        "thoracicTwist": -12
+      },
+      "correctedNormalSamples": 381,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.495176563041014e-07,
+      "maximumNormalError": 1.3348812510944096e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.299999713897705,
+        "correctedVertices": 137,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0006720444936676469,
+        "normalVertices": 381,
+        "passes": 8,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 2251
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": -12,
+        "thoracicFlex": 12,
+        "thoracicSide": 12,
+        "thoracicTwist": 12
+      },
+      "correctedNormalSamples": 512,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.556982012477573e-07,
+      "maximumNormalError": 1.3333208984265688e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.800000190734863,
+        "correctedVertices": 154,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0006569828087987506,
+        "normalVertices": 512,
+        "passes": 8,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 1675
+      },
+      "vertices": 2048
+    },
+    {
+      "adjustment": {
+        "cervicalFlex": -12,
+        "cervicalSide": -12,
+        "lumbarFlex": 12,
+        "lumbarSide": 12,
+        "thoracicFlex": -12,
+        "thoracicSide": 12,
+        "thoracicTwist": 12
+      },
+      "correctedNormalSamples": 453,
+      "correctedVerticesGpuVerified": 0,
+      "maximumError": 1.5317115691284984e-07,
+      "maximumNormalError": 1.3348812510944096e-07,
+      "pose": "lift-squat",
+      "sex": "female",
+      "surfaceDisplayBound": {
+        "active": true,
+        "clinicalCalibration": false,
+        "computeMilliseconds": 6.5,
+        "correctedVertices": 174,
+        "edgeRatioGuard": 2.995,
+        "edges": 101739,
+        "maximumAllowedCorrectionMetres": 0.00125,
+        "maximumCorrectionMetres": 0.0005990488249051348,
+        "normalVertices": 453,
+        "passes": 14,
+        "solveMethod": "ascending active-edge queue",
+        "sourceVerticesUnchanged": true,
+        "visitedEdges": 3020
+      },
+      "vertices": 2048
+    }
+  ],
+  "states": 150,
+  "toleranceMetres": 2e-05,
+  "version": "57.0.0"
+}
